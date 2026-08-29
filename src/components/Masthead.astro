@@ -3,7 +3,6 @@ import { NAV_ITEMS } from '../data/site';
 import { alternateLocalePath, t, withLocale } from '../lib/i18n';
 import type { Locale } from '../data/types';
 const { locale='en', active='now', path=Astro.url.pathname } = Astro.props as { locale?: Locale; active?: string; path?: string };
-const alt = locale === 'en' ? 'pmy' : 'en';
 ---
 <header class="masthead" data-masthead>
   <div class="wrap">
@@ -17,7 +16,7 @@ const alt = locale === 'en' ? 'pmy' : 'en';
       <div class="utility-group">
         <div class="language-switch" aria-label="Language">
           <a class:list={[locale==='en' && 'active']} href={locale==='en'?path:alternateLocalePath(path, locale)} hreflang="en">EN</a>
-          <a class:list={[locale==='pmy' && 'active']} href={locale==='pmy'?path:alternateLocalePath(path, locale)} hreflang="pmy">Papua</a>
+          <a class:list={[locale==='pmy' && 'active']} href={locale==='pmy'?path:alternateLocalePath(path, locale)} hreflang="pmy">PMY</a>
         </div>
         <button class="ask-trigger" type="button" data-ask-open><span>{locale==='en'?'Ask':'Tanya'}</span><span class="key">⌘K</span></button>
       </div>

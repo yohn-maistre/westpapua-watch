@@ -12,7 +12,7 @@ export const issues: Issue[] = [
     status: { en: 'Active review', pmy: 'Masih dipantau' },
     updatedAt: '2026-08-25',
     developmentSlugs: ['raja-ampat-mining-august-2026'],
-    sourceIds: ['greenpeace-raja-clarification-2026', 'mongabay-raja-2026', 'antara-raja-2026', 'greenpeace-arborek-2026'],
+    sourceIds: ['greenpeace-raja-clarification-2026', 'mongabay-raja-2026', 'greenpeace-arborek-2026'],
     concepts: ['extractivism', 'ecocide', 'customary-land', 'sasi']
   },
   {

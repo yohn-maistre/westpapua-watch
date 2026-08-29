@@ -1,11 +1,23 @@
-import { sources } from './sources';
+import { sourceById } from './sources';
 
-// Resources are the durable reference library, not the full citation database.
-// Journalism stays attached to Current developments and Issue pages.
-const durableTypes = new Set(['report', 'official', 'research', 'culture']);
+// Resources are a curated long-term library. News articles stay on Current and Issue pages.
+const durableResourceIds = [
+  'greenpeace-raja-clarification-2026',
+  'greenpeace-arborek-2026',
+  'hrm-q2-2026',
+  'hrw-land-2026',
+  'un-new-york-agreement',
+  'un-unsf-background',
+  'un-ga-2504-1969',
+  'musgrave-1969-analysis',
+  'otsus-law-2001',
+  'udeido-biennale-jogja',
+  'udeido-papoeahuis'
+] as const;
 
-export const resources = sources
-  .filter((source) => durableTypes.has(source.type))
+export const resources = durableResourceIds
+  .map((id) => sourceById[id])
+  .filter(Boolean)
   .map((source) => ({
     ...source,
     year: source.date?.slice(0, 4) || '—'

@@ -17,7 +17,7 @@ export const developments: Development[] = [
       en: 'Recent reporting and public statements focus on operating mines, permit pathways and continued ecological concern across Raja Ampat.',
       pmy: 'Laporan baru deng pernyataan publik fokus ke tambang yang masih jalan, jalur izin, deng kekhawatiran lingkungan di Raja Ampat.'
     },
-    sourceIds: ['greenpeace-raja-clarification-2026', 'mongabay-raja-2026', 'antara-raja-2026', 'greenpeace-arborek-2026'],
+    sourceIds: ['greenpeace-raja-clarification-2026', 'mongabay-raja-2026', 'greenpeace-arborek-2026'],
     image: '/images/abstract/raja-ampat.svg',
     imageAlt: 'Abstract blue and warm gradient with contour lines representing Raja Ampat'
   },

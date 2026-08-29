@@ -3,6 +3,7 @@ import { NAV_ITEMS } from '../data/site';
 import { alternateLocalePath, t, withLocale } from '../lib/i18n';
 import type { Locale } from '../data/types';
 const { locale='en', active='now', path=Astro.url.pathname } = Astro.props as { locale?: Locale; active?: string; path?: string };
+const alternatePath = alternateLocalePath(path, locale);
 ---
 <div class="compact-nav" data-compact-nav>
   <div class="compact-inner">
@@ -11,11 +12,24 @@ const { locale='en', active='now', path=Astro.url.pathname } = Astro.props as { 
       {NAV_ITEMS.map((item)=><a href={withLocale(item.href,locale)} aria-current={active===item.key?'page':undefined}>{t(item.label,locale)}</a>)}
     </nav>
     <div class="compact-actions">
-      <div class="language-switch">
-        <a class:list={[locale==='en' && 'active']} href={locale==='en'?path:alternateLocalePath(path, locale)}>EN</a>
-        <a class:list={[locale==='pmy' && 'active']} href={locale==='pmy'?path:alternateLocalePath(path, locale)}>Papua</a>
-      </div>
+      <a class="compact-language-toggle" href={alternatePath} hreflang={locale==='en'?'pmy':'en'} data-language-swap>{locale==='en'?'PMY':'EN'}</a>
       <button class="ask-trigger" type="button" data-ask-open>{locale==='en'?'Ask':'Tanya'}</button>
     </div>
   </div>
 </div>
+<script>
+  const restoreKey='wpw:locale-scroll';
+  document.querySelectorAll('[data-language-swap]').forEach((link)=>link.addEventListener('click',()=>{
+    const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+    sessionStorage.setItem(restoreKey,JSON.stringify({target:new URL(link.href,location.href).pathname,ratio:window.scrollY/max}));
+  }));
+  try{
+    const saved=JSON.parse(sessionStorage.getItem(restoreKey)||'null');
+    if(saved?.target===location.pathname){
+      sessionStorage.removeItem(restoreKey);
+      const restore=()=>{const max=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);window.scrollTo({top:max*saved.ratio,behavior:'instant'});};
+      requestAnimationFrame(()=>requestAnimationFrame(restore));
+      window.addEventListener('load',restore,{once:true});
+    }
+  }catch{sessionStorage.removeItem(restoreKey)}
+</script>
