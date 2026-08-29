@@ -18,8 +18,9 @@ Research date: 29 August 2026.
 
 ## Deployment workflow
 
-- The project uses Cloudflare Pages' built-in GitHub integration. Repository CI remains separate and does not store Cloudflare deployment credentials.
-  - https://developers.cloudflare.com/pages/configuration/git-integration/github-integration/
+- Cloudflare's current GitHub examples use Wrangler Action for direct Pages uploads. The included workflow uses `cloudflare/wrangler-action@v4`.
+  - https://github.com/cloudflare/wrangler-action
+  - https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/
 
 ## Domain privacy
 
