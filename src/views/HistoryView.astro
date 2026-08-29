@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';import { historyChapters } from '../data/history';import { sourceById } from '../data/sources';import { t } from '../lib/i18n';import type { Locale } from '../data/types';
+const {locale='en'}=Astro.props as {locale?:Locale};
+---
+<BaseLayout locale={locale} active="history" title={locale==='en'?'History':'Sejarah'}>
+<section class="section"><div class="wrap"><div class="eyebrow">{locale==='en'?'History':'Sejarah'}</div><h1 class="page-title">{locale==='en'?'West Papua, 1961 to today':'Papua Barat, 1961 sampai sekarang'}</h1><p class="page-intro">{locale==='en'?'A sourced route through the political and institutional history behind current issues.':'Jalur bersumber lewat sejarah politik deng institusi yang ada di belakang isu sekarang.'}</p>
+<div class="history-shell"><div class="history-visual" aria-hidden="true">
+  {historyChapters.map((c,i)=> c.visual==='document'?<div class:list={['history-frame','history-document',i===0&&'active']} data-history-frame={String(i)}><div class="history-paper">{[82,64,90,72,58,86].map(w=><div class="history-line" style={`width:${w}%`}></div>)}</div></div>:c.visual==='split'?<div class:list={['history-frame','history-split',i===0&&'active']} data-history-frame={String(i)}><div><span>institutional record</span></div><div><span>Papuan accounts / scholarship</span></div></div>:<div class:list={['history-frame','history-map',i===0&&'active']} data-history-frame={String(i)}><div class="history-island"></div><i class="history-node" style="left:29%;top:54%"></i><i class="history-node" style="left:48%;top:50%"></i><i class="history-node" style="left:65%;top:57%"></i></div>)}
+</div><div>{historyChapters.map((c,i)=><article class="history-chapter" data-history-chapter={String(i)}><div class="history-year">{c.year}</div><h2>{t(c.title,locale)}</h2><p>{t(c.body,locale)}</p><div class="history-sources">{c.sourceIds.map(id=>sourceById[id]?.publisher).filter(Boolean).join(' · ')}</div></article>)}</div></div>
+</div></section>
+</BaseLayout>

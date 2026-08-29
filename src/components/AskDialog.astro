@@ -1,0 +1,21 @@
+---
+import type { Locale } from '../data/types';
+const { locale='en' } = Astro.props as { locale?: Locale };
+const prompts = locale==='en'
+  ? ['What is happening in Raja Ampat?','Explain the 1969 Act of Free Choice','Show Women & Gender issues','What is happening at Read My World?']
+  : ['Apa yang lagi terjadi di Raja Ampat?','Jelaskan Act of Free Choice 1969','Tampilkan isu Perempuan & Gender','Ada apa di Read My World?'];
+---
+<dialog class="ask-dialog" data-ask-dialog data-locale={locale}>
+  <form method="dialog" class="ask-head">
+    <input class="ask-input" data-ask-input autocomplete="off" maxlength="500" placeholder={locale==='en'?'Search or ask about West Papua':'Cari atau tanya soal Papua Barat'} aria-label={locale==='en'?'Search or ask':'Cari atau tanya'} />
+    <button class="ask-close" value="cancel" aria-label="Close">Esc</button>
+  </form>
+  <div class="ask-content">
+    <div class="actions" data-ask-prompts>
+      {prompts.map((prompt)=><button class="chip" type="button" data-prompt={prompt}>{prompt}</button>)}
+    </div>
+    <div class="ask-results" data-ask-results style="margin-top:.8rem"></div>
+    <button class="ask-submit" type="button" data-ask-submit>{locale==='en'?'Ask from this site':'Tanya dari situs ini'}</button>
+    <div class="ask-answer" data-ask-answer hidden aria-live="polite"></div>
+  </div>
+</dialog>

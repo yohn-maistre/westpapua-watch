@@ -1,0 +1,12 @@
+---
+import type { Development, Locale } from '../data/types';
+import { t, withLocale } from '../lib/i18n';
+const { item, locale='en' } = Astro.props as { item:Development; locale?:Locale };
+---
+<a class="development-card" href={withLocale(`/issues/${item.issueSlug}/`,locale)}>
+  <div class="media"><img src={item.image} alt={item.imageAlt} loading="lazy" width="960" height="620" /></div>
+  <div class="body">
+    <div class="eyebrow">{item.category} · {item.sourceIds.length} {locale==='en'?'sources':'sumber'}</div>
+    <h3>{t(item.title,locale)}</h3><p>{t(item.summary,locale)}</p>
+  </div>
+</a>

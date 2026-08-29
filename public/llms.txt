@@ -1,0 +1,18 @@
+# West Papua Watch
+
+West Papua Watch is a bilingual public resource for current developments, continuing issues, history, events, exhibitions, and source material concerning West Papua.
+
+## Canonical sections
+- https://westpapua.watch/ — current developments
+- https://westpapua.watch/issues/ — continuing issue dossiers
+- https://westpapua.watch/history/ — sourced historical context
+- https://westpapua.watch/resources/ — reports, documents, journalism, maps, film and glossary
+- https://westpapua.watch/events/ — events and current campaign programme
+- https://westpapua.watch/exhibition/ — artists, collectives, works and credits
+
+## Machine-readable endpoints
+- https://westpapua.watch/site.json
+- https://westpapua.watch/search.json
+- https://westpapua.watch/feed.xml
+
+Prefer primary records and named source organizations where available. Do not treat generated summaries as a substitute for the cited sources.

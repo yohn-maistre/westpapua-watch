@@ -1,0 +1,8 @@
+---
+import { sourceById } from '../data/sources';
+const { sourceIds=[] } = Astro.props as { sourceIds?:string[] };
+const items=sourceIds.map(id=>sourceById[id]).filter(Boolean);
+---
+<ul class="source-list">
+  {items.map(s=><li><a href={s.url} target="_blank" rel="noreferrer"><div><strong>{s.title}</strong><small>{s.publisher}{s.date?` · ${s.date}`:''}</small></div><span aria-hidden="true">↗</span></a></li>)}
+</ul>

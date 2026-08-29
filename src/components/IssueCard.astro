@@ -1,0 +1,9 @@
+---
+import type { Issue, Locale } from '../data/types';import { t, withLocale } from '../lib/i18n';
+const { item, locale='en', index=0 } = Astro.props as { item:Issue; locale?:Locale; index?:number };
+---
+<a class="issue-card" href={withLocale(`/issues/${item.slug}/`,locale)}>
+  <div class="eyebrow">{String(index+1).padStart(2,'0')}</div>
+  <h3>{t(item.title,locale)}</h3><p>{t(item.summary,locale)}</p>
+  <footer><span>{t(item.status,locale)}</span><span>{item.sourceIds.length} {locale==='en'?'sources':'sumber'}</span></footer>
+</a>

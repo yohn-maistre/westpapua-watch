@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://westpapua.watch/sitemap-index.xml

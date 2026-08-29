@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "westpapua-watch",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-08-29",
+  "vars": {
+    "ASK_MODEL": "qwen/qwen3.8-27b",
+    "GROQ_API_BASE": "https://api.groq.com/openai/v1"
+  }
+}

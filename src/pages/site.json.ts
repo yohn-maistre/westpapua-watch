@@ -1,0 +1,2 @@
+import { SITE, NAV_ITEMS } from '../data/site';import { issues } from '../data/issues';import { developments } from '../data/developments';import { glossary } from '../data/glossary';
+export function GET(){return new Response(JSON.stringify({site:SITE,navigation:NAV_ITEMS,issues,developments,glossary}),{headers:{'content-type':'application/json; charset=utf-8','cache-control':'public, max-age=3600'}})}

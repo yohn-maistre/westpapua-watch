@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';import { issues } from '../data/issues';import { t, withLocale } from '../lib/i18n';import type { Locale } from '../data/types';
+const {locale='en'}=Astro.props as {locale?:Locale};const categories=['all',...new Set(issues.map(i=>i.category))];
+---
+<BaseLayout locale={locale} active="issues" title={locale==='en'?'Issues':'Isu'}>
+  <section class="section"><div class="wrap"><div class="eyebrow">{locale==='en'?'Issues':'Isu'}</div><h1 class="page-title">{locale==='en'?'Living dossiers.':'Dossier yang terus hidup.'}</h1><p class="page-intro">{locale==='en'?'Long-running issues collect new developments, sources and historical context over time.':'Isu yang jalan lama kumpul perkembangan baru, sumber, deng konteks sejarah dari waktu ke waktu.'}</p>
+    <div class="filters">{categories.map((c,i)=><button class:list={['filter',i===0&&'active']} type="button" data-issue-filter={c}>{c==='all'?(locale==='en'?'All issues':'Semua isu'):c}</button>)}</div>
+    <div class="issue-list">{issues.map((item,index)=><a class="issue-row" data-issue-row data-issue-category={item.category} href={withLocale(`/issues/${item.slug}/`,locale)}><span class="eyebrow">{String(index+1).padStart(2,'0')}</span><div><h2>{t(item.title,locale)}</h2><p>{t(item.summary,locale)}</p></div><span class="status"><i class="status-dot"></i>{t(item.status,locale)}</span><span class="status">{locale==='en'?'Updated':'Diperbarui'} {item.updatedAt}</span></a>)}</div>
+  </div></section>
+</BaseLayout>
