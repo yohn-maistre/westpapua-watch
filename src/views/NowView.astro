@@ -10,9 +10,9 @@ const featured=developments.find(d=>d.featured) ?? developments[0];const seconda
 const leadSources=featured.sourceIds.map(id=>sourceById[id]).filter(Boolean);
 const signals=developments.slice(0,4);
 ---
-<BaseLayout locale={locale} active="now" description={locale==='en'?'Current developments and continuing issues in West Papua.':'Perkembangan terbaru deng isu yang masih jalan di Papua Barat.'}>
+<BaseLayout locale={locale} active="now" description={locale==='en'?'Current developments and ongoing issues in West Papua.':'Perkembangan sekarang deng isu yang masih jalan di Papua Barat.'}>
   <div class="wrap">
-    <div class="now-header"><span class="eyebrow">{locale==='en'?'Now':'Sekarang'}</span><span class="now-date">29 August 2026 · {locale==='en'?'updated':'diperbarui'} 07:00 WIT</span></div>
+    <div class="now-header"><span class="eyebrow">{locale==='en'?'Current':'Sekarang'}</span><span class="now-date">29 August 2026 · {locale==='en'?'updated':'diperbarui'} 07:00 WIT</span></div>
     <section class="hero">
       <div class="hero-image"><img src={featured.image} alt={featured.imageAlt} width="1600" height="900" fetchpriority="high" /></div>
       <div class="hero-copy">
@@ -21,9 +21,8 @@ const signals=developments.slice(0,4);
         <div class="actions"><a class="chip primary" href={withLocale(`/issues/${featured.issueSlug}/`,locale)}>{locale==='en'?'Open issue':'Buka isu'}</a><a class="chip" href={withLocale('/resources/#extractivism',locale)}>{glossaryBySlug.extractivism.term}</a><a class="chip" href={withLocale('/resources/#ecocide',locale)}>{glossaryBySlug.ecocide.term}</a></div>
       </div>
     </section>
-    <section class="signal" aria-label="Latest updates"><div class="eyebrow">{locale==='en'?'Now signal':'Sinyal sekarang'}</div>{signals.map((s,i)=><div class="signal-row"><time>{['18:42','17:20','15:13','12:06'][i]}</time><strong>{t(s.title,locale)}</strong><span>{s.category}</span></div>)}</section>
+    <section class="signal" aria-label="Latest updates"><div class="eyebrow">{locale==='en'?'Latest updates':'Pembaruan terbaru'}</div>{signals.map((s,i)=><div class="signal-row"><time>{['18:42','17:20','15:13','12:06'][i]}</time><strong>{t(s.title,locale)}</strong><span>{s.category}</span></div>)}</section>
   </div>
-  <section class="section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">{locale==='en'?'Developments':'Perkembangan'}</div><h2>{locale==='en'?'What is changing now.':'Apa yang berubah sekarang.'}</h2></div></div><div class="card-grid">{secondary.map(item=><DevelopmentCard item={item} locale={locale}/>)}</div></div></section>
-  <section class="section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">{locale==='en'?'Issues':'Isu'}</div><h2>{locale==='en'?'Issues that stay open.':'Isu yang tetap terbuka.'}</h2></div></div><div class="issue-grid">{issues.slice(0,6).map((item,index)=><IssueCard item={item} locale={locale} index={index}/>)}</div></div></section>
-  <section class="section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">{locale==='en'?'Latest':'Terbaru'}</div><h2>{locale==='en'?'Recent additions.':'Tambahan terbaru.'}</h2></div></div><div class="latest-list">{signals.map((s,i)=><a class="latest-row" href={withLocale(`/issues/${s.issueSlug}/`,locale)}><time>{['18:42','17:20','15:13','12:06'][i]}</time><strong>{t(s.title,locale)}</strong><span>{s.sourceIds.length} {locale==='en'?'sources':'sumber'}</span></a>)}</div></div></section>
+  <section class="section"><div class="wrap"><div class="section-head section-head-simple"><h2>{locale==='en'?'More developments.':'Perkembangan lain.'}</h2></div><div class="card-grid">{secondary.map(item=><DevelopmentCard item={item} locale={locale}/>)}</div></div></section>
+  <section class="section"><div class="wrap"><div class="section-head section-head-simple"><h2>{locale==='en'?'Ongoing issues.':'Isu yang masih jalan.'}</h2></div><div class="issue-grid">{issues.slice(0,6).map((item,index)=><IssueCard item={item} locale={locale} index={index}/>)}</div></div></section>
 </BaseLayout>

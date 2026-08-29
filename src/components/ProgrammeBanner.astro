@@ -1,13 +1,15 @@
 ---
+import '../styles/polish-01.css';
 import { PROGRAMME } from '../data/site';
-import { withLocale } from '../lib/i18n';
+import { t, withLocale } from '../lib/i18n';
 import type { Locale } from '../data/types';
 const { locale='en' } = Astro.props as { locale?: Locale };
 ---
 <a class="programme-banner" href={withLocale(PROGRAMME.href, locale)} data-programme-start={PROGRAMME.start} data-programme-end={PROGRAMME.end}>
   <div class="programme-inner">
-    <span class="programme-label">Programme</span>
-    <span class="programme-main">{PROGRAMME.label} · {PROGRAMME.place} · 10–12 Sep 2026</span>
+    <span class="programme-label">{PROGRAMME.label}</span>
+    <span class="programme-main">{PROGRAMME.place} · 10–12 Sep 2026</span>
+    <span class="programme-detail">{t(PROGRAMME.title, locale)}</span>
     <span class="programme-count" data-countdown>10–12 Sep</span>
     <span class="programme-arrow" aria-hidden="true">→</span>
   </div>

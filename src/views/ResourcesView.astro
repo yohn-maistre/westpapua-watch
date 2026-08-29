@@ -3,9 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';import { resources } from '
 const {locale='en'}=Astro.props as {locale?:Locale};const types=['all',...new Set(resources.map(r=>r.type))];
 ---
 <BaseLayout locale={locale} active="resources" title={locale==='en'?'Resources':'Sumber'}>
-<section class="section"><div class="wrap"><div class="eyebrow">{locale==='en'?'Resources':'Sumber'}</div><h1 class="page-title">{locale==='en'?'Reports, documents, maps, journalism, film, and terms.':'Laporan, dokumen, peta, jurnalisme, film, deng istilah.'}</h1>
+<section class="section resources-index"><div class="wrap"><h1 class="page-title">{locale==='en'?'Resources.':'Sumber.'}</h1><p class="page-intro">{locale==='en'?'Reports, research, official records and long-form reference material.':'Laporan, riset, catatan resmi, deng bahan rujukan jangka panjang.'}</p>
 <div class="resource-tools"><input class="resource-search" data-resource-search placeholder={locale==='en'?'Search resources':'Cari sumber'} /><div class="filters" style="margin:0">{types.map((x,i)=><button class:list={['filter',i===0&&'active']} data-resource-filter={x}>{x==='all'?(locale==='en'?'All':'Semua'):x}</button>)}</div></div>
 <div class="resource-table">{resources.map(r=><a class="resource-row" data-resource-row data-resource-type={r.type} href={r.url} target="_blank" rel="noreferrer"><span class="type">{r.type}</span><div><h2>{r.title}</h2><p>{r.publisher}</p></div><p>{r.language?.toUpperCase()}</p><span>{r.year}</span></a>)}</div>
 </div></section>
-<section class="section" id="glossary"><div class="wrap"><div class="section-head"><div><div class="eyebrow">{locale==='en'?'Glossary':'Istilah'}</div><h2>{locale==='en'?'Terms used across the site.':'Istilah yang dipakai di situs.'}</h2></div></div><div class="glossary-grid">{glossary.map(item=><article class="term-card" id={item.slug}><h3>{item.term}</h3><p>{t(item.definition,locale)}</p></article>)}</div></div></section>
+<section class="section" id="glossary"><div class="wrap"><div class="section-head section-head-simple"><h2>{locale==='en'?'Terms & concepts.':'Istilah & konsep.'}</h2></div><div class="glossary-grid">{glossary.map(item=><article class="term-card" id={item.slug}><h3>{item.term}</h3><p>{t(item.definition,locale)}</p></article>)}</div></div></section>
 </BaseLayout>

@@ -1,21 +1,42 @@
 ---
+import '../styles/polish-01.css';
 import BaseLayout from '../layouts/BaseLayout.astro';import { exhibitionItems } from '../data/exhibition';import { withLocale } from '../lib/i18n';import type { Locale } from '../data/types';
 const {locale='en'}=Astro.props as {locale?:Locale};
+const rails=[
+  [exhibitionItems[0],exhibitionItems[3],exhibitionItems[5]],
+  [exhibitionItems[1],exhibitionItems[4],exhibitionItems[0]],
+  [exhibitionItems[2],exhibitionItems[5],exhibitionItems[3],exhibitionItems[1]]
+];
 ---
 <BaseLayout locale={locale} active="exhibition" title={locale==='en'?'Exhibition view':'Tampilan pameran'} immersive={true} noFooter={true}>
-  <div class="exhibition-scroll-space" data-exhibition-scroll>
-    <div class="exhibition-field" aria-hidden="true">
-      {exhibitionItems.slice(0,6).map((item,i)=><div class={`exhibit-card c${i+1}`} data-exhibit-card data-speed={String([.16,-.12,.21,-.15,.1,-.19][i])}><img src={item.image} alt=""/><span>{item.title}</span></div>)}
+  <div class="exhibition-wall" data-exhibition-wall>
+    <div class="exhibition-rails" aria-hidden="true">
+      {rails.map((rail,railIndex)=><div class:list={['exhibition-rail',`rail-${railIndex+1}`]} data-exhibition-rail data-speed={String([13,-9,11][railIndex])}>
+        <div class="exhibition-track">
+          {[...rail,...rail].map((item,i)=><div class:list={['exhibit-card',`size-${(i+railIndex)%3}`]} data-exhibit-card><img src={item.image} alt=""/><span>{item.title}</span></div>)}
+        </div>
+      </div>)}
     </div>
-    <div class="exhibit-overlay">
+    <div class="exhibit-overlay" data-exhibit-overlay>
       <div class="exhibit-top"><span class="exhibit-kicker">{locale==='en'?'Exhibition':'Pameran'}</span><a class="chip exhibit-home" href={withLocale('/',locale)}>West Papua Watch</a></div>
       <h1 class="exhibit-title">{locale==='en'?'Art, writing & collective work':'Seni, tulisan & kerja kolektif'}</h1>
       <div class="exhibit-bottom"><a href={withLocale('/exhibition/',locale)}>{locale==='en'?'Browse artists, works & credits':'Lihat seniman, karya & kredit'} →</a></div>
     </div>
+    <div class="exhibition-curtain" aria-hidden="true"><i></i><i></i></div>
   </div>
   <script>
-    const cards=[...document.querySelectorAll('[data-exhibit-card]')];
+    const wall=document.querySelector('[data-exhibition-wall]');
+    const rails=[...document.querySelectorAll('[data-exhibition-rail]')];
+    const overlay=document.querySelector('[data-exhibit-overlay]');
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(!reduced){let ticking=false;const update=()=>{const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);const p=scrollY/max;cards.forEach((card,i)=>{const speed=Number(card.dataset.speed||0);const x=(p-.5)*innerWidth*speed*2.2;const y=(p-.5)*innerHeight*speed*1.3;card.style.translate=`${x}px ${y}px`;});ticking=false};addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true}},{passive:true});update()}
+    let inputShift=0,last=performance.now(),touchY=null,quietTimer;
+    const markMoved=()=>{overlay?.classList.add('has-moved');clearTimeout(quietTimer);quietTimer=setTimeout(()=>overlay?.classList.remove('has-moved'),3200)};
+    const wrap=(value,size)=>((value%size)+size)%size;
+    const tick=(now)=>{const dt=Math.min(.05,(now-last)/1000);last=now;rails.forEach((rail,i)=>{const track=rail.querySelector('.exhibition-track');const half=(track?.scrollHeight||0)/2;if(!half)return;const speed=(reduced||rail.dataset.paused)?0:Number(rail.dataset.speed||0);rail._base=(rail._base||0)+speed*dt;const local=wrap(rail._base+inputShift*(i===1?-.78:1),half);track.style.transform=`translate3d(0,${-local}px,0)`});requestAnimationFrame(tick)};
+    wall?.addEventListener('wheel',event=>{inputShift+=event.deltaY*.42;markMoved()},{passive:true});
+    wall?.addEventListener('touchstart',event=>{touchY=event.touches[0]?.clientY??null},{passive:true});
+    wall?.addEventListener('touchmove',event=>{const y=event.touches[0]?.clientY;if(touchY!==null&&typeof y==='number'){inputShift+=(touchY-y)*1.05;touchY=y;markMoved()}},{passive:true});
+    document.querySelectorAll('[data-exhibit-card]').forEach(card=>card.addEventListener('pointerdown',()=>{overlay?.classList.remove('has-moved');rails.forEach(rail=>rail.dataset.paused='1');setTimeout(()=>rails.forEach(rail=>delete rail.dataset.paused),1800)}));
+    requestAnimationFrame(tick);
   </script>
 </BaseLayout>
