@@ -54,4 +54,4 @@ Read:
 - `docs/NEWS_PIPELINE.md`
 - `AGENTS.md`
 
-The included GitHub Action can deploy the built `dist/` directory directly to Cloudflare Pages on every push to `main`.
+Cloudflare Pages deploys the site from `main` through its built-in GitHub integration. The repository CI workflow validates every push and pull request independently.

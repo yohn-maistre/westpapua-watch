@@ -40,15 +40,15 @@ Do not attribute an attack to any actor without evidence.
 ### Repository
 
 - `.env*`, `.dev.vars*`, Wrangler state and build output are ignored.
-- CI builds before deployment.
-- Cloudflare token and account ID are GitHub Secrets.
+- CI validates builds independently of Cloudflare deployment.
+- Cloudflare Pages uses its built-in GitHub integration, scoped to this repository. No Cloudflare deployment token or account ID is stored in GitHub.
 - Use protected `main`, required reviews where practical, and Dependabot/security alerts.
 
 ## Before launch
 
 - Enable GitHub, Cloudflare and Namecheap MFA/passkeys.
 - Enable Namecheap Domain Privacy, registrar lock and auto-renew.
-- Create least-privilege Cloudflare API token.
+- Scope Cloudflare's GitHub App to this repository only.
 - Protect `main` against force-pushes.
 - Configure Cloudflare WAF/Rate Limiting for `/api/ask` if public traffic is expected immediately.
 - Test security headers with Mozilla Observatory / securityheaders.com after the custom domain is live.

@@ -17,35 +17,23 @@ git remote add origin git@github.com:<owner>/<repo>.git
 git push -u origin main
 ```
 
-The repository includes two workflows:
+The repository includes `ci.yml`, which builds and runs content checks on pull requests and pushes.
 
-- `ci.yml` builds and runs content checks on pull requests and pushes.
-- `deploy-cloudflare.yml` builds and deploys `dist/` to Cloudflare Pages on `main`.
+## 3. Connect the repository to Cloudflare Pages
 
-## 3. Create the Cloudflare Pages project once
+In Cloudflare: **Workers & Pages → Create → Pages → Connect to Git**.
 
-In Cloudflare: **Workers & Pages → Create → Pages → Direct Upload** and create a project named `westpapua-watch`.
+1. Authorize Cloudflare's GitHub App for `yohn-maistre/westpapua-watch` only.
+2. Select the `westpapua-watch` repository.
+3. Set the production branch to `main`.
+4. Use `npm run build` as the build command.
+5. Use `dist` as the build output directory.
+6. Leave the root directory at the repository root.
+7. Set `NODE_VERSION=22` if Cloudflare does not detect the version from `package.json`.
 
-Alternatively, after authenticating Wrangler locally:
+Cloudflare will deploy production from `main` and create preview deployments for other branches. No Cloudflare API token or account ID is stored in GitHub.
 
-```bash
-npx wrangler pages project create westpapua-watch --production-branch main
-```
-
-Do not also connect the same project to Cloudflare's built-in Git integration if you use the included GitHub Action, or every push will create two deployments.
-
-## 4. GitHub repository secrets
-
-Create these repository secrets under **Settings → Secrets and variables → Actions**:
-
-- `CLOUDFLARE_API_TOKEN`
-- `CLOUDFLARE_ACCOUNT_ID`
-
-Use a scoped Cloudflare token with only the permissions needed to deploy Pages. Do not use the Global API Key.
-
-The workflow uses `cloudflare/wrangler-action@v4` and deploys `dist` to `westpapua-watch`.
-
-## 5. Configure Ask securely
+## 4. Configure Ask securely
 
 In Cloudflare: **Workers & Pages → westpapua-watch → Settings → Variables and Secrets**.
 
@@ -62,7 +50,7 @@ Never put the API key in `PUBLIC_*`, Astro client code, GitHub variables, or the
 
 The function is same-origin only, caps query/body size and model output, uses a small server-side retrieval corpus, returns `no-store`, and does not intentionally log questions. For durable abuse control, add a Cloudflare WAF/Rate Limiting rule for `/api/ask` or add Turnstile if traffic warrants it.
 
-## 6. Connect the Namecheap domain
+## 5. Connect the Namecheap domain
 
 For the apex domain `westpapua.watch`, Cloudflare Pages requires the domain to be a Cloudflare DNS zone.
 
@@ -77,7 +65,7 @@ For the apex domain `westpapua.watch`, Cloudflare Pages requires the domain to b
 
 Cloudflare automatically provisions TLS for Pages custom domains. Keep SSL/TLS mode on the Cloudflare-recommended secure setting and do not create an insecure HTTP origin for this static deployment.
 
-## 7. WHOIS / doxxing checklist
+## 6. WHOIS / doxxing checklist
 
 Namecheap provides free Domain Privacy for eligible domains and normally enables it by default. Before completing registration, verify **Domain Privacy = ON** in the cart and after purchase.
 
@@ -94,7 +82,7 @@ Additional precautions:
 
 Domain Privacy hides ordinary public registration data; it is not anonymity against valid legal process, registrar records, payment records, or previously archived WHOIS data if privacy was ever disabled.
 
-## 8. Verify after deployment
+## 7. Verify after deployment
 
 ```bash
 curl -I https://westpapua.watch/
