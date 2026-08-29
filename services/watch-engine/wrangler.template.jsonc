@@ -1,0 +1,33 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "westpapua-watch-engine",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-29",
+  "workers_dev": false,
+  "ai": { "binding": "AI" },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "westpapua-watch-db", "database_id": "__WATCH_DB_ID__", "migrations_dir": "migrations" }
+  ],
+  "r2_buckets": [
+    { "binding": "ARCHIVE", "bucket_name": "westpapua-watch-archive" }
+  ],
+  "vectorize": [
+    { "binding": "ARTICLE_INDEX", "index_name": "westpapua-watch-articles" }
+  ],
+  "queues": {
+    "producers": [{ "binding": "INGEST_QUEUE", "queue": "westpapua-watch-ingest" }],
+    "consumers": [{ "queue": "westpapua-watch-ingest", "max_batch_size": 10, "max_batch_timeout": 5, "max_retries": 5, "dead_letter_queue": "westpapua-watch-ingest-dlq" }]
+  },
+  "workflows": [
+    { "name": "westpapua-watch-news-cycle", "binding": "NEWS_CYCLE", "class_name": "NewsCycleWorkflow", "schedules": ["*/30 * * * *"] }
+  ],
+  "vars": {
+    "EMBEDDING_MODEL": "@cf/baai/bge-m3",
+    "FAST_MODEL": "@cf/zai-org/glm-4.7-flash",
+    "ANSWER_MODEL": "@cf/qwen/qwen3.8-27b",
+    "AUTO_PUBLISH": "false",
+    "ALLOW_EXTERNAL_IMAGES": "false",
+    "AI_GATEWAY_FAST_MODEL": "dynamic/watch-fast",
+    "AI_GATEWAY_ASK_MODEL": "dynamic/watch-ask"
+  }
+}

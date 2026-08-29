@@ -1,42 +1,54 @@
 ---
 import '../styles/polish-01.css';
+import '../styles/polish-03.css';
 import BaseLayout from '../layouts/BaseLayout.astro';import { exhibitionItems } from '../data/exhibition';import { withLocale } from '../lib/i18n';import type { Locale } from '../data/types';
 const {locale='en'}=Astro.props as {locale?:Locale};
-const rails=[
-  [exhibitionItems[0],exhibitionItems[3],exhibitionItems[5]],
-  [exhibitionItems[1],exhibitionItems[4],exhibitionItems[0]],
-  [exhibitionItems[2],exhibitionItems[5],exhibitionItems[3],exhibitionItems[1]]
-];
+const laneOrder=['works','voices','archive'] as const;
+const laneLabels={
+  works:{en:'Works',pmy:'Karya'},
+  voices:{en:'Voices',pmy:'Suara'},
+  archive:{en:'Archive',pmy:'Arsip'}
+};
+const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:exhibitionItems.filter(item=>item.lane===lane)}));
 ---
 <BaseLayout locale={locale} active="exhibition" title={locale==='en'?'Exhibition view':'Tampilan pameran'} immersive={true} noFooter={true}>
   <div class="exhibition-wall" data-exhibition-wall>
-    <div class="exhibition-rails" aria-hidden="true">
-      {rails.map((rail,railIndex)=><div class:list={['exhibition-rail',`rail-${railIndex+1}`]} data-exhibition-rail data-speed={String([13,-9,11][railIndex])}>
+    <div class="exhibition-rails" data-exhibition-rails aria-label={locale==='en'?'Exhibition themes':'Tema pameran'}>
+      {lanes.map((group,railIndex)=><section class:list={['exhibition-rail',`rail-${railIndex+1}`]} data-exhibition-rail data-index={String(railIndex)} data-speed={String([12,-9,10][railIndex])} aria-label={group.label}>
         <div class="exhibition-track">
-          {[...rail,...rail].map((item,i)=><div class:list={['exhibit-card',`size-${(i+railIndex)%3}`]} data-exhibit-card><img src={item.image} alt=""/><span>{item.title}</span></div>)}
+          {[...group.items,...group.items,...group.items].map((item,i)=><a class:list={['exhibit-card',`size-${(i+railIndex)%3}`]} data-exhibit-card href={withLocale('/exhibition/',locale)} aria-label={item.title}><img src={item.image} alt=""/><span>{item.title}</span></a>)}
         </div>
-      </div>)}
+      </section>)}
     </div>
     <div class="exhibit-overlay" data-exhibit-overlay>
-      <div class="exhibit-top"><span class="exhibit-kicker">{locale==='en'?'Exhibition':'Pameran'}</span><a class="chip exhibit-home" href={withLocale('/',locale)}>West Papua Watch</a></div>
+      <div class="exhibit-top"><span class="exhibit-kicker">{locale==='en'?'Exhibition':'Pameran'}</span><a class="chip exhibit-home" data-curtain-leave href={withLocale('/',locale)}>West Papua Watch</a></div>
+      <div class="exhibit-lane-tabs" role="tablist" aria-label={locale==='en'?'Exhibition themes':'Tema pameran'}>{lanes.map((group,i)=><button class:list={[i===0&&'active']} type="button" role="tab" data-lane-tab={String(i)}>{group.label}</button>)}</div>
       <h1 class="exhibit-title">{locale==='en'?'Art, writing & collective work':'Seni, tulisan & kerja kolektif'}</h1>
-      <div class="exhibit-bottom"><a href={withLocale('/exhibition/',locale)}>{locale==='en'?'Browse artists, works & credits':'Lihat seniman, karya & kredit'} →</a></div>
+      <div class="exhibit-bottom"><a data-curtain-leave href={withLocale('/exhibition/',locale)}>{locale==='en'?'Browse artists, works & credits':'Lihat seniman, karya & kredit'} →</a></div>
     </div>
-    <div class="exhibition-curtain" aria-hidden="true"><i></i><i></i></div>
+    <div class="exhibition-curtain" data-exhibition-curtain aria-hidden="true"><i></i><i></i></div>
   </div>
   <script>
     const wall=document.querySelector('[data-exhibition-wall]');
+    const railsContainer=document.querySelector('[data-exhibition-rails]');
     const rails=[...document.querySelectorAll('[data-exhibition-rail]')];
+    const tabs=[...document.querySelectorAll('[data-lane-tab]')];
     const overlay=document.querySelector('[data-exhibit-overlay]');
+    const curtain=document.querySelector('[data-exhibition-curtain]');
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let inputShift=0,last=performance.now(),touchY=null,quietTimer;
-    const markMoved=()=>{overlay?.classList.add('has-moved');clearTimeout(quietTimer);quietTimer=setTimeout(()=>overlay?.classList.remove('has-moved'),3200)};
+    let inputShift=0,last=performance.now(),quietTimer,activeLane=0;
+    let touch=null;
+    const markMoved=()=>{overlay?.classList.add('has-moved');clearTimeout(quietTimer);quietTimer=setTimeout(()=>overlay?.classList.remove('has-moved'),2800)};
     const wrap=(value,size)=>((value%size)+size)%size;
-    const tick=(now)=>{const dt=Math.min(.05,(now-last)/1000);last=now;rails.forEach((rail,i)=>{const track=rail.querySelector('.exhibition-track');const half=(track?.scrollHeight||0)/2;if(!half)return;const speed=(reduced||rail.dataset.paused)?0:Number(rail.dataset.speed||0);rail._base=(rail._base||0)+speed*dt;const local=wrap(rail._base+inputShift*(i===1?-.78:1),half);track.style.transform=`translate3d(0,${-local}px,0)`});requestAnimationFrame(tick)};
+    const activateLane=(next)=>{activeLane=Math.max(0,Math.min(rails.length-1,next));railsContainer?.style.setProperty('--active-lane',String(activeLane));tabs.forEach((tab,i)=>{tab.classList.toggle('active',i===activeLane);tab.setAttribute('aria-selected',i===activeLane?'true':'false')});markMoved()};
+    tabs.forEach((tab,i)=>tab.addEventListener('click',()=>activateLane(i)));
+    const tick=(now)=>{const dt=Math.min(.05,(now-last)/1000);last=now;rails.forEach((rail,i)=>{const track=rail.querySelector('.exhibition-track');const third=(track?.scrollHeight||0)/3;if(!third)return;const speed=(reduced||rail.dataset.paused)?0:Number(rail.dataset.speed||0);rail._base=(rail._base||0)+speed*dt;const direction=i===1?-.72:1;const local=wrap(rail._base+inputShift*direction,third);track.style.transform=`translate3d(0,${-local}px,0)`});requestAnimationFrame(tick)};
     wall?.addEventListener('wheel',event=>{inputShift+=event.deltaY*.42;markMoved()},{passive:true});
-    wall?.addEventListener('touchstart',event=>{touchY=event.touches[0]?.clientY??null},{passive:true});
-    wall?.addEventListener('touchmove',event=>{const y=event.touches[0]?.clientY;if(touchY!==null&&typeof y==='number'){inputShift+=(touchY-y)*1.05;touchY=y;markMoved()}},{passive:true});
-    document.querySelectorAll('[data-exhibit-card]').forEach(card=>card.addEventListener('pointerdown',()=>{overlay?.classList.remove('has-moved');rails.forEach(rail=>rail.dataset.paused='1');setTimeout(()=>rails.forEach(rail=>delete rail.dataset.paused),1800)}));
-    requestAnimationFrame(tick);
+    wall?.addEventListener('touchstart',event=>{const p=event.touches[0];if(p)touch={x:p.clientX,y:p.clientY,lastX:p.clientX,lastY:p.clientY,axis:null}},{passive:true});
+    wall?.addEventListener('touchmove',event=>{const p=event.touches[0];if(!p||!touch)return;const totalX=p.clientX-touch.x,totalY=p.clientY-touch.y;if(!touch.axis&&Math.hypot(totalX,totalY)>12)touch.axis=Math.abs(totalX)>Math.abs(totalY)*1.1?'x':'y';if(touch.axis==='y'){inputShift+=(touch.lastY-p.clientY)*1.06;markMoved()}touch.lastX=p.clientX;touch.lastY=p.clientY},{passive:true});
+    wall?.addEventListener('touchend',()=>{if(touch?.axis==='x'){const dx=touch.lastX-touch.x;if(Math.abs(dx)>48)activateLane(activeLane+(dx<0?1:-1))}touch=null},{passive:true});
+    document.querySelectorAll('[data-exhibit-card]').forEach(card=>card.addEventListener('pointerdown',()=>{rails.forEach(rail=>rail.dataset.paused='1');setTimeout(()=>rails.forEach(rail=>delete rail.dataset.paused),1500)}));
+    document.querySelectorAll('[data-curtain-leave]').forEach(link=>link.addEventListener('click',event=>{if(reduced)return;event.preventDefault();curtain?.classList.add('is-closing');setTimeout(()=>{location.href=link.href},620)}));
+    activateLane(0);requestAnimationFrame(tick);
   </script>
 </BaseLayout>

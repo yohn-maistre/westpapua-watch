@@ -1,0 +1,95 @@
+/* Freeze 03: composited Current hero, full-bleed History stage, thematic Exhibition lanes. */
+
+/* Current: image + headline behave as one editorial surface. */
+.hero-composite{padding-top:1.35rem}
+.hero-composite .hero-media{position:relative;min-height:clamp(520px,64vw,760px);border:1px solid rgba(255,255,255,.065);border-radius:var(--radius-lg);overflow:hidden;background:#171b26;box-shadow:var(--shadow);isolation:isolate}
+.hero-composite .hero-media>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-composite .hero-media::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(5,7,12,.01) 20%,rgba(5,7,12,.08) 42%,rgba(6,8,14,.54) 68%,rgba(7,9,15,.96) 100%);pointer-events:none}
+.hero-composite .hero-media-fade{position:absolute;z-index:2;left:clamp(1rem,2.5vw,2rem);right:clamp(1rem,2.5vw,2rem);bottom:clamp(1rem,2.4vw,1.8rem);display:flex;flex-direction:column;align-items:flex-start}
+.hero-composite .story-meta{padding:0;margin:0 0 .7rem;max-width:100%}
+.hero-composite .hero-title{margin:0;max-width:1050px;text-wrap:balance}
+.hero-composite .hero-below{padding:1.25rem clamp(.1rem,1vw,.6rem) .4rem}
+.hero-composite .hero-summary{margin:0 0 1.15rem;max-width:800px}
+.hero-image-credit{margin-top:.8rem;color:#d4d5df;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px}
+
+/* History: on phones the stage belongs to the viewport, not to a floating card. */
+@media(max-width:760px){
+  .history-page>.wrap{width:100%}
+  .history-page-title,.history-copy{width:calc(100% - 30px);margin-inline:auto}
+  .history-stage{width:100vw;margin-left:0;left:0;top:90px;height:46svh;min-height:320px;border-radius:0;border-left:0;border-right:0;box-shadow:0 24px 65px rgba(0,0,0,.24)}
+  .history-stage-shell{display:block}
+  .history-stage-shell .history-chapter{min-height:52svh;padding:3.4rem .15rem 4.8rem}
+}
+
+/* Exhibition: the mask is environmental, not a visible rectangle. */
+.exhibition-wall{touch-action:none}
+.exhibition-wall::before,.exhibition-wall::after{content:"";position:fixed;z-index:20;left:0;right:0;pointer-events:none}
+.exhibition-wall::before{top:0;height:20vh;background:linear-gradient(180deg,rgba(5,7,12,.7),transparent)}
+.exhibition-wall::after{bottom:0;height:26vh;background:linear-gradient(180deg,transparent,rgba(5,7,12,.82) 72%,#070910 100%)}
+.exhibit-overlay{background:none!important;border:0!important;box-shadow:none!important}
+.exhibit-lane-tabs{position:absolute;z-index:35;left:clamp(1.3rem,4vw,3rem);top:clamp(4.6rem,9vh,6.2rem);display:flex;gap:.35rem;pointer-events:auto}
+.exhibit-lane-tabs button{border:1px solid rgba(255,255,255,.12);background:rgba(7,9,15,.46);backdrop-filter:blur(14px);border-radius:999px;color:#b9bdc8;padding:.45rem .66rem;font-size:.64rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+.exhibit-lane-tabs button.active{background:#eef0ff;color:#11131f;border-color:#eef0ff}
+.exhibition-curtain.is-closing{visibility:visible!important;animation:none!important}
+.exhibition-curtain.is-closing i:first-child{transform:translateX(-112%) scaleX(.72);animation:curtain-close-left .62s cubic-bezier(.72,0,.18,1) forwards}
+.exhibition-curtain.is-closing i:last-child{transform:translateX(112%) scaleX(.72);animation:curtain-close-right .62s cubic-bezier(.72,0,.18,1) forwards}
+@keyframes curtain-close-left{to{transform:translateX(0) scaleX(1)}}
+@keyframes curtain-close-right{to{transform:translateX(0) scaleX(1)}}
+
+@media(max-width:680px){
+  .hero-composite{padding-top:1.15rem}
+  .hero-composite .hero-media{min-height:min(74svh,690px);border-radius:24px}
+  .hero-composite .hero-media-fade{left:1rem;right:1rem;bottom:1.05rem}
+  .hero-composite .hero-title{font-size:clamp(3.35rem,14.7vw,5rem);line-height:.86;letter-spacing:-.067em}
+  .hero-composite .story-meta{font-size:.59rem;row-gap:.38rem;margin-bottom:.65rem}
+  .hero-composite .hero-below{padding:.95rem .15rem .25rem}
+  .hero-composite .hero-summary{font-size:1rem;line-height:1.5;margin-bottom:1rem}
+
+  .exhibition-rails{--active-lane:0;display:flex;grid-template-columns:none;gap:3vw;inset:-10vh auto -10vh 0;width:max-content;padding-left:11vw;transform:translate3d(calc(var(--active-lane) * -81vw),0,0) rotate(-.9deg);transition:transform .52s cubic-bezier(.2,.8,.2,1)}
+  .exhibition-rail{flex:0 0 78vw;height:120vh;overflow:hidden}
+  .exhibit-card.size-0{height:29vh}.exhibit-card.size-1{height:38vh}.exhibit-card.size-2{height:25vh}
+  .exhibit-title{top:31%;font-size:clamp(3.6rem,15.8vw,6rem);max-width:94vw}
+  .exhibit-lane-tabs{top:4.2rem;left:1.1rem;right:1.1rem;justify-content:center}
+  .exhibit-lane-tabs button{font-size:.56rem;padding:.4rem .55rem}
+  .exhibit-overlay.has-moved .exhibit-title{opacity:.16}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .exhibition-rails{transition:none}
+  .exhibition-curtain.is-closing{display:none}
+}
+
+/* Brand mark: restrained watercolor lives only inside the word “Watch”. */
+.masthead-brand .watch{
+  color:#f4f3fb;
+  -webkit-text-fill-color:transparent;
+  background-color:#f4f3fb;
+  background-image:url('/images/brand/watch-watercolor.svg');
+  background-repeat:no-repeat;
+  background-size:142% 190%;
+  background-position:50% 48%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  filter:saturate(1.08) contrast(1.03) drop-shadow(0 5px 22px rgba(0,0,0,.2));
+}
+.compact-brand em,.footer-brand em{
+  color:#eef0ff;
+  -webkit-text-fill-color:transparent;
+  background-color:#eef0ff;
+  background-image:url('/images/brand/watch-watercolor.svg');
+  background-repeat:no-repeat;
+  background-size:180% 210%;
+  background-position:52% 50%;
+  -webkit-background-clip:text;
+  background-clip:text;
+}
+@supports not ((background-clip:text) or (-webkit-background-clip:text)){
+  .masthead-brand .watch,.compact-brand em,.footer-brand em{-webkit-text-fill-color:currentColor;background-image:none;color:#f1eff8}
+}
+@media(max-width:680px){
+  .masthead-brand .watch{background-size:150% 190%;background-position:48% 50%}
+  .compact-brand em{background-size:195% 220%}
+}
+@media(prefers-contrast:more){
+  .masthead-brand .watch,.compact-brand em,.footer-brand em{-webkit-text-fill-color:#f4f3fb;background-image:none;color:#f4f3fb}
+}

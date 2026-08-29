@@ -1,6 +1,6 @@
 import { CORPUS } from '../_lib/corpus';
 
-type Env={GROQ_API_KEY?:string;ASK_MODEL?:string;GROQ_API_BASE?:string};
+type Env={GROQ_API_KEY?:string;ASK_MODEL?:string;GROQ_API_BASE?:string;WATCH_ENGINE?:Fetcher};
 const securityHeaders={
   'content-type':'application/json; charset=utf-8','cache-control':'no-store','x-content-type-options':'nosniff','x-frame-options':'DENY','referrer-policy':'no-referrer',
   'permissions-policy':'camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=()','content-security-policy':"default-src 'none'; frame-ancestors 'none'; base-uri 'none'"
@@ -12,6 +12,9 @@ function retrieve(query:string){const q=tokens(query);return CORPUS.map(item=>{c
 const recent=new Map<string,{count:number;start:number}>();
 function limited(ip:string){const now=Date.now(),cur=recent.get(ip);if(!cur||now-cur.start>60_000){recent.set(ip,{count:1,start:now});return false}cur.count++;return cur.count>12}
 export const onRequestPost:PagesFunction<Env>=async({request,env})=>{
+  if(env.WATCH_ENGINE){
+    try{const forwarded=new Request('https://watch.internal/ask',{method:'POST',headers:{'content-type':'application/json'},body:await request.clone().text()});const response=await env.WATCH_ENGINE.fetch(forwarded);if(response.status!==404)return new Response(response.body,{status:response.status,headers:securityHeaders})}catch{}
+  }
   const host=new URL(request.url).host;const origin=request.headers.get('origin');
   if(origin&&new URL(origin).host!==host)return json({error:'Cross-origin requests are not allowed.'},403);
   const len=Number(request.headers.get('content-length')||0);if(len>8192)return json({error:'Request too large.'},413);

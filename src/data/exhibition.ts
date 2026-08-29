@@ -3,6 +3,7 @@ export const exhibitionItems = [
     slug: 'udeido-collective',
     title: 'Udeido Collective',
     type: 'Collective',
+    lane: 'voices',
     summary: 'Interdisciplinary Papuan collective practice spanning visual art, archives, performance and social questions.',
     image: '/images/abstract/exhibition-1.svg',
     sourceId: 'udeido-biennale-jogja'
@@ -11,6 +12,7 @@ export const exhibitionItems = [
     slug: 'hidden-faces',
     title: 'Hidden Faces of Papua',
     type: 'Installation reference',
+    lane: 'works',
     summary: 'A reference point for the exhibition’s treatment of contemporary issues, identity and public memory.',
     image: '/images/abstract/exhibition-2.svg',
     sourceId: 'udeido-papoeahuis'
@@ -19,6 +21,7 @@ export const exhibitionItems = [
     slug: 'koreri',
     title: 'Koreri / collective memory',
     type: 'Theme',
+    lane: 'works',
     summary: 'A cultural and artistic reference appearing in writing about Udeido Collective and its practice.',
     image: '/images/abstract/exhibition-3.svg',
     sourceId: 'udeido-papoeahuis'
@@ -27,6 +30,7 @@ export const exhibitionItems = [
     slug: 'read-my-world',
     title: 'Oceanic Solidarity',
     type: 'Programme',
+    lane: 'voices',
     summary: 'Read My World 2026 brings literature, music, visual culture and public conversation together in Amsterdam.',
     image: '/images/abstract/exhibition-4.svg',
     sourceId: 'read-my-world-2026'
@@ -35,6 +39,7 @@ export const exhibitionItems = [
     slug: 'archive',
     title: 'Archive material',
     type: 'Archive',
+    lane: 'archive',
     summary: 'Documents, images and source material can be added here with permissions and credits preserved.',
     image: '/images/abstract/exhibition-5.svg',
     sourceId: 'un-new-york-agreement'
@@ -43,6 +48,7 @@ export const exhibitionItems = [
     slug: 'film',
     title: 'Film & public discussion',
     type: 'Film',
+    lane: 'archive',
     summary: 'Screenings and public discussion can live beside the artworks rather than being separated into another visual system.',
     image: '/images/abstract/exhibition-6.svg',
     sourceId: 'read-my-world-saturday'

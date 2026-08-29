@@ -8,6 +8,7 @@ dist/
 .DS_Store
 *.log
 coverage/
+services/watch-engine/wrangler.generated.jsonc
 
 # Local agent instructions and working material
 .internal/

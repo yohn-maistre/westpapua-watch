@@ -16,7 +16,7 @@ export default defineConfig({
         "object-src 'none'",
         "frame-ancestors 'none'",
         "form-action 'self'",
-        "img-src 'self' data:",
+        "img-src 'self' data: https:",
         "font-src 'self'",
         "connect-src 'self'",
         'upgrade-insecure-requests'

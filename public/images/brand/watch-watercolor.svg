@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-label="Red, blue and white watercolor texture">
+  <defs>
+    <filter id="paper" x="-20%" y="-30%" width="140%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.015 0.055" numOctaves="3" seed="19" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="26" xChannelSelector="R" yChannelSelector="B" result="warped"/>
+      <feGaussianBlur in="warped" stdDeviation="5.5" result="soft"/>
+      <feColorMatrix in="noise" type="saturate" values="0" result="monoNoise"/>
+      <feBlend in="soft" in2="monoNoise" mode="soft-light"/>
+    </filter>
+    <radialGradient id="red1" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ef4058" stop-opacity=".98"/><stop offset=".55" stop-color="#d82342" stop-opacity=".64"/><stop offset="1" stop-color="#d82342" stop-opacity="0"/></radialGradient>
+    <radialGradient id="red2" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff7180" stop-opacity=".74"/><stop offset="1" stop-color="#d82342" stop-opacity="0"/></radialGradient>
+    <radialGradient id="blue1" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#4e86ff" stop-opacity=".98"/><stop offset=".56" stop-color="#2558d8" stop-opacity=".72"/><stop offset="1" stop-color="#2558d8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="blue2" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#83b7ff" stop-opacity=".75"/><stop offset="1" stop-color="#4e86ff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="white1" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fffdf8" stop-opacity="1"/><stop offset=".5" stop-color="#f6f2ef" stop-opacity=".82"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="420" fill="#f5f2f5" opacity=".16"/>
+  <g filter="url(#paper)">
+    <ellipse cx="160" cy="220" rx="250" ry="190" fill="url(#red1)" transform="rotate(-12 160 220)"/>
+    <ellipse cx="405" cy="92" rx="230" ry="145" fill="url(#white1)" transform="rotate(9 405 92)"/>
+    <ellipse cx="560" cy="265" rx="310" ry="180" fill="url(#blue1)" transform="rotate(-8 560 265)"/>
+    <ellipse cx="790" cy="125" rx="265" ry="155" fill="url(#red2)" transform="rotate(11 790 125)"/>
+    <ellipse cx="920" cy="285" rx="300" ry="175" fill="url(#white1)" transform="rotate(-5 920 285)"/>
+    <ellipse cx="1110" cy="160" rx="245" ry="185" fill="url(#blue2)" transform="rotate(7 1110 160)"/>
+    <ellipse cx="690" cy="205" rx="170" ry="115" fill="url(#white1)" opacity=".68"/>
+    <ellipse cx="1010" cy="65" rx="155" ry="105" fill="url(#red1)" opacity=".42"/>
+    <ellipse cx="290" cy="350" rx="185" ry="95" fill="url(#blue2)" opacity=".58"/>
+  </g>
+</svg>
