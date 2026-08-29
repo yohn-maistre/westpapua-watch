@@ -31,3 +31,9 @@ Read `docs/NORTHSTAR.md` and `docs/DESIGN_GRAMMAR.md` before changing UI.
 - Do not let generated content publish directly into issue dossiers without an editorial state.
 - Do not make the public site depend on the ingestion pipeline/database to render.
 - Run `npm run build` and `npm run check:content` before merging.
+
+## Cloudflare tooling
+
+- Use the repository-scoped Cloudflare MCP servers in `.codex/config.toml` for Cloudflare documentation, bindings, builds, observability, and account operations.
+- Authenticate through MCP OAuth when the Codex client requests it. Never commit API tokens, OAuth credentials, account secrets, or generated local credential files.
+- Prefer the public `cloudflare-docs` server for documentation lookups before relying on remembered platform behavior.
