@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import type { Locale } from '../data/types';
+const {locale='en'}=Astro.props as {locale?:Locale};
+---
+<BaseLayout locale={locale} active="now" title={locale==='en'?'Development':'Perkembangan'}>
+  <section class="story-page" data-story-page data-locale={locale}>
+    <div class="wrap story-wrap">
+      <a class="story-back" href={locale==='pmy'?'/pmy/':'/'}>← {locale==='en'?'Current':'Sekarang'}</a>
+      <div class="story-loading" data-story-loading>{locale==='en'?'Loading development…':'Memuat perkembangan…'}</div>
+      <article hidden data-story-content>
+        <div class="story-kicker" data-story-kicker></div>
+        <h1 data-story-title></h1>
+        <p class="story-dek" data-story-summary></p>
+        <figure class="story-figure" hidden data-story-figure><img data-story-image alt="" /><figcaption><a data-story-image-source target="_blank" rel="noreferrer"></a></figcaption></figure>
+        <section class="story-block" hidden data-story-changed><span>{locale==='en'?'What changed':'Apa yang berubah'}</span><p></p></section>
+        <section class="story-block" hidden data-story-common><span>{locale==='en'?'Across sources':'Dari beberapa sumber'}</span><ul></ul></section>
+        <section class="story-sources"><div class="story-section-head"><span>{locale==='en'?'Sources':'Sumber'}</span><strong data-story-source-count></strong></div><div data-story-sources></div></section>
+      </article>
+      <div class="story-error" hidden data-story-error></div>
+    </div>
+  </section>
+  <script>
+    const page=document.querySelector<HTMLElement>('[data-story-page]');
+    if(page){
+      const locale=page.dataset.locale==='pmy'?'pmy':'en';const id=new URL(location.href).searchParams.get('id');const loading=page.querySelector<HTMLElement>('[data-story-loading]');const content=page.querySelector<HTMLElement>('[data-story-content]');const error=page.querySelector<HTMLElement>('[data-story-error]');
+      const text=(node,value)=>{if(node)node.textContent=String(value||'')};const list=value=>{try{return JSON.parse(String(value||'[]'))}catch{return[]}};
+      if(!id||!/^\d+$/.test(id)){loading.hidden=true;error.hidden=false;text(error,locale==='pmy'?'Perkembangan ini tidak ditemukan.':'This development was not found.')}else fetch(`/api/development/${id}`).then(async r=>{const data=await r.json();if(!r.ok)throw new Error(data.error||'Unavailable');return data}).then(data=>{
+        loading.hidden=true;content.hidden=false;const d=data.development||{};const s=data.synthesis||{};text(page.querySelector('[data-story-kicker]'),d.issue_slug?d.issue_slug.replaceAll('-',' '):(locale==='pmy'?'Perkembangan':'Development'));text(page.querySelector('[data-story-title]'),locale==='pmy'?(d.title_pmy||d.title_en):d.title_en);text(page.querySelector('[data-story-summary]'),locale==='pmy'?(d.summary_pmy||d.summary_en):d.summary_en);
+        const changed=page.querySelector<HTMLElement>('[data-story-changed]');if(s.what_changed){changed.hidden=false;text(changed.querySelector('p'),s.what_changed)}const common=list(s.common_ground_json);const commonEl=page.querySelector<HTMLElement>('[data-story-common]');if(common.length){commonEl.hidden=false;const ul=commonEl.querySelector('ul');for(const item of common){const li=document.createElement('li');li.textContent=String(item);ul.append(li)}}
+        const articles=data.articles||[];text(page.querySelector('[data-story-source-count]'),`${articles.length}`);const out=page.querySelector<HTMLElement>('[data-story-sources]');for(const a of articles){const link=document.createElement('a');link.className='story-source';link.href=a.canonical_url;link.target='_blank';link.rel='noreferrer';const meta=document.createElement('span');meta.textContent=`${a.publisher} · ${String(a.role||'source').replaceAll('_',' ')}${a.published_at?' · '+new Date(a.published_at).toLocaleDateString():''}`;const h=document.createElement('strong');h.textContent=a.title;const p=document.createElement('p');p.textContent=a.packet_summary||a.summary||'';link.append(meta,h,p);out.append(link)}
+        const imageArticle=articles.find(a=>a.image_url);if(imageArticle){const fig=page.querySelector<HTMLElement>('[data-story-figure]');const img=fig?.querySelector<HTMLImageElement>('img');const a=fig?.querySelector<HTMLAnchorElement>('a');if(fig&&img&&a){fig.hidden=false;img.src=imageArticle.image_url;img.alt=imageArticle.title;a.href=imageArticle.image_source_url||imageArticle.canonical_url;a.textContent=`${locale==='pmy'?'Gambar':'Image'}: ${imageArticle.image_credit||imageArticle.publisher} ↗`;img.addEventListener('error',()=>fig.hidden=true,{once:true})}}
+      }).catch(e=>{loading.hidden=true;error.hidden=false;text(error,e instanceof Error?e.message:'Unavailable')})
+    }
+  </script>
+  <style>
+    .story-page{padding:2rem 0 6rem}.story-wrap{max-width:1080px}.story-back{display:inline-block;color:var(--muted);margin-bottom:4rem}.story-loading,.story-error{color:var(--muted);font-size:1.1rem;padding:5rem 0}.story-kicker,.story-block>span,.story-section-head span{font-size:.7rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);font-weight:650}.story-page h1{font-size:clamp(3.4rem,8vw,7.6rem);line-height:.88;letter-spacing:-.07em;margin:.8rem 0 1.3rem;max-width:1000px}.story-dek{font-size:clamp(1.15rem,2vw,1.45rem);line-height:1.45;color:#b8bbc8;max-width:800px;margin:0 0 2.6rem}.story-figure{margin:0 0 3rem}.story-figure img{width:100%;max-height:70vh;object-fit:cover;border-radius:var(--radius-lg);border:1px solid var(--line)}.story-figure figcaption{padding:.65rem .15rem;color:var(--muted);font-size:.75rem}.story-block{display:grid;grid-template-columns:180px minmax(0,1fr);gap:2rem;border-top:1px solid var(--line);padding:1.4rem 0}.story-block p,.story-block ul{margin:0;font-size:1.05rem;color:var(--ink-soft)}.story-block ul{padding-left:1.2rem}.story-block li+li{margin-top:.6rem}.story-sources{margin-top:3.5rem;border-top:1px solid var(--line-strong)}.story-section-head{display:flex;justify-content:space-between;padding:1.2rem 0}.story-source{display:grid;grid-template-columns:180px minmax(0,1fr);gap:1.5rem;padding:1.35rem 0;border-top:1px solid var(--line)}.story-source span{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.story-source strong{font-size:clamp(1.25rem,2.5vw,2rem);line-height:1}.story-source p{grid-column:2;color:var(--muted);margin:0;max-width:720px}@media(max-width:700px){.story-back{margin-bottom:2.5rem}.story-block,.story-source{grid-template-columns:1fr;gap:.65rem}.story-source p{grid-column:1}.story-page h1{font-size:clamp(3rem,14vw,5.2rem)}}
+  </style>
+</BaseLayout>

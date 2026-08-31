@@ -1,0 +1,8 @@
+import { runChat } from '../llm';
+import type { ExtractedArticle,SourceConfig,StoryPacket } from '../types';
+
+const cleanArray=(value:any)=>Array.isArray(value)?value.map(String).map(v=>v.trim()).filter(Boolean).slice(0,16):[];
+export async function makeStoryPacket(env:any,article:ExtractedArticle,source:SourceConfig):Promise<StoryPacket>{
+  const prompt=`Create a structured story packet for clustering and later editorial synthesis. Use only the supplied article. Do not infer motives or facts that are not stated. Return JSON only with keys summary, key_points, what_changed, event_date, places, people, organizations, topics, issue_candidates.\n\nPublisher: ${source.name}\nRole: ${source.role}\nTitle: ${article.title}\nPublished: ${article.publishedAt||''}\nDescription: ${article.description}\nArticle:\n${article.body.slice(0,14000)}`;
+  try{const raw=await runChat(env,[{role:'system',content:'Extract concrete facts conservatively. Keep names and place names as written. issue_candidates should be broad stable themes, not invented issue titles.'},{role:'user',content:prompt}],'fast',900);const obj=JSON.parse(raw.match(/\{[\s\S]*\}/)?.[0]||'{}');return {summary:String(obj.summary||article.description).slice(0,1800),key_points:cleanArray(obj.key_points),what_changed:String(obj.what_changed||'').slice(0,1000),event_date:String(obj.event_date||article.publishedAt||'').slice(0,64)||undefined,places:cleanArray(obj.places),people:cleanArray(obj.people),organizations:cleanArray(obj.organizations),topics:cleanArray(obj.topics),issue_candidates:cleanArray(obj.issue_candidates)}}catch{return {summary:article.description,key_points:[],what_changed:'',event_date:article.publishedAt,places:[],people:[],organizations:[],topics:[],issue_candidates:[]}}
+}

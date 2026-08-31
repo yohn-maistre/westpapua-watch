@@ -4,7 +4,9 @@
   "main": "src/index.ts",
   "compatibility_date": "2026-08-29",
   "workers_dev": false,
+  "keep_vars": true,
   "ai": { "binding": "AI" },
+  "browser": { "binding": "BROWSER", "remote": true },
   "d1_databases": [
     { "binding": "DB", "database_name": "westpapua-watch-db", "database_id": "__WATCH_DB_ID__", "migrations_dir": "migrations" }
   ],
@@ -26,7 +28,7 @@
     "FAST_MODEL": "@cf/zai-org/glm-4.7-flash",
     "ANSWER_MODEL": "@cf/qwen/qwen3.8-27b",
     "AUTO_PUBLISH": "false",
-    "ALLOW_EXTERNAL_IMAGES": "false",
+    "ALLOW_EXTERNAL_IMAGES": "true",
     "AI_GATEWAY_FAST_MODEL": "dynamic/watch-fast",
     "AI_GATEWAY_ASK_MODEL": "dynamic/watch-ask"
   }

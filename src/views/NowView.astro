@@ -28,7 +28,7 @@ const signals=developments.slice(0,4);
       </div>
       <div class="hero-below">
         <p class="hero-summary" data-current-summary>{t(featured.summary,locale)}</p>
-        <div class="actions"><a class="chip primary" data-current-issue href={withLocale(`/issues/${featured.issueSlug}/`,locale)}>{locale==='en'?'Open issue':'Buka isu'}</a><a class="chip" href={withLocale('/resources/#extractivism',locale)}>{glossaryBySlug.extractivism.term}</a><a class="chip" href={withLocale('/resources/#ecocide',locale)}>{glossaryBySlug.ecocide.term}</a></div>
+        <div class="actions"><a class="chip primary" data-current-story hidden>{locale==='en'?'Read story':'Baca cerita'}</a><a class="chip" data-current-issue href={withLocale(`/issues/${featured.issueSlug}/`,locale)}>{locale==='en'?'Open issue':'Buka isu'}</a><a class="chip" href={withLocale('/resources/#extractivism',locale)}>{glossaryBySlug.extractivism.term}</a><a class="chip" href={withLocale('/resources/#ecocide',locale)}>{glossaryBySlug.ecocide.term}</a></div>
       </div>
     </section>
     <section class="signal" aria-label="Latest updates"><div class="eyebrow">{locale==='en'?'Latest updates':'Pembaruan terbaru'}</div>{signals.map((s,i)=><div class="signal-row"><time>{['18:42','17:20','15:13','12:06'][i]}</time><strong>{t(s.title,locale)}</strong><span>{s.category}</span></div>)}</section>
@@ -36,7 +36,7 @@ const signals=developments.slice(0,4);
   <section class="section"><div class="wrap"><div class="section-head section-head-simple"><h2>{locale==='en'?'More developments.':'Perkembangan lain.'}</h2></div><div class="card-grid">{secondary.map(item=><DevelopmentCard item={item} locale={locale}/>)}</div></div></section>
   <section class="section"><div class="wrap"><div class="section-head section-head-simple"><h2>{locale==='en'?'Ongoing issues.':'Isu yang masih jalan.'}</h2></div><div class="issue-grid">{issues.slice(0,6).map((item,index)=><IssueCard item={item} locale={locale} index={index}/>)}</div></div></section>
   <script>
-    const hero=document.querySelector('[data-current-hero]');
+    const hero=document.querySelector<HTMLElement>('[data-current-hero]');
     const escText=(value)=>typeof value==='string'?value:'';
     if(hero){
       fetch('/api/current',{headers:{accept:'application/json'}}).then(r=>r.ok?r.json():null).then(data=>{
@@ -45,9 +45,10 @@ const signals=developments.slice(0,4);
         const text=(value)=>typeof value==='object'?(value?.[locale]||value?.en||''):escText(value);
         const set=(selector,value)=>{const node=hero.querySelector(selector);if(node&&value)node.textContent=value};
         set('[data-current-title]',text(item.title));set('[data-current-summary]',text(item.summary));set('[data-current-category]',item.category);set('[data-current-place]',item.place);
-        const sources=hero.querySelector('[data-current-sources]');if(sources){sources.textContent=`${item.source_count||0} ${locale==='pmy'?'sumber':'sources'}`;if(item.issue_slug)sources.href=`${locale==='pmy'?'/pmy':''}/issues/${item.issue_slug}/#sources`}
-        const issue=hero.querySelector('[data-current-issue]');if(issue&&item.issue_slug)issue.href=`${locale==='pmy'?'/pmy':''}/issues/${item.issue_slug}/`;
-        const image=hero.querySelector('[data-current-image]');const credit=hero.querySelector('[data-current-image-credit]');
+        const sources=hero.querySelector<HTMLAnchorElement>('[data-current-sources]');if(sources){sources.textContent=`${item.source_count||0} ${locale==='pmy'?'sumber':'sources'}`;if(item.issue_slug)sources.href=`${locale==='pmy'?'/pmy':''}/issues/${item.issue_slug}/#sources`}
+        const story=hero.querySelector<HTMLAnchorElement>('[data-current-story]');if(story&&item.id){story.hidden=false;story.href=`${locale==='pmy'?'/pmy':''}/story/?id=${item.id}`}
+        const issue=hero.querySelector<HTMLAnchorElement>('[data-current-issue]');if(issue&&item.issue_slug)issue.href=`${locale==='pmy'?'/pmy':''}/issues/${item.issue_slug}/`;
+        const image=hero.querySelector<HTMLImageElement>('[data-current-image]');const credit=hero.querySelector<HTMLAnchorElement>('[data-current-image-credit]');
         if(image&&item.image?.url){image.src=item.image.url;image.alt=item.image.alt||text(item.title)}
         if(credit&&item.image?.source_url){credit.hidden=false;credit.href=item.image.source_url;credit.textContent=item.image.credit?`Image: ${item.image.credit} ↗`:(locale==='pmy'?'Sumber gambar ↗':'Image source ↗')}
       }).catch(()=>{});
