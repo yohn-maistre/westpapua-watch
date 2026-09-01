@@ -12,7 +12,7 @@ const signals=developments.slice(0,4);
 ---
 <BaseLayout locale={locale} active="now" description={locale==='en'?'Current developments and ongoing issues in West Papua.':'Perkembangan sekarang deng isu yang masih jalan di Papua Barat.'}>
   <div class="wrap">
-    <div class="now-header"><span class="eyebrow">{locale==='en'?'Current':'Sekarang'}</span><span class="now-date">29 August 2026 · {locale==='en'?'updated':'diperbarui'} 07:00 WIT</span></div>
+    <div class="now-header now-header-minimal"><span class="now-date">29 August 2026 · {locale==='en'?'updated':'diperbarui'} 07:00 WIT</span></div>
     <section class="hero hero-composite" data-current-hero data-locale={locale}>
       <div class="hero-media">
         <img data-current-image src={featured.image} alt={featured.imageAlt} width="1600" height="1000" fetchpriority="high" />

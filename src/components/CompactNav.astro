@@ -1,4 +1,5 @@
 ---
+import '../styles/polish-04.css';
 import { NAV_ITEMS } from '../data/site';
 import { alternateLocalePath, t, withLocale } from '../lib/i18n';
 import type { Locale } from '../data/types';
@@ -7,7 +8,7 @@ const alternatePath = alternateLocalePath(path, locale);
 ---
 <div class="compact-nav" data-compact-nav>
   <div class="compact-inner">
-    <a class="compact-brand" href={withLocale('/',locale)}>West Papua <em>Watch</em></a>
+    <a class="compact-brand" href={withLocale('/',locale)} aria-label="West Papua Watch"><span>West</span><span>Papua</span><em>Watch</em></a>
     <nav class="compact-links" aria-label="Sticky navigation">
       {NAV_ITEMS.map((item)=><a href={withLocale(item.href,locale)} aria-current={active===item.key?'page':undefined}>{t(item.label,locale)}</a>)}
     </nav>
@@ -19,7 +20,7 @@ const alternatePath = alternateLocalePath(path, locale);
 </div>
 <script>
   const restoreKey='wpw:locale-scroll';
-  document.querySelectorAll('[data-language-swap]').forEach((link)=>link.addEventListener('click',()=>{
+  document.querySelectorAll<HTMLAnchorElement>('[data-language-swap]').forEach((link)=>link.addEventListener('click',()=>{
     const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
     sessionStorage.setItem(restoreKey,JSON.stringify({target:new URL(link.href,location.href).pathname,ratio:window.scrollY/max}));
   }));
@@ -27,7 +28,7 @@ const alternatePath = alternateLocalePath(path, locale);
     const saved=JSON.parse(sessionStorage.getItem(restoreKey)||'null');
     if(saved?.target===location.pathname){
       sessionStorage.removeItem(restoreKey);
-      const restore=()=>{const max=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);window.scrollTo({top:max*saved.ratio,behavior:'instant'});};
+      const restore=()=>{const max=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);window.scrollTo({top:max*saved.ratio,behavior:'auto'});};
       requestAnimationFrame(()=>requestAnimationFrame(restore));
       window.addEventListener('load',restore,{once:true});
     }

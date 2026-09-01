@@ -1,7 +1,8 @@
 ---
 import '../styles/polish-01.css';
 import '../styles/polish-03.css';
-import BaseLayout from '../layouts/BaseLayout.astro';import { exhibitionItems } from '../data/exhibition';import { withLocale } from '../lib/i18n';import type { Locale } from '../data/types';
+import '../styles/polish-04.css';
+import BaseLayout from '../layouts/BaseLayout.astro';import { exhibitionItems } from '../data/exhibition';import { sourceById } from '../data/sources';import { withLocale } from '../lib/i18n';import type { Locale } from '../data/types';
 const {locale='en'}=Astro.props as {locale?:Locale};
 const laneOrder=['works','voices','archive'] as const;
 const laneLabels={
@@ -16,39 +17,68 @@ const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:exhi
     <div class="exhibition-rails" data-exhibition-rails aria-label={locale==='en'?'Exhibition themes':'Tema pameran'}>
       {lanes.map((group,railIndex)=><section class:list={['exhibition-rail',`rail-${railIndex+1}`]} data-exhibition-rail data-index={String(railIndex)} data-speed={String([12,-9,10][railIndex])} aria-label={group.label}>
         <div class="exhibition-track">
-          {[...group.items,...group.items,...group.items].map((item,i)=><a class:list={['exhibit-card',`size-${(i+railIndex)%3}`]} data-exhibit-card href={withLocale('/exhibition/',locale)} aria-label={item.title}><img src={item.image} alt=""/><span>{item.title}</span></a>)}
+          {[...group.items,...group.items,...group.items].map((item,i)=>{const source=sourceById[item.sourceId];return <button class:list={['exhibit-card',`size-${(i+railIndex)%3}`]} type="button" data-exhibit-card data-title={item.title} data-type={item.type} data-summary={item.summary} data-source-label={source?.publisher||''} data-source-url={source?.url||''} aria-label={`${item.title}. ${locale==='en'?'Open details':'Buka rincian'}`}><img src={item.image} alt=""/><span>{item.title}</span></button>})}
         </div>
       </section>)}
     </div>
     <div class="exhibit-overlay" data-exhibit-overlay>
-      <div class="exhibit-top"><span class="exhibit-kicker">{locale==='en'?'Exhibition':'Pameran'}</span><a class="chip exhibit-home" data-curtain-leave href={withLocale('/',locale)}>West Papua Watch</a></div>
-      <div class="exhibit-lane-tabs" role="tablist" aria-label={locale==='en'?'Exhibition themes':'Tema pameran'}>{lanes.map((group,i)=><button class:list={[i===0&&'active']} type="button" role="tab" data-lane-tab={String(i)}>{group.label}</button>)}</div>
+      <div class="exhibit-top"><span class="exhibit-kicker">{locale==='en'?'Exhibition':'Pameran'}</span><button class="exhibit-back" type="button" data-exhibit-back data-fallback={withLocale('/exhibition/',locale)}>← {locale==='en'?'Back':'Kembali'}</button></div>
+      <div class="exhibit-lane-tabs" role="tablist" aria-label={locale==='en'?'Exhibition themes':'Tema pameran'}>{lanes.map((group,i)=><button class:list={[i===0&&'active']} type="button" role="tab" aria-selected={i===0?'true':'false'} data-lane-tab={String(i)}>{group.label}</button>)}</div>
       <h1 class="exhibit-title">{locale==='en'?'Art, writing & collective work':'Seni, tulisan & kerja kolektif'}</h1>
       <div class="exhibit-bottom"><a data-curtain-leave href={withLocale('/exhibition/',locale)}>{locale==='en'?'Browse artists, works & credits':'Lihat seniman, karya & kredit'} →</a></div>
     </div>
+
+    <dialog class="exhibit-focus" data-exhibit-focus aria-label={locale==='en'?'Work details':'Rincian karya'}>
+      <div class="exhibit-focus-shell">
+        <button class="exhibit-focus-close" type="button" data-exhibit-focus-close aria-label={locale==='en'?'Close details':'Tutup rincian'}>×</button>
+        <div class="exhibit-focus-media"><img data-exhibit-focus-image src="" alt=""/></div>
+        <div class="exhibit-focus-copy">
+          <div class="exhibit-focus-meta"><span data-exhibit-focus-type></span><span data-exhibit-focus-source></span></div>
+          <h2 data-exhibit-focus-title></h2>
+          <p data-exhibit-focus-summary></p>
+          <a class="exhibit-focus-source-link" data-exhibit-focus-source-link target="_blank" rel="noreferrer">{locale==='en'?'Open source':'Buka sumber'} ↗</a>
+        </div>
+      </div>
+    </dialog>
+
     <div class="exhibition-curtain" data-exhibition-curtain aria-hidden="true"><i></i><i></i></div>
   </div>
   <script>
-    const wall=document.querySelector('[data-exhibition-wall]');
-    const railsContainer=document.querySelector('[data-exhibition-rails]');
-    const rails=[...document.querySelectorAll('[data-exhibition-rail]')];
-    const tabs=[...document.querySelectorAll('[data-lane-tab]')];
-    const overlay=document.querySelector('[data-exhibit-overlay]');
-    const curtain=document.querySelector('[data-exhibition-curtain]');
+    const wall=document.querySelector<HTMLElement>('[data-exhibition-wall]');
+    const railsContainer=document.querySelector<HTMLElement>('[data-exhibition-rails]');
+    const rails=[...document.querySelectorAll<HTMLElement>('[data-exhibition-rail]')];
+    const tabs=[...document.querySelectorAll<HTMLButtonElement>('[data-lane-tab]')];
+    const overlay=document.querySelector<HTMLElement>('[data-exhibit-overlay]');
+    const curtain=document.querySelector<HTMLElement>('[data-exhibition-curtain]');
+    const focusDialog=document.querySelector<HTMLDialogElement>('[data-exhibit-focus]');
+    const focusImage=focusDialog?.querySelector<HTMLImageElement>('[data-exhibit-focus-image]');
+    const focusType=focusDialog?.querySelector<HTMLElement>('[data-exhibit-focus-type]');
+    const focusSource=focusDialog?.querySelector<HTMLElement>('[data-exhibit-focus-source]');
+    const focusTitle=focusDialog?.querySelector<HTMLElement>('[data-exhibit-focus-title]');
+    const focusSummary=focusDialog?.querySelector<HTMLElement>('[data-exhibit-focus-summary]');
+    const focusSourceLink=focusDialog?.querySelector<HTMLAnchorElement>('[data-exhibit-focus-source-link]');
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let inputShift=0,last=performance.now(),quietTimer,activeLane=0;
-    let touch=null;
-    const markMoved=()=>{overlay?.classList.add('has-moved');clearTimeout(quietTimer);quietTimer=setTimeout(()=>overlay?.classList.remove('has-moved'),2800)};
-    const wrap=(value,size)=>((value%size)+size)%size;
-    const activateLane=(next)=>{activeLane=Math.max(0,Math.min(rails.length-1,next));railsContainer?.style.setProperty('--active-lane',String(activeLane));tabs.forEach((tab,i)=>{tab.classList.toggle('active',i===activeLane);tab.setAttribute('aria-selected',i===activeLane?'true':'false')});markMoved()};
+    const baseOffsets=rails.map(()=>0);const userOffsets=rails.map(()=>0);
+    let last=performance.now(),quietTimer:ReturnType<typeof setTimeout>|undefined,activeLane=0;
+    let touch:{x:number;y:number;lastX:number;lastY:number;axis:'x'|'y'|null}|null=null;
+    const markMoved=()=>{overlay?.classList.add('has-moved');if(quietTimer)clearTimeout(quietTimer);quietTimer=setTimeout(()=>overlay?.classList.remove('has-moved'),2800)};
+    const wrap=(value:number,size:number)=>((value%size)+size)%size;
+    const activateLane=(next:number)=>{activeLane=Math.max(0,Math.min(rails.length-1,next));railsContainer?.style.setProperty('--active-lane',String(activeLane));rails.forEach((rail,i)=>rail.classList.toggle('is-active',i===activeLane));tabs.forEach((tab,i)=>{tab.classList.toggle('active',i===activeLane);tab.setAttribute('aria-selected',i===activeLane?'true':'false')});markMoved()};
     tabs.forEach((tab,i)=>tab.addEventListener('click',()=>activateLane(i)));
-    const tick=(now)=>{const dt=Math.min(.05,(now-last)/1000);last=now;rails.forEach((rail,i)=>{const track=rail.querySelector('.exhibition-track');const third=(track?.scrollHeight||0)/3;if(!third)return;const speed=(reduced||rail.dataset.paused)?0:Number(rail.dataset.speed||0);rail._base=(rail._base||0)+speed*dt;const direction=i===1?-.72:1;const local=wrap(rail._base+inputShift*direction,third);track.style.transform=`translate3d(0,${-local}px,0)`});requestAnimationFrame(tick)};
-    wall?.addEventListener('wheel',event=>{inputShift+=event.deltaY*.42;markMoved()},{passive:true});
+    rails.forEach((rail,i)=>rail.addEventListener('pointerdown',()=>activateLane(i)));
+    const tick=(now:number)=>{const dt=Math.min(.05,(now-last)/1000);last=now;rails.forEach((rail,i)=>{const track=rail.querySelector<HTMLElement>('.exhibition-track');const third=(track?.scrollHeight||0)/3;if(!third||!track)return;const speed=reduced?0:Number(rail.dataset.speed||0);baseOffsets[i]+=speed*dt;const local=wrap(baseOffsets[i]+(i===activeLane?userOffsets[i]:0),third);track.style.transform=`translate3d(0,${-local}px,0)`});requestAnimationFrame(tick)};
+    wall?.addEventListener('wheel',event=>{userOffsets[activeLane]+=event.deltaY*.48;markMoved()},{passive:true});
     wall?.addEventListener('touchstart',event=>{const p=event.touches[0];if(p)touch={x:p.clientX,y:p.clientY,lastX:p.clientX,lastY:p.clientY,axis:null}},{passive:true});
-    wall?.addEventListener('touchmove',event=>{const p=event.touches[0];if(!p||!touch)return;const totalX=p.clientX-touch.x,totalY=p.clientY-touch.y;if(!touch.axis&&Math.hypot(totalX,totalY)>12)touch.axis=Math.abs(totalX)>Math.abs(totalY)*1.1?'x':'y';if(touch.axis==='y'){inputShift+=(touch.lastY-p.clientY)*1.06;markMoved()}touch.lastX=p.clientX;touch.lastY=p.clientY},{passive:true});
+    wall?.addEventListener('touchmove',event=>{const p=event.touches[0];if(!p||!touch)return;const totalX=p.clientX-touch.x,totalY=p.clientY-touch.y;if(!touch.axis&&Math.hypot(totalX,totalY)>12)touch.axis=Math.abs(totalX)>Math.abs(totalY)*1.1?'x':'y';if(touch.axis==='y'){userOffsets[activeLane]+=(touch.lastY-p.clientY)*1.08;markMoved()}touch.lastX=p.clientX;touch.lastY=p.clientY},{passive:true});
     wall?.addEventListener('touchend',()=>{if(touch?.axis==='x'){const dx=touch.lastX-touch.x;if(Math.abs(dx)>48)activateLane(activeLane+(dx<0?1:-1))}touch=null},{passive:true});
-    document.querySelectorAll('[data-exhibit-card]').forEach(card=>card.addEventListener('pointerdown',()=>{rails.forEach(rail=>rail.dataset.paused='1');setTimeout(()=>rails.forEach(rail=>delete rail.dataset.paused),1500)}));
-    document.querySelectorAll('[data-curtain-leave]').forEach(link=>link.addEventListener('click',event=>{if(reduced)return;event.preventDefault();curtain?.classList.add('is-closing');setTimeout(()=>{location.href=link.href},620)}));
+    const openFocus=(card:HTMLButtonElement)=>{const image=card.querySelector<HTMLImageElement>('img');if(focusImage){focusImage.src=image?.src||'';focusImage.alt=card.dataset.title||''}if(focusType)focusType.textContent=card.dataset.type||'';if(focusSource)focusSource.textContent=card.dataset.sourceLabel||'';if(focusTitle)focusTitle.textContent=card.dataset.title||'';if(focusSummary)focusSummary.textContent=card.dataset.summary||'';if(focusSourceLink){focusSourceLink.href=card.dataset.sourceUrl||'#';focusSourceLink.hidden=!card.dataset.sourceUrl}focusDialog?.showModal();document.body.classList.add('exhibit-focus-open')};
+    document.querySelectorAll<HTMLButtonElement>('[data-exhibit-card]').forEach(card=>card.addEventListener('click',event=>{event.preventDefault();const rail=card.closest<HTMLElement>('[data-exhibition-rail]');activateLane(Number(rail?.dataset.index||0));openFocus(card)}));
+    focusDialog?.querySelector<HTMLButtonElement>('[data-exhibit-focus-close]')?.addEventListener('click',()=>focusDialog.close());
+    focusDialog?.addEventListener('click',event=>{if(event.target===focusDialog)focusDialog.close()});
+    focusDialog?.addEventListener('close',()=>document.body.classList.remove('exhibit-focus-open'));
+    const back=document.querySelector<HTMLButtonElement>('[data-exhibit-back]');
+    back?.addEventListener('click',()=>{const go=()=>{let sameOrigin=false;try{sameOrigin=!!document.referrer&&new URL(document.referrer).origin===location.origin}catch{}if(sameOrigin&&history.length>1)history.back();else location.href=back.dataset.fallback||'/exhibition/'};if(reduced){go();return}curtain?.classList.add('is-closing');setTimeout(go,620)});
+    document.querySelectorAll<HTMLAnchorElement>('[data-curtain-leave]').forEach(link=>link.addEventListener('click',event=>{if(reduced)return;event.preventDefault();curtain?.classList.add('is-closing');setTimeout(()=>{location.href=link.href},620)}));
     activateLane(0);requestAnimationFrame(tick);
   </script>
 </BaseLayout>

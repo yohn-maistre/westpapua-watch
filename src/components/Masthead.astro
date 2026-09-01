@@ -1,4 +1,5 @@
 ---
+import '../styles/polish-04.css';
 import { NAV_ITEMS } from '../data/site';
 import { alternateLocalePath, t, withLocale } from '../lib/i18n';
 import type { Locale } from '../data/types';
@@ -13,14 +14,11 @@ const { locale='en', active='now', path=Astro.url.pathname } = Astro.props as { 
       {NAV_ITEMS.map((item) => <a href={withLocale(item.href, locale)} aria-current={active===item.key?'page':undefined}>{t(item.label, locale)}</a>)}
     </nav>
     <div class="masthead-utils">
-      <div class="utility-group">
-        <div class="language-switch" aria-label="Language">
-          <a class:list={[locale==='en' && 'active']} href={locale==='en'?path:alternateLocalePath(path, locale)} hreflang="en">EN</a>
-          <a class:list={[locale==='pmy' && 'active']} href={locale==='pmy'?path:alternateLocalePath(path, locale)} hreflang="pmy">PMY</a>
-        </div>
-        <button class="ask-trigger" type="button" data-ask-open><span>{locale==='en'?'Ask':'Tanya'}</span><span class="key">⌘K</span></button>
+      <div class="language-switch" aria-label="Language">
+        <a class:list={[locale==='en' && 'active']} href={locale==='en'?path:alternateLocalePath(path, locale)} hreflang="en">EN</a>
+        <a class:list={[locale==='pmy' && 'active']} href={locale==='pmy'?path:alternateLocalePath(path, locale)} hreflang="pmy">PMY</a>
       </div>
-      <span class="eyebrow">{active === 'now' ? (locale==='en'?'Current':'Sekarang') : t(NAV_ITEMS.find(i=>i.key===active)?.label ?? active, locale)}</span>
+      <button class="ask-trigger" type="button" data-ask-open><span>{locale==='en'?'Ask':'Tanya'}</span><span class="key">⌘K</span></button>
     </div>
   </div>
 </header>
