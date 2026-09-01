@@ -17,8 +17,14 @@
     { "binding": "ARTICLE_INDEX", "index_name": "westpapua-watch-articles" }
   ],
   "queues": {
-    "producers": [{ "binding": "INGEST_QUEUE", "queue": "westpapua-watch-ingest" }],
-    "consumers": [{ "queue": "westpapua-watch-ingest", "max_batch_size": 10, "max_batch_timeout": 5, "max_retries": 5, "dead_letter_queue": "westpapua-watch-ingest-dlq" }]
+    "producers": [
+      { "binding": "INGEST_QUEUE", "queue": "westpapua-watch-ingest" },
+      { "binding": "EDITORIAL_QUEUE", "queue": "westpapua-watch-editorial" }
+    ],
+    "consumers": [
+      { "queue": "westpapua-watch-ingest", "max_batch_size": 10, "max_batch_timeout": 5, "max_retries": 5, "dead_letter_queue": "westpapua-watch-ingest-dlq" },
+      { "queue": "westpapua-watch-editorial", "max_batch_size": 1, "max_batch_timeout": 2, "max_retries": 8, "retry_delay": 30, "max_concurrency": 1, "dead_letter_queue": "westpapua-watch-editorial-dlq" }
+    ]
   },
   "workflows": [
     { "name": "westpapua-watch-news-cycle", "binding": "NEWS_CYCLE", "class_name": "NewsCycleWorkflow" }

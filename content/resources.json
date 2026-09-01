@@ -11,5 +11,18 @@
     "otsus-law-2001",
     "udeido-biennale-jogja",
     "udeido-papoeahuis"
-  ]
+  ],
+  "tagsById": {
+    "greenpeace-raja-clarification-2026": ["environment-biodiversity", "land-indigenous-rights", "economy-livelihoods"],
+    "greenpeace-arborek-2026": ["environment-biodiversity", "land-indigenous-rights", "human-rights-security"],
+    "hrm-q2-2026": ["human-rights-security", "politics-governance"],
+    "hrw-land-2026": ["land-indigenous-rights", "human-rights-security", "politics-governance"],
+    "un-new-york-agreement": ["politics-governance", "human-rights-security"],
+    "un-unsf-background": ["politics-governance", "human-rights-security"],
+    "un-ga-2504-1969": ["politics-governance"],
+    "musgrave-1969-analysis": ["politics-governance", "human-rights-security"],
+    "otsus-law-2001": ["politics-governance"],
+    "udeido-biennale-jogja": ["culture-language"],
+    "udeido-papoeahuis": ["culture-language", "education-knowledge"]
+  }
 }

@@ -3,6 +3,7 @@ import '@fontsource-variable/instrument-sans/wght.css';
 import '@fontsource/instrument-serif/400.css';
 import '@fontsource/instrument-serif/400-italic.css';
 import '../styles/global.css';
+import '../styles/polish-05.css';
 import { SITE } from '../data/site';
 import type { Locale } from '../data/types';
 import ProgrammeBanner from '../components/ProgrammeBanner.astro';
@@ -62,7 +63,7 @@ const lang = locale==='pmy'?'id':'en';
     // data-driven History stage
     const frames=qa('[data-history-frame]');const chapters=qa('[data-history-chapter]');if(frames.length&&chapters.length){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const id=e.target.dataset.historyChapter;frames.forEach(f=>f.classList.toggle('active',f.dataset.historyFrame===id))}}),{threshold:.5});chapters.forEach(c=>io.observe(c))}
     // Resource filters
-    const resourceRows=qa('[data-resource-row]'); const resourceSearch=q('[data-resource-search]'); const filters=qa('[data-resource-filter]'); let resourceType='all';const applyResources=()=>{const term=(resourceSearch?.value||'').toLowerCase();resourceRows.forEach(row=>{const matchType=resourceType==='all'||row.dataset.resourceType===resourceType;const matchTerm=!term||(row.textContent||'').toLowerCase().includes(term);row.hidden=!(matchType&&matchTerm)})};resourceSearch?.addEventListener('input',applyResources);filters.forEach(b=>b.addEventListener('click',()=>{resourceType=b.dataset.resourceFilter||'all';filters.forEach(x=>x.classList.toggle('active',x===b));applyResources()}));
+    const resourceRows=qa('[data-resource-row]'); const resourceSearch=q('[data-resource-search]'); const filters=qa('[data-resource-filter]'); let resourceType='all';const applyResources=()=>{const term=(resourceSearch?.value||'').toLowerCase();resourceRows.forEach(row=>{const tags=(row.dataset.resourceTags||'').split(/\s+/).filter(Boolean);const matchType=resourceType==='all'||row.dataset.resourceType===resourceType||tags.includes(resourceType);const matchTerm=!term||(row.textContent||'').toLowerCase().includes(term);row.hidden=!(matchType&&matchTerm)})};resourceSearch?.addEventListener('input',applyResources);filters.forEach(b=>b.addEventListener('click',()=>{resourceType=b.dataset.resourceFilter||'all';filters.forEach(x=>x.classList.toggle('active',x===b));applyResources()}));
     // Issue filters
     const issueRows=qa('[data-issue-row]');const issueFilters=qa('[data-issue-filter]');issueFilters.forEach(b=>b.addEventListener('click',()=>{const cat=b.dataset.issueFilter||'all';issueFilters.forEach(x=>x.classList.toggle('active',x===b));issueRows.forEach(r=>r.hidden=!(cat==='all'||r.dataset.issueCategory===cat))}));
   </script>

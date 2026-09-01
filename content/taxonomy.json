@@ -1,0 +1,26 @@
+{
+  "version": "0.1-provisional",
+  "note": "Shared topical vocabulary for Current, Issues and Resources. Persistent issue definitions remain a separate research task.",
+  "tags": [
+    {"slug":"environment-biodiversity","label":{"en":"Environment & biodiversity","id":"Lingkungan & keanekaragaman hayati"}},
+    {"slug":"land-indigenous-rights","label":{"en":"Land & Indigenous rights","id":"Tanah & hak Masyarakat Adat"}},
+    {"slug":"politics-governance","label":{"en":"Politics & governance","id":"Politik & tata kelola"}},
+    {"slug":"human-rights-security","label":{"en":"Human rights & security","id":"Hak asasi & keamanan"}},
+    {"slug":"health-wellbeing","label":{"en":"Health & wellbeing","id":"Kesehatan & kesejahteraan"}},
+    {"slug":"water-sanitation-housing","label":{"en":"Water, sanitation & housing","id":"Air, sanitasi & perumahan"}},
+    {"slug":"education-knowledge","label":{"en":"Education & knowledge","id":"Pendidikan & pengetahuan"}},
+    {"slug":"economy-livelihoods","label":{"en":"Economy & livelihoods","id":"Ekonomi & penghidupan"}},
+    {"slug":"infrastructure-connectivity","label":{"en":"Infrastructure & connectivity","id":"Infrastruktur & konektivitas"}},
+    {"slug":"population-migration","label":{"en":"Population & migration","id":"Penduduk & migrasi"}},
+    {"slug":"culture-language","label":{"en":"Culture & language","id":"Budaya & bahasa"}},
+    {"slug":"gender-social-inclusion","label":{"en":"Gender & social inclusion","id":"Gender & inklusi sosial"}},
+    {"slug":"climate-disasters","label":{"en":"Climate & disasters","id":"Iklim & bencana"}}
+  ],
+  "issueStates": [
+    {"slug":"structural","label":{"en":"Structural","id":"Struktural"}},
+    {"slug":"active","label":{"en":"Active","id":"Aktif"}},
+    {"slug":"escalating","label":{"en":"Escalating","id":"Meningkat"}},
+    {"slug":"quiet","label":{"en":"Quiet","id":"Tenang"}},
+    {"slug":"emerging","label":{"en":"Emerging","id":"Muncul"}}
+  ]
+}
