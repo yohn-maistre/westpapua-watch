@@ -1,5 +1,6 @@
 ---
 import '../styles/polish-04.css';
+import '../styles/polish-05.css';
 import { NAV_ITEMS } from '../data/site';
 import { alternateLocalePath, t, withLocale } from '../lib/i18n';
 import type { Locale } from '../data/types';
@@ -9,28 +10,10 @@ const alternatePath = alternateLocalePath(path, locale);
 <div class="compact-nav" data-compact-nav>
   <div class="compact-inner">
     <a class="compact-brand" href={withLocale('/',locale)} aria-label="West Papua Watch"><span>West Papua</span><em>Watch</em></a>
-    <nav class="compact-links" aria-label="Sticky navigation">
-      {NAV_ITEMS.map((item)=><a href={withLocale(item.href,locale)} aria-current={active===item.key?'page':undefined}>{t(item.label,locale)}</a>)}
-    </nav>
-    <div class="compact-actions">
-      <a class="compact-language-toggle" href={alternatePath} hreflang={locale==='en'?'pmy':'en'} data-language-swap>{locale==='en'?'PMY':'EN'}</a>
-      <button class="ask-trigger" type="button" data-ask-open>{locale==='en'?'Ask':'Tanya'}</button>
-    </div>
+    <nav class="compact-links" aria-label="Sticky navigation">{NAV_ITEMS.map((item)=><a href={withLocale(item.href,locale)} aria-current={active===item.key?'page':undefined}>{t(item.label,locale)}</a>)}</nav>
+    <div class="compact-actions"><a class="compact-language-toggle" href={alternatePath} hreflang={locale==='en'?'pmy':'en'} data-language-swap>{locale==='en'?'PMY':'EN'}</a><button class="ask-trigger" type="button" data-ask-open>{locale==='en'?'Ask':'Tanya'}</button></div>
   </div>
 </div>
 <script>
-  const restoreKey='wpw:locale-scroll';
-  document.querySelectorAll<HTMLAnchorElement>('[data-language-swap]').forEach((link)=>link.addEventListener('click',()=>{
-    const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
-    sessionStorage.setItem(restoreKey,JSON.stringify({target:new URL(link.href,location.href).pathname,ratio:window.scrollY/max}));
-  }));
-  try{
-    const saved=JSON.parse(sessionStorage.getItem(restoreKey)||'null');
-    if(saved?.target===location.pathname){
-      sessionStorage.removeItem(restoreKey);
-      const restore=()=>{const max=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);window.scrollTo({top:max*saved.ratio,behavior:'auto'});};
-      requestAnimationFrame(()=>requestAnimationFrame(restore));
-      window.addEventListener('load',restore,{once:true});
-    }
-  }catch{sessionStorage.removeItem(restoreKey)}
+  const restoreKey='wpw:locale-scroll';document.querySelectorAll<HTMLAnchorElement>('[data-language-swap]').forEach(link=>link.addEventListener('click',()=>{const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);sessionStorage.setItem(restoreKey,JSON.stringify({target:new URL(link.href,location.href).pathname,ratio:scrollY/max}))}));try{const saved=JSON.parse(sessionStorage.getItem(restoreKey)||'null');if(saved?.target===location.pathname){sessionStorage.removeItem(restoreKey);const restore=()=>{const max=Math.max(0,document.documentElement.scrollHeight-innerHeight);scrollTo({top:max*saved.ratio,behavior:'auto'})};requestAnimationFrame(()=>requestAnimationFrame(restore));addEventListener('load',restore,{once:true})}}catch{sessionStorage.removeItem(restoreKey)}
 </script>
