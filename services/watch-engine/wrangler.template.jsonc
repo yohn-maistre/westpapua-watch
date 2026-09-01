@@ -21,12 +21,13 @@
     "consumers": [{ "queue": "westpapua-watch-ingest", "max_batch_size": 10, "max_batch_timeout": 5, "max_retries": 5, "dead_letter_queue": "westpapua-watch-ingest-dlq" }]
   },
   "workflows": [
-    { "name": "westpapua-watch-news-cycle", "binding": "NEWS_CYCLE", "class_name": "NewsCycleWorkflow", "schedules": ["*/30 * * * *"] }
+    { "name": "westpapua-watch-news-cycle", "binding": "NEWS_CYCLE", "class_name": "NewsCycleWorkflow" }
   ],
+  "triggers": { "crons": ["11,41 * * * *"] },
   "vars": {
     "EMBEDDING_MODEL": "@cf/baai/bge-m3",
-    "FAST_MODEL": "@cf/zai-org/glm-4.7-flash",
-    "ANSWER_MODEL": "@cf/qwen/qwen3.8-27b",
+    "FAST_MODEL": "@cf/qwen/qwen3-30b-a3b-fp8",
+    "ANSWER_MODEL": "@cf/google/gemma-4-26b-a4b-it",
     "AUTO_PUBLISH": "false",
     "ALLOW_EXTERNAL_IMAGES": "true",
     "AI_GATEWAY_FAST_MODEL": "dynamic/watch-fast",

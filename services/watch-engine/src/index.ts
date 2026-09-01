@@ -9,7 +9,7 @@ async function development(env:any,id:number){const d:any=await env.DB.prepare(`
 async function resources(env:any,url:URL){const status=url.searchParams.get('status')==='candidate'?'candidate':'published';const rows:any=await env.DB.prepare(`SELECT * FROM resource_candidates WHERE status=? ORDER BY COALESCE(updated_at,created_at) DESC LIMIT 100`).bind(status).all();return rows.results||[]}
 export default {
   async fetch(request:any,env:any){const url=new URL(request.url);
-    if(url.pathname==='/health')return json({ok:true,service:'westpapua-watch-engine',bindings:{db:!!env.DB,archive:!!env.ARCHIVE,vectorize:!!env.ARTICLE_INDEX,ai:!!env.AI,browser:!!env.BROWSER,queue:!!env.INGEST_QUEUE,workflow:!!env.NEWS_CYCLE},optional:{firecrawl:!!env.FIRECRAWL_API_KEY,aiGateway:!!(env.AI_GATEWAY_BASE&&env.AI_GATEWAY_TOKEN)}});
+    if(url.pathname==='/health')return json({ok:true,service:'westpapua-watch-engine',bindings:{db:!!env.DB,archive:!!env.ARCHIVE,vectorize:!!env.ARTICLE_INDEX,ai:!!env.AI,browser:!!env.BROWSER,queue:!!env.INGEST_QUEUE,workflow:!!env.NEWS_CYCLE},optional:{firecrawl:!!env.FIRECRAWL_API_KEY,aiGateway:!!(env.AI_GATEWAY_BASE&&env.AI_GATEWAY_TOKEN)},scheduler:{mode:'cron-trigger',cron:'11,41 * * * *'}});
     if(url.pathname==='/current'&&request.method==='GET')return json({items:await current(env)},200,'public, max-age=60, stale-while-revalidate=180');
     const devMatch=url.pathname.match(/^\/development\/(\d+)$/);if(devMatch&&request.method==='GET'){const item=await development(env,Number(devMatch[1]));return item?json(item):json({error:'Not found'},404)}
     if(url.pathname==='/resources'&&request.method==='GET')return json({items:await resources(env,url)});
@@ -19,5 +19,6 @@ export default {
     if(url.pathname==='/review/issue-deltas'&&request.method==='GET'){const rows:any=await env.DB.prepare(`SELECT * FROM issue_delta_candidates WHERE status='candidate' ORDER BY created_at DESC LIMIT 80`).all();return json({items:rows.results||[]})}
     if(url.pathname==='/run'&&request.method==='POST'){const instance=await env.NEWS_CYCLE.create({params:{reason:'manual'}});return json({id:instance.id},202)}return json({error:'Not found'},404)
   },
+  async scheduled(controller:any,env:any,ctx:any){const slot=Math.floor(Number(controller.scheduledTime||Date.now())/1_800_000);const id=`cron-${slot}`;ctx.waitUntil(env.NEWS_CYCLE.create({id,params:{reason:'cloudflare-cron',scheduledTime:controller.scheduledTime,cron:controller.cron}}).catch((error:any)=>{const message=String(error?.message||error);if(/already|exist|duplicate/i.test(message)){console.log('news cycle already exists',id);return}throw error}))},
   async queue(batch:any,env:any){for(const message of batch.messages){try{await processArticle(env,message.body);message.ack()}catch(error){console.error('ingest failed',message.body?.url,error);message.retry()}}}
 };
