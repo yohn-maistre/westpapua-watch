@@ -14,6 +14,7 @@
     "steward:content": "node scripts/steward-content.mjs",
     "steward:daily": "node scripts/watch-daily.mjs",
     "watch:config": "node scripts/render-watch-config.mjs",
+    "watch:routes": "node scripts/deploy-ai-routes.mjs",
     "watch:deploy": "npm run watch:config && wrangler deploy --config services/watch-engine/wrangler.generated.jsonc",
     "watch:migrate": "npm run watch:config && wrangler d1 migrations apply DB --remote --config services/watch-engine/wrangler.generated.jsonc",
     "watch:dev": "npm run watch:config && wrangler dev --remote --config services/watch-engine/wrangler.generated.jsonc"

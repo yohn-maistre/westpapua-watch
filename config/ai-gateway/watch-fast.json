@@ -1,0 +1,39 @@
+{
+  "name": "watch-fast",
+  "elements": [
+    {
+      "id": "START",
+      "type": "start",
+      "outputs": { "next": { "elementId": "gemini-fast-lite" } }
+    },
+    {
+      "id": "gemini-fast-lite",
+      "type": "model",
+      "properties": {
+        "provider": "google-ai-studio",
+        "model": "gemini-3.5-flash-lite",
+        "timeout": 24000,
+        "retries": 1
+      },
+      "outputs": {
+        "success": { "elementId": "END" },
+        "fallback": { "elementId": "gemini-fast-fallback" }
+      }
+    },
+    {
+      "id": "gemini-fast-fallback",
+      "type": "model",
+      "properties": {
+        "provider": "google-ai-studio",
+        "model": "gemini-3.6-flash",
+        "timeout": 28000,
+        "retries": 1
+      },
+      "outputs": {
+        "success": { "elementId": "END" },
+        "fallback": { "elementId": "END" }
+      }
+    },
+    { "id": "END", "type": "end", "outputs": {} }
+  ]
+}

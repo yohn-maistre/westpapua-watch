@@ -25,6 +25,7 @@ const routeFor=(env:any,purpose:ChatPurpose)=>purpose==='ask'
     :(env.AI_GATEWAY_FAST_MODEL||'dynamic/watch-fast');
 
 const errorText=(e:any)=>String(e?.message||e||'unknown error').replace(/\s+/g,' ').slice(0,600);
+const workersFallbackEnabled=(env:any)=>String(env.ENABLE_WORKERS_AI_FALLBACK||'false').toLowerCase()==='true';
 
 function validateRequired(value:any,schema:any){
   if(!value||typeof value!=='object'||Array.isArray(value))throw new Error('structured output was not an object');
@@ -84,19 +85,28 @@ function strictJsonMessages(messages:any[],schema:any){
 export async function runChat(env:any,messages:any[],purpose:ChatPurpose='fast',maxTokens=500):Promise<string>{
   const gateway=env.AI_GATEWAY_BASE?.replace(/\/$/,'');
   const token=env.AI_GATEWAY_TOKEN;
+  let gatewayError='AI Gateway is not configured';
   if(gateway&&token){
-    const res=await fetch(`${gateway}/chat/completions`,{
-      method:'POST',
-      headers:{'cf-aig-authorization':`Bearer ${token}`,'content-type':'application/json','cf-aig-collect-log-payload':'false'},
-      body:JSON.stringify({model:routeFor(env,purpose),messages,temperature:purpose==='synthesis'?.22:.12,max_tokens:maxTokens}),
-      signal:AbortSignal.timeout(24000)
-    });
-    if(res.ok){
+    try{
+      const res=await fetch(`${gateway}/chat/completions`,{
+        method:'POST',
+        headers:{'cf-aig-authorization':`Bearer ${token}`,'content-type':'application/json','cf-aig-collect-log-payload':'false'},
+        body:JSON.stringify({model:routeFor(env,purpose),messages,temperature:purpose==='synthesis'?.22:.12,max_tokens:maxTokens}),
+        signal:AbortSignal.timeout(32000)
+      });
+      if(!res.ok){
+        const detail=(await res.text().catch(()=>'' )).replace(/\s+/g,' ').slice(0,260);
+        throw new Error(`gateway HTTP ${res.status}${detail?`: ${detail}`:''}`);
+      }
       const data:any=await res.json();
       const value=data?.choices?.[0]?.message?.content;
-      if(value)return String(value);
+      if(!value)throw new Error('gateway returned empty content');
+      return String(value);
+    }catch(e){
+      gatewayError=errorText(e);
     }
   }
+  if(!workersFallbackEnabled(env))throw new Error(`AI Gateway failed and Workers AI fallback is disabled: ${gatewayError}`);
   const result:any=await env.AI.run(modelNameFor(env,purpose),{messages,temperature:purpose==='synthesis'?.22:.12,max_tokens:maxTokens});
   return String(result?.response||result?.choices?.[0]?.message?.content||'');
 }
@@ -124,18 +134,22 @@ export async function runJson<T=any>(env:any,messages:any[],schema:any,purpose:C
   }
 
   const model=modelNameFor(env,purpose);
-  if(JSON_MODE_MODELS.has(model)){
-    try{
-      const result:any=await env.AI.run(model,{messages,temperature:purpose==='synthesis'?.18:.08,max_tokens:maxTokens,response_format:{type:'json_schema',json_schema:schema}});
-      const value=result?.response??result?.choices?.[0]?.message?.content;
-      if(value&&typeof value==='object')return validateRequired(value,schema) as T;
-      if(!value)throw new Error('native JSON mode returned empty content');
-      return parseStructured<T>(String(value),schema);
-    }catch(e){errors.push(`native_json_schema: ${errorText(e)}`)}
-  }else{
-    errors.push(`native_json_schema: skipped for ${model}`);
-  }
+  if(workersFallbackEnabled(env)){
+    if(JSON_MODE_MODELS.has(model)){
+      try{
+        const result:any=await env.AI.run(model,{messages,temperature:purpose==='synthesis'?.18:.08,max_tokens:maxTokens,response_format:{type:'json_schema',json_schema:schema}});
+        const value=result?.response??result?.choices?.[0]?.message?.content;
+        if(value&&typeof value==='object')return validateRequired(value,schema) as T;
+        if(!value)throw new Error('native JSON mode returned empty content');
+        return parseStructured<T>(String(value),schema);
+      }catch(e){errors.push(`native_json_schema: ${errorText(e)}`)}
+    }else{
+      errors.push(`native_json_schema: skipped for ${model}`);
+    }
 
+  }else{
+    errors.push('workers_ai_fallback: disabled');
+  }
   let raw='';
   try{
     raw=await runChat(env,constrained,purpose,maxTokens);
