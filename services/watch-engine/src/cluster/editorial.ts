@@ -1,4 +1,4 @@
-import { runJson } from '../llm';
+import { runJson,modelNameFor,type ChatPurpose } from '../llm';
 import { embedText } from '../embedding';
 
 const arr=(v:any)=>{try{return JSON.parse(String(v||'[]')) as string[]}catch{return[]}};
@@ -10,7 +10,7 @@ const draftSchema={type:'object',properties:{title_en:{type:'string'},summary_en
 const criticSchema={type:'object',properties:{verdict:{type:'string',enum:['pass','revise']},unsupported_claims:{type:'array',items:{type:'string'}},framing_problems:{type:'array',items:{type:'string'}},cluster_problem:{type:'boolean'},relevance_problem:{type:'boolean'},note:{type:'string'}},required:['verdict','unsupported_claims','framing_problems','cluster_problem','relevance_problem','note']};
 
 async function loadItems(env:any,id:number){
-  const rows:any=await env.DB.prepare(`SELECT a.id,a.title,a.summary,a.published_at,a.fetched_at,a.syndicated_from_article_id,a.canonical_url,p.id publisher_id,p.name publisher,p.role,sp.summary packet_summary,sp.key_points_json,sp.what_changed,sp.places_json,sp.organizations_json,sp.topics_json,sp.issue_candidates_json,sp.watch_relevance FROM development_articles da JOIN articles a ON a.id=da.article_id JOIN publishers p ON p.id=a.publisher_id LEFT JOIN story_packets sp ON sp.article_id=a.id WHERE da.development_id=? ORDER BY COALESCE(a.published_at,a.fetched_at) DESC LIMIT 12`).bind(id).all();
+  const rows:any=await env.DB.prepare(`SELECT a.id,a.title,a.summary,a.published_at,a.fetched_at,a.syndicated_from_article_id,a.canonical_url,p.id publisher_id,p.name publisher,p.role,sp.summary packet_summary,sp.key_points_json,sp.what_changed,sp.places_json,sp.organizations_json,sp.topics_json,sp.issue_candidates_json,sp.watch_relevance,sp.watch_relevance_confidence FROM development_articles da JOIN articles a ON a.id=da.article_id JOIN publishers p ON p.id=a.publisher_id LEFT JOIN story_packets sp ON sp.article_id=a.id WHERE da.development_id=? ORDER BY COALESCE(a.published_at,a.fetched_at) DESC LIMIT 12`).bind(id).all();
   return rows.results||[];
 }
 
@@ -40,6 +40,24 @@ async function lastFeedback(env:any,id:number){
 
 async function saveReview(env:any,id:number,r:any,attempt:number){
   await env.DB.prepare(`INSERT INTO critic_reviews(development_id,verdict,unsupported_claims_json,framing_problems_json,cluster_problem,relevance_problem,note,attempt,created_at) VALUES(?,?,?,?,?,?,?,?,?)`).bind(id,r.verdict,JSON.stringify(r.unsupported),JSON.stringify(r.framing),r.cluster_problem?1:0,r.relevance_problem?1:0,r.note||null,attempt,new Date().toISOString()).run();
+}
+
+async function logStage(env:any,id:number,stage:string,outcome:string,purpose?:ChatPurpose,error?:any){
+  try{
+    await env.DB.prepare(`INSERT INTO engine_attempts(development_id,stage,outcome,model,error,created_at) VALUES(?,?,?,?,?,?)`).bind(id,stage,outcome,purpose?modelNameFor(env,purpose):null,error?String(error?.message||error).slice(0,1600):null,new Date().toISOString()).run();
+  }catch(e){console.error('engine attempt log failed',stage,outcome,e)}
+}
+
+async function runStage<T>(env:any,id:number,stage:string,purpose:ChatPurpose|undefined,fn:()=>Promise<T>):Promise<T>{
+  await logStage(env,id,stage,'started',purpose);
+  try{
+    const value=await fn();
+    await logStage(env,id,stage,'success',purpose);
+    return value;
+  }catch(e){
+    await logStage(env,id,stage,'error',purpose,e);
+    throw e;
+  }
 }
 
 export async function queueDevelopmentForEditorial(env:any,id:number,force=false){
@@ -74,7 +92,7 @@ async function writeIssueDelta(env:any,id:number,slug:string,d:any){
     const now=new Date().toISOString();
     if(prior?.id)await env.DB.prepare(`UPDATE issue_delta_candidates SET delta_summary=?,delta_summary_id=?,significance=?,status='published',created_at=? WHERE id=?`).bind(text(o.delta_summary_en,1600),text(o.delta_summary_id,1600),o.significance,now,prior.id).run();
     else await env.DB.prepare(`INSERT INTO issue_delta_candidates(issue_slug,development_id,delta_summary,delta_summary_id,significance,status,created_at) VALUES(?,?,?,?,?,'published',?)`).bind(slug,id,text(o.delta_summary_en,1600),text(o.delta_summary_id,1600),o.significance,now).run();
-  }catch{}
+  }catch(e){console.error('issue delta synthesis failed',id,e)}
 }
 
 async function indexDevelopment(env:any,id:number,draft:any){
@@ -128,38 +146,41 @@ export async function processEditorialJob(env:any,message:any){
   const items=await loadItems(env,id);if(!items.length)return {status:'empty'};
   const attempt=Number(dev.retry_count||0)+1;
   const repair=await lastFeedback(env,id);
-  const draft=await writeDraft(env,items,repair);
+  const draft=await runStage(env,id,'writer','synthesis',()=>writeDraft(env,items,repair));
   if(!draft.title_en||!draft.summary_en||!draft.title_id||!draft.summary_id)throw new Error('empty structured draft');
-  const review=await critique(env,items,draft);
+  const review=await runStage(env,id,'critic','fast',()=>critique(env,items,draft));
   await saveReview(env,id,review,attempt);
 
-  if(review.cluster_problem&&items.length>1){
+  const stronglyRelevant=items.some((x:any)=>Number(x.watch_relevance||0)===1&&Number(x.watch_relevance_confidence||0)>=.72);
+  const effectiveClusterProblem=review.cluster_problem&&items.length>1;
+  const effectiveRelevanceProblem=review.relevance_problem&&!stronglyRelevant;
+
+  if(effectiveClusterProblem){
     const ids=await splitCluster(env,id,items,dev.status==='published');
     for(const developmentId of ids)await queueDevelopmentForEditorial(env,developmentId,true);
     return {status:'reclustered',ids,review};
   }
 
-  if(review.relevance_problem){
-    const stronglyRelevant=items.some((x:any)=>Number(x.watch_relevance||0)===1);
-    if(!stronglyRelevant&&dev.status!=='published'){
-      await env.DB.prepare(`UPDATE developments SET status='filtered',updated_at=? WHERE id=?`).bind(new Date().toISOString(),id).run();
-      return {status:'filtered',review};
-    }
+  if(effectiveRelevanceProblem&&dev.status!=='published'){
+    await env.DB.prepare(`UPDATE developments SET status='filtered',updated_at=? WHERE id=?`).bind(new Date().toISOString(),id).run();
+    return {status:'filtered',review};
   }
 
-  if(review.verdict==='pass'&&!review.cluster_problem&&!review.relevance_problem)return finalize(env,id,dev,draft,false);
+  if(review.verdict==='pass'&&!effectiveClusterProblem&&!effectiveRelevanceProblem){
+    return runStage(env,id,'finalize',undefined,()=>finalize(env,id,dev,draft,false));
+  }
 
-  if(attempt>=MAX_LOGICAL_REVISIONS&&!review.cluster_problem&&!review.relevance_problem){
-    return finalize(env,id,dev,safeSourceBrief(items),true);
+  if(attempt>=MAX_LOGICAL_REVISIONS&&!effectiveClusterProblem&&!effectiveRelevanceProblem){
+    return runStage(env,id,'finalize',undefined,()=>finalize(env,id,dev,safeSourceBrief(items),true));
   }
 
   await env.DB.prepare(`UPDATE developments SET retry_count=retry_count+1,status=CASE WHEN status='published' THEN 'published' ELSE 'editorial_queued' END,updated_at=? WHERE id=?`).bind(new Date().toISOString(),id).run();
   await env.EDITORIAL_QUEUE.send({kind:'editorial',developmentId:id});
-  return {status:'requeued',attempt,review};
+  return {status:'requeued',attempt,review,effectiveClusterProblem,effectiveRelevanceProblem};
 }
 
 export async function enqueueEditorialBacklog(env:any,limit=24){
-  const rows:any=await env.DB.prepare(`SELECT id,status FROM developments WHERE pipeline_version>=2 AND (status IN ('candidate','retrying','held') OR (status='editorial_queued' AND updated_at<datetime('now','-2 hours'))) ORDER BY updated_at ASC LIMIT ?`).bind(limit).all();
+  const rows:any=await env.DB.prepare(`SELECT id,status FROM developments WHERE pipeline_version>=2 AND (status IN ('candidate','retrying','held') OR (status='editorial_queued' AND updated_at<datetime('now','-15 minutes'))) ORDER BY updated_at ASC LIMIT ?`).bind(limit).all();
   let queued=0;
   for(const r of rows.results||[]){
     if(await queueDevelopmentForEditorial(env,Number(r.id),r.status==='editorial_queued'))queued++;
