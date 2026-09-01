@@ -3,8 +3,12 @@ export type SourceConfig={id:string;name:string;homepage:string;feed?:string;rol
 export type DiscoveredItem={sourceId:string;url:string;title:string;publishedAt?:string};
 export type ExtractionMethod='fetch+defuddle'|'fetch+readability'|'fetch+fallback'|'browser-run'|'firecrawl';
 export type ExtractedArticle={canonicalUrl:string;title:string;description:string;body:string;publishedAt?:string;author?:string;language?:string;extractionMethod?:ExtractionMethod;contentHash?:string;image?:{url:string;credit?:string;caption?:string;sourceUrl:string}};
+export type WatchDesk='environment'|'land'|'human_rights'|'politics'|'culture'|'regional'|'other';
 export type StoryPacket={
-  summary:string;key_points:string[];what_changed:string;event_date?:string;places:string[];people:string[];organizations:string[];topics:string[];issue_candidates:string[];
-  watch_relevance?:boolean;watch_relevance_confidence?:number;watch_relevance_reason?:string;watch_relevance_evidence?:string[];watch_desk?:'environment'|'land'|'human_rights'|'politics'|'culture'|'regional'|'other';
+  summary:string;key_points:string[];what_changed:string;event_date?:string;
+  event_key?:string;action?:string;object?:string;
+  places:string[];people:string[];organizations:string[];topics:string[];issue_candidates:string[];
+  watch_relevance?:boolean;watch_relevance_confidence?:number;watch_relevance_reason?:string;watch_relevance_evidence?:string[];watch_desk?:WatchDesk;
 };
 export type IngestMessage={sourceId:string;url:string;title?:string;publishedAt?:string;force?:boolean};
+export type IngestBatchMessage={kind:'ingest_batch';items:IngestMessage[]};

@@ -83,7 +83,7 @@ async function editorialStatus(env:any){
 export default {
   async fetch(request:any,env:any){
     const url=new URL(request.url);
-    if(url.pathname==='/health')return json({ok:true,service:'westpapua-watch-engine',bindings:{db:!!env.DB,archive:!!env.ARCHIVE,vectorize:!!env.ARTICLE_INDEX,ai:!!env.AI,browser:!!env.BROWSER,ingestQueue:!!env.INGEST_QUEUE,editorialQueue:!!env.EDITORIAL_QUEUE,workflow:!!env.NEWS_CYCLE},scheduler:{mode:'cron-trigger',cron:'11,41 * * * *'},publishing:{automatic:env.AUTO_PUBLISH==='true',critic:true,repairLoop:true,pipelineVersion:2,editorialQueue:true},editorial:await editorialStatus(env)});
+    if(url.pathname==='/health')return json({ok:true,service:'westpapua-watch-engine',bindings:{db:!!env.DB,archive:!!env.ARCHIVE,vectorize:!!env.ARTICLE_INDEX,ai:!!env.AI,browser:!!env.BROWSER,ingestQueue:!!env.INGEST_QUEUE,editorialQueue:!!env.EDITORIAL_QUEUE,workflow:!!env.NEWS_CYCLE},scheduler:{mode:'cron-trigger',cron:'0 0,3,6,9,21 * * *'},publishing:{automatic:env.AUTO_PUBLISH==='true',critic:true,repairLoop:false,pipelineVersion:2,editorialQueue:true,batchSize:4},editorial:await editorialStatus(env)});
     if(url.pathname==='/current'&&request.method==='GET')return json(await current(env),200,'public, max-age=60, stale-while-revalidate=180');
     const dm=url.pathname.match(/^\/development\/(\d+)$/);if(dm&&request.method==='GET'){const item=await development(env,Number(dm[1]));return item?json(item):json({error:'Not found'},404)}
     if(url.pathname==='/issues'&&request.method==='GET')return json(await issues(env),200,'public, max-age=60, stale-while-revalidate=180');

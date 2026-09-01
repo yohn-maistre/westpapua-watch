@@ -22,14 +22,14 @@
       { "binding": "EDITORIAL_QUEUE", "queue": "westpapua-watch-editorial" }
     ],
     "consumers": [
-      { "queue": "westpapua-watch-ingest", "max_batch_size": 10, "max_batch_timeout": 5, "max_retries": 5, "dead_letter_queue": "westpapua-watch-ingest-dlq" },
-      { "queue": "westpapua-watch-editorial", "max_batch_size": 1, "max_batch_timeout": 2, "max_retries": 8, "retry_delay": 30, "max_concurrency": 1, "dead_letter_queue": "westpapua-watch-editorial-dlq" }
+      { "queue": "westpapua-watch-ingest", "max_batch_size": 1, "max_batch_timeout": 2, "max_retries": 3, "retry_delay": 30, "max_concurrency": 1, "dead_letter_queue": "westpapua-watch-ingest-dlq" },
+      { "queue": "westpapua-watch-editorial", "max_batch_size": 1, "max_batch_timeout": 2, "max_retries": 2, "retry_delay": 60, "max_concurrency": 1, "dead_letter_queue": "westpapua-watch-editorial-dlq" }
     ]
   },
   "workflows": [
     { "name": "westpapua-watch-news-cycle", "binding": "NEWS_CYCLE", "class_name": "NewsCycleWorkflow" }
   ],
-  "triggers": { "crons": ["11,41 * * * *"] },
+  "triggers": { "crons": ["0 0,3,6,9,21 * * *"] },
   "vars": {
     "EMBEDDING_MODEL": "@cf/baai/bge-m3",
     "FAST_MODEL": "@cf/qwen/qwen3-30b-a3b-fp8",
@@ -38,6 +38,7 @@
     "AUTO_PUBLISH": "true",
     "ALLOW_EXTERNAL_IMAGES": "true",
     "ENABLE_WORKERS_AI_FALLBACK": "false",
+    "ENABLE_VECTORIZE_ENRICHMENT": "false",
     "AI_GATEWAY_BASE": "__AI_GATEWAY_BASE__",
     "AI_GATEWAY_FAST_MODEL": "dynamic/watch-fast",
     "AI_GATEWAY_SYNTH_MODEL": "dynamic/watch-synth",

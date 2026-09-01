@@ -1,39 +1,13 @@
 {
   "name": "watch-synth",
   "elements": [
+    {"id":"START","type":"start","outputs":{"next":{"elementId":"gemini-synth"}}},
     {
-      "id": "START",
-      "type": "start",
-      "outputs": { "next": { "elementId": "gemini-synth" } }
+      "id":"gemini-synth",
+      "type":"model",
+      "properties":{"provider":"google-ai-studio","model":"gemini-3.7-flash","timeout":40000,"retries":0},
+      "outputs":{"success":{"elementId":"END"},"fallback":{"elementId":"END"}}
     },
-    {
-      "id": "gemini-synth",
-      "type": "model",
-      "properties": {
-        "provider": "google-ai-studio",
-        "model": "gemini-3.7-flash",
-        "timeout": 30000,
-        "retries": 1
-      },
-      "outputs": {
-        "success": { "elementId": "END" },
-        "fallback": { "elementId": "gemini-synth-fallback" }
-      }
-    },
-    {
-      "id": "gemini-synth-fallback",
-      "type": "model",
-      "properties": {
-        "provider": "google-ai-studio",
-        "model": "gemini-3.6-flash",
-        "timeout": 30000,
-        "retries": 1
-      },
-      "outputs": {
-        "success": { "elementId": "END" },
-        "fallback": { "elementId": "END" }
-      }
-    },
-    { "id": "END", "type": "end", "outputs": {} }
+    {"id":"END","type":"end","outputs":{}}
   ]
 }

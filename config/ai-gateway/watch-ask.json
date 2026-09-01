@@ -1,39 +1,13 @@
 {
   "name": "watch-ask",
   "elements": [
+    {"id":"START","type":"start","outputs":{"next":{"elementId":"qwen-ask"}}},
     {
-      "id": "START",
-      "type": "start",
-      "outputs": { "next": { "elementId": "gemini-ask" } }
+      "id":"qwen-ask",
+      "type":"model",
+      "properties":{"provider":"groq","model":"qwen/qwen3.8-27b","timeout":30000,"retries":0},
+      "outputs":{"success":{"elementId":"END"},"fallback":{"elementId":"END"}}
     },
-    {
-      "id": "gemini-ask",
-      "type": "model",
-      "properties": {
-        "provider": "google-ai-studio",
-        "model": "gemini-3.7-flash",
-        "timeout": 32000,
-        "retries": 1
-      },
-      "outputs": {
-        "success": { "elementId": "END" },
-        "fallback": { "elementId": "gemini-ask-fallback" }
-      }
-    },
-    {
-      "id": "gemini-ask-fallback",
-      "type": "model",
-      "properties": {
-        "provider": "google-ai-studio",
-        "model": "gemini-3.6-flash",
-        "timeout": 32000,
-        "retries": 1
-      },
-      "outputs": {
-        "success": { "elementId": "END" },
-        "fallback": { "elementId": "END" }
-      }
-    },
-    { "id": "END", "type": "end", "outputs": {} }
+    {"id":"END","type":"end","outputs":{}}
   ]
 }

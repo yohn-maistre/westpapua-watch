@@ -1,214 +1,86 @@
-import { runJson,isGatewayQuotaError,modelLabelFor,type ChatPurpose } from '../llm';
-import { embedText } from '../embedding';
+import { runJson,isGatewayQuotaError,isMalformedOutputError,modelLabelFor,type ChatPurpose } from '../llm';
+import { tryEmbedText } from '../embedding';
+import { upsertDevelopmentSearch } from '../search';
 
-const arr=(v:any)=>{try{return JSON.parse(String(v||'[]')) as string[]}catch{return[]}};
+const arr=(v:any)=>{try{const x=JSON.parse(String(v||'[]'));return Array.isArray(x)?x.map(String):[]}catch{return[]}};
 const text=(v:any,n:number)=>String(v||'').trim().slice(0,n);
 const list=(v:any,n=12)=>Array.isArray(v)?v.map(String).map(x=>x.trim()).filter(Boolean).slice(0,n):[];
-const MAX_LOGICAL_REVISIONS=6;
+const MAX_LOGICAL_REVISIONS=4;
+const MAX_EDITORIAL_BATCH=4;
 
-const draftSchema={type:'object',properties:{title_en:{type:'string'},summary_en:{type:'string'},title_id:{type:'string'},summary_id:{type:'string'},what_changed_en:{type:'string'},what_changed_id:{type:'string'},common_ground:{type:'array',items:{type:'string'}},source_notes:{type:'array',items:{type:'string'}},places:{type:'array',items:{type:'string'}},topics:{type:'array',items:{type:'string'}}},required:['title_en','summary_en','title_id','summary_id','what_changed_en','what_changed_id','common_ground','source_notes','places','topics']};
-const criticSchema={type:'object',properties:{verdict:{type:'string',enum:['pass','revise']},unsupported_claims:{type:'array',items:{type:'string'}},framing_problems:{type:'array',items:{type:'string'}},cluster_problem:{type:'boolean'},relevance_problem:{type:'boolean'},note:{type:'string'}},required:['verdict','unsupported_claims','framing_problems','cluster_problem','relevance_problem','note']};
+const draftItem={type:'object',properties:{development_id:{type:'integer'},title_en:{type:'string'},summary_en:{type:'string'},title_id:{type:'string'},summary_id:{type:'string'},what_changed_en:{type:'string'},what_changed_id:{type:'string'},common_ground:{type:'array',items:{type:'string'}},source_notes:{type:'array',items:{type:'string'}},places:{type:'array',items:{type:'string'}},topics:{type:'array',items:{type:'string'}}},required:['development_id','title_en','summary_en','title_id','summary_id','what_changed_en','what_changed_id','common_ground','source_notes','places','topics'],additionalProperties:false};
+const draftBatchSchema={type:'object',properties:{items:{type:'array',items:draftItem}},required:['items'],additionalProperties:false};
+const criticItem={type:'object',properties:{development_id:{type:'integer'},verdict:{type:'string',enum:['pass','revise']},unsupported_claims:{type:'array',items:{type:'string'}},framing_problems:{type:'array',items:{type:'string'}},cluster_problem:{type:'boolean'},relevance_problem:{type:'boolean'},note:{type:'string'}},required:['development_id','verdict','unsupported_claims','framing_problems','cluster_problem','relevance_problem','note'],additionalProperties:false};
+const criticBatchSchema={type:'object',properties:{items:{type:'array',items:criticItem}},required:['items'],additionalProperties:false};
 
-async function loadItems(env:any,id:number){
-  const rows:any=await env.DB.prepare(`SELECT a.id,a.title,a.summary,a.published_at,a.fetched_at,a.syndicated_from_article_id,a.canonical_url,p.id publisher_id,p.name publisher,p.role,sp.summary packet_summary,sp.key_points_json,sp.what_changed,sp.places_json,sp.organizations_json,sp.topics_json,sp.issue_candidates_json,sp.watch_relevance,sp.watch_relevance_confidence FROM development_articles da JOIN articles a ON a.id=da.article_id JOIN publishers p ON p.id=a.publisher_id LEFT JOIN story_packets sp ON sp.article_id=a.id WHERE da.development_id=? ORDER BY COALESCE(a.published_at,a.fetched_at) DESC LIMIT 12`).bind(id).all();
-  return rows.results||[];
+async function loadItems(env:any,id:number){const rows:any=await env.DB.prepare(`SELECT a.id,a.title,a.summary,a.published_at,a.fetched_at,a.syndicated_from_article_id,a.canonical_url,p.id publisher_id,p.name publisher,p.role,sp.summary packet_summary,sp.key_points_json,sp.what_changed,sp.event_key,sp.action,sp.object,sp.places_json,sp.organizations_json,sp.topics_json,sp.issue_candidates_json,sp.watch_relevance,sp.watch_relevance_confidence FROM development_articles da JOIN articles a ON a.id=da.article_id JOIN publishers p ON p.id=a.publisher_id LEFT JOIN story_packets sp ON sp.article_id=a.id WHERE da.development_id=? ORDER BY COALESCE(a.published_at,a.fetched_at) DESC LIMIT 8`).bind(id).all();return rows.results||[]}
+
+const contextFor=(items:any[])=>items.slice(0,8).map((r:any,i:number)=>`[S${i+1}] ${r.publisher} (${r.role})\nURL: ${r.canonical_url}\nTitle: ${r.title}\nEvent: ${r.event_key||''}\nAction/object: ${r.action||''} / ${r.object||''}\nSummary: ${r.packet_summary||r.summary||''}\nChanged: ${r.what_changed||''}\nPoints: ${arr(r.key_points_json).join('; ')}\nPlaces: ${arr(r.places_json).join(', ')}\nOrganizations: ${arr(r.organizations_json).join(', ')}\nTopics: ${arr(r.topics_json).join(', ')}`).join('\n\n');
+const feedback=(r:any)=>[...list(r?.unsupported,8).map((x:string)=>`Unsupported: ${x}`),...list(r?.framing,8).map((x:string)=>`Framing: ${x}`),text(r?.note,800)].filter(Boolean).join('\n').slice(0,2200);
+async function lastFeedback(env:any,id:number){const r:any=await env.DB.prepare(`SELECT unsupported_claims_json,framing_problems_json,note FROM critic_reviews WHERE development_id=? ORDER BY id DESC LIMIT 1`).bind(id).first();return r?feedback({unsupported:arr(r.unsupported_claims_json),framing:arr(r.framing_problems_json),note:r.note}):''}
+async function saveReview(env:any,id:number,r:any,attempt:number){await env.DB.prepare(`INSERT INTO critic_reviews(development_id,verdict,unsupported_claims_json,framing_problems_json,cluster_problem,relevance_problem,note,attempt,created_at) VALUES(?,?,?,?,?,?,?,?,?)`).bind(id,r.verdict,JSON.stringify(r.unsupported),JSON.stringify(r.framing),r.cluster_problem?1:0,r.relevance_problem?1:0,r.note||null,attempt,new Date().toISOString()).run()}
+async function logStage(env:any,id:number,stage:string,outcome:string,purpose?:ChatPurpose,error?:any){try{await env.DB.prepare(`INSERT INTO engine_attempts(development_id,stage,outcome,model,error,created_at) VALUES(?,?,?,?,?,?)`).bind(id,stage,outcome,purpose?modelLabelFor(env,purpose):null,error?String(error?.message||error).slice(0,1600):null,new Date().toISOString()).run()}catch{}}
+
+export async function markDevelopmentEditorialPending(env:any,id:number){
+  const d:any=await env.DB.prepare(`SELECT status FROM developments WHERE id=?`).bind(id).first();if(!d||['filtered','merged'].includes(String(d.status)))return false;
+  await env.DB.prepare(`UPDATE developments SET editorial_pending=1,editorial_dispatch_id=NULL,editorial_dispatched_at=NULL,updated_at=? WHERE id=?`).bind(new Date().toISOString(),id).run();return true;
 }
 
-const contextFor=(items:any[])=>items.map((r:any,i:number)=>`[S${i+1}] ${r.publisher} (${r.role})\nURL: ${r.canonical_url}\nTitle: ${r.title}\nRingkasan: ${r.packet_summary||r.summary||''}\nPerubahan: ${r.what_changed||''}\nPoin: ${arr(r.key_points_json).join('; ')}\nPlaces: ${arr(r.places_json).join(', ')}\nOrganizations: ${arr(r.organizations_json).join(', ')}\nTopics: ${arr(r.topics_json).join(', ')}`).join('\n\n');
+function draftFrom(o:any){return {title_en:text(o.title_en,500),summary_en:text(o.summary_en,1800),title_id:text(o.title_id,500),summary_id:text(o.summary_id,1800),what_changed_en:text(o.what_changed_en,1400),what_changed_id:text(o.what_changed_id,1400),common_ground:list(o.common_ground),source_notes:list(o.source_notes),places:list(o.places),topics:list(o.topics)}}
 
-async function writeDraft(env:any,items:any[],repair=''){
-  const originals=items.filter(x=>!x.syndicated_from_article_id);
-  const count=new Set(originals.map(x=>x.publisher_id)).size;
-  const prompt=`Write one event-level development for West Papua Watch from these source packets. Produce publication-ready English and Bahasa Indonesia, not Papuan Malay. Every factual claim must be supported. If one original publisher is the sole source for a material claim, explicitly attribute it. Preserve disagreement and uncertainty. Do not turn official, military, movement, NGO or advocacy claims into anonymous facts. Original publisher count: ${count}.${repair?`\nRepair these critic findings:\n${repair}`:''}\n\n${contextFor(items)}`;
-  const o:any=await runJson(env,[{role:'system',content:'You are a restrained multilingual aggregation editor. English should read naturally; Bahasa Indonesia should read like careful Indonesian journalism.'},{role:'user',content:prompt}],draftSchema,'synthesis',1100);
-  return {title_en:text(o.title_en,500),summary_en:text(o.summary_en,1800),title_id:text(o.title_id,500),summary_id:text(o.summary_id,1800),what_changed_en:text(o.what_changed_en,1400),what_changed_id:text(o.what_changed_id,1400),common_ground:list(o.common_ground),source_notes:list(o.source_notes),places:list(o.places),topics:list(o.topics)};
+async function writeDraftBatch(env:any,jobs:any[]){
+  const prompt=jobs.map(j=>{const originals=j.items.filter((x:any)=>!x.syndicated_from_article_id),count=new Set(originals.map((x:any)=>x.publisher_id)).size;return `DEVELOPMENT ${j.id}\nOriginal publisher count: ${count}\n${j.repair?`Previous critic feedback:\n${j.repair}\n`:''}${contextFor(j.items)}`}).join('\n\n================\n\n');
+  const o:any=await runJson(env,[{role:'system',content:'You are West Papua Watch\'s restrained multilingual aggregation editor. Write one INDEPENDENT event-level synthesis per DEVELOPMENT id. English and careful Bahasa Indonesia only, not Papuan Malay. Every material claim must be supported by that Development\'s own source packets. Attribute sole-source or official/military/movement/NGO claims. Preserve disagreement. Never mix evidence between Developments.'},{role:'user',content:prompt}],draftBatchSchema,'synthesis',Math.min(5200,1300+jobs.length*1000));
+  return new Map<number,any>((o.items||[]).map((x:any)=>[Number(x.development_id),draftFrom(x)] as [number,any]));
 }
 
-async function critique(env:any,items:any[],draft:any){
-  const prompt=`Audit this event synthesis against the source packets. Check factual support, attribution, headline overclaiming, syndication, geography/relevance, and whether all records describe ONE concrete event rather than merely the same topic. A single credible local report can pass when clearly attributed. Return pass if there is no material problem; otherwise revise and state exactly what must change.\n\nEN TITLE: ${draft.title_en}\nEN SUMMARY: ${draft.summary_en}\nID TITLE: ${draft.title_id}\nID SUMMARY: ${draft.summary_id}\n\n${contextFor(items)}`;
-  const messages=[{role:'system',content:'You are an evidence critic. Judge against supplied evidence, not against whether you personally like the framing.'},{role:'user',content:prompt}];
-  let o:any;
-  try{
-    o=await runJson(env,messages,criticSchema,'fast',520);
-  }catch(fastError){
-    // Provider quota is global backpressure, not a critic-model failure: do not
-    // consume the synthesis route as a second probe after a 429.
-    if(isGatewayQuotaError(fastError))throw fastError;
-    console.warn('fast critic route failed; retrying on synthesis route',fastError);
-    o=await runJson(env,messages,criticSchema,'synthesis',520);
-  }
-  return {verdict:o.verdict==='pass'?'pass':'revise',unsupported:list(o.unsupported_claims,8),framing:list(o.framing_problems,8),cluster_problem:o.cluster_problem===true,relevance_problem:o.relevance_problem===true,note:text(o.note,600)};
+async function critiqueBatch(env:any,jobs:any[],drafts:Map<number,any>){
+  const prompt=jobs.filter(j=>drafts.has(j.id)).map(j=>{const d=drafts.get(j.id);return `DEVELOPMENT ${j.id}\nDRAFT EN: ${d.title_en}\n${d.summary_en}\nDRAFT ID: ${d.title_id}\n${d.summary_id}\nWHAT CHANGED: ${d.what_changed_id}\n\nEVIDENCE\n${contextFor(j.items)}`}).join('\n\n================\n\n');
+  const o:any=await runJson(env,[{role:'system',content:'Audit EACH Development independently against only its supplied evidence. Check support, attribution, headline overclaiming, syndication, geography/relevance, and whether its records are one concrete event rather than merely the same topic. A single credible local report can pass when clearly attributed. Never mix evidence between Development ids.'},{role:'user',content:prompt}],criticBatchSchema,'fast',Math.min(3000,700+jobs.length*500));
+  return new Map<number,any>((o.items||[]).map((x:any)=>[Number(x.development_id),{verdict:x.verdict==='pass'?'pass':'revise',unsupported:list(x.unsupported_claims,8),framing:list(x.framing_problems,8),cluster_problem:x.cluster_problem===true,relevance_problem:x.relevance_problem===true,note:text(x.note,600)}] as [number,any]));
 }
 
-const feedback=(r:any)=>[...list(r?.unsupported,8).map((x:string)=>`Unsupported: ${x}`),...list(r?.framing,8).map((x:string)=>`Framing: ${x}`),text(r?.note,800)].filter(Boolean).join('\n').slice(0,2600);
+async function splitCluster(env:any,id:number,items:any[],wasPublished:boolean){if(items.length<2)return[id];const ids=[id];for(const item of items.slice(1)){await env.DB.prepare(`DELETE FROM development_articles WHERE development_id=? AND article_id=?`).bind(id,item.id).run();const now=new Date().toISOString();const ins:any=await env.DB.prepare(`INSERT INTO developments(title_en,summary_en,title_id,summary_id,event_signature,status,first_seen_at,updated_at,last_growth_at,pipeline_version,editorial_pending) VALUES(?,?,?,?,?,'candidate',?,?,?,?,1)`).bind(item.title,item.packet_summary||item.summary||'',item.title,item.packet_summary||item.summary||'',item.event_key||item.title,item.published_at||item.fetched_at,now,now,2).run();const newId=Number(ins.meta.last_row_id);await env.DB.prepare(`INSERT OR IGNORE INTO development_articles(development_id,article_id,membership_score,membership_method) VALUES(?,?,1,'cluster-repair')`).bind(newId,item.id).run();ids.push(newId)}await env.DB.prepare(`UPDATE developments SET status=?,retry_count=0,editorial_pending=1,editorial_dispatch_id=NULL,updated_at=? WHERE id=?`).bind(wasPublished?'published':'candidate',new Date().toISOString(),id).run();return ids}
 
-async function lastFeedback(env:any,id:number){
-  const r:any=await env.DB.prepare(`SELECT unsupported_claims_json,framing_problems_json,note FROM critic_reviews WHERE development_id=? ORDER BY id DESC LIMIT 1`).bind(id).first();
-  if(!r)return '';
-  return feedback({unsupported:arr(r.unsupported_claims_json),framing:arr(r.framing_problems_json),note:r.note});
-}
+async function writeIssueDelta(env:any,id:number,slug:string,d:any){try{const prior:any=await env.DB.prepare(`SELECT id FROM issue_delta_candidates WHERE development_id=? ORDER BY id DESC LIMIT 1`).bind(id).first(),now=new Date().toISOString();const en=text(d.what_changed_en||d.summary_en,1600),idText=text(d.what_changed_id||d.summary_id,1600);if(prior?.id)await env.DB.prepare(`UPDATE issue_delta_candidates SET delta_summary=?,delta_summary_id=?,significance='medium',status='published',created_at=? WHERE id=?`).bind(en,idText,now,prior.id).run();else await env.DB.prepare(`INSERT INTO issue_delta_candidates(issue_slug,development_id,delta_summary,delta_summary_id,significance,status,created_at) VALUES(?,?,?,?, 'medium','published',?)`).bind(slug,id,en,idText,now).run()}catch(e){console.warn('deterministic issue delta failed',id,e)}}
+function developmentSignature(draft:any){return `${draft.title_id}\n${draft.summary_id}\n${draft.what_changed_id}\nPlaces: ${draft.places.join(', ')}\nTopics: ${draft.topics.join(', ')}`.slice(0,2400)}
+async function rank(env:any,id:number){const r:any=await env.DB.prepare(`SELECT COUNT(DISTINCT da.article_id) article_count,COUNT(DISTINCT CASE WHEN a.syndicated_from_article_id IS NULL THEN a.publisher_id END) source_count,MAX(CASE WHEN p.role IN ('local_newsroom','alternative_media') THEN 1 ELSE 0 END) local_source,MAX(COALESCE(a.published_at,a.fetched_at)) newest FROM development_articles da JOIN articles a ON a.id=da.article_id JOIN publishers p ON p.id=a.publisher_id WHERE da.development_id=?`).bind(id).first();const age=Math.max(0,(Date.now()-new Date(r?.newest||Date.now()).getTime())/36e5);return Number((Math.max(0,60-age*1.2)+Math.min(24,Number(r?.source_count||0)*8)+Math.min(12,Number(r?.article_count||0)*3)+(r?.local_source?10:0)).toFixed(2))}
+function safeSourceBrief(items:any[]){const first=items[0],packet=first?.packet_summary||first?.summary||'',title=first?.title||'West Papua update',publisher=first?.publisher||'Source';return {title_en:`Source brief: ${title}`.slice(0,500),summary_en:`${publisher} reports on “${title}”. West Papua Watch is publishing a directly attributed source brief after repeated editorial revisions. Read the original report for the full account.`.slice(0,1800),title_id:`Ringkasan sumber: ${title}`.slice(0,500),summary_id:`${publisher} melaporkan “${title}”. West Papua Watch menerbitkan ringkasan sumber dengan atribusi langsung setelah beberapa revisi redaksi. Baca laporan asli untuk keterangan lengkap.${packet?` Ringkasan sumber: ${packet}`:''}`.slice(0,1800),what_changed_en:`New reporting from ${publisher}.`,what_changed_id:`Ada laporan baru dari ${publisher}.`,common_ground:[],source_notes:[`Safe source brief after ${MAX_LOGICAL_REVISIONS} editorial revisions.`],places:arr(first?.places_json),topics:arr(first?.topics_json)}}
 
-async function saveReview(env:any,id:number,r:any,attempt:number){
-  await env.DB.prepare(`INSERT INTO critic_reviews(development_id,verdict,unsupported_claims_json,framing_problems_json,cluster_problem,relevance_problem,note,attempt,created_at) VALUES(?,?,?,?,?,?,?,?,?)`).bind(id,r.verdict,JSON.stringify(r.unsupported),JSON.stringify(r.framing),r.cluster_problem?1:0,r.relevance_problem?1:0,r.note||null,attempt,new Date().toISOString()).run();
-}
+async function finalize(env:any,id:number,dev:any,draft:any,sourceBrief=false){const now=new Date().toISOString(),signature=developmentSignature(draft);await env.DB.prepare(`INSERT INTO development_syntheses(development_id,title,summary,what_changed,what_changed_id,common_ground_json,source_notes_json,places_json,topics_json,created_at) VALUES(?,?,?,?,?,?,?,?,?,?)`).bind(id,draft.title_en,draft.summary_en,draft.what_changed_en,draft.what_changed_id,JSON.stringify(draft.common_ground),JSON.stringify(draft.source_notes),JSON.stringify(draft.places),JSON.stringify(draft.topics),now).run();let score=await rank(env,id);if(sourceBrief)score=Math.max(0,score-18);const status=env.AUTO_PUBLISH==='true'?'published':'candidate';await env.DB.prepare(`UPDATE developments SET title_en=?,summary_en=?,title_id=?,summary_id=?,title_pmy=NULL,summary_pmy=NULL,event_signature=?,ranking_score=?,status=?,retry_count=0,editorial_pending=0,editorial_dispatch_id=NULL,editorial_dispatched_at=NULL,provider_backoff_count=0,editorial_not_before=NULL,updated_at=? WHERE id=?`).bind(draft.title_en,draft.summary_en,draft.title_id,draft.summary_id,signature,score,status,now,id).run();await upsertDevelopmentSearch(env,id,{title:draft.title_id,summary:draft.summary_id,event_signature:signature,places:draft.places,topics:draft.topics});const vector=await tryEmbedText(env,signature);if(vector){try{await env.ARTICLE_INDEX.upsert([{id:`dev:${id}`,values:vector,metadata:{kind:'development',developmentId:id,updatedAt:Date.now(),title:draft.title_id}}])}catch(e){console.warn('optional development Vectorize upsert failed',id,e)}}if(dev?.issue_slug&&status==='published')await writeIssueDelta(env,id,dev.issue_slug,draft);return {status,ranking_score:score,sourceBrief}}
 
-async function logStage(env:any,id:number,stage:string,outcome:string,purpose?:ChatPurpose,error?:any){
-  try{
-    await env.DB.prepare(`INSERT INTO engine_attempts(development_id,stage,outcome,model,error,created_at) VALUES(?,?,?,?,?,?)`).bind(id,stage,outcome,purpose?modelLabelFor(env,purpose):null,error?String(error?.message||error).slice(0,1600):null,new Date().toISOString()).run();
-  }catch(e){console.error('engine attempt log failed',stage,outcome,e)}
-}
-
-async function runStage<T>(env:any,id:number,stage:string,purpose:ChatPurpose|undefined,fn:()=>Promise<T>):Promise<T>{
-  await logStage(env,id,stage,'started',purpose);
-  try{
-    const value=await fn();
-    await logStage(env,id,stage,'success',purpose);
-    return value;
-  }catch(e){
-    await logStage(env,id,stage,'error',purpose,e);
-    throw e;
-  }
-}
-
-export async function queueDevelopmentForEditorial(env:any,id:number,force=false){
-  const d:any=await env.DB.prepare(`SELECT status,editorial_not_before FROM developments WHERE id=?`).bind(id).first();
-  if(!d||['filtered','merged'].includes(String(d.status)))return false;
-  if(d.editorial_not_before&&new Date(d.editorial_not_before).getTime()>Date.now())return false;
-  if(d.status==='editorial_queued'&&!force)return false;
-  await env.EDITORIAL_QUEUE.send({kind:'editorial',developmentId:id});
-  if(d.status!=='published')await env.DB.prepare(`UPDATE developments SET status='editorial_queued',updated_at=? WHERE id=?`).bind(new Date().toISOString(),id).run();
-  return true;
-}
-
-async function splitCluster(env:any,id:number,items:any[],wasPublished:boolean){
-  if(items.length<2)return [id];
-  const ids=[id];
-  for(const item of items.slice(1)){
-    await env.DB.prepare(`DELETE FROM development_articles WHERE development_id=? AND article_id=?`).bind(id,item.id).run();
-    const now=new Date().toISOString();
-    const ins:any=await env.DB.prepare(`INSERT INTO developments(title_en,summary_en,status,first_seen_at,updated_at,last_growth_at,pipeline_version) VALUES(?,?,?,?,?,?,2)`).bind(item.title,item.packet_summary||item.summary||'','candidate',item.published_at||item.fetched_at,now,now).run();
-    const newId=Number(ins.meta.last_row_id);
-    await env.DB.prepare(`INSERT OR IGNORE INTO development_articles(development_id,article_id,membership_score,membership_method) VALUES(?,?,1,'cluster-repair')`).bind(newId,item.id).run();
-    ids.push(newId);
-  }
-  await env.DB.prepare(`UPDATE developments SET status=?,retry_count=0,updated_at=? WHERE id=?`).bind(wasPublished?'published':'candidate',new Date().toISOString(),id).run();
-  return ids;
-}
-
-async function writeIssueDelta(env:any,id:number,slug:string,d:any){
-  const schema={type:'object',properties:{delta_summary_en:{type:'string'},delta_summary_id:{type:'string'},significance:{type:'string',enum:['low','medium','high']}},required:['delta_summary_en','delta_summary_id','significance']};
-  try{
-    const o:any=await runJson(env,[{role:'system',content:'Write only the new issue-timeline change. Return careful English and Bahasa Indonesia.'},{role:'user',content:`Issue: ${slug}\nDevelopment EN: ${d.title_en}\n${d.summary_en}\nDevelopment ID: ${d.title_id}\n${d.summary_id}\nWhat changed: ${d.what_changed_id}`}],schema,'fast',320);
-    const prior:any=await env.DB.prepare(`SELECT id FROM issue_delta_candidates WHERE development_id=? ORDER BY id DESC LIMIT 1`).bind(id).first();
-    const now=new Date().toISOString();
-    if(prior?.id)await env.DB.prepare(`UPDATE issue_delta_candidates SET delta_summary=?,delta_summary_id=?,significance=?,status='published',created_at=? WHERE id=?`).bind(text(o.delta_summary_en,1600),text(o.delta_summary_id,1600),o.significance,now,prior.id).run();
-    else await env.DB.prepare(`INSERT INTO issue_delta_candidates(issue_slug,development_id,delta_summary,delta_summary_id,significance,status,created_at) VALUES(?,?,?,?,?,'published',?)`).bind(slug,id,text(o.delta_summary_en,1600),text(o.delta_summary_id,1600),o.significance,now).run();
-  }catch(e){console.error('issue delta synthesis failed',id,e)}
-}
-
-function developmentSignature(draft:any){
-  return `${draft.title_id}\n${draft.summary_id}\n${draft.what_changed_id}\nPlaces: ${draft.places.join(', ')}\nTopics: ${draft.topics.join(', ')}`.slice(0,2400);
-}
-
-async function indexDevelopment(env:any,id:number,draft:any,signature=developmentSignature(draft)){
-  const vector=await embedText(env,signature);
-  await env.ARTICLE_INDEX.upsert([{id:`dev:${id}`,values:vector,metadata:{kind:'development',developmentId:id,updatedAt:Date.now(),title:draft.title_id}}]);
-  return signature;
-}
-
-async function rank(env:any,id:number){
-  const r:any=await env.DB.prepare(`SELECT COUNT(DISTINCT da.article_id) article_count,COUNT(DISTINCT CASE WHEN a.syndicated_from_article_id IS NULL THEN a.publisher_id END) source_count,MAX(CASE WHEN p.role IN ('local_newsroom','alternative_media') THEN 1 ELSE 0 END) local_source,MAX(COALESCE(a.published_at,a.fetched_at)) newest FROM development_articles da JOIN articles a ON a.id=da.article_id JOIN publishers p ON p.id=a.publisher_id WHERE da.development_id=?`).bind(id).first();
-  const age=Math.max(0,(Date.now()-new Date(r?.newest||Date.now()).getTime())/36e5);
-  const score=Math.max(0,60-age*1.2)+Math.min(24,Number(r?.source_count||0)*8)+Math.min(12,Number(r?.article_count||0)*3)+(r?.local_source?10:0);
-  return Number(score.toFixed(2));
-}
-
-function safeSourceBrief(items:any[]){
-  const first=items[0];
-  const packet=first?.packet_summary||first?.summary||'';
-  const title=first?.title||'West Papua update';
-  const publisher=first?.publisher||'Source';
-  return {
-    title_en:`Source brief: ${title}`.slice(0,500),
-    summary_en:`${publisher} reports on “${title}”. West Papua Watch is publishing this directly attributed source brief after repeated synthesis revisions. Read the original report for the full account.`.slice(0,1800),
-    title_id:`Ringkasan sumber: ${title}`.slice(0,500),
-    summary_id:`${publisher} melaporkan “${title}”. West Papua Watch menerbitkan ringkasan sumber dengan atribusi langsung setelah beberapa kali revisi sintesis. Baca laporan asli untuk keterangan lengkap.${packet?` Ringkasan sumber: ${packet}`:''}`.slice(0,1800),
-    what_changed_en:`New reporting from ${publisher}.`,
-    what_changed_id:`Ada laporan baru dari ${publisher}.`,
-    common_ground:[],
-    source_notes:[`Safe source brief fallback after ${MAX_LOGICAL_REVISIONS} editorial revisions.`],
-    places:arr(first?.places_json),
-    topics:arr(first?.topics_json)
-  };
-}
-
-async function finalize(env:any,id:number,dev:any,draft:any,sourceBrief=false){
-  const now=new Date().toISOString();
-  const signature=developmentSignature(draft);
-  await env.DB.prepare(`INSERT INTO development_syntheses(development_id,title,summary,what_changed,what_changed_id,common_ground_json,source_notes_json,places_json,topics_json,created_at) VALUES(?,?,?,?,?,?,?,?,?,?)`).bind(id,draft.title_en,draft.summary_en,draft.what_changed_en,draft.what_changed_id,JSON.stringify(draft.common_ground),JSON.stringify(draft.source_notes),JSON.stringify(draft.places),JSON.stringify(draft.topics),now).run();
-  let score=await rank(env,id);if(sourceBrief)score=Math.max(0,score-18);
-  const status=env.AUTO_PUBLISH==='true'?'published':'candidate';
-
-  // Publication is authoritative D1 state. Vector indexing is retrieval infrastructure,
-  // so a depleted embedding quota must never prevent a reviewed story from going live.
-  await env.DB.prepare(`UPDATE developments SET title_en=?,summary_en=?,title_id=?,summary_id=?,title_pmy=NULL,summary_pmy=NULL,event_signature=?,ranking_score=?,status=?,retry_count=0,updated_at=? WHERE id=?`).bind(draft.title_en,draft.summary_en,draft.title_id,draft.summary_id,signature,score,status,now,id).run();
-
-  try{
-    await runStage(env,id,'vector-index',undefined,()=>indexDevelopment(env,id,draft,signature));
-  }catch(e){
-    console.warn('development published without refreshed vector index; catch-up can run later',id,e);
-  }
-
-  if(dev?.issue_slug&&status==='published')await writeIssueDelta(env,id,dev.issue_slug,draft);
-  return {status,ranking_score:score,sourceBrief};
-}
+async function holdJobs(env:any,ids:number[],error:any){const quota=isGatewayQuotaError(error),malformed=isMalformedOutputError(error),now=new Date().toISOString();for(const id of ids){const row:any=await env.DB.prepare(`SELECT provider_backoff_count,status FROM developments WHERE id=?`).bind(id).first();const count=Number(row?.provider_backoff_count||0);const seconds=quota?Math.min(21600,900*Math.pow(2,Math.min(4,count))):malformed?7200:3600;const notBefore=new Date(Date.now()+seconds*1000).toISOString();await env.DB.prepare(`UPDATE developments SET editorial_pending=1,editorial_dispatch_id=NULL,editorial_dispatched_at=NULL,editorial_not_before=?,provider_backoff_count=COALESCE(provider_backoff_count,0)+?,status=CASE WHEN status='published' THEN 'published' ELSE 'held' END,updated_at=? WHERE id=?`).bind(notBefore,quota?1:0,now,id).run();await logStage(env,id,'editorial-batch','held',undefined,error)}return {status:'held',ids,reason:quota?'quota':malformed?'malformed':'provider',message:String(error?.message||error).slice(0,500)}}
 
 export async function processEditorialJob(env:any,message:any){
-  const id=Number(message?.developmentId);if(!Number.isFinite(id))return {status:'invalid'};
-  const dev:any=await env.DB.prepare(`SELECT status,issue_slug,retry_count,editorial_not_before FROM developments WHERE id=?`).bind(id).first();
-  if(!dev||['filtered','merged'].includes(String(dev.status)))return {status:dev?.status||'missing'};
-  if(dev.status==='held'&&dev.editorial_not_before&&new Date(dev.editorial_not_before).getTime()>Date.now())return {status:'held',not_before:dev.editorial_not_before};
-  const items=await loadItems(env,id);if(!items.length)return {status:'empty'};
-  const attempt=Number(dev.retry_count||0)+1;
-  const repair=await lastFeedback(env,id);
-  const draft=await runStage(env,id,'writer','synthesis',()=>writeDraft(env,items,repair));
-  if(!draft.title_en||!draft.summary_en||!draft.title_id||!draft.summary_id)throw new Error('empty structured draft');
-  const review=await runStage(env,id,'critic','fast',()=>critique(env,items,draft));
-  await saveReview(env,id,review,attempt);
-
-  const stronglyRelevant=items.some((x:any)=>Number(x.watch_relevance||0)===1&&Number(x.watch_relevance_confidence||0)>=.72);
-  const effectiveClusterProblem=review.cluster_problem&&items.length>1;
-  const effectiveRelevanceProblem=review.relevance_problem&&!stronglyRelevant;
-
-  if(effectiveClusterProblem){
-    const ids=await splitCluster(env,id,items,dev.status==='published');
-    for(const developmentId of ids)await queueDevelopmentForEditorial(env,developmentId,true);
-    return {status:'reclustered',ids,review};
+  const dispatchId=String(message?.dispatchId||'');const requested=(Array.isArray(message?.developmentIds)?message.developmentIds:[message?.developmentId]).map(Number).filter(Number.isFinite);
+  // Pre-dispatch legacy messages have no token. ACK them as stale by returning normally.
+  if(!dispatchId||!requested.length)return {status:'stale-dispatch'};
+  const jobs:any[]=[];
+  for(const id of requested){const dev:any=await env.DB.prepare(`SELECT status,issue_slug,retry_count,editorial_not_before,editorial_dispatch_id FROM developments WHERE id=?`).bind(id).first();if(!dev||['filtered','merged'].includes(String(dev.status))||dev.editorial_dispatch_id!==dispatchId)continue;const items=await loadItems(env,id);if(!items.length)continue;jobs.push({id,dev,items,attempt:Number(dev.retry_count||0)+1,repair:await lastFeedback(env,id)})}
+  if(!jobs.length)return {status:'stale-dispatch'};
+  for(const j of jobs)await logStage(env,j.id,'writer','started','synthesis');
+  let drafts:Map<number,any>;try{drafts=await writeDraftBatch(env,jobs)}catch(e){for(const j of jobs)await logStage(env,j.id,'writer','error','synthesis',e);return holdJobs(env,jobs.map(j=>j.id),e)}
+  for(const j of jobs)await logStage(env,j.id,'writer',drafts.has(j.id)?'success':'error','synthesis',drafts.has(j.id)?undefined:new Error('writer batch omitted development'));
+  const missingWriter=jobs.filter(j=>!drafts.has(j.id));if(missingWriter.length)await holdJobs(env,missingWriter.map(j=>j.id),new Error('malformed writer batch omitted development'));
+  const criticJobs=jobs.filter(j=>drafts.has(j.id));if(!criticJobs.length)return {status:'held'};
+  for(const j of criticJobs)await logStage(env,j.id,'critic','started','fast');
+  let reviews:Map<number,any>;try{reviews=await critiqueBatch(env,criticJobs,drafts)}catch(e){for(const j of criticJobs)await logStage(env,j.id,'critic','error','fast',e);return holdJobs(env,criticJobs.map(j=>j.id),e)}
+  const results:any[]=[];
+  for(const j of criticJobs){const draft=drafts.get(j.id),review=reviews.get(j.id);if(!review){await holdJobs(env,[j.id],new Error('malformed critic batch omitted development'));continue}await logStage(env,j.id,'critic','success','fast');await saveReview(env,j.id,review,j.attempt);const stronglyRelevant=j.items.some((x:any)=>Number(x.watch_relevance||0)===1&&Number(x.watch_relevance_confidence||0)>=.66),clusterProblem=review.cluster_problem&&j.items.length>1,relevanceProblem=review.relevance_problem&&!stronglyRelevant;
+    if(clusterProblem){const ids=await splitCluster(env,j.id,j.items,j.dev.status==='published');for(const id of ids)await markDevelopmentEditorialPending(env,id);results.push({id:j.id,status:'reclustered',ids});continue}
+    if(relevanceProblem&&j.dev.status!=='published'){await env.DB.prepare(`UPDATE developments SET status='filtered',editorial_pending=0,editorial_dispatch_id=NULL,updated_at=? WHERE id=?`).bind(new Date().toISOString(),j.id).run();results.push({id:j.id,status:'filtered'});continue}
+    if(review.verdict==='pass'){results.push({id:j.id,...await finalize(env,j.id,j.dev,draft,false)});continue}
+    if(j.attempt>=MAX_LOGICAL_REVISIONS){results.push({id:j.id,...await finalize(env,j.id,j.dev,safeSourceBrief(j.items),true)});continue}
+    await env.DB.prepare(`UPDATE developments SET retry_count=retry_count+1,editorial_pending=1,editorial_dispatch_id=NULL,editorial_dispatched_at=NULL,status=CASE WHEN status='published' THEN 'published' ELSE 'retrying' END,updated_at=? WHERE id=?`).bind(new Date().toISOString(),j.id).run();results.push({id:j.id,status:'pending-revision',attempt:j.attempt});
   }
-
-  if(effectiveRelevanceProblem&&dev.status!=='published'){
-    await env.DB.prepare(`UPDATE developments SET status='filtered',updated_at=? WHERE id=?`).bind(new Date().toISOString(),id).run();
-    return {status:'filtered',review};
-  }
-
-  if(review.verdict==='pass'&&!effectiveClusterProblem&&!effectiveRelevanceProblem){
-    return runStage(env,id,'finalize',undefined,()=>finalize(env,id,dev,draft,false));
-  }
-
-  if(attempt>=MAX_LOGICAL_REVISIONS&&!effectiveClusterProblem&&!effectiveRelevanceProblem){
-    return runStage(env,id,'finalize',undefined,()=>finalize(env,id,dev,safeSourceBrief(items),true));
-  }
-
-  await env.DB.prepare(`UPDATE developments SET retry_count=retry_count+1,status=CASE WHEN status='published' THEN 'published' ELSE 'editorial_queued' END,updated_at=? WHERE id=?`).bind(new Date().toISOString(),id).run();
-  await env.EDITORIAL_QUEUE.send({kind:'editorial',developmentId:id});
-  return {status:'requeued',attempt,review,effectiveClusterProblem,effectiveRelevanceProblem};
+  return {status:'processed',dispatchId,results};
 }
 
-export async function enqueueEditorialBacklog(env:any,limit=24){
-  const rows:any=await env.DB.prepare(`SELECT id,status FROM developments WHERE pipeline_version>=2 AND status IN ('candidate','retrying','held') AND (editorial_not_before IS NULL OR editorial_not_before<=strftime('%Y-%m-%dT%H:%M:%fZ','now')) ORDER BY updated_at ASC LIMIT ?`).bind(limit).all();
-  let queued=0;
-  for(const r of rows.results||[]){
-    if(await queueDevelopmentForEditorial(env,Number(r.id)))queued++;
-  }
-  return {checked:(rows.results||[]).length,queued};
+export async function queueDevelopmentForEditorial(env:any,id:number,_force=false){return markDevelopmentEditorialPending(env,id)}
+
+export async function enqueueEditorialBacklog(env:any,limit=MAX_EDITORIAL_BATCH){
+  const rows:any=await env.DB.prepare(`SELECT id FROM developments WHERE pipeline_version>=2 AND editorial_pending=1 AND status NOT IN ('filtered','merged') AND (editorial_not_before IS NULL OR editorial_not_before<=strftime('%Y-%m-%dT%H:%M:%fZ','now')) ORDER BY CASE WHEN status='published' THEN 0 ELSE 1 END,updated_at ASC LIMIT ?`).bind(Math.min(MAX_EDITORIAL_BATCH,Math.max(1,limit))).all();
+  const ids=(rows.results||[]).map((r:any)=>Number(r.id)).filter(Number.isFinite);if(!ids.length)return {checked:0,queued:0};const dispatchId=crypto.randomUUID(),now=new Date().toISOString();
+  for(const id of ids)await env.DB.prepare(`UPDATE developments SET editorial_pending=0,editorial_dispatch_id=?,editorial_dispatched_at=?,status=CASE WHEN status='published' THEN 'published' ELSE 'editorial_queued' END,updated_at=? WHERE id=?`).bind(dispatchId,now,now,id).run();
+  await env.EDITORIAL_QUEUE.send({kind:'editorial',dispatchId,developmentIds:ids});return {checked:ids.length,queued:ids.length,dispatchId};
 }

@@ -1,55 +1,13 @@
 {
   "name": "watch-fast",
   "elements": [
+    {"id":"START","type":"start","outputs":{"next":{"elementId":"qwen-fast"}}},
     {
-      "id": "START",
-      "type": "start",
-      "outputs": {
-        "next": {
-          "elementId": "gemini-fast"
-        }
-      }
+      "id":"qwen-fast",
+      "type":"model",
+      "properties":{"provider":"groq","model":"qwen/qwen3.8-27b","timeout":30000,"retries":0},
+      "outputs":{"success":{"elementId":"END"},"fallback":{"elementId":"END"}}
     },
-    {
-      "id": "gemini-fast",
-      "type": "model",
-      "properties": {
-        "provider": "google-ai-studio",
-        "model": "gemini-3.6-flash",
-        "timeout": 30000,
-        "retries": 1
-      },
-      "outputs": {
-        "success": {
-          "elementId": "END"
-        },
-        "fallback": {
-          "elementId": "gemini-fast-fallback"
-        }
-      }
-    },
-    {
-      "id": "gemini-fast-fallback",
-      "type": "model",
-      "properties": {
-        "provider": "google-ai-studio",
-        "model": "gemini-3.7-flash",
-        "timeout": 32000,
-        "retries": 1
-      },
-      "outputs": {
-        "success": {
-          "elementId": "END"
-        },
-        "fallback": {
-          "elementId": "END"
-        }
-      }
-    },
-    {
-      "id": "END",
-      "type": "end",
-      "outputs": {}
-    }
+    {"id":"END","type":"end","outputs":{}}
   ]
 }
