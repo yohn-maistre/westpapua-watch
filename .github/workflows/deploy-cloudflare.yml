@@ -28,6 +28,8 @@ jobs:
         if: ${{ vars.WATCH_DB_ID != '' }}
         env:
           WATCH_DB_ID: ${{ vars.WATCH_DB_ID }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          AI_GATEWAY_ID: westpapua-watch
         run: npm run watch:config
       - name: Ensure Watch Engine editorial queues
         if: ${{ vars.WATCH_DB_ID != '' }}
@@ -49,6 +51,18 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: npx --no-install wrangler deploy --config services/watch-engine/wrangler.generated.jsonc
+      - name: Sync Watch Engine AI Gateway token
+        if: ${{ vars.WATCH_DB_ID != '' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          AI_GATEWAY_TOKEN: ${{ secrets.AI_GATEWAY_TOKEN }}
+        run: |
+          if [ -z "$AI_GATEWAY_TOKEN" ]; then
+            echo "::warning::AI_GATEWAY_TOKEN is not configured; Watch Engine will use direct Workers AI fallback."
+            exit 0
+          fi
+          printf '%s' "$AI_GATEWAY_TOKEN" | npx --no-install wrangler secret put AI_GATEWAY_TOKEN --config services/watch-engine/wrangler.generated.jsonc
       - name: Ensure Pages project exists
         continue-on-error: true
         env:

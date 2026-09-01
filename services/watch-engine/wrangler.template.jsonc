@@ -37,6 +37,7 @@
     "ANSWER_MODEL": "@cf/google/gemma-4-26b-a4b-it",
     "AUTO_PUBLISH": "true",
     "ALLOW_EXTERNAL_IMAGES": "true",
+    "AI_GATEWAY_BASE": "__AI_GATEWAY_BASE__",
     "AI_GATEWAY_FAST_MODEL": "dynamic/watch-fast",
     "AI_GATEWAY_SYNTH_MODEL": "dynamic/watch-synth",
     "AI_GATEWAY_ASK_MODEL": "dynamic/watch-ask"
