@@ -24,6 +24,10 @@ const routeFor=(env:any,purpose:ChatPurpose)=>purpose==='ask'
     ?(env.AI_GATEWAY_SYNTH_MODEL||'dynamic/watch-synth')
     :(env.AI_GATEWAY_FAST_MODEL||'dynamic/watch-fast');
 
+export const modelLabelFor=(env:any,purpose:ChatPurpose)=>env.AI_GATEWAY_BASE&&env.AI_GATEWAY_TOKEN
+  ?`gateway:${routeFor(env,purpose)}`
+  :modelNameFor(env,purpose);
+
 const errorText=(e:any)=>String(e?.message||e||'unknown error').replace(/\s+/g,' ').slice(0,600);
 const workersFallbackEnabled=(env:any)=>String(env.ENABLE_WORKERS_AI_FALLBACK||'false').toLowerCase()==='true';
 
@@ -92,7 +96,7 @@ export async function runChat(env:any,messages:any[],purpose:ChatPurpose='fast',
         method:'POST',
         headers:{'cf-aig-authorization':`Bearer ${token}`,'content-type':'application/json','cf-aig-collect-log-payload':'false'},
         body:JSON.stringify({model:routeFor(env,purpose),messages,temperature:purpose==='synthesis'?.22:.12,max_tokens:maxTokens}),
-        signal:AbortSignal.timeout(32000)
+        signal:AbortSignal.timeout(70000)
       });
       if(!res.ok){
         const detail=(await res.text().catch(()=>'' )).replace(/\s+/g,' ').slice(0,260);
@@ -122,10 +126,13 @@ export async function runJson<T=any>(env:any,messages:any[],schema:any,purpose:C
       const res=await fetch(`${gateway}/chat/completions`,{
         method:'POST',
         headers:{'cf-aig-authorization':`Bearer ${token}`,'content-type':'application/json','cf-aig-collect-log-payload':'false'},
-        body:JSON.stringify({model:routeFor(env,purpose),messages:constrained,temperature:purpose==='synthesis'?.18:.08,max_tokens:maxTokens,response_format:{type:'json_object'}}),
-        signal:AbortSignal.timeout(24000)
+        body:JSON.stringify({model:routeFor(env,purpose),messages:constrained,temperature:purpose==='synthesis'?.18:.08,max_tokens:maxTokens}),
+        signal:AbortSignal.timeout(70000)
       });
-      if(!res.ok)throw new Error(`gateway HTTP ${res.status}`);
+      if(!res.ok){
+        const detail=(await res.text().catch(()=>'' )).replace(/\s+/g,' ').slice(0,320);
+        throw new Error(`gateway HTTP ${res.status}${detail?`: ${detail}`:''}`);
+      }
       const data:any=await res.json();
       const raw=data?.choices?.[0]?.message?.content;
       if(!raw)throw new Error('gateway returned empty content');

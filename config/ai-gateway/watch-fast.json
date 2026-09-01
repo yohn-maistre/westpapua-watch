@@ -4,20 +4,28 @@
     {
       "id": "START",
       "type": "start",
-      "outputs": { "next": { "elementId": "gemini-fast-lite" } }
+      "outputs": {
+        "next": {
+          "elementId": "gemini-fast"
+        }
+      }
     },
     {
-      "id": "gemini-fast-lite",
+      "id": "gemini-fast",
       "type": "model",
       "properties": {
         "provider": "google-ai-studio",
-        "model": "gemini-3.5-flash-lite",
-        "timeout": 24000,
+        "model": "gemini-3.6-flash",
+        "timeout": 30000,
         "retries": 1
       },
       "outputs": {
-        "success": { "elementId": "END" },
-        "fallback": { "elementId": "gemini-fast-fallback" }
+        "success": {
+          "elementId": "END"
+        },
+        "fallback": {
+          "elementId": "gemini-fast-fallback"
+        }
       }
     },
     {
@@ -25,15 +33,23 @@
       "type": "model",
       "properties": {
         "provider": "google-ai-studio",
-        "model": "gemini-3.6-flash",
-        "timeout": 28000,
+        "model": "gemini-3.7-flash",
+        "timeout": 32000,
         "retries": 1
       },
       "outputs": {
-        "success": { "elementId": "END" },
-        "fallback": { "elementId": "END" }
+        "success": {
+          "elementId": "END"
+        },
+        "fallback": {
+          "elementId": "END"
+        }
       }
     },
-    { "id": "END", "type": "end", "outputs": {} }
+    {
+      "id": "END",
+      "type": "end",
+      "outputs": {}
+    }
   ]
 }

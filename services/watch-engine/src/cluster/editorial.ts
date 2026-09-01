@@ -1,4 +1,4 @@
-import { runJson,modelNameFor,type ChatPurpose } from '../llm';
+import { runJson,modelLabelFor,type ChatPurpose } from '../llm';
 import { embedText } from '../embedding';
 
 const arr=(v:any)=>{try{return JSON.parse(String(v||'[]')) as string[]}catch{return[]}};
@@ -26,7 +26,14 @@ async function writeDraft(env:any,items:any[],repair=''){
 
 async function critique(env:any,items:any[],draft:any){
   const prompt=`Audit this event synthesis against the source packets. Check factual support, attribution, headline overclaiming, syndication, geography/relevance, and whether all records describe ONE concrete event rather than merely the same topic. A single credible local report can pass when clearly attributed. Return pass if there is no material problem; otherwise revise and state exactly what must change.\n\nEN TITLE: ${draft.title_en}\nEN SUMMARY: ${draft.summary_en}\nID TITLE: ${draft.title_id}\nID SUMMARY: ${draft.summary_id}\n\n${contextFor(items)}`;
-  const o:any=await runJson(env,[{role:'system',content:'You are an evidence critic. Judge against supplied evidence, not against whether you personally like the framing.'},{role:'user',content:prompt}],criticSchema,'fast',520);
+  const messages=[{role:'system',content:'You are an evidence critic. Judge against supplied evidence, not against whether you personally like the framing.'},{role:'user',content:prompt}];
+  let o:any;
+  try{
+    o=await runJson(env,messages,criticSchema,'fast',520);
+  }catch(fastError){
+    console.warn('fast critic route failed; retrying on synthesis route',fastError);
+    o=await runJson(env,messages,criticSchema,'synthesis',520);
+  }
   return {verdict:o.verdict==='pass'?'pass':'revise',unsupported:list(o.unsupported_claims,8),framing:list(o.framing_problems,8),cluster_problem:o.cluster_problem===true,relevance_problem:o.relevance_problem===true,note:text(o.note,600)};
 }
 
@@ -44,7 +51,7 @@ async function saveReview(env:any,id:number,r:any,attempt:number){
 
 async function logStage(env:any,id:number,stage:string,outcome:string,purpose?:ChatPurpose,error?:any){
   try{
-    await env.DB.prepare(`INSERT INTO engine_attempts(development_id,stage,outcome,model,error,created_at) VALUES(?,?,?,?,?,?)`).bind(id,stage,outcome,purpose?modelNameFor(env,purpose):null,error?String(error?.message||error).slice(0,1600):null,new Date().toISOString()).run();
+    await env.DB.prepare(`INSERT INTO engine_attempts(development_id,stage,outcome,model,error,created_at) VALUES(?,?,?,?,?,?)`).bind(id,stage,outcome,purpose?modelLabelFor(env,purpose):null,error?String(error?.message||error).slice(0,1600):null,new Date().toISOString()).run();
   }catch(e){console.error('engine attempt log failed',stage,outcome,e)}
 }
 
@@ -95,8 +102,11 @@ async function writeIssueDelta(env:any,id:number,slug:string,d:any){
   }catch(e){console.error('issue delta synthesis failed',id,e)}
 }
 
-async function indexDevelopment(env:any,id:number,draft:any){
-  const signature=`${draft.title_id}\n${draft.summary_id}\n${draft.what_changed_id}\nPlaces: ${draft.places.join(', ')}\nTopics: ${draft.topics.join(', ')}`.slice(0,2400);
+function developmentSignature(draft:any){
+  return `${draft.title_id}\n${draft.summary_id}\n${draft.what_changed_id}\nPlaces: ${draft.places.join(', ')}\nTopics: ${draft.topics.join(', ')}`.slice(0,2400);
+}
+
+async function indexDevelopment(env:any,id:number,draft:any,signature=developmentSignature(draft)){
   const vector=await embedText(env,signature);
   await env.ARTICLE_INDEX.upsert([{id:`dev:${id}`,values:vector,metadata:{kind:'development',developmentId:id,updatedAt:Date.now(),title:draft.title_id}}]);
   return signature;
@@ -130,11 +140,21 @@ function safeSourceBrief(items:any[]){
 
 async function finalize(env:any,id:number,dev:any,draft:any,sourceBrief=false){
   const now=new Date().toISOString();
-  const signature=await indexDevelopment(env,id,draft);
+  const signature=developmentSignature(draft);
   await env.DB.prepare(`INSERT INTO development_syntheses(development_id,title,summary,what_changed,what_changed_id,common_ground_json,source_notes_json,places_json,topics_json,created_at) VALUES(?,?,?,?,?,?,?,?,?,?)`).bind(id,draft.title_en,draft.summary_en,draft.what_changed_en,draft.what_changed_id,JSON.stringify(draft.common_ground),JSON.stringify(draft.source_notes),JSON.stringify(draft.places),JSON.stringify(draft.topics),now).run();
   let score=await rank(env,id);if(sourceBrief)score=Math.max(0,score-18);
   const status=env.AUTO_PUBLISH==='true'?'published':'candidate';
+
+  // Publication is authoritative D1 state. Vector indexing is retrieval infrastructure,
+  // so a depleted embedding quota must never prevent a reviewed story from going live.
   await env.DB.prepare(`UPDATE developments SET title_en=?,summary_en=?,title_id=?,summary_id=?,title_pmy=NULL,summary_pmy=NULL,event_signature=?,ranking_score=?,status=?,retry_count=0,updated_at=? WHERE id=?`).bind(draft.title_en,draft.summary_en,draft.title_id,draft.summary_id,signature,score,status,now,id).run();
+
+  try{
+    await runStage(env,id,'vector-index',undefined,()=>indexDevelopment(env,id,draft,signature));
+  }catch(e){
+    console.warn('development published without refreshed vector index; catch-up can run later',id,e);
+  }
+
   if(dev?.issue_slug&&status==='published')await writeIssueDelta(env,id,dev.issue_slug,draft);
   return {status,ranking_score:score,sourceBrief};
 }
