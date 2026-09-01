@@ -10,5 +10,6 @@ export type ExtractedArticle={
 };
 export type StoryPacket={
   summary:string;key_points:string[];what_changed:string;event_date?:string;places:string[];people:string[];organizations:string[];topics:string[];issue_candidates:string[];
+  watch_relevance?:boolean;watch_relevance_confidence?:number;watch_desk?:'environment'|'land'|'human_rights'|'politics'|'culture'|'regional'|'other';
 };
 export type IngestMessage={sourceId:string;url:string;title?:string;publishedAt?:string};

@@ -1,9 +1,9 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';import { historyChapters } from '../data/history';import { sourceById } from '../data/sources';import { t } from '../lib/i18n';import type { Locale } from '../data/types';
+import BaseLayout from '../layouts/BaseLayout.astro';import { historyChapters } from '../data/history';import { sourceById } from '../data/sources';import { t } from '../lib/i18n';import type { Locale } from '../data/types';import ui from '../../content/ui.json';
 const {locale='en'}=Astro.props as {locale?:Locale};
 ---
 <BaseLayout locale={locale} active="history" title={locale==='en'?'History':'Sejarah'}>
-<section class="section history-page"><div class="wrap"><h1 class="page-title history-page-title">{locale==='en'?'West Papua, 1961 to today':'Papua Barat, 1961 sampai sekarang'}</h1>
+<section class="section history-page"><div class="wrap"><h1 class="page-title history-page-title">{ui.history.pageTitle[locale]}</h1>
 
 <div class="history-mobile-narrative" data-history-mobile>
   <div class="history-stage-shell" data-history-stage-shell>
@@ -42,26 +42,11 @@ const {locale='en'}=Astro.props as {locale?:Locale};
   const year=mobile?.querySelector<HTMLElement>('[data-history-stage-year]');
   const count=mobile?.querySelector<HTMLElement>('[data-history-stage-count]');
   const stage=mobile?.querySelector<HTMLElement>('[data-history-stage]');
-  const shell=mobile?.querySelector<HTMLElement>('[data-history-stage-shell]');
-  if(historyFrames.length&&chapters.length){
-    const activate=(index:number)=>{historyFrames.forEach((frame,i)=>{frame.classList.toggle('is-current',i===index);frame.classList.toggle('is-past',i<index)});dots.forEach((dot,i)=>dot.classList.toggle('active',i===index));if(year)year.textContent=chapters[index]?.dataset.historyYear||'';if(count)count.textContent=`${String(index+1).padStart(2,'0')} / ${String(chapters.length).padStart(2,'0')}`};
-    const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)activate(Number((entry.target as HTMLElement).dataset.historyChapter||0))}),{rootMargin:'-38% 0px -43% 0px',threshold:0});
-    chapters.forEach(chapter=>observer.observe(chapter));
-  }
+  let activeIndex=-1;
+  const activate=(index:number)=>{if(index===activeIndex||index<0||index>=chapters.length)return;activeIndex=index;historyFrames.forEach((frame,i)=>{frame.classList.toggle('is-current',i===index);frame.classList.toggle('is-past',i<index)});dots.forEach((dot,i)=>dot.classList.toggle('active',i===index));if(year)year.textContent=chapters[index]?.dataset.historyYear||'';if(count)count.textContent=`${String(index+1).padStart(2,'0')} / ${String(chapters.length).padStart(2,'0')}`};
   let historyRaf=0;
-  const updateHistoryMorph=()=>{
-    historyRaf=0;if(!stage||!shell||innerWidth>760)return;
-    const compact=document.querySelector<HTMLElement>('[data-compact-nav]');const links=compact?.querySelector<HTMLElement>('.compact-links');
-    const stickyTop=(compact?.offsetHeight||58)+(links?.offsetHeight||0);
-    const rect=shell.getBoundingClientRect();const distance=Math.max(180,innerHeight*.28);
-    const progress=Math.max(0,Math.min(1,(stickyTop-rect.top)/distance));
-    stage.style.setProperty('--history-sticky-top',`${stickyTop}px`);
-    stage.style.setProperty('--history-inset',`${15*(1-progress)}px`);
-    stage.style.setProperty('--history-radius',`${24*(1-progress)}px`);
-    stage.style.setProperty('--history-height',`${34+12*progress}svh`);
-    stage.style.setProperty('--history-shadow',String(.16+.18*progress));
-  };
-  const queueHistoryMorph=()=>{if(!historyRaf)historyRaf=requestAnimationFrame(updateHistoryMorph)};
-  addEventListener('scroll',queueHistoryMorph,{passive:true});addEventListener('resize',queueHistoryMorph,{passive:true});queueHistoryMorph();
+  const updateHistory=()=>{historyRaf=0;if(!stage||!chapters.length||innerWidth>760)return;const compact=document.querySelector<HTMLElement>('[data-compact-nav]');const stickyTop=document.body.classList.contains('nav-collapsed')?(compact?.offsetHeight||0):0;stage.style.setProperty('--history-sticky-top',`${stickyTop}px`);const anchor=stage.getBoundingClientRect().bottom+28;let next=0;chapters.forEach((chapter,i)=>{if(chapter.getBoundingClientRect().top<=anchor)next=i});activate(next)};
+  const queueHistory=()=>{if(!historyRaf)historyRaf=requestAnimationFrame(updateHistory)};
+  addEventListener('scroll',queueHistory,{passive:true});addEventListener('resize',queueHistory,{passive:true});queueHistory();
 </script>
 </BaseLayout>

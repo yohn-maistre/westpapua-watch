@@ -2,14 +2,10 @@
 import '../styles/polish-01.css';
 import '../styles/polish-03.css';
 import '../styles/polish-04.css';
-import BaseLayout from '../layouts/BaseLayout.astro';import { exhibitionItems } from '../data/exhibition';import { sourceById } from '../data/sources';import { withLocale } from '../lib/i18n';import type { Locale } from '../data/types';
+import BaseLayout from '../layouts/BaseLayout.astro';import { exhibitionItems } from '../data/exhibition';import { sourceById } from '../data/sources';import { withLocale } from '../lib/i18n';import type { Locale } from '../data/types';import ui from '../../content/ui.json';
 const {locale='en'}=Astro.props as {locale?:Locale};
 const laneOrder=['works','voices','archive'] as const;
-const laneLabels={
-  works:{en:'Works',pmy:'Karya'},
-  voices:{en:'Voices',pmy:'Suara'},
-  archive:{en:'Archive',pmy:'Arsip'}
-};
+const laneLabels={works:{en:'Works',pmy:'Karya'},voices:{en:'Voices',pmy:'Suara'},archive:{en:'Archive',pmy:'Arsip'}};
 const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:exhibitionItems.filter(item=>item.lane===lane)}));
 ---
 <BaseLayout locale={locale} active="exhibition" title={locale==='en'?'Exhibition view':'Tampilan pameran'} immersive={true} noFooter={true}>
@@ -24,7 +20,7 @@ const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:exhi
     <div class="exhibit-overlay" data-exhibit-overlay>
       <div class="exhibit-top"><span class="exhibit-kicker">{locale==='en'?'Exhibition':'Pameran'}</span><button class="exhibit-back" type="button" data-exhibit-back data-fallback={withLocale('/exhibition/',locale)}>← {locale==='en'?'Back':'Kembali'}</button></div>
       <div class="exhibit-lane-tabs" role="tablist" aria-label={locale==='en'?'Exhibition themes':'Tema pameran'}>{lanes.map((group,i)=><button class:list={[i===0&&'active']} type="button" role="tab" aria-selected={i===0?'true':'false'} data-lane-tab={String(i)}>{group.label}</button>)}</div>
-      <h1 class="exhibit-title">{locale==='en'?'Art, writing & collective work':'Seni, tulisan & kerja kolektif'}</h1>
+      <h1 class="exhibit-title">{ui.exhibition.immersiveTitle[locale]}</h1>
       <div class="exhibit-bottom"><a data-curtain-leave href={withLocale('/exhibition/',locale)}>{locale==='en'?'Browse artists, works & credits':'Lihat seniman, karya & kredit'} →</a></div>
     </div>
 
@@ -58,20 +54,21 @@ const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:exhi
     const focusSummary=focusDialog?.querySelector<HTMLElement>('[data-exhibit-focus-summary]');
     const focusSourceLink=focusDialog?.querySelector<HTMLAnchorElement>('[data-exhibit-focus-source-link]');
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const baseOffsets=rails.map(()=>0);const userOffsets=rails.map(()=>0);
+    const baseOffsets=rails.map(()=>0),userOffsets=rails.map(()=>0);
     let last=performance.now(),quietTimer:ReturnType<typeof setTimeout>|undefined,activeLane=0;
     let touch:{x:number;y:number;lastX:number;lastY:number;axis:'x'|'y'|null}|null=null;
     const markMoved=()=>{overlay?.classList.add('has-moved');if(quietTimer)clearTimeout(quietTimer);quietTimer=setTimeout(()=>overlay?.classList.remove('has-moved'),2800)};
     const wrap=(value:number,size:number)=>((value%size)+size)%size;
     const activateLane=(next:number)=>{activeLane=Math.max(0,Math.min(rails.length-1,next));railsContainer?.style.setProperty('--active-lane',String(activeLane));rails.forEach((rail,i)=>rail.classList.toggle('is-active',i===activeLane));tabs.forEach((tab,i)=>{tab.classList.toggle('active',i===activeLane);tab.setAttribute('aria-selected',i===activeLane?'true':'false')});markMoved()};
+    const laneAt=(x:number,y:number)=>{const hit=document.elementFromPoint(x,y)?.closest<HTMLElement>('[data-exhibition-rail]');return hit?Number(hit.dataset.index||0):activeLane};
     tabs.forEach((tab,i)=>tab.addEventListener('click',()=>activateLane(i)));
-    rails.forEach((rail,i)=>rail.addEventListener('pointerdown',()=>activateLane(i)));
-    const tick=(now:number)=>{const dt=Math.min(.05,(now-last)/1000);last=now;rails.forEach((rail,i)=>{const track=rail.querySelector<HTMLElement>('.exhibition-track');const third=(track?.scrollHeight||0)/3;if(!third||!track)return;const speed=reduced?0:Number(rail.dataset.speed||0);baseOffsets[i]+=speed*dt;const local=wrap(baseOffsets[i]+(i===activeLane?userOffsets[i]:0),third);track.style.transform=`translate3d(0,${-local}px,0)`});requestAnimationFrame(tick)};
-    wall?.addEventListener('wheel',event=>{userOffsets[activeLane]+=event.deltaY*.48;markMoved()},{passive:true});
-    wall?.addEventListener('touchstart',event=>{const p=event.touches[0];if(p)touch={x:p.clientX,y:p.clientY,lastX:p.clientX,lastY:p.clientY,axis:null}},{passive:true});
+    rails.forEach((rail,i)=>rail.addEventListener('pointerenter',event=>{if((event as PointerEvent).pointerType==='mouse')activateLane(i)}));
+    const tick=(now:number)=>{const dt=Math.min(.05,(now-last)/1000);last=now;rails.forEach((rail,i)=>{const track=rail.querySelector<HTMLElement>('.exhibition-track');const third=(track?.scrollHeight||0)/3;if(!third||!track)return;const speed=reduced?0:Number(rail.dataset.speed||0);baseOffsets[i]+=speed*dt;const local=wrap(baseOffsets[i]+userOffsets[i],third);track.style.transform=`translate3d(0,${-local}px,0)`});requestAnimationFrame(tick)};
+    wall?.addEventListener('wheel',event=>{const lane=laneAt(event.clientX,event.clientY);activateLane(lane);userOffsets[lane]+=event.deltaY*.48;markMoved()},{passive:true});
+    wall?.addEventListener('touchstart',event=>{const p=event.touches[0];if(p){activateLane(laneAt(p.clientX,p.clientY));touch={x:p.clientX,y:p.clientY,lastX:p.clientX,lastY:p.clientY,axis:null}}},{passive:true});
     wall?.addEventListener('touchmove',event=>{const p=event.touches[0];if(!p||!touch)return;const totalX=p.clientX-touch.x,totalY=p.clientY-touch.y;if(!touch.axis&&Math.hypot(totalX,totalY)>12)touch.axis=Math.abs(totalX)>Math.abs(totalY)*1.1?'x':'y';if(touch.axis==='y'){userOffsets[activeLane]+=(touch.lastY-p.clientY)*1.08;markMoved()}touch.lastX=p.clientX;touch.lastY=p.clientY},{passive:true});
     wall?.addEventListener('touchend',()=>{if(touch?.axis==='x'){const dx=touch.lastX-touch.x;if(Math.abs(dx)>48)activateLane(activeLane+(dx<0?1:-1))}touch=null},{passive:true});
-    const openFocus=(card:HTMLButtonElement)=>{const image=card.querySelector<HTMLImageElement>('img');if(focusImage){focusImage.src=image?.src||'';focusImage.alt=card.dataset.title||''}if(focusType)focusType.textContent=card.dataset.type||'';if(focusSource)focusSource.textContent=card.dataset.sourceLabel||'';if(focusTitle)focusTitle.textContent=card.dataset.title||'';if(focusSummary)focusSummary.textContent=card.dataset.summary||'';if(focusSourceLink){focusSourceLink.href=card.dataset.sourceUrl||'#';focusSourceLink.hidden=!card.dataset.sourceUrl}focusDialog?.showModal();document.body.classList.add('exhibit-focus-open')};
+    const openFocus=(card:HTMLButtonElement)=>{const image=card.querySelector<HTMLImageElement>('img');if(focusImage){focusImage.src=image?.src||'';focusImage.alt=card.dataset.title||''}if(focusType)focusType.textContent=card.dataset.type||'';if(focusSource)focusSource.textContent=card.dataset.sourceLabel||'';if(focusTitle)focusTitle.textContent=card.dataset.title||'';if(focusSummary)focusSummary.textContent=card.dataset.summary||'';if(focusSourceLink){focusSourceLink.href=card.dataset.sourceUrl||'#';focusSourceLink.hidden=!card.dataset.sourceUrl}focusDialog?.showModal();requestAnimationFrame(()=>{if(focusDialog)focusDialog.scrollTop=0});document.body.classList.add('exhibit-focus-open')};
     document.querySelectorAll<HTMLButtonElement>('[data-exhibit-card]').forEach(card=>card.addEventListener('click',event=>{event.preventDefault();const rail=card.closest<HTMLElement>('[data-exhibition-rail]');activateLane(Number(rail?.dataset.index||0));openFocus(card)}));
     focusDialog?.querySelector<HTMLButtonElement>('[data-exhibit-focus-close]')?.addEventListener('click',()=>focusDialog.close());
     focusDialog?.addEventListener('click',event=>{if(event.target===focusDialog)focusDialog.close()});

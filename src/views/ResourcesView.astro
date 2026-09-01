@@ -1,9 +1,9 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';import { resources } from '../data/resources';import { glossary } from '../data/glossary';import { t } from '../lib/i18n';import type { Locale } from '../data/types';
+import BaseLayout from '../layouts/BaseLayout.astro';import { resources } from '../data/resources';import { glossary } from '../data/glossary';import { t } from '../lib/i18n';import type { Locale } from '../data/types';import ui from '../../content/ui.json';
 const {locale='en'}=Astro.props as {locale?:Locale};const types=['all',...new Set(resources.map(r=>r.type))];
 ---
 <BaseLayout locale={locale} active="resources" title={locale==='en'?'Resources':'Sumber'}>
-<section class="section resources-index"><div class="wrap"><h1 class="page-title">{locale==='en'?'Resources.':'Sumber.'}</h1><p class="page-intro">{locale==='en'?'Reports, research, official records and long-form reference material.':'Laporan, riset, catatan resmi, deng bahan rujukan jangka panjang.'}</p>
+<section class="section resources-index"><div class="wrap"><h1 class="page-title">{ui.resources.pageTitle[locale]}</h1><p class="page-intro">{ui.resources.intro[locale]}</p>
 <div class="resource-tools"><input class="resource-search" data-resource-search placeholder={locale==='en'?'Search resources':'Cari sumber'} /><div class="filters" style="margin:0">{types.map((x,i)=><button class:list={['filter',i===0&&'active']} data-resource-filter={x}>{x==='all'?(locale==='en'?'All':'Semua'):x}</button>)}</div></div>
 <div class="resource-table" data-resource-table>{resources.map(r=><a class="resource-row" data-resource-row data-resource-type={r.type} href={r.url} target="_blank" rel="noreferrer"><span class="type">{r.type}</span><div><h2>{r.title}</h2><p>{r.publisher}</p></div><p>{r.language?.toUpperCase()}</p><span>{r.year}</span></a>)}</div>
 </div></section>

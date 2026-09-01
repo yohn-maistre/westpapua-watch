@@ -7,50 +7,25 @@ import { sourceById } from '../data/sources';import { glossaryBySlug } from '../
 import { t, withLocale } from '../lib/i18n';import type { Locale } from '../data/types';
 const { locale='en' }=Astro.props as {locale?:Locale};
 const featured=developments.find(d=>d.featured) ?? developments[0];const secondary=developments.filter(d=>d!==featured).slice(0,3);
-const leadSources=featured.sourceIds.map(id=>sourceById[id]).filter(Boolean);
-const signals=developments.slice(0,4);
+const leadSources=featured.sourceIds.map(id=>sourceById[id]).filter(Boolean);const signals=developments.slice(0,4);
 ---
 <BaseLayout locale={locale} active="now" description={locale==='en'?'Current developments and ongoing issues in West Papua.':'Perkembangan sekarang deng isu yang masih jalan di Papua Barat.'}>
   <div class="wrap">
-    <div class="now-header now-header-minimal"><span class="now-date">29 August 2026 · {locale==='en'?'updated':'diperbarui'} 07:00 WIT</span></div>
+    <div class="now-header now-header-minimal"><span class="now-date" data-current-date>29 August 2026 · {locale==='en'?'updated':'diperbarui'} 07:00 WIT</span></div>
     <section class="hero hero-composite" data-current-hero data-locale={locale}>
-      <div class="hero-media">
-        <img data-current-image src={featured.image} alt={featured.imageAlt} width="1600" height="1000" fetchpriority="high" />
-        <div class="hero-media-fade">
-          <div class="story-meta">
-            <span data-current-category>{featured.category}</span><span>·</span><span data-current-place>{featured.place}</span>
-            <a data-current-sources href={withLocale(`/issues/${featured.issueSlug}/#sources`,locale)}>{leadSources.length} {locale==='en'?'sources':'sumber'}</a>
-            <span data-current-updated>{locale==='en'?'updated 25 Aug':'diperbarui 25 Agu'}</span>
-          </div>
-          <h2 class="hero-title" data-current-title>{t(featured.title,locale)}</h2>
-          <a class="hero-image-credit" data-current-image-credit hidden target="_blank" rel="noreferrer"></a>
-        </div>
-      </div>
-      <div class="hero-below">
-        <p class="hero-summary" data-current-summary>{t(featured.summary,locale)}</p>
-        <div class="actions"><a class="chip primary" data-current-story hidden>{locale==='en'?'Read story':'Baca cerita'}</a><a class="chip" data-current-issue href={withLocale(`/issues/${featured.issueSlug}/`,locale)}>{locale==='en'?'Open issue':'Buka isu'}</a><a class="chip" href={withLocale('/resources/#extractivism',locale)}>{glossaryBySlug.extractivism.term}</a><a class="chip" href={withLocale('/resources/#ecocide',locale)}>{glossaryBySlug.ecocide.term}</a></div>
-      </div>
+      <div class="hero-media"><img data-current-image src={featured.image} data-fallback={featured.image} alt={featured.imageAlt} width="1600" height="1000" fetchpriority="high" /><div class="hero-media-fade"><div class="story-meta"><span data-current-category>{featured.category}</span><span>·</span><span data-current-place>{featured.place}</span><a data-current-sources href={withLocale(`/issues/${featured.issueSlug}/#sources`,locale)}>{leadSources.length} {locale==='en'?'sources':'sumber'}</a><span data-current-updated>{locale==='en'?'updated 25 Aug':'diperbarui 25 Agu'}</span></div><h2 class="hero-title" data-current-title>{t(featured.title,locale)}</h2><a class="hero-image-credit" data-current-image-credit hidden target="_blank" rel="noreferrer"></a></div></div>
+      <div class="hero-below"><p class="hero-summary" data-current-summary>{t(featured.summary,locale)}</p><div class="actions"><a class="chip primary" data-current-story hidden>{locale==='en'?'Read story':'Baca cerita'}</a><a class="chip" data-current-issue href={withLocale(`/issues/${featured.issueSlug}/`,locale)}>{locale==='en'?'Open issue':'Buka isu'}</a><a class="chip" href={withLocale('/resources/#extractivism',locale)}>{glossaryBySlug.extractivism.term}</a><a class="chip" href={withLocale('/resources/#ecocide',locale)}>{glossaryBySlug.ecocide.term}</a></div></div>
     </section>
-    <section class="signal" aria-label="Latest updates"><div class="eyebrow">{locale==='en'?'Latest updates':'Pembaruan terbaru'}</div>{signals.map((s,i)=><div class="signal-row"><time>{['18:42','17:20','15:13','12:06'][i]}</time><strong>{t(s.title,locale)}</strong><span>{s.category}</span></div>)}</section>
+    <section class="signal" aria-label="Latest updates" data-live-signals><div class="eyebrow">{locale==='en'?'Latest updates':'Pembaruan terbaru'}</div>{signals.map((s,i)=><div class="signal-row"><time>{['18:42','17:20','15:13','12:06'][i]}</time><strong>{t(s.title,locale)}</strong><span>{s.category}</span></div>)}</section>
   </div>
-  <section class="section"><div class="wrap"><div class="section-head section-head-simple"><h2>{locale==='en'?'More developments.':'Perkembangan lain.'}</h2></div><div class="card-grid">{secondary.map(item=><DevelopmentCard item={item} locale={locale}/>)}</div></div></section>
+  <section class="section"><div class="wrap"><div class="section-head section-head-simple"><h2>{locale==='en'?'More developments.':'Perkembangan lain.'}</h2></div><div class="card-grid" data-live-development-grid>{secondary.map(item=><DevelopmentCard item={item} locale={locale}/>)}</div></div></section>
   <section class="section"><div class="wrap"><div class="section-head section-head-simple"><h2>{locale==='en'?'Ongoing issues.':'Isu yang masih jalan.'}</h2></div><div class="issue-grid">{issues.slice(0,6).map((item,index)=><IssueCard item={item} locale={locale} index={index}/>)}</div></div></section>
   <script>
     const hero=document.querySelector<HTMLElement>('[data-current-hero]');
-    const escText=(value)=>typeof value==='string'?value:'';
-    if(hero){
-      fetch('/api/current',{headers:{accept:'application/json'}}).then(r=>r.ok?r.json():null).then(data=>{
-        const item=data?.items?.[0];if(!item)return;
-        const locale=hero.dataset.locale==='pmy'?'pmy':'en';
-        const text=(value)=>typeof value==='object'?(value?.[locale]||value?.en||''):escText(value);
-        const set=(selector,value)=>{const node=hero.querySelector(selector);if(node&&value)node.textContent=value};
-        set('[data-current-title]',text(item.title));set('[data-current-summary]',text(item.summary));set('[data-current-category]',item.category);set('[data-current-place]',item.place);
-        const sources=hero.querySelector<HTMLAnchorElement>('[data-current-sources]');if(sources){sources.textContent=`${item.source_count||0} ${locale==='pmy'?'sumber':'sources'}`;if(item.issue_slug)sources.href=`${locale==='pmy'?'/pmy':''}/issues/${item.issue_slug}/#sources`}
-        const story=hero.querySelector<HTMLAnchorElement>('[data-current-story]');if(story&&item.id){story.hidden=false;story.href=`${locale==='pmy'?'/pmy':''}/story/?id=${item.id}`}
-        const issue=hero.querySelector<HTMLAnchorElement>('[data-current-issue]');if(issue&&item.issue_slug)issue.href=`${locale==='pmy'?'/pmy':''}/issues/${item.issue_slug}/`;
-        const image=hero.querySelector<HTMLImageElement>('[data-current-image]');const credit=hero.querySelector<HTMLAnchorElement>('[data-current-image-credit]');
-        if(image&&item.image?.url){image.src=item.image.url;image.alt=item.image.alt||text(item.title)}
-        if(credit&&item.image?.source_url){credit.hidden=false;credit.href=item.image.source_url;credit.textContent=item.image.credit?`Image: ${item.image.credit} ↗`:(locale==='pmy'?'Sumber gambar ↗':'Image source ↗')}
+    if(hero){const locale=hero.dataset.locale==='pmy'?'pmy':'en';const text=(v:any)=>typeof v==='object'?(v?.[locale]||v?.en||''):String(v||'');const fmt=(iso:string)=>iso?new Date(iso).toLocaleDateString(locale==='pmy'?'id-ID':'en-GB',{day:'numeric',month:'short',year:'numeric'}):'';const fallbackFor=(item:any)=>item.issue_slug?.includes('raja')?'/images/abstract/raja-ampat.svg':item.issue_slug?.includes('south-papua')?'/images/abstract/merauke.svg':item.issue_slug?.includes('conflict')?'/images/abstract/highlands.svg':'/images/abstract/oceanic.svg';
+      fetch('/api/current',{headers:{accept:'application/json'}}).then(r=>r.ok?r.json():null).then(data=>{const items=data?.items||[];const item=items[0];if(!item)return;const set=(sel:string,val:any)=>{const n=hero.querySelector<HTMLElement>(sel);if(n&&val)n.textContent=String(val)};set('[data-current-title]',text(item.title));set('[data-current-summary]',text(item.summary));set('[data-current-category]',item.category);set('[data-current-place]',item.place);set('[data-current-updated]',`${locale==='pmy'?'diperbarui':'updated'} ${fmt(item.updated_at)}`);const date=document.querySelector<HTMLElement>('[data-current-date]');if(date)date.textContent=`${fmt(item.updated_at)} · ${locale==='pmy'?'live dari Watch Engine':'live from Watch Engine'}`;const sources=hero.querySelector<HTMLAnchorElement>('[data-current-sources]');if(sources){sources.textContent=`${item.source_count||0} ${locale==='pmy'?'sumber':'sources'}`;if(item.issue_slug)sources.href=`${locale==='pmy'?'/pmy':''}/issues/${item.issue_slug}/#sources`};const story=hero.querySelector<HTMLAnchorElement>('[data-current-story]');if(story){story.hidden=false;story.href=`${locale==='pmy'?'/pmy':''}${item.story_url}`};const issue=hero.querySelector<HTMLAnchorElement>('[data-current-issue]');if(issue){issue.hidden=!item.issue_slug;if(item.issue_slug)issue.href=`${locale==='pmy'?'/pmy':''}/issues/${item.issue_slug}/`};const image=hero.querySelector<HTMLImageElement>('[data-current-image]');const credit=hero.querySelector<HTMLAnchorElement>('[data-current-image-credit]');if(image){const fallback=fallbackFor(item);image.dataset.fallback=fallback;image.src=item.image?.url||fallback;image.alt=text(item.title);image.onerror=()=>{image.onerror=null;image.src=fallback;if(credit)credit.hidden=true}}if(credit){if(item.image?.source_url){credit.hidden=false;credit.href=item.image.source_url;credit.textContent=item.image.credit?`Image: ${item.image.credit} ↗`:(locale==='pmy'?'Sumber gambar ↗':'Image source ↗')}else credit.hidden=true}
+        const signal=document.querySelector<HTMLElement>('[data-live-signals]');if(signal){const eyebrow=signal.querySelector('.eyebrow');signal.replaceChildren(eyebrow!);for(const x of items.slice(0,4)){const row=document.createElement('div');row.className='signal-row';const time=document.createElement('time');time.textContent=fmt(x.updated_at);const strong=document.createElement('strong');strong.textContent=text(x.title);const cat=document.createElement('span');cat.textContent=x.category||'Current';row.append(time,strong,cat);signal.append(row)}}
+        const grid=document.querySelector<HTMLElement>('[data-live-development-grid]');if(grid){grid.replaceChildren();for(const x of items.slice(1,4)){const a=document.createElement('a');a.className='development-card';a.href=`${locale==='pmy'?'/pmy':''}${x.story_url}`;const media=document.createElement('div');media.className='media';const img=document.createElement('img');const fallback=fallbackFor(x);img.src=x.image?.url||fallback;img.alt=text(x.title);img.loading='lazy';img.onerror=()=>{img.onerror=null;img.src=fallback};media.append(img);const body=document.createElement('div');body.className='body';const meta=document.createElement('div');meta.className='eyebrow';meta.textContent=`${x.category||'Current'} · ${x.place||'West Papua'}`;const h=document.createElement('h3');h.textContent=text(x.title);const p=document.createElement('p');p.textContent=text(x.summary);body.append(meta,h,p);a.append(media,body);grid.append(a)}}
       }).catch(()=>{});
     }
   </script>

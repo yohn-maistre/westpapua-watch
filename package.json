@@ -11,6 +11,8 @@
     "cf:dev": "npm run build && wrangler pages dev dist",
     "cf:deploy": "npm run build && wrangler pages deploy dist --project-name=westpapua-watch",
     "check:content": "node scripts/check-content.mjs",
+    "steward:content": "node scripts/steward-content.mjs",
+    "steward:daily": "node scripts/watch-daily.mjs",
     "watch:config": "node scripts/render-watch-config.mjs",
     "watch:deploy": "npm run watch:config && wrangler deploy --config services/watch-engine/wrangler.generated.jsonc",
     "watch:migrate": "npm run watch:config && wrangler d1 migrations apply DB --remote --config services/watch-engine/wrangler.generated.jsonc",
@@ -26,7 +28,5 @@
     "defuddle": "0.19.3",
     "linkedom": "0.18.13"
   },
-  "devDependencies": {
-    "wrangler": "4.127.1"
-  }
+  "devDependencies": { "wrangler": "4.127.1" }
 }

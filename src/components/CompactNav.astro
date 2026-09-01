@@ -8,7 +8,7 @@ const alternatePath = alternateLocalePath(path, locale);
 ---
 <div class="compact-nav" data-compact-nav>
   <div class="compact-inner">
-    <a class="compact-brand" href={withLocale('/',locale)} aria-label="West Papua Watch"><span>West</span><span>Papua</span><em>Watch</em></a>
+    <a class="compact-brand" href={withLocale('/',locale)} aria-label="West Papua Watch"><span>West Papua</span><em>Watch</em></a>
     <nav class="compact-links" aria-label="Sticky navigation">
       {NAV_ITEMS.map((item)=><a href={withLocale(item.href,locale)} aria-current={active===item.key?'page':undefined}>{t(item.label,locale)}</a>)}
     </nav>

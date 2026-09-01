@@ -1,27 +1,13 @@
-import fs from 'node:fs';
-import path from 'node:path';
-
-const root = process.cwd();
-const files = [
-  'src/data/developments.ts',
-  'src/data/issues.ts',
-  'src/data/resources.ts',
-  'src/data/history.ts',
-  'src/data/events.ts'
-];
-let failed = false;
-for (const rel of files) {
-  const full = path.join(root, rel);
-  if (!fs.existsSync(full)) {
-    console.error(`missing ${rel}`);
-    failed = true;
-    continue;
-  }
-  const text = fs.readFileSync(full, 'utf8');
-  if (/TODO_CONTENT|example\.com/.test(text)) {
-    console.error(`placeholder marker found in ${rel}`);
-    failed = true;
-  }
-}
-if (failed) process.exit(1);
-console.log('content checks passed');
+import fs from 'node:fs';import path from 'node:path';
+const root=process.cwd();let failed=false;const fail=(msg)=>{console.error(msg);failed=true};
+const read=(rel)=>{const full=path.join(root,rel);if(!fs.existsSync(full)){fail(`missing ${rel}`);return null}try{return JSON.parse(fs.readFileSync(full,'utf8'))}catch(error){fail(`invalid JSON ${rel}: ${error.message}`);return null}};
+for(const rel of ['src/data/developments.ts','src/data/issues.ts','src/data/resources.ts','src/data/history.ts','src/data/events.ts','src/data/exhibition.ts']){const full=path.join(root,rel);if(!fs.existsSync(full)){fail(`missing ${rel}`);continue}const text=fs.readFileSync(full,'utf8');if(/TODO_CONTENT|example\.com/.test(text))fail(`placeholder marker found in ${rel}`)}
+const localized=(value,label)=>{if(!value||typeof value.en!=='string'||typeof value.pmy!=='string'||!value.en.trim()||!value.pmy.trim())fail(`${label} must contain non-empty en and pmy strings`)};
+const unique=(items,key,label)=>{const seen=new Set();for(const item of items||[]){const id=item?.[key];if(typeof id!=='string'||!id.trim())fail(`${label} item missing ${key}`);else if(seen.has(id))fail(`duplicate ${label} ${id}`);else seen.add(id)}};
+const history=read('content/history.json');unique(history?.chapters,'id','history');for(const c of history?.chapters||[]){localized(c.title,`history ${c.id} title`);localized(c.body,`history ${c.id} body`);if(!['map','document','split'].includes(c.visual))fail(`invalid history visual ${c.id}`);if(!Array.isArray(c.sourceIds)||!c.sourceIds.length)fail(`history ${c.id} needs sourceIds`)}
+const events=read('content/events.json');unique(events?.events,'id','event');for(const e of events?.events||[]){if(!e.date||!e.title||!e.sourceId)fail(`event ${e.id||'?'} missing required fields`)}
+const exhibition=read('content/exhibition.json');unique(exhibition?.items,'slug','exhibition');for(const item of exhibition?.items||[]){if(!['works','voices','archive'].includes(item.lane))fail(`invalid exhibition lane ${item.slug}`);if(!item.image||(!item.image.startsWith('/images/')&&!/^https:\/\//.test(item.image)))fail(`invalid exhibition image ${item.slug}`)}
+const resources=read('content/resources.json');if(!Array.isArray(resources?.resourceIds)||new Set(resources.resourceIds).size!==resources.resourceIds.length)fail('resources.resourceIds must be a unique array');
+const ui=read('content/ui.json');localized(ui?.history?.pageTitle,'ui.history.pageTitle');localized(ui?.resources?.pageTitle,'ui.resources.pageTitle');localized(ui?.resources?.intro,'ui.resources.intro');localized(ui?.events?.pageTitle,'ui.events.pageTitle');localized(ui?.events?.heroBody,'ui.events.heroBody');localized(ui?.exhibition?.immersiveTitle,'ui.exhibition.immersiveTitle');localized(ui?.footer?.note,'ui.footer.note');
+const sources=read('content/news-sources.json');unique(sources,'id','news source');for(const source of sources||[]){if(!/^https:\/\//.test(source.homepage||''))fail(`source ${source.id} homepage must use https`);if(source.feed&&!/^https:\/\//.test(source.feed))fail(`source ${source.id} feed must use https`);if(!['papua','mixed'].includes(source.scope))fail(`source ${source.id} has invalid scope`);if(typeof source.enabled!=='boolean')fail(`source ${source.id} enabled must be boolean`)}
+if(failed)process.exit(1);console.log('content checks passed');
