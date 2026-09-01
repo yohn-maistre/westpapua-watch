@@ -1,6 +1,7 @@
 import { NewsCycleWorkflow } from './workflow';
 import { processArticle } from './ingest/process';
 import { processEditorialJob } from './cluster/editorial';
+import { isGatewayQuotaError } from './llm';
 import { answerQuestion } from './ask';
 export { NewsCycleWorkflow };
 
@@ -96,5 +97,17 @@ export default {
     return json({error:'Not found'},404);
   },
   async scheduled(controller:any,env:any,ctx:any){const slot=Math.floor(Number(controller.scheduledTime||Date.now())/1_800_000);const id=`cron-${slot}`;ctx.waitUntil(env.NEWS_CYCLE.create({id,params:{reason:'cloudflare-cron',scheduledTime:controller.scheduledTime,cron:controller.cron}}).catch((e:any)=>{const message=String(e?.message||e);if(/already|exist|duplicate/i.test(message)){console.log('news cycle already exists',id);return}throw e}))},
-  async queue(batch:any,env:any){for(const m of batch.messages){try{if(m.body?.kind==='editorial')await processEditorialJob(env,m.body);else await processArticle(env,m.body);m.ack()}catch(e){console.error('queue job failed',batch.queue,m.body?.developmentId||m.body?.url,e);m.retry()}}}
+  async queue(batch:any,env:any){for(const m of batch.messages){try{if(m.body?.kind==='editorial')await processEditorialJob(env,m.body);else await processArticle(env,m.body);m.ack()}catch(e){
+    const developmentId=Number(m.body?.developmentId);
+    if(m.body?.kind==='editorial'&&Number.isFinite(developmentId)&&isGatewayQuotaError(e)){
+      const row:any=await env.DB.prepare(`SELECT provider_backoff_count FROM developments WHERE id=?`).bind(developmentId).first();
+      const backoff=Math.min(21600,900*Math.pow(2,Math.min(4,Number(row?.provider_backoff_count||0))));
+      const notBefore=new Date(Date.now()+backoff*1000).toISOString();
+      await env.DB.prepare(`UPDATE developments SET status='held',provider_backoff_count=COALESCE(provider_backoff_count,0)+1,editorial_not_before=?,updated_at=? WHERE id=?`).bind(notBefore,new Date().toISOString(),developmentId).run();
+      console.warn('editorial job held for provider quota backpressure',developmentId,{backoff,notBefore});
+      m.ack();
+      continue;
+    }
+    console.error('queue job failed',batch.queue,m.body?.developmentId||m.body?.url,e);m.retry()
+  }}}
 };

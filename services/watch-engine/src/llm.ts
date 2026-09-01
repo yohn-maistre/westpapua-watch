@@ -29,6 +29,7 @@ export const modelLabelFor=(env:any,purpose:ChatPurpose)=>env.AI_GATEWAY_BASE&&e
   :modelNameFor(env,purpose);
 
 const errorText=(e:any)=>String(e?.message||e||'unknown error').replace(/\s+/g,' ').slice(0,600);
+export const isGatewayQuotaError=(e:any)=>/gateway HTTP 429|resource_exhausted|quota exceeded|rate limit/i.test(errorText(e));
 const workersFallbackEnabled=(env:any)=>String(env.ENABLE_WORKERS_AI_FALLBACK||'false').toLowerCase()==='true';
 
 function validateRequired(value:any,schema:any){
@@ -137,7 +138,12 @@ export async function runJson<T=any>(env:any,messages:any[],schema:any,purpose:C
       const raw=data?.choices?.[0]?.message?.content;
       if(!raw)throw new Error('gateway returned empty content');
       return parseStructured<T>(String(raw),schema);
-    }catch(e){errors.push(`gateway_json: ${errorText(e)}`)}
+    }catch(e){
+      // A quota response is definitive backpressure, not malformed JSON. Do not
+      // multiply it into the normal-chat and repair probes.
+      if(isGatewayQuotaError(e))throw new Error(`Gateway quota backpressure: ${errorText(e)}`);
+      errors.push(`gateway_json: ${errorText(e)}`)
+    }
   }
 
   const model=modelNameFor(env,purpose);

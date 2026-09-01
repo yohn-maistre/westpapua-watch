@@ -1,4 +1,4 @@
-import { runJson,modelLabelFor,type ChatPurpose } from '../llm';
+import { runJson,isGatewayQuotaError,modelLabelFor,type ChatPurpose } from '../llm';
 import { embedText } from '../embedding';
 
 const arr=(v:any)=>{try{return JSON.parse(String(v||'[]')) as string[]}catch{return[]}};
@@ -31,6 +31,9 @@ async function critique(env:any,items:any[],draft:any){
   try{
     o=await runJson(env,messages,criticSchema,'fast',520);
   }catch(fastError){
+    // Provider quota is global backpressure, not a critic-model failure: do not
+    // consume the synthesis route as a second probe after a 429.
+    if(isGatewayQuotaError(fastError))throw fastError;
     console.warn('fast critic route failed; retrying on synthesis route',fastError);
     o=await runJson(env,messages,criticSchema,'synthesis',520);
   }
@@ -68,8 +71,9 @@ async function runStage<T>(env:any,id:number,stage:string,purpose:ChatPurpose|un
 }
 
 export async function queueDevelopmentForEditorial(env:any,id:number,force=false){
-  const d:any=await env.DB.prepare(`SELECT status FROM developments WHERE id=?`).bind(id).first();
+  const d:any=await env.DB.prepare(`SELECT status,editorial_not_before FROM developments WHERE id=?`).bind(id).first();
   if(!d||['filtered','merged'].includes(String(d.status)))return false;
+  if(d.editorial_not_before&&new Date(d.editorial_not_before).getTime()>Date.now())return false;
   if(d.status==='editorial_queued'&&!force)return false;
   await env.EDITORIAL_QUEUE.send({kind:'editorial',developmentId:id});
   if(d.status!=='published')await env.DB.prepare(`UPDATE developments SET status='editorial_queued',updated_at=? WHERE id=?`).bind(new Date().toISOString(),id).run();
@@ -161,8 +165,9 @@ async function finalize(env:any,id:number,dev:any,draft:any,sourceBrief=false){
 
 export async function processEditorialJob(env:any,message:any){
   const id=Number(message?.developmentId);if(!Number.isFinite(id))return {status:'invalid'};
-  const dev:any=await env.DB.prepare(`SELECT status,issue_slug,retry_count FROM developments WHERE id=?`).bind(id).first();
+  const dev:any=await env.DB.prepare(`SELECT status,issue_slug,retry_count,editorial_not_before FROM developments WHERE id=?`).bind(id).first();
   if(!dev||['filtered','merged'].includes(String(dev.status)))return {status:dev?.status||'missing'};
+  if(dev.status==='held'&&dev.editorial_not_before&&new Date(dev.editorial_not_before).getTime()>Date.now())return {status:'held',not_before:dev.editorial_not_before};
   const items=await loadItems(env,id);if(!items.length)return {status:'empty'};
   const attempt=Number(dev.retry_count||0)+1;
   const repair=await lastFeedback(env,id);
@@ -200,10 +205,10 @@ export async function processEditorialJob(env:any,message:any){
 }
 
 export async function enqueueEditorialBacklog(env:any,limit=24){
-  const rows:any=await env.DB.prepare(`SELECT id,status FROM developments WHERE pipeline_version>=2 AND (status IN ('candidate','retrying','held') OR (status='editorial_queued' AND updated_at<datetime('now','-15 minutes'))) ORDER BY updated_at ASC LIMIT ?`).bind(limit).all();
+  const rows:any=await env.DB.prepare(`SELECT id,status FROM developments WHERE pipeline_version>=2 AND status IN ('candidate','retrying','held') AND (editorial_not_before IS NULL OR editorial_not_before<=strftime('%Y-%m-%dT%H:%M:%fZ','now')) ORDER BY updated_at ASC LIMIT ?`).bind(limit).all();
   let queued=0;
   for(const r of rows.results||[]){
-    if(await queueDevelopmentForEditorial(env,Number(r.id),r.status==='editorial_queued'))queued++;
+    if(await queueDevelopmentForEditorial(env,Number(r.id)))queued++;
   }
   return {checked:(rows.results||[]).length,queued};
 }
