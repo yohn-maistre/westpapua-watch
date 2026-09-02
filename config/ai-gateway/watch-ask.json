@@ -5,7 +5,19 @@
     {
       "id":"qwen-ask",
       "type":"model",
-      "properties":{"provider":"groq","model":"qwen/qwen3.8-27b","timeout":30000,"retries":0},
+      "properties":{"provider":"groq","model":"qwen/qwen3.8-27b","timeout":15000,"retries":0},
+      "outputs":{"success":{"elementId":"END"},"fallback":{"elementId":"minimax-ask"}}
+    },
+    {
+      "id":"minimax-ask",
+      "type":"model",
+      "properties":{"provider":"openrouter","model":"minimax/minimax-m3:free","timeout":20000,"retries":0},
+      "outputs":{"success":{"elementId":"END"},"fallback":{"elementId":"gemini-lite-ask"}}
+    },
+    {
+      "id":"gemini-lite-ask",
+      "type":"model",
+      "properties":{"provider":"google-ai-studio","model":"gemini-3.5-flash-lite","timeout":20000,"retries":0},
       "outputs":{"success":{"elementId":"END"},"fallback":{"elementId":"END"}}
     },
     {"id":"END","type":"end","outputs":{}}

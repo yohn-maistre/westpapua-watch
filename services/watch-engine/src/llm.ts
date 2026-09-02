@@ -95,14 +95,18 @@ async function gatewayCall(env:any,messages:any[],purpose:ChatPurpose,maxTokens:
         ...(purpose!=='synthesis'?{reasoning_effort:'none'}:{}),
         ...(responseFormat?{response_format:responseFormat}:{})
       }),
-      signal:AbortSignal.timeout(70000)
+      signal:AbortSignal.timeout(85000)
     });
   }catch(e){throw new ModelRequestError('transport',`gateway transport: ${errorText(e)}`)}
+  const servedProvider=res.headers.get('cf-aig-provider')||'';
+  const servedModel=res.headers.get('cf-aig-model')||'';
+  const servedStep=res.headers.get('cf-aig-step')||'';
   if(!res.ok){
     const detail=(await res.text().catch(()=>'' )).replace(/\s+/g,' ').slice(0,420);
     if(res.status===429||/resource_exhausted|quota exceeded|rate limit/i.test(detail))throw new ModelRequestError('quota',`gateway HTTP ${res.status}${detail?`: ${detail}`:''}`,res.status);
     throw new ModelRequestError('transport',`gateway HTTP ${res.status}${detail?`: ${detail}`:''}`,res.status);
   }
+  console.info('AI Gateway served request',{purpose,provider:servedProvider||'unknown',model:servedModel||'unknown',step:servedStep||'unknown'});
   const data:any=await res.json().catch(e=>{throw new ModelRequestError('malformed',`gateway response JSON invalid: ${errorText(e)}`)});
   const raw=data?.choices?.[0]?.message?.content;
   if(!raw)throw new ModelRequestError('malformed','gateway returned empty content');

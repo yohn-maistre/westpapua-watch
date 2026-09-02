@@ -1,11 +1,23 @@
 {
   "name": "watch-synth",
   "elements": [
-    {"id":"START","type":"start","outputs":{"next":{"elementId":"gemini-synth"}}},
+    {"id":"START","type":"start","outputs":{"next":{"elementId":"gemini-lite-synth"}}},
     {
-      "id":"gemini-synth",
+      "id":"gemini-lite-synth",
       "type":"model",
-      "properties":{"provider":"google-ai-studio","model":"gemini-3.7-flash","timeout":40000,"retries":0},
+      "properties":{"provider":"google-ai-studio","model":"gemini-3.5-flash-lite","timeout":25000,"retries":0},
+      "outputs":{"success":{"elementId":"END"},"fallback":{"elementId":"minimax-synth"}}
+    },
+    {
+      "id":"minimax-synth",
+      "type":"model",
+      "properties":{"provider":"openrouter","model":"minimax/minimax-m3:free","timeout":25000,"retries":0},
+      "outputs":{"success":{"elementId":"END"},"fallback":{"elementId":"qwen-synth"}}
+    },
+    {
+      "id":"qwen-synth",
+      "type":"model",
+      "properties":{"provider":"groq","model":"qwen/qwen3.8-27b","timeout":20000,"retries":0},
       "outputs":{"success":{"elementId":"END"},"fallback":{"elementId":"END"}}
     },
     {"id":"END","type":"end","outputs":{}}
