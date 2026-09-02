@@ -1,0 +1,25 @@
+/* Freeze 10.5 — visual coherence and navigation stability. */
+
+:root{--compact-nav-height:62px}
+.nav-sentinel{height:1px;width:100%;pointer-events:none}
+.masthead-nav{grid-template-columns:repeat(7,minmax(0,1fr))}
+.compact-nav{height:var(--compact-nav-height)}
+.compact-inner{min-height:var(--compact-nav-height)}
+
+.development-live-meta{margin:.8rem 0 1rem}
+.current-all{padding-top:clamp(2.6rem,5vw,4.6rem)}
+
+.issue-map-meta{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:1.2rem;margin-top:1rem;align-items:start}
+.issue-map-copy{border:1px solid var(--line);border-radius:var(--radius);padding:1.15rem;background:rgba(255,255,255,.012)}
+.issue-map-copy p{margin:0;color:var(--muted);font-size:1.02rem;max-width:850px}
+.issue-map-copy .actions{margin-top:1rem}
+.issue-map-meta .facts{height:100%}
+
+@media(max-width:900px){
+  .masthead-nav a{font-size:.86rem}
+  .compact-links{gap:.6rem;font-size:.66rem}
+}
+@media(max-width:760px){
+  .issue-map-meta{grid-template-columns:1fr}
+  .history-mobile-narrative .history-stage{top:var(--history-sticky-top,0px)!important}
+}

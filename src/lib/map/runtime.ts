@@ -1,7 +1,7 @@
 import * as maplibregl from 'maplibre-gl';
 import type {Map as MLMap,MapMouseEvent} from 'maplibre-gl';
 import {Protocol} from 'pmtiles';
-import {DEFAULT_LAYER_IDS,MAP_LAYERS,WEST_PAPUA_BOUNDS,WEST_PAPUA_CENTER,layerById,type MapLayerDefinition} from './registry';
+import {DEFAULT_LAYER_IDS,MAP_LAYERS,MAP_VIEWS,WEST_PAPUA_BOUNDS,WEST_PAPUA_CENTER,layerById,viewById,type MapLayerDefinition,type MapViewId} from './registry';
 import {parseMapState,writeMapState} from './state';
 import {WATCH_BASE_STYLE} from './style';
 
@@ -59,36 +59,97 @@ function populateFeaturePanel(root:HTMLElement,feature:any,def:MapLayerDefinitio
 
 function activeLayerIds(map:MLMap){return MAP_LAYERS.filter(d=>map.getLayer(baseLayerId(d))&&map.getLayoutProperty(baseLayerId(d),'visibility')!=='none').map(baseLayerId)}
 function setLayerVisibility(map:MLMap,id:string,visible:boolean){const def=layerById[id];if(!def)return;const layer=baseLayerId(def);if(map.getLayer(layer))map.setLayoutProperty(layer,'visibility',visible?'visible':'none')}
+function sameSet(a:Set<string>,b:string[]){return a.size===b.length&&b.every(x=>a.has(x))}
+function matchingView(enabled:Set<string>):MapViewId|null{for(const view of MAP_VIEWS)if(sameSet(enabled,view.layers))return view.id;return null}
 
 async function initOne(root:HTMLElement){
-  ensureProtocol();const locale: 'en'|'pmy'=root.dataset.locale==='pmy'?'pmy':'en';const canvas=root.querySelector<HTMLElement>('[data-map-canvas]');if(!canvas)return;
+  ensureProtocol();const locale:'en'|'pmy'=root.dataset.locale==='pmy'?'pmy':'en';const canvas=root.querySelector<HTMLElement>('[data-map-canvas]');if(!canvas)return;
   const status=await fetch('/api/geo-status',{headers:{accept:'application/json'}}).then(r=>r.ok?r.json():{layers:{}}).catch(()=>({layers:{}}));
-  const state=parseMapState(location.search);const context=Boolean(root.dataset.context);let current=emptyFC();try{current=await currentGeoJSON(root)}catch{}
-  if(context&&current.features.length===0){root.hidden=true;return}
-  const map=new maplibregl.Map({container:canvas,style:WATCH_BASE_STYLE,center:WEST_PAPUA_CENTER,zoom:4.05,minZoom:3,maxZoom:14,maxBounds:WEST_PAPUA_BOUNDS,attributionControl:false,dragRotate:false,pitchWithRotate:false,renderWorldCopies:false,fadeDuration:120});
-  map.addControl(new maplibregl.NavigationControl({showCompass:false,visualizePitch:false}),'bottom-right');
-  let enabled=new Set<string>(state.explore&&!context?state.layers:DEFAULT_LAYER_IDS);const unavailable=new Set<string>();
-  map.on('load',async()=>{
-    for(const def of MAP_LAYERS){let available=true;if(def.sourceType==='pmtiles'||def.id==='fire-hotspots')available=status?.layers?.[def.id]?.available===true;if(!available){unavailable.add(def.id);continue}
-      let data:FeatureCollection|undefined;if(def.id==='current-developments')data=current;else if(def.id==='fire-hotspots')data=await fireGeoJSON();
-      map.addSource(`watch-source-${def.id}`,sourceSpec(def,data));map.addLayer(createMapLayer(def));setLayerVisibility(map,def.id,enabled.has(def.id));
-    }
-    syncControls();if(context&&current.features.length)fitFeatures(current);else if(state.place&&!context)await focusPlace(state.place);
+  const state=parseMapState(location.search);const context=root.dataset.context||'';let current=emptyFC();try{current=await currentGeoJSON(root)}catch{}
+  if(context==='development'&&current.features.length===0){root.hidden=true;return}
+
+  const requested=(root.dataset.initialView||'overview') as MapViewId;
+  const initialView=viewById[requested]?requested:'overview';
+  let enabled=new Set<string>(state.explore&&!context&&state.layers.length?state.layers:viewById[initialView].layers);
+  let activeView:MapViewId|null=matchingView(enabled);
+
+  const map=new maplibregl.Map({
+    container:canvas,style:WATCH_BASE_STYLE,center:WEST_PAPUA_CENTER,zoom:4.05,minZoom:3,maxZoom:14,maxBounds:WEST_PAPUA_BOUNDS,
+    attributionControl:false,dragRotate:false,pitchWithRotate:false,renderWorldCopies:false,fadeDuration:120,cooperativeGestures:true
   });
+  map.addControl(new maplibregl.NavigationControl({showCompass:false,visualizePitch:false}),'bottom-right');
+
+  map.on('error',(event:any)=>console.warn('[Watch map]',event?.error||event));
+  const unavailable=new Set<string>();
+
+  map.on('load',async()=>{
+    for(const def of MAP_LAYERS){
+      let available=true;
+      if(def.sourceType==='pmtiles'||def.id==='fire-hotspots')available=status?.layers?.[def.id]?.available===true;
+      if(!available){unavailable.add(def.id);continue}
+      let data:FeatureCollection|undefined;
+      if(def.id==='current-developments')data=current;
+      else if(def.id==='fire-hotspots')data=await fireGeoJSON();
+      try{
+        map.addSource(`watch-source-${def.id}`,sourceSpec(def,data));
+        map.addLayer(createMapLayer(def));
+        setLayerVisibility(map,def.id,enabled.has(def.id));
+      }catch(error){unavailable.add(def.id);console.warn(`[Watch map] failed to register ${def.id}`,error)}
+    }
+    syncControls();
+    if(context&&current.features.length)fitFeatures(current);
+    else if(state.place&&!context)await focusPlace(state.place);
+  });
+
   map.on('click',(e:MapMouseEvent)=>{const ids=activeLayerIds(map);if(!ids.length)return;const fs=map.queryRenderedFeatures(e.point,{layers:ids});const f=fs[0];if(!f)return;const id=String(f.layer.id).replace(/^watch-/,'');const def=layerById[id];if(def)populateFeaturePanel(root,f,def,locale)});
   map.on('mousemove',(e:MapMouseEvent)=>{const ids=activeLayerIds(map);map.getCanvas().style.cursor=ids.length&&map.queryRenderedFeatures(e.point,{layers:ids}).length?'pointer':''});
+
   function fitFeatures(fc:FeatureCollection){const points=fc.features.map(f=>f.geometry?.type==='Point'?f.geometry.coordinates:null).filter(Boolean) as number[][];if(!points.length)return;if(points.length===1){map.easeTo({center:points[0] as [number,number],zoom:7,duration:650});return}const b=new maplibregl.LngLatBounds(points[0] as [number,number],points[0] as [number,number]);points.slice(1).forEach(p=>b.extend(p as [number,number]));map.fitBounds(b,{padding:70,maxZoom:8,duration:650})}
+
   async function focusPlace(slug:string){try{const r=await fetch(`/api/places?q=${encodeURIComponent(slug.replaceAll('-',' '))}`).then(x=>x.ok?x.json():null);const rows=r?.items||r||[];const p=rows.find((x:any)=>x.slug===slug)||rows[0];const lat=Number(p?.latitude),lon=Number(p?.longitude);if(Number.isFinite(lat)&&Number.isFinite(lon))map.easeTo({center:[lon,lat],zoom:7,duration:700})}catch{}}
-  function syncControls(){root.querySelectorAll<HTMLButtonElement>('[data-map-layer]').forEach(button=>{const id=button.dataset.mapLayer||'';const off=unavailable.has(id);button.disabled=off;button.classList.toggle('active',enabled.has(id)&&!off);button.dataset.availability=off?'unavailable':'available';const note=button.querySelector<HTMLElement>('small');if(note&&off)note.textContent=locale==='pmy'?'Data tidak tersedia':'Data unavailable'});root.querySelectorAll<HTMLButtonElement>('[data-map-family]').forEach(button=>{const family=button.dataset.mapFamily;button.classList.toggle('active',MAP_LAYERS.filter(x=>x.family===family&&!unavailable.has(x.id)).some(x=>enabled.has(x.id)))})}
-  function commit(){for(const d of MAP_LAYERS)setLayerVisibility(map,d.id,enabled.has(d.id));root.dataset.explore='true';syncControls();setText(root.querySelector('[data-map-state]'),locale==='pmy'?'Eksplorasi':'Explore');if(!context)writeMapState({layers:[...enabled],place:null,explore:true})}
-  root.querySelectorAll<HTMLButtonElement>('[data-map-layer]').forEach(button=>button.addEventListener('click',()=>{const id=button.dataset.mapLayer||'';if(!id||unavailable.has(id))return;enabled.has(id)?enabled.delete(id):enabled.add(id);commit()}));
-  root.querySelectorAll<HTMLButtonElement>('[data-map-family]').forEach(button=>button.addEventListener('click',()=>{const family=button.dataset.mapFamily;const ids=MAP_LAYERS.filter(x=>x.family===family&&!unavailable.has(x.id)).map(x=>x.id);const turnOn=!ids.some(id=>enabled.has(id));ids.forEach(id=>turnOn?enabled.add(id):enabled.delete(id));commit()}));
-  const panel=root.querySelector<HTMLElement>('[data-map-layers-panel]');root.querySelectorAll<HTMLButtonElement>('[data-map-layers-open]').forEach(b=>b.addEventListener('click',()=>{if(panel)panel.hidden=!panel.hidden}));root.querySelectorAll<HTMLButtonElement>('[data-map-layers-close]').forEach(b=>b.addEventListener('click',()=>{if(panel)panel.hidden=true}));root.querySelectorAll<HTMLButtonElement>('[data-map-feature-close]').forEach(b=>b.addEventListener('click',()=>{const p=root.querySelector<HTMLElement>('[data-map-feature]');if(p)p.hidden=true}));
-  const search=root.querySelector<HTMLInputElement>('[data-map-place-search]'),results=root.querySelector<HTMLElement>('[data-map-place-results]');let timer=0;search?.addEventListener('input',()=>{clearTimeout(timer);timer=window.setTimeout(async()=>{const q=search.value.trim();if(q.length<2){results?.replaceChildren();return}const data=await fetch(`/api/places?q=${encodeURIComponent(q)}`).then(r=>r.ok?r.json():null).catch(()=>null);const rows=data?.items||data||[];if(!results)return;results.replaceChildren();for(const p of rows.slice(0,8)){const lat=Number(p.latitude),lon=Number(p.longitude);if(!Number.isFinite(lat)||!Number.isFinite(lon))continue;const b=document.createElement('button');b.type='button';b.textContent=p.name;b.addEventListener('click',()=>{map.easeTo({center:[lon,lat],zoom:7,duration:650});root.dataset.explore='true';setText(root.querySelector('[data-map-state]'),p.name);if(!context)writeMapState({layers:[...enabled],place:p.slug,explore:true});results.replaceChildren();search.value=p.name});results.append(b)}},220)});
-  function expand(on:boolean){root.classList.toggle('map-expanded',on);document.body.classList.toggle('no-scroll',on);setTimeout(()=>map.resize(),80);const close=root.querySelector<HTMLButtonElement>('[data-map-close-expanded]');if(close)close.hidden=!on;if(on){root.dataset.explore='true';setText(root.querySelector('[data-map-state]'),locale==='pmy'?'Eksplorasi':'Explore')}}
-  root.querySelectorAll<HTMLButtonElement>('[data-map-expand]').forEach(b=>b.addEventListener('click',()=>expand(true)));root.querySelectorAll<HTMLButtonElement>('[data-map-close-expanded]').forEach(b=>b.addEventListener('click',()=>expand(false)));
-  root.querySelectorAll<HTMLButtonElement>('[data-map-return]').forEach(b=>b.addEventListener('click',()=>{enabled=new Set(DEFAULT_LAYER_IDS);root.dataset.explore='false';for(const d of MAP_LAYERS)setLayerVisibility(map,d.id,enabled.has(d.id));syncControls();setText(root.querySelector('[data-map-state]'),'');if(!context)writeMapState({layers:[...enabled],place:null,explore:false});map.fitBounds(WEST_PAPUA_BOUNDS,{padding:40,duration:650})}));
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&root.classList.contains('map-expanded'))expand(false)});
+
+  function syncControls(){
+    activeView=matchingView(enabled);
+    root.querySelectorAll<HTMLButtonElement>('[data-map-view]').forEach(button=>button.classList.toggle('active',button.dataset.mapView===activeView));
+    root.querySelectorAll<HTMLButtonElement>('[data-map-layer]').forEach(button=>{
+      const id=button.dataset.mapLayer||'',off=unavailable.has(id);button.disabled=off;button.classList.toggle('active',enabled.has(id)&&!off);button.dataset.availability=off?'unavailable':'available';
+      const note=button.querySelector<HTMLElement>('small');if(note&&off)note.textContent=locale==='pmy'?'Data tidak tersedia':'Data unavailable';
+    });
+    setText(root.querySelector('[data-map-state]'),activeView?(locale==='pmy'?viewById[activeView].titleId:viewById[activeView].title):(locale==='pmy'?'Kustom':'Custom'));
+  }
+
+  function applyVisibility(){for(const d of MAP_LAYERS)setLayerVisibility(map,d.id,enabled.has(d.id));syncControls()}
+  function write(){if(!context)writeMapState({layers:[...enabled],place:null,explore:true})}
+  function applyView(id:MapViewId){const view=viewById[id];if(!view)return;enabled=new Set(view.layers);applyVisibility();root.dataset.explore='true';write()}
+  function commitCustom(){applyVisibility();root.dataset.explore='true';write()}
+
+  root.querySelectorAll<HTMLButtonElement>('[data-map-view]').forEach(button=>button.addEventListener('click',()=>applyView(button.dataset.mapView as MapViewId)));
+  root.querySelectorAll<HTMLButtonElement>('[data-map-layer]').forEach(button=>button.addEventListener('click',()=>{const id=button.dataset.mapLayer||'';if(!id||unavailable.has(id))return;enabled.has(id)?enabled.delete(id):enabled.add(id);commitCustom()}));
+
+  const panel=root.querySelector<HTMLElement>('[data-map-layers-panel]');
+  const backdrop=root.querySelector<HTMLButtonElement>('[data-map-panel-backdrop]');
+  function panelOpen(on:boolean){if(panel)panel.hidden=!on;if(backdrop)backdrop.hidden=!on}
+  root.querySelectorAll<HTMLButtonElement>('[data-map-layers-open]').forEach(b=>b.addEventListener('click',()=>panelOpen(Boolean(panel?.hidden))));
+  root.querySelectorAll<HTMLButtonElement>('[data-map-layers-close]').forEach(b=>b.addEventListener('click',()=>panelOpen(false)));
+  backdrop?.addEventListener('click',()=>panelOpen(false));
+  root.querySelectorAll<HTMLButtonElement>('[data-map-feature-close]').forEach(b=>b.addEventListener('click',()=>{const p=root.querySelector<HTMLElement>('[data-map-feature]');if(p)p.hidden=true}));
+
+  const search=root.querySelector<HTMLInputElement>('[data-map-place-search]'),results=root.querySelector<HTMLElement>('[data-map-place-results]');let timer=0;
+  search?.addEventListener('input',()=>{clearTimeout(timer);timer=window.setTimeout(async()=>{const q=search.value.trim();if(q.length<2){results?.replaceChildren();return}const data=await fetch(`/api/places?q=${encodeURIComponent(q)}`).then(r=>r.ok?r.json():null).catch(()=>null);const rows=data?.items||data||[];if(!results)return;results.replaceChildren();for(const p of rows.slice(0,8)){const lat=Number(p.latitude),lon=Number(p.longitude);if(!Number.isFinite(lat)||!Number.isFinite(lon))continue;const b=document.createElement('button');b.type='button';b.textContent=p.name;b.addEventListener('click',()=>{map.easeTo({center:[lon,lat],zoom:7,duration:650});root.dataset.explore='true';setText(root.querySelector('[data-map-state]'),p.name);if(!context)writeMapState({layers:[...enabled],place:p.slug,explore:true});results.replaceChildren();search.value=p.name;panelOpen(false)});results.append(b)}},220)});
+
+  function expand(on:boolean){
+    root.classList.toggle('map-expanded',on);document.body.classList.toggle('no-scroll',on);panelOpen(false);
+    root.querySelectorAll<HTMLButtonElement>('[data-map-expand]').forEach(b=>b.hidden=on);
+    root.querySelectorAll<HTMLButtonElement>('[data-map-close-expanded]').forEach(b=>b.hidden=!on);
+    const cooperative=(map as any).cooperativeGestures;
+    if(cooperative){on?cooperative.disable():cooperative.enable()}
+    setTimeout(()=>map.resize(),80);
+  }
+  root.querySelectorAll<HTMLButtonElement>('[data-map-expand]').forEach(b=>b.addEventListener('click',()=>expand(true)));
+  root.querySelectorAll<HTMLButtonElement>('[data-map-close-expanded]').forEach(b=>b.addEventListener('click',()=>expand(false)));
+
+  root.querySelectorAll<HTMLButtonElement>('[data-map-return]').forEach(b=>b.addEventListener('click',()=>{enabled=new Set(DEFAULT_LAYER_IDS);applyVisibility();root.dataset.explore='false';if(!context)writeMapState({layers:[...enabled],place:null,explore:false});map.fitBounds(WEST_PAPUA_BOUNDS,{padding:40,duration:650});panelOpen(false)}));
+  document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(panel&&!panel.hidden){panelOpen(false);return}if(root.classList.contains('map-expanded'))expand(false)});
 }
 
 export function initWatchMaps(){document.querySelectorAll<HTMLElement>('[data-watch-map]').forEach(root=>{if(root.dataset.mapInitialized==='true')return;root.dataset.mapInitialized='true';initOne(root).catch(err=>{console.warn('Watch map unavailable',err);root.dataset.mapError='true';const state=root.querySelector<HTMLElement>('[data-map-state]');if(state)state.textContent=root.dataset.locale==='pmy'?'Peta tidak tersedia':'Map data unavailable'})})}

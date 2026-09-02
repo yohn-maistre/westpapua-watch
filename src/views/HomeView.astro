@@ -4,25 +4,40 @@ import '../styles/home.css';
 import MapShell from '../components/map/MapShell.astro';
 import {issues} from '../data/issues';
 import {resources} from '../data/resources';
+import {developments} from '../data/developments';
 import {PROGRAMME} from '../data/site';
 import {t,withLocale} from '../lib/i18n';
 import type {Locale} from '../data/types';
 const {locale='en'}=Astro.props as {locale?:Locale};
 const featuredResources=resources.slice(0,5);
+const fallbackCurrent=developments.slice(0,3);
 ---
 <BaseLayout locale={locale} active="home" description={locale==='en'?'A living reference system for West Papua: geography, ongoing issues, current developments, history and sources.':'Sistem referensi hidup untuk Papua Barat: geografi, isu, perkembangan, sejarah, dan sumber.'}>
-  <MapShell locale={locale} mode="home" title={locale==='pmy'?'Papua Barat':'West Papua'} />
+  <MapShell locale={locale} mode="home" />
 
   <section class="section home-section"><div class="wrap">
     <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Issues.':'Isu.'}</h2><a href={withLocale('/issues/',locale)}>{locale==='en'?'All issues →':'Semua isu →'}</a></div>
-    <div class="home-issue-grid" data-home-issues>{issues.map((issue,index)=><a class="home-issue" href={withLocale(`/issues/${issue.slug}/`,locale)} data-home-issue={issue.slug}><small>{String(index+1).padStart(2,'0')} · {issue.category}</small><h3>{t(issue.title,locale)}</h3><p>{t(issue.summary,locale)}</p><footer><span data-home-issue-count>{t(issue.status,locale)}</span><span data-home-issue-updated>{issue.updatedAt}</span></footer></a>)}</div>
+    <div class="home-issue-grid" data-home-issues>
+      {issues.map((issue,index)=><a class="home-issue" href={withLocale(`/issues/${issue.slug}/`,locale)} data-home-issue={issue.slug}>
+        <small>{String(index+1).padStart(2,'0')} · {issue.category}</small><h3>{t(issue.title,locale)}</h3><p>{t(issue.summary,locale)}</p>
+        <footer><span data-home-issue-count>{t(issue.status,locale)}</span><span data-home-issue-updated>{issue.updatedAt}</span></footer>
+      </a>)}
+    </div>
   </div></section>
 
   <section class="section home-section"><div class="wrap">
     <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Current.':'Sekarang.'}</h2><a href={withLocale('/current/',locale)}>{locale==='en'?'All current developments →':'Semua perkembangan →'}</a></div>
-    <div class="home-current" data-home-current data-locale={locale}>
-      <a class="home-current-lead" data-home-current-lead href={withLocale('/current/',locale)}><div class="eyebrow" data-home-current-meta>{locale==='en'?'Latest development':'Perkembangan terbaru'}</div><h3 data-home-current-title>{locale==='en'?'Loading current developments…':'Memuat perkembangan…'}</h3><p data-home-current-summary></p></a>
-      <div class="home-current-list" data-home-current-list></div>
+    <div class="home-current-magazine" data-home-current data-locale={locale}>
+      {fallbackCurrent.slice(0,1).map((item)=><a class="home-current-card home-current-feature" data-home-current-card="0" href={withLocale('/current/',locale)}>
+        <img data-home-current-image src={item.image} alt={item.imageAlt} loading="lazy"/>
+        <div class="home-current-copy"><small data-home-current-meta>{item.category} · {item.place}</small><h3 data-home-current-title>{t(item.title,locale)}</h3><p data-home-current-summary>{t(item.summary,locale)}</p></div>
+      </a>)}
+      <div class="home-current-stack">
+        {fallbackCurrent.slice(1,3).map((item,index)=><a class="home-current-card" data-home-current-card={String(index+1)} href={withLocale('/current/',locale)}>
+          <img data-home-current-image src={item.image} alt={item.imageAlt} loading="lazy"/>
+          <div class="home-current-copy"><small data-home-current-meta>{item.category} · {item.place}</small><h3 data-home-current-title>{t(item.title,locale)}</h3><p data-home-current-summary>{t(item.summary,locale)}</p></div>
+        </a>)}
+      </div>
     </div>
   </div></section>
 
@@ -31,10 +46,34 @@ const featuredResources=resources.slice(0,5);
     <div class="home-resource-list">{featuredResources.map(r=><a href={r.url} target="_blank" rel="noreferrer"><span><small>{r.type} · {r.year}</small><strong>{r.title}</strong></span><span>{r.publisher}</span><i>↗</i></a>)}</div>
   </div></section>
 
-  <section class="section home-section home-programme"><div class="wrap"><a class="home-programme-row" href={withLocale(PROGRAMME.href,locale)}><small>{PROGRAMME.label} · {PROGRAMME.place}</small><strong>{t(PROGRAMME.title,locale)}</strong><span>10–12 Sep 2026 →</span></a></div></section>
+  <section class="section home-section home-programme"><div class="wrap">
+    <a class="home-programme-card" href={withLocale(PROGRAMME.href,locale)}>
+      <div class="home-programme-copy"><small>{PROGRAMME.label} · {PROGRAMME.place}</small><h3>Oceanic Solidarity</h3><p>{t(PROGRAMME.title,locale)}</p></div>
+      <div class="home-programme-art" aria-hidden="true"></div>
+      <div class="home-programme-meta"><span>10–12 Sep 2026</span><span>Programme →</span></div>
+    </a>
+  </div></section>
 
 <script>
-const root=document.querySelector<HTMLElement>('[data-home-current]');if(root){const locale=root.dataset.locale==='pmy'?'pmy':'en';const pick=(v:any)=>typeof v==='object'?(locale==='pmy'?(v.id||v.pmy||v.en):(v.en||v.id||'')):String(v||'');const rel=(iso:string)=>{if(!iso)return'';const h=Math.max(0,Math.round((Date.now()-new Date(iso).getTime())/36e5));return h<24?`${h}h`:`${Math.floor(h/24)}d`};fetch('/api/current').then(r=>r.ok?r.json():null).then(data=>{const items=data?.items||[];if(!items.length)return;const lead=items[0],card=root.querySelector<HTMLAnchorElement>('[data-home-current-lead]');if(card)card.href=`${locale==='pmy'?'/pmy':''}${lead.story_url}`;const title=root.querySelector('[data-home-current-title]'),summary=root.querySelector('[data-home-current-summary]'),meta=root.querySelector('[data-home-current-meta]');if(title)title.textContent=pick(lead.title);if(summary)summary.textContent=pick(lead.summary);if(meta)meta.textContent=[lead.place,`${lead.source_count||1} ${locale==='pmy'?'sumber':'sources'}`,rel(lead.updated_at)].filter(Boolean).join(' · ');const list=root.querySelector<HTMLElement>('[data-home-current-list]');if(list){for(const x of items.slice(1,5)){const a=document.createElement('a');a.href=`${locale==='pmy'?'/pmy':''}${x.story_url}`;const small=document.createElement('small');small.textContent=[x.place,`${x.source_count||1} ${locale==='pmy'?'sumber':'sources'}`].filter(Boolean).join(' · ');const h=document.createElement('strong');h.textContent=pick(x.title);const time=document.createElement('span');time.textContent=rel(x.updated_at);a.append(small,h,time);list.append(a)}}}).catch(()=>{})}
+const root=document.querySelector<HTMLElement>('[data-home-current]');
+if(root){
+  const locale=root.dataset.locale==='pmy'?'pmy':'en';
+  const pick=(v:any)=>typeof v==='object'?(locale==='pmy'?(v.id||v.pmy||v.en):(v.en||v.id||'')):String(v||'');
+  const rel=(iso:string)=>{if(!iso)return'';const h=Math.max(0,Math.round((Date.now()-new Date(iso).getTime())/36e5));return h<24?`${h}h`:`${Math.floor(h/24)}d`};
+  const fallbackFor=(x:any)=>x.issue_slug?.includes('raja')?'/images/abstract/raja-ampat.svg':x.issue_slug?.includes('south-papua')?'/images/abstract/merauke.svg':x.issue_slug?.includes('conflict')?'/images/abstract/highlands.svg':'/images/abstract/oceanic.svg';
+  fetch('/api/current').then(r=>r.ok?r.json():null).then(data=>{
+    const items=data?.items||[];
+    root.querySelectorAll<HTMLElement>('[data-home-current-card]').forEach((card)=>{
+      const i=Number(card.dataset.homeCurrentCard||0),x=items[i];if(!x){if(i>0)card.hidden=true;return}
+      const a=card as HTMLAnchorElement;a.href=`${locale==='pmy'?'/pmy':''}${x.story_url}`;
+      const title=card.querySelector<HTMLElement>('[data-home-current-title]'),summary=card.querySelector<HTMLElement>('[data-home-current-summary]'),meta=card.querySelector<HTMLElement>('[data-home-current-meta]'),img=card.querySelector<HTMLImageElement>('[data-home-current-image]');
+      if(title)title.textContent=pick(x.title);if(summary)summary.textContent=pick(x.summary);
+      if(meta)meta.textContent=[x.category,x.place,`${x.source_count||1} ${locale==='pmy'?'sumber':'sources'}`,rel(x.updated_at)].filter(Boolean).join(' · ');
+      if(img){const fb=fallbackFor(x);img.src=x.image?.url||fb;img.alt=pick(x.title);img.onerror=()=>{img.onerror=null;img.src=fb}}
+    })
+  }).catch(()=>{})
+}
+const locale=document.documentElement.lang==='id'?'pmy':'en';
 fetch('/api/issues').then(r=>r.ok?r.json():null).then(data=>{for(const x of data?.items||[]){const card=document.querySelector<HTMLElement>(`[data-home-issue="${CSS.escape(x.slug)}"]`);if(!card)continue;const count=card.querySelector<HTMLElement>('[data-home-issue-count]'),updated=card.querySelector<HTMLElement>('[data-home-issue-updated]');if(count)count.textContent=locale==='pmy'?`${x.development_count||0} perkembangan · ${x.source_count||0} sumber`:`${x.development_count||0} developments · ${x.source_count||0} sources`;if(updated&&x.updated_at)updated.textContent=new Date(x.updated_at).toLocaleDateString()}}).catch(()=>{});
 </script>
 </BaseLayout>

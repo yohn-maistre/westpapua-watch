@@ -10,6 +10,7 @@ export const SITE = {
 };
 
 export const NAV_ITEMS = [
+  { href: '/', key: 'home', label: { en: 'Overview', pmy: 'Ringkasan' } },
   { href: '/current/', key: 'current', label: { en: 'Current', pmy: 'Sekarang' } },
   { href: '/issues/', key: 'issues', label: { en: 'Issues', pmy: 'Isu' } },
   { href: '/history/', key: 'history', label: { en: 'History', pmy: 'Sejarah' } },

@@ -1,14 +1,14 @@
 export type MapLayerFamily='boundaries'|'extraction'|'environment'|'current';
 export type MapLayerSourceType='pmtiles'|'live';
+export type MapViewId='overview'|'extraction'|'environment'|'current';
 export type MapLayerDefinition={
   id:string;family:MapLayerFamily;title:string;titleId:string;description:string;descriptionId:string;
   sourceType:MapLayerSourceType;source:string;sourceLayer?:string;sourceUrl:string;attribution:string;license:string;
   coverage:string;coverageNotes?:string;coverageNotesId?:string;minZoom:number;maxZoom:number;defaultVisible:boolean;
   geometry:'line'|'fill'|'circle';style:Record<string,unknown>;
 };
+export type MapViewDefinition={id:MapViewId;title:string;titleId:string;layers:string[]};
 
-// Slightly past 141°E so the Indonesian boundary itself is not clipped, without
-// turning a Western New Guinea atlas into another world map by accident.
 export const WEST_PAPUA_BOUNDS:[[number,number],[number,number]]=[[129,-11],[141.15,1.5]];
 export const WEST_PAPUA_CENTER:[number,number]=[135.55,-4.1];
 
@@ -19,6 +19,13 @@ export const MAP_FAMILIES:{id:MapLayerFamily;title:string;titleId:string}[]=[
   {id:'current',title:'Current',titleId:'Sekarang'}
 ];
 
+export const MAP_VIEWS:MapViewDefinition[]=[
+  {id:'overview',title:'Overview',titleId:'Ringkasan',layers:['province-boundaries','cultural-regions','current-developments']},
+  {id:'extraction',title:'Extraction',titleId:'Ekstraksi',layers:['province-boundaries','cultural-regions','mining-permits','forest-plantation-permits','current-developments']},
+  {id:'environment',title:'Environment',titleId:'Lingkungan',layers:['province-boundaries','protected-areas','fire-hotspots','current-developments']},
+  {id:'current',title:'Current',titleId:'Sekarang',layers:['province-boundaries','current-developments']}
+];
+
 export const MAP_LAYERS:MapLayerDefinition[]=[
   {
     id:'province-boundaries',family:'boundaries',title:'Provinces',titleId:'Provinsi',
@@ -27,7 +34,7 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
     sourceUrl:'https://geoservices.big.go.id/rbi/rest/services/BATASWILAYAH/BATAS_WILAYAH/MapServer/12',
     attribution:'Badan Informasi Geospasial',license:'Public government geospatial service',coverage:'Western New Guinea',
     minZoom:3,maxZoom:12,defaultVisible:true,geometry:'line',
-    style:{'line-color':'#42434a','line-width':['interpolate',['linear'],['zoom'],3,0.9,8,1.45],'line-opacity':0.82}
+    style:{'line-color':'#4b4c54','line-width':['interpolate',['linear'],['zoom'],3,0.8,8,1.35],'line-opacity':0.78}
   },
   {
     id:'cultural-regions',family:'boundaries',title:'Cultural regions',titleId:'Wilayah budaya',
@@ -39,7 +46,7 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
     coverageNotes:'Generalized to whole regencies. Internal customary boundaries can differ and are not represented.',
     coverageNotesId:'Digeneralisasi mengikuti kabupaten. Batas adat di dalamnya dapat berbeda dan tidak digambarkan di sini.',
     minZoom:3,maxZoom:12,defaultVisible:true,geometry:'line',
-    style:{'line-color':'#7778ad','line-width':['interpolate',['linear'],['zoom'],3,1.05,8,1.7],'line-dasharray':[2.5,2.5],'line-opacity':0.82}
+    style:{'line-color':'#77799f','line-width':['interpolate',['linear'],['zoom'],3,1,8,1.55],'line-dasharray':[2.5,2.5],'line-opacity':0.74}
   },
   {
     id:'mining-permits',family:'extraction',title:'Mining permits',titleId:'Izin tambang',
@@ -47,7 +54,7 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
     sourceType:'pmtiles',source:'/geo/mining.pmtiles',sourceLayer:'mining',sourceUrl:'https://geoportal.esdm.go.id/gis1/rest/services/Join_WIUP_vs_IPPKH/MapServer/0',
     attribution:'Kementerian ESDM · Ditjen Minerba',license:'Open ArcGIS service',coverage:'Western New Guinea',
     minZoom:4,maxZoom:13,defaultVisible:false,geometry:'fill',
-    style:{'fill-color':'#b6a0c8','fill-opacity':0.24,'fill-outline-color':'#756486'}
+    style:{'fill-color':'#aaa0b3','fill-opacity':0.18,'fill-outline-color':'#756b7c'}
   },
   {
     id:'forest-plantation-permits',family:'extraction',title:'Forest & plantation permits',titleId:'Izin hutan & perkebunan',
@@ -56,7 +63,7 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
     attribution:'KLHK · BIG Satu Peta',license:'Kebijakan Satu Peta / Satu Data',coverage:'Western New Guinea',
     coverageNotes:'Plantation coverage is partial where public services expose only local permit layers.',coverageNotesId:'Cakupan izin perkebunan sebagian karena layanan publik hanya membuka sejumlah lapisan daerah.',
     minZoom:4,maxZoom:13,defaultVisible:false,geometry:'fill',
-    style:{'fill-color':['match',['get','jenis'],'logging','#b8ad82','hti','#a9b88d','sawit','#c2a286','#b5ab98'],'fill-opacity':0.22,'fill-outline-color':'#817866'}
+    style:{'fill-color':['match',['get','jenis'],'logging','#aaa38b','hti','#9eaa93','sawit','#b29a89','#a9a294'],'fill-opacity':0.18,'fill-outline-color':'#7d7669'}
   },
   {
     id:'protected-areas',family:'environment',title:'Protected areas',titleId:'Kawasan konservasi',
@@ -65,7 +72,7 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
     attribution:'BIG Satu Peta · environmental data producers',license:'Public government geospatial service',coverage:'Western New Guinea',
     coverageNotes:'Represents the published conservation-zoning layer, not every possible conservation designation.',coverageNotesId:'Menampilkan lapisan zonasi konservasi yang dipublikasikan, bukan seluruh jenis penetapan kawasan lindung.',
     minZoom:4,maxZoom:13,defaultVisible:false,geometry:'fill',
-    style:{'fill-color':'#98bca6','fill-opacity':0.2,'fill-outline-color':'#668774'}
+    style:{'fill-color':'#96ad9f','fill-opacity':0.17,'fill-outline-color':'#687e70'}
   },
   {
     id:'fire-hotspots',family:'environment',title:'Fire hotspots',titleId:'Titik panas',
@@ -73,7 +80,7 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
     sourceType:'live',source:'/api/fires',sourceUrl:'https://firms.modaps.eosdis.nasa.gov/',attribution:'NASA FIRMS · VIIRS NOAA-21',license:'NASA Earth observation data',coverage:'Western New Guinea',
     coverageNotes:'Near-real-time satellite detections; cloud and orbit timing affect observations.',coverageNotesId:'Deteksi satelit mendekati waktu nyata; awan dan waktu lintasan satelit memengaruhi pengamatan.',
     minZoom:3,maxZoom:14,defaultVisible:false,geometry:'circle',
-    style:{'circle-radius':['interpolate',['linear'],['zoom'],3,2.5,9,5.5],'circle-color':'#b56f5d','circle-opacity':0.78,'circle-stroke-color':'#fff7ed','circle-stroke-width':0.8}
+    style:{'circle-radius':['interpolate',['linear'],['zoom'],3,2.5,9,5.5],'circle-color':'#aa6f62','circle-opacity':0.76,'circle-stroke-color':'#faf8f3','circle-stroke-width':0.8}
   },
   {
     id:'current-developments',family:'current',title:'Current developments',titleId:'Perkembangan sekarang',
@@ -81,9 +88,10 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
     sourceType:'live',source:'/api/current',sourceUrl:'/current/',attribution:'West Papua Watch · linked reporting',license:'Watch metadata',coverage:'Published Developments with resolved coordinates',
     coverageNotes:'Developments without a resolved canonical coordinate remain in the newsroom but are not forced onto the map.',coverageNotesId:'Perkembangan tanpa koordinat kanonik tetap disimpan, tetapi tidak dipaksa muncul pada peta.',
     minZoom:3,maxZoom:14,defaultVisible:true,geometry:'circle',
-    style:{'circle-radius':['interpolate',['linear'],['zoom'],3,4,9,7],'circle-color':'#7779b7','circle-opacity':0.9,'circle-stroke-color':'#f7f5ef','circle-stroke-width':1.25}
+    style:{'circle-radius':['interpolate',['linear'],['zoom'],3,4,9,7],'circle-color':'#74779f','circle-opacity':0.88,'circle-stroke-color':'#f7f6fa','circle-stroke-width':1.25}
   }
 ];
 
 export const layerById=Object.fromEntries(MAP_LAYERS.map(layer=>[layer.id,layer])) as Record<string,MapLayerDefinition>;
-export const DEFAULT_LAYER_IDS=MAP_LAYERS.filter(layer=>layer.defaultVisible).map(layer=>layer.id);
+export const viewById=Object.fromEntries(MAP_VIEWS.map(view=>[view.id,view])) as Record<MapViewId,MapViewDefinition>;
+export const DEFAULT_LAYER_IDS=viewById.overview.layers;

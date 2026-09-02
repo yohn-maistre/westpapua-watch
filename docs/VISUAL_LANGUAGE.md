@@ -1,0 +1,39 @@
+# West Papua Watch — Visual language
+
+- Modern editorial, investigative, geographic.
+- Swiss hierarchy: direct labels, strong scale, disciplined alignment.
+- Dark near-black shell; cool white type; restrained cool haze.
+- Accent family: lilac/periwinkle/soft blue, used as signal rather than flood fill.
+- Let photographs, maps, exhibition works, and programme surfaces carry most color.
+- Avoid making every card purple; vary atmosphere through low-opacity gradients and source media.
+- Instrument Sans is the working voice; Instrument Serif is an accent, not body copy.
+- Large type should clarify hierarchy, not repeat nearby labels.
+- Prefer `Overview`, `Current`, `Issues`, `History`, `Resources`, `Events`, `Exhibition`.
+- Prefer plain controls: `View`, `Layers`, `Search`, `Expand`, `Close`, `Source`, `Updated`.
+- Avoid slogans and prose explaining what the interface is doing.
+- Components should feel related through spacing, typography, radii, lines, and controls, not identical layouts.
+- Current may be photographic and editorial.
+- Issues may be structured and spatial.
+- History may be archival and choreographed.
+- Exhibition may be the most colorful and expressive surface.
+- Maps are light atlas plates inside the dark site.
+- Map paper: cool pearl/off-white, not beige and not saturated purple.
+- Map selection may use restrained lilac; data categories should not default to rainbow colors.
+- Administrative boundaries and cultural/reference regions must have visibly different line grammar.
+- Contextual map titles may sit directly on the map; the full Overview map does not need a redundant title.
+- Embedded maps preserve page scrolling; fullscreen Explore behaves like a normal map.
+- Curated map `Views` are distinct from individual `Layers`.
+- Use established primitives for interaction/accessibility, but keep Watch-owned styling.
+- Rounded corners belong to media, map plates, panels, and selected cards; avoid pillifying everything.
+- Borders are quiet separators, not decoration.
+- Metadata is short and secondary: place · reports · sources · updated.
+- A Development is visually larger than an individual Report.
+- Homepage sections should preview their destination rather than duplicate the full destination.
+- Overview Current shows a small image-led selection; `/current` is the full stream.
+- Programme/campaign content should reuse one recognizable color-rich visual object.
+- Motion is restrained and purposeful; avoid animation where hierarchy already communicates change.
+- Mobile is a first-class layout, not a squeezed desktop.
+- Assume low-memory Android and weak connections.
+- Prefer progressive enhancement: reading remains useful if interactive GIS fails.
+- Never show fake/demo data to make an empty state look complete.
+- Source, date, coverage, and caveats are part of the visual system for public data.

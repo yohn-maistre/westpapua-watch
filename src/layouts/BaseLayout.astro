@@ -4,6 +4,7 @@ import '@fontsource/instrument-serif/400.css';
 import '@fontsource/instrument-serif/400-italic.css';
 import '../styles/global.css';
 import '../styles/polish-05.css';
+import '../styles/polish-10-5.css';
 import { SITE } from '../data/site';
 import type { Locale } from '../data/types';
 import ProgrammeBanner from '../components/ProgrammeBanner.astro';
@@ -40,14 +41,15 @@ const lang = locale==='pmy'?'id':'en';
 <body class:list={[immersive && 'exhibition-view-body']}>
   {!immersive && <ProgrammeBanner locale={locale} />}
   {!immersive && <Masthead locale={locale} active={active} path={Astro.url.pathname} />}
+  {!immersive && <div class="nav-sentinel" data-nav-sentinel aria-hidden="true"></div>}
   {!immersive && <CompactNav locale={locale} active={active} path={Astro.url.pathname} />}
   <main><slot /></main>
   {!immersive && !noFooter && <SiteFooter locale={locale} />}
   {!immersive && <AskDialog locale={locale} />}
   <script>
     const q=(s,root=document)=>root.querySelector(s); const qa=(s,root=document)=>[...root.querySelectorAll(s)];
-    const masthead=q('[data-masthead]');
-    if(masthead){const io=new IntersectionObserver(([e])=>document.body.classList.toggle('nav-collapsed',!e.isIntersecting),{threshold:.04});io.observe(masthead)}
+    const navSentinel=q('[data-nav-sentinel]');
+    if(navSentinel){const io=new IntersectionObserver(([e])=>{const crossed=!e.isIntersecting&&e.boundingClientRect.top<0;document.body.classList.toggle('nav-collapsed',crossed)},{threshold:0});io.observe(navSentinel)}
     const banner=q('[data-programme-start]');
     if(banner){const out=q('[data-countdown]',banner);const start=new Date(banner.dataset.programmeStart);const end=new Date(banner.dataset.programmeEnd);const tick=()=>{const now=new Date();let txt='10–12 Sep';if(now<start){const ms=start-now,d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4);txt=`starts in ${d}d ${h}h ${m}m`}else if(now<=end)txt='happening now';else txt='programme archive';if(out)out.textContent=txt};tick();setInterval(tick,60000)}
     const dialog=q('[data-ask-dialog]'); const input=q('[data-ask-input]',dialog); const results=q('[data-ask-results]',dialog); const answer=q('[data-ask-answer]',dialog); const submit=q('[data-ask-submit]',dialog); let corpus=[];
