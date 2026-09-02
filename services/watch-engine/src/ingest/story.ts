@@ -5,7 +5,7 @@ const clean=(v:any,n=16)=>Array.isArray(v)?v.map(String).map(x=>x.trim()).filter
 const conf=(v:any)=>Math.max(0,Math.min(1,Number(v)||0));
 const desk=(v:any):WatchDesk=>['environment','land','human_rights','politics','culture','regional','other'].includes(String(v))?v:'other';
 const WORD=/[\p{L}\p{N}]+/gu;
-const ENTITY=/Papua|Jayapura|Sentani|Raja Ampat|Sorong|Manokwari|Nabire|Merauke|Timika|Mimika|Biak|Wamena|Nduga|Intan Jaya|Yahukimo|Puncak|Fakfak|Kaimana|Tambrauw|Maybrat|ULMWP|KNPB|TPNPB|TNI|Polri|DPR|DPRK|MPR|PIF|Freeport|MIFEE|PSN/gi;
+const ENTITY=/West Papua|Papua Barat|Papua Tengah|Papua Pegunungan|Papua Selatan|Jayapura|Sentani|Raja Ampat|Sorong|Manokwari|Nabire|Merauke|Timika|Mimika|Biak|Wamena|Nduga|Intan Jaya|Yahukimo|Puncak|Fakfak|Kaimana|Tambrauw|Maybrat|ULMWP|KNPB|TPNPB|TNI|Polri|DPR|DPRK|MPR|PIF|Freeport|MIFEE|PSN/gi;
 
 const packetItemSchema={type:'object',properties:{
   article_id:{type:'integer'},summary_id:{type:'string'},key_points:{type:'array',items:{type:'string'}},what_changed:{type:'string'},
@@ -38,8 +38,10 @@ export function sharpenArticleEvidence(article:ExtractedArticle,maxChars=5200){
   return out.slice(0,maxChars);
 }
 
-function fallbackPacket(article:ExtractedArticle,source:SourceConfig,reason='structured extraction unavailable'):StoryPacket{
-  return {summary:article.description||article.title,key_points:[],what_changed:'',event_date:article.publishedAt,event_key:article.title.slice(0,220),action:'',object:'',places:[],people:[],organizations:[],topics:[],issue_candidates:[],watch_relevance:source.scope==='papua',watch_relevance_confidence:source.scope==='papua'?.56:.1,watch_relevance_reason:reason,watch_relevance_evidence:[],watch_desk:'other'};
+function fallbackPacket(article:ExtractedArticle,_source:SourceConfig,reason='structured extraction unavailable'):StoryPacket{
+  // Failure never becomes an implicit relevance verdict. The caller can safely
+  // keep deterministic Western matches, while ambiguous material is deferred.
+  return {summary:article.description||article.title,key_points:[],what_changed:'',event_date:article.publishedAt,event_key:article.title.slice(0,220),action:'',object:'',places:[],people:[],organizations:[],topics:[],issue_candidates:[],watch_relevance:false,watch_relevance_confidence:0,watch_relevance_reason:reason,watch_relevance_evidence:[],watch_desk:'other'};
 }
 
 function toPacket(obj:any,article:ExtractedArticle,source:SourceConfig):StoryPacket{
@@ -51,8 +53,8 @@ export type StoryPacketInput={id:number;article:ExtractedArticle;source:SourceCo
 export async function makeStoryPacketsBatch(env:any,inputs:StoryPacketInput[]):Promise<Map<number,StoryPacket>>{
   const result=new Map<number,StoryPacket>();
   if(!inputs.length)return result;
-  const payload=inputs.map(x=>`ARTICLE ${x.id}\nPublisher: ${x.source.name}\nRole: ${x.source.role}\nScope: ${x.source.scope}\n${sharpenArticleEvidence(x.article)}`).join('\n\n---\n\n');
-  const prompt=`Extract one independent conservative Story Packet for EACH numbered article. Never mix facts between articles. summary_id, key_points and what_changed must be Bahasa Indonesia. event_key is a short canonical description of the concrete event/change, not a broad topic. action and object should be short normalized phrases useful for event matching. Decide whether each article materially concerns Indonesian-administered Papua / West Papua, Papuan people, or a regional event whose substance directly concerns West Papua. Papua New Guinea alone is not relevant. Preserve uncertainty and attribution. Return exactly one item per ARTICLE id.\n\n${payload}`;
+  const payload=inputs.map(x=>`ARTICLE ${x.id}\nPublisher: ${x.source.name}\nRole: ${x.source.role}\nPublisher scope prior: ${x.source.scope}\n${sharpenArticleEvidence(x.article)}`).join('\n\n---\n\n');
+  const prompt=`Extract one independent conservative Story Packet for EACH numbered article. Never mix facts between articles. summary_id, key_points and what_changed must be Bahasa Indonesia. event_key is a short canonical description of the concrete event/change, not a broad topic. action and object should be short normalized phrases useful for event matching.\n\nDecide whether each article materially concerns Indonesian-administered Papua / West Papua, Papuan people, or a regional/national event whose substance directly concerns West Papua. Papua New Guinea alone is not relevant. Publisher identity alone is NOT evidence of relevance: Papua-focused publishers also publish Indonesian, Pacific, and international news. A story from Jubi/Aneta/Suara Papua still needs article-level relevance. Conversely, do not reject a materially relevant story merely because its headline omits the word Papua. Use the supplied text.\n\nPreserve uncertainty and attribution. watch_relevance_evidence must contain short evidence phrases from the article when relevance is true. Return exactly one item per ARTICLE id.\n\n${payload}`;
   try{
     const out:any=await runJson(env,[{role:'system',content:'You are a conservative multilingual news extraction desk. Each item is isolated evidence. Output only the supplied schema.'},{role:'user',content:prompt}],batchSchema,'fast',Math.min(3600,900+inputs.length*520));
     const byId=new Map((Array.isArray(out?.items)?out.items:[]).map((x:any)=>[Number(x.article_id),x]));

@@ -1,3 +1,4 @@
-type Env={WATCH_ENGINE?:Fetcher};
-const headers={'content-type':'application/json; charset=utf-8','cache-control':'public, max-age=120, stale-while-revalidate=300','x-content-type-options':'nosniff'};
-export const onRequestGet:PagesFunction<Env>=async({env})=>{if(!env.WATCH_ENGINE)return new Response(JSON.stringify({items:[],engine:false}),{status:503,headers});try{const response=await env.WATCH_ENGINE.fetch(new Request('https://watch.internal/emerging-issues',{headers:{accept:'application/json'}}));return new Response(response.body,{status:response.status,headers})}catch{return new Response(JSON.stringify({items:[],engine:false}),{status:503,headers})}};
+const headers={'content-type':'application/json; charset=utf-8','cache-control':'no-store','x-content-type-options':'nosniff'};
+// Emerging Issues are an internal discovery queue in Freeze 09, not a public
+// taxonomy feed. Steward-reviewed persistent Issues remain available at /api/issues.
+export const onRequestGet:PagesFunction=async()=>new Response(JSON.stringify({error:'Not found'}),{status:404,headers});

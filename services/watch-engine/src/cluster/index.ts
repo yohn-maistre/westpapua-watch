@@ -1,12 +1,12 @@
 import { runJson } from '../llm';
 import { jaccard,listOverlap,searchDevelopmentFts,upsertDevelopmentSearch } from '../search';
+import { issueSlugsFor,syncDevelopmentKnowledge } from '../knowledge';
 import { markDevelopmentEditorialPending } from './editorial';
 import type { StoryPacket } from '../types';
 
 const arr=(v:any)=>{try{const x=JSON.parse(String(v||'[]'));return Array.isArray(x)?x.map(String):[]}catch{return[]}};
 const dateScore=(a?:string,b?:string)=>{if(!a||!b)return .3;const d=Math.abs(+new Date(a)-+new Date(b))/864e5;if(d<=1)return 1;if(d<=3)return .82;if(d<=7)return .55;if(d<=14)return .25;return 0};
-const rules:[string,RegExp][]=[['mining-raja-ampat',/raja ampat|gag nikel|waigeo/i],['lake-sentani-watershed',/sentani|cycloop/i],['south-papua-food-energy-estate',/merauke|papua selatan|food estate|cetak sawah/i],['conflict-displacement-access',/pengungsi|displacement|konflik|conflict|militer|military|intan jaya|puncak|nduga/i],['women-gender',/perempuan|mama-mama|women|gender/i],['culture-memory-expression',/seni|art|film|musik|sastra|udeido|mambesak/i],['political-status-representation',/otonomi|autonomy|self-determination|merdeka|political status|status politik|pif|pacific islands forum/i]];
-export const matchIssue=(s:string)=>rules.find(([,r])=>r.test(s))?.[0]||null;
+export const matchIssue=(s:string)=>issueSlugsFor(s)[0]||null;
 
 type ClusterInput={article:any;packet:StoryPacket;vector?:number[]|null};
 type Candidate={id:number;score:number;title:string;summary:string;event_signature:string;event_date?:string;places:string[];organizations:string[]};
@@ -37,11 +37,12 @@ async function createDevelopment(env:any,article:any,p:StoryPacket){
   const issue=matchIssue(`${article.title} ${p.summary} ${p.issue_candidates.join(' ')}`),now=new Date().toISOString();
   const signature=`${p.event_key||article.title}\n${p.action||''} ${p.object||''}\nPlaces: ${p.places.join(', ')}\nOrganizations: ${p.organizations.join(', ')}`.slice(0,2200);
   const ins:any=await env.DB.prepare(`INSERT INTO developments(issue_slug,title_en,summary_en,title_id,summary_id,event_signature,status,first_seen_at,updated_at,last_growth_at,pipeline_version,editorial_pending) VALUES(?,?,?,?,?,?,'candidate',?,?,?,?,1)`).bind(issue,article.title,p.summary,article.title,p.summary,signature,article.published_at||article.fetched_at,now,now,2).run();
-  const id=Number(ins.meta.last_row_id);await upsertDevelopmentSearch(env,id,{title:article.title,summary:p.summary,event_key:p.event_key,event_signature:signature,places:p.places,organizations:p.organizations,topics:p.topics});return id;
+  const id=Number(ins.meta.last_row_id);await syncDevelopmentKnowledge(env,id,p,article.title);await upsertDevelopmentSearch(env,id,{title:article.title,summary:p.summary,event_key:p.event_key,event_signature:signature,places:p.places,organizations:p.organizations,topics:p.topics});return id;
 }
 
 async function attach(env:any,id:number,input:ClusterInput,method:string){
   await env.DB.prepare(`INSERT OR IGNORE INTO development_articles(development_id,article_id,membership_score,membership_method) VALUES(?,?,?,?)`).bind(id,input.article.id,1,method).run();
+  await syncDevelopmentKnowledge(env,id,input.packet,input.article.title||'');
   await env.DB.prepare(`UPDATE developments SET last_growth_at=?,updated_at=?,editorial_pending=1 WHERE id=?`).bind(new Date().toISOString(),new Date().toISOString(),id).run();
   await markDevelopmentEditorialPending(env,id);return id;
 }
@@ -53,7 +54,7 @@ export async function clusterArticles(env:any,inputs:ClusterInput[]){
   const results=new Map<number,number>();const ambiguous:{input:ClusterInput;candidates:Candidate[]}[]=[];
   for(const input of inputs){
     const linked:any=await env.DB.prepare(`SELECT development_id FROM development_articles WHERE article_id=? LIMIT 1`).bind(input.article.id).first();
-    if(linked?.development_id){await markDevelopmentEditorialPending(env,Number(linked.development_id));results.set(Number(input.article.id),Number(linked.development_id));continue}
+    if(linked?.development_id){await syncDevelopmentKnowledge(env,Number(linked.development_id),input.packet,input.article.title||'');await markDevelopmentEditorialPending(env,Number(linked.development_id));results.set(Number(input.article.id),Number(linked.development_id));continue}
     const cs=await candidatesFor(env,input),best=cs[0];
     if(best&&best.score>=.72){results.set(Number(input.article.id),await attach(env,best.id,input,'hybrid-high-confidence'));continue}
     if(!best||best.score<.34){const id=await createDevelopment(env,input.article,input.packet);await attach(env,id,input,'new-event');results.set(Number(input.article.id),id);continue}
@@ -80,9 +81,7 @@ export async function clusterArticle(env:any,article:any,vector?:number[]){
 }
 
 export async function reconcileRecentDevelopments(env:any,limit=8){
-  // Conservative deterministic reconciliation only. Ambiguous merges wait for future evidence;
-  // we do not spend an LLM call every edition merely to re-ask yesterday's topology.
   const rows:any=await env.DB.prepare(`SELECT id,title_en,title_id,summary_en,summary_id,event_signature FROM developments WHERE status IN ('published','candidate','retrying','editorial_queued') AND updated_at>=datetime('now','-7 days') ORDER BY updated_at DESC LIMIT ?`).bind(limit).all();
-  let merged=0;for(const seed of rows.results||[]){const ids=await searchDevelopmentFts(env,`${seed.event_signature||''} ${seed.title_id||seed.title_en}`,5);for(const targetId of ids){if(targetId===Number(seed.id))continue;const target:any=await env.DB.prepare(`SELECT id,title_en,title_id,summary_en,summary_id,event_signature FROM developments WHERE id=? AND status NOT IN ('merged','filtered')`).bind(targetId).first();if(!target)continue;const sim=Math.max(jaccard(seed.event_signature||seed.title_en,target.event_signature||target.title_en),jaccard(seed.title_id||seed.title_en,target.title_id||target.title_en));if(sim<.88)continue;const keep=Math.min(Number(seed.id),targetId),drop=Math.max(Number(seed.id),targetId);await env.DB.prepare(`INSERT OR IGNORE INTO development_articles(development_id,article_id,membership_score,membership_method) SELECT ?,article_id,membership_score,'reconcile-fts' FROM development_articles WHERE development_id=?`).bind(keep,drop).run();await env.DB.prepare(`UPDATE developments SET status='merged',merged_into_id=?,editorial_pending=0,updated_at=? WHERE id=?`).bind(keep,new Date().toISOString(),drop).run();await env.DB.prepare(`DELETE FROM development_articles WHERE development_id=?`).bind(drop).run();await markDevelopmentEditorialPending(env,keep);merged++;break}}
+  let merged=0;for(const seed of rows.results||[]){const ids=await searchDevelopmentFts(env,`${seed.event_signature||''} ${seed.title_id||seed.title_en}`,5);for(const targetId of ids){if(targetId===Number(seed.id))continue;const target:any=await env.DB.prepare(`SELECT id,title_en,title_id,summary_en,summary_id,event_signature FROM developments WHERE id=? AND status NOT IN ('merged','filtered')`).bind(targetId).first();if(!target)continue;const sim=Math.max(jaccard(seed.event_signature||seed.title_en,target.event_signature||target.title_en),jaccard(seed.title_id||seed.title_en,target.title_id||target.title_en));if(sim<.88)continue;const keep=Math.min(Number(seed.id),targetId),drop=Math.max(Number(seed.id),targetId),now=new Date().toISOString();await env.DB.prepare(`INSERT OR IGNORE INTO development_articles(development_id,article_id,membership_score,membership_method) SELECT ?,article_id,membership_score,'reconcile-fts' FROM development_articles WHERE development_id=?`).bind(keep,drop).run();await env.DB.prepare(`INSERT INTO development_issues(development_id,issue_slug,score,relation,created_at,updated_at) SELECT ?,issue_slug,score,relation,?,? FROM development_issues WHERE development_id=? ON CONFLICT(development_id,issue_slug) DO UPDATE SET score=MAX(development_issues.score,excluded.score),updated_at=excluded.updated_at`).bind(keep,now,now,drop).run();await env.DB.prepare(`INSERT INTO development_places(development_id,place_slug,score,relation,created_at,updated_at) SELECT ?,place_slug,score,relation,?,? FROM development_places WHERE development_id=? ON CONFLICT(development_id,place_slug) DO UPDATE SET score=MAX(development_places.score,excluded.score),updated_at=excluded.updated_at`).bind(keep,now,now,drop).run();await env.DB.prepare(`UPDATE developments SET status='merged',merged_into_id=?,editorial_pending=0,updated_at=? WHERE id=?`).bind(keep,now,drop).run();await env.DB.prepare(`DELETE FROM development_articles WHERE development_id=?`).bind(drop).run();await markDevelopmentEditorialPending(env,keep);merged++;break}}
   return {checked:(rows.results||[]).length,merged};
 }

@@ -70,6 +70,18 @@ jobs:
             exit 0
           fi
           printf '%s' "$AI_GATEWAY_TOKEN" | npx --no-install wrangler secret put AI_GATEWAY_TOKEN --config services/watch-engine/wrangler.generated.jsonc
+      - name: Sync Watch Engine admin token
+        if: ${{ vars.WATCH_DB_ID != '' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          WATCH_ADMIN_TOKEN: ${{ secrets.WATCH_ADMIN_TOKEN }}
+        run: |
+          if [ -z "$WATCH_ADMIN_TOKEN" ]; then
+            echo "::warning::WATCH_ADMIN_TOKEN is not configured; operational HTTP endpoints will fail closed."
+            exit 0
+          fi
+          printf '%s' "$WATCH_ADMIN_TOKEN" | npx --no-install wrangler secret put WATCH_ADMIN_TOKEN --config services/watch-engine/wrangler.generated.jsonc
       - name: Ensure Pages project exists
         continue-on-error: true
         env:

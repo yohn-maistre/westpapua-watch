@@ -4,31 +4,33 @@ import { makeStoryPacketsBatch } from './story';
 import { tryEmbedText } from '../embedding';
 import { clusterArticles } from '../cluster';
 import { maybeResourceCandidate } from '../resources';
-import { prefilterArticle,type PrefilterDecision } from './prefilter';
+import { hasWesternSignal,looksForeignOnly,prefilterArticle,type PrefilterDecision } from './prefilter';
 import { upsertArticleSearch } from '../search';
 import type { ExtractedArticle,IngestBatchMessage,IngestMessage,SourceConfig,StoryPacket } from '../types';
 
-const WESTERN=/\bwest papua\b|papua barat(?: daya)?|papua tengah|papua pegunungan|papua selatan|jayapura|sentani|cycloop|raja ampat|sorong|manokwari|nabire|merauke|timika|mimika|biak|supiori|serui|yapen|wamena|jayawijaya|puncak|nduga|intan jaya|yahukimo|deiyai|dogiyai|paniai|fakfak|kaimana|tambrauw|maybrat|arfak|mamberamo|asmat|boven digoel|lanny jaya|tolikara|oap\b|orang asli papua|knpb|ulmwp|tpnpb/i;
-const PNG_ONLY=/papua new guinea|port moresby|mount hagen|pngdf|lae\b|bougainville|madang|morobe/i;
 const canonical=(url:string)=>{try{const u=new URL(url);['utm_source','utm_medium','utm_campaign','utm_content','fbclid','gclid'].forEach(k=>u.searchParams.delete(k));u.hash='';return u.href.replace(/\/$/,'')}catch{return url}};
 async function sha256(text:string){const bytes=new TextEncoder().encode(text.replace(/\s+/g,' ').trim());const hash=await crypto.subtle.digest('SHA-256',bytes);return [...new Uint8Array(hash)].map(x=>x.toString(16).padStart(2,'0')).join('')}
 const parse=(v:any)=>{try{const x=JSON.parse(String(v||'[]'));return Array.isArray(x)?x.map(String):[]}catch{return[]}};
+const degraded=(reason:string)=>/batch failed|omitted this article|structured extraction unavailable|structured extraction/i.test(String(reason||''));
 
 type Prepared={id:number;source:SourceConfig;extracted:ExtractedArticle;decision:PrefilterDecision;syndicatedFrom?:number|null;packet?:StoryPacket;row?:any};
+type RelevanceDisposition='relevant'|'irrelevant'|'deferred';
 
 function packetFromRow(prior:any,extracted:ExtractedArticle):StoryPacket{
-  return {summary:prior.summary,key_points:parse(prior.key_points_json),what_changed:prior.what_changed||'',event_date:prior.event_date||extracted.publishedAt,event_key:prior.event_key||extracted.title,action:prior.action||'',object:prior.object||'',places:parse(prior.places_json),people:parse(prior.people_json),organizations:parse(prior.organizations_json),topics:parse(prior.topics_json),issue_candidates:parse(prior.issue_candidates_json),watch_relevance:prior.watch_relevance===1,watch_relevance_confidence:Number(prior.watch_relevance_confidence||.9),watch_relevance_reason:prior.watch_relevance_reason||'syndicated from prior packet',watch_relevance_evidence:parse(prior.watch_relevance_evidence_json),watch_desk:prior.watch_desk||'other'};
+  return {summary:prior.summary,key_points:parse(prior.key_points_json),what_changed:prior.what_changed||'',event_date:prior.event_date||extracted.publishedAt,event_key:prior.event_key||extracted.title,action:prior.action||'',object:prior.object||'',places:parse(prior.places_json),people:parse(prior.people_json),organizations:parse(prior.organizations_json),topics:parse(prior.topics_json),issue_candidates:parse(prior.issue_candidates_json),watch_relevance:prior.watch_relevance===1,watch_relevance_confidence:Number(prior.watch_relevance_confidence||0),watch_relevance_reason:prior.watch_relevance_reason||'syndicated from prior packet',watch_relevance_evidence:parse(prior.watch_relevance_evidence_json),watch_desk:prior.watch_desk||'other'};
 }
 
-function packetRelevant(packet:StoryPacket,source:SourceConfig,article:ExtractedArticle,decision:PrefilterDecision){
-  if(source.scope==='papua')return true;
-  const high=`${article.title} ${article.description} ${packet.summary} ${packet.places.join(' ')} ${(packet.watch_relevance_evidence||[]).join(' ')}`;
-  const strong=WESTERN.test(high),pngOnly=PNG_ONLY.test(high)&&!strong;
-  if(pngOnly)return false;
-  if(decision==='keep')return true;
-  if(/batch failed|omitted this article|structured extraction/i.test(packet.watch_relevance_reason||''))return true; // recall-first degradation
-  const modelYes=packet.watch_relevance===true&&(packet.watch_relevance_confidence||0)>=.66;
-  return modelYes&&(strong||(packet.watch_relevance_evidence||[]).length>0||/\bpapua\b/i.test(high));
+function relevanceDisposition(packet:StoryPacket,article:ExtractedArticle,decision:PrefilterDecision):RelevanceDisposition{
+  const evidence=`${article.title} ${article.description} ${packet.summary} ${packet.places.join(' ')} ${(packet.watch_relevance_evidence||[]).join(' ')}`;
+  if(hasWesternSignal(evidence)||decision==='keep')return 'relevant';
+  if(looksForeignOnly(evidence))return 'irrelevant';
+  // If structured extraction failed, ambiguous material waits for a later fast-lane
+  // slot. We neither publish it nor silently throw it away.
+  if(degraded(packet.watch_relevance_reason||''))return 'deferred';
+  const confidence=Number(packet.watch_relevance_confidence||0);
+  if(packet.watch_relevance===true&&confidence>=.66)return 'relevant';
+  if(packet.watch_relevance===false&&confidence>=.70)return 'irrelevant';
+  return 'deferred';
 }
 
 async function prepare(env:any,message:IngestMessage):Promise<Prepared|null>{
@@ -60,14 +62,20 @@ async function processBatch(env:any,messages:IngestMessage[]){
   for(let i=0;i<needModel.length;i+=4){const chunk=needModel.slice(i,i+4);const packets=await makeStoryPacketsBatch(env,chunk.map(p=>({id:p.id,article:p.extracted,source:p.source})));for(const p of chunk)p.packet=packets.get(p.id)!}
   for(const p of prepared)if(p.packet)await persistPacket(env,p,p.packet);
 
-  const clusterable:Prepared[]=[];
-  for(const p of prepared){const packet=p.packet!;const row:any={id:p.id,title:p.extracted.title,summary:p.extracted.description,body_excerpt:p.extracted.body.slice(0,12000),published_at:p.extracted.publishedAt,fetched_at:new Date().toISOString()};await upsertArticleSearch(env,row,packet);if(!packetRelevant(packet,p.source,p.extracted,p.decision)){await env.DB.prepare(`UPDATE articles SET status='filtered' WHERE id=?`).bind(p.id).run();continue}clusterable.push(p)}
+  const clusterable:Prepared[]=[];let deferred=0,filtered=0;
+  for(const p of prepared){
+    const packet=p.packet!;const row:any={id:p.id,title:p.extracted.title,summary:p.extracted.description,body_excerpt:p.extracted.body.slice(0,12000),published_at:p.extracted.publishedAt,fetched_at:new Date().toISOString()};await upsertArticleSearch(env,row,packet);
+    const disposition=relevanceDisposition(packet,p.extracted,p.decision);
+    if(disposition==='irrelevant'){await env.DB.prepare(`UPDATE articles SET status='filtered' WHERE id=?`).bind(p.id).run();filtered++;continue}
+    if(disposition==='deferred'){await env.DB.prepare(`UPDATE articles SET status='relevance_deferred' WHERE id=?`).bind(p.id).run();deferred++;continue}
+    clusterable.push(p);
+  }
 
   const clusterInputs=[] as any[];
   for(const p of clusterable){const embeddingInput=`${p.extracted.title}\n${p.packet!.event_key||''}\n${p.packet!.summary}\n${p.packet!.what_changed}\nPlaces: ${p.packet!.places.join(', ')}\nOrganizations: ${p.packet!.organizations.join(', ')}`;const vector=await tryEmbedText(env,embeddingInput);if(vector){try{await env.ARTICLE_INDEX.upsert([{id:String(p.id),values:vector,metadata:{kind:'article',publisher:p.source.id,publishedAt:p.extracted.publishedAt||new Date().toISOString(),title:p.extracted.title}}])}catch(e){console.warn('optional article Vectorize upsert failed',p.id,e)}}const row=await env.DB.prepare(`SELECT * FROM articles WHERE id=?`).bind(p.id).first();clusterInputs.push({article:row,packet:p.packet,vector})}
   const clustered=await clusterArticles(env,clusterInputs);
   for(const p of clusterable){const developmentId=clustered.get(p.id);await maybeResourceCandidate(env,{...p.extracted,id:p.id,packet:p.packet},p.source);await env.DB.prepare(`UPDATE articles SET status='clustered' WHERE id=?`).bind(p.id).run();console.log('article clustered',p.id,developmentId)}
-  return {received:messages.length,prepared:prepared.length,clustered:clusterable.length};
+  return {received:messages.length,prepared:prepared.length,clustered:clusterable.length,deferred,filtered};
 }
 
 export async function processArticle(env:any,message:IngestMessage|IngestBatchMessage){
@@ -75,8 +83,14 @@ export async function processArticle(env:any,message:IngestMessage|IngestBatchMe
   return processBatch(env,[message as IngestMessage]);
 }
 
+export async function enqueueDeferredRelevance(env:any,limit=10){
+  const rows:any=await env.DB.prepare(`SELECT id,publisher_id,canonical_url,title,published_at,status,fetched_at FROM articles WHERE status='relevance_deferred' OR (status='relevance_queued' AND fetched_at<=datetime('now','-1 hour')) ORDER BY COALESCE(published_at,fetched_at) DESC LIMIT ?`).bind(Math.max(1,Math.min(30,limit))).all();
+  const items:IngestMessage[]=[];for(const row of rows.results||[]){await env.DB.prepare(`UPDATE articles SET status='relevance_queued' WHERE id=?`).bind(row.id).run();items.push({sourceId:row.publisher_id,url:row.canonical_url,title:row.title,publishedAt:row.published_at,force:true})}
+  for(let i=0;i<items.length;i+=4)await env.INGEST_QUEUE.send({kind:'ingest_batch',items:items.slice(i,i+4)});return {queued:items.length};
+}
+
 export async function enqueueLegacyReprocessing(env:any,limit=10){
   const rows:any=await env.DB.prepare(`SELECT d.id development_id,a.id article_id,a.publisher_id,a.canonical_url,a.title,a.published_at FROM developments d JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id WHERE d.pipeline_version=1 AND d.status IN ('candidate','held','retrying') GROUP BY d.id HAVING COUNT(da.article_id)=1 ORDER BY d.updated_at ASC LIMIT ?`).bind(limit).all();const items:IngestMessage[]=[];
   for(const row of rows.results||[]){await env.DB.prepare(`DELETE FROM development_articles WHERE development_id=?`).bind(row.development_id).run();await env.DB.prepare(`DELETE FROM developments WHERE id=?`).bind(row.development_id).run();await env.DB.prepare(`UPDATE articles SET status='normalized' WHERE id=?`).bind(row.article_id).run();items.push({sourceId:row.publisher_id,url:row.canonical_url,title:row.title,publishedAt:row.published_at,force:true})}
-  if(items.length)await env.INGEST_QUEUE.send({kind:'ingest_batch',items});return {queued:items.length};
+  for(let i=0;i<items.length;i+=4)await env.INGEST_QUEUE.send({kind:'ingest_batch',items:items.slice(i,i+4)});return {queued:items.length};
 }
