@@ -1,4 +1,5 @@
-import maplibregl,{type Map as MLMap,type MapMouseEvent} from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
+import type {Map as MLMap,MapMouseEvent} from 'maplibre-gl';
 import {Protocol} from 'pmtiles';
 import {DEFAULT_LAYER_IDS,MAP_LAYERS,WEST_PAPUA_BOUNDS,WEST_PAPUA_CENTER,layerById,type MapLayerDefinition} from './registry';
 import {parseMapState,writeMapState} from './state';
