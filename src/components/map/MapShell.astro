@@ -21,6 +21,13 @@ const viewFor=(view:any)=>locale==='pmy'?view.titleId:view.title;
 <section class:list={['watch-map',mode==='context'&&'watch-map-context']} data-watch-map data-locale={locale} data-context={context} data-context-value={contextValue} data-initial-view={initialView} data-explore="false">
   <div class="watch-map-frame">
     <div class="watch-map-canvas" data-map-canvas></div>
+    <div class="watch-map-fallback" data-map-fallback hidden>
+      <div>
+        <strong>{locale==='pmy'?'Peta tidak tersedia.':'Map unavailable.'}</strong>
+        <p>{locale==='pmy'?'Konten Watch tetap bisa dibuka lewat Isu dan Sekarang.':'Watch remains available through Issues and Current.'}</p>
+        <nav><a href={locale==='pmy'?'/pmy/issues/':'/issues/'}>{locale==='pmy'?'Isu':'Issues'}</a><a href={locale==='pmy'?'/pmy/current/':'/current/'}>{locale==='pmy'?'Sekarang':'Current'}</a></nav>
+      </div>
+    </div>
     {mode==='context'&&title&&<div class="watch-map-heading"><span>{eyebrow}</span><h2>{title}</h2></div>}
     <div class="watch-map-state" data-map-state></div>
 
@@ -51,7 +58,7 @@ const viewFor=(view:any)=>locale==='pmy'?view.titleId:view.title;
       <a data-map-feature-source target="_blank" rel="noreferrer"></a>
     </aside>
 
-    <div class="watch-map-credit"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors</a> · <a href="https://openfreemap.org/" target="_blank" rel="noreferrer">OpenFreeMap</a> · <span>{labels.source}: layer metadata</span></div>
+    <div class="watch-map-credit"><span>BIG · Bappenas · ESDM · NASA FIRMS · {labels.source}: layer metadata</span></div>
   </div>
 </section>
 <script>

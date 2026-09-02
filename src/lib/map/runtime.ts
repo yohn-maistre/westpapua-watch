@@ -3,7 +3,7 @@ import type {Map as MLMap,MapMouseEvent} from 'maplibre-gl';
 import {Protocol} from 'pmtiles';
 import {DEFAULT_LAYER_IDS,MAP_LAYERS,MAP_VIEWS,WEST_PAPUA_BOUNDS,WEST_PAPUA_CENTER,layerById,viewById,type MapLayerDefinition,type MapViewId} from './registry';
 import {parseMapState,writeMapState} from './state';
-import {WATCH_BASE_STYLE} from './style';
+import {WATCH_BASE_STYLE,WATCH_ATLAS_COLORS} from './style';
 
 type FeatureCollection={type:'FeatureCollection';features:any[]};
 let protocolReady=false;
@@ -12,6 +12,20 @@ const emptyFC=():FeatureCollection=>({type:'FeatureCollection',features:[]});
 const absolute=(path:string)=>new URL(path,location.origin).href;
 const pmtilesUrl=(path:string)=>`pmtiles://${absolute(path)}`;
 const pickCoord=(places:any[])=>{for(const p of places||[]){const lat=Number(p.latitude),lon=Number(p.longitude);if(Number.isFinite(lat)&&Number.isFinite(lon))return [lon,lat] as [number,number]}return null};
+
+function lowMemoryDevice(){
+  const nav=navigator as Navigator&{deviceMemory?:number;connection?:{saveData?:boolean}};
+  return Boolean((nav.deviceMemory&&nav.deviceMemory<=4)||nav.connection?.saveData||innerWidth<=520);
+}
+function showFallback(root:HTMLElement,reason:string){
+  root.classList.add('map-fallback');root.dataset.mapError=reason;
+  const fallback=root.querySelector<HTMLElement>('[data-map-fallback]');if(fallback)fallback.hidden=false;
+  const state=root.querySelector<HTMLElement>('[data-map-state]');if(state)state.textContent=root.dataset.locale==='pmy'?'Peta tidak tersedia':'Map unavailable';
+}
+function rendererFor(map:MLMap){
+  const canvas=map.getCanvas();
+  return canvas.getContext('webgl2')?'webgl2':canvas.getContext('webgl')?'webgl1':'unknown';
+}
 
 function developmentFeature(data:any,id:any){const c=pickCoord(data?.places);if(!c)return null;const d=data?.development||{};return {type:'Feature',geometry:{type:'Point',coordinates:c},properties:{kind:'development',id:Number(id)||d.id,title:d.title_en||'Development',title_id:d.title_id||d.title_en||'',summary:d.summary_en||'',story_url:`/story/?id=${Number(id)||d.id}`,place:data?.places?.[0]?.name||'',source_count:Number(data?.articles?.length||0),updated_at:d.updated_at||''}}}
 
@@ -64,6 +78,7 @@ function matchingView(enabled:Set<string>):MapViewId|null{for(const view of MAP_
 
 async function initOne(root:HTMLElement){
   ensureProtocol();const locale:'en'|'pmy'=root.dataset.locale==='pmy'?'pmy':'en';const canvas=root.querySelector<HTMLElement>('[data-map-canvas]');if(!canvas)return;
+  const lowMemory=lowMemoryDevice();root.dataset.mapLowMemory=lowMemory?'true':'false';
   const status=await fetch('/api/geo-status',{headers:{accept:'application/json'}}).then(r=>r.ok?r.json():{layers:{}}).catch(()=>({layers:{}}));
   const state=parseMapState(location.search);const context=root.dataset.context||'';let current=emptyFC();try{current=await currentGeoJSON(root)}catch{}
   if(context==='development'&&current.features.length===0){root.hidden=true;return}
@@ -74,10 +89,17 @@ async function initOne(root:HTMLElement){
   let activeView:MapViewId|null=matchingView(enabled);
 
   const map=new maplibregl.Map({
-    container:canvas,style:WATCH_BASE_STYLE,center:WEST_PAPUA_CENTER,zoom:4.05,minZoom:3,maxZoom:14,maxBounds:WEST_PAPUA_BOUNDS,
-    attributionControl:false,dragRotate:false,pitchWithRotate:false,renderWorldCopies:false,fadeDuration:120,cooperativeGestures:true
+    container:canvas,style:WATCH_BASE_STYLE as any,center:WEST_PAPUA_CENTER,zoom:4.05,minZoom:3,maxZoom:14,maxBounds:WEST_PAPUA_BOUNDS,
+    attributionControl:false,dragRotate:false,pitchWithRotate:false,renderWorldCopies:false,fadeDuration:lowMemory?0:120,cooperativeGestures:true,
+    pixelRatio:lowMemory?1:Math.min(window.devicePixelRatio||1,1.5),
+    maxTileCacheSize:lowMemory?16:48,maxTileCacheZoomLevels:lowMemory?1:3
   });
+  root.dataset.mapRenderer=rendererFor(map);
+  console.info('[Watch map] renderer',root.dataset.mapRenderer,'lowMemory',lowMemory);
   map.addControl(new maplibregl.NavigationControl({showCompass:false,visualizePitch:false}),'bottom-right');
+  let contextLossTimer=0;
+  map.getCanvas().addEventListener('webglcontextlost',()=>{root.dataset.mapRenderer='context-lost';window.clearTimeout(contextLossTimer);contextLossTimer=window.setTimeout(()=>showFallback(root,'webgl-context-lost'),2400)});
+  map.getCanvas().addEventListener('webglcontextrestored',()=>{window.clearTimeout(contextLossTimer);root.classList.remove('map-fallback');const fb=root.querySelector<HTMLElement>('[data-map-fallback]');if(fb)fb.hidden=true;root.dataset.mapRenderer=rendererFor(map)});
 
   map.on('error',(event:any)=>console.warn('[Watch map]',event?.error||event));
   const unavailable=new Set<string>();
@@ -92,6 +114,9 @@ async function initOne(root:HTMLElement){
       else if(def.id==='fire-hotspots')data=await fireGeoJSON();
       try{
         map.addSource(`watch-source-${def.id}`,sourceSpec(def,data));
+        if(def.id==='province-boundaries'&&!map.getLayer('watch-land')){
+          map.addLayer({id:'watch-land',type:'fill',source:'watch-source-province-boundaries','source-layer':'provinces',minzoom:3,maxzoom:12,paint:{'fill-color':WATCH_ATLAS_COLORS.land,'fill-opacity':1}} as any);
+        }
         map.addLayer(createMapLayer(def));
         setLayerVisibility(map,def.id,enabled.has(def.id));
       }catch(error){unavailable.add(def.id);console.warn(`[Watch map] failed to register ${def.id}`,error)}
@@ -152,4 +177,4 @@ async function initOne(root:HTMLElement){
   document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(panel&&!panel.hidden){panelOpen(false);return}if(root.classList.contains('map-expanded'))expand(false)});
 }
 
-export function initWatchMaps(){document.querySelectorAll<HTMLElement>('[data-watch-map]').forEach(root=>{if(root.dataset.mapInitialized==='true')return;root.dataset.mapInitialized='true';initOne(root).catch(err=>{console.warn('Watch map unavailable',err);root.dataset.mapError='true';const state=root.querySelector<HTMLElement>('[data-map-state]');if(state)state.textContent=root.dataset.locale==='pmy'?'Peta tidak tersedia':'Map data unavailable'})})}
+export function initWatchMaps(){document.querySelectorAll<HTMLElement>('[data-watch-map]').forEach(root=>{if(root.dataset.mapInitialized==='true')return;root.dataset.mapInitialized='true';initOne(root).catch(err=>{console.warn('Watch map unavailable',err);showFallback(root,err instanceof Error?err.name:'initialization-failed')})})}
