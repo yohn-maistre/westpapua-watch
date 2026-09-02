@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "scope": "Western New Guinea",
+    "purpose": "Major extraction operations that are important to the public map but are not reliably represented by the current public IUP/WIUP polygon service.",
+    "updated": "2026-09-03"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.11583,
+          -4.05278
+        ]
+      },
+      "properties": {
+        "name": "PT Freeport Indonesia \u2014 Grasberg",
+        "operator": "PT Freeport Indonesia",
+        "site": "Grasberg / Tembagapura, Mimika",
+        "province": "Central Papua",
+        "commodity": "Copper \u00b7 gold \u00b7 silver",
+        "kind": "Major mining operation",
+        "geometry_note": "Operating-site point; not an IUPK boundary",
+        "source": "PT Freeport Indonesia \u2014 Our Operation Areas",
+        "source_url": "https://ptfi.co.id/en/our-operation-areas",
+        "coordinate_source": "Australian Mammalogy 47 (2025), study area coordinate",
+        "coordinate_source_url": "https://connectsci.au/am/article/47/2/AM23047/200280/Investigation-of-free-living-highland-wild-dogs"
+      }
+    }
+  ]
+}

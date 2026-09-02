@@ -1,0 +1,108 @@
+/* Freeze 10.7 — atlas papercuts, mobile sheet, and masthead hierarchy. */
+
+/* One top-chrome contract for every sticky History stage. */
+:root{--history-sticky-top:var(--compact-nav-height,62px)}
+.history-spread-stage{top:var(--history-sticky-top)!important}
+
+.watch-map-feature a[hidden]{display:none!important}
+
+/* Give the low-memory renderer enough neighboring tiles to avoid visible gaps
+   during zoom while retaining DPR=1 on constrained devices. */
+body.map-sheet-open{overflow:hidden!important;touch-action:none}
+
+/* Keep the compact header itself opaque. Only the horizontally scrollable
+   menu text gets the edge fade from polish-10-6.css. */
+.compact-nav{
+  background:var(--bg)!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+
+@media(max-width:760px){
+  /* Overview sits above the six section destinations in the full masthead. */
+  .masthead-nav{
+    grid-template-columns:repeat(6,minmax(0,1fr))!important;
+    grid-template-rows:auto auto;
+    gap:0!important;
+    margin-top:1.2rem!important;
+  }
+  .masthead-nav a{
+    grid-column:auto!important;
+    min-height:38px!important;
+    padding:.4rem .12rem!important;
+    font-size:clamp(.62rem,2.25vw,.72rem)!important;
+    justify-content:center!important;
+    text-align:center;
+    white-space:nowrap;
+  }
+  .masthead-nav a:nth-child(n+5){grid-column:auto!important}
+  .masthead-nav a:first-child{
+    grid-column:1/-1!important;
+    justify-self:end!important;
+    width:auto!important;
+    min-height:auto!important;
+    padding:.25rem .1rem .55rem!important;
+    border-right:0!important;
+    border-bottom:0!important;
+    font-size:.77rem!important;
+    font-weight:700;
+    color:var(--fg);
+  }
+  .masthead-nav a:nth-child(7){border-right:0!important}
+  .masthead-nav a:nth-child(7)::before{
+    content:"✦";
+    display:inline-block;
+    margin-right:.38rem;
+    color:var(--accent);
+    font-size:.78em;
+    transform:translateY(-.04em);
+  }
+
+  /* Compact nav stays a single rail; Exhibition carries the small attention cue. */
+  .compact-links a:nth-child(7)::before{
+    content:"✦";
+    margin-right:.28rem;
+    color:var(--accent);
+    font-size:.78em;
+  }
+
+  /* The granular layer picker behaves like a real viewport sheet, not an
+     oversized child of the map that leaks scroll into the page. */
+  .watch-map-panel-backdrop{
+    position:fixed!important;
+    inset:0!important;
+    z-index:1190!important;
+    background:rgba(8,10,16,.28)!important;
+    backdrop-filter:blur(2px)!important;
+  }
+  .watch-map-layer-panel{
+    position:fixed!important;
+    z-index:1200!important;
+    left:10px!important;
+    right:10px!important;
+    top:auto!important;
+    bottom:max(10px,env(safe-area-inset-bottom))!important;
+    width:auto!important;
+    max-height:min(70dvh,620px)!important;
+    overflow-y:auto!important;
+    overscroll-behavior:contain!important;
+    touch-action:pan-y!important;
+    -webkit-overflow-scrolling:touch;
+    border-radius:22px!important;
+  }
+
+  /* Keep homepage section actions close to the content they introduce. */
+  .home-section .home-head{
+    gap:.3rem!important;
+    margin-bottom:.7rem!important;
+  }
+  .home-section .home-head>a{
+    margin:0 0 .1rem!important;
+    line-height:1.2;
+  }
+  .home-head + .home-resource-list,
+  .home-head + .home-current-magazine,
+  .home-head + .home-issue-grid{
+    margin-top:0!important;
+  }
+}

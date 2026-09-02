@@ -20,8 +20,8 @@ export const MAP_FAMILIES:{id:MapLayerFamily;title:string;titleId:string}[]=[
 ];
 
 export const MAP_VIEWS:MapViewDefinition[]=[
-  {id:'overview',title:'Overview',titleId:'Ringkasan',layers:['province-boundaries','cultural-regions','current-developments']},
-  {id:'extraction',title:'Extraction',titleId:'Ekstraksi',layers:['province-boundaries','cultural-regions','mining-permits','forest-plantation-permits','current-developments']},
+  {id:'overview',title:'Overview',titleId:'Ringkasan',layers:['province-boundaries','cultural-regions','fire-hotspots','current-developments']},
+  {id:'extraction',title:'Extraction',titleId:'Ekstraksi',layers:['province-boundaries','cultural-regions','mining-permits','major-extraction-sites','forest-plantation-permits','current-developments']},
   {id:'environment',title:'Environment',titleId:'Lingkungan',layers:['province-boundaries','protected-areas','fire-hotspots','current-developments']},
   {id:'current',title:'Current',titleId:'Sekarang',layers:['province-boundaries','current-developments']}
 ];
@@ -57,6 +57,15 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
     style:{'fill-color':'#aaa0b3','fill-opacity':0.18,'fill-outline-color':'#756b7c'}
   },
   {
+    id:'major-extraction-sites',family:'extraction',title:'Major extraction sites',titleId:'Lokasi ekstraksi utama',
+    description:'Major mining operations not represented cleanly by the current public IUP/WIUP polygon layer.',descriptionId:'Operasi pertambangan utama yang belum terwakili dengan baik oleh lapisan poligon IUP/WIUP publik saat ini.',
+    sourceType:'live',source:'/data/major-extraction-sites.geojson',sourceUrl:'https://ptfi.co.id/en/our-operation-areas',
+    attribution:'PT Freeport Indonesia · sourced site metadata',license:'Public reference metadata',coverage:'Western New Guinea',
+    coverageNotes:'Site points identify major operations; they are not permit or cadastral boundaries.',coverageNotesId:'Titik menunjukkan lokasi operasi utama; bukan batas izin atau kadaster.',
+    minZoom:3,maxZoom:14,defaultVisible:false,geometry:'circle',
+    style:{'circle-radius':['interpolate',['linear'],['zoom'],3,5,9,8.5],'circle-color':'#675d70','circle-opacity':.92,'circle-stroke-color':'#f6f5fa','circle-stroke-width':1.5}
+  },
+  {
     id:'forest-plantation-permits',family:'extraction',title:'Forest & plantation permits',titleId:'Izin hutan & perkebunan',
     description:'Logging, HTI and available plantation permit polygons from BIG Satu Peta.',descriptionId:'Poligon izin pembalakan, HTI, dan perkebunan yang tersedia dari BIG Satu Peta.',
     sourceType:'pmtiles',source:'/geo/concessions.pmtiles',sourceLayer:'concessions',sourceUrl:'https://kspservices.big.go.id/satupeta/rest/services/PUBLIK/PERIZINAN_DAN_PERTANAHAN/MapServer',
@@ -76,7 +85,7 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
   },
   {
     id:'fire-hotspots',family:'environment',title:'Fire hotspots',titleId:'Titik panas',
-    description:'Recent satellite thermal detections. A hotspot is not automatically a confirmed wildfire.',descriptionId:'Deteksi termal satelit terbaru. Titik panas tidak otomatis berarti kebakaran yang telah dikonfirmasi.',
+    description:'Recent NASA FIRMS satellite hotspots.',descriptionId:'Titik panas satelit NASA FIRMS terbaru.',
     sourceType:'live',source:'/api/fires',sourceUrl:'https://firms.modaps.eosdis.nasa.gov/',attribution:'NASA FIRMS · VIIRS NOAA-21',license:'NASA Earth observation data',coverage:'Western New Guinea',
     coverageNotes:'Near-real-time satellite detections; cloud and orbit timing affect observations.',coverageNotesId:'Deteksi satelit mendekati waktu nyata; awan dan waktu lintasan satelit memengaruhi pengamatan.',
     minZoom:3,maxZoom:14,defaultVisible:false,geometry:'circle',
