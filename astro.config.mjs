@@ -18,7 +18,8 @@ export default defineConfig({
         "form-action 'self'",
         "img-src 'self' data: https:",
         "font-src 'self'",
-        "connect-src 'self'",
+        "connect-src 'self' https://tiles.openfreemap.org",
+        "worker-src 'self' blob:",
         'upgrade-insecure-requests'
       ],
       scriptDirective: {

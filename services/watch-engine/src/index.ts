@@ -3,6 +3,7 @@ import { processArticle } from './ingest/process';
 import { processEditorialJob } from './cluster/editorial';
 import { answerQuestion } from './ask';
 import { cleanupRecentIrrelevant,reindexKnowledge } from './knowledge';
+import { fireHotspots,geographicStatus } from './geo';
 export { NewsCycleWorkflow };
 
 const json=(data:any,status=200,cache='no-store')=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':cache,'x-content-type-options':'nosniff'}});
@@ -95,12 +96,14 @@ async function editorialStatus(env:any){
 export default {
   async fetch(request:any,env:any){
     const url=new URL(request.url);
-    if(url.pathname==='/health')return json({ok:true,service:'westpapua-watch-engine',scheduler:'06/09/12/15/18 WIT',pipelineVersion:2,freeze:'09'});
+    if(url.pathname==='/health')return json({ok:true,service:'westpapua-watch-engine',scheduler:'06/09/12/15/18 WIT',pipelineVersion:2,freeze:'10'});
     if(url.pathname==='/current'&&request.method==='GET')return json(await current(env),200,'public, max-age=60, stale-while-revalidate=180');
     const dm=url.pathname.match(/^\/development\/(\d+)$/);if(dm&&request.method==='GET'){const item=await development(env,Number(dm[1]));return item?json(item):json({error:'Not found'},404)}
     if(url.pathname==='/issues'&&request.method==='GET')return json(await issues(env),200,'public, max-age=60, stale-while-revalidate=180');
     const im=url.pathname.match(/^\/issue\/([a-z0-9-]+)$/);if(im&&request.method==='GET'){const item=await issue(env,im[1]);return item?json(item,200,'public, max-age=60, stale-while-revalidate=180'):json({error:'Not found'},404)}
     if(url.pathname==='/places'&&request.method==='GET')return json({items:await places(env,url)},200,'public, max-age=120, stale-while-revalidate=300');
+    if(url.pathname==='/geo/status'&&request.method==='GET')return json(await geographicStatus(env),200,'public, max-age=300, stale-while-revalidate=900');
+    if(url.pathname==='/geo/fires'&&request.method==='GET'){try{const result=await fireHotspots(env);return new Response(JSON.stringify(result.body),{status:result.status,headers:{'content-type':'application/geo+json; charset=utf-8','cache-control':result.status===200?'public, max-age=900, stale-while-revalidate=1800':'public, max-age=300','x-content-type-options':'nosniff'}})}catch(e){console.warn('FIRMS layer unavailable',e);return new Response(JSON.stringify({type:'FeatureCollection',features:[],available:false}),{status:503,headers:{'content-type':'application/geo+json; charset=utf-8','cache-control':'public, max-age=300','x-content-type-options':'nosniff'}})}}
     if(url.pathname==='/resources'&&request.method==='GET'){if(url.searchParams.get('status')==='candidate'&&!adminAuthorized(request,env))return denyAdmin();return json({items:await resources(env,url)},200,url.searchParams.get('status')==='candidate'?'no-store':'public, max-age=120, stale-while-revalidate=300')}
     if(url.pathname==='/ask'&&request.method==='POST'){let body:any;try{body=await request.json()}catch{return json({error:'Invalid JSON'},400)}const query=String(body?.query||'').trim();if(query.length<2||query.length>500)return json({error:'Question must be between 2 and 500 characters.'},400);try{return json(await answerQuestion(env,query,body?.locale==='pmy'?'pmy':'en'))}catch{return json({error:'The Watch answer service is temporarily unavailable.'},502)}}
 

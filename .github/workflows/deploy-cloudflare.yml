@@ -22,6 +22,14 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Validate
         run: npm run check:content
+      - name: Install geospatial compiler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gdal-bin
+          ogr2ogr --version
+          ogr2ogr --formats | grep PMTiles
+      - name: Build Watch geography
+        run: npm run geo:build
       - name: Build Pages
         run: npm run build
       - name: Render Watch Engine config
@@ -31,6 +39,24 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           AI_GATEWAY_ID: westpapua-watch
         run: npm run watch:config
+      - name: Upload Watch geographic archives
+        if: ${{ vars.WATCH_DB_ID != '' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          shopt -s nullglob
+          files=(geo/out/*.pmtiles)
+          if (( ${#files[@]} == 0 )); then
+            echo '::warning::No new PMTiles archives were built; existing R2 geography remains untouched.'
+          fi
+          for file in "${files[@]}"; do
+            name="$(basename "$file")"
+            npx --no-install wrangler r2 object put "westpapua-watch-archive/geo/$name" --file "$file" --content-type application/vnd.pmtiles --cache-control 'public, max-age=86400' --remote --force
+          done
+          if [ -s geo/out/manifest.json ]; then
+            npx --no-install wrangler r2 object put westpapua-watch-archive/geo/manifest.json --file geo/out/manifest.json --content-type application/json --cache-control 'public, max-age=900' --remote --force
+          fi
       - name: Deploy Watch AI Gateway routes
         if: ${{ vars.WATCH_DB_ID != '' }}
         env:
@@ -82,6 +108,18 @@ jobs:
             exit 0
           fi
           printf '%s' "$WATCH_ADMIN_TOKEN" | npx --no-install wrangler secret put WATCH_ADMIN_TOKEN --config services/watch-engine/wrangler.generated.jsonc
+      - name: Sync optional NASA FIRMS map key
+        if: ${{ vars.WATCH_DB_ID != '' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          FIRMS_MAP_KEY: ${{ secrets.FIRMS_MAP_KEY }}
+        run: |
+          if [ -z "$FIRMS_MAP_KEY" ]; then
+            echo '::warning::FIRMS_MAP_KEY is not configured; fire-hotspot layer will report Data unavailable.'
+            exit 0
+          fi
+          printf '%s' "$FIRMS_MAP_KEY" | npx --no-install wrangler secret put FIRMS_MAP_KEY --config services/watch-engine/wrangler.generated.jsonc
       - name: Ensure Pages project exists
         continue-on-error: true
         env:

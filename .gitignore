@@ -9,6 +9,8 @@ dist/
 *.log
 coverage/
 services/watch-engine/wrangler.generated.jsonc
+geo/.build/
+geo/out/
 
 # Local agent instructions and working material
 .internal/

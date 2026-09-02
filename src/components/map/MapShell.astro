@@ -1,0 +1,37 @@
+---
+import 'maplibre-gl/dist/maplibre-gl.css';
+import '../../styles/map.css';
+import {MAP_FAMILIES,MAP_LAYERS} from '../../lib/map/registry';
+import type {Locale} from '../../data/types';
+const {locale='en',mode='home',title='West Papua',context='',contextValue=''}=Astro.props as {locale?:Locale;mode?:'home'|'context';title?:string;context?:'issue'|'development'|'';contextValue?:string};
+const labels=locale==='pmy'?{atlas:'Atlas',layers:'Lapisan',expand:'Penuh',close:'Tutup',return:'Kembali ke tampilan halaman',search:'Cari tempat',source:'Sumber'}:{atlas:'Atlas',layers:'Layers',expand:'Expand',close:'Close',return:'Return to page view',search:'Search places',source:'Source'};
+const labelFor=(layer:any)=>locale==='pmy'?layer.titleId:layer.title;const noteFor=(layer:any)=>locale==='pmy'?(layer.coverageNotesId||layer.coverageNotes||layer.coverage):(layer.coverageNotes||layer.coverage);const familyFor=(family:any)=>locale==='pmy'?family.titleId:family.title;
+---
+<section class:list={['watch-map',mode==='context'&&'watch-map-context']} data-watch-map data-locale={locale} data-context={context} data-context-value={contextValue} data-explore="false">
+  <div class="watch-map-frame">
+    <div class="watch-map-canvas" data-map-canvas></div>
+    <div class="watch-map-heading"><span>{mode==='home'?labels.atlas:''}</span><h2>{title}</h2></div>
+    <div class="watch-map-state" data-map-state></div>
+    <div class="watch-map-controls" aria-label="Map controls">
+      {mode==='home'&&MAP_FAMILIES.map(f=><button type="button" data-map-family={f.id}>{familyFor(f)}</button>)}
+      <button type="button" data-map-layers-open>{labels.layers}</button>
+      <button type="button" data-map-expand>{labels.expand}</button>
+      <button type="button" data-map-close-expanded hidden>{labels.close}</button>
+    </div>
+    <aside class="watch-map-layer-panel" data-map-layers-panel hidden aria-label="Map layers">
+      <header><strong>{labels.layers}</strong><button type="button" data-map-layers-close aria-label={labels.close}>×</button></header>
+      <label class="watch-map-search"><span>{labels.search}</span><input data-map-place-search type="search" autocomplete="off" /></label>
+      <div class="watch-map-place-results" data-map-place-results></div>
+      {MAP_FAMILIES.map(f=><section><h3>{familyFor(f)}</h3>{MAP_LAYERS.filter(x=>x.family===f.id).map(layer=><button type="button" data-map-layer={layer.id}><span><strong>{labelFor(layer)}</strong><small>{noteFor(layer)}</small></span><i></i></button>)}</section>)}
+      <button class="watch-map-return" type="button" data-map-return>{labels.return}</button>
+    </aside>
+    <aside class="watch-map-feature" data-map-feature hidden>
+      <button type="button" data-map-feature-close aria-label={labels.close}>×</button><small data-map-feature-kicker></small><h3 data-map-feature-title></h3><div data-map-feature-rows></div><a data-map-feature-related hidden></a><a data-map-feature-source target="_blank" rel="noreferrer"></a>
+    </aside>
+    <div class="watch-map-credit"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors</a> · <a href="https://openfreemap.org/" target="_blank" rel="noreferrer">OpenFreeMap</a> · <span>{labels.source}: layer metadata</span></div>
+  </div>
+</section>
+<script>
+  import {initWatchMaps} from '../../lib/map/runtime';
+  initWatchMaps();
+</script>

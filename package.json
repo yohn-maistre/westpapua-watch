@@ -3,7 +3,9 @@
   "version": "0.3.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -17,7 +19,10 @@
     "watch:routes": "node scripts/deploy-ai-routes.mjs",
     "watch:deploy": "npm run watch:config && wrangler deploy --config services/watch-engine/wrangler.generated.jsonc",
     "watch:migrate": "npm run watch:config && wrangler d1 migrations apply DB --remote --config services/watch-engine/wrangler.generated.jsonc",
-    "watch:dev": "npm run watch:config && wrangler dev --remote --config services/watch-engine/wrangler.generated.jsonc"
+    "watch:dev": "npm run watch:config && wrangler dev --remote --config services/watch-engine/wrangler.generated.jsonc",
+    "geo:source": "node geo/build.mjs",
+    "geo:compile": "bash geo/compile.sh",
+    "geo:build": "npm run geo:source && npm run geo:compile"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",
@@ -27,7 +32,11 @@
     "@rowanmanning/feed-parser": "2.1.4",
     "astro": "7.2.9",
     "defuddle": "0.19.3",
-    "linkedom": "0.18.13"
+    "linkedom": "0.18.13",
+    "maplibre-gl": "^6.6.0",
+    "pmtiles": "^4.5.0"
   },
-  "devDependencies": { "wrangler": "4.127.1" }
+  "devDependencies": {
+    "wrangler": "4.127.1"
+  }
 }

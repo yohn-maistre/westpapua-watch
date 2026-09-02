@@ -6,6 +6,9 @@
   "services": [
     { "binding": "WATCH_ENGINE", "service": "westpapua-watch-engine" }
   ],
+  "r2_buckets": [
+    { "binding": "ARCHIVE", "bucket_name": "westpapua-watch-archive" }
+  ],
   "vars": {
     "ASK_MODEL": "qwen/qwen3.8-27b",
     "GROQ_API_BASE": "https://api.groq.com/openai/v1"

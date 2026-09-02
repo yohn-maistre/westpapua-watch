@@ -4,13 +4,13 @@ export const SITE = {
   name: 'West Papua Watch',
   url: 'https://westpapua.watch',
   description: {
-    en: 'Current developments, ongoing issues, history, events, exhibitions and sources on West Papua.',
-    pmy: 'Perkembangan sekarang, isu yang masih jalan, sejarah, acara, pameran, deng sumber soal Papua Barat.'
+    en: 'Geography, ongoing issues, current developments, history, events, exhibitions and sources on West Papua.',
+    pmy: 'Geografi, isu yang masih jalan, perkembangan sekarang, sejarah, acara, pameran, deng sumber soal Papua Barat.'
   } satisfies Localized
 };
 
 export const NAV_ITEMS = [
-  { href: '/', key: 'now', label: { en: 'Current', pmy: 'Sekarang' } },
+  { href: '/current/', key: 'current', label: { en: 'Current', pmy: 'Sekarang' } },
   { href: '/issues/', key: 'issues', label: { en: 'Issues', pmy: 'Isu' } },
   { href: '/history/', key: 'history', label: { en: 'History', pmy: 'Sejarah' } },
   { href: '/resources/', key: 'resources', label: { en: 'Resources', pmy: 'Sumber' } },
