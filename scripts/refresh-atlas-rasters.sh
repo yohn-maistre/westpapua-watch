@@ -73,7 +73,7 @@ EOF
 }
 
 render_forest_loss(){
-  local version="GFC-2025-v1.13",prefix="https://storage.googleapis.com/earthenginepartners-hansen/GFC-2025-v1.13"
+  local version="GFC-2025-v1.13" prefix="https://storage.googleapis.com/earthenginepartners-hansen/GFC-2025-v1.13"
   if ! curl -fsIL --max-time 20 "$prefix/Hansen_${version}_lossyear_00N_130E.tif" >/dev/null; then
     version="GFC-2024-v1.12"; prefix="https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12"
   fi
