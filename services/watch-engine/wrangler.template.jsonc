@@ -29,7 +29,7 @@
   "workflows": [
     { "name": "westpapua-watch-news-cycle", "binding": "NEWS_CYCLE", "class_name": "NewsCycleWorkflow" }
   ],
-  "triggers": { "crons": ["0 0,3,6,9,21 * * *"] },
+  "triggers": { "crons": ["0 * * * *"] },
   "vars": {
     "EMBEDDING_MODEL": "@cf/baai/bge-m3",
     "FAST_MODEL": "@cf/qwen/qwen3-30b-a3b-fp8",

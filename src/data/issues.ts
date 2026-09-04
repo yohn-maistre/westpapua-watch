@@ -1,104 +1,73 @@
 import type { Issue } from './types';
 
+// Freeze 10.8: public Issues are stable umbrella lenses. Named persistent subjects
+// such as Raja Ampat mining and Lake Sentani live in D1 as Dossiers.
 export const issues: Issue[] = [
   {
-    slug: 'mining-raja-ampat',
-    category: 'Environment',
-    title: { en: 'Mining in Raja Ampat', pmy: 'Tambang di Raja Ampat' },
-    summary: {
-      en: 'Mining permits, operating sites, marine and terrestrial ecosystems, customary land and public scrutiny across Raja Ampat.',
-      pmy: 'Izin tambang, lokasi yang masih jalan, ekosistem laut deng darat, tanah adat, deng perhatian publik di Raja Ampat.'
-    },
-    status: { en: 'Active review', pmy: 'Masih dipantau' },
-    updatedAt: '2026-08-25',
-    developmentSlugs: ['raja-ampat-mining-august-2026'],
-    sourceIds: ['greenpeace-raja-clarification-2026', 'mongabay-raja-2026', 'greenpeace-arborek-2026'],
-    concepts: ['extractivism', 'ecocide', 'customary-land', 'sasi']
+    slug:'land-indigenous-rights',category:'Land & Indigenous rights',
+    title:{en:'Land & Indigenous rights',pmy:'Tanah & hak masyarakat adat'},
+    summary:{en:'Customary land, tenure, consent, displacement and Indigenous control over territory.',pmy:'Tanah adat, hak atas tanah, persetujuan, penggusuran, deng kendali masyarakat adat atas wilayah.'},
+    status:{en:'Persistent issue',pmy:'Isu jangka panjang'},updatedAt:'2026-09-05',developmentSlugs:[],sourceIds:[],concepts:['customary-land']
   },
   {
-    slug: 'lake-sentani-watershed',
-    category: 'Environment',
-    title: { en: 'Lake Sentani watershed', pmy: 'Daerah aliran Danau Sentani' },
-    summary: {
-      en: 'Water quality, sedimentation, mining pressure, biodiversity and livelihoods around Lake Sentani and the Cycloop foothills.',
-      pmy: 'Kualitas air, sedimentasi, tekanan tambang, keanekaragaman hayati, deng mata pencaharian sekitar Danau Sentani deng kaki Cycloop.'
-    },
-    status: { en: 'Active concern', pmy: 'Masih jadi perhatian' },
-    updatedAt: '2026-08-27',
-    developmentSlugs: ['lake-sentani-illegal-mining-august-2026'],
-    sourceIds: ['jubi-sentani-mining-2026', 'mongabay-sentani-mining-2026'],
-    concepts: ['extractivism', 'ecocide', 'customary-land']
+    slug:'extraction-industrial-development',category:'Extraction & industrial development',
+    title:{en:'Extraction & industrial development',pmy:'Ekstraksi & pembangunan industri'},
+    summary:{en:'Mining, plantations, logging, large projects, permits and their social and ecological consequences.',pmy:'Tambang, perkebunan, pembalakan, proyek besar, izin, deng dampak sosial-ekologinya.'},
+    status:{en:'Persistent issue',pmy:'Isu jangka panjang'},updatedAt:'2026-09-05',developmentSlugs:[],sourceIds:[],concepts:['extractivism']
   },
   {
-    slug: 'south-papua-food-energy-estate',
-    category: 'Land',
-    title: { en: 'South Papua food and energy estate', pmy: 'Proyek pangan deng energi Papua Selatan' },
-    summary: {
-      en: 'Land, forests, livelihoods and the large-scale food and energy projects being developed in and around Merauke.',
-      pmy: 'Tanah, hutan, mata pencaharian, deng proyek pangan dan energi skala besar di sekitar Merauke.'
-    },
-    status: { en: 'Long-running', pmy: 'Sudah lama jalan' },
-    updatedAt: '2026-08-14',
-    developmentSlugs: ['south-papua-hria-reports'],
-    sourceIds: ['jubi-hria-2026', 'pusaka-news', 'hrw-land-2026'],
-    concepts: ['extractivism', 'gastrocolonialism', 'customary-land']
+    slug:'environment-biodiversity',category:'Environment & biodiversity',
+    title:{en:'Environment & biodiversity',pmy:'Lingkungan & keanekaragaman hayati'},
+    summary:{en:'Forests, watersheds, reefs, species, protected areas and ecological change across Western New Guinea.',pmy:'Hutan, daerah aliran air, terumbu, spesies, kawasan lindung, deng perubahan ekologi di Papua bagian barat.'},
+    status:{en:'Persistent issue',pmy:'Isu jangka panjang'},updatedAt:'2026-09-05',developmentSlugs:[],sourceIds:[],concepts:['ecocide']
   },
   {
-    slug: 'conflict-displacement-access',
-    category: 'Human rights',
-    title: { en: 'Conflict, displacement and access', pmy: 'Konflik, pengungsian, deng akses' },
-    summary: {
-      en: 'Civilian displacement, access to services and independent monitoring in conflict-affected areas.',
-      pmy: 'Pengungsian warga sipil, akses layanan, deng pemantauan independen di wilayah terdampak konflik.'
-    },
-    status: { en: 'Ongoing concern', pmy: 'Masih jadi perhatian' },
-    updatedAt: '2026-08-10',
-    developmentSlugs: ['papua-monitor-q2-2026'],
-    sourceIds: ['hrm-q2-2026', 'hrm-home-2026', 'jubi-news'],
-    concepts: ['humanitarian-access', 'internal-displacement']
+    slug:'climate-disasters',category:'Climate & disasters',
+    title:{en:'Climate & disasters',pmy:'Iklim & bencana'},
+    summary:{en:'Fire, drought, floods, rainfall extremes, landslides and climate-related risks.',pmy:'Kebakaran, kekeringan, banjir, hujan ekstrem, longsor, deng risiko terkait iklim.'},
+    status:{en:'Persistent issue',pmy:'Isu jangka panjang'},updatedAt:'2026-09-05',developmentSlugs:[],sourceIds:[],concepts:[]
   },
   {
-    slug: 'political-status-representation',
-    category: 'Politics',
-    title: { en: 'Political status and representation', pmy: 'Status politik deng keterwakilan' },
-    summary: {
-      en: 'The historical political status of the territory, regional institutions, autonomy and Papuan representation.',
-      pmy: 'Sejarah status politik wilayah, lembaga daerah, otonomi, deng keterwakilan orang Papua.'
-    },
-    status: { en: 'Structural issue', pmy: 'Isu struktural' },
-    updatedAt: '2026-08-20',
-    developmentSlugs: [],
-    sourceIds: ['un-new-york-agreement', 'un-unsf-background', 'otsus-law-2001'],
-    concepts: ['self-determination', 'special-autonomy']
+    slug:'human-rights-conflict-security',category:'Human rights, conflict & security',
+    title:{en:'Human rights, conflict & security',pmy:'Hak asasi, konflik & keamanan'},
+    summary:{en:'Civilian protection, violence, militarization, displacement, detention and access for independent monitoring.',pmy:'Perlindungan warga, kekerasan, militerisasi, pengungsian, penahanan, deng akses pemantauan independen.'},
+    status:{en:'Persistent issue',pmy:'Isu jangka panjang'},updatedAt:'2026-09-05',developmentSlugs:[],sourceIds:[],concepts:['internal-displacement','humanitarian-access']
   },
   {
-    slug: 'women-gender',
-    category: 'Women & Gender',
-    title: { en: 'Women & Gender', pmy: 'Perempuan & Gender' },
-    summary: {
-      en: 'Indigenous women’s leadership, rights, land relationships, care, cultural transmission and gender-based violence.',
-      pmy: 'Kepemimpinan perempuan adat, hak, hubungan deng tanah, kerja perawatan, pewarisan budaya, deng kekerasan berbasis gender.'
-    },
-    status: { en: 'Growing index', pmy: 'Indeks terus berkembang' },
-    updatedAt: '2026-08-14',
-    developmentSlugs: ['south-papua-hria-reports'],
-    sourceIds: ['jubi-hria-2026', 'pusaka-news', 'mongabay-raja-2026'],
-    concepts: ['femicide', 'customary-land']
+    slug:'politics-governance-representation',category:'Politics, governance & representation',
+    title:{en:'Politics, governance & representation',pmy:'Politik, pemerintahan & keterwakilan'},
+    summary:{en:'Political status, autonomy, institutions, elections, representation and public decision-making.',pmy:'Status politik, otonomi, lembaga, pemilu, keterwakilan, deng pengambilan keputusan publik.'},
+    status:{en:'Persistent issue',pmy:'Isu jangka panjang'},updatedAt:'2026-09-05',developmentSlugs:[],sourceIds:[],concepts:['self-determination','special-autonomy']
   },
   {
-    slug: 'culture-memory-expression',
-    category: 'Culture',
-    title: { en: 'Culture, memory and expression', pmy: 'Budaya, ingatan, deng ekspresi' },
-    summary: {
-      en: 'Art, literature, film, music and collective practice as living records of Papuan experience and cultural life.',
-      pmy: 'Seni, sastra, film, musik, deng kerja kolektif sebagai catatan hidup pengalaman dan budaya Papua.'
-    },
-    status: { en: 'Programme active', pmy: 'Program aktif' },
-    updatedAt: '2026-08-28',
-    developmentSlugs: ['read-my-world-2026-programme'],
-    sourceIds: ['read-my-world-2026', 'udeido-biennale-jogja', 'udeido-papoeahuis'],
-    concepts: ['collective-memory']
+    slug:'economy-livelihoods',category:'Economy & livelihoods',
+    title:{en:'Economy & livelihoods',pmy:'Ekonomi & mata pencaharian'},
+    summary:{en:'Work, markets, fisheries, agriculture, local enterprise, resource revenue and household livelihoods.',pmy:'Kerja, pasar, perikanan, pertanian, usaha lokal, pendapatan sumber daya, deng mata pencaharian rumah tangga.'},
+    status:{en:'Persistent issue',pmy:'Isu jangka panjang'},updatedAt:'2026-09-05',developmentSlugs:[],sourceIds:[],concepts:[]
+  },
+  {
+    slug:'health-food-public-services',category:'Health, food & public services',
+    title:{en:'Health, food & public services',pmy:'Kesehatan, pangan & layanan publik'},
+    summary:{en:'Health care, nutrition, food systems, water, housing and access to essential public services.',pmy:'Layanan kesehatan, gizi, sistem pangan, air, perumahan, deng akses layanan publik penting.'},
+    status:{en:'Persistent issue',pmy:'Isu jangka panjang'},updatedAt:'2026-09-05',developmentSlugs:[],sourceIds:[],concepts:[]
+  },
+  {
+    slug:'education-language-culture',category:'Education, language & culture',
+    title:{en:'Education, language & culture',pmy:'Pendidikan, bahasa & budaya'},
+    summary:{en:'Schools, knowledge, Indigenous languages, cultural transmission, arts, memory and expression.',pmy:'Sekolah, pengetahuan, bahasa adat, pewarisan budaya, seni, ingatan, deng ekspresi.'},
+    status:{en:'Persistent issue',pmy:'Isu jangka panjang'},updatedAt:'2026-09-05',developmentSlugs:[],sourceIds:[],concepts:['collective-memory']
+  },
+  {
+    slug:'women-gender-social-inclusion',category:'Women, gender & social inclusion',
+    title:{en:'Women, gender & social inclusion',pmy:'Perempuan, gender & inklusi sosial'},
+    summary:{en:'Women’s leadership, gender-based violence, care, disability, youth and unequal access to rights and services.',pmy:'Kepemimpinan perempuan, kekerasan berbasis gender, perawatan, disabilitas, pemuda, deng ketimpangan akses hak dan layanan.'},
+    status:{en:'Persistent issue',pmy:'Isu jangka panjang'},updatedAt:'2026-09-05',developmentSlugs:[],sourceIds:[],concepts:['femicide']
+  },
+  {
+    slug:'infrastructure-connectivity',category:'Infrastructure & connectivity',
+    title:{en:'Infrastructure & connectivity',pmy:'Infrastruktur & konektivitas'},
+    summary:{en:'Roads, ports, aviation, communications, energy systems and unequal physical or digital access.',pmy:'Jalan, pelabuhan, penerbangan, komunikasi, sistem energi, deng ketimpangan akses fisik atau digital.'},
+    status:{en:'Persistent issue',pmy:'Isu jangka panjang'},updatedAt:'2026-09-05',developmentSlugs:[],sourceIds:[],concepts:[]
   }
 ];
-
-export const issueBySlug = Object.fromEntries(issues.map((issue) => [issue.slug, issue]));
+export const issueBySlug=Object.fromEntries(issues.map(issue=>[issue.slug,issue]));

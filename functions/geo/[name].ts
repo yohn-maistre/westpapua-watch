@@ -1,5 +1,8 @@
 type Env={ARCHIVE?:R2Bucket};
-const ALLOWED=new Set(['provinces.pmtiles','cultural_regions.pmtiles','mining.pmtiles','concessions.pmtiles','protected.pmtiles']);
+const ALLOWED=new Set([
+  'provinces.pmtiles','cultural_regions.pmtiles','customary_territories.pmtiles','mining.pmtiles','concessions.pmtiles','protected.pmtiles',
+  'roads.pmtiles','airports.pmtiles','ports.pmtiles','settlements.pmtiles'
+]);
 const common={'content-type':'application/vnd.pmtiles','accept-ranges':'bytes','cache-control':'public, max-age=86400, stale-while-revalidate=604800','x-content-type-options':'nosniff'};
 export const onRequest:PagesFunction<Env>=async({request,env,params})=>{
   if(!env.ARCHIVE)return new Response('Geographic archive unavailable',{status:503});

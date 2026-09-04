@@ -1,6 +1,8 @@
 ---
-import IssueView from '../../views/IssueView.astro';import { issues } from '../../data/issues';
-export function getStaticPaths(){return issues.map(issue=>({params:{slug:issue.slug},props:{issue}}))}
+import IssueView from '../../views/IssueView.astro';
+import { issues } from '../../data/issues';
+import { dossiers } from '../../data/dossiers';
+export function getStaticPaths(){return [...issues,...dossiers].map(issue=>({params:{slug:issue.slug},props:{issue}}))}
 const {issue}=Astro.props;
 ---
 <IssueView locale="en" issue={issue} />

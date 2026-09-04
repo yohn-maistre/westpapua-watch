@@ -1,18 +1,88 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';import { resources } from '../data/resources';import { glossary } from '../data/glossary';import { topicTagBySlug } from '../data/taxonomy';import { t } from '../lib/i18n';import type { Locale } from '../data/types';import ui from '../../content/ui.json';
-const {locale='en'}=Astro.props as {locale?:Locale};const usedTags=[...new Set(resources.flatMap(r=>r.tags))];const label=(slug:string)=>topicTagBySlug[slug]?.label?.[locale==='pmy'?'id':'en']||slug;const topicLabels=Object.fromEntries(Object.entries(topicTagBySlug).map(([slug,tag]:[string,any])=>[slug,tag?.label?.[locale==='pmy'?'id':'en']||slug]));
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { resources } from '../data/resources';
+import { glossary } from '../data/glossary';
+import { topicTagBySlug } from '../data/taxonomy';
+import { t } from '../lib/i18n';
+import type { Locale } from '../data/types';
+import ui from '../../content/ui.json';
+const {locale='en'}=Astro.props as {locale?:Locale};
+
+const TOPICS=[
+  ['land-indigenous-rights','Land & Indigenous rights','Tanah & hak masyarakat adat'],
+  ['extraction-industrial-development','Extraction','Ekstraksi'],
+  ['environment-biodiversity','Environment & biodiversity','Lingkungan & keanekaragaman hayati'],
+  ['climate-disasters','Climate & disasters','Iklim & bencana'],
+  ['human-rights-conflict-security','Human rights & conflict','Hak asasi & konflik'],
+  ['politics-governance-representation','Politics & governance','Politik & pemerintahan'],
+  ['economy-livelihoods','Economy & livelihoods','Ekonomi & mata pencaharian'],
+  ['health-food-public-services','Health, food & services','Kesehatan, pangan & layanan'],
+  ['education-language-culture','Education, language & culture','Pendidikan, bahasa & budaya'],
+  ['women-gender-social-inclusion','Women & gender','Perempuan & gender'],
+  ['infrastructure-connectivity','Infrastructure & connectivity','Infrastruktur & konektivitas']
+] as const;
+const broadFor=(tags:string[],text='')=>{
+  const out=new Set<string>();for(const tag of tags){
+    if(tag==='land-indigenous-rights')out.add('land-indigenous-rights');
+    if(tag==='environment-biodiversity')out.add('environment-biodiversity');
+    if(tag==='climate-disasters')out.add('climate-disasters');
+    if(tag==='human-rights-security')out.add('human-rights-conflict-security');
+    if(tag==='politics-governance')out.add('politics-governance-representation');
+    if(tag==='economy-livelihoods')out.add('economy-livelihoods');
+    if(['health-wellbeing','water-sanitation-housing'].includes(tag))out.add('health-food-public-services');
+    if(['education-knowledge','culture-language'].includes(tag))out.add('education-language-culture');
+    if(tag==='gender-social-inclusion')out.add('women-gender-social-inclusion');
+    if(tag==='infrastructure-connectivity')out.add('infrastructure-connectivity');
+  }
+  if(/mining|tambang|extract|nikel|nickel|gold|emas|copper|tembaga|freeport|grasberg|logging|pembalakan|plantation|perkebunan|food estate|industrial/i.test(`${text} ${tags.join(' ')}`))out.add('extraction-industrial-development');
+  return [...out]
+};
+const oldLabels=Object.fromEntries(Object.entries(topicTagBySlug).map(([slug,tag]:[string,any])=>[slug,tag?.label?.[locale==='pmy'?'id':'en']||slug]));
+const langs=(r:any)=>Array.isArray(r.languages)&&r.languages.length?r.languages:(r.language?[r.language]:[]);
+const langLabel=(r:any)=>{const ls=langs(r);return ls.length>1||ls.includes('multi')?'MULTI':(ls[0]||'').toUpperCase()};
 ---
 <BaseLayout locale={locale} active="resources" title={locale==='en'?'Resources':'Sumber'}>
-<section class="section resources-index"><div class="wrap"><h1 class="page-title">{ui.resources.pageTitle[locale]}</h1><p class="page-intro">{ui.resources.intro[locale]}</p>
-<div class="resource-tools"><input class="resource-search" data-resource-search placeholder={locale==='en'?'Search resources':'Cari sumber'} /><div class="filters" style="margin:0"><button class="filter active" data-resource-filter="all">{locale==='en'?'All':'Semua'}</button>{usedTags.map(slug=><button class="filter" data-resource-filter={slug}>{label(slug)}</button>)}</div></div>
-<div class="resource-table" data-resource-table data-topic-labels={JSON.stringify(topicLabels)}>{resources.map(r=><a class="resource-row" data-resource-row data-resource-type={r.type} data-resource-tags={r.tags.join(' ')} href={r.url} target="_blank" rel="noreferrer"><span class="type">{r.type}</span><div><h2>{r.title}</h2><p>{r.publisher}</p>{r.tags.length>0&&<div class="resource-topic-tags">{r.tags.slice(0,4).map(slug=><span class="resource-topic-tag">{label(slug)}</span>)}</div>}</div><p>{r.language?.toUpperCase()}</p><span>{r.year}</span></a>)}</div>
+<section class="section resources-index"><div class="wrap">
+  <h1 class="page-title">{ui.resources.pageTitle[locale]}</h1><p class="page-intro">{ui.resources.intro[locale]}</p>
+  <div class="resource-tools"><input class="resource-search" data-resource-search placeholder={locale==='en'?'Search resources':'Cari sumber'} /></div>
+  <div class="resource-controls">
+    <div class="resource-control-line">
+      <span class="resource-control-label">{locale==='en'?'Language':'Bahasa'}</span>
+      <div class="resource-language">
+        {['all','id','en','multi'].map((x,i)=><button type="button" class:list={[i===0&&'active']} data-resource-language={x}>{x==='all'?(locale==='en'?'All':'Semua'):x.toUpperCase()}</button>)}
+      </div>
+      <span class="resource-control-divider"></span>
+      <span class="resource-control-label">{locale==='en'?'Topic':'Topik'}</span>
+      <div class="resource-topic">
+        <button type="button" class="active" data-resource-topic="all">{locale==='en'?'All topics':'Semua topik'}</button>
+        {TOPICS.map(([id,en,pmy])=><button type="button" data-resource-topic={id}>{locale==='pmy'?pmy:en}</button>)}
+      </div>
+      <select class="resource-topic-select" data-resource-topic-select aria-label={locale==='en'?'Topic':'Topik'}>
+        <option value="all">{locale==='en'?'All topics':'Semua topik'}</option>
+        {TOPICS.map(([id,en,pmy])=><option value={id}>{locale==='pmy'?pmy:en}</option>)}
+      </select>
+    </div>
+  </div>
+  <div class="resource-table" data-resource-table data-old-labels={JSON.stringify(oldLabels)}>{resources.map((r:any)=>{
+    const ls=langs(r),broad=broadFor(r.tags||[],`${r.title||''} ${r.publisher||''}`);
+    return <a class="resource-row" data-resource-row data-resource-type={r.type} data-resource-tags={(r.tags||[]).join(' ')} data-resource-broad={broad.join(' ')} data-resource-languages={ls.join(' ')} href={r.url} target="_blank" rel="noreferrer">
+      <span class="type">{r.type}</span><div><h2>{r.title}</h2><p>{r.publisher}</p>{r.tags?.length>0&&<div class="resource-topic-tags">{r.tags.slice(0,4).map((slug:string)=><span class="resource-topic-tag">{oldLabels[slug]||slug}</span>)}</div>}</div>
+      <p class="resource-language-badge">{langLabel(r)}</p><span>{r.year}</span>
+    </a>})}</div>
 </div></section>
 <section class="section" id="glossary"><div class="wrap"><div class="section-head section-head-simple"><h2>{locale==='en'?'Terms & concepts.':'Istilah & konsep.'}</h2></div><div class="glossary-grid">{glossary.map(item=><article class="term-card" id={item.slug}><h3>{item.term}</h3><p>{t(item.definition,locale)}</p></article>)}</div></div></section>
 <script>
-  const table=document.querySelector<HTMLElement>('[data-resource-table]');const input=document.querySelector<HTMLInputElement>('[data-resource-search]');const filters=[...document.querySelectorAll<HTMLElement>('[data-resource-filter]')];let active=filters.find(x=>x.classList.contains('active'))?.dataset.resourceFilter||'all';let labels:Record<string,string>={};try{labels=JSON.parse(table?.dataset.topicLabels||'{}')}catch{}
-  const tagLabel=(slug:string)=>labels[slug]||slug.replaceAll('-',' ');
-  const apply=()=>{const term=(input?.value||'').toLowerCase();for(const row of document.querySelectorAll<HTMLElement>('[data-resource-row]')){const tags=(row.dataset.resourceTags||'').split(/\s+/).filter(Boolean);const matchTag=active==='all'||tags.includes(active);row.hidden=!(matchTag&&(!term||(row.textContent||'').toLowerCase().includes(term)))}};
-  filters.forEach(button=>button.addEventListener('click',()=>{active=button.dataset.resourceFilter||'all';filters.forEach(x=>x.classList.toggle('active',x===button));apply()}));input?.addEventListener('input',apply);
-  if(table)fetch('/api/resources',{headers:{accept:'application/json'}}).then(r=>r.ok?r.json():null).then(data=>{const existing=new Set([...table.querySelectorAll<HTMLAnchorElement>('a.resource-row')].map(x=>x.href));for(const item of data?.items||[]){if(existing.has(item.source_url))continue;const row=document.createElement('a');row.className='resource-row';row.dataset.resourceRow='';row.dataset.resourceType=item.kind||'reference';row.href=item.source_url;row.target='_blank';row.rel='noreferrer';const kind=document.createElement('span');kind.className='type';kind.textContent=item.kind||'reference';const main=document.createElement('div');const title=document.createElement('h2');title.textContent=item.title;const publisher=document.createElement('p');publisher.textContent=item.publisher_id||'';main.append(title,publisher);let parsed:string[]=[];try{parsed=JSON.parse(item.tags_json||'[]').slice(0,4)}catch{}row.dataset.resourceTags=parsed.join(' ');if(parsed.length){const tags=document.createElement('div');tags.className='resource-topic-tags';for(const slug of parsed){const chip=document.createElement('span');chip.className='resource-topic-tag';chip.textContent=tagLabel(slug);tags.append(chip)}main.append(tags)}const language=document.createElement('p');language.textContent='';const year=document.createElement('span');year.textContent=item.updated_at?new Date(item.updated_at).getFullYear().toString():'';row.append(kind,main,language,year);table.append(row)}apply()}).catch(()=>{});
+const table=document.querySelector<HTMLElement>('[data-resource-table]'),input=document.querySelector<HTMLInputElement>('[data-resource-search]');
+const langButtons=[...document.querySelectorAll<HTMLButtonElement>('[data-resource-language]')],topicButtons=[...document.querySelectorAll<HTMLButtonElement>('[data-resource-topic]')],topicSelect=document.querySelector<HTMLSelectElement>('[data-resource-topic-select]');
+let activeLanguage='all',activeTopic='all';let oldLabels:Record<string,string>={};try{oldLabels=JSON.parse(table?.dataset.oldLabels||'{}')}catch{}
+const broadFor=(tags:string[],text='')=>{const out=new Set<string>();for(const tag of tags){if(tag==='land-indigenous-rights')out.add('land-indigenous-rights');if(tag==='environment-biodiversity')out.add('environment-biodiversity');if(tag==='climate-disasters')out.add('climate-disasters');if(tag==='human-rights-security')out.add('human-rights-conflict-security');if(tag==='politics-governance')out.add('politics-governance-representation');if(tag==='economy-livelihoods')out.add('economy-livelihoods');if(['health-wellbeing','water-sanitation-housing'].includes(tag))out.add('health-food-public-services');if(['education-knowledge','culture-language'].includes(tag))out.add('education-language-culture');if(tag==='gender-social-inclusion')out.add('women-gender-social-inclusion');if(tag==='infrastructure-connectivity')out.add('infrastructure-connectivity')}if(/mining|tambang|extract|nikel|nickel|gold|emas|copper|tembaga|freeport|grasberg|logging|pembalakan|plantation|perkebunan|food estate|industrial/i.test(`${text} ${tags.join(' ')}`))out.add('extraction-industrial-development');return[...out]};
+const apply=()=>{const term=(input?.value||'').trim().toLowerCase();for(const row of document.querySelectorAll<HTMLElement>('[data-resource-row]')){const languages=(row.dataset.resourceLanguages||'').split(/\s+/).filter(Boolean),broad=(row.dataset.resourceBroad||'').split(/\s+/).filter(Boolean);const lang=activeLanguage==='all'||(activeLanguage==='multi'?languages.length>1||languages.includes('multi'):languages.includes(activeLanguage));const topic=activeTopic==='all'||broad.includes(activeTopic);const search=!term||(row.textContent||'').toLowerCase().includes(term);row.hidden=!(lang&&topic&&search)}};
+langButtons.forEach(button=>button.addEventListener('click',()=>{activeLanguage=button.dataset.resourceLanguage||'all';langButtons.forEach(x=>x.classList.toggle('active',x===button));apply()}));
+topicButtons.forEach(button=>button.addEventListener('click',()=>{activeTopic=button.dataset.resourceTopic||'all';topicButtons.forEach(x=>x.classList.toggle('active',x===button));if(topicSelect)topicSelect.value=activeTopic;apply()}));
+topicSelect?.addEventListener('change',()=>{activeTopic=topicSelect.value;topicButtons.forEach(x=>x.classList.toggle('active',x.dataset.resourceTopic===activeTopic));apply()});input?.addEventListener('input',apply);
+if(table)fetch('/api/resources',{headers:{accept:'application/json'}}).then(r=>r.ok?r.json():null).then(data=>{const existing=new Set([...table.querySelectorAll<HTMLAnchorElement>('a.resource-row')].map(x=>x.href));for(const item of data?.items||[]){if(!item.source_url||existing.has(item.source_url))continue;const row=document.createElement('a');row.className='resource-row';row.dataset.resourceRow='';row.dataset.resourceType=item.kind||'reference';row.href=item.source_url;row.target='_blank';row.rel='noreferrer';
+let tags:string[]=[];try{tags=JSON.parse(item.tags_json||'[]')}catch{}let languages:string[]=[];try{languages=JSON.parse(item.languages_json||'[]')}catch{}if(!languages.length&&item.language)languages=[String(item.language).toLowerCase()];row.dataset.resourceTags=tags.join(' ');row.dataset.resourceBroad=broadFor(tags,`${item.title||''} ${item.description||''} ${item.publisher_id||''}`).join(' ');row.dataset.resourceLanguages=languages.join(' ');
+const kind=document.createElement('span');kind.className='type';kind.textContent=item.kind||'reference';const main=document.createElement('div'),title=document.createElement('h2'),publisher=document.createElement('p');title.textContent=item.title||'Untitled';publisher.textContent=item.publisher_id||'';main.append(title,publisher);if(tags.length){const tagsEl=document.createElement('div');tagsEl.className='resource-topic-tags';for(const slug of tags.slice(0,4)){const chip=document.createElement('span');chip.className='resource-topic-tag';chip.textContent=oldLabels[slug]||slug.replaceAll('-',' ');tagsEl.append(chip)}main.append(tagsEl)}
+const language=document.createElement('p');language.className='resource-language-badge';language.textContent=languages.length>1||languages.includes('multi')?'MULTI':(languages[0]||'').toUpperCase();const year=document.createElement('span');year.textContent=item.updated_at?new Date(item.updated_at).getFullYear().toString():'';row.append(kind,main,language,year);table.append(row)}apply()}).catch(()=>{});
 </script>
 </BaseLayout>

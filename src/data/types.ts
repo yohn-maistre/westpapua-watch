@@ -8,6 +8,7 @@ export type SourceRef = {
   date?: string;
   type: 'journalism' | 'report' | 'official' | 'research' | 'event' | 'culture';
   language?: 'en' | 'id' | 'multi';
+  languages?: ('en'|'id')[];
 };
 export type Development = {
   slug: string;

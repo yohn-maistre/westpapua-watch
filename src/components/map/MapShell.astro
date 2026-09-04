@@ -1,7 +1,7 @@
 ---
 import 'maplibre-gl/dist/maplibre-gl.css';
 import '../../styles/map.css';
-import {MAP_FAMILIES,MAP_LAYERS,MAP_VIEWS} from '../../lib/map/registry';
+import {MAP_BASES,MAP_FAMILIES,MAP_LAYERS,MAP_VIEWS} from '../../lib/map/registry';
 import type {MapViewId} from '../../lib/map/registry';
 import type {Locale} from '../../data/types';
 const {
@@ -11,14 +11,15 @@ const {
   context?:'issue'|'development'|'';contextValue?:string;initialView?:MapViewId;
 };
 const labels=locale==='pmy'
-  ?{layers:'Lapisan',expand:'Penuh',close:'Tutup',return:'Kembali ke tampilan halaman',search:'Cari tempat',source:'Sumber',view:'Tampilan'}
-  :{layers:'Layers',expand:'Expand',close:'Close',return:'Return to page view',search:'Search places',source:'Source',view:'View'};
+  ?{base:'Dasar',layers:'Lapisan',expand:'Penuh',close:'Tutup',return:'Kembali ke tampilan halaman',search:'Cari tempat',source:'Sumber',view:'Tampilan'}
+  :{base:'Base',layers:'Layers',expand:'Expand',close:'Close',return:'Return to page view',search:'Search places',source:'Source',view:'View'};
 const labelFor=(layer:any)=>locale==='pmy'?layer.titleId:layer.title;
-const noteFor=(layer:any)=>locale==='pmy'?(layer.coverageNotesId||layer.coverageNotes||layer.coverage):(layer.coverageNotes||layer.coverage);
+const noteFor=(layer:any)=>locale==='pmy'?(layer.coverageNotesId||layer.descriptionId||layer.coverage):(layer.coverageNotes||layer.description||layer.coverage);
 const familyFor=(family:any)=>locale==='pmy'?family.titleId:family.title;
 const viewFor=(view:any)=>locale==='pmy'?view.titleId:view.title;
+const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
 ---
-<section class:list={['watch-map',mode==='context'&&'watch-map-context']} data-watch-map data-locale={locale} data-context={context} data-context-value={contextValue} data-initial-view={initialView} data-explore="false">
+<section class:list={['watch-map',mode==='context'&&'watch-map-context']} data-watch-map data-map-mode={mode} data-locale={locale} data-context={context} data-context-value={contextValue} data-initial-view={initialView} data-explore="false">
   <div class="watch-map-frame">
     <div class="watch-map-canvas" data-map-canvas></div>
     <div class="watch-map-fallback" data-map-fallback hidden>
@@ -30,6 +31,11 @@ const viewFor=(view:any)=>locale==='pmy'?view.titleId:view.title;
     </div>
     {mode==='context'&&title&&<div class="watch-map-heading"><span>{eyebrow}</span><h2>{title}</h2></div>}
     <div class="watch-map-state" data-map-state></div>
+
+    <div class="watch-map-basebar" aria-label={labels.base}>
+      <span>{labels.base}</span>
+      <div>{MAP_BASES.map(base=><button type="button" data-map-base={base.id}>{baseFor(base)}</button>)}</div>
+    </div>
 
     <div class="watch-map-viewbar" aria-label={labels.view}>
       <span>{labels.view}</span>
@@ -54,11 +60,14 @@ const viewFor=(view:any)=>locale==='pmy'?view.titleId:view.title;
     <aside class="watch-map-feature" data-map-feature hidden>
       <button type="button" data-map-feature-close aria-label={labels.close}>×</button>
       <small data-map-feature-kicker></small><h3 data-map-feature-title></h3>
-      <div data-map-feature-rows></div><a data-map-feature-related hidden></a>
+      <div data-map-feature-rows></div>
+      <a data-map-feature-related hidden></a>
+      <a data-map-feature-profile hidden></a>
       <a data-map-feature-source target="_blank" rel="noreferrer"></a>
     </aside>
 
-    <div class="watch-map-credit"><span>BIG · Bappenas · ESDM · NASA FIRMS · {labels.source}: layer metadata</span></div>
+    <div class="watch-map-debug" data-map-debug hidden></div>
+    <div class="watch-map-credit"><span data-map-credit>BIG · Bappenas · ESDM · NASA FIRMS · {labels.source}: layer metadata</span></div>
   </div>
 </section>
 <script>

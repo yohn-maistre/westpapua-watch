@@ -11,6 +11,19 @@ const ISSUE_RULES:[string,RegExp][]=[
   ['political-status-representation',/otonomi|autonomy|self-determination|penentuan nasib|merdeka|political status|status politik|pif|pacific islands forum|representasi|representation/i]
 ];
 const ISSUE_SLUGS=new Set(ISSUE_RULES.map(([slug])=>slug));
+const BROAD_ISSUE_RULES:[string,RegExp][]=[
+  ['land-indigenous-rights',/indigenous|masyarakat adat|adat|customary|ulayat|land right|hak tanah|tanah adat|land grab|consent|persetujuan/i],
+  ['extraction-industrial-development',/mining|tambang|nikel|nickel|emas|gold|tembaga|copper|freeport|grasberg|sawit|palm oil|logging|hti|plantation|perkebunan|food estate|psn|industrial|industri/i],
+  ['environment-biodiversity',/environment|lingkungan|biodivers|keanekaragaman|ecolog|ekolog|forest|hutan|marine|laut|reef|terumbu|species|spesies|conservation|konservasi|watershed|danau|mangrove/i],
+  ['climate-disasters',/climate|iklim|wildfire|kebakaran|fire hotspot|titik panas|drought|kekeringan|flood|banjir|rainfall|curah hujan|landslide|longsor|disaster|bencana/i],
+  ['human-rights-conflict-security',/human rights|hak asasi|conflict|konflik|military|militer|tni|police|polisi|security|keamanan|displacement|pengungsi|detention|penahanan|violence|kekerasan|civilian|warga sipil/i],
+  ['politics-governance-representation',/politic|politik|governance|tata kelola|government|pemerintah|autonomy|otonomi|representation|keterwakilan|parliament|dpr|election|pemilu|political status|status politik|self-determination|pif|pacific islands forum/i],
+  ['economy-livelihoods',/econom|ekonomi|livelihood|penghidupan|market|pasar|fisher|nelayan|agricultur|pertanian|employment|pekerjaan|income|pendapatan|revenue|penerimaan|poverty|kemiskinan|enterprise|usaha lokal/i],
+  ['health-food-public-services',/health|kesehatan|hospital|rumah sakit|malaria|nutrition|gizi|food security|ketahanan pangan|water|air bersih|sanitation|sanitasi|housing|perumahan|public service|layanan publik/i],
+  ['education-language-culture',/education|pendidikan|school|sekolah|teacher|guru|university|universitas|language|bahasa|culture|budaya|art|seni|music|musik|film|literature|sastra|archive|arsip|memory|ingatan/i],
+  ['women-gender-social-inclusion',/women|perempuan|mama-mama|gender|femicide|disability|disabil|youth|pemuda|social inclusion|inklusi sosial/i],
+  ['infrastructure-connectivity',/infrastructure|infrastruktur|road|jalan|bridge|jembatan|airport|bandara|aviation|penerbangan|port|pelabuhan|internet|telecom|telekom|connectivity|konektivitas|electricity|listrik|power grid|jaringan listrik/i]
+];
 
 export const normalizeKey=(value:string)=>String(value||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 const slugify=(value:string)=>normalizeKey(value).replace(/\s+/g,'-').slice(0,80)||'place';
@@ -46,6 +59,18 @@ export async function syncDevelopmentKnowledge(env:any,developmentId:number,pack
     await env.DB.prepare(`UPDATE issues SET last_seen_at=?,updated_at=? WHERE slug=?`).bind(now,now,slug).run();
   }
   if(issueSlugs[0])await env.DB.prepare(`UPDATE developments SET issue_slug=COALESCE(issue_slug,?) WHERE id=?`).bind(issueSlugs[0],developmentId).run();
+
+  const broadText=`${text}
+${packet.summary}
+${packet.topics.join(' ')}
+${packet.issue_candidates.join(' ')}`;
+  const broad=new Map<string,{score:number;relation:string}>();
+  for(const [slug,rule] of BROAD_ISSUE_RULES)if(rule.test(broadText))broad.set(slug,{score:.78,relation:'topic'});
+  for(const dossierSlug of issueSlugs){
+    const mapped:any=await env.DB.prepare(`SELECT broad_issue_slug FROM dossier_issues WHERE dossier_slug=?`).bind(dossierSlug).all();
+    for(const row of mapped.results||[])broad.set(String(row.broad_issue_slug),{score:.95,relation:'dossier'});
+  }
+  for(const [slug,link] of broad){await env.DB.prepare(`INSERT INTO development_broad_issues(development_id,broad_issue_slug,score,relation,created_at,updated_at) VALUES(?,?,?,?,?,?) ON CONFLICT(development_id,broad_issue_slug) DO UPDATE SET score=MAX(development_broad_issues.score,excluded.score),relation=CASE WHEN excluded.score>=development_broad_issues.score THEN excluded.relation ELSE development_broad_issues.relation END,updated_at=excluded.updated_at`).bind(developmentId,slug,link.score,link.relation,now,now).run()}
 
   for(const raw of unique(packet.places).slice(0,12)){
     const place:any=await resolvePlace(env,raw);if(!place)continue;

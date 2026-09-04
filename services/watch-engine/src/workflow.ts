@@ -35,6 +35,6 @@ export class NewsCycleWorkflow extends WorkflowEntrypoint<any,unknown>{
     const emerging=witHour===18
       ?await step.do('daily emerging issue pass',{retries:{limit:1,delay:'30 seconds'},timeout:'4 minutes'},()=>detectEmergingIssues(this.env,24))
       :{checked:0,upserted:0,skipped:'daily-maintenance-window'};
-    return {deferred,legacy,editorial,reconcile,emerging,discovered:items.length,enqueued,cadence:'06/09/12/15/18 WIT'};
+    return {deferred,legacy,editorial,reconcile,emerging,discovered:items.length,enqueued,cadence:'hourly'};
   }
 }

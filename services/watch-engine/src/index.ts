@@ -42,10 +42,20 @@ async function imageForDevelopment(env:any,id:number){return env.DB.prepare(`SEL
 async function issuesForDevelopment(env:any,id:number){const r:any=await env.DB.prepare(`SELECT i.slug,i.title_en,i.title_id,i.category,di.relation,di.score FROM development_issues di JOIN issues i ON i.slug=di.issue_slug WHERE di.development_id=? AND i.active=1 ORDER BY CASE di.relation WHEN 'primary' THEN 0 ELSE 1 END,di.score DESC,i.title_en`).bind(id).all();return r.results||[]}
 async function placesForDevelopment(env:any,id:number){const r:any=await env.DB.prepare(`SELECT p.slug,p.name,p.kind,p.latitude,p.longitude,dp.relation,dp.score FROM development_places dp JOIN places p ON p.slug=dp.place_slug WHERE dp.development_id=? ORDER BY dp.score DESC,p.name LIMIT 12`).bind(id).all();return r.results||[]}
 
-async function current(env:any){
-  const rows:any=await env.DB.prepare(`SELECT d.id,d.issue_slug,d.title_en,d.title_id,d.summary_en,d.summary_id,d.updated_at,d.first_seen_at,d.last_growth_at,d.ranking_score,COUNT(DISTINCT da.article_id) article_count,COUNT(DISTINCT CASE WHEN a.syndicated_from_article_id IS NULL THEN a.publisher_id END) source_count FROM developments d JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id WHERE d.status='published' GROUP BY d.id ORDER BY d.ranking_score DESC,d.updated_at DESC LIMIT 18`).all();
-  const items=[];
-  for(const d of rows.results||[]){
+async function current(env:any,url:URL){
+  const page=Math.max(1,Math.floor(Number(url.searchParams.get('page')||1)||1));
+  const pageSize=Math.min(24,Math.max(6,Math.floor(Number(url.searchParams.get('limit')||12)||12)));
+  const offset=(page-1)*pageSize;
+  const rows:any=await env.DB.prepare(`SELECT d.id,d.issue_slug,d.title_en,d.title_id,d.summary_en,d.summary_id,d.updated_at,d.first_seen_at,d.last_growth_at,d.ranking_score,
+    COUNT(DISTINCT da.article_id) article_count,
+    COUNT(DISTINCT CASE WHEN a.syndicated_from_article_id IS NULL THEN a.publisher_id END) source_count,
+    MIN(a.published_at) first_report_at,
+    MAX(a.published_at) latest_report_at
+    FROM developments d JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id
+    WHERE d.status='published' GROUP BY d.id
+    ORDER BY MAX(COALESCE(a.published_at,a.fetched_at)) DESC,d.ranking_score DESC,d.id DESC LIMIT ? OFFSET ?`).bind(pageSize+1,offset).all();
+  const raw=(rows.results||[]),hasMore=raw.length>pageSize,items=[];
+  for(const d of raw.slice(0,pageSize)){
     const [image,article,issueRows,placeRows]:any[]=await Promise.all([
       imageForDevelopment(env,d.id),
       env.DB.prepare(`SELECT a.title,p.role,p.name publisher,a.publisher_id,sp.watch_desk,sp.places_json,sp.topics_json FROM development_articles da JOIN articles a ON a.id=da.article_id JOIN publishers p ON p.id=a.publisher_id LEFT JOIN story_packets sp ON sp.article_id=a.id WHERE da.development_id=? ORDER BY COALESCE(a.published_at,a.fetched_at) DESC LIMIT 1`).bind(d.id).first(),
@@ -53,12 +63,12 @@ async function current(env:any){
     ]);
     const packetPlaces=parseArray(article?.places_json),topics=parseArray(article?.topics_json),issueSlugs=issueRows.map((x:any)=>String(x.slug));
     const primaryIssue=issueRows.find((x:any)=>x.relation==='primary')?.slug||issueSlugs[0]||d.issue_slug||null;
-    items.push({id:d.id,story_url:`/story/?id=${d.id}`,issue_slug:primaryIssue,issues:issueRows,places:placeRows,title:{en:d.title_en,id:d.title_id||d.title_en},summary:{en:d.summary_en,id:d.summary_id||d.summary_en},category:String(article?.watch_desk||'current').replaceAll('_',' '),place:placeRows[0]?.name||packetPlaces[0]||'West Papua',topics:topics.slice(0,8),tags:topicTagsFor(article?.watch_desk,issueSlugs.length?issueSlugs:[String(d.issue_slug||'')],topics),updated_at:d.updated_at,first_seen_at:d.first_seen_at,last_growth_at:d.last_growth_at,ranking_score:d.ranking_score,article_count:d.article_count,source_count:d.source_count,is_developing:Number(d.article_count)>1,latest_source:article?{publisher_id:article.publisher_id,publisher:article.publisher,role:article.role}:null,image:image?{url:image.url,source_url:image.source_url,credit:image.credit||image.publisher,caption:image.caption,rights_status:image.rights_status}:null});
+    items.push({id:d.id,story_url:`/story/?id=${d.id}`,issue_slug:primaryIssue,issues:issueRows,places:placeRows,title:{en:d.title_en,id:d.title_id||d.title_en},summary:{en:d.summary_en,id:d.summary_id||d.summary_en},category:String(article?.watch_desk||'current').replaceAll('_',' '),place:placeRows[0]?.name||packetPlaces[0]||'West Papua',topics:topics.slice(0,8),tags:topicTagsFor(article?.watch_desk,issueSlugs.length?issueSlugs:[String(d.issue_slug||'')],topics),updated_at:d.updated_at,first_seen_at:d.first_seen_at,last_growth_at:d.last_growth_at,first_report_at:d.first_report_at,latest_report_at:d.latest_report_at,ranking_score:d.ranking_score,article_count:d.article_count,source_count:d.source_count,is_developing:Number(d.article_count)>1,latest_source:article?{publisher_id:article.publisher_id,publisher:article.publisher,role:article.role}:null,image:image?{url:image.url,source_url:image.source_url,credit:image.credit||image.publisher,caption:image.caption,rights_status:image.rights_status}:null});
   }
   let lead_reports:any[]=[];
-  if(items[0]?.id){const rr:any=await env.DB.prepare(`SELECT a.id,a.title,a.canonical_url,a.published_at,a.fetched_at,p.name publisher,p.role,sp.summary packet_summary,sp.what_changed FROM development_articles da JOIN articles a ON a.id=da.article_id JOIN publishers p ON p.id=a.publisher_id LEFT JOIN story_packets sp ON sp.article_id=a.id WHERE da.development_id=? ORDER BY COALESCE(a.published_at,a.fetched_at) DESC LIMIT 8`).bind(items[0].id).all();lead_reports=rr.results||[]}
+  if(page===1&&items[0]?.id){const rr:any=await env.DB.prepare(`SELECT a.id,a.title,a.canonical_url,a.published_at,a.fetched_at,p.name publisher,p.role,sp.summary packet_summary,sp.what_changed FROM development_articles da JOIN articles a ON a.id=da.article_id JOIN publishers p ON p.id=a.publisher_id LEFT JOIN story_packets sp ON sp.article_id=a.id WHERE da.development_id=? ORDER BY COALESCE(a.published_at,a.fetched_at) DESC LIMIT 8`).bind(items[0].id).all();lead_reports=rr.results||[]}
   const meta:any=await env.DB.prepare(`SELECT MAX(fetched_at) last_checked,COUNT(*) articles_total FROM articles`).first();
-  return {items,lead_reports,meta:{last_checked:meta?.last_checked||null,articles_total:Number(meta?.articles_total||0)}};
+  return {items,lead_reports,pagination:{page,page_size:pageSize,has_more:hasMore,next_page:hasMore?page+1:null},meta:{last_checked:meta?.last_checked||null,articles_total:Number(meta?.articles_total||0)}};
 }
 
 async function development(env:any,id:number){
@@ -70,20 +80,51 @@ async function development(env:any,id:number){
 }
 
 async function issues(env:any){
-  const rows:any=await env.DB.prepare(`SELECT i.*,MAX(d.updated_at) live_updated_at,COUNT(DISTINCT CASE WHEN d.status='published' THEN d.id END) development_count,COUNT(DISTINCT CASE WHEN d.status='published' AND a.syndicated_from_article_id IS NULL THEN a.publisher_id END) source_count FROM issues i LEFT JOIN development_issues di ON di.issue_slug=i.slug LEFT JOIN developments d ON d.id=di.development_id LEFT JOIN development_articles da ON da.development_id=d.id LEFT JOIN articles a ON a.id=da.article_id WHERE i.active=1 GROUP BY i.slug ORDER BY COALESCE(MAX(d.updated_at),i.updated_at) DESC,i.title_en`).all();
-  const areaRows:any=await env.DB.prepare(`SELECT ia.issue_slug,a.slug,a.title_en,a.title_id,a.sort_order FROM issue_areas ia JOIN areas a ON a.slug=ia.area_slug WHERE a.active=1 ORDER BY a.sort_order`).all();const map=new Map<string,any[]>();for(const a of areaRows.results||[]){if(!map.has(a.issue_slug))map.set(a.issue_slug,[]);map.get(a.issue_slug)!.push({slug:a.slug,title_en:a.title_en,title_id:a.title_id})}
-  return {items:(rows.results||[]).map((r:any)=>({...r,updated_at:r.live_updated_at||r.last_seen_at||r.updated_at,areas:map.get(r.slug)||[]}))};
+  const rows:any=await env.DB.prepare(`SELECT b.*,
+    MAX(COALESCE(a.published_at,a.fetched_at)) live_updated_at,
+    COUNT(DISTINCT CASE WHEN d.status='published' THEN d.id END) development_count,
+    COUNT(DISTINCT CASE WHEN d.status='published' AND a.syndicated_from_article_id IS NULL THEN a.publisher_id END) source_count
+    FROM broad_issues b
+    LEFT JOIN development_broad_issues db ON db.broad_issue_slug=b.slug
+    LEFT JOIN developments d ON d.id=db.development_id
+    LEFT JOIN development_articles da ON da.development_id=d.id
+    LEFT JOIN articles a ON a.id=da.article_id
+    WHERE b.active=1 GROUP BY b.slug ORDER BY b.sort_order`).all();
+  return {items:(rows.results||[]).map((r:any)=>({...r,updated_at:r.live_updated_at||null,kind:'issue'}))};
 }
 
-async function issue(env:any,slug:string){
+async function dossier(env:any,slug:string){
   const meta:any=await env.DB.prepare(`SELECT * FROM issues WHERE slug=? AND active=1`).bind(slug).first();if(!meta)return null;
-  const rows:any=await env.DB.prepare(`SELECT d.id,d.title_en,d.title_id,d.summary_en,d.summary_id,d.updated_at,d.ranking_score,di.relation,di.score,COUNT(DISTINCT CASE WHEN a.syndicated_from_article_id IS NULL THEN a.publisher_id END) source_count FROM development_issues di JOIN developments d ON d.id=di.development_id JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id WHERE di.issue_slug=? AND d.status='published' GROUP BY d.id ORDER BY d.updated_at DESC LIMIT 30`).bind(slug).all();
+  const rows:any=await env.DB.prepare(`SELECT d.id,d.title_en,d.title_id,d.summary_en,d.summary_id,d.updated_at,d.ranking_score,di.relation,di.score,
+    MAX(a.published_at) latest_report_at,
+    COUNT(DISTINCT CASE WHEN a.syndicated_from_article_id IS NULL THEN a.publisher_id END) source_count
+    FROM development_issues di JOIN developments d ON d.id=di.development_id JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id
+    WHERE di.issue_slug=? AND d.status='published' GROUP BY d.id ORDER BY MAX(COALESCE(a.published_at,a.fetched_at)) DESC LIMIT 30`).bind(slug).all();
   const developments=[];for(const d of rows.results||[]){const image:any=await imageForDevelopment(env,d.id);developments.push({...d,story_url:`/story/?id=${d.id}`,image:image?{url:image.url,source_url:image.source_url,credit:image.credit||image.publisher,caption:image.caption}:null})}
   const deltas:any=await env.DB.prepare(`SELECT id,development_id,delta_summary,delta_summary_id,significance,created_at FROM issue_delta_candidates WHERE issue_slug=? AND status='published' ORDER BY created_at DESC LIMIT 40`).bind(slug).all();
   const reporting:any=await env.DB.prepare(`SELECT DISTINCT a.canonical_url,a.title,a.published_at,p.name publisher,p.role,COALESCE(a.published_at,a.fetched_at) report_at FROM development_issues di JOIN developments d ON d.id=di.development_id JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id JOIN publishers p ON p.id=a.publisher_id WHERE di.issue_slug=? AND d.status='published' ORDER BY COALESCE(a.published_at,a.fetched_at) DESC LIMIT 24`).bind(slug).all();
   const src:any=await env.DB.prepare(`SELECT COUNT(DISTINCT a.publisher_id) n FROM development_issues di JOIN developments d ON d.id=di.development_id JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id WHERE di.issue_slug=? AND d.status='published'`).bind(slug).first();
-  const areas:any=await env.DB.prepare(`SELECT a.slug,a.title_en,a.title_id FROM issue_areas ia JOIN areas a ON a.slug=ia.area_slug WHERE ia.issue_slug=? AND a.active=1 ORDER BY a.sort_order`).bind(slug).all();
-  return {...meta,areas:areas.results||[],updated_at:developments[0]?.updated_at||meta.last_seen_at||meta.updated_at,development_count:developments.length,source_count:Number(src?.n||0),current_status:(deltas.results||[])[0]?{en:(deltas.results||[])[0].delta_summary,id:(deltas.results||[])[0].delta_summary_id||(deltas.results||[])[0].delta_summary}:{en:developments[0]?.summary_en||meta.summary_en,id:developments[0]?.summary_id||meta.summary_id},developments,deltas:deltas.results||[],reporting:reporting.results||[]};
+  const broad:any=await env.DB.prepare(`SELECT b.slug,b.title_en,b.title_id FROM dossier_issues di JOIN broad_issues b ON b.slug=di.broad_issue_slug WHERE di.dossier_slug=? AND b.active=1 ORDER BY b.sort_order`).bind(slug).all();
+  return {...meta,kind:'dossier',areas:broad.results||[],updated_at:developments[0]?.latest_report_at||meta.last_seen_at||meta.updated_at,development_count:developments.length,source_count:Number(src?.n||0),current_status:(deltas.results||[])[0]?{en:(deltas.results||[])[0].delta_summary,id:(deltas.results||[])[0].delta_summary_id||(deltas.results||[])[0].delta_summary}:{en:developments[0]?.summary_en||meta.summary_en,id:developments[0]?.summary_id||meta.summary_id},developments,deltas:deltas.results||[],reporting:reporting.results||[]};
+}
+
+async function issue(env:any,slug:string){
+  const meta:any=await env.DB.prepare(`SELECT * FROM broad_issues WHERE slug=? AND active=1`).bind(slug).first();
+  if(!meta)return dossier(env,slug);
+  const rows:any=await env.DB.prepare(`SELECT d.id,d.title_en,d.title_id,d.summary_en,d.summary_id,d.updated_at,d.ranking_score,
+    MAX(a.published_at) latest_report_at,
+    COUNT(DISTINCT CASE WHEN a.syndicated_from_article_id IS NULL THEN a.publisher_id END) source_count
+    FROM development_broad_issues db JOIN developments d ON d.id=db.development_id
+    JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id
+    WHERE db.broad_issue_slug=? AND d.status='published' GROUP BY d.id ORDER BY MAX(COALESCE(a.published_at,a.fetched_at)) DESC LIMIT 40`).bind(slug).all();
+  const developments=[];for(const d of rows.results||[]){const image:any=await imageForDevelopment(env,d.id);developments.push({...d,story_url:`/story/?id=${d.id}`,image:image?{url:image.url,source_url:image.source_url,credit:image.credit||image.publisher,caption:image.caption}:null})}
+  const reporting:any=await env.DB.prepare(`SELECT DISTINCT a.canonical_url,a.title,a.published_at,p.name publisher,p.role
+    FROM development_broad_issues db JOIN developments d ON d.id=db.development_id
+    JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id JOIN publishers p ON p.id=a.publisher_id
+    WHERE db.broad_issue_slug=? AND d.status='published' ORDER BY COALESCE(a.published_at,a.fetched_at) DESC LIMIT 30`).bind(slug).all();
+  const src:any=await env.DB.prepare(`SELECT COUNT(DISTINCT a.publisher_id) n FROM development_broad_issues db JOIN developments d ON d.id=db.development_id JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id WHERE db.broad_issue_slug=? AND d.status='published'`).bind(slug).first();
+  const dossiers:any=await env.DB.prepare(`SELECT d.slug,d.title_en,d.title_id,d.summary_en,d.summary_id,d.status_en,d.status_id FROM dossier_issues bi JOIN dossiers d ON d.slug=bi.dossier_slug WHERE bi.broad_issue_slug=? AND d.active=1 ORDER BY d.updated_at DESC`).bind(slug).all();
+  return {...meta,kind:'issue',updated_at:developments[0]?.latest_report_at||null,development_count:developments.length,source_count:Number(src?.n||0),current_status:{en:developments[0]?.summary_en||meta.summary_en,id:developments[0]?.summary_id||meta.summary_id},developments,deltas:[],reporting:reporting.results||[],dossiers:dossiers.results||[],areas:[]};
 }
 async function emerging(env:any){const rows:any=await env.DB.prepare(`SELECT * FROM emerging_issues WHERE status='emerging' ORDER BY last_seen_at DESC,development_count DESC LIMIT 20`).all();return rows.results||[]}
 async function resources(env:any,url:URL){const status=url.searchParams.get('status')==='candidate'?'candidate':'published';const rows:any=await env.DB.prepare(`SELECT * FROM resource_candidates WHERE status=? ORDER BY COALESCE(updated_at,created_at) DESC LIMIT 100`).bind(status).all();return rows.results||[]}
@@ -96,8 +137,8 @@ async function editorialStatus(env:any){
 export default {
   async fetch(request:any,env:any){
     const url=new URL(request.url);
-    if(url.pathname==='/health')return json({ok:true,service:'westpapua-watch-engine',scheduler:'06/09/12/15/18 WIT',pipelineVersion:2,freeze:'10'});
-    if(url.pathname==='/current'&&request.method==='GET')return json(await current(env),200,'public, max-age=60, stale-while-revalidate=180');
+    if(url.pathname==='/health')return json({ok:true,service:'westpapua-watch-engine',scheduler:'hourly',pipelineVersion:2,freeze:'10'});
+    if(url.pathname==='/current'&&request.method==='GET')return json(await current(env,url),200,'public, max-age=60, stale-while-revalidate=180');
     const dm=url.pathname.match(/^\/development\/(\d+)$/);if(dm&&request.method==='GET'){const item=await development(env,Number(dm[1]));return item?json(item):json({error:'Not found'},404)}
     if(url.pathname==='/issues'&&request.method==='GET')return json(await issues(env),200,'public, max-age=60, stale-while-revalidate=180');
     const im=url.pathname.match(/^\/issue\/([a-z0-9-]+)$/);if(im&&request.method==='GET'){const item=await issue(env,im[1]);return item?json(item,200,'public, max-age=60, stale-while-revalidate=180'):json({error:'Not found'},404)}

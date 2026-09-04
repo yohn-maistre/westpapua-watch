@@ -1,0 +1,55 @@
+name: Refresh Atlas Data
+
+on:
+  workflow_dispatch:
+    inputs:
+      refresh_static:
+        description: "Refresh population, forest loss and hillshade too"
+        required: false
+        default: true
+        type: boolean
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/refresh-atlas-rasters.sh'
+      - '.github/workflows/refresh-atlas-data.yml'
+  schedule:
+    - cron: '17 2 7,14,21,28 * *'
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - name: Install raster tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gdal-bin python3-gdal python3-numpy curl jq
+          gdalinfo --version
+      - name: Build Watch raster products
+        env:
+          STATIC_REFRESH: ${{ (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.refresh_static)) && '1' || '0' }}
+        run: bash scripts/refresh-atlas-rasters.sh
+      - name: Upload successful raster products
+        run: |
+          shopt -s nullglob
+          for file in geo/raster-out/*.png; do
+            name="$(basename "$file")"
+            npx --no-install wrangler r2 object put "westpapua-watch-archive/raster/$name" \
+              --file "$file" --content-type image/png --cache-control 'public, max-age=86400' --remote --force
+          done
+          if [[ -s geo/raster-out/manifest.json ]]; then
+            npx --no-install wrangler r2 object put "westpapua-watch-archive/raster/manifest.json" \
+              --file geo/raster-out/manifest.json --content-type application/json --cache-control 'public, max-age=300' --remote --force
+          fi
