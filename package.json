@@ -25,7 +25,7 @@
     "geo:build": "npm run geo:source && npm run geo:compile"
   },
   "dependencies": {
-    "@astrojs/sitemap": "3.7.3",
+    "@astrojs/sitemap": "3.7.4",
     "@fontsource-variable/instrument-sans": "5.3.0",
     "@fontsource/instrument-serif": "5.3.0",
     "@mozilla/readability": "0.6.0",
