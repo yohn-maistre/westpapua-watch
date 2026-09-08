@@ -85,7 +85,14 @@ for filename,field,kind in [('provinces','provinsi','province'),('cultural_regio
         geometry=feature.GetGeometryRef()
         if not name or geometry is None:
             continue
-        merged[name]=merged[name].Union(geometry) if name in merged else geometry.Clone()
+        if name not in merged:
+            merged[name]=geometry.Clone()
+        else:
+            # Invalid upstream polygons can make OGR Union return None. Keep the
+            # last valid aggregate so one bad feature cannot abort label output.
+            combined=merged[name].Union(geometry)
+            if combined is not None and not combined.IsEmpty():
+                merged[name]=combined
     for name,geometry in merged.items():
         point=geometry.PointOnSurface()
         if point is not None and not point.IsEmpty():
