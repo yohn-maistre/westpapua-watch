@@ -67,5 +67,32 @@ for spec in "mining:4:13" "concessions:4:13" "protected:4:13" "roads:5:14" "airp
   fi
 done
 
+# One interior anchor per dissolved region, not one label per vector tile.
+python3 - <<'LABELS'
+import json
+from pathlib import Path
+from osgeo import ogr
+features=[]
+for filename,field,kind in [('provinces','provinsi','province'),('cultural_regions','region','region')]:
+    path=Path('.build')/(filename+'.geojson')
+    if not path.exists():
+        continue
+    source=ogr.Open(str(path))
+    layer=source.GetLayer()
+    merged={}
+    for feature in layer:
+        name=feature.GetField(field)
+        geometry=feature.GetGeometryRef()
+        if not name or geometry is None:
+            continue
+        merged[name]=merged[name].Union(geometry) if name in merged else geometry.Clone()
+    for name,geometry in merged.items():
+        point=geometry.PointOnSurface()
+        if point is not None and not point.IsEmpty():
+            features.append({'type':'Feature','geometry':json.loads(point.ExportToJson()),'properties':{field:name,'kind':kind}})
+if features:
+    Path('../public/data/atlas-labels.geojson').write_text(json.dumps({'type':'FeatureCollection','features':features}))
+LABELS
+
 [[ -s .build/manifest.json ]] && cp .build/manifest.json out/manifest.json
 ls -lh out ../public/data/west-papua-silhouette.geojson ../public/data/context-land.geojson 2>/dev/null || true

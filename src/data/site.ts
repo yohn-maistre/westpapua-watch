@@ -10,9 +10,9 @@ export const SITE = {
 };
 
 export const NAV_ITEMS = [
-  { href: '/', key: 'home', label: { en: 'Overview', pmy: 'Ringkasan' } },
-  { href: '/current/', key: 'current', label: { en: 'Current', pmy: 'Sekarang' } },
-  { href: '/issues/', key: 'issues', label: { en: 'Issues', pmy: 'Isu' } },
+  { href: '/', key: 'home', label: { en: 'Home', pmy: 'Beranda' } },
+  { href: '/current/', key: 'current', label: { en: 'News', pmy: 'Berita' } },
+  { href: '/issues/', key: 'issues', label: { en: 'Topics', pmy: 'Topik' } },
   { href: '/history/', key: 'history', label: { en: 'History', pmy: 'Sejarah' } },
   { href: '/resources/', key: 'resources', label: { en: 'Resources', pmy: 'Sumber' } },
   { href: '/events/', key: 'events', label: { en: 'Events', pmy: 'Acara' } },

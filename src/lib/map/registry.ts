@@ -1,7 +1,7 @@
 export type MapLayerFamily='boundaries'|'extraction'|'environment'|'infrastructure'|'population'|'current';
 export type MapLayerSourceType='pmtiles'|'live'|'raster'|'image';
 export type MapBaseId='atlas'|'satellite'|'night';
-export type MapViewId='overview'|'extraction'|'environment'|'infrastructure'|'current';
+export type MapViewId='overview'|'extraction'|'environment'|'climate'|'infrastructure'|'current';
 export type MapLayerDefinition={
   id:string;family:MapLayerFamily;title:string;titleId:string;description:string;descriptionId:string;
   sourceType:MapLayerSourceType;source:string;sourceLayer?:string;tiles?:string[];sourceUrl:string;attribution:string;license:string;
@@ -52,13 +52,14 @@ export const MAP_FAMILIES:{id:MapLayerFamily;title:string;titleId:string}[]=[
   {id:'boundaries',title:'Boundaries',titleId:'Batas'},
   {id:'extraction',title:'Extraction',titleId:'Ekstraksi'},
   {id:'environment',title:'Environment',titleId:'Lingkungan'},
+  {id:'climate',title:'Climate',titleId:'Iklim',layers:['province-boundaries','rainfall-anomaly','fire-hotspots']},
   {id:'infrastructure',title:'Infrastructure',titleId:'Infrastruktur'},
   {id:'population',title:'Population',titleId:'Penduduk'},
   {id:'current',title:'Current',titleId:'Sekarang'}
 ];
 
 export const MAP_VIEWS:MapViewDefinition[]=[
-  {id:'overview',title:'Overview',titleId:'Ringkasan',layers:['province-boundaries','cultural-regions','major-roads','settlements','fire-hotspots','current-developments']},
+  {id:'overview',title:'Overview',titleId:'Ringkasan',layers:['province-boundaries','settlements','current-developments']},
   {id:'extraction',title:'Extraction',titleId:'Ekstraksi',layers:['province-boundaries','cultural-regions','mining-permits','major-extraction-sites','forest-plantation-permits','current-developments']},
   {id:'environment',title:'Environment',titleId:'Lingkungan',layers:['province-boundaries','protected-areas','fire-hotspots','forest-loss','current-developments']},
   {id:'infrastructure',title:'Infrastructure',titleId:'Infrastruktur',layers:['province-boundaries','major-roads','airports','ports','settlements','current-developments']},
@@ -135,7 +136,7 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
   },
   {
     id:'fire-hotspots',family:'environment',title:'Fire hotspots',titleId:'Titik panas',
-    description:'Recent NASA FIRMS satellite hotspots.',descriptionId:'Titik panas satelit NASA FIRMS terbaru.',
+    description:'NASA FIRMS thermal detections over the last 2 days. Near real time; not confirmed wildfires.',descriptionId:'Deteksi panas NASA FIRMS selama 2 hari terakhir. Mendekati waktu nyata; bukan kebakaran terkonfirmasi.',
     sourceType:'live',source:'/api/fires',sourceUrl:'https://firms.modaps.eosdis.nasa.gov/',attribution:'NASA FIRMS · VIIRS NOAA-21',license:'NASA Earth observation data',coverage:'Western New Guinea',
     minZoom:3,maxZoom:14,defaultVisible:true,geometry:'circle',
     style:{'circle-radius':['interpolate',['linear'],['zoom'],3,2.6,9,5.8],'circle-color':'#ad705f','circle-opacity':.79,'circle-stroke-color':'#faf8f3','circle-stroke-width':.8}

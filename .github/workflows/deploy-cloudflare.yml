@@ -19,19 +19,21 @@ jobs:
         with:
           node-version: '22'
       - name: Install
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
       - name: Validate
         run: npm run check:content
       - name: Install geospatial compiler
         run: |
           sudo apt-get update
-          sudo apt-get install -y gdal-bin
+          sudo apt-get install -y gdal-bin python3-gdal
           ogr2ogr --version
           ogr2ogr --formats | grep PMTiles
       - name: Build Watch geography
         run: npm run geo:build
       - name: Build Pages
         run: npm run build
+      - name: Check public response regressions
+        run: npm run check:polish
       - name: Render Watch Engine config
         if: ${{ vars.WATCH_DB_ID != '' }}
         env:

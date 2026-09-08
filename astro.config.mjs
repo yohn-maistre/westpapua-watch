@@ -18,7 +18,7 @@ export default defineConfig({
         "form-action 'self'",
         "img-src 'self' data: https:",
         "font-src 'self'",
-        "connect-src 'self' https://tiles.openfreemap.org",
+        "connect-src 'self' https://tiles.openfreemap.org https://tiles.maps.eox.at https://storage.googleapis.com",
         "worker-src 'self' blob:",
         'upgrade-insecure-requests'
       ],

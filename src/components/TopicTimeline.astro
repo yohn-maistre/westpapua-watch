@@ -1,0 +1,5 @@
+---
+import {topicTimelines} from '../data/topic-timelines';
+const {slug,locale='en'}=Astro.props;const entries=topicTimelines[slug]||[];const en=locale==='en';
+---
+{entries.length>0&&<section class="section topic-timeline" id="timeline"><h2 class="page-subtitle">{en?'Timeline.':'Linimasa.'}</h2><p>{en?'Selected milestones across MIFEE and later food and energy projects. Each entry identifies its programme and source; this is not a complete chronology.':'Tonggak terpilih dari MIFEE serta proyek pangan dan energi berikutnya. Setiap entri memiliki sumber; ini bukan kronologi lengkap.'}</p><ol>{entries.map(entry=><li id={entry.id}><time datetime={entry.date.length===4?undefined:entry.date}>{entry.date.length===4?entry.date:new Date(entry.date+'T00:00:00Z').toLocaleDateString(en?'en-GB':'id-ID',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'})}</time><div><h3>{en?entry.title.en:entry.title.pmy}</h3><p>{en?entry.text.en:entry.text.pmy}</p><a href={entry.source} target="_blank" rel="noreferrer">{entry.publisher} ↗</a></div></li>)}</ol></section>}

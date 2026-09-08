@@ -59,3 +59,14 @@
   .home-current-stack{grid-template-columns:1fr}
   .home-current-stack .home-current-card{min-height:270px}
 }
+
+.home-current-magazine{min-height:0;align-items:start}
+.home-current-card{display:grid;min-height:0}
+.home-current-card img{position:relative;height:clamp(220px,26vw,420px);grid-area:auto}
+.home-current-card::after{display:none}
+.home-current-copy{position:relative;inset:auto;padding:1.2rem}
+.home-current-copy h3{overflow-wrap:break-word}
+.home-current-stack .home-current-card{min-height:0}
+.home-current-stack .home-current-card img{height:180px}
+.home-issue h3{line-height:.98}
+@media(max-width:760px){.home-current-card,.home-current-stack .home-current-card{min-height:0}.home-current-feature .home-current-copy h3{font-size:clamp(2.6rem,11vw,4.5rem)}.home-current-stack .home-current-copy h3{font-size:clamp(1.7rem,7vw,2.7rem)}}

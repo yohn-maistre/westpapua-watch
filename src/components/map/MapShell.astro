@@ -19,14 +19,14 @@ const familyFor=(family:any)=>locale==='pmy'?family.titleId:family.title;
 const viewFor=(view:any)=>locale==='pmy'?view.titleId:view.title;
 const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
 ---
-<section class:list={['watch-map',mode==='context'&&'watch-map-context']} data-watch-map data-map-mode={mode} data-locale={locale} data-context={context} data-context-value={contextValue} data-initial-view={initialView} data-explore="false">
+<section class:list={['watch-map',mode==='context'&&'watch-map-context']} data-watch-map data-map-mode={mode} data-locale={locale} data-context={context} data-context-value={contextValue} data-initial-view={initialView} data-explore="false" aria-label={locale==='pmy'?'Peta Papua Barat':'West Papua map'}>
   <div class="watch-map-frame">
     <div class="watch-map-canvas" data-map-canvas></div>
     <div class="watch-map-fallback" data-map-fallback hidden>
       <div>
         <strong>{locale==='pmy'?'Peta tidak tersedia.':'Map unavailable.'}</strong>
-        <p>{locale==='pmy'?'Konten Watch tetap bisa dibuka lewat Isu dan Sekarang.':'Watch remains available through Issues and Current.'}</p>
-        <nav><a href={locale==='pmy'?'/pmy/issues/':'/issues/'}>{locale==='pmy'?'Isu':'Issues'}</a><a href={locale==='pmy'?'/pmy/current/':'/current/'}>{locale==='pmy'?'Sekarang':'Current'}</a></nav>
+        <p>{locale==='pmy'?'Topik, berita, dan sumber data tetap tersedia.':'Browse topics, news and dataset sources below.'}</p>
+        <nav><a href={locale==='pmy'?'/pmy/issues/':'/issues/'}>{locale==='pmy'?'Topik':'Topics'}</a><a href={locale==='pmy'?'/pmy/current/':'/current/'}>{locale==='pmy'?'Berita':'News'}</a></nav>
       </div>
     </div>
     {mode==='context'&&title&&<div class="watch-map-heading"><span>{eyebrow}</span><h2>{title}</h2></div>}
@@ -43,13 +43,13 @@ const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
     </div>
 
     <div class="watch-map-controls" aria-label="Map controls">
-      <button type="button" data-map-layers-open>{labels.layers}</button>
+      <button type="button" data-map-layers-open aria-expanded="false">{labels.layers}</button>
       <button type="button" data-map-expand>{labels.expand}</button>
       <button type="button" data-map-close-expanded hidden>{labels.close}</button>
     </div>
 
     <button class="watch-map-panel-backdrop" type="button" data-map-panel-backdrop hidden aria-label={labels.close}></button>
-    <aside class="watch-map-layer-panel" data-map-layers-panel hidden aria-label={labels.layers}>
+    <aside class="watch-map-layer-panel" data-map-layers-panel tabindex="-1" hidden aria-label={labels.layers}>
       <header><strong>{labels.layers}</strong><button type="button" data-map-layers-close aria-label={labels.close}>×</button></header>
       <label class="watch-map-search"><span>{labels.search}</span><input data-map-place-search type="search" autocomplete="off" /></label>
       <div class="watch-map-place-results" data-map-place-results></div>
@@ -69,6 +69,10 @@ const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
     <div class="watch-map-debug" data-map-debug hidden></div>
     <div class="watch-map-credit"><span data-map-credit>BIG · Bappenas · ESDM · NASA FIRMS · {labels.source}: layer metadata</span></div>
   </div>
+  <details class="map-datasets"><summary>{locale==='pmy'?'Sumber & keterangan peta':'Map sources & notes'}</summary>
+    <nav class="map-climate-links" aria-label={locale==='pmy'?'Konteks iklim':'Climate context'}><a href="https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodisc.shtml" target="_blank" rel="noreferrer">NOAA · El Niño / La Niña ↗</a><a href="https://worldview.earthdata.nasa.gov/" target="_blank" rel="noreferrer">NASA · {locale==='pmy'?'Citra harian':'Daily imagery'} ↗</a><a href="https://coralreefwatch.noaa.gov/product/5km/" target="_blank" rel="noreferrer">NOAA · {locale==='pmy'?'Stres panas karang':'Coral heat stress'} ↗</a></nav>
+    <div class="map-dataset-grid">{MAP_LAYERS.map(layer=><article data-map-dataset={layer.id}><strong>{labelFor(layer)}</strong><p>{noteFor(layer)}</p><small data-map-dataset-status>{locale==='pmy'?'Periode: lihat sumber':'Period: see source'}</small><a href={layer.sourceUrl} target="_blank" rel="noreferrer">{layer.attribution} ↗</a></article>)}</div>
+  </details>
 </section>
 <script>
   import {initWatchMaps} from '../../lib/map/runtime';

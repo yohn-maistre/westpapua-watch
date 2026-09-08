@@ -22,7 +22,8 @@
     "watch:dev": "npm run watch:config && wrangler dev --remote --config services/watch-engine/wrangler.generated.jsonc",
     "geo:source": "node geo/build.mjs",
     "geo:compile": "bash geo/compile.sh",
-    "geo:build": "npm run geo:source && npm run geo:compile"
+    "geo:build": "npm run geo:source && npm run geo:compile",
+    "check:polish": "node scripts/tests/polish.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",
@@ -37,6 +38,8 @@
     "pmtiles": "4.5.0"
   },
   "devDependencies": {
-    "wrangler": "4.127.1"
+    "wrangler": "4.127.1",
+    "esbuild": "0.28.2",
+    "miniflare": "5.20260828.0-alpha"
   }
 }

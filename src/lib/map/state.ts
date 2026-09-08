@@ -10,9 +10,9 @@ export function parseMapState(search:string):WatchMapState{
   return {
     base:validBase,
     view:validView,
-    layers:requested.length?requested:viewById[validView].layers.slice(),
+    layers:p.has('layers')?requested:viewById[validView].layers.slice(),
     place:p.get('place'),
-    explore:p.get('map')==='explore'||requested.length>0||Boolean(p.get('place'))||validBase!=='atlas'||validView!=='overview'
+    explore:p.get('map')==='explore'||p.has('layers')||Boolean(p.get('place'))||validBase!=='atlas'||validView!=='overview'
   };
 }
 export function writeMapState(state:WatchMapState){

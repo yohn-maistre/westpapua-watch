@@ -1,21 +1,13 @@
-import { developments } from './developments';
+import { dossiers } from './dossiers';
 import { issues } from './issues';
 import { glossary } from './glossary';
 import { historyChapters } from './history';
 import { resources } from './resources';
 
 export const searchCorpus = [
-  ...developments.map((item) => ({
-    id: `development:${item.slug}`,
-    type: 'development',
-    title: item.title,
-    text: item.summary,
-    href: item.featured ? '/' : `/issues/${item.issueSlug}/`,
-    tags: [item.category, item.place, item.issueSlug]
-  })),
-  ...issues.map((item) => ({
+  ...[...issues,...dossiers].map((item) => ({
     id: `issue:${item.slug}`,
-    type: 'issue',
+    type: 'topic',
     title: item.title,
     text: item.summary,
     href: `/issues/${item.slug}/`,
@@ -26,7 +18,7 @@ export const searchCorpus = [
     type: 'history',
     title: { en: `${item.year} — ${item.title.en}`, pmy: `${item.year} — ${item.title.pmy}` },
     text: item.body,
-    href: '/history/',
+    href: `/history/`,
     tags: [item.year, 'history']
   })),
   ...glossary.map((item) => ({

@@ -13,6 +13,9 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
-      - run: npm install --no-audit --no-fund
+      - run: npm ci --no-audit --no-fund
       - run: npm run check:content
       - run: npm run build
+      - run: npm run check:polish
+      - run: npx --no-install wrangler pages functions build functions --outdir /tmp/watch-functions
+      - run: npx --no-install esbuild services/watch-engine/src/index.ts --bundle --platform=browser --format=esm --external:cloudflare:workers --outfile=/tmp/watch-engine.mjs

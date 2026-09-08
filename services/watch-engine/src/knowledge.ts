@@ -4,7 +4,7 @@ import { hasWesternSignal,looksForeignOnly } from './ingest/prefilter';
 const ISSUE_RULES:[string,RegExp][]=[
   ['mining-raja-ampat',/raja ampat|gag nikel|waigeo|kawe.*tambang|tambang.*raja ampat/i],
   ['lake-sentani-watershed',/danau sentani|lake sentani|cycloop/i],
-  ['south-papua-food-energy-estate',/merauke|papua selatan|south papua|food estate|cetak sawah|tebu.*merauke|sugar.*merauke|psn.*merauke/i],
+  ['south-papua-food-energy-estate',/mifee|food estate|cetak sawah|tebu.*merauke|sugar.*merauke|psn.*merauke|proyek pangan.*merauke/i],
   ['conflict-displacement-access',/pengungsi|displacement|konflik|conflict|militer|military|tni|operasi keamanan|security operation|intan jaya|puncak|nduga|yahukimo/i],
   ['women-gender',/perempuan|mama-mama|women|gender|kekerasan berbasis gender|femicide/i],
   ['culture-memory-expression',/seni|\bart\b|film|musik|music|sastra|literature|udeido|mambesak|budaya|culture|arsip|archive/i],
