@@ -14,6 +14,7 @@ concurrency:
 jobs:
   backfill:
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Queue dated reporting through the deployed engine
         env:
