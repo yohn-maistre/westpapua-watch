@@ -11,7 +11,7 @@ const {
   context?:'issue'|'development'|'';contextValue?:string;initialView?:MapViewId;
 };
 const labels=locale==='pmy'
-  ?{base:'Dasar',layers:'Lapisan',expand:'Penuh',close:'Tutup',return:'Kembali ke tampilan halaman',search:'Cari tempat',source:'Sumber',view:'Tampilan'}
+  ?{base:'Dasar',layers:'Lapisan',expand:'Perlebar',close:'Tutup',return:'Kembali ke tampilan halaman',search:'Cari tempat',source:'Sumber',view:'Tampilan'}
   :{base:'Base',layers:'Layers',expand:'Expand',close:'Close',return:'Return to page view',search:'Search places',source:'Source',view:'View'};
 const labelFor=(layer:any)=>locale==='pmy'?layer.titleId:layer.title;
 const noteFor=(layer:any)=>locale==='pmy'?(layer.coverageNotesId||layer.descriptionId||layer.coverage):(layer.coverageNotes||layer.description||layer.coverage);
@@ -26,10 +26,10 @@ const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
       <div>
         <strong>{locale==='pmy'?'Peta tidak tersedia.':'Map unavailable.'}</strong>
         <p>{locale==='pmy'?'Topik, berita, dan sumber data tetap tersedia.':'Browse topics, news and dataset sources below.'}</p>
-        <nav><a href={locale==='pmy'?'/pmy/issues/':'/issues/'}>{locale==='pmy'?'Topik':'Topics'}</a><a href={locale==='pmy'?'/pmy/current/':'/current/'}>{locale==='pmy'?'Berita':'News'}</a></nav>
+        <nav><a href={locale==='pmy'?'/pmy/topics/':'/topics/'}>{locale==='pmy'?'Topik':'Topics'}</a><a href={locale==='pmy'?'/pmy/news/':'/news/'}>{locale==='pmy'?'Berita':'News'}</a></nav>
       </div>
     </div>
-    {mode==='context'&&title&&<div class="watch-map-heading"><span>{eyebrow}</span><h2>{title}</h2></div>}
+
     <div class="watch-map-state" data-map-state></div>
 
     <div class="watch-map-basebar" aria-label={labels.base}>
@@ -37,10 +37,10 @@ const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
       <div>{MAP_BASES.map(base=><button type="button" data-map-base={base.id}>{baseFor(base)}</button>)}</div>
     </div>
 
-    <div class="watch-map-viewbar" aria-label={labels.view}>
-      <span>{labels.view}</span>
+    <details class="watch-map-viewbar" data-map-presets>
+      <summary><span data-map-preset-label>{viewFor(MAP_VIEWS.find(v=>v.id===initialView)||MAP_VIEWS[0])}</span><span aria-hidden="true"> ↑</span></summary>
       <div>{MAP_VIEWS.map(view=><button type="button" data-map-view={view.id}>{viewFor(view)}</button>)}</div>
-    </div>
+    </details>
 
     <div class="watch-map-controls" aria-label="Map controls">
       <button type="button" data-map-layers-open aria-expanded="false">{labels.layers}</button>

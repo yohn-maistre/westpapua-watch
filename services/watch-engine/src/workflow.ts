@@ -18,7 +18,7 @@ export class NewsCycleWorkflow extends WorkflowEntrypoint<any,unknown>{
     const items=isBackfill
       ?await step.do(`discover ${backfillDays}-day backfill`,{retries:{limit:2,delay:'30 seconds',backoff:'exponential'},timeout:'6 minutes'},()=>discoverBackfill(backfillDays))
       :await step.do('discover enabled publishers',{retries:{limit:2,delay:'20 seconds',backoff:'exponential'},timeout:'3 minutes'},()=>discoverEnabled());
-    const scanCap=isBackfill?300:80,enqueueCap=isBackfill?120:80;
+    const scanCap=isBackfill?2000:160,enqueueCap=isBackfill?480:120;
     const fresh=await step.do('remove known urls',async()=>{const out=[];for(const item of items.slice(0,scanCap)){const row=await this.env.DB.prepare(`SELECT id FROM articles WHERE canonical_url=?`).bind(item.url.replace(/\/$/,'')).first();if(!row)out.push(item);if(out.length>=enqueueCap)break}return out});
     const enqueued=await step.do('enqueue ingestion batches',async()=>{if(!fresh.length)return 0;for(let i=0;i<fresh.length;i+=4){const delaySeconds=isBackfill?Math.floor(i/4)*60:0;await this.env.INGEST_QUEUE.send({kind:'ingest_batch',items:fresh.slice(i,i+4)},{delaySeconds})}return fresh.length});
 

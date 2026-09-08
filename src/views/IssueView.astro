@@ -29,12 +29,12 @@ const mapView:MapViewId=
 ---
 <BaseLayout locale={locale} active="issues" title={t(issue.title,locale)} description={t(issue.summary,locale)}>
 <div class="wrap">
-  <a class="story-back issue-back" href={withLocale('/issues/',locale)}>← {locale==='en'?'Topics':'Topik'}</a>
+  <a class="story-back issue-back" href={withLocale('/topics/',locale)}>← {locale==='en'?'Topics':'Topik'}</a>
 
   <h1 class="page-title issue-page-title">{t(issue.title,locale)}</h1>
 
 
-  <section class="issue-map-meta" data-issue-page data-issue-slug={issue.slug} data-issue-kind={isUmbrella?'issue':'dossier'} data-locale={locale}>
+  <section class="issue-map-meta" id="overview" data-issue-page data-issue-slug={issue.slug} data-issue-kind={isUmbrella?'issue':'dossier'} data-locale={locale}>
     <div class="issue-map-copy">
       <span class="issue-kind-label">{isUmbrella?(locale==='en'?'Category':'Kategori'):(locale==='en'?'Topic':'Topik')}</span>
       <p data-live-issue-summary>{t(issue.summary,locale)}</p>
@@ -54,7 +54,7 @@ const mapView:MapViewId=
   </section>
 
   <nav class="topic-local-index" aria-label={locale==='en'?'On this page':'Di halaman ini'}><a href="#overview">{locale==='en'?'Overview':'Ringkasan'}</a><a href="#latest">{locale==='en'?'Latest':'Terbaru'}</a>{topicTimelines[issue.slug]&&<a href="#timeline">{locale==='en'?'Timeline':'Linimasa'}</a>}<a href="#places">{locale==='en'?'Places':'Lokasi'}</a></nav><div class="dossier-grid">
-    <section class="box" id="overview"><h2>{locale==='en'?'Overview':'Ringkasan'}</h2><p data-live-issue-overview>{t(issue.summary,locale)}</p><p class="issue-current-change" data-live-current-status hidden></p></section>
+
     <section class="box" id="latest"><h2>{locale==='en'?'Latest stories':'Berita terbaru'}</h2><div data-live-issue-updates data-issue-slug={issue.slug} data-locale={locale}>{devs.map(d=><p class="issue-update"><a href={withLocale('/',locale)}><strong>{t(d.title,locale)}</strong></a><br/><small>{d.updatedAt} · {d.sourceIds.length} {locale==='en'?'sources':'sumber'}</small></p>)}</div></section>
   </div>
 
@@ -79,7 +79,7 @@ if(issuePage&&slug)fetch(`/api/issue/${encodeURIComponent(slug)}`).then(r=>r.ok?
 
 
   const dossierSection=document.querySelector<HTMLElement>('[data-live-dossiers]'),dossierGrid=document.querySelector<HTMLElement>('[data-live-dossier-grid]');
-  if(dossierSection&&dossierGrid&&Array.isArray(data.dossiers)&&data.dossiers.length){dossierGrid.replaceChildren();for(const d of data.dossiers){const a=document.createElement('a');a.className='issue-dossier-card';a.href=`${locale==='pmy'?'/pmy':''}/issues/${d.slug}/`;const small=document.createElement('small');small.textContent=locale==='pmy'?'Topik':'Topic';const h=document.createElement('h3');h.textContent=locale==='pmy'?(d.title_id||d.title_en):d.title_en;const p=document.createElement('p');p.textContent=locale==='pmy'?(d.summary_id||d.summary_en):d.summary_en;a.append(small,h,p);dossierGrid.append(a)}dossierSection.hidden=false}
+  if(dossierSection&&dossierGrid&&Array.isArray(data.dossiers)&&data.dossiers.length){dossierGrid.replaceChildren();for(const d of data.dossiers){const a=document.createElement('a');a.className='issue-dossier-card';a.href=`${locale==='pmy'?'/pmy':''}/topics/${d.slug}/`;const small=document.createElement('small');small.textContent=locale==='pmy'?'Topik':'Topic';const h=document.createElement('h3');h.textContent=locale==='pmy'?(d.title_id||d.title_en):d.title_en;const p=document.createElement('p');p.textContent=locale==='pmy'?(d.summary_id||d.summary_en):d.summary_en;a.append(small,h,p);dossierGrid.append(a)}dossierSection.hidden=false}
 
   if(updates&&!data.developments?.length)updates.textContent=locale==='pmy'?'Belum ada berita terkait.':'No linked news yet.';
   if(updates&&data.developments?.length){

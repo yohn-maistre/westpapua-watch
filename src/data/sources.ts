@@ -1,6 +1,8 @@
+import extra from '../../content/reference-sources.json';
 import type { SourceRef } from './types';
 
 export const sources: SourceRef[] = [
+  ...(extra as SourceRef[]),
   {
     id: 'greenpeace-raja-clarification-2026',
     title: 'Greenpeace Clarifies Findings on the Raja Ampat’s Nickel Report',
@@ -153,7 +155,7 @@ export const sources: SourceRef[] = [
     id: 'otsus-law-2001',
     title: 'UU No. 21 Tahun 2001 — Otonomi Khusus Bagi Provinsi Papua',
     publisher: 'BPK RI — Peraturan',
-    url: 'https://peraturan.bpk.go.id/Details/44901/uu-no-21-tahun-2001%26lang%3Den',
+    url: 'https://peraturan.bpk.go.id/Details/44901/uu-no-21-tahun-2001',
     date: '2001-11-21',
     type: 'official',
     language: 'id'

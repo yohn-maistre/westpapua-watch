@@ -1,3 +1,4 @@
+import {renderAnswer} from './markdown';
 type Source={title:string;url:string;publisher:string};
 type Message={role:'user'|'assistant';content:string;sources?:Source[]};
 const safeURL=(value:unknown)=>{if(typeof value!=='string'||!value)return '';try{const u=new URL(value,location.origin);return ['http:','https:'].includes(u.protocol)?u.href:''}catch{return ''}};
@@ -12,7 +13,8 @@ export function initAsk(){
  function render(){thread.replaceChildren();q('[data-ask-prompts]').hidden=messages.length>0;messages.forEach((m,i)=>{
   const article=document.createElement('article');article.className=`ask-message ask-message-${m.role}`;const label=document.createElement('small');label.textContent=m.role==='user'?say('You','Anda'):'Watch';article.append(label);
   const text=document.createElement('div');text.className='ask-message-text';
-  for(const part of m.content.split(/(\[S\d+\])/g)){const n=Number(part.match(/^\[S(\d+)\]$/)?.[1]);const source=m.sources?.[n-1];if(source&&safeURL(source.url)){const a=document.createElement('a');a.href=`#ask-source-${i}-${n}`;a.textContent=part;a.setAttribute('aria-label',`${say('Source','Sumber')} ${n}: ${source.title}`);a.onclick=e=>{e.preventDefault();const target=document.getElementById(`ask-source-${i}-${n}`);const detail=target?.closest('details');if(detail)detail.open=true;target?.scrollIntoView({block:'nearest'});target?.focus()};text.append(a)}else text.append(document.createTextNode(part))}article.append(text);
+  const citation=(part:string):Node=>{const n=Number(part.match(/^\[S(\d+)\]$/)?.[1]);const source=m.sources?.[n-1];if(!source||!safeURL(source.url))return document.createTextNode(part);const a=document.createElement('a');a.href=`#ask-source-${i}-${n}`;a.textContent=part;a.setAttribute('aria-label',`${say('Source','Sumber')} ${n}: ${source.title}`);a.onclick=e=>{e.preventDefault();const target=document.getElementById(`ask-source-${i}-${n}`);const detail=target?.closest('details');if(detail)detail.open=true;target?.scrollIntoView({block:'nearest'});target?.focus()};return a};
+  if(m.role==='assistant')text.append(renderAnswer(m.content,citation));else text.textContent=m.content;article.append(text);
   if(m.sources?.length){const details=document.createElement('details'),summary=document.createElement('summary');summary.textContent=`${m.sources.length} ${say('sources','sumber')}`;details.append(summary);m.sources.forEach((s,n)=>{const href=safeURL(s.url);if(!href)return;const a=document.createElement('a');a.id=`ask-source-${i}-${n+1}`;a.href=href;a.target='_blank';a.rel='noreferrer';a.className='ask-source';a.textContent=`[S${n+1}] ${String(s.publisher||'')} · ${String(s.title||'')}`;details.append(a)});article.append(details)}thread.append(article)
  });scroll.scrollTop=scroll.scrollHeight;}
  function busy(value:boolean){send.disabled=value;input.readOnly=value;stop.hidden=!value;thread.setAttribute('aria-busy',String(value))}

@@ -125,18 +125,18 @@ async function initOne(root:HTMLElement){
   }
   async function addAtlasPlate(){
     const contextLand=await jsonOr<FeatureCollection>('/data/context-land.geojson',emptyFC()),silhouette=await jsonOr<FeatureCollection>('/data/west-papua-silhouette.geojson',emptyFC());
-    if(contextLand.features.length){map.addSource('watch-context-land-source',{type:'geojson',data:contextLand});map.addLayer({id:'watch-context-land',type:'fill',source:'watch-context-land-source',paint:{'fill-color':'#eff0f5','fill-opacity':.92}});baseLayers.set('atlas','watch-context-land')}
+    if(contextLand.features.length){map.addSource('watch-context-land-source',{type:'geojson',data:contextLand});map.addLayer({id:'watch-context-land',type:'fill',source:'watch-context-land-source',paint:{'fill-color':'#eff0f5','fill-opacity':.92}});/* Global terrain replaces the clipped plate. */}
     if(silhouette.features.length){silhouetteAvailable=true;map.addSource('watch-silhouette-source',{type:'geojson',data:silhouette});map.addLayer({id:'watch-west-papua-land',type:'fill',source:'watch-silhouette-source',paint:{'fill-color':WATCH_ATLAS_COLORS.land,'fill-opacity':1}})}
-    if(status?.layers?.hillshade?.available){try{map.addSource('watch-hillshade-source',{type:'image',url:'/raster/hillshade.png',coordinates:WEST_PAPUA_IMAGE_CORNERS});map.addLayer({id:'watch-hillshade',type:'raster',source:'watch-hillshade-source',paint:{'raster-opacity':.18,'raster-contrast':.08}})}catch(e){console.warn('[Watch map] hillshade unavailable',e)}}
+
   }
-  function ensureBaseRaster(id:Exclude<MapBaseId,'atlas'>){
+  function ensureBaseRaster(id:MapBaseId){
     if(baseLayers.has(id))return baseLayers.get(id)!;const def=baseById[id];if(!def?.tiles?.length)return'';
-    const source=`watch-base-${id}-source`,layer=`watch-base-${id}`;map.addSource(source,{type:'raster',tiles:def.tiles,tileSize:256,maxzoom:def.maxZoom||14,attribution:def.attribution});map.addLayer({id:layer,type:'raster',source,paint:{'raster-opacity':1}},map.getLayer('watch-context-land')?'watch-context-land':undefined);baseLayers.set(id,layer);return layer
+    const source=`watch-base-${id}-source`,layer=`watch-base-${id}`;map.addSource(source,{type:'raster',tiles:def.tiles,tileSize:256,maxzoom:def.maxZoom||14,attribution:def.attribution});map.addLayer({id:layer,type:'raster',source,paint:{'raster-opacity':1}},map.getStyle().layers?.find(l=>l.type!=='background'&&!l.id.startsWith('watch-base-'))?.id);baseLayers.set(id,layer);return layer
   }
   function applyBase(id:MapBaseId){
     activeBase=baseById[id]?id:'atlas';
-    for(const x of ['watch-context-land','watch-west-papua-land','watch-hillshade'])if(map.getLayer(x))map.setLayoutProperty(x,'visibility',activeBase==='atlas'?'visible':'none');
-    for(const b of ['satellite','night'] as const){let layer=baseLayers.get(b);if(activeBase===b&&!layer)layer=ensureBaseRaster(b);if(layer&&map.getLayer(layer))map.setLayoutProperty(layer,'visibility',activeBase===b?'visible':'none')}
+    for(const x of ['watch-context-land','watch-west-papua-land','watch-hillshade'])if(map.getLayer(x))map.setLayoutProperty(x,'visibility','none');
+    for(const b of ['atlas','satellite','night'] as const){let layer=baseLayers.get(b);if(activeBase===b&&!layer)layer=ensureBaseRaster(b);if(layer&&map.getLayer(layer))map.setLayoutProperty(layer,'visibility',activeBase===b?'visible':'none')}
     const photographic=activeBase!=='atlas',text=photographic?'#f7f6fb':'#626570',halo=photographic?'rgba(10,11,16,.82)':'#f6f5fa';
     for(const layer of ['watch-province-labels','watch-settlement-labels','watch-cultural-regions-label'])if(map.getLayer(layer)){map.setPaintProperty(layer,'text-color',text);map.setPaintProperty(layer,'text-halo-color',halo);map.setPaintProperty(layer,'text-halo-width',photographic?1.6:1.1)}
     if(map.getLayer('watch-province-boundaries'))map.setPaintProperty('watch-province-boundaries','line-color',photographic?'#f0eef7':'#555864');
@@ -161,7 +161,7 @@ async function initOne(root:HTMLElement){
     try{
       map.addSource(`watch-source-${def.id}`,sourceSpec(def,data));
       if(def.id==='province-boundaries'){
-        if(!silhouetteAvailable)map.addLayer({id:'watch-west-papua-land-fallback',type:'fill',source:`watch-source-${def.id}`,'source-layer':def.sourceLayer,paint:{'fill-color':WATCH_ATLAS_COLORS.land,'fill-opacity':1}});
+
         map.addLayer(createMapLayer(def));
         map.addLayer({id:'watch-province-hit',type:'fill',source:`watch-source-${def.id}`,'source-layer':def.sourceLayer,paint:{'fill-color':'#000','fill-opacity':.001},layout:{visibility:'none'}});
         map.addLayer({id:'watch-province-labels',type:'symbol',source:'watch-label-points',filter:['==',['get','kind'],'province'],minzoom:3.3,maxzoom:10,layout:{visibility:'none','text-field':['get','provinsi'],'text-size':['interpolate',['linear'],['zoom'],3.3,9,7,12],'text-font':['Noto Sans Regular'],'text-allow-overlap':false},paint:{'text-color':'#626570','text-halo-color':'#f6f5fa','text-halo-width':1.2}});
@@ -208,6 +208,7 @@ async function initOne(root:HTMLElement){
   function matchingView(set:Set<string>):MapViewId|null{for(const v of MAP_VIEWS)if(set.size===v.layers.length&&v.layers.every(x=>set.has(x)))return v.id;return null}
   function syncControls(){
     activeView=matchingView(enabled);
+    setText(root.querySelector('[data-map-preset-label]'),activeView?(locale==='pmy'?viewById[activeView].titleId:viewById[activeView].title):(locale==='pmy'?'Kustom':'Custom'));
     root.querySelectorAll<HTMLButtonElement>('[data-map-view]').forEach(button=>{const on=button.dataset.mapView===activeView;button.classList.toggle('active',on);button.setAttribute('aria-pressed',String(on))});
     root.querySelectorAll<HTMLButtonElement>('[data-map-base]').forEach(button=>{button.classList.toggle('active',button.dataset.mapBase===activeBase);button.setAttribute('aria-pressed',String(button.dataset.mapBase===activeBase))});
     root.querySelectorAll<HTMLButtonElement>('[data-map-layer]').forEach(button=>{const id=button.dataset.mapLayer||'',off=unavailable.has(id);button.disabled=off;button.setAttribute('aria-pressed',String(enabled.has(id)&&!off));button.classList.toggle('active',enabled.has(id)&&!off);button.dataset.availability=off?'unavailable':'available';const note=button.querySelector<HTMLElement>('small');if(note&&off)note.textContent=locale==='pmy'?'Data tidak tersedia':'Data unavailable'});
@@ -219,7 +220,7 @@ async function initOne(root:HTMLElement){
   async function applyView(id:MapViewId){const view=viewById[id];if(!view)return;enabled=new Set(view.layers);await applyVisibility();root.dataset.explore='true';write()}
   async function commitCustom(){await applyVisibility();root.dataset.explore='true';write()}
   root.querySelectorAll<HTMLButtonElement>('[data-map-base]').forEach(button=>button.addEventListener('click',()=>applyBase(button.dataset.mapBase as MapBaseId)));
-  root.querySelectorAll<HTMLButtonElement>('[data-map-view]').forEach(button=>button.addEventListener('click',()=>{void applyView(button.dataset.mapView as MapViewId)}));
+  root.querySelectorAll<HTMLButtonElement>('[data-map-view]').forEach(button=>button.addEventListener('click',()=>{const presets=root.querySelector<HTMLDetailsElement>('[data-map-presets]');if(presets)presets.open=false;void applyView(button.dataset.mapView as MapViewId)}));
   root.querySelectorAll<HTMLButtonElement>('[data-map-layer]').forEach(button=>button.addEventListener('click',()=>{const id=button.dataset.mapLayer||'';if(!id||unavailable.has(id))return;enabled.has(id)?enabled.delete(id):enabled.add(id);void commitCustom()}));
 
   const panel=root.querySelector<HTMLElement>('[data-map-layers-panel]'),backdrop=root.querySelector<HTMLButtonElement>('[data-map-panel-backdrop]');

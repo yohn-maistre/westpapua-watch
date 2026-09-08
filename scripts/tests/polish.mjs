@@ -15,3 +15,15 @@ const bundled=await build({stdin:{contents:code,resolveDir:process.cwd()},bundle
 const worker=new Miniflare(await convertV4MiniflareOptions({modules:true,script:bundled.outputFiles[0].text,compatibilityDate:'2026-08-29'}));
 try{const response=await worker.dispatchFetch('https://westpapua.watch/story/?id=42');const html=await response.text();assert.equal(response.status,200);assert.match(html,/A &lt;title&gt;/);assert.match(html,/rel="canonical" href="https:\/\/westpapua.watch\/story\/\?id=42"/);assert.doesNotMatch(html,/src="https:\/\/westpapua.watch\/undefined"/);assert.match(html,/data-story-server="true"/);assert.equal((await worker.dispatchFetch('https://westpapua.watch/story/?id=bad')).status,404)}finally{await worker.dispose()}
 console.log('Passed: bounded chat context, map state, pagination proxy, edge story HTML and 404.');
+
+const {retrieveSite}=await moduleAt('shared/site-retrieval.ts');
+assert.ok(retrieveSite('history of Papua').some(x=>x.kind==='history'));
+assert.ok(retrieveSite('MIFEE timeline').some(x=>x.kind==='timeline'));
+assert.ok(retrieveSite('noken resources').some(x=>x.url.includes('unesco')));
+const {onRequest:redirect}=await moduleAt('functions/_middleware.ts');
+const moved=await redirect({request:new Request('https://westpapua.watch/pmy/issues/mining-raja-ampat/?map=night'),next:()=>{throw Error('Old route should redirect')}});
+assert.equal(moved.status,308);assert.equal(moved.headers.get('location'),'https://westpapua.watch/pmy/topics/mining-raja-ampat/?map=night');
+const {parseHTML}=await import('linkedom');globalThis.document=parseHTML('<html><body></body></html>').document;
+const {renderAnswer}=await moduleAt('src/lib/ask/markdown.ts');const container=document.createElement('div');container.append(renderAnswer('**Evidence**\n- One [S1]\n<script>alert(1)</script>',s=>document.createTextNode(s)));
+assert.equal(container.querySelector('strong').textContent,'Evidence');assert.equal(container.querySelectorAll('li').length,1);assert.equal(container.querySelectorAll('script').length,0);
+console.log('Passed: whole-site retrieval, locale/query preserving redirects, safe answer formatting.');

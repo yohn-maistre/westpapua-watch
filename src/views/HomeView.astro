@@ -17,14 +17,14 @@ const fallbackCurrent=developments.slice(0,3);
   <MapShell locale={locale} mode="home" />
 
   <section class="section home-section"><div class="wrap">
-    <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'News.':'Berita.'}</h2><a href={withLocale('/current/',locale)}>{locale==='en'?'All news →':'Semua perkembangan →'}</a></div>
+    <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'News.':'Berita.'}</h2><a href={withLocale('/news/',locale)}>{locale==='en'?'All news →':'Semua perkembangan →'}</a></div>
     <p class="feed-status" data-home-feed-status role="status">{locale==='en'?'Archive selection':'Pilihan arsip'}</p><div class="home-current-magazine" data-home-current data-locale={locale}>
-      {fallbackCurrent.slice(0,1).map((item)=><a class="home-current-card home-current-feature" data-home-current-card="0" href={withLocale('/current/',locale)}>
+      {fallbackCurrent.slice(0,1).map((item)=><a class="home-current-card home-current-feature" data-home-current-card="0" href={withLocale('/news/',locale)}>
         <img data-home-current-image src={item.image} alt={item.imageAlt} loading="lazy"/>
         <div class="home-current-copy"><small data-home-current-meta>{item.category} · {item.place}</small><h3 data-home-current-title>{t(item.title,locale)}</h3><p data-home-current-summary>{t(item.summary,locale)}</p></div>
       </a>)}
       <div class="home-current-stack">
-        {fallbackCurrent.slice(1,3).map((item,index)=><a class="home-current-card" data-home-current-card={String(index+1)} href={withLocale('/current/',locale)}>
+        {fallbackCurrent.slice(1,3).map((item,index)=><a class="home-current-card" data-home-current-card={String(index+1)} href={withLocale('/news/',locale)}>
           <img data-home-current-image src={item.image} alt={item.imageAlt} loading="lazy"/>
           <div class="home-current-copy"><small data-home-current-meta>{item.category} · {item.place}</small><h3 data-home-current-title>{t(item.title,locale)}</h3><p data-home-current-summary>{t(item.summary,locale)}</p></div>
         </a>)}
@@ -33,9 +33,9 @@ const fallbackCurrent=developments.slice(0,3);
   </div></section>
 
   <section class="section home-section"><div class="wrap">
-    <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Topics.':'Topik.'}</h2><a href={withLocale('/issues/',locale)}>{locale==='en'?'All topics →':'Semua topik →'}</a></div>
+    <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Topics.':'Topik.'}</h2><a href={withLocale('/topics/',locale)}>{locale==='en'?'All topics →':'Semua topik →'}</a></div>
     <div class="home-issue-grid" data-home-issues>
-      {issues.slice(0,4).map((issue,index)=><a class="home-issue" href={withLocale(`/issues/${issue.slug}/`,locale)} data-home-issue={issue.slug}>
+      {issues.slice(0,4).map((issue,index)=><a class="home-issue" href={withLocale(`/topics/${issue.slug}/`,locale)} data-home-issue={issue.slug}>
         <small>{String(index+1).padStart(2,'0')}</small><h3>{t(issue.title,locale)}</h3><p>{t(issue.summary,locale)}</p>
         <footer><span data-home-issue-count>{t(issue.status,locale)}</span><span data-home-issue-updated>{issue.updatedAt}</span></footer>
       </a>)}

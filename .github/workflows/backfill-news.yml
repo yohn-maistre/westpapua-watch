@@ -1,0 +1,32 @@
+name: Backfill reporting
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: Publication lookback in days (1–31)
+        required: true
+        default: '14'
+permissions:
+  contents: read
+concurrency:
+  group: backfill-reporting
+  cancel-in-progress: false
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Queue dated reporting through the deployed engine
+        env:
+          WATCH_ADMIN_TOKEN: ${{ secrets.WATCH_ADMIN_TOKEN }}
+          BACKFILL_DAYS: ${{ inputs.days }}
+        run: |
+          python3 - <<'PYTHON'
+          import json, os, urllib.request
+          days = int(os.environ['BACKFILL_DAYS'])
+          assert 1 <= days <= 31
+          token = os.environ.get('WATCH_ADMIN_TOKEN', '')
+          if not token: raise SystemExit('WATCH_ADMIN_TOKEN repository secret is required')
+          request = urllib.request.Request('https://westpapua.watch/api/admin/backfill', data=json.dumps({'days': days}).encode(), headers={'Authorization': 'Bearer '+token, 'Content-Type': 'application/json'}, method='POST')
+          with urllib.request.urlopen(request, timeout=60) as response:
+              print(response.read().decode())
+          PYTHON

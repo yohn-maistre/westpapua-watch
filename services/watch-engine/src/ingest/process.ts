@@ -37,7 +37,11 @@ async function prepare(env:any,message:IngestMessage):Promise<Prepared|null>{
   const source=sourceById[message.sourceId];if(!source||!source.enabled)return null;
   const incoming=canonical(message.url);let known:any=await env.DB.prepare(`SELECT id,status FROM articles WHERE canonical_url=?`).bind(incoming).first();
   if(!message.force&&(known?.status==='clustered'||known?.status==='filtered'))return null;
-  const extracted=await extractArticle(message.url,source,env);if(!extracted)return null;extracted.canonicalUrl=canonical(extracted.canonicalUrl);
+  const extracted=await extractArticle(message.url,source,env);if(!extracted)return null;
+  const published=extracted.publishedAt||message.publishedAt;
+  if(message.publishedAfter){const timestamp=Date.parse(published||'');if(!Number.isFinite(timestamp)||timestamp<Date.parse(message.publishedAfter)||timestamp>Date.now()+864e5){console.info('Backfill skipped: publication date outside window or unverified',message.sourceId,message.url);return null}}
+  extracted.publishedAt=published;
+  extracted.canonicalUrl=canonical(extracted.canonicalUrl);
   if(extracted.canonicalUrl!==incoming){const canonicalKnown:any=await env.DB.prepare(`SELECT id,status FROM articles WHERE canonical_url=?`).bind(extracted.canonicalUrl).first();if(!message.force&&(canonicalKnown?.status==='clustered'||canonicalKnown?.status==='filtered'))return null;known=canonicalKnown||known}
   const fetched=new Date().toISOString(),hash=await sha256(extracted.body);const syndicated:any=await env.DB.prepare(`SELECT id FROM articles WHERE content_hash=? AND publisher_id<>? ORDER BY id LIMIT 1`).bind(hash,source.id).first();
   await env.DB.prepare(`INSERT INTO publishers(id,name,homepage,role,ownership,enabled,updated_at,priority,notes) VALUES(?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET name=excluded.name,homepage=excluded.homepage,role=excluded.role,ownership=excluded.ownership,enabled=excluded.enabled,updated_at=excluded.updated_at,priority=excluded.priority,notes=excluded.notes`).bind(source.id,source.name,source.homepage,source.role,source.ownership,source.enabled?1:0,fetched,source.priority||2,source.notes||null).run();

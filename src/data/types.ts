@@ -6,7 +6,10 @@ export type SourceRef = {
   publisher: string;
   url: string;
   date?: string;
-  type: 'journalism' | 'report' | 'official' | 'research' | 'event' | 'culture';
+  type: 'journalism' | 'report' | 'official' | 'research' | 'event' | 'culture' | 'article' | 'book' | 'documentary' | 'commentary' | 'collection';
+  format?: 'web' | 'pdf' | 'video' | 'audio';
+  description?:string;
+  tags?:string[];
   language?: 'en' | 'id' | 'multi';
   languages?: ('en'|'id')[];
 };

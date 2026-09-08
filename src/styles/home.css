@@ -61,12 +61,11 @@
 }
 
 .home-current-magazine{min-height:0;align-items:start}
-.home-current-card{display:grid;min-height:0}
-.home-current-card img{position:relative;height:clamp(220px,26vw,420px);grid-area:auto}
-.home-current-card::after{display:none}
-.home-current-copy{position:relative;inset:auto;padding:1.2rem}
-.home-current-copy h3{overflow-wrap:break-word}
-.home-current-stack .home-current-card{min-height:0}
-.home-current-stack .home-current-card img{height:180px}
+.home-current-card{display:grid;min-height:340px;isolation:isolate;align-items:end}
+.home-current-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.home-current-card::after{display:block;position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 8%,#080a1066 35%,#080a10ed 85%)}
+.home-current-copy{position:relative;inset:auto;padding:clamp(1.25rem,3vw,2.2rem);padding-top:clamp(8rem,22vw,17rem);min-width:0}
+.home-current-copy h3{overflow-wrap:anywhere;line-height:.98;max-width:100%;margin:.7rem 0}
+.home-current-stack .home-current-card{min-height:280px}.home-current-stack .home-current-copy{padding-top:6rem}
 .home-issue h3{line-height:.98}
-@media(max-width:760px){.home-current-card,.home-current-stack .home-current-card{min-height:0}.home-current-feature .home-current-copy h3{font-size:clamp(2.6rem,11vw,4.5rem)}.home-current-stack .home-current-copy h3{font-size:clamp(1.7rem,7vw,2.7rem)}}
+@media(max-width:760px){.home-current-feature .home-current-copy h3{font-size:clamp(2.4rem,10vw,4.5rem)}.home-current-stack .home-current-copy h3{font-size:clamp(1.8rem,7vw,2.7rem)}}

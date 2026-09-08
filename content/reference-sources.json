@@ -1,0 +1,238 @@
+[
+  {
+    "id": "hrw-history-2000",
+    "title": "Human Rights and Pro-Independence Actions in Papua, 1999–2000: Background",
+    "publisher": "Human Rights Watch",
+    "url": "https://www.hrw.org/reports/2000/papua/Pap004-02.htm",
+    "type": "report",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "politics-governance"
+    ],
+    "description": "",
+    "date": "2000"
+  },
+  {
+    "id": "hrw-congress-2001",
+    "title": "Violence and Political Impasse in Papua: Emergence of the independence movement",
+    "publisher": "Human Rights Watch",
+    "url": "https://www.hrw.org/reports/2001/papua/PAPUA0701-03.htm",
+    "type": "report",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "politics-governance"
+    ],
+    "description": "",
+    "date": "2001"
+  },
+  {
+    "id": "kluge-petitions",
+    "title": "Papuan Petitions as an Archive of Decolonisation",
+    "publisher": "Emma Kluge · Journal of Imperial and Commonwealth History",
+    "url": "https://www.tandfonline.com/doi/full/10.1080/03086534.2025.2500357",
+    "type": "research",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "politics-governance"
+    ],
+    "description": "Research on petitions as records of Papuan political agency during decolonisation. Access conditions depend on the publisher.",
+    "date": "2025"
+  },
+  {
+    "id": "saltford-un",
+    "title": "UN Involvement with the Act of Self Determination in West Irian, 1968–1969",
+    "publisher": "John Saltford · hosted by Free West Papua Campaign",
+    "url": "https://www.freewestpapua.org/documents/un-involvement-with-the-act-of-self-determination-in-west-irian-1968-to-1969-by-john-saltford/",
+    "type": "research",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "politics-governance"
+    ],
+    "description": "Historical analysis based on United Nations archival records; hosted by an independence advocacy organisation."
+  },
+  {
+    "id": "ajar-here",
+    "title": "I Am Here: Voices of Papuan Women",
+    "publisher": "AJAR and the Papuan Women’s Working Group",
+    "url": "https://www.asia-ajar.org/files/I%20am%20here%20-%20AJAR%20Report.pdf",
+    "type": "report",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "gender-social-inclusion",
+      "land-indigenous-rights"
+    ],
+    "description": "Participatory research documenting women’s experiences of livelihoods, public services and cultural continuity.",
+    "date": "2016-05-01"
+  },
+  {
+    "id": "ajar-birds",
+    "title": "All the Birds Are Gone",
+    "publisher": "AJAR and the Papuan Women’s Working Group",
+    "url": "https://asia-ajar.org/wp-content/uploads/2021/03/ABAG_FINAL_compressed.pdf",
+    "type": "book",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "gender-social-inclusion",
+      "land-indigenous-rights",
+      "environment-biodiversity"
+    ],
+    "description": "Research with Indigenous women on land, forest loss and community responses across five locations."
+  },
+  {
+    "id": "muman-minggil",
+    "title": "Muman Minggil: Road to the Ancestors",
+    "publisher": "Yoikatra Association / Cenderawasih University Cultural Museum · Restitution Matters",
+    "url": "https://restitutionmatters.org/publication/muman-minggil-docu-about-a-cultural-papuan-group-colonialism-and-restitution/",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "tags": [
+      "culture-language"
+    ],
+    "description": "Documentary information and viewing context: Arnold Ap, Mambesak, oral history and restitution. The listing is not a guarantee of free full-film access."
+  },
+  {
+    "id": "unesco-noken",
+    "title": "Noken: multifunctional knotted or woven bag, handcraft of the people of Papua",
+    "publisher": "UNESCO",
+    "url": "https://ich.unesco.org/en/USL/noken-multifunctional-knotted-or-woven-bag-handcraft-of-the-people-of-papua-00619",
+    "type": "official",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "culture-language"
+    ],
+    "description": "Cultural heritage record, nomination materials and safeguarding context."
+  },
+  {
+    "id": "ulmwp-saralana",
+    "title": "Saralana Declaration on West Papua Unity",
+    "publisher": "United Liberation Movement for West Papua",
+    "url": "https://www.ulmwp.org/wp-content/uploads/2014/08/Saralana-Declaration_with-Witnesses.pdf",
+    "type": "official",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "politics-governance"
+    ],
+    "description": "Primary movement document; its positions are those of the signatories.",
+    "date": "2014-12-06"
+  },
+  {
+    "id": "ulmwp-background",
+    "title": "ULMWP: organisational background",
+    "publisher": "United Liberation Movement for West Papua",
+    "url": "https://www.ulmwp.org/",
+    "type": "collection",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "politics-governance"
+    ],
+    "description": "The movement’s account of its formation and political objectives."
+  },
+  {
+    "id": "ohchr-papua-2022",
+    "title": "UN experts call for urgent humanitarian access in Papua",
+    "publisher": "UN Human Rights Special Procedures",
+    "url": "https://www.ohchr.org/en/press-releases/2022/03/indonesia-un-experts-sound-alarm-serious-papua-abuses-call-urgent-aid",
+    "type": "official",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "human-rights-security"
+    ],
+    "description": "Statement of independent UN experts on civilian displacement and humanitarian access.",
+    "date": "2022-03-01"
+  },
+  {
+    "id": "ohchr-indonesia-2024",
+    "title": "Human Rights Committee dialogue with Indonesia",
+    "publisher": "United Nations Human Rights",
+    "url": "https://www.ohchr.org/en/meeting-summaries/2024/03/dialogue-indonesia-experts-human-rights-committee-commend-measures",
+    "type": "official",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "human-rights-security",
+      "politics-governance"
+    ],
+    "description": "Committee questions and the Indonesian delegation’s responses, including Papua.",
+    "date": "2024-03-12"
+  },
+  {
+    "id": "nasa-papua-forest",
+    "title": "Deforestation in Papua",
+    "publisher": "NASA Earth Observatory",
+    "url": "https://science.nasa.gov/earth/earth-observatory/deforestation-in-papua-148021/",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "environment-biodiversity",
+      "land-indigenous-rights"
+    ],
+    "description": "Satellite imagery and explanation of changing forest cover."
+  },
+  {
+    "id": "nasa-grasberg",
+    "title": "Grasberg Mine, Indonesia",
+    "publisher": "NASA Earth Observatory",
+    "url": "https://science.nasa.gov/earth/earth-observatory/grasberg-mine-indonesia-5718/",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "environment-biodiversity",
+      "economy-livelihoods"
+    ],
+    "description": "Satellite perspective on the mining landscape; useful geographic background."
+  },
+  {
+    "id": "mifee-research",
+    "title": "The Merauke Integrated Food and Energy Estate: development and land",
+    "publisher": "Austrian Journal of South-East Asian Studies",
+    "url": "https://aseas.univie.ac.at/index.php/aseas/article/view/2571/2159",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "land-indigenous-rights",
+      "economy-livelihoods"
+    ],
+    "description": ""
+  },
+  {
+    "id": "papuan-voices-collection",
+    "title": "Papuan Voices: community documentary collection",
+    "publisher": "Papuan Voices",
+    "url": "https://papuanvoices.net/",
+    "type": "collection",
+    "format": "video",
+    "language": "multi",
+    "tags": [
+      "culture-language"
+    ],
+    "description": "Community filmmaking. Individual films retain their own authorship and viewing conditions."
+  },
+  {
+    "id": "laolao-collection",
+    "title": "Lao-Lao Papua: essays and reporting",
+    "publisher": "Lao-Lao Papua",
+    "url": "https://laolaopapua.com/",
+    "type": "collection",
+    "format": "web",
+    "language": "id",
+    "tags": [
+      "culture-language",
+      "politics-governance"
+    ],
+    "description": "A publication to explore for Papuan commentary and long-form perspectives; individual pieces are classified separately."
+  }
+]

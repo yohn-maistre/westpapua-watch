@@ -25,7 +25,8 @@ export const MAP_BASES:MapBaseDefinition[]=[
   {
     id:'atlas',title:'Atlas',titleId:'Atlas',
     description:'Watch atlas plate with Western New Guinea geography and restrained context.',
-    descriptionId:'Atlas Watch dengan geografi Papua bagian barat dan konteks yang ringkas.'
+    descriptionId:'Atlas Watch dengan geografi Papua bagian barat dan konteks yang ringkas.',
+    tiles:['https://tiles.maps.eox.at/wmts/1.0.0/terrain-light_3857/default/GoogleMapsCompatible/{z}/{y}/{x}.jpg'],sourceUrl:'https://maps.eox.at/',attribution:'Terrain © EOX · OpenStreetMap contributors · NASA / METI',maxZoom:14
   },
   {
     id:'satellite',title:'Satellite',titleId:'Satelit',
@@ -37,13 +38,13 @@ export const MAP_BASES:MapBaseDefinition[]=[
     maxZoom:14
   },
   {
-    id:'night',title:'Night',titleId:'Malam',
+    id:'night',title:'Night lights',titleId:'Cahaya malam',
     description:'NASA Black Marble night-light composite. Brightness is not a direct household-electrification measure.',
     descriptionId:'Komposit cahaya malam NASA Black Marble. Kecerahan bukan ukuran langsung elektrifikasi rumah tangga.',
-    tiles:['https://tiles.maps.eox.at/wmts/1.0.0/blackmarble_3857/default/GoogleMapsCompatible/{z}/{y}/{x}.jpg'],
+    tiles:['https://tiles.maps.eox.at/wmts/1.0.0/blackmarble_3857/default/g/{z}/{y}/{x}.jpg'],
     sourceUrl:'https://www.earthdata.nasa.gov/data/projects/black-marble',
-    attribution:'Black Marble · NASA Earth Observatory / EOX rendering',
-    maxZoom:13
+    attribution:'Black Marble composite · NASA Earth Observatory / EOX · not live',
+    maxZoom:8
   }
 ];
 export const baseById=Object.fromEntries(MAP_BASES.map(x=>[x.id,x])) as Record<MapBaseId,MapBaseDefinition>;
@@ -52,7 +53,6 @@ export const MAP_FAMILIES:{id:MapLayerFamily;title:string;titleId:string}[]=[
   {id:'boundaries',title:'Boundaries',titleId:'Batas'},
   {id:'extraction',title:'Extraction',titleId:'Ekstraksi'},
   {id:'environment',title:'Environment',titleId:'Lingkungan'},
-  {id:'climate',title:'Climate',titleId:'Iklim',layers:['province-boundaries','rainfall-anomaly','fire-hotspots']},
   {id:'infrastructure',title:'Infrastructure',titleId:'Infrastruktur'},
   {id:'population',title:'Population',titleId:'Penduduk'},
   {id:'current',title:'Current',titleId:'Sekarang'}
@@ -62,11 +62,14 @@ export const MAP_VIEWS:MapViewDefinition[]=[
   {id:'overview',title:'Overview',titleId:'Ringkasan',layers:['province-boundaries','settlements','current-developments']},
   {id:'extraction',title:'Extraction',titleId:'Ekstraksi',layers:['province-boundaries','cultural-regions','mining-permits','major-extraction-sites','forest-plantation-permits','current-developments']},
   {id:'environment',title:'Environment',titleId:'Lingkungan',layers:['province-boundaries','protected-areas','fire-hotspots','forest-loss','current-developments']},
-  {id:'infrastructure',title:'Infrastructure',titleId:'Infrastruktur',layers:['province-boundaries','major-roads','airports','ports','settlements','current-developments']},
+  {id:'climate',title:'Climate',titleId:'Iklim',layers:['province-boundaries','rainfall-anomaly','fire-hotspots']},
+  {id:'infrastructure',title:'Infrastructure',titleId:'Infrastruktur',layers:['street-detail','province-boundaries','major-roads','airports','ports','settlements','current-developments']},
   {id:'current',title:'Current',titleId:'Sekarang',layers:['province-boundaries','current-developments']}
 ];
 
 export const MAP_LAYERS:MapLayerDefinition[]=[
+  {id:'street-detail',family:'infrastructure',title:'Roads & place labels',titleId:'Jalan & nama tempat',description:'OpenStreetMap roads and labels at local zoom levels. Coverage varies; absence is not proof that a road or community does not exist.',descriptionId:'Jalan dan nama tempat OpenStreetMap pada skala lokal. Cakupan beragam; data yang kosong bukan berarti jalan atau kampung tidak ada.',sourceType:'raster',source:'https://tiles.maps.eox.at/wmts/1.0.0/overlay_3857/default/GoogleMapsCompatible/{z}/{y}/{x}.png',tiles:['https://tiles.maps.eox.at/wmts/1.0.0/overlay_3857/default/GoogleMapsCompatible/{z}/{y}/{x}.png'],sourceUrl:'https://maps.eox.at/',attribution:'© OpenStreetMap contributors · EOX rendering',license:'OpenStreetMap ODbL; EOX attribution',coverage:'Global',minZoom:9,maxZoom:18,defaultVisible:false,geometry:'raster',style:{'raster-opacity':.85},availability:'always'},
+
   {
     id:'province-boundaries',family:'boundaries',title:'Provinces',titleId:'Provinsi',
     description:'The six current Indonesian provinces in Western New Guinea.',
@@ -207,7 +210,7 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
   {
     id:'current-developments',family:'current',title:'Current developments',titleId:'Perkembangan sekarang',
     description:'Published Watch Developments placed using canonical Places.',descriptionId:'Perkembangan Watch yang terbit dan ditempatkan memakai Places kanonik.',
-    sourceType:'live',source:'/api/current',sourceUrl:'/current/',attribution:'West Papua Watch · linked reporting',license:'Watch metadata',coverage:'Published Developments with resolved coordinates',
+    sourceType:'live',source:'/api/current',sourceUrl:'/news/',attribution:'West Papua Watch · linked reporting',license:'Watch metadata',coverage:'Published Developments with resolved coordinates',
     minZoom:3,maxZoom:14,defaultVisible:true,geometry:'circle',
     style:{'circle-radius':['interpolate',['linear'],['zoom'],3,4,9,7],'circle-color':'#74779f','circle-opacity':.9,'circle-stroke-color':'#f7f6fa','circle-stroke-width':1.25},availability:'always'
   }

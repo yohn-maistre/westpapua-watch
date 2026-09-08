@@ -62,3 +62,14 @@
 @media(max-height:500px){.watch-map.map-expanded .watch-map-basebar{top:12px;left:12px}.watch-map.map-expanded .watch-map-controls{left:auto;right:12px}}
 
 .map-climate-links{display:flex;gap:1rem;flex-wrap:wrap;padding:.5rem 0 1rem}.map-climate-links a{text-decoration:underline;text-underline-offset:3px}
+
+/* Presets unfold above a single anchor, clear of zoom and attribution. */
+.watch-map-viewbar{display:block;right:auto;bottom:34px;max-width:min(240px,calc(100% - 88px))}
+.watch-map-viewbar summary{display:flex;justify-content:space-between;gap:1.5rem;list-style:none;cursor:pointer;border:1px solid #30323a24;background:#faf9f4f2;border-radius:16px;padding:.8rem 1rem;font:600 .78rem var(--sans);min-height:44px}
+.watch-map-viewbar summary::-webkit-details-marker{display:none}
+.watch-map-viewbar>div{position:absolute;bottom:calc(100% + 8px);left:0;right:0;display:grid;gap:6px;max-height:min(38svh,300px);overflow-y:auto;overscroll-behavior:contain;padding:2px;scrollbar-width:thin}
+.watch-map-viewbar:not([open])>div{display:none}.watch-map-viewbar>div button{border-radius:14px;white-space:normal;text-align:left;box-shadow:0 3px 14px #13152218;min-height:46px}
+.watch-map-viewbar>div button.active{border-color:#77799f}
+.watch-map .maplibregl-ctrl-bottom-right{bottom:94px}
+.watch-map-credit{background:#f6f5faf0;border-radius:5px;padding:3px 5px;color:#454753}
+@media(max-width:760px){.watch-map-controls{left:auto;right:12px;top:12px}.watch-map-basebar{top:66px}.watch-map-viewbar{right:auto;max-width:min(240px,calc(100% - 88px))}.watch-map.map-expanded .watch-map-controls{left:auto;right:12px}}

@@ -11,7 +11,7 @@ const interleave=(batches:DiscoveredItem[][])=>{const out:DiscoveredItem[]=[];co
 function parseSyndication(xml:string,source:SourceConfig,limit=24):DiscoveredItem[]{
   try{
     const feed=parseFeed(xml);
-    return feed.items.slice(0,limit).map(item=>({sourceId:source.id,url:absolute(item.url||'',source.homepage),title:strip(item.title||''),publishedAt:(item.published||item.updated)?.toISOString()})).filter(item=>item.url&&item.title&&publisherHost(source,item.url));
+    return feed.items.slice(0,limit).map(item=>({sourceId:source.id,url:absolute(item.url||'',source.homepage),title:strip(item.title||''),publishedAt:item.published?.toISOString()})).filter(item=>item.url&&item.title&&publisherHost(source,item.url));
   }catch{return[]}
 }
 
@@ -28,7 +28,7 @@ function parseHomepage(html:string,source:SourceConfig):DiscoveredItem[]{
 function sitemapLocs(xml:string){return [...xml.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/gi)].map(m=>strip(m[1]||''));}
 function sitemapUrls(xml:string,source:SourceConfig,cutoff:number){
   const blocks=[...xml.matchAll(/<url>([\s\S]*?)<\/url>/gi)];const out:DiscoveredItem[]=[];
-  for(const block of blocks){const body=block[1]||'',loc=strip(body.match(/<loc>\s*([^<]+?)\s*<\/loc>/i)?.[1]||''),lastmod=strip(body.match(/<lastmod>\s*([^<]+?)\s*<\/lastmod>/i)?.[1]||'');if(!loc||!publisherHost(source,loc))continue;const t=lastmod?Date.parse(lastmod):NaN;if(Number.isFinite(t)&&t<cutoff)continue;const slug=decodeURIComponent(new URL(loc).pathname.split('/').filter(Boolean).pop()||'').replace(/[-_]+/g,' ');out.push({sourceId:source.id,url:loc,title:strip(slug)||loc,publishedAt:Number.isFinite(t)?new Date(t).toISOString():undefined})}
+  for(const block of blocks){const body=block[1]||'',loc=strip(body.match(/<loc>\s*([^<]+?)\s*<\/loc>/i)?.[1]||''),lastmod=strip(body.match(/<lastmod>\s*([^<]+?)\s*<\/lastmod>/i)?.[1]||'');if(!loc||!publisherHost(source,loc))continue;const t=lastmod?Date.parse(lastmod):NaN;if(Number.isFinite(t)&&t<cutoff)continue;const slug=decodeURIComponent(new URL(loc).pathname.split('/').filter(Boolean).pop()||'').replace(/[-_]+/g,' ');out.push({sourceId:source.id,url:loc,title:strip(slug)||loc,publishedAfter:new Date(cutoff).toISOString()})}
   return out;
 }
 
@@ -54,15 +54,17 @@ export async function discoverSourceBackfill(source:SourceConfig,days=14):Promis
     if(out.length>=40)break;
   }
 
-  const seen=new Set<string>();return out.filter(item=>item.url&&!seen.has(item.url)&&seen.add(item.url)).slice(0,120);
+  const seen=new Set<string>();return out.filter(item=>item.url&&!seen.has(item.url)&&seen.add(item.url)).slice(0,120).map(item=>({...item,publishedAfter:new Date(cutoff).toISOString()}));
 }
 
 export async function discoverEnabled():Promise<DiscoveredItem[]>{
   const batches=await Promise.all(SOURCES.filter(source=>source.enabled).map(source=>discoverSource(source)));
+  batches.forEach((items,i)=>console.info('Source discovery',SOURCES.filter(s=>s.enabled)[i]?.id,items.length));
   const seen=new Set<string>();return interleave(batches).filter(item=>!seen.has(item.url)&&seen.add(item.url));
 }
 
 export async function discoverBackfill(days=14):Promise<DiscoveredItem[]>{
   const batches=await Promise.all(SOURCES.filter(source=>source.enabled).map(source=>discoverSourceBackfill(source,days)));
+  batches.forEach((items,i)=>console.info('Source discovery',SOURCES.filter(s=>s.enabled)[i]?.id,items.length));
   const seen=new Set<string>();return interleave(batches).filter(item=>!seen.has(item.url)&&seen.add(item.url));
 }
