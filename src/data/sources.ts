@@ -78,8 +78,8 @@ export const sources: SourceRef[] = [
     id: 'hrm-q2-2026',
     title: 'The Papua Monitor: Q2/2026',
     publisher: 'Human Rights Monitor',
-    url: 'https://humanrightsmonitor.org/wp-content/uploads/2026/07/HRM-PMR-2026-03-Q2-2026-Papua-Monitor.pdf',
-    date: '2026-07-01',
+    url: 'https://humanrightsmonitor.org/reports/papua-monitor-q2-2026-escalating-conflict-drone-attacks-and-mass-displacement/',
+    date: '2026-07-28',
     type: 'report',
     language: 'en'
   },

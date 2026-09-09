@@ -29,6 +29,7 @@ export class NewsCycleWorkflow extends WorkflowEntrypoint<any,unknown>{
 
     const deferred=await step.do('retry deferred relevance',{retries:{limit:1,delay:'20 seconds'},timeout:'2 minutes'},()=>enqueueDeferredRelevance(this.env,10));
     const legacy=await step.do('reprocess legacy singleton backlog',{retries:{limit:1,delay:'20 seconds'},timeout:'2 minutes'},()=>enqueueLegacyReprocessing(this.env,10));
+    await step.do('repair explicit relevance rejections',{retries:{limit:1,delay:'15 seconds'},timeout:'3 minutes'},()=>cleanupRecentIrrelevant(this.env,30));
     const editorial=await step.do('dispatch one editorial batch',{retries:{limit:1,delay:'15 seconds'},timeout:'1 minute'},()=>enqueueEditorialBacklog(this.env,4));
     const reconcile=await step.do('reconcile only high-confidence recent duplicates',{retries:{limit:1,delay:'20 seconds'},timeout:'2 minutes'},()=>reconcileRecentDevelopments(this.env,10));
     const witHour=new Date(Date.now()+9*60*60*1000).getUTCHours();

@@ -37,13 +37,13 @@ const fallbackCurrent=developments.slice(0,3);
     <div class="home-issue-grid" data-home-issues>
       {issues.slice(0,4).map((issue,index)=><a class="home-issue" href={withLocale(`/topics/${issue.slug}/`,locale)} data-home-issue={issue.slug}>
         <small>{String(index+1).padStart(2,'0')}</small><h3>{t(issue.title,locale)}</h3><p>{t(issue.summary,locale)}</p>
-        <footer><span data-home-issue-count>{t(issue.status,locale)}</span><span data-home-issue-updated>{issue.updatedAt}</span></footer>
+        <footer><span data-home-issue-count>{issue.sourceIds.length} {locale==='en'?'sources':'sumber'}</span><span data-home-issue-updated>{issue.updatedAt}</span></footer>
       </a>)}
     </div>
   </div></section>
 
   <section class="section home-section"><div class="wrap">
-    <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Resources.':'Sumber.'}</h2><a href={withLocale('/resources/',locale)}>{locale==='en'?'Open library →':'Buka pustaka →'}</a></div>
+    <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Library.':'Pustaka.'}</h2><a href={withLocale('/resources/',locale)}>{locale==='en'?'Open library →':'Buka pustaka →'}</a></div>
     <div class="home-resource-list">{featuredResources.map(r=><a href={r.url} target="_blank" rel="noreferrer"><span><small>{r.type} · {r.year}</small><strong>{r.title}</strong></span><span>{r.publisher}</span><i>↗</i></a>)}</div>
   </div></section>
 
@@ -69,12 +69,12 @@ if(root){
       const a=card as HTMLAnchorElement;a.href=`${locale==='pmy'?'/pmy':''}${x.story_url}`;
       const title=card.querySelector<HTMLElement>('[data-home-current-title]'),summary=card.querySelector<HTMLElement>('[data-home-current-summary]'),meta=card.querySelector<HTMLElement>('[data-home-current-meta]'),img=card.querySelector<HTMLImageElement>('[data-home-current-image]');
       if(title)title.textContent=pick(x.title);if(summary)summary.textContent=pick(x.summary);
-      if(meta)meta.textContent=[x.category,x.place,`${x.source_count||1} ${locale==='pmy'?'sumber':'sources'}`,rel(x.latest_report_at)].filter(Boolean).join(' · ');
+      if(meta)meta.textContent=[x.category,x.place,`${x.article_count||1} ${locale==='pmy'?'laporan':'reports'}`,`${x.source_count||1} ${locale==='pmy'?'sumber':'sources'}`,rel(x.latest_report_at)].filter(Boolean).join(' · ');
       if(img){const fb=fallbackFor(x);img.src=x.image?.url||fb;img.alt=pick(x.title);img.onerror=()=>{img.onerror=null;img.src=fb}}
     })
   }).catch(()=>{})
 }
 const locale=document.documentElement.lang==='id'?'pmy':'en';
-fetch('/api/issues').then(r=>r.ok?r.json():null).then(data=>{for(const x of data?.items||[]){const card=document.querySelector<HTMLElement>(`[data-home-issue="${CSS.escape(x.slug)}"]`);if(!card)continue;const count=card.querySelector<HTMLElement>('[data-home-issue-count]'),updated=card.querySelector<HTMLElement>('[data-home-issue-updated]');if(count)count.textContent=locale==='pmy'?`${x.development_count||0} perkembangan · ${x.source_count||0} sumber`:`${x.development_count||0} developments · ${x.source_count||0} sources`;if(updated&&x.updated_at)updated.textContent=new Date(x.updated_at).toLocaleDateString()}}).catch(()=>{});
+fetch('/api/issues').then(r=>r.ok?r.json():null).then(data=>{for(const x of data?.items||[]){const card=document.querySelector<HTMLElement>(`[data-home-issue="${CSS.escape(x.slug)}"]`);if(!card)continue;const count=card.querySelector<HTMLElement>('[data-home-issue-count]'),updated=card.querySelector<HTMLElement>('[data-home-issue-updated]');if(count)count.textContent=locale==='pmy'?`${x.development_count||0} perkembangan · ${x.source_count||0} sumber`:`${x.development_count||0} stories · ${x.source_count||0} sources`;if(updated&&x.updated_at)updated.textContent=new Date(x.updated_at).toLocaleDateString()}}).catch(()=>{});
 </script>
 </BaseLayout>

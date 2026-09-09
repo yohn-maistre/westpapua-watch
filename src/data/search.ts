@@ -39,9 +39,11 @@ export const searchCorpus = [
   ...resources.map((item) => ({
     id: `resource:${item.id}`,
     type: 'resource',
+    publisher:item.publisher,
+    evidenceRoles:item.evidenceRoles,
     title: { en: item.title, pmy: item.title },
     text: { en: item.description||item.publisher, pmy: item.description||item.publisher },
     href: item.url,
-    tags: [item.publisher, item.type, item.year]
+    tags: [item.publisher, item.type, item.year,...item.topics,...item.places,...item.tags]
   }))
 ];

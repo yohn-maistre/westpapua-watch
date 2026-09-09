@@ -12,7 +12,8 @@
     ],
     "scope": "papua",
     "enabled": true,
-    "priority": 1
+    "priority": 1,
+    "libraryPolicy": "selective"
   },
   {
     "id": "aneta-papua",
@@ -26,7 +27,8 @@
     ],
     "scope": "papua",
     "enabled": true,
-    "priority": 1
+    "priority": 1,
+    "libraryPolicy": "selective"
   },
   {
     "id": "mongabay-indonesia",
@@ -40,7 +42,8 @@
     ],
     "scope": "mixed",
     "enabled": true,
-    "priority": 1
+    "priority": 1,
+    "libraryPolicy": "selective"
   },
   {
     "id": "suara-papua",
@@ -54,7 +57,8 @@
     ],
     "scope": "papua",
     "enabled": true,
-    "priority": 1
+    "priority": 1,
+    "libraryPolicy": "selective"
   },
   {
     "id": "project-multatuli",
@@ -69,7 +73,8 @@
     ],
     "scope": "mixed",
     "enabled": true,
-    "priority": 1
+    "priority": 1,
+    "libraryPolicy": "selective"
   },
   {
     "id": "lao-lao-papua",
@@ -84,7 +89,8 @@
     "scope": "papua",
     "enabled": true,
     "priority": 2,
-    "notes": "Papuan commentary and reporting; retain article-level attribution."
+    "notes": "Papuan commentary and reporting; retain article-level attribution.",
+    "libraryPolicy": "selective"
   },
   {
     "id": "nadi-papua",
@@ -98,7 +104,8 @@
     ],
     "scope": "papua",
     "enabled": true,
-    "priority": 2
+    "priority": 2,
+    "libraryPolicy": "selective"
   },
   {
     "id": "bbc-indonesia",
@@ -111,7 +118,8 @@
     ],
     "scope": "mixed",
     "enabled": true,
-    "priority": 2
+    "priority": 2,
+    "libraryPolicy": "selective"
   },
   {
     "id": "rnz-pacific",
@@ -124,7 +132,8 @@
     ],
     "scope": "mixed",
     "enabled": true,
-    "priority": 2
+    "priority": 2,
+    "libraryPolicy": "selective"
   },
   {
     "id": "abc-pacific",
@@ -137,7 +146,8 @@
     ],
     "scope": "mixed",
     "enabled": true,
-    "priority": 2
+    "priority": 2,
+    "libraryPolicy": "selective"
   },
   {
     "id": "rri",
@@ -151,7 +161,8 @@
     "scope": "mixed",
     "enabled": true,
     "priority": 3,
-    "notes": "Useful local supplement; keep ownership visible."
+    "notes": "Useful local supplement; keep ownership visible.",
+    "libraryPolicy": "selective"
   },
   {
     "id": "antara",
@@ -165,7 +176,8 @@
     ],
     "scope": "mixed",
     "enabled": true,
-    "priority": 3
+    "priority": 3,
+    "libraryPolicy": "selective"
   },
   {
     "id": "kalawai",
@@ -179,8 +191,8 @@
     ],
     "scope": "papua",
     "enabled": true,
-    "resourceCandidate": true,
-    "priority": 1
+    "priority": 1,
+    "libraryPolicy": "selective"
   },
   {
     "id": "pusaka",
@@ -195,8 +207,8 @@
     ],
     "scope": "papua",
     "enabled": true,
-    "resourceCandidate": true,
-    "priority": 1
+    "priority": 1,
+    "libraryPolicy": "selective"
   },
   {
     "id": "human-rights-monitor",
@@ -210,8 +222,8 @@
     ],
     "scope": "papua",
     "enabled": true,
-    "resourceCandidate": true,
-    "priority": 1
+    "priority": 1,
+    "libraryPolicy": "selective"
   },
   {
     "id": "papuan-voices",
@@ -225,8 +237,8 @@
     ],
     "scope": "papua",
     "enabled": true,
-    "resourceCandidate": true,
-    "priority": 1
+    "priority": 1,
+    "libraryPolicy": "selective"
   },
   {
     "id": "acled",
@@ -239,8 +251,8 @@
     ],
     "scope": "mixed",
     "enabled": false,
-    "resourceCandidate": true,
     "priority": 2,
-    "notes": "Structured data requires its own access arrangement; not a general news feed."
+    "notes": "Structured data requires its own access arrangement; not a general news feed.",
+    "libraryPolicy": "selective"
   }
 ]

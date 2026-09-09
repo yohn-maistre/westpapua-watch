@@ -4,34 +4,21 @@ import { makeStoryPacketsBatch } from './story';
 import { tryEmbedText } from '../embedding';
 import { clusterArticles } from '../cluster';
 import { maybeResourceCandidate } from '../resources';
-import { hasWesternSignal,looksForeignOnly,prefilterArticle,type PrefilterDecision } from './prefilter';
+import { prefilterArticle,type PrefilterDecision } from './prefilter';
+import { relevanceDisposition } from './relevance';
 import { upsertArticleSearch } from '../search';
 import type { ExtractedArticle,IngestBatchMessage,IngestMessage,SourceConfig,StoryPacket } from '../types';
 
 const canonical=(url:string)=>{try{const u=new URL(url);['utm_source','utm_medium','utm_campaign','utm_content','fbclid','gclid'].forEach(k=>u.searchParams.delete(k));u.hash='';return u.href.replace(/\/$/,'')}catch{return url}};
 async function sha256(text:string){const bytes=new TextEncoder().encode(text.replace(/\s+/g,' ').trim());const hash=await crypto.subtle.digest('SHA-256',bytes);return [...new Uint8Array(hash)].map(x=>x.toString(16).padStart(2,'0')).join('')}
 const parse=(v:any)=>{try{const x=JSON.parse(String(v||'[]'));return Array.isArray(x)?x.map(String):[]}catch{return[]}};
-const degraded=(reason:string)=>/batch failed|omitted this article|structured extraction unavailable|structured extraction/i.test(String(reason||''));
 
 type Prepared={id:number;source:SourceConfig;extracted:ExtractedArticle;decision:PrefilterDecision;syndicatedFrom?:number|null;packet?:StoryPacket;row?:any};
-type RelevanceDisposition='relevant'|'irrelevant'|'deferred';
 
 function packetFromRow(prior:any,extracted:ExtractedArticle):StoryPacket{
-  return {summary:prior.summary,key_points:parse(prior.key_points_json),what_changed:prior.what_changed||'',event_date:prior.event_date||extracted.publishedAt,event_key:prior.event_key||extracted.title,action:prior.action||'',object:prior.object||'',places:parse(prior.places_json),people:parse(prior.people_json),organizations:parse(prior.organizations_json),topics:parse(prior.topics_json),issue_candidates:parse(prior.issue_candidates_json),watch_relevance:prior.watch_relevance===1,watch_relevance_confidence:Number(prior.watch_relevance_confidence||0),watch_relevance_reason:prior.watch_relevance_reason||'syndicated from prior packet',watch_relevance_evidence:parse(prior.watch_relevance_evidence_json),watch_desk:prior.watch_desk||'other'};
+  return {item_type:prior.item_type,evidence_roles:parse(prior.evidence_roles_json),library_worthy:prior.library_worthy===1,library_reason:prior.library_reason,summary:prior.summary,key_points:parse(prior.key_points_json),what_changed:prior.what_changed||'',event_date:prior.event_date||extracted.publishedAt,event_key:prior.event_key||extracted.title,action:prior.action||'',object:prior.object||'',places:parse(prior.places_json),people:parse(prior.people_json),organizations:parse(prior.organizations_json),topics:parse(prior.topics_json),issue_candidates:parse(prior.issue_candidates_json),watch_relevance:prior.watch_relevance===1,watch_relevance_confidence:Number(prior.watch_relevance_confidence||0),watch_relevance_reason:prior.watch_relevance_reason||'syndicated from prior packet',watch_relevance_evidence:parse(prior.watch_relevance_evidence_json),watch_desk:prior.watch_desk||'other'};
 }
 
-function relevanceDisposition(packet:StoryPacket,article:ExtractedArticle,decision:PrefilterDecision):RelevanceDisposition{
-  const evidence=`${article.title} ${article.description} ${packet.summary} ${packet.places.join(' ')} ${(packet.watch_relevance_evidence||[]).join(' ')}`;
-  if(hasWesternSignal(evidence)||decision==='keep')return 'relevant';
-  if(looksForeignOnly(evidence))return 'irrelevant';
-  // If structured extraction failed, ambiguous material waits for a later fast-lane
-  // slot. We neither publish it nor silently throw it away.
-  if(degraded(packet.watch_relevance_reason||''))return 'deferred';
-  const confidence=Number(packet.watch_relevance_confidence||0);
-  if(packet.watch_relevance===true&&confidence>=.66)return 'relevant';
-  if(packet.watch_relevance===false&&confidence>=.70)return 'irrelevant';
-  return 'deferred';
-}
 
 async function prepare(env:any,message:IngestMessage):Promise<Prepared|null>{
   const source=sourceById[message.sourceId];if(!source||!source.enabled)return null;
@@ -50,13 +37,14 @@ async function prepare(env:any,message:IngestMessage):Promise<Prepared|null>{
   if(extracted.image)await env.DB.prepare(`INSERT OR IGNORE INTO image_candidates(article_id,url,source_url,credit,caption,rights_status,created_at) VALUES(?,?,?,?,?,?,?)`).bind(id,extracted.image.url,extracted.image.sourceUrl,extracted.image.credit||source.name,extracted.image.caption||null,'attributed_external',fetched).run();
   const decision=prefilterArticle(extracted,source);
   if(decision==='drop'){await env.DB.prepare(`UPDATE articles SET status='filtered' WHERE id=?`).bind(id).run();await upsertArticleSearch(env,{id,title:extracted.title,summary:extracted.description,body_excerpt:extracted.body.slice(0,12000)},null);return null}
-  let packet:StoryPacket|undefined;if(syndicated?.id){const prior:any=await env.DB.prepare(`SELECT * FROM story_packets WHERE article_id=?`).bind(syndicated.id).first();if(prior)packet=packetFromRow(prior,extracted)}
+  let packet:StoryPacket|undefined;if(syndicated?.id){const prior:any=await env.DB.prepare(`SELECT * FROM story_packets WHERE article_id=?`).bind(syndicated.id).first();if(prior?.item_type)packet=packetFromRow(prior,extracted)}
   return {id,source,extracted,decision,syndicatedFrom:syndicated?.id||null,packet};
 }
 
 async function persistPacket(env:any,p:Prepared,packet:StoryPacket){
   const fetched=new Date().toISOString();
   await env.DB.prepare(`INSERT INTO story_packets(article_id,summary,key_points_json,what_changed,event_date,event_key,action,object,places_json,people_json,organizations_json,topics_json,issue_candidates_json,created_at,watch_relevance,watch_relevance_confidence,watch_relevance_reason,watch_relevance_evidence_json,watch_desk) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(article_id) DO UPDATE SET summary=excluded.summary,key_points_json=excluded.key_points_json,what_changed=excluded.what_changed,event_date=excluded.event_date,event_key=excluded.event_key,action=excluded.action,object=excluded.object,places_json=excluded.places_json,people_json=excluded.people_json,organizations_json=excluded.organizations_json,topics_json=excluded.topics_json,issue_candidates_json=excluded.issue_candidates_json,created_at=excluded.created_at,watch_relevance=excluded.watch_relevance,watch_relevance_confidence=excluded.watch_relevance_confidence,watch_relevance_reason=excluded.watch_relevance_reason,watch_relevance_evidence_json=excluded.watch_relevance_evidence_json,watch_desk=excluded.watch_desk`).bind(p.id,packet.summary,JSON.stringify(packet.key_points),packet.what_changed,packet.event_date||null,packet.event_key||null,packet.action||null,packet.object||null,JSON.stringify(packet.places),JSON.stringify(packet.people),JSON.stringify(packet.organizations),JSON.stringify(packet.topics),JSON.stringify(packet.issue_candidates),fetched,packet.watch_relevance?1:0,packet.watch_relevance_confidence||0,packet.watch_relevance_reason||null,JSON.stringify(packet.watch_relevance_evidence||[]),packet.watch_desk||'other').run();
+  await env.DB.prepare(`UPDATE story_packets SET item_type=?,evidence_roles_json=?,library_worthy=?,library_reason=? WHERE article_id=?`).bind(packet.item_type||null,JSON.stringify(packet.evidence_roles||[]),packet.library_worthy?1:0,packet.library_reason||null,p.id).run();
   p.packet=packet;
 }
 

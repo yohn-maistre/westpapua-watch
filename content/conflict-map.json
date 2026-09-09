@@ -1,0 +1,291 @@
+{
+  "periods": [
+    {
+      "id": "2025-08-09",
+      "en": "Aug–Sep 2025",
+      "pmy": "Agu–Sep 2025"
+    },
+    {
+      "id": "2026-q1",
+      "en": "Jan–Mar 2026",
+      "pmy": "Jan–Mar 2026"
+    },
+    {
+      "id": "2026-q2",
+      "en": "Apr–Jun 2026",
+      "pmy": "Apr–Jun 2026"
+    },
+    {
+      "id": "2026-07",
+      "en": "Jul 2026",
+      "pmy": "Jul 2026"
+    }
+  ],
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.8,
+          -3.7
+        ]
+      },
+      "properties": {
+        "id": 1,
+        "place": "Intan Jaya",
+        "kind": "deployments",
+        "period": "2025-08-09",
+        "summary_en": "Reported expansion of military posts.",
+        "summary_id": "Laporan penambahan pos militer.",
+        "precision": "regional reference anchor",
+        "reviewed_at": "2026-09-09",
+        "source_id": "conflict-source-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.4,
+          -3.9
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "place": "Paniai",
+        "kind": "deployments",
+        "period": "2025-08-09",
+        "summary_en": "Military presence reported around lakeside communities.",
+        "summary_id": "Kehadiran militer dilaporkan di sekitar masyarakat tepi danau.",
+        "precision": "regional reference anchor",
+        "reviewed_at": "2026-09-09",
+        "source_id": "conflict-source-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.2,
+          -4.4
+        ]
+      },
+      "properties": {
+        "id": 3,
+        "place": "Nduga",
+        "kind": "deployments",
+        "period": "2025-08-09",
+        "summary_en": "Reported expansion of military presence.",
+        "summary_id": "Laporan perluasan kehadiran militer.",
+        "precision": "regional reference anchor",
+        "reviewed_at": "2026-09-09",
+        "source_id": "conflict-source-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.5,
+          -4.1
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "place": "Yahukimo",
+        "kind": "incidents",
+        "period": "2026-q1",
+        "summary_en": "HRM recorded 10 armed clashes and attacks in this quarter.",
+        "summary_id": "HRM mencatat 10 bentrokan dan serangan bersenjata pada triwulan ini.",
+        "precision": "regional reference anchor",
+        "reviewed_at": "2026-09-09",
+        "source_id": "conflict-source-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.6,
+          -3.9
+        ]
+      },
+      "properties": {
+        "id": 5,
+        "place": "Puncak",
+        "kind": "incidents",
+        "period": "2026-q1",
+        "summary_en": "HRM recorded 6 armed clashes in this quarter.",
+        "summary_id": "HRM mencatat 6 bentrokan bersenjata pada triwulan ini.",
+        "precision": "regional reference anchor",
+        "reviewed_at": "2026-09-09",
+        "source_id": "conflict-source-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.8,
+          -3.7
+        ]
+      },
+      "properties": {
+        "id": 6,
+        "place": "Intan Jaya",
+        "kind": "incidents",
+        "period": "2026-q2",
+        "summary_en": "Military operations and armed violence reported during the quarter.",
+        "summary_id": "Operasi militer dan kekerasan bersenjata dilaporkan pada triwulan ini.",
+        "precision": "regional reference anchor",
+        "reviewed_at": "2026-09-09",
+        "source_id": "conflict-source-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.6,
+          -3.9
+        ]
+      },
+      "properties": {
+        "id": 7,
+        "place": "Puncak",
+        "kind": "incidents",
+        "period": "2026-q2",
+        "summary_en": "Military operations and armed violence reported during the quarter.",
+        "summary_id": "Operasi militer dan kekerasan bersenjata dilaporkan pada triwulan ini.",
+        "precision": "regional reference anchor",
+        "reviewed_at": "2026-09-09",
+        "source_id": "conflict-source-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.6,
+          -3.9
+        ]
+      },
+      "properties": {
+        "id": 8,
+        "place": "Puncak",
+        "kind": "displacement",
+        "period": "2026-q2",
+        "summary_en": "14,003 newly displaced people reported; provisional count.",
+        "summary_id": "14.003 orang baru mengungsi dilaporkan; jumlah sementara.",
+        "precision": "regional reference anchor",
+        "reviewed_at": "2026-09-09",
+        "source_id": "conflict-source-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 9,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.8,
+          -3.7
+        ]
+      },
+      "properties": {
+        "id": 9,
+        "place": "Intan Jaya",
+        "kind": "displacement",
+        "period": "2026-q2",
+        "summary_en": "More than 3,000 people reportedly fled in late June.",
+        "summary_id": "Lebih dari 3.000 orang dilaporkan mengungsi pada akhir Juni.",
+        "precision": "regional reference anchor",
+        "reviewed_at": "2026-09-09",
+        "source_id": "conflict-source-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 10,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.9,
+          -4.5
+        ]
+      },
+      "properties": {
+        "id": 10,
+        "place": "Mimika",
+        "kind": "displacement",
+        "period": "2026-q2",
+        "summary_en": "More than 1,000 reportedly displaced in May; police described 256 evacuations. These measures differ.",
+        "summary_id": "Lebih dari 1.000 dilaporkan mengungsi pada Mei; polisi menyebut 256 evakuasi. Angka ini mengukur hal berbeda.",
+        "precision": "regional reference anchor",
+        "reviewed_at": "2026-09-09",
+        "source_id": "conflict-source-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 11,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.3,
+          -5.8
+        ]
+      },
+      "properties": {
+        "id": 11,
+        "place": "Boven Digoel",
+        "kind": "displacement",
+        "period": "2026-q2",
+        "summary_en": "Displacement from Manggelum and Friwage reported in June.",
+        "summary_id": "Pengungsian dari Manggelum dan Friwage dilaporkan pada Juni.",
+        "precision": "regional reference anchor",
+        "reviewed_at": "2026-09-09",
+        "source_id": "conflict-source-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 12,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.8,
+          -3.7
+        ]
+      },
+      "properties": {
+        "id": 12,
+        "place": "Intan Jaya",
+        "kind": "deployments",
+        "period": "2026-07",
+        "summary_en": "Investigation estimated 1,800 non-organic troops. This is an estimate of presence, not new arrivals.",
+        "summary_id": "Investigasi memperkirakan 1.800 tentara non-organik. Ini perkiraan kehadiran, bukan kedatangan baru.",
+        "precision": "regional reference anchor",
+        "reviewed_at": "2026-09-09",
+        "source_id": "conflict-source-22"
+      }
+    }
+  ]
+}

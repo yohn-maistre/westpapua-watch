@@ -1,3 +1,4 @@
+import {resources} from './library-api';
 import { NewsCycleWorkflow } from './workflow';
 import { processArticle } from './ingest/process';
 import { processEditorialJob } from './cluster/editorial';
@@ -127,7 +128,7 @@ async function issue(env:any,slug:string){
   return {...meta,kind:'issue',updated_at:developments[0]?.latest_report_at||null,development_count:developments.length,source_count:Number(src?.n||0),current_status:{en:developments[0]?.summary_en||meta.summary_en,id:developments[0]?.summary_id||meta.summary_id},developments,deltas:[],reporting:reporting.results||[],dossiers:dossiers.results||[],areas:[]};
 }
 async function emerging(env:any){const rows:any=await env.DB.prepare(`SELECT * FROM emerging_issues WHERE status='emerging' ORDER BY last_seen_at DESC,development_count DESC LIMIT 20`).all();return rows.results||[]}
-async function resources(env:any,url:URL){const status='published';const rows:any=await env.DB.prepare(`SELECT * FROM resource_candidates WHERE status=? ORDER BY COALESCE(updated_at,created_at) DESC LIMIT 100`).bind(status).all();return rows.results||[]}
+
 async function places(env:any,url:URL){const q=String(url.searchParams.get('q')||'').trim();const rows:any=q?await env.DB.prepare(`SELECT slug,name,kind,parent_slug,latitude,longitude FROM places WHERE name LIKE ? ORDER BY CASE WHEN lower(name)=lower(?) THEN 0 ELSE 1 END,name LIMIT 40`).bind(`%${q}%`,q).all():await env.DB.prepare(`SELECT p.slug,p.name,p.kind,p.parent_slug,p.latitude,p.longitude,COUNT(DISTINCT dp.development_id) development_count FROM places p LEFT JOIN development_places dp ON dp.place_slug=p.slug GROUP BY p.slug ORDER BY development_count DESC,p.name LIMIT 100`).all();return rows.results||[]}
 
 async function publicSearch(env:any,url:URL){

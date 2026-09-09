@@ -1,5 +1,6 @@
+import {CONFLICT_PERIODS,CONFLICT_LAYER_IDS,conflictFeatures,conflictPeriod} from './conflict';
 import * as maplibregl from 'maplibre-gl';
-import type {Map as MLMap,MapMouseEvent} from 'maplibre-gl';
+import type {Map as MLMap,MapMouseEvent,GeoJSONSource} from 'maplibre-gl';
 import {Protocol} from 'pmtiles';
 import {
   DEFAULT_LAYER_IDS,MAP_BASES,MAP_CONTEXT_BOUNDS,MAP_LAYERS,MAP_VIEWS,WEST_PAPUA_BOUNDS,WEST_PAPUA_CENTER,
@@ -59,7 +60,8 @@ function numberText(v:any){const n=Number(v);return Number.isFinite(n)&&n>0?n.to
 
 function selectedFeatureDetails(feature:any,def:MapLayerDefinition,locale:'en'|'pmy'){
   const p=feature?.properties||{};let title=locale==='pmy'?def.titleId:def.title;const rows:[string,string][]=[];let href='',profile='';const l=(en:string,id:string)=>locale==='pmy'?id:en;
-  if(def.id==='mining-permits'){title=p.usaha||l('Mining permit','Izin tambang');if(p.komoditas)rows.push([l('Commodity','Komoditas'),p.komoditas]);if(p.kegiatan)rows.push([l('Permit activity','Kegiatan izin'),p.kegiatan]);if(p.luas)rows.push([l('Area','Luas'),`${numberText(p.luas)} ha`]);if(p.kab||p.prov)rows.push([l('Administrative area','Wilayah administrasi'),[p.kab,p.prov].filter(Boolean).join(', ')])}
+  if(def.family==='conflict'){title=p.place||title;rows.push([l('Report','Laporan'),locale==='pmy'?p.summary_id:p.summary_en]);rows.push([l('Published','Terbit'),safeDate(p.published_at,locale)]);rows.push([l('Location','Lokasi'),l('Approximate regional reference, not an incident or camp location.','Referensi wilayah perkiraan, bukan lokasi kejadian atau pengungsian.')]);href=locale==='pmy'?'/pmy/topics/conflict-displacement-access/':'/topics/conflict-displacement-access/'}
+  else if(def.id==='mining-permits'){title=p.usaha||l('Mining permit','Izin tambang');if(p.komoditas)rows.push([l('Commodity','Komoditas'),p.komoditas]);if(p.kegiatan)rows.push([l('Permit activity','Kegiatan izin'),p.kegiatan]);if(p.luas)rows.push([l('Area','Luas'),`${numberText(p.luas)} ha`]);if(p.kab||p.prov)rows.push([l('Administrative area','Wilayah administrasi'),[p.kab,p.prov].filter(Boolean).join(', ')])}
   else if(def.id==='major-extraction-sites'){title=p.name||l('Major extraction site','Lokasi ekstraksi utama');if(p.operator)rows.push([l('Operator','Operator'),p.operator]);if(p.site)rows.push([l('Site','Lokasi'),p.site]);if(p.commodity)rows.push([l('Commodity','Komoditas'),p.commodity]);if(p.geometry_note)rows.push([l('Geometry','Geometri'),p.geometry_note])}
   else if(def.id==='forest-plantation-permits'){title=p.nama||p.grup||l('Forest / plantation permit','Izin hutan / perkebunan');if(p.jenis)rows.push([l('Type','Jenis'),p.jenis]);if(p.izin)rows.push([l('Permit','Izin'),p.izin]);if(p.luas)rows.push([l('Area','Luas'),`${numberText(p.luas)} ha`]);if(p.sk)rows.push(['SK',p.sk]);if(p.tahun)rows.push([l('Year','Tahun'),String(p.tahun)])}
   else if(def.id==='protected-areas'){title=p.nkws||l('Protected area','Kawasan konservasi');if(p.remark)rows.push([l('Zone','Zona'),p.remark]);if(p.nprov)rows.push([l('Province','Provinsi'),p.nprov]);if(p.nupt)rows.push([l('Management unit','Unit pengelola'),p.nupt])}
@@ -76,8 +78,8 @@ function populateFeaturePanel(root:HTMLElement,feature:any,def:MapLayerDefinitio
   const panel=root.querySelector<HTMLElement>('[data-map-feature]');if(!panel)return;panel.hidden=false;const details=selectedFeatureDetails(feature,def,locale);
   setText(panel.querySelector('[data-map-feature-kicker]'),locale==='pmy'?def.titleId:def.title);setText(panel.querySelector('[data-map-feature-title]'),details.title);
   const rows=panel.querySelector<HTMLElement>('[data-map-feature-rows]');if(rows){rows.replaceChildren();for(const [key,val] of details.rows){const row=document.createElement('div'),k=document.createElement('span'),v=document.createElement('strong');k.textContent=key;v.textContent=val;row.append(k,v);rows.append(row)}}
-  const source=panel.querySelector<HTMLAnchorElement>('[data-map-feature-source]');if(source){source.href=def.sourceUrl;source.textContent=`${locale==='pmy'?'Sumber':'Source'}: ${def.attribution} ↗`}
-  const related=panel.querySelector<HTMLAnchorElement>('[data-map-feature-related]');if(related){if(details.href){related.hidden=false;related.href=details.href;related.textContent=locale==='pmy'?'Buka perkembangan →':'Open development →'}else{related.hidden=true;related.removeAttribute('href');related.textContent=''}}
+  const source=panel.querySelector<HTMLAnchorElement>('[data-map-feature-source]');if(source){source.href=def.family==='conflict'?feature.properties.source_url:def.sourceUrl;source.textContent=`${locale==='pmy'?'Sumber':'Source'}: ${def.family==='conflict'?feature.properties.publisher:def.attribution} ↗`}
+  const related=panel.querySelector<HTMLAnchorElement>('[data-map-feature-related]');if(related){if(details.href){related.hidden=false;related.href=details.href;related.textContent=def.family==='conflict'?(locale==='pmy'?'Buka topik →':'Open topic →'):(locale==='pmy'?'Buka cerita →':'Open story →')}else{related.hidden=true;related.removeAttribute('href');related.textContent=''}}
   const profile=panel.querySelector<HTMLAnchorElement>('[data-map-feature-profile]');if(profile){if(details.profile){profile.hidden=false;profile.href=details.profile;profile.target='_blank';profile.rel='noreferrer';profile.textContent=locale==='pmy'?'Profil/sumber provinsi ↗':'Province profile/source ↗'}else{profile.hidden=true;profile.removeAttribute('href');profile.textContent=''}}
 }
 
@@ -102,7 +104,7 @@ async function initOne(root:HTMLElement){
   const state=parseMapState(location.search),context=root.dataset.context||'';let current=emptyFC();try{current=await currentGeoJSON(root)}catch{}
   if(context==='development'&&current.features.length===0){root.hidden=true;return}
   const requested=(state.explore&&!context?state.view:root.dataset.initialView||'overview') as MapViewId,initialView=viewById[requested]?requested:'overview';
-  let enabled=new Set<string>(state.explore&&!context?state.layers:viewById[initialView].layers),activeView:MapViewId|null=initialView,activeBase:MapBaseId=state.base||'atlas';let selectedPlace=state.place,initializing=true;const resetLayers=viewById[initialView].layers.slice();const motion=matchMedia('(prefers-reduced-motion: reduce)').matches?0:450;
+  let enabled=new Set<string>(state.explore&&!context?state.layers:viewById[initialView].layers),activeView:MapViewId|null=initialView,activeBase:MapBaseId=state.base||'atlas';let selectedPlace=state.place,initializing=true;const resetLayers=viewById[initialView].layers.slice();let period=conflictPeriod(new URLSearchParams(location.search).get('period')); const motion=matchMedia('(prefers-reduced-motion: reduce)').matches?0:450;
 
   const labels=await jsonOr<FeatureCollection>('/data/atlas-labels.geojson',emptyFC());
   const map=new maplibregl.Map({
@@ -155,7 +157,8 @@ async function initOne(root:HTMLElement){
     if(registered.has(def.id))return true;
     if(!available(def)){unavailable.add(def.id);return false}
     let data:FeatureCollection|undefined;
-    if(def.id==='current-developments')data=current;
+    if(def.family==='conflict')data=conflictFeatures(def.id.replace('conflict-',''),period.id) as FeatureCollection;
+    else if(def.id==='current-developments')data=current;
     else if(def.id==='fire-hotspots'){const fires=await fireGeoJSON();if(fires.available===false){unavailable.add(def.id);return false}data=fires;const dates=fires.features.map(f=>`${f.properties.acq_date}T${String(f.properties.acq_time||'0000').padStart(4,'0').slice(0,2)}:${String(f.properties.acq_time||'0000').padStart(4,'0').slice(2)}:00Z`).filter(x=>Number.isFinite(Date.parse(x))).sort();status.layers[def.id]={available:true,observation_period:dates.length?`${dates[0]} – ${dates.at(-1)} · ${fires.features.length} detections`:(locale==='pmy'?'Tidak ada deteksi dalam respons 2 hari.':'No detections returned in the 2-day response.')};}
     else if(def.id==='major-extraction-sites')data=await jsonOr<FeatureCollection>('/data/major-extraction-sites.geojson',emptyFC());
     try{
@@ -206,7 +209,19 @@ async function initOne(root:HTMLElement){
   async function focusPlace(slug:string){const r=await jsonOr<any>(`/api/places?q=${encodeURIComponent(slug.replaceAll('-',' '))}`,null),rows=r?.items||r||[],p=rows.find((x:any)=>x.slug===slug)||rows[0],lat=Number(p?.latitude),lon=Number(p?.longitude);if(p?.latitude!=null&&p?.longitude!=null&&Number.isFinite(lat)&&Number.isFinite(lon))map.easeTo({center:[lon,lat],zoom:7,duration:motion})}
 
   function matchingView(set:Set<string>):MapViewId|null{for(const v of MAP_VIEWS)if(set.size===v.layers.length&&v.layers.every(x=>set.has(x)))return v.id;return null}
+  function syncPeriod(){
+    const active=CONFLICT_LAYER_IDS.some(id=>enabled.has(id));root.dataset.mapTemporal=String(active);
+    setHidden(root.querySelector('[data-map-time]'),!active);
+    const range=root.querySelector<HTMLInputElement>('[data-map-period]');if(range){range.value=String(CONFLICT_PERIODS.indexOf(period));range.setAttribute('aria-valuetext',locale==='pmy'?period.pmy:period.en)}
+    setText(root.querySelector('[data-map-period-label]'),locale==='pmy'?period.pmy:period.en);
+    const list=root.querySelector<HTMLElement>('[data-map-period-list]');list?.replaceChildren();let count=0;
+    for(const id of CONFLICT_LAYER_IDS){const fc=conflictFeatures(id.replace('conflict-',''),period.id);(map.getSource(`watch-source-${id}`) as GeoJSONSource|undefined)?.setData(fc as any);if(!enabled.has(id))continue;
+      for(const feature of fc.features){count++;const button=document.createElement('button');button.type='button';button.textContent=`${feature.properties.place} · ${locale==='pmy'?layerById[id].titleId:layerById[id].title}`;button.onclick=()=>{populateFeaturePanel(root,feature,layerById[id],locale);map.easeTo({center:feature.geometry.coordinates as [number,number],zoom:6,duration:motion})};list?.append(button)}
+    }setText(root.querySelector('[data-map-period-count]'),count);if(!count&&list)list.textContent=locale==='pmy'?'Belum ada catatan untuk pilihan ini.':'No records for this selection.';
+  }
+  root.querySelector<HTMLInputElement>('[data-map-period]')?.addEventListener('input',e=>{period=CONFLICT_PERIODS[Number((e.target as HTMLInputElement).value)]||CONFLICT_PERIODS[2];setHidden(root.querySelector('[data-map-feature]'),true);syncPeriod();write()});
   function syncControls(){
+    syncPeriod();
     activeView=matchingView(enabled);
     setText(root.querySelector('[data-map-preset-label]'),activeView?(locale==='pmy'?viewById[activeView].titleId:viewById[activeView].title):(locale==='pmy'?'Kustom':'Custom'));
     root.querySelectorAll<HTMLButtonElement>('[data-map-view]').forEach(button=>{const on=button.dataset.mapView===activeView;button.classList.toggle('active',on);button.setAttribute('aria-pressed',String(on))});
@@ -216,7 +231,7 @@ async function initOne(root:HTMLElement){
     setText(root.querySelector('[data-map-state]'),activeView?(locale==='pmy'?viewById[activeView].titleId:viewById[activeView].title):(locale==='pmy'?'Kustom':'Custom'));
   }
   async function applyVisibility(){for(const d of MAP_LAYERS)if(enabled.has(d.id)&&!registered.has(d.id))await registerLayer(d);for(const d of MAP_LAYERS)setLayerVisibility(d.id,enabled.has(d.id));syncControls()}
-  function write(){if(!context)writeMapState({base:activeBase,view:activeView,layers:[...enabled],place:selectedPlace,explore:true})}
+  function write(){if(!context)writeMapState({base:activeBase,view:activeView,layers:[...enabled],place:selectedPlace,period:CONFLICT_LAYER_IDS.some(id=>enabled.has(id))?period.id:null,explore:true})}
   async function applyView(id:MapViewId){const view=viewById[id];if(!view)return;enabled=new Set(view.layers);await applyVisibility();root.dataset.explore='true';write()}
   async function commitCustom(){await applyVisibility();root.dataset.explore='true';write()}
   root.querySelectorAll<HTMLButtonElement>('[data-map-base]').forEach(button=>button.addEventListener('click',()=>applyBase(button.dataset.mapBase as MapBaseId)));

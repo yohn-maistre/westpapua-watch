@@ -1,7 +1,7 @@
-export type MapLayerFamily='boundaries'|'extraction'|'environment'|'infrastructure'|'population'|'current';
+export type MapLayerFamily='boundaries'|'extraction'|'environment'|'infrastructure'|'population'|'current'|'conflict';
 export type MapLayerSourceType='pmtiles'|'live'|'raster'|'image';
 export type MapBaseId='atlas'|'satellite'|'night';
-export type MapViewId='overview'|'extraction'|'environment'|'climate'|'infrastructure'|'current';
+export type MapViewId='overview'|'extraction'|'environment'|'climate'|'infrastructure'|'current'|'conflict';
 export type MapLayerDefinition={
   id:string;family:MapLayerFamily;title:string;titleId:string;description:string;descriptionId:string;
   sourceType:MapLayerSourceType;source:string;sourceLayer?:string;tiles?:string[];sourceUrl:string;attribution:string;license:string;
@@ -38,7 +38,7 @@ export const MAP_BASES:MapBaseDefinition[]=[
     maxZoom:14
   },
   {
-    id:'night',title:'Night lights',titleId:'Cahaya malam',
+    id:'night',title:'Night',titleId:'Malam',
     description:'NASA Black Marble night-light composite. Brightness is not a direct household-electrification measure.',
     descriptionId:'Komposit cahaya malam NASA Black Marble. Kecerahan bukan ukuran langsung elektrifikasi rumah tangga.',
     tiles:['https://tiles.maps.eox.at/wmts/1.0.0/blackmarble_3857/default/g/{z}/{y}/{x}.jpg'],
@@ -50,6 +50,7 @@ export const MAP_BASES:MapBaseDefinition[]=[
 export const baseById=Object.fromEntries(MAP_BASES.map(x=>[x.id,x])) as Record<MapBaseId,MapBaseDefinition>;
 
 export const MAP_FAMILIES:{id:MapLayerFamily;title:string;titleId:string}[]=[
+  {id:'conflict',title:'Conflict & displacement',titleId:'Konflik & pengungsian'},
   {id:'boundaries',title:'Boundaries',titleId:'Batas'},
   {id:'extraction',title:'Extraction',titleId:'Ekstraksi'},
   {id:'environment',title:'Environment',titleId:'Lingkungan'},
@@ -60,6 +61,7 @@ export const MAP_FAMILIES:{id:MapLayerFamily;title:string;titleId:string}[]=[
 
 export const MAP_VIEWS:MapViewDefinition[]=[
   {id:'overview',title:'Overview',titleId:'Ringkasan',layers:['province-boundaries','settlements','current-developments']},
+  {id:'conflict',title:'Conflict',titleId:'Konflik',layers:['province-boundaries','conflict-displacement','conflict-incidents','conflict-deployments']},
   {id:'extraction',title:'Extraction',titleId:'Ekstraksi',layers:['province-boundaries','cultural-regions','mining-permits','major-extraction-sites','forest-plantation-permits','current-developments']},
   {id:'environment',title:'Environment',titleId:'Lingkungan',layers:['province-boundaries','protected-areas','fire-hotspots','forest-loss','current-developments']},
   {id:'climate',title:'Climate',titleId:'Iklim',layers:['province-boundaries','rainfall-anomaly','fire-hotspots']},
@@ -68,6 +70,9 @@ export const MAP_VIEWS:MapViewDefinition[]=[
 ];
 
 export const MAP_LAYERS:MapLayerDefinition[]=[
+  {"id": "conflict-displacement", "family": "conflict", "title": "Reported displacement", "titleId": "Laporan pengungsian", "description": "Selected dated regional reports. Points locate regions, not incidents or people.", "descriptionId": "Pilihan laporan wilayah bertanggal. Titik menunjukkan wilayah, bukan lokasi kejadian atau orang.", "sourceType": "live", "source": "editorial:conflict", "sourceUrl": "/resources/?topic=human-rights-conflict-security", "attribution": "HRM · linked reporting", "license": "Watch factual summaries; original reports retain their rights", "coverage": "Selected reports, Aug 2025–Jul 2026", "minZoom": 2.7, "maxZoom": 15, "defaultVisible": false, "geometry": "circle", "style": {"circle-radius": 14, "circle-color": "#626e9f", "circle-opacity": 0.55, "circle-stroke-color": "#fffaf2", "circle-stroke-width": 1.5}, "availability": "always"},
+  {"id": "conflict-incidents", "family": "conflict", "title": "Reported conflict", "titleId": "Laporan konflik", "description": "Selected dated regional reports. Points locate regions, not incidents or people.", "descriptionId": "Pilihan laporan wilayah bertanggal. Titik menunjukkan wilayah, bukan lokasi kejadian atau orang.", "sourceType": "live", "source": "editorial:conflict", "sourceUrl": "/resources/?topic=human-rights-conflict-security", "attribution": "HRM · linked reporting", "license": "Watch factual summaries; original reports retain their rights", "coverage": "Selected reports, Aug 2025–Jul 2026", "minZoom": 2.7, "maxZoom": 15, "defaultVisible": false, "geometry": "circle", "style": {"circle-radius": 6, "circle-color": "#b77862", "circle-opacity": 0.95, "circle-stroke-color": "#fffaf2", "circle-stroke-width": 1.5}, "availability": "always"},
+  {"id": "conflict-deployments", "family": "conflict", "title": "Reported military presence", "titleId": "Laporan kehadiran militer", "description": "Selected dated regional reports. Points locate regions, not incidents or people.", "descriptionId": "Pilihan laporan wilayah bertanggal. Titik menunjukkan wilayah, bukan lokasi kejadian atau orang.", "sourceType": "live", "source": "editorial:conflict", "sourceUrl": "/resources/?topic=human-rights-conflict-security", "attribution": "HRM · linked reporting", "license": "Watch factual summaries; original reports retain their rights", "coverage": "Selected reports, Aug 2025–Jul 2026", "minZoom": 2.7, "maxZoom": 15, "defaultVisible": false, "geometry": "circle", "style": {"circle-radius": 9, "circle-color": "#716075", "circle-opacity": 0.95, "circle-stroke-color": "#fffaf2", "circle-stroke-width": 1.5}, "availability": "always"},
   {id:'street-detail',family:'infrastructure',title:'Roads & place labels',titleId:'Jalan & nama tempat',description:'OpenStreetMap roads and labels at local zoom levels. Coverage varies; absence is not proof that a road or community does not exist.',descriptionId:'Jalan dan nama tempat OpenStreetMap pada skala lokal. Cakupan beragam; data yang kosong bukan berarti jalan atau kampung tidak ada.',sourceType:'raster',source:'https://tiles.maps.eox.at/wmts/1.0.0/overlay_3857/default/GoogleMapsCompatible/{z}/{y}/{x}.png',tiles:['https://tiles.maps.eox.at/wmts/1.0.0/overlay_3857/default/GoogleMapsCompatible/{z}/{y}/{x}.png'],sourceUrl:'https://maps.eox.at/',attribution:'© OpenStreetMap contributors · EOX rendering',license:'OpenStreetMap ODbL; EOX attribution',coverage:'Global',minZoom:9,maxZoom:18,defaultVisible:false,geometry:'raster',style:{'raster-opacity':.85},availability:'always'},
 
   {

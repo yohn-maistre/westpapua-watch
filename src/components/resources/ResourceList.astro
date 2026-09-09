@@ -1,0 +1,23 @@
+---
+import {libraryGroup,LIBRARY_GROUPS} from '../../../shared/library';
+import type {LibraryItem} from '../../../shared/library';
+const {items,locale='en',topic}=Astro.props as {items:LibraryItem[];locale?:string;topic?:string};
+const label=(type:any)=>LIBRARY_GROUPS.find(g=>g[0]===libraryGroup(type))?.[locale==='pmy'?2:1]||type;
+---
+<div class="resource-table" data-resource-table data-locale={locale} data-library-topic={topic||''}>{items.map(r=><a class="resource-row" data-resource-row data-resource-type={libraryGroup(r.itemType)} data-resource-format={r.format} data-resource-broad={r.topics.join(' ')} data-resource-places={JSON.stringify(r.places)} data-resource-languages={r.languages.join(' ')} href={r.url} target="_blank" rel="noreferrer"><span class="type">{label(r.itemType)}<small style="display:block;margin-top:.4rem">{r.format.toUpperCase()}</small></span><div><h2>{r.title}</h2><p>{r.publisher}</p>{r.description&&<p>{r.description}</p>}</div><p class="resource-language-badge">{r.languages.length>1||r.languages.includes('multi')?'MULTI':(r.languages[0]||'').toUpperCase()}</p><span>{r.year}</span></a>)}</div>
+<script>
+import {normalizeLibraryItem,libraryGroup,LIBRARY_GROUPS,canonicalItemUrl,broadTopics} from '../../../shared/library';
+document.querySelectorAll<HTMLElement>('[data-resource-table]').forEach(table=>{
+ const topic=table.dataset.libraryTopic||'',locale=table.dataset.locale;
+ fetch('/api/resources'+(topic?'?topic='+encodeURIComponent(topic):''),{headers:{accept:'application/json'}}).then(r=>r.ok?r.json():null).then(data=>{
+ const existing=new Set([...table.querySelectorAll<HTMLAnchorElement>('a.resource-row')].map(x=>canonicalItemUrl(x.href)));
+ for(const raw of data?.items||[]){const item=normalizeLibraryItem(raw);if(topic&&!item.topics.includes(topic))continue;if(existing.has(item.id))continue;try{if(!['http:','https:'].includes(new URL(item.url).protocol))continue}catch{continue}existing.add(item.id);
+ const row=document.createElement('a');row.className='resource-row';row.dataset.resourceRow='';row.dataset.resourceType=libraryGroup(item.itemType);row.dataset.resourceFormat=item.format;row.dataset.resourceBroad=[...item.topics,...broadTopics(item.tags)].join(' ');row.dataset.resourceLanguages=item.languages.join(' ');row.dataset.resourcePlaces=JSON.stringify(item.places);row.href=item.url;row.target='_blank';row.rel='noreferrer';
+ const kind=document.createElement('span');kind.className='type';kind.textContent=LIBRARY_GROUPS.find(g=>g[0]===libraryGroup(item.itemType))?.[locale==='pmy'?2:1]||item.itemType;const format=document.createElement('small');format.style.display='block';format.style.marginTop='.4rem';format.textContent=item.format.toUpperCase();kind.append(format);
+ const main=document.createElement('div'),title=document.createElement('h2'),publisher=document.createElement('p');title.textContent=item.title;publisher.textContent=item.publisher;main.append(title,publisher);if(item.description){const p=document.createElement('p');p.textContent=item.description;main.append(p)}
+ const language=document.createElement('p');language.className='resource-language-badge';language.textContent=item.languages.length>1||item.languages.includes('multi')?'MULTI':(item.languages[0]||'').toUpperCase();const year=document.createElement('span');year.textContent=item.year;row.append(kind,main,language,year);table.append(row);
+ }
+ document.dispatchEvent(new Event('watch:library-loaded'));
+ }).catch(()=>{});
+});
+</script>

@@ -1,4 +1,8 @@
 ---
+import {dossiers} from '../data/dossiers';
+import ResourceList from '../components/resources/ResourceList.astro';
+import {LIBRARY_GROUPS} from '../../shared/library';
+import ResourceFilters from '../components/resources/ResourceFilters';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { resources } from '../data/resources';
 import { glossary } from '../data/glossary';
@@ -21,71 +25,35 @@ const TOPICS=[
   ['women-gender-social-inclusion','Women & gender','Perempuan & gender'],
   ['infrastructure-connectivity','Infrastructure & connectivity','Infrastruktur & konektivitas']
 ] as const;
-const broadFor=(tags:string[],text='')=>{
-  const out=new Set<string>();for(const tag of tags){
-    if(tag==='land-indigenous-rights')out.add('land-indigenous-rights');
-    if(tag==='environment-biodiversity')out.add('environment-biodiversity');
-    if(tag==='climate-disasters')out.add('climate-disasters');
-    if(tag==='human-rights-security')out.add('human-rights-conflict-security');
-    if(tag==='politics-governance')out.add('politics-governance-representation');
-    if(tag==='economy-livelihoods')out.add('economy-livelihoods');
-    if(['health-wellbeing','water-sanitation-housing'].includes(tag))out.add('health-food-public-services');
-    if(['education-knowledge','culture-language'].includes(tag))out.add('education-language-culture');
-    if(tag==='gender-social-inclusion')out.add('women-gender-social-inclusion');
-    if(tag==='infrastructure-connectivity')out.add('infrastructure-connectivity');
-  }
-  if(/mining|tambang|extract|nikel|nickel|gold|emas|copper|tembaga|freeport|grasberg|logging|pembalakan|plantation|perkebunan|food estate|industrial/i.test(`${text} ${tags.join(' ')}`))out.add('extraction-industrial-development');
-  return [...out]
-};
-const oldLabels=Object.fromEntries(Object.entries(topicTagBySlug).map(([slug,tag]:[string,any])=>[slug,tag?.label?.[locale==='pmy'?'id':'en']||slug]));
-const langs=(r:any)=>Array.isArray(r.languages)&&r.languages.length?r.languages:(r.language?[r.language]:[]);
-const langLabel=(r:any)=>{const ls=langs(r);return ls.length>1||ls.includes('multi')?'MULTI':(ls[0]||'').toUpperCase()};
+const places=[...new Set(resources.flatMap(r=>r.places))].sort();
 ---
-<BaseLayout locale={locale} active="resources" title={locale==='en'?'Resources':'Sumber'}>
+<BaseLayout locale={locale} active="resources" title={locale==='en'?'Library':'Pustaka'}>
 <section class="section resources-index"><div class="wrap">
-  <h1 class="page-title">{ui.resources.pageTitle[locale]}</h1><p class="page-intro">{ui.resources.intro[locale]}</p>
-  <div class="resource-tools"><input class="resource-search" data-resource-search type="search" aria-label={locale==='en'?'Search resources':'Cari sumber'} placeholder={locale==='en'?'Search resources':'Cari sumber'} /></div>
-  <div class="resource-controls">
-    <div class="resource-control-line">
-      <span class="resource-control-label">{locale==='en'?'Language':'Bahasa'}</span>
-      <div class="resource-language">
-        {['all','id','en','multi'].map((x,i)=><button type="button" class:list={[i===0&&'active']} data-resource-language={x}>{x==='all'?(locale==='en'?'All':'Semua'):x.toUpperCase()}</button>)}
-      </div>
-      </div><div class="resource-control-line">
-      <span class="resource-control-label">{locale==='en'?'Topic':'Topik'}</span>
-      <div class="resource-topic">
-        <button type="button" class="active" data-resource-topic="all">{locale==='en'?'All topics':'Semua topik'}</button>
-        {TOPICS.map(([id,en,pmy])=><button type="button" data-resource-topic={id}>{locale==='pmy'?pmy:en}</button>)}
-      </div>
-
-    </div>
-  </div>
-  <div class="resource-controls resource-facets"><div class="resource-control-line"><span class="resource-control-label">{locale==='en'?'Type':'Jenis'}</span><div class="resource-topic">{[['all','All','Semua'],['report','Reports','Laporan'],['research','Research','Penelitian'],['book','Books','Buku'],['documentary','Documentaries','Dokumenter'],['article','Articles','Artikel'],['commentary','Commentary','Opini'],['official','Records','Dokumen'],['collection','Collections','Koleksi']].map(([v,en,id])=><button type="button" data-resource-kind={v}>{locale==='en'?en:id}</button>)}</div></div><div class="resource-control-line"><span class="resource-control-label">{locale==='en'?'Format':'Format'}</span><div class="resource-topic">{['all','web','pdf','video','audio'].map(v=><button type="button" data-resource-format-filter={v}>{v==='all'?(locale==='en'?'All':'Semua'):v.toUpperCase()}</button>)}</div></div></div>
+  <h1 class="page-title">{ui.resources.pageTitle[locale]}</h1>
+  <div class="resource-tools"><input class="resource-search" data-resource-search type="search" aria-label={locale==='en'?'Search library':'Cari pustaka'} placeholder={locale==='en'?'Search library':'Cari pustaka'} /></div>
+  <ResourceFilters client:load locale={locale} facets={[
+ {key:'topic',label:locale==='en'?'Topic':'Topik',options:[...dossiers.map(d=>[d.slug,t(d.title,locale)]),...TOPICS.map(([v,en,id])=>[v,locale==='en'?en:id])]},
+ {key:'type',label:locale==='en'?'Type':'Jenis',options:LIBRARY_GROUPS.map(([v,en,id])=>[v,locale==='en'?en:id])},
+ {key:'place',label:locale==='en'?'Place':'Lokasi',options:places.map(p=>[p,p])},
+ {key:'language',label:locale==='en'?'Language':'Bahasa',options:[['id','Indonesia'],['en','English'],['multi',locale==='en'?'Multilingual':'Multibahasa']]}
+ ]}/><noscript><p>{locale==='en'?'All resources are listed below.':'Semua sumber ada di bawah.'}</p></noscript>
   <div class="resource-results-bar"><p data-resource-count role="status"></p><button class="chip" type="button" data-resource-reset>{locale==='en'?'Reset filters':'Atur ulang'}</button></div>
   <p data-resource-empty hidden>{locale==='en'?'No resources match these filters.':'Tidak ada sumber yang cocok.'}</p>
-  <div class="resource-table" data-resource-table data-old-labels={JSON.stringify(oldLabels)}>{resources.map((r:any)=>{
-    const ls=langs(r),broad=broadFor(r.tags||[],`${r.title||''} ${r.publisher||''}`);
-    return <a class="resource-row" data-resource-row data-resource-type={r.type} data-resource-format={r.format} data-resource-tags={(r.tags||[]).join(' ')} data-resource-broad={broad.join(' ')} data-resource-languages={ls.join(' ')} href={r.url} target="_blank" rel="noreferrer">
-      <span class="type">{r.type}<small style="display:block;margin-top:.4rem">{r.format.toUpperCase()}</small></span><div><h2>{r.title}</h2><p>{r.publisher}</p>{r.description&&<p>{r.description}</p>}{r.tags?.length>0&&<div class="resource-topic-tags">{r.tags.slice(0,4).map((slug:string)=><span class="resource-topic-tag">{oldLabels[slug]||slug}</span>)}</div>}</div>
-      <p class="resource-language-badge">{langLabel(r)}</p><span>{r.year}</span>
-    </a>})}</div>
+  <ResourceList items={resources} locale={locale}/>
 </div></section>
 <section class="section" id="glossary"><div class="wrap"><div class="section-head section-head-simple"><h2>{locale==='en'?'Terms & concepts.':'Istilah & konsep.'}</h2></div><div class="glossary-grid">{glossary.map(item=><article class="term-card" id={item.slug}><h3>{item.term}</h3><p>{t(item.definition,locale)}</p></article>)}</div></div></section>
 <script>
 const table=document.querySelector<HTMLElement>('[data-resource-table]'),input=document.querySelector<HTMLInputElement>('[data-resource-search]');
-const langButtons=[...document.querySelectorAll<HTMLButtonElement>('[data-resource-language]')],topicButtons=[...document.querySelectorAll<HTMLButtonElement>('[data-resource-topic]')],topicSelect=document.querySelector<HTMLSelectElement>('[data-resource-topic-select]');
-const params=new URL(location.href).searchParams;let activeLanguage=params.get('language')||'all',activeTopic=params.get('topic')||'all';if(!langButtons.some(b=>b.dataset.resourceLanguage===activeLanguage))activeLanguage='all';if(!topicButtons.some(b=>b.dataset.resourceTopic===activeTopic))activeTopic='all';if(input)input.value=params.get('q')||'';let oldLabels:Record<string,string>={};try{oldLabels=JSON.parse(table?.dataset.oldLabels||'{}')}catch{}
-const broadFor=(tags:string[],text='')=>{const out=new Set<string>();for(const tag of tags){if(tag==='land-indigenous-rights')out.add('land-indigenous-rights');if(tag==='environment-biodiversity')out.add('environment-biodiversity');if(tag==='climate-disasters')out.add('climate-disasters');if(tag==='human-rights-security')out.add('human-rights-conflict-security');if(tag==='politics-governance')out.add('politics-governance-representation');if(tag==='economy-livelihoods')out.add('economy-livelihoods');if(['health-wellbeing','water-sanitation-housing'].includes(tag))out.add('health-food-public-services');if(['education-knowledge','culture-language'].includes(tag))out.add('education-language-culture');if(tag==='gender-social-inclusion')out.add('women-gender-social-inclusion');if(tag==='infrastructure-connectivity')out.add('infrastructure-connectivity')}if(/mining|tambang|extract|nikel|nickel|gold|emas|copper|tembaga|freeport|grasberg|logging|pembalakan|plantation|perkebunan|food estate|industrial/i.test(`${text} ${tags.join(' ')}`))out.add('extraction-industrial-development');return[...out]};
-let activeKind=params.get('type')||'all',activeFormat=params.get('format')||'all';const kindButtons=[...document.querySelectorAll<HTMLButtonElement>('[data-resource-kind]')],formatButtons=[...document.querySelectorAll<HTMLButtonElement>('[data-resource-format-filter]')];
-const apply=()=>{const term=(input?.value||'').trim().toLowerCase();for(const row of document.querySelectorAll<HTMLElement>('[data-resource-row]')){const languages=(row.dataset.resourceLanguages||'').split(/\s+/).filter(Boolean),broad=(row.dataset.resourceBroad||'').split(/\s+/).filter(Boolean);const lang=activeLanguage==='all'||(activeLanguage==='multi'?languages.length>1||languages.includes('multi'):languages.includes(activeLanguage));const topic=activeTopic==='all'||broad.includes(activeTopic);const search=!term||(row.textContent||'').toLowerCase().includes(term);row.hidden=!(lang&&topic&&search&&(activeKind==='all'||row.dataset.resourceType===activeKind)&&(activeFormat==='all'||row.dataset.resourceFormat===activeFormat))}const rows=[...document.querySelectorAll<HTMLElement>('[data-resource-row]')],count=rows.filter(r=>!r.hidden).length;const label=document.querySelector('[data-resource-count]');if(label)label.textContent=`${count} / ${rows.length}`;const empty=document.querySelector<HTMLElement>('[data-resource-empty]');if(empty)empty.hidden=count!==0;langButtons.forEach(b=>{const on=b.dataset.resourceLanguage===activeLanguage;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});topicButtons.forEach(b=>{const on=b.dataset.resourceTopic===activeTopic;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});if(topicSelect)topicSelect.value=activeTopic;const url=new URL(location.href);for(const [k,v] of [['q',input?.value||''],['language',activeLanguage],['topic',activeTopic],['type',activeKind],['format',activeFormat]]){if(v&&v!=='all')url.searchParams.set(k,v);else url.searchParams.delete(k)}history.replaceState(null,'',url);kindButtons.forEach(b=>{const on=b.dataset.resourceKind===activeKind;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});formatButtons.forEach(b=>{const on=b.dataset.resourceFormatFilter===activeFormat;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))})};
- document.querySelector('[data-resource-reset]')?.addEventListener('click',()=>{activeLanguage='all';activeTopic='all';activeKind='all';activeFormat='all';if(input)input.value='';apply()});apply();
-kindButtons.forEach(b=>b.addEventListener('click',()=>{activeKind=b.dataset.resourceKind||'all';apply()}));formatButtons.forEach(b=>b.addEventListener('click',()=>{activeFormat=b.dataset.resourceFormatFilter||'all';apply()}));
-langButtons.forEach(button=>button.addEventListener('click',()=>{activeLanguage=button.dataset.resourceLanguage||'all';langButtons.forEach(x=>x.classList.toggle('active',x===button));apply()}));
-topicButtons.forEach(button=>button.addEventListener('click',()=>{activeTopic=button.dataset.resourceTopic||'all';topicButtons.forEach(x=>x.classList.toggle('active',x===button));if(topicSelect)topicSelect.value=activeTopic;apply()}));
-topicSelect?.addEventListener('change',()=>{activeTopic=topicSelect.value;topicButtons.forEach(x=>x.classList.toggle('active',x.dataset.resourceTopic===activeTopic));apply()});input?.addEventListener('input',apply);
-if(table)fetch('/api/resources',{headers:{accept:'application/json'}}).then(r=>r.ok?r.json():null).then(data=>{const existing=new Set([...table.querySelectorAll<HTMLAnchorElement>('a.resource-row')].map(x=>x.href));for(const item of data?.items||[]){if(!item.source_url||existing.has(item.source_url))continue;try{if(!['http:','https:'].includes(new URL(item.source_url).protocol))continue}catch{continue}existing.add(item.source_url);const row=document.createElement('a');row.className='resource-row';row.dataset.resourceRow='';row.dataset.resourceType=item.kind||'article';row.dataset.resourceFormat=item.format||(/\.pdf(?:$|[?#])/i.test(item.source_url)?'pdf':'web');row.href=item.source_url;row.target='_blank';row.rel='noreferrer';
-let tags:string[]=[];try{tags=JSON.parse(item.tags_json||'[]')}catch{}let languages:string[]=[];try{languages=JSON.parse(item.languages_json||'[]')}catch{}if(!languages.length&&item.language)languages=[String(item.language).toLowerCase()];row.dataset.resourceTags=tags.join(' ');row.dataset.resourceBroad=broadFor(tags,`${item.title||''} ${item.description||''} ${item.publisher_id||''}`).join(' ');row.dataset.resourceLanguages=languages.join(' ');
-const kind=document.createElement('span');kind.className='type';kind.textContent=item.kind||'reference';const main=document.createElement('div'),title=document.createElement('h2'),publisher=document.createElement('p');title.textContent=item.title||'Untitled';publisher.textContent=item.publisher_id||'';main.append(title,publisher);if(tags.length){const tagsEl=document.createElement('div');tagsEl.className='resource-topic-tags';for(const slug of tags.slice(0,4)){const chip=document.createElement('span');chip.className='resource-topic-tag';chip.textContent=oldLabels[slug]||slug.replaceAll('-',' ');tagsEl.append(chip)}main.append(tagsEl)}
-const language=document.createElement('p');language.className='resource-language-badge';language.textContent=languages.length>1||languages.includes('multi')?'MULTI':(languages[0]||'').toUpperCase();const year=document.createElement('span');year.textContent=item.updated_at?new Date(item.updated_at).getFullYear().toString():'';row.append(kind,main,language,year);table.append(row)}apply()}).catch(()=>{});
+const params=new URL(location.href).searchParams;if(input)input.value=params.get('q')||'';
+let selected:Record<string,string[]>={};for(const k of ['topic','type','language','place'])selected[k]=(params.get(k)||'').split(',').filter(v=>v&&v!=='all');
+
+const apply=()=>{const term=(input?.value||'').trim().toLowerCase();const matches=(key:string,values:string[])=>!selected[key]?.length||selected[key].some(v=>values.includes(v));
+ const rows=[...document.querySelectorAll<HTMLElement>('[data-resource-row]')];for(const row of rows){const languages=(row.dataset.resourceLanguages||'').split(/\s+/).filter(Boolean);if(languages.length>1)languages.push('multi');row.hidden=!(matches('language',languages)&&matches('topic',(row.dataset.resourceBroad||'').split(' '))&&matches('type',[row.dataset.resourceType||''])&&matches('place',JSON.parse(row.dataset.resourcePlaces||'[]'))&&(!term||(row.textContent||'').toLowerCase().includes(term)))}
+ const count=rows.filter(r=>!r.hidden).length;const label=document.querySelector('[data-resource-count]');if(label)label.textContent=`${count} / ${rows.length}`;const empty=document.querySelector<HTMLElement>('[data-resource-empty]');if(empty)empty.hidden=count!==0;
+ const url=new URL(location.href);for(const key of ['topic','type','language','place']){const value=selected[key]?.join(',');if(value)url.searchParams.set(key,value);else url.searchParams.delete(key)}if(term)url.searchParams.set('q',input!.value);else url.searchParams.delete('q');history.replaceState(null,'',url);
+};
+document.addEventListener('watch:resource-filter',e=>{selected=(e as CustomEvent).detail;apply()});
+document.querySelector('[data-resource-reset]')?.addEventListener('click',()=>{selected={};if(input)input.value='';document.dispatchEvent(new Event('watch:resource-reset'));apply()});input?.addEventListener('input',apply);apply();
+document.addEventListener('watch:library-loaded',apply);
 </script>
 </BaseLayout>

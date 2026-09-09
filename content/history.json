@@ -8,14 +8,29 @@
         "pmy": "Tanah dengan banyak masyarakat"
       },
       "body": {
-        "en": "Papua’s history also lives in language, craft and relationships with land. Noken, the knotted or woven bags made in many Papuan communities, connects everyday work with knowledge passed between generations. UNESCO placed the practice on its urgent safeguarding list in 2012. That recognition is a reminder to attend to living knowledge, not only official dates. This chronology centres Papuan experiences while recognising that communities and political views are diverse.",
-        "pmy": "Sejarah Papua juga hidup dalam bahasa, kerajinan, dan hubungan dengan tanah. Noken menghubungkan pekerjaan sehari-hari dengan pengetahuan antargenerasi. UNESCO memasukkan praktik pembuatan noken ke daftar pelindungan mendesak pada 2012. Pengakuan ini mengajak kita memperhatikan pengetahuan yang hidup, selain tanggal-tanggal resmi. Kronologi ini berpusat pada pengalaman orang Papua, dengan tetap mengakui keragaman masyarakat dan pandangan politiknya."
+        "en": "Papua’s history also lives in language, craft and relationships with land. Noken, the knotted or woven bags made in many Papuan communities, connects everyday work with knowledge passed between generations. UNESCO placed the practice on its urgent safeguarding list in 2012.",
+        "pmy": "Sejarah Papua juga hidup dalam bahasa, kerajinan, dan hubungan dengan tanah. Noken menghubungkan pekerjaan sehari-hari dengan pengetahuan antargenerasi. UNESCO memasukkan praktik pembuatan noken ke daftar pelindungan mendesak pada 2012."
       },
       "sourceIds": [
         "unesco-noken"
       ],
       "visual": "document",
-      "hidden": false
+      "hidden": false,
+      "yearLabel": {
+        "en": "Living history",
+        "pmy": "Sejarah hidup"
+      },
+      "media": {
+        "src": "/images/history/noken-2017.jpg",
+        "caption": {
+          "en": "Noken, photographed in 2017.",
+          "pmy": "Noken, dipotret pada 2017."
+        },
+        "credit": "Nurul Ichlasiah",
+        "url": "https://commons.wikimedia.org/wiki/File:Noken.jpg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      }
     },
     {
       "id": "history-1949",
@@ -25,15 +40,19 @@
         "pmy": "Masa depan kolonial diperebutkan"
       },
       "body": {
-        "en": "When Indonesia gained independence in 1949, the Netherlands retained West New Guinea. Indonesia claimed the territory as part of the former Dutch East Indies; Dutch plans increasingly envisaged a separate political future. Papuans were not simply spectators. Their political aspirations developed amid competing projects, and were never reducible to the preferences of either government. Petitions provide another archive through which historians can recover Papuan arguments about their own future.",
-        "pmy": "Ketika Indonesia merdeka pada 1949, Belanda tetap menguasai Nugini Barat. Indonesia mengklaim wilayah itu sebagai bagian bekas Hindia Belanda; rencana Belanda semakin mengarah pada masa depan politik tersendiri. Orang Papua bukan sekadar penonton. Aspirasi politik mereka berkembang di tengah persaingan tersebut dan tidak dapat disamakan begitu saja dengan kehendak kedua pemerintah. Petisi menjadi salah satu arsip untuk membaca kembali pemikiran orang Papua tentang masa depannya."
+        "en": "When the Netherlands transferred sovereignty to Indonesia in 1949, the Netherlands retained West New Guinea. Indonesia claimed the territory as part of the former Dutch East Indies; Dutch plans increasingly envisaged a separate political future. Papuans were not simply spectators. Their political aspirations developed amid competing projects, and were never reducible to the preferences of either government.",
+        "pmy": "Ketika Belanda menyerahkan kedaulatan kepada Indonesia pada 1949, Belanda tetap menguasai Nugini Barat. Indonesia mengklaim wilayah itu sebagai bagian bekas Hindia Belanda; rencana Belanda semakin mengarah pada masa depan politik tersendiri. Orang Papua bukan sekadar penonton. Aspirasi politik mereka berkembang di tengah persaingan tersebut dan tidak dapat disamakan begitu saja dengan kehendak kedua pemerintah."
       },
       "sourceIds": [
         "hrw-congress-2001",
         "kluge-petitions"
       ],
       "visual": "document",
-      "hidden": false
+      "hidden": false,
+      "yearLabel": {
+        "en": "1949–1960",
+        "pmy": "1949–1960"
+      }
     },
     {
       "id": "history-1961",
@@ -50,7 +69,22 @@
         "hrw-history-2000"
       ],
       "visual": "document",
-      "hidden": false
+      "hidden": false,
+      "yearLabel": {
+        "en": "1961",
+        "pmy": "1961"
+      },
+      "media": {
+        "src": "/images/history/council-1961.jpg",
+        "caption": {
+          "en": "New Guinea Council visitors in Amsterdam, 7 September 1961.",
+          "pmy": "Kunjungan Dewan Nugini di Amsterdam, 7 September 1961."
+        },
+        "credit": "Jack de Nijs / Anefo · Nationaal Archief",
+        "url": "https://commons.wikimedia.org/wiki/File:Nieuw-Guinea_raad_in_Amsterdam_De_groep_op_de_binnenplaats,_Bestanddeelnr_912-9030.jpg",
+        "license": "CC0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/"
+      }
     },
     {
       "id": "history-1962",
@@ -69,7 +103,11 @@
         "saltford-un"
       ],
       "visual": "document",
-      "hidden": false
+      "hidden": false,
+      "yearLabel": {
+        "en": "1962–1963",
+        "pmy": "1962–1963"
+      }
     },
     {
       "id": "history-1969",
@@ -79,8 +117,8 @@
         "pmy": "Pilihan yang tetap dipersoalkan"
       },
       "body": {
-        "en": "The Act of Free Choice, or Pepera, used selected representative assemblies rather than a vote by all adult residents. The assemblies supported integration with Indonesia. Accounts of political pressure and restrictions on expression remain central to Papuan criticism of the process. UN General Assembly Resolution 2504 took note of the Secretary-General’s report. Independence advocates continue to contest whether the process delivered meaningful self-determination; Indonesia regards integration as settled. Reading the agreement, UN record and Papuan testimony together makes the disagreement clearer.",
-        "pmy": "Penentuan Pendapat Rakyat, atau Pepera, menggunakan musyawarah perwakilan, bukan pemungutan suara seluruh penduduk dewasa. Perwakilan tersebut mendukung integrasi dengan Indonesia. Laporan tekanan politik dan pembatasan kebebasan berpendapat menjadi bagian penting kritik Papua. Resolusi Majelis Umum PBB 2504 mencatat laporan Sekretaris Jenderal. Pendukung kemerdekaan tetap mempertanyakan apakah proses itu mewujudkan penentuan nasib sendiri; Indonesia menganggap integrasi sudah final. Perjanjian, catatan PBB, dan kesaksian Papua perlu dibaca bersama."
+        "en": "The Act of Free Choice, or Pepera, used selected representative assemblies rather than a vote by all adult residents. The assemblies supported integration with Indonesia. Accounts of political pressure and restrictions on expression remain central to Papuan criticism of the process. UN General Assembly Resolution 2504 took note of the Secretary-General’s report. Independence advocates continue to contest whether the process delivered meaningful self-determination; Indonesia regards integration as settled.",
+        "pmy": "Penentuan Pendapat Rakyat, atau Pepera, menggunakan musyawarah perwakilan, bukan pemungutan suara seluruh penduduk dewasa. Perwakilan tersebut mendukung integrasi dengan Indonesia. Laporan tekanan politik dan pembatasan kebebasan berpendapat menjadi bagian penting kritik Papua. Resolusi Majelis Umum PBB 2504 mencatat laporan Sekretaris Jenderal. Pendukung kemerdekaan tetap mempertanyakan apakah proses itu mewujudkan penentuan nasib sendiri; Indonesia menganggap integrasi sudah final."
       },
       "sourceIds": [
         "un-ga-2504-1969",
@@ -88,7 +126,11 @@
         "hrw-history-2000"
       ],
       "visual": "document",
-      "hidden": false
+      "hidden": false,
+      "yearLabel": {
+        "en": "1969",
+        "pmy": "1969"
+      }
     },
     {
       "id": "history-land",
@@ -98,15 +140,30 @@
         "pmy": "Tanah dan makna pembangunan"
       },
       "body": {
-        "en": "Mining, plantations and migration changed livelihoods and control over land. An economic project could be described by government or business as development while the people living there experienced loss of forests, food sources or decision-making power. Research by AJAR and the Papuan Women’s Working Group begins with these lived relationships. Its case studies ask what land means to women and how they respond when forests become concessions. The communities documented are specific places, not a single story representing all Papua.",
-        "pmy": "Pertambangan, perkebunan, dan migrasi mengubah penghidupan serta penguasaan tanah. Proyek yang disebut pembangunan oleh pemerintah atau perusahaan dapat dialami penduduk sebagai kehilangan hutan, sumber pangan, atau kuasa mengambil keputusan. Penelitian AJAR dan Kelompok Kerja Perempuan Papua bertolak dari hubungan yang dialami sehari-hari. Studi kasusnya membahas arti tanah bagi perempuan dan tanggapan mereka ketika hutan menjadi konsesi. Masyarakat yang didokumentasikan memiliki pengalaman khusus, bukan satu cerita yang mewakili seluruh Papua."
+        "en": "Mining, plantations and migration changed livelihoods and control over land. An economic project could be described by government or business as development while the people living there experienced loss of forests, food sources or decision-making power. Research by AJAR and the Papuan Women’s Working Group begins with these lived relationships. Its case studies ask what land means to women and how they respond when forests become concessions.",
+        "pmy": "Pertambangan, perkebunan, dan migrasi mengubah penghidupan serta penguasaan tanah. Proyek yang disebut pembangunan oleh pemerintah atau perusahaan dapat dialami penduduk sebagai kehilangan hutan, sumber pangan, atau kuasa mengambil keputusan. Penelitian AJAR dan Kelompok Kerja Perempuan Papua bertolak dari hubungan yang dialami sehari-hari. Studi kasusnya membahas arti tanah bagi perempuan dan tanggapan mereka ketika hutan menjadi konsesi."
       },
       "sourceIds": [
         "ajar-birds",
         "nasa-grasberg"
       ],
       "visual": "document",
-      "hidden": false
+      "hidden": false,
+      "yearLabel": {
+        "en": "1970s onward",
+        "pmy": "Sejak 1970-an"
+      },
+      "media": {
+        "src": "/images/history/grasberg-2005.jpg",
+        "caption": {
+          "en": "Grasberg, photographed from the ISS on 25 June 2005.",
+          "pmy": "Grasberg, dipotret dari ISS pada 25 Juni 2005."
+        },
+        "credit": "NASA / ISS Crew Earth Observations",
+        "url": "https://science.nasa.gov/earth/earth-observatory/grasberg-mine-indonesia-5718/",
+        "license": "NASA imagery",
+        "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      }
     },
     {
       "id": "history-mambesak",
@@ -116,14 +173,18 @@
         "pmy": "Budaya sebagai suara publik"
       },
       "body": {
-        "en": "Mambesak brought songs and cultural knowledge from across Papua into performance, radio and museum work. Arnold Ap, a musician and curator, helped make that work a shared public space. His death in 1984 remains a major point in Papuan cultural memory. The documentary Muman Minggil revisits Mambesak through surviving members, recordings and oral history. This chapter of history also concerns who collects knowledge, who can speak, and how a younger generation meets the work of its predecessors.",
-        "pmy": "Mambesak membawa lagu dan pengetahuan dari berbagai wilayah Papua ke pertunjukan, radio, dan kegiatan museum. Arnold Ap, musisi dan kurator, membantu menjadikannya ruang publik bersama. Kematiannya pada 1984 tetap penting dalam ingatan budaya Papua. Dokumenter Muman Minggil menelusuri Mambesak melalui anggota yang masih hidup, rekaman, dan sejarah lisan. Bagian sejarah ini juga menyangkut siapa yang mengumpulkan pengetahuan, siapa yang dapat bersuara, dan bagaimana generasi berikutnya mengenal karya pendahulunya."
+        "en": "Mambesak brought songs and cultural knowledge from across Papua into performance, radio and museum work. Arnold Ap, a musician and curator, helped make that work a shared public space. His death in 1984 remains a major point in Papuan cultural memory. The documentary Muman Minggil revisits Mambesak through surviving members, recordings and oral history.",
+        "pmy": "Mambesak membawa lagu dan pengetahuan dari berbagai wilayah Papua ke pertunjukan, radio, dan kegiatan museum. Arnold Ap, musisi dan kurator, membantu menjadikannya ruang publik bersama. Kematiannya pada 1984 tetap penting dalam ingatan budaya Papua. Dokumenter Muman Minggil menelusuri Mambesak melalui anggota yang masih hidup, rekaman, dan sejarah lisan."
       },
       "sourceIds": [
         "muman-minggil"
       ],
       "visual": "document",
-      "hidden": false
+      "hidden": false,
+      "yearLabel": {
+        "en": "1978–1984",
+        "pmy": "1978–1984"
+      }
     },
     {
       "id": "history-reformasi",
@@ -133,14 +194,18 @@
         "pmy": "Ruang bagi pengorganisasian publik"
       },
       "body": {
-        "en": "Suharto’s resignation in 1998 opened space for Papuan political organising. A delegation presented an independence demand to President Habibie in 1999. The 2000 Papuan Congress brought together delegates from the territory and diaspora to debate history and political strategy. Its resolution asserted Papuan sovereignty; the Indonesian government rejected independence. The period showed both the reach of civilian organising and the limits of political openness. Movement congresses expressed organised positions, not a referendum measuring every resident’s view.",
-        "pmy": "Pengunduran diri Suharto pada 1998 membuka ruang pengorganisasian politik Papua. Delegasi menyampaikan tuntutan kemerdekaan kepada Presiden Habibie pada 1999. Kongres Papua 2000 mempertemukan wakil dari Papua dan diaspora untuk membahas sejarah serta strategi politik. Resolusinya menegaskan kedaulatan Papua; pemerintah Indonesia menolak kemerdekaan. Masa ini memperlihatkan luasnya pengorganisasian sipil sekaligus batas keterbukaan politik. Kongres menyatakan posisi gerakan, bukan referendum yang mengukur pandangan semua penduduk."
+        "en": "Suharto’s resignation in 1998 opened space for Papuan political organising. A delegation presented an independence demand to President Habibie in 1999. The 2000 Papuan Congress brought together delegates from the territory and diaspora to debate history and political strategy. Its resolution asserted Papuan sovereignty; the Indonesian government rejected independence. The period showed both the reach of civilian organising and the limits of political openness.",
+        "pmy": "Pengunduran diri Suharto pada 1998 membuka ruang pengorganisasian politik Papua. Delegasi menyampaikan tuntutan kemerdekaan kepada Presiden Habibie pada 1999. Kongres Papua 2000 mempertemukan wakil dari Papua dan diaspora untuk membahas sejarah serta strategi politik. Resolusinya menegaskan kedaulatan Papua; pemerintah Indonesia menolak kemerdekaan. Masa ini memperlihatkan luasnya pengorganisasian sipil sekaligus batas keterbukaan politik."
       },
       "sourceIds": [
         "hrw-congress-2001"
       ],
       "visual": "document",
-      "hidden": false
+      "hidden": false,
+      "yearLabel": {
+        "en": "1998–2000",
+        "pmy": "1998–2000"
+      }
     },
     {
       "id": "history-2001",
@@ -150,15 +215,19 @@
         "pmy": "Otonomi dan janji yang belum selesai"
       },
       "body": {
-        "en": "Law No. 21 of 2001 established special autonomy for Papua within Indonesia. It recognised specific institutions and protections for Indigenous Papuans, while leaving the demand for independence unresolved. The difference between legal provisions and everyday experience matters. Research with Papuan women has examined access to services, livelihoods and participation under autonomy. Reading these accounts alongside the law keeps assessment grounded in what people can actually do and receive, rather than treating either official promises or criticism as sufficient on its own.",
-        "pmy": "Undang-Undang No. 21 Tahun 2001 menetapkan otonomi khusus Papua dalam Indonesia. Undang-undang mengakui lembaga dan pelindungan khusus bagi orang asli Papua, tetapi tidak menyelesaikan tuntutan kemerdekaan. Perbedaan antara ketentuan hukum dan pengalaman sehari-hari penting diperhatikan. Penelitian bersama perempuan Papua membahas layanan, penghidupan, dan partisipasi dalam pelaksanaan otonomi. Membaca pengalaman tersebut bersama undang-undang membantu menilai kemampuan dan akses nyata masyarakat, bukan hanya janji resmi atau kritik."
+        "en": "Law No. 21 of 2001 established special autonomy for Papua within Indonesia. It recognised specific institutions and protections for Indigenous Papuans, while leaving the demand for independence unresolved. The difference between legal provisions and everyday experience matters. Research with Papuan women has examined access to services, livelihoods and participation under autonomy.",
+        "pmy": "Undang-Undang No. 21 Tahun 2001 menetapkan otonomi khusus Papua dalam Indonesia. Undang-undang mengakui lembaga dan pelindungan khusus bagi orang asli Papua, tetapi tidak menyelesaikan tuntutan kemerdekaan. Perbedaan antara ketentuan hukum dan pengalaman sehari-hari penting diperhatikan. Penelitian bersama perempuan Papua membahas layanan, penghidupan, dan partisipasi dalam pelaksanaan otonomi."
       },
       "sourceIds": [
         "otsus-law-2001",
         "ajar-here"
       ],
       "visual": "document",
-      "hidden": false
+      "hidden": false,
+      "yearLabel": {
+        "en": "2001 onward",
+        "pmy": "Sejak 2001"
+      }
     },
     {
       "id": "history-2014",
@@ -168,15 +237,19 @@
         "pmy": "Gerakan melintasi batas negara"
       },
       "body": {
-        "en": "The Saralana Declaration brought organisations together around a shared vehicle for international advocacy, the United Liberation Movement for West Papua. The ULMWP describes its formation in Vanuatu in December 2014 as a step toward unity. Its declarations are primary evidence of movement aims. They do not make every Papuan organisation identical or erase differences over strategy. Diplomacy, local organising, cultural expression and armed conflict are distinct strands that need careful attribution when reading contemporary reporting.",
-        "pmy": "Deklarasi Saralana mempertemukan organisasi dalam wadah advokasi internasional, United Liberation Movement for West Papua atau ULMWP. ULMWP menjelaskan pembentukannya di Vanuatu pada Desember 2014 sebagai langkah persatuan. Deklarasinya merupakan sumber primer tentang tujuan gerakan. Dokumen itu tidak menyamakan semua organisasi Papua atau menghapus perbedaan strategi. Diplomasi, pengorganisasian lokal, ekspresi budaya, dan konflik bersenjata merupakan jalur berbeda yang perlu dibedakan saat membaca berita."
+        "en": "The Saralana Declaration brought organisations together around a shared vehicle for international advocacy, the United Liberation Movement for West Papua. The ULMWP describes its formation in Vanuatu in December 2014 as a step toward unity.",
+        "pmy": "Deklarasi Saralana mempertemukan organisasi dalam wadah advokasi internasional, United Liberation Movement for West Papua atau ULMWP. ULMWP menjelaskan pembentukannya di Vanuatu pada Desember 2014 sebagai langkah persatuan."
       },
       "sourceIds": [
         "ulmwp-saralana",
         "ulmwp-background"
       ],
       "visual": "document",
-      "hidden": false
+      "hidden": false,
+      "yearLabel": {
+        "en": "2014 onward",
+        "pmy": "Sejak 2014"
+      }
     },
     {
       "id": "history-today",
@@ -186,15 +259,19 @@
         "pmy": "Keselamatan, martabat, dan hak bersuara"
       },
       "body": {
-        "en": "Civilian displacement and access to assistance remain major concerns in the recent record. In March 2022, independent UN experts called for urgent humanitarian access in Papua. The 2024 Human Rights Committee dialogue records questions put to Indonesia and government responses. These are dated records, not a live count of people displaced today. The story continues in communities seeking safety, defending land, documenting experience and building public life. Follow the linked topics and reporting for later developments and changing evidence.",
-        "pmy": "Pengungsian warga sipil dan akses bantuan tetap menjadi perhatian dalam catatan mutakhir. Pada Maret 2022, pakar independen PBB menyerukan akses kemanusiaan mendesak di Papua. Dialog Komite HAM 2024 mencatat pertanyaan kepada Indonesia dan tanggapan pemerintah. Catatan bertanggal ini bukan jumlah langsung pengungsi hari ini. Sejarah berlanjut melalui masyarakat yang mencari keselamatan, mempertahankan tanah, mendokumentasikan pengalaman, dan membangun kehidupan publik. Topik serta berita terkait menyediakan perkembangan dan bukti berikutnya."
+        "en": "Civilian displacement and access to assistance remain major concerns in the recent record. In March 2022, independent UN experts called for urgent humanitarian access in Papua. The 2024 Human Rights Committee dialogue records questions put to Indonesia and government responses.",
+        "pmy": "Pengungsian warga sipil dan akses bantuan tetap menjadi perhatian dalam catatan mutakhir. Pada Maret 2022, pakar independen PBB menyerukan akses kemanusiaan mendesak di Papua. Dialog Komite HAM 2024 mencatat pertanyaan kepada Indonesia dan tanggapan pemerintah."
       },
       "sourceIds": [
         "ohchr-papua-2022",
         "ohchr-indonesia-2024"
       ],
       "visual": "document",
-      "hidden": false
+      "hidden": false,
+      "yearLabel": {
+        "en": "2020s",
+        "pmy": "2020-an"
+      }
     }
   ]
 }

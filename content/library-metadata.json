@@ -1,0 +1,196 @@
+{
+  "antara-raja-2026": {
+    "itemType": "reporting",
+    "evidenceRoles": [
+      "reporting"
+    ],
+    "places": [
+      "Raja Ampat"
+    ]
+  },
+  "greenpeace-raja-clarification-2026": {
+    "itemType": "statement",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "places": [
+      "Raja Ampat"
+    ]
+  },
+  "greenpeace-arborek-2026": {
+    "itemType": "statement",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "places": [
+      "Raja Ampat"
+    ]
+  },
+  "pusaka-news": {
+    "itemType": "collection",
+    "evidenceRoles": [
+      "reference"
+    ]
+  },
+  "un-unsf-background": {
+    "itemType": "analysis",
+    "evidenceRoles": [
+      "reference"
+    ]
+  },
+  "hrm-q2-2026": {
+    "itemType": "report",
+    "evidenceRoles": [
+      "monitoring"
+    ],
+    "publishedAt": "2026-07-28",
+    "topics": [
+      "conflict-displacement-access"
+    ]
+  },
+  "hrw-land-2026": {
+    "itemType": "report",
+    "evidenceRoles": [
+      "investigation"
+    ],
+    "places": [
+      "Merauke"
+    ],
+    "topics": [
+      "south-papua-food-energy-estate"
+    ]
+  },
+  "un-new-york-agreement": {
+    "itemType": "document",
+    "evidenceRoles": [
+      "primary_source"
+    ]
+  },
+  "un-ga-2504-1969": {
+    "itemType": "document",
+    "evidenceRoles": [
+      "primary_source"
+    ]
+  },
+  "otsus-law-2001": {
+    "itemType": "document",
+    "evidenceRoles": [
+      "primary_source"
+    ]
+  },
+  "kluge-petitions": {
+    "itemType": "research",
+    "evidenceRoles": [
+      "research"
+    ]
+  },
+  "saltford-un": {
+    "itemType": "research",
+    "evidenceRoles": [
+      "research"
+    ]
+  },
+  "unesco-noken": {
+    "itemType": "document",
+    "evidenceRoles": [
+      "primary_source"
+    ]
+  },
+  "ulmwp-saralana": {
+    "itemType": "document",
+    "evidenceRoles": [
+      "primary_source"
+    ]
+  },
+  "ohchr-papua-2022": {
+    "itemType": "document",
+    "evidenceRoles": [
+      "primary_source"
+    ]
+  },
+  "ohchr-indonesia-2024": {
+    "itemType": "document",
+    "evidenceRoles": [
+      "primary_source"
+    ]
+  },
+  "mifee-research": {
+    "itemType": "research",
+    "evidenceRoles": [
+      "research"
+    ],
+    "topics": [
+      "south-papua-food-energy-estate"
+    ],
+    "places": [
+      "Merauke"
+    ]
+  },
+  "conflict-source-18": {
+    "itemType": "reporting",
+    "evidenceRoles": [
+      "reporting"
+    ],
+    "topics": [
+      "conflict-displacement-access"
+    ],
+    "places": [
+      "Intan Jaya",
+      "Paniai",
+      "Nduga"
+    ]
+  },
+  "conflict-source-19": {
+    "itemType": "report",
+    "evidenceRoles": [
+      "monitoring"
+    ],
+    "topics": [
+      "conflict-displacement-access"
+    ],
+    "places": [
+      "Yahukimo",
+      "Puncak"
+    ]
+  },
+  "conflict-source-20": {
+    "itemType": "report",
+    "evidenceRoles": [
+      "monitoring"
+    ],
+    "topics": [
+      "conflict-displacement-access"
+    ],
+    "places": [
+      "Intan Jaya",
+      "Puncak"
+    ]
+  },
+  "conflict-source-21": {
+    "itemType": "report",
+    "evidenceRoles": [
+      "monitoring"
+    ],
+    "topics": [
+      "conflict-displacement-access"
+    ],
+    "places": [
+      "Puncak",
+      "Intan Jaya",
+      "Mimika",
+      "Boven Digoel"
+    ]
+  },
+  "conflict-source-22": {
+    "itemType": "reporting",
+    "evidenceRoles": [
+      "reporting"
+    ],
+    "topics": [
+      "conflict-displacement-access"
+    ],
+    "places": [
+      "Intan Jaya"
+    ]
+  }
+}

@@ -1,4 +1,5 @@
 ---
+import {CONFLICT_PERIODS} from '../../lib/map/conflict';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import '../../styles/map.css';
 import {MAP_BASES,MAP_FAMILIES,MAP_LAYERS,MAP_VIEWS} from '../../lib/map/registry';
@@ -42,6 +43,11 @@ const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
       <div>{MAP_VIEWS.map(view=><button type="button" data-map-view={view.id}>{viewFor(view)}</button>)}</div>
     </details>
 
+    <div class="watch-map-time" data-map-time hidden>
+      <label><span>{locale==='pmy'?'Periode laporan':'Reporting period'}</span><output data-map-period-label></output><input type="range" min="0" max={CONFLICT_PERIODS.length-1} step="1" value="2" data-map-period aria-label={locale==='pmy'?'Periode laporan konflik':'Conflict reporting period'}/></label>
+      <div class="watch-map-time-key"><span class="conflict-dot">{locale==='pmy'?'Konflik':'Conflict'}</span><span class="displacement-dot">{locale==='pmy'?'Pengungsian':'Displacement'}</span><span class="deployment-dot">{locale==='pmy'?'Militer':'Military'}</span></div>
+      <details><summary>{locale==='pmy'?'Laporan dalam periode ini':'Reports in this period'} <span data-map-period-count></span></summary><div data-map-period-list></div><p>{locale==='pmy'?'Titik referensi wilayah. Cakupan terbatas; bukan peta posisi langsung.':'Regional reference points. Partial coverage; not live positions.'}</p></details>
+    </div>
     <div class="watch-map-controls" aria-label="Map controls">
       <button type="button" data-map-layers-open aria-expanded="false">{labels.layers}</button>
       <button type="button" data-map-expand>{labels.expand}</button>

@@ -234,5 +234,75 @@
       "politics-governance"
     ],
     "description": "A publication to explore for Papuan commentary and long-form perspectives; individual pieces are classified separately."
+  },
+  {
+    "id": "conflict-source-18",
+    "title": "Growing human rights concerns amidst significant expansion of military presence across the west papuan central highlands",
+    "publisher": "Human Rights Monitor",
+    "url": "https://humanrightsmonitor.org/news/growing-human-rights-concerns-amidst-significant-expansion-of-military-presence-across-the-west-papuan-central-highlands/",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "date": "2025-10-02",
+    "tags": [
+      "human-rights-security"
+    ],
+    "description": ""
+  },
+  {
+    "id": "conflict-source-19",
+    "title": "Papua monitor q1 2026 no de escalation as military operations drive new displacement",
+    "publisher": "Human Rights Monitor",
+    "url": "https://humanrightsmonitor.org/reports/papua-monitor-q1-2026-no-de-escalation-as-military-operations-drive-new-displacement/",
+    "type": "report",
+    "format": "web",
+    "language": "en",
+    "date": "2026-05-08",
+    "tags": [
+      "human-rights-security"
+    ],
+    "description": ""
+  },
+  {
+    "id": "conflict-source-20",
+    "title": "Papua monitor q2 2026 escalating conflict drone attacks and mass displacement",
+    "publisher": "Human Rights Monitor",
+    "url": "https://humanrightsmonitor.org/reports/papua-monitor-q2-2026-escalating-conflict-drone-attacks-and-mass-displacement/",
+    "type": "report",
+    "format": "web",
+    "language": "en",
+    "date": "2026-07-28",
+    "tags": [
+      "human-rights-security"
+    ],
+    "description": ""
+  },
+  {
+    "id": "conflict-source-21",
+    "title": "Idp update june26 government neglect drives west papuas spiraling displacement emergency",
+    "publisher": "Human Rights Monitor (June update; subsequently revised)",
+    "url": "https://humanrightsmonitor.org/reports/idp-update-june26-government-neglect-drives-west-papuas-spiraling-displacement-emergency/",
+    "type": "report",
+    "format": "web",
+    "language": "en",
+    "date": "2026-06-10",
+    "tags": [
+      "human-rights-security"
+    ],
+    "description": ""
+  },
+  {
+    "id": "conflict-source-22",
+    "title": "New multatuli project report exposes disproportional security force presence in west papua",
+    "publisher": "Project Multatuli, reported by HRM",
+    "url": "https://humanrightsmonitor.org/news/new-multatuli-project-report-exposes-disproportional-security-force-presence-in-west-papua/",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "date": "2026-07-15",
+    "tags": [
+      "human-rights-security"
+    ],
+    "description": ""
   }
 ]

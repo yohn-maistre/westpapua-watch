@@ -1,4 +1,6 @@
 ---
+import ResourceList from '../components/resources/ResourceList.astro';
+import {libraryForTopic} from '../data/library';
 import TopicTimeline from '../components/TopicTimeline.astro';
 import {topicTimelines} from '../data/topic-timelines';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -13,6 +15,7 @@ import type {MapViewId} from '../lib/map/registry';
 const {locale='en',issue}=Astro.props as {locale?:Locale;issue:Issue};
 const devs=developments.filter(d=>issue.developmentSlugs.includes(d.slug));
 const reportingIds=issue.sourceIds.filter(id=>sourceById[id]?.type==='journalism');
+const relatedLibrary=libraryForTopic(issue.slug);
 const referenceIds=issue.sourceIds.filter(id=>sourceById[id]?.type!=='journalism');
 const umbrellaSlugs=new Set([
   'land-indigenous-rights','extraction-industrial-development','environment-biodiversity','climate-disasters',
@@ -25,7 +28,7 @@ const mapView:MapViewId=
   issue.slug==='extraction-industrial-development'||issue.slug==='land-indigenous-rights'||issue.slug.includes('raja')||issue.slug.includes('south-papua')?'extraction':
   issue.slug==='environment-biodiversity'||issue.slug==='climate-disasters'||issue.slug==='health-food-public-services'||issue.slug.includes('sentani')?'environment':
   issue.slug==='infrastructure-connectivity'?'infrastructure':
-  issue.slug==='human-rights-conflict-security'||issue.slug.includes('conflict')?'current':'overview';
+  issue.slug==='human-rights-conflict-security'||issue.slug.includes('conflict')?'conflict':'overview';
 ---
 <BaseLayout locale={locale} active="issues" title={t(issue.title,locale)} description={t(issue.summary,locale)}>
 <div class="wrap">
@@ -36,14 +39,14 @@ const mapView:MapViewId=
 
   <section class="issue-map-meta" id="overview" data-issue-page data-issue-slug={issue.slug} data-issue-kind={isUmbrella?'issue':'dossier'} data-locale={locale}>
     <div class="issue-map-copy">
-      <span class="issue-kind-label">{isUmbrella?(locale==='en'?'Category':'Kategori'):(locale==='en'?'Topic':'Topik')}</span>
+
       <p data-live-issue-summary>{t(issue.summary,locale)}</p>
       <div class="actions">{issue.concepts.filter(c=>glossaryBySlug[c]).slice(0,4).map(c=><a class="chip" href={withLocale(`/resources/#${c}`,locale)}>{glossaryBySlug[c].term}</a>)}<a class="chip" href={withLocale('/history/',locale)}>{locale==='en'?'History':'Sejarah'}</a></div>
     </div>
     <aside class="facts">
 
       <div class="fact"><span>{locale==='en'?'Updated':'Diperbarui'}</span><strong data-live-issue-updated>{issue.updatedAt}</strong></div>
-      <div class="fact"><span>{locale==='en'?'Developments':'Perkembangan'}</span><strong data-live-issue-count>{devs.length}</strong></div>
+      <div class="fact"><span>{locale==='en'?'Stories':'Berita'}</span><strong data-live-issue-count>{devs.length}</strong></div>
       <div class="fact"><span>{locale==='en'?'Sources':'Sumber'}</span><strong data-live-source-count>{issue.sourceIds.length}</strong></div>
     </aside>
   </section>
@@ -53,7 +56,7 @@ const mapView:MapViewId=
     <div class="issue-dossier-grid" data-live-dossier-grid></div>
   </section>
 
-  <nav class="topic-local-index" aria-label={locale==='en'?'On this page':'Di halaman ini'}><a href="#overview">{locale==='en'?'Overview':'Ringkasan'}</a><a href="#latest">{locale==='en'?'Latest':'Terbaru'}</a>{topicTimelines[issue.slug]&&<a href="#timeline">{locale==='en'?'Timeline':'Linimasa'}</a>}<a href="#places">{locale==='en'?'Places':'Lokasi'}</a></nav><div class="dossier-grid">
+  <nav class="topic-local-index" aria-label={locale==='en'?'On this page':'Di halaman ini'}><a href="#overview">{locale==='en'?'Overview':'Ringkasan'}</a><a href="#latest">{locale==='en'?'Latest':'Terbaru'}</a>{topicTimelines[issue.slug]&&<a href="#timeline">{locale==='en'?'Timeline':'Linimasa'}</a>}<a href="#sources">{locale==='en'?'Library':'Pustaka'}</a><a href="#places">{locale==='en'?'Places':'Lokasi'}</a></nav><div class="dossier-grid">
 
     <section class="box" id="latest"><h2>{locale==='en'?'Latest stories':'Berita terbaru'}</h2><div data-live-issue-updates data-issue-slug={issue.slug} data-locale={locale}>{devs.map(d=><p class="issue-update"><a href={withLocale('/',locale)}><strong>{t(d.title,locale)}</strong></a><br/><small>{d.updatedAt} · {d.sourceIds.length} {locale==='en'?'sources':'sumber'}</small></p>)}</div></section>
   </div>
@@ -61,7 +64,7 @@ const mapView:MapViewId=
   <TopicTimeline slug={issue.slug} locale={locale}/><div id="places"></div><MapShell locale={locale} mode="context" context="issue" contextValue={issue.slug} initialView={mapView} />
 
   <section class="section issue-sources"><div class="section-head section-head-simple"><h2>{locale==='en'?'Latest reporting.':'Laporan terbaru.'}</h2></div><div data-live-issue-reporting>{reportingIds.length?<SourceList sourceIds={reportingIds}/>:<p>{locale==='en'?'No indexed reporting yet.':'Belum ada laporan terindeks.'}</p>}</div></section>
-  {issue.sourceIds.length>0&&<section class="section issue-sources" id="sources"><div class="section-head section-head-simple"><h2>{locale==='en'?'Sources.':'Sumber.'}</h2></div><SourceList sourceIds={referenceIds.length?referenceIds:issue.sourceIds}/></section>}
+  <section class="section issue-sources" id="sources"><div class="section-head section-head-simple"><h2>{locale==='en'?'Library.':'Pustaka.'}</h2><a href={withLocale('/resources/',locale)+'?topic='+issue.slug}>{locale==='en'?'Browse all ↗':'Lihat semua ↗'}</a></div><ResourceList items={relatedLibrary} locale={locale} topic={issue.slug}/></section>
 </div>
 
 <script>

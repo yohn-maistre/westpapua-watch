@@ -33,7 +33,7 @@ jobs:
       - name: Build Pages
         run: npm run build
       - name: Check public response regressions
-        run: npm run check:polish
+        run: npm run check:polish && npm run check:system
       - name: Render Watch Engine config
         if: ${{ vars.WATCH_DB_ID != '' }}
         env:

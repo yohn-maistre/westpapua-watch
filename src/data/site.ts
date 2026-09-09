@@ -14,7 +14,7 @@ export const NAV_ITEMS = [
   { href: '/news/', key: 'current', label: { en: 'News', pmy: 'Berita' } },
   { href: '/topics/', key: 'issues', label: { en: 'Topics', pmy: 'Topik' } },
   { href: '/history/', key: 'history', label: { en: 'History', pmy: 'Sejarah' } },
-  { href: '/resources/', key: 'resources', label: { en: 'Resources', pmy: 'Sumber' } },
+  { href: '/resources/', key: 'resources', label: { en: 'Library', pmy: 'Pustaka' } },
   { href: '/events/', key: 'events', label: { en: 'Events', pmy: 'Acara' } },
   { href: '/exhibition/view/', key: 'exhibition', label: { en: 'Exhibition', pmy: 'Pameran' } }
 ] as const;
