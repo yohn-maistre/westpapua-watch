@@ -6,7 +6,7 @@ import selection from '../../content/resources.json';
 import extras from '../../content/reference-sources.json';
 import overrides from '../../content/library-metadata.json';
 import {normalizeLibraryItem,broadTopics,mergeLibraryItems} from '../../shared/library';
-const selected=new Set([...selection.resourceIds,...extras.map(s=>s.id)]);
+const selected=new Set([...selection.resourceIds,...extras.filter(s=>s.published!==false).map(s=>s.id)]);
 const topics=[...issues,...dossiers];
 export const itemPool=sources.map(s=>{
  const metadata=(overrides as Record<string,any>)[s.id]||{};
