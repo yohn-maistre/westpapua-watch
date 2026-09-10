@@ -21,41 +21,31 @@ jobs:
         env:
           WATCH_ADMIN_TOKEN: ${{ secrets.WATCH_ADMIN_TOKEN }}
         run: |
-          python3 - <<'PYTHON'
-          import json, os, urllib.request
-          token = os.environ.get('WATCH_ADMIN_TOKEN', '')
-          if not token:
-              raise SystemExit('WATCH_ADMIN_TOKEN production secret is required')
-          request = urllib.request.Request(
-              'https://westpapua.watch/api/admin/review-status',
-              headers={'Authorization': 'Bearer '+token, 'Accept': 'application/json'},
-          )
-          with urllib.request.urlopen(request, timeout=60) as response:
-              print('before='+response.read().decode())
-          PYTHON
+          test -n "$WATCH_ADMIN_TOKEN" || { echo 'WATCH_ADMIN_TOKEN production secret is required'; exit 1; }
+          curl --fail-with-body --retry 2 --retry-all-errors --connect-timeout 15 --max-time 60 \
+            -H "Authorization: Bearer $WATCH_ADMIN_TOKEN" \
+            -H 'Accept: application/json' \
+            -H 'User-Agent: westpapua-watch-operator/1.0' \
+            https://westpapua.watch/api/admin/review-status
       - name: Trigger one normal Watch cycle
         if: ${{ inputs.run_cycle }}
         env:
           WATCH_ADMIN_TOKEN: ${{ secrets.WATCH_ADMIN_TOKEN }}
         run: |
-          python3 - <<'PYTHON'
-          import json, os, urllib.request
-          token = os.environ['WATCH_ADMIN_TOKEN']
-          request = urllib.request.Request(
-              'https://westpapua.watch/api/admin/run',
-              data=b'',
-              headers={'Authorization': 'Bearer '+token, 'Content-Type': 'application/json'},
-              method='POST',
-          )
-          with urllib.request.urlopen(request, timeout=60) as response:
-              print('trigger='+response.read().decode())
-          PYTHON
+          curl --fail-with-body --retry 2 --retry-all-errors --connect-timeout 15 --max-time 60 \
+            -X POST \
+            -H "Authorization: Bearer $WATCH_ADMIN_TOKEN" \
+            -H 'Content-Type: application/json' \
+            -H 'User-Agent: westpapua-watch-operator/1.0' \
+            --data '' \
+            https://westpapua.watch/api/admin/run
       - name: Read public health after trigger
         if: ${{ inputs.run_cycle }}
         run: |
-          python3 - <<'PYTHON'
-          import urllib.request
-          for path in ('/api/engine-health', '/api/current?limit=6'):
-              with urllib.request.urlopen('https://westpapua.watch'+path, timeout=60) as response:
-                  print(path+'='+response.read().decode())
-          PYTHON
+          for path in /api/engine-health '/api/current?limit=6'; do
+            curl --fail-with-body --retry 2 --retry-all-errors --connect-timeout 15 --max-time 60 \
+              -H 'Accept: application/json' \
+              -H 'User-Agent: westpapua-watch-operator/1.0' \
+              "https://westpapua.watch${path}"
+            printf '\n'
+          done
