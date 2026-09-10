@@ -3,6 +3,8 @@ import type { Issue } from './types';
 // Freeze 10.8: public Issues are stable umbrella lenses. Named persistent subjects
 // such as Raja Ampat mining and Lake Sentani live in D1 as Dossiers.
 export const issues: Issue[] = [
+  {slug:'history-decolonisation',category:'History & decolonisation',title:{en:'History & decolonisation',pmy:'Sejarah & dekolonisasi'},summary:{en:'Archives, historical research and the struggle for self-determination.',pmy:'Arsip, penelitian sejarah, dan perjuangan penentuan nasib sendiri.'},status:{en:'Topic',pmy:'Topik'},updatedAt:'2026-09-10',developmentSlugs:[],sourceIds:[],concepts:[]},
+  {slug:'society-culture-religion',category:'Society, culture & religion',title:{en:'Society, culture & religion',pmy:'Masyarakat, budaya & agama'},summary:{en:'Social life, kinship, art, belief and cultural memory.',pmy:'Kehidupan sosial, kekerabatan, seni, kepercayaan, dan ingatan budaya.'},status:{en:'Topic',pmy:'Topik'},updatedAt:'2026-09-10',developmentSlugs:[],sourceIds:[],concepts:[]},
   {
     slug:'land-indigenous-rights',category:'Land & Indigenous rights',
     title:{en:'Land & Indigenous rights',pmy:'Tanah & hak masyarakat adat'},

@@ -69,7 +69,7 @@ if(root){
     if(!data){root.hidden=true;const status=document.querySelector('[data-home-feed-status]');if(status)status.textContent=locale==='pmy'?'Berita sementara tidak tersedia.':'News is temporarily unavailable.';return}const items=data.items||[];const status=document.querySelector('[data-home-feed-status]');if(status)status.textContent=items.length?(data.meta?.last_checked?`${locale==='pmy'?'Diperbarui':'Updated'} ${rel(data.meta.last_checked)}`:''):(locale==='pmy'?'Belum ada laporan terbit.':'No published reports yet.');
     root.querySelectorAll<HTMLElement>('[data-home-current-card]').forEach((card)=>{
       const i=Number(card.dataset.homeCurrentCard||0),x=items[i];if(!x){card.hidden=true;return}
-      const a=card as HTMLAnchorElement;a.href=`${locale==='pmy'?'/pmy':''}${x.story_url}`;
+      const a=card as HTMLAnchorElement;a.href=`${locale==='pmy'?'/id':''}${x.story_url}`;
       const title=card.querySelector<HTMLElement>('[data-home-current-title]'),summary=card.querySelector<HTMLElement>('[data-home-current-summary]'),meta=card.querySelector<HTMLElement>('[data-home-current-meta]'),img=card.querySelector<HTMLImageElement>('[data-home-current-image]');
       if(title)title.textContent=pick(x.title);if(summary){const full=pick(x.summary);summary.textContent=full.length>260?full.slice(0,257).replace(/\s+\S*$/,'')+'…':full;}
       if(meta)meta.textContent=[x.category,x.place,`${x.article_count||1} ${locale==='pmy'?'laporan':'reports'}`,`${x.source_count||1} ${locale==='pmy'?'sumber':'sources'}`,rel(x.latest_report_at)].filter(Boolean).join(' · ');

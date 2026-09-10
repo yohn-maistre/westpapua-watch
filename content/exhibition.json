@@ -1,10 +1,76 @@
 {
   "items": [
-    {"slug":"udeido-collective","title":"Udeido Collective","type":"Collective","lane":"voices","summary":"Interdisciplinary Papuan collective practice spanning visual art, archives, performance and social questions.","image":"/images/abstract/exhibition-1.svg","sourceId":"udeido-biennale-jogja","hidden":false},
-    {"slug":"hidden-faces","title":"Hidden Faces of Papua","type":"Installation reference","lane":"works","summary":"A reference point for the exhibition’s treatment of contemporary issues, identity and public memory.","image":"/images/abstract/exhibition-2.svg","sourceId":"udeido-papoeahuis","hidden":false},
-    {"slug":"koreri","title":"Koreri / collective memory","type":"Theme","lane":"works","summary":"A cultural and artistic reference appearing in writing about Udeido Collective and its practice.","image":"/images/abstract/exhibition-3.svg","sourceId":"udeido-papoeahuis","hidden":false},
-    {"slug":"read-my-world","title":"Oceanic Solidarity","type":"Programme","lane":"voices","summary":"Read My World 2026 brings literature, music, visual culture and public conversation together in Amsterdam.","image":"/images/abstract/exhibition-4.svg","sourceId":"read-my-world-2026","hidden":false},
-    {"slug":"archive","title":"Archive material","type":"Archive","lane":"archive","summary":"Documents, images and source material can be added here with permissions and credits preserved.","image":"/images/abstract/exhibition-5.svg","sourceId":"un-new-york-agreement","hidden":false},
-    {"slug":"film","title":"Film & public discussion","type":"Film","lane":"archive","summary":"Screenings and public discussion can live beside the artworks rather than being separated into another visual system.","image":"/images/abstract/exhibition-6.svg","sourceId":"read-my-world-saturday","hidden":false}
+    {
+      "slug": "hidden-faces",
+      "title": "Hidden Faces of Papua",
+      "type": "Installation · 2025",
+      "lane": "works",
+      "summary": "Udeido Collective and Kevin van Braak bring seven masks together around identity, land and public expression. Shown at Lawan!, Framer Framed, Amsterdam.",
+      "image": "https://peacebrigades.nl/sites/default/files/styles/large/public/2026-01/foto%204_0.jpg.webp?itok=RaCt07fU",
+      "sourceId": "",
+      "sourceUrl": "https://peacebrigades.nl/en/news/hidden-faces-papua-exhibition-udeido-collective",
+      "publisher": "PBI Nederland",
+      "credit": "Udeido Collective & Kevin van Braak. Photo © Maarten Nauw / Framer Framed"
+    },
+    {
+      "slug": "bihm",
+      "title": "Bihm",
+      "type": "Mask installation · 2025",
+      "lane": "works",
+      "summary": "A work from Hidden Faces of Papua addressing silencing and the space to speak.",
+      "image": "https://peacebrigades.nl/sites/default/files/styles/large/public/2026-01/foto%202_0.png.webp?itok=k_pDMiA8",
+      "sourceId": "",
+      "sourceUrl": "https://peacebrigades.nl/en/news/hidden-faces-papua-exhibition-udeido-collective",
+      "publisher": "PBI Nederland",
+      "credit": "Udeido Collective & Kevin van Braak. Photo © Maarten Nauw / Framer Framed"
+    },
+    {
+      "slug": "udeido-collective",
+      "title": "Udeido Collective",
+      "type": "Collective · 2025",
+      "lane": "voices",
+      "summary": "Members of Udeido with Kevin van Braak at the opening of Lawan! in Amsterdam.",
+      "image": "https://peacebrigades.nl/sites/default/files/styles/large/public/2026-01/foto%203_0.jpg.webp?itok=1cs6oPhk",
+      "sourceId": "",
+      "sourceUrl": "https://peacebrigades.nl/en/news/hidden-faces-papua-exhibition-udeido-collective",
+      "publisher": "PBI Nederland",
+      "credit": "Photo © Srylandang"
+    },
+    {
+      "slug": "koreri-projection",
+      "title": "Koreri Projection",
+      "type": "Installation · 2024",
+      "lane": "works",
+      "summary": "Udeido Collective’s installation for the Lahore Biennale brings painting, projection and found materials into dialogue.",
+      "image": "https://lahorebiennale.org/wp-content/uploads/2024/10/PXL_20241010_104351409.MP_-1024x768.jpg",
+      "sourceId": "",
+      "sourceUrl": "https://lahorebiennale.org/lb03-artists/udeido-collective-dicky-takndare/",
+      "publisher": "Lahore Biennale Foundation",
+      "credit": "Artwork: Udeido Collective. Exhibition documentation: Lahore Biennale Foundation"
+    },
+    {
+      "slug": "pesta-babi",
+      "title": "PESTA BABI",
+      "type": "Documentary · 2026",
+      "lane": "archive",
+      "summary": "A documentary by Dandhy Laksono and Cypri Paju Dale. Watch the full film through Jubi’s published edition.",
+      "image": "https://i.ytimg.com/vi/MpdrWgDRVf8/hqdefault.jpg",
+      "sourceId": "",
+      "sourceUrl": "https://www.youtube.com/watch?v=MpdrWgDRVf8",
+      "publisher": "Redaksi Jubi TV",
+      "credit": "Thumbnail from the published film on Redaksi Jubi TV"
+    },
+    {
+      "slug": "our-land-has-gone",
+      "title": "Our Land Has Gone",
+      "type": "Documentary · 2012",
+      "lane": "archive",
+      "summary": "Malind Anim residents of Zanegi discuss changes to their land and livelihoods. A film by Gekko Studio, Pusaka and SKP KAME.",
+      "image": "/images/abstract/exhibition-6.svg",
+      "sourceId": "",
+      "sourceUrl": "https://www.lifemosaic.net/eng/resources/video/our-land-has-gone",
+      "publisher": "LifeMosaic",
+      "credit": "Abstract catalogue tile; film imagery not reproduced"
+    }
   ]
 }

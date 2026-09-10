@@ -13,7 +13,7 @@ const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:exhi
     <div class="exhibition-rails" data-exhibition-rails aria-label={locale==='en'?'Exhibition themes':'Tema pameran'}>
       {lanes.map((group,railIndex)=><section class:list={['exhibition-rail',`rail-${railIndex+1}`]} data-exhibition-rail data-index={String(railIndex)} data-speed={String([12,-9,10][railIndex])} aria-label={group.label}>
         <div class="exhibition-track">
-          {[...group.items,...group.items,...group.items].map((item,i)=>{const source=sourceById[item.sourceId];return <button class:list={['exhibit-card',`size-${(i+railIndex)%3}`]} type="button" data-exhibit-card data-title={item.title} data-type={item.type} data-summary={item.summary} data-source-label={source?.publisher||''} data-source-url={source?.url||''} aria-label={`${item.title}. ${locale==='en'?'Open details':'Buka rincian'}`}><img src={item.image} alt=""/><span>{item.title}</span></button>})}
+          {[...group.items,...group.items,...group.items].map((item,i)=>{const source=sourceById[item.sourceId];return <button class:list={['exhibit-card',`size-${(i+railIndex)%3}`]} type="button" data-exhibit-card data-title={item.title} data-type={item.type} data-summary={item.summary} data-source-label={item.publisher||source?.publisher||''} data-credit={item.credit||''} data-source-url={item.sourceUrl||source?.url||''} aria-label={`${item.title}. ${locale==='en'?'Open details':'Buka rincian'}`}><img src={item.image} alt=""/><span>{item.title}</span></button>})}
         </div>
       </section>)}
     </div>
@@ -31,7 +31,7 @@ const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:exhi
         <div class="exhibit-focus-copy">
           <div class="exhibit-focus-meta"><span data-exhibit-focus-type></span><span data-exhibit-focus-source></span></div>
           <h2 data-exhibit-focus-title></h2>
-          <p data-exhibit-focus-summary></p>
+          <p data-exhibit-focus-summary></p><small class="muted" data-exhibit-focus-credit></small>
           <a class="exhibit-focus-source-link" data-exhibit-focus-source-link target="_blank" rel="noreferrer">{locale==='en'?'Open source':'Buka sumber'} ↗</a>
         </div>
       </div>
@@ -68,7 +68,7 @@ const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:exhi
     wall?.addEventListener('touchstart',event=>{const p=event.touches[0];if(p){activateLane(laneAt(p.clientX,p.clientY));touch={x:p.clientX,y:p.clientY,lastX:p.clientX,lastY:p.clientY,axis:null}}},{passive:true});
     wall?.addEventListener('touchmove',event=>{const p=event.touches[0];if(!p||!touch)return;const totalX=p.clientX-touch.x,totalY=p.clientY-touch.y;if(!touch.axis&&Math.hypot(totalX,totalY)>12)touch.axis=Math.abs(totalX)>Math.abs(totalY)*1.1?'x':'y';if(touch.axis==='y'){userOffsets[activeLane]+=(touch.lastY-p.clientY)*1.08;markMoved()}touch.lastX=p.clientX;touch.lastY=p.clientY},{passive:true});
     wall?.addEventListener('touchend',()=>{if(touch?.axis==='x'){const dx=touch.lastX-touch.x;if(Math.abs(dx)>48)activateLane(activeLane+(dx<0?1:-1))}touch=null},{passive:true});
-    const openFocus=(card:HTMLButtonElement)=>{const image=card.querySelector<HTMLImageElement>('img');if(focusImage){focusImage.src=image?.src||'';focusImage.alt=card.dataset.title||''}if(focusType)focusType.textContent=card.dataset.type||'';if(focusSource)focusSource.textContent=card.dataset.sourceLabel||'';if(focusTitle)focusTitle.textContent=card.dataset.title||'';if(focusSummary)focusSummary.textContent=card.dataset.summary||'';if(focusSourceLink){focusSourceLink.href=card.dataset.sourceUrl||'#';focusSourceLink.hidden=!card.dataset.sourceUrl}focusDialog?.showModal();requestAnimationFrame(()=>{if(focusDialog)focusDialog.scrollTop=0});document.body.classList.add('exhibit-focus-open')};
+    const openFocus=(card:HTMLButtonElement)=>{const image=card.querySelector<HTMLImageElement>('img');if(focusImage){focusImage.src=image?.src||'';focusImage.alt=card.dataset.title||''}if(focusType)focusType.textContent=card.dataset.type||'';if(focusSource)focusSource.textContent=card.dataset.sourceLabel||'';if(focusTitle)focusTitle.textContent=card.dataset.title||'';if(focusSummary)focusSummary.textContent=card.dataset.summary||'';const credit=focusDialog?.querySelector('[data-exhibit-focus-credit]');if(credit)credit.textContent=card.dataset.credit||'';if(focusSourceLink){focusSourceLink.href=card.dataset.sourceUrl||'#';focusSourceLink.hidden=!card.dataset.sourceUrl}focusDialog?.showModal();requestAnimationFrame(()=>{if(focusDialog)focusDialog.scrollTop=0});document.body.classList.add('exhibit-focus-open')};
     document.querySelectorAll<HTMLButtonElement>('[data-exhibit-card]').forEach(card=>card.addEventListener('click',event=>{event.preventDefault();const rail=card.closest<HTMLElement>('[data-exhibition-rail]');activateLane(Number(rail?.dataset.index||0));openFocus(card)}));
     focusDialog?.querySelector<HTMLButtonElement>('[data-exhibit-focus-close]')?.addEventListener('click',()=>focusDialog.close());
     focusDialog?.addEventListener('click',event=>{if(event.target===focusDialog)focusDialog.close()});

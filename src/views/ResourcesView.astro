@@ -7,25 +7,13 @@ import ResourceFilters from '../components/resources/ResourceFilters';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { resources } from '../data/resources';
 import { glossary } from '../data/glossary';
-import { topicTagBySlug } from '../data/taxonomy';
+import {issues} from '../data/issues';
 import { t } from '../lib/i18n';
 import type { Locale } from '../data/types';
 import ui from '../../content/ui.json';
 const {locale='en'}=Astro.props as {locale?:Locale};
 
-const TOPICS=[
-  ['land-indigenous-rights','Land & Indigenous rights','Tanah & hak masyarakat adat'],
-  ['extraction-industrial-development','Extraction','Ekstraksi'],
-  ['environment-biodiversity','Environment & biodiversity','Lingkungan & keanekaragaman hayati'],
-  ['climate-disasters','Climate & disasters','Iklim & bencana'],
-  ['human-rights-conflict-security','Human rights & conflict','Hak asasi & konflik'],
-  ['politics-governance-representation','Politics & governance','Politik & pemerintahan'],
-  ['economy-livelihoods','Economy & livelihoods','Ekonomi & mata pencaharian'],
-  ['health-food-public-services','Health, food & services','Kesehatan, pangan & layanan'],
-  ['education-language-culture','Education, language & culture','Pendidikan, bahasa & budaya'],
-  ['women-gender-social-inclusion','Women & gender','Perempuan & gender'],
-  ['infrastructure-connectivity','Infrastructure & connectivity','Infrastruktur & konektivitas']
-] as const;
+const TOPICS=issues.map(i=>[i.slug,i.title.en,i.title.pmy] as const);
 const places=[...new Set(resources.flatMap(r=>r.places))].sort();
 ---
 <BaseLayout locale={locale} active="resources" title={locale==='en'?'Library':'Pustaka'}>
@@ -33,28 +21,40 @@ const places=[...new Set(resources.flatMap(r=>r.places))].sort();
   <h1 class="page-title">{ui.resources.pageTitle[locale]}</h1>
   <div class="resource-tools"><input class="resource-search" data-resource-search type="search" aria-label={locale==='en'?'Search library':'Cari pustaka'} placeholder={locale==='en'?'Search library':'Cari pustaka'} /></div>
   <ResourceFilters client:load locale={locale} facets={[
- {key:'topic',label:locale==='en'?'Subject':'Subjek',options:[...followingSlugs.map(slug=>dossierBySlug[slug]).map(d=>[d.slug,t(d.title,locale),locale==='en'?'Following':'Dalam pantauan']),...TOPICS.map(([v,en,id])=>[v,locale==='en'?en:id,locale==='en'?'Topics':'Topik'])]},
+ {key:'following',label:locale==='en'?'Following':'Dalam pantauan',options:followingSlugs.map(slug=>dossierBySlug[slug]).map(d=>[d.slug,t(d.title,locale)])},
+ {key:'topic',label:locale==='en'?'Topics':'Topik',options:TOPICS.map(([v,en,id])=>[v,locale==='en'?en:id])},
  {key:'type',label:locale==='en'?'Type':'Jenis',options:LIBRARY_GROUPS.map(([v,en,id])=>[v,locale==='en'?en:id])},
  {key:'place',label:locale==='en'?'Place':'Lokasi',options:places.map(p=>[p,p])},
  {key:'language',label:locale==='en'?'Language':'Bahasa',options:[['id','Indonesia'],['en','English'],['multi',locale==='en'?'Multilingual':'Multibahasa']]}
  ]}/><noscript><p>{locale==='en'?'All resources are listed below.':'Semua sumber ada di bawah.'}</p></noscript>
-  <div class="resource-results-bar"><p data-resource-count role="status"></p><button class="chip" type="button" data-resource-reset>{locale==='en'?'Reset filters':'Atur ulang'}</button></div>
+  <div class="resource-results-bar"><p data-resource-count role="status"></p><button class="chip" type="button" data-resource-reset hidden>{locale==='en'?'Reset filters':'Atur ulang'}</button></div>
   <p data-resource-empty hidden>{locale==='en'?'No resources match these filters.':'Tidak ada sumber yang cocok.'}</p>
-  <ResourceList items={resources} locale={locale}/>
+  <ResourceList items={resources} locale={locale}/><div class="library-more"><button type="button" class="chip" data-resource-more hidden>{locale==='en'?'Show more':'Tampilkan lagi'}</button><button type="button" class="chip" data-resource-export>{locale==='en'?'Export results':'Ekspor hasil'}</button></div>
 </div></section>
 <section class="section" id="glossary"><div class="wrap"><div class="section-head section-head-simple"><h2>{locale==='en'?'Terms & concepts.':'Istilah & konsep.'}</h2></div><div class="glossary-grid">{glossary.map(item=><article class="term-card" id={item.slug}><h3>{item.term}</h3><p>{t(item.definition,locale)}</p></article>)}</div></div></section>
 <script>
+import {fetchJSON} from '../lib/http';
 const table=document.querySelector<HTMLElement>('[data-resource-table]'),input=document.querySelector<HTMLInputElement>('[data-resource-search]');
 const params=new URL(location.href).searchParams;if(input)input.value=params.get('q')||'';
-let selected:Record<string,string[]>={};for(const k of ['topic','type','language','place'])selected[k]=(params.get(k)||'').split(',').filter(v=>v&&v!=='all');
+let selected:Record<string,string[]>={};for(const k of ['following','topic','type','language','place'])selected[k]=(params.get(k)||'').split(',').filter(v=>v&&v!=='all');
 
+let visibleLimit=36;
 const apply=()=>{const term=(input?.value||'').trim().toLowerCase();const matches=(key:string,values:string[])=>!selected[key]?.length||selected[key].some(v=>values.includes(v));
- const rows=[...document.querySelectorAll<HTMLElement>('[data-resource-row]')];for(const row of rows){const languages=(row.dataset.resourceLanguages||'').split(/\s+/).filter(Boolean);if(languages.length>1)languages.push('multi');row.hidden=!(matches('language',languages)&&matches('topic',(row.dataset.resourceBroad||'').split(' '))&&matches('type',[row.dataset.resourceType||''])&&matches('place',JSON.parse(row.dataset.resourcePlaces||'[]'))&&(!term||(row.textContent||'').toLowerCase().includes(term)))}
- const count=rows.filter(r=>!r.hidden).length;const label=document.querySelector('[data-resource-count]');if(label)label.textContent=`${count} / ${rows.length}`;const empty=document.querySelector<HTMLElement>('[data-resource-empty]');if(empty)empty.hidden=count!==0;
- const url=new URL(location.href);for(const key of ['topic','type','language','place']){const value=selected[key]?.join(',');if(value)url.searchParams.set(key,value);else url.searchParams.delete(key)}if(term)url.searchParams.set('q',input!.value);else url.searchParams.delete('q');history.replaceState(null,'',url);
+ const rows=[...document.querySelectorAll<HTMLElement>('[data-resource-row]')];for(const row of rows){const languages=(row.dataset.resourceLanguages||'').split(/\s+/).filter(Boolean);if(languages.length>1)languages.push('multi');row.hidden=!(matches('following',(row.dataset.resourceFollowing||'').split(' '))&&matches('language',languages)&&matches('topic',(row.dataset.resourceBroad||'').split(' '))&&matches('type',[row.dataset.resourceType||''])&&matches('place',JSON.parse(row.dataset.resourcePlaces||'[]'))&&(!term||(row.dataset.resourceSearch||row.textContent||'').toLowerCase().includes(term)))}
+ const matched=rows.filter(r=>!r.hidden);for(const row of rows)row.dataset.resourceMatch=String(!row.hidden);const count=matched.length;matched.forEach((row,i)=>row.hidden=i>=visibleLimit);const more=document.querySelector<HTMLButtonElement>('[data-resource-more]');if(more)more.hidden=count<=visibleLimit;const label=document.querySelector('[data-resource-count]');if(label)label.textContent=`${count} / ${rows.length}`;const empty=document.querySelector<HTMLElement>('[data-resource-empty]');if(empty)empty.hidden=count!==0;
+ const reset=document.querySelector<HTMLButtonElement>('[data-resource-reset]');if(reset)reset.hidden=!term&&!Object.values(selected).some(v=>v.length);
+ const url=new URL(location.href);for(const key of ['following','topic','type','language','place']){const value=selected[key]?.join(',');if(value)url.searchParams.set(key,value);else url.searchParams.delete(key)}if(term)url.searchParams.set('q',input!.value);else url.searchParams.delete('q');history.replaceState(null,'',url);
 };
-document.addEventListener('watch:resource-filter',e=>{selected=(e as CustomEvent).detail;apply()});
-document.querySelector('[data-resource-reset]')?.addEventListener('click',()=>{selected={};if(input)input.value='';document.dispatchEvent(new Event('watch:resource-reset'));apply()});input?.addEventListener('input',apply);apply();
+document.addEventListener('watch:resource-filter',e=>{selected=(e as CustomEvent).detail;visibleLimit=36;apply()});
+document.querySelector('[data-resource-reset]')?.addEventListener('click',()=>{selected={};if(input)input.value='';document.dispatchEvent(new Event('watch:resource-reset'));apply()});input?.addEventListener('input',()=>{visibleLimit=36;apply()});document.querySelector('[data-resource-more]')?.addEventListener('click',()=>{visibleLimit+=36;apply()});apply();
 document.addEventListener('watch:library-loaded',apply);
+document.querySelector<HTMLButtonElement>('[data-resource-export]')?.addEventListener('click',async e=>{
+ const button=e.currentTarget as HTMLButtonElement;button.disabled=true;
+ try{let data;try{data=await fetchJSON('/api/resources')}catch{data=await fetchJSON('/library.json')}
+ const ids=new Set([...document.querySelectorAll<HTMLElement>('[data-resource-match="true"]')].map(r=>r.dataset.resourceId));
+ const items=(data.items||[]).filter((r:any)=>ids.has(r.id));
+ const blob=new Blob([JSON.stringify({exportedAt:new Date().toISOString(),items},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='west-papua-watch-library.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ }catch{button.textContent=document.documentElement.lang==='id'?'Coba lagi':'Try export again'}finally{button.disabled=false}
+});
 </script>
 </BaseLayout>

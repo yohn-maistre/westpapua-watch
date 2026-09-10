@@ -1,0 +1,42 @@
+{
+  "An Act of Free Choice: Decolonisation and the Right to Self-Determination in West Papua": {
+    "publisher": "Oneworld",
+    "verifiedHere": true,
+    "isbn": "9781851687152",
+    "languages": [
+      "en"
+    ],
+    "visual": {
+      "url": "https://oneworld-publications.com/wp-content/uploads/2022/06/9781851687152-1.jpg",
+      "kind": "cover",
+      "source": "https://oneworld-publications.com/work/an-act-of-free-choice/",
+      "credit": "Oneworld · publisher cover"
+    }
+  },
+  "Papua Road Map: Negotiating the Past, Improving the Present and Securing the Future": {
+    "publisher": "Yayasan Pustaka Obor Indonesia / ISEAS",
+    "verifiedHere": true,
+    "languages": [
+      "en"
+    ],
+    "visual": {
+      "url": "https://bookshop.iseas.edu.sg/cover/BM411.jpg",
+      "kind": "cover",
+      "source": "https://bookshop.iseas.edu.sg/publication/428",
+      "credit": "ISEAS Publishing · publisher cover"
+    }
+  },
+  "PESTA BABI: Kolonialisme di Zaman Kita": {
+    "publisher": "Redaksi JubiTV",
+    "verifiedHere": true,
+    "languages": [
+      "id"
+    ],
+    "visual": {
+      "url": "https://i.ytimg.com/vi/MpdrWgDRVf8/hqdefault.jpg",
+      "kind": "video-thumbnail",
+      "source": "https://www.youtube.com/watch?v=MpdrWgDRVf8",
+      "credit": "Redaksi JubiTV · official video thumbnail"
+    }
+  }
+}

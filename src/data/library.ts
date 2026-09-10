@@ -1,3 +1,5 @@
+import {researchLibrary} from '../../shared/research';
+import {followingSlugs} from './topic-collections';
 import {sources} from './sources';
 import {issues} from './issues';
 import {dossiers} from './dossiers';
@@ -13,6 +15,6 @@ export const itemPool=sources.map(s=>{
  const tags=(selection.tagsById as Record<string,string[]>)[s.id]||s.tags||[];
  return {sourceId:s.id,...normalizeLibraryItem({...s,...metadata,tags,curated:selected.has(s.id),topics:[...new Set([...topics.filter(t=>t.sourceIds.includes(s.id)).map(t=>t.slug),...broadTopics(tags),...(metadata.topics||[])])],stories:developments.filter(d=>d.sourceIds.includes(s.id)).map(d=>d.slug),places:metadata.places||[]})};
 });
-export const libraryItems=mergeLibraryItems(itemPool.filter(i=>i.curated),[]);
-export const libraryForTopic=(slug:string)=>libraryItems.filter(i=>i.topics.includes(slug));
+export const libraryItems=mergeLibraryItems(itemPool.filter(i=>i.curated),researchLibrary).map(item=>({...item,following:[...new Set([...item.following,...item.topics.filter(t=>(followingSlugs as readonly string[]).includes(t))])]}));
+export const libraryForTopic=(slug:string)=>libraryItems.filter(i=>i.topics.includes(slug)||i.following.includes(slug));
 export const itemBySourceId=Object.fromEntries(itemPool.map(item=>[item.sourceId,item]));

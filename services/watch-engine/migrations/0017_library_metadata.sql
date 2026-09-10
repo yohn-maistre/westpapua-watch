@@ -1,0 +1,5 @@
+-- Optional curated bibliographic metadata uses the shared LibraryItem contract.
+-- Ingestion upserts leave this field intact; it is not model-invented provenance.
+ALTER TABLE resource_candidates ADD COLUMN metadata_json TEXT NOT NULL DEFAULT '{}' CHECK(json_valid(metadata_json));
+INSERT OR IGNORE INTO issues(slug,title_en,title_id,summary_en,summary_id,category,status_en,status_id,concepts_json,created_at,updated_at) VALUES('history-decolonisation','History & decolonisation','Sejarah & dekolonisasi','Archives, historical research and self-determination.','Arsip, penelitian sejarah, dan penentuan nasib sendiri.','History & decolonisation','Topic','Topik','[]','2026-09-10T00:00:00Z','2026-09-10T00:00:00Z');
+INSERT OR IGNORE INTO issues(slug,title_en,title_id,summary_en,summary_id,category,status_en,status_id,concepts_json,created_at,updated_at) VALUES('society-culture-religion','Society, culture & religion','Masyarakat, budaya & agama','Social life, kinship, art, belief and cultural memory.','Kehidupan sosial, kekerabatan, seni, kepercayaan, dan ingatan budaya.','Society, culture & religion','Topic','Topik','[]','2026-09-10T00:00:00Z','2026-09-10T00:00:00Z');

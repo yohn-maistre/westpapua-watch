@@ -6,7 +6,7 @@ import {MAP_BASES,MAP_FAMILIES,MAP_LAYERS,MAP_VIEWS} from '../../lib/map/registr
 import type {MapViewId} from '../../lib/map/registry';
 import type {Locale} from '../../data/types';
 const {
-  locale='en',mode='home',title='',eyebrow='',context='',contextValue='',initialView='overview'
+  locale='en',mode='home',title='',eyebrow='',context='',contextValue='',initialView='current'
 }=Astro.props as {
   locale?:Locale;mode?:'home'|'context';title?:string;eyebrow?:string;
   context?:'issue'|'development'|'';contextValue?:string;initialView?:MapViewId;
@@ -27,7 +27,7 @@ const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
       <div>
         <strong>{locale==='pmy'?'Peta tidak tersedia.':'Map unavailable.'}</strong>
         <p>{locale==='pmy'?'Topik, berita, dan sumber data tetap tersedia.':'Browse topics, news and dataset sources below.'}</p>
-        <nav><a href={locale==='pmy'?'/pmy/topics/':'/topics/'}>{locale==='pmy'?'Topik':'Topics'}</a><a href={locale==='pmy'?'/pmy/news/':'/news/'}>{locale==='pmy'?'Berita':'News'}</a></nav>
+        <nav><a href={locale==='pmy'?'/id/topics/':'/topics/'}>{locale==='pmy'?'Topik':'Topics'}</a><a href={locale==='pmy'?'/id/news/':'/news/'}>{locale==='pmy'?'Berita':'News'}</a></nav>
       </div>
     </div>
 
@@ -49,9 +49,9 @@ const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
       <details><summary>{locale==='pmy'?'Laporan dalam periode ini':'Reports in this period'} <span data-map-period-count></span></summary><div data-map-period-list></div><p>{locale==='pmy'?'Titik referensi wilayah. Cakupan terbatas; bukan peta posisi langsung.':'Regional reference points. Partial coverage; not live positions.'}</p></details>
     </div>
     <div class="watch-map-controls" aria-label="Map controls">
-      <button type="button" data-map-layers-open aria-expanded="false">{labels.layers}</button>
-      <button type="button" data-map-expand>{labels.expand}</button>
-      <button type="button" data-map-close-expanded hidden>{labels.close}</button>
+      <button type="button" data-map-layers-open aria-expanded="false" aria-label={labels.layers} title={labels.layers}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 8 9-5 9 5-9 5-9-5Zm0 4 9 5 9-5M3 16l9 5 9-5"/></svg><span>{labels.layers}</span></button>
+      <button type="button" data-map-expand aria-label={labels.expand} title={labels.expand}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg><span>{labels.expand}</span></button>
+      <button type="button" data-map-close-expanded hidden aria-label={labels.close} title={labels.close}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg><span>{labels.close}</span></button>
     </div>
 
     <button class="watch-map-panel-backdrop" type="button" data-map-panel-backdrop hidden aria-label={labels.close}></button>

@@ -87,4 +87,16 @@
 .watch-map-frame:has(.watch-map-viewbar[open]) .watch-map-time,.watch-map-frame:has(.watch-map-feature:not([hidden])) .watch-map-time{display:none}
 .watch-map-viewbar>div{max-height:min(300px,38svh);background:transparent}
 .watch-map .maplibregl-ctrl-bottom-right{right:12px!important;bottom:38px!important}
-@container(max-width:440px){.watch-map .watch-map-controls{top:62px!important}.watch-map-basebar button{padding-inline:.7rem}.watch-map-viewbar{max-width:calc(100% - 90px)}.watch-map-time{max-height:calc(100% - 235px)}}
+@container(max-width:440px){.watch-map .watch-map-controls{top:12px!important}.watch-map-basebar button{padding-inline:.7rem}.watch-map-viewbar{max-width:calc(100% - 90px)}.watch-map-time{max-height:calc(100% - 235px)}}
+
+/* One control row, including narrow embedded maps. */
+.watch-map-controls button{display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.watch-map-controls svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+@container(max-width:600px){
+ .watch-map .watch-map-controls{top:12px!important;gap:5px}
+ .watch-map-controls button{width:38px;min-width:38px;height:38px;padding:0!important}
+ .watch-map-controls button span{display:none}
+ .watch-map .watch-map-basebar button{min-height:38px;padding:0 8px!important;font-size:12px!important}
+}
+
+.watch-map button[hidden]{display:none!important}

@@ -67,3 +67,26 @@ const visitPacket={event_key:'Working visit to Deiyai',summary:'Education commit
 const visitCandidate={id:1,title:'Education support announced',summary:'Promises of student support',event_signature:'education',places:['Deiyai'],organizations:[],event_date:'2026-09-06',reports:[{title:'Meki Nawipa working visit to Deiyai',event_key:'Working visit to Deiyai',summary:'Meetings with residents',people_json:'["Meki Nawipa"]'}]};
 assert.ok(scoreCandidate({title:'Local response to the visit'},visitPacket,visitCandidate)>scoreCandidate({title:'Local response to the visit'},visitPacket,{...visitCandidate,reports:[]}));
 console.log('Passed: earlier member reports and participants contribute to episode candidate retrieval.');
+
+const {runJson,parseStructured}=await moduleAt('services/watch-engine/src/llm.ts');
+const schema={type:'object',properties:{items:{type:'array',items:{type:'object',properties:{verdict:{type:'string',enum:['pass','revise']},problem:{type:'boolean'}},required:['verdict','problem'],additionalProperties:false}}},required:['items'],additionalProperties:false};
+assert.throws(()=>parseStructured('{"items":[{"verdict":"pass","problem":"false"}]}',schema));
+assert.throws(()=>parseStructured('{"items":[{"verdict":"sure","problem":false}]}',schema));
+assert.throws(()=>parseStructured('{"items":[{"verdict":"pass"}]}',schema));
+const originalFetch=globalThis.fetch;let calls=0;
+try{
+ globalThis.fetch=async(url,options)=>{calls++;const body=JSON.parse(options.body);assert.equal(body.model,'dynamic/watch-fast');assert.equal(body.response_format,undefined);assert.equal(body.reasoning_effort,undefined);assert.match(body.messages[0].content,/Schema:/);return Response.json({choices:[{message:{content:'{"items":[{"verdict":"pass","problem":false}]}'}}]})};
+ const env={AI_GATEWAY_BASE:'https://gateway.example/v1',AI_GATEWAY_TOKEN:'test'};
+ assert.equal((await runJson(env,[],schema,'critic')).items[0].verdict,'pass');assert.equal(calls,1);
+ globalThis.fetch=async()=>{calls++;return new Response('invalid argument',{status:400})};
+ await assert.rejects(runJson(env,[],schema,'critic'),e=>e.status===400);assert.equal(calls,2);
+}finally{globalThis.fetch=originalFetch}
+console.log('Passed: provider-neutral structured requests, recursive critic validation and no hidden inference retry.');
+
+const rich=normalizeLibraryItem({url:'https://example.com/book',type:'thesis',year:1998,authors:['A. Author'],doi:'10.1234/example',visual:{url:'https://example.com/cover.jpg',credit:'Publisher'},issueRefs:['freeport-mimika']});
+assert.equal(rich.itemType,'research');assert.equal(rich.subtype,'thesis');assert.equal(rich.year,'1998');assert.equal(rich.authors[0],'A. Author');assert.equal(rich.following[0],'freeport-mimika');assert.equal(rich.visual.credit,'Publisher');
+assert.equal(normalizeLibraryItem({url:'https://example.com',visual:{url:'javascript:alert(1)'}}).visual,undefined);
+assert.equal(normalizeLibraryItem({source_url:'https://example.com',metadata_json:JSON.stringify({authors:['A. Author'],visual:{url:'https://example.com/cover.jpg'}})}).authors[0],'A. Author');
+assert.equal(retrieveLibrary([rich],'A. Author').length,1);
+const {libraryVisualTone}=await moduleAt('shared/library.ts');assert.equal(libraryVisualTone(rich),libraryVisualTone(rich));
+console.log('Passed: bibliographic metadata, subtype groups, safe covers, deterministic visual fallbacks and author search.');

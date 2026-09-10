@@ -30,7 +30,7 @@ const mapView:MapViewId=
   issue.slug==='extraction-industrial-development'||issue.slug==='land-indigenous-rights'||issue.slug.includes('raja')||issue.slug.includes('south-papua')||issue.slug.includes('freeport')?'extraction':
   issue.slug==='environment-biodiversity'||issue.slug==='climate-disasters'||issue.slug==='health-food-public-services'||issue.slug.includes('sentani')?'environment':
   issue.slug==='infrastructure-connectivity'?'infrastructure':
-  issue.slug==='human-rights-conflict-security'||issue.slug.includes('conflict')||issue.slug.includes('displacement')?'conflict':'overview';
+  issue.slug==='human-rights-conflict-security'||issue.slug.includes('conflict')||issue.slug.includes('displacement')?'conflict':'current';
 ---
 <BaseLayout locale={locale} active="issues" title={t(issue.title,locale)} description={t(issue.summary,locale)}>
 <div class="wrap">
@@ -39,7 +39,7 @@ const mapView:MapViewId=
   <h1 class="page-title issue-page-title">{t(issue.title,locale)}</h1>
 
 
-  <section class="issue-map-meta" id="overview" data-issue-page data-issue-slug={issue.slug} data-issue-kind={isUmbrella?'issue':'dossier'} data-locale={locale}>
+  <section class="issue-map-meta" id="current" data-issue-page data-issue-slug={issue.slug} data-issue-kind={isUmbrella?'issue':'dossier'} data-locale={locale}>
     <div class="issue-map-copy">
 
       <p data-live-issue-summary>{t(issue.summary,locale)}</p>
@@ -83,7 +83,7 @@ if(issuePage&&slug)fetch(`/api/issue/${encodeURIComponent(slug)}`).then(r=>r.ok?
   if(updates&&data.developments?.length){
     const deltaByDev=new Map((data.deltas||[]).map((d:any)=>[Number(d.development_id),d]));const nodes=[];
     for(const dev of data.developments){
-      const row=document.createElement('p');row.className='issue-update';const link=document.createElement('a');link.href=`${locale==='pmy'?'/pmy':''}${dev.story_url}`;
+      const row=document.createElement('p');row.className='issue-update';const link=document.createElement('a');link.href=`${locale==='pmy'?'/id':''}${dev.story_url}`;
       const strong=document.createElement('strong');strong.textContent=locale==='pmy'?(dev.title_id||dev.title_en):dev.title_en;link.append(strong);
       const br=document.createElement('br'),meta=document.createElement('small');const published=dev.latest_report_at||dev.updated_at;meta.textContent=`${published?new Date(published).toLocaleDateString(locale==='pmy'?'id-ID':'en-GB',{day:'numeric',month:'short'}):''} · ${dev.article_count||1} ${locale==='pmy'?'laporan':'reports'} · ${dev.source_count} ${locale==='pmy'?'sumber':'sources'}`;row.append(link,br,meta);
       const delta:any=deltaByDev.get(Number(dev.id));if(delta?.delta_summary){const note=document.createElement('span');note.className='issue-live-delta';note.textContent=locale==='pmy'?(delta.delta_summary_id||delta.delta_summary):delta.delta_summary;row.append(note)}nodes.push(row)

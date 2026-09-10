@@ -1,4 +1,4 @@
-export type ChatPurpose='fast'|'synthesis'|'ask';
+export type ChatPurpose='fast'|'synthesis'|'ask'|'critic';
 export type ModelErrorCode='quota'|'malformed'|'transport'|'unconfigured';
 
 export class ModelRequestError extends Error{
@@ -13,7 +13,9 @@ export const modelNameFor=(env:any,purpose:ChatPurpose)=>purpose==='ask'
     ?(env.SYNTH_MODEL||'@cf/google/gemma-4-26b-a4b-it')
     :(env.FAST_MODEL||'@cf/qwen/qwen3-30b-a3b-fp8');
 
-const routeFor=(env:any,purpose:ChatPurpose)=>purpose==='ask'
+const routeFor=(env:any,purpose:ChatPurpose)=>purpose==='critic'
+  ?(env.AI_GATEWAY_CRITIC_MODEL||env.AI_GATEWAY_FAST_MODEL||'dynamic/watch-fast')
+  :purpose==='ask'
   ?(env.AI_GATEWAY_ASK_MODEL||'dynamic/watch-ask')
   :purpose==='synthesis'
     ?(env.AI_GATEWAY_SYNTH_MODEL||'dynamic/watch-synth')
@@ -27,13 +29,22 @@ export const isGatewayQuotaError=(e:any)=>e instanceof ModelRequestError?e.code=
 export const isMalformedOutputError=(e:any)=>e instanceof ModelRequestError&&e.code==='malformed';
 const workersFallbackEnabled=(env:any)=>String(env.ENABLE_WORKERS_AI_FALLBACK||'false').toLowerCase()==='true';
 
-function validateRequired(value:any,schema:any){
-  if(value===null||value===undefined)throw new Error('structured output is empty');
-  if(schema?.type==='array'&&!Array.isArray(value))throw new Error('structured output was not an array');
-  if(schema?.type==='object'){
-    if(typeof value!=='object'||Array.isArray(value))throw new Error('structured output was not an object');
-    const missing=(schema?.required||[]).filter((key:string)=>!(key in value));
-    if(missing.length)throw new Error(`structured output missing required fields: ${missing.join(', ')}`);
+function validateRequired(value:any,schema:any,path='$'):any{
+  if(!schema)return value;
+  if(schema.enum&&!schema.enum.includes(value))throw new Error(`${path}: invalid enum`);
+  const kind=Array.isArray(value)?'array':value===null?'null':typeof value;
+  const types=Array.isArray(schema.type)?schema.type:[schema.type];
+  if(schema.type&&!types.some((t:string)=>t===kind||(t==='integer'&&Number.isInteger(value))))throw new Error(`${path}: expected ${types.join('|')}`);
+  if(kind==='object'){
+    for(const key of schema.required||[])if(!Object.prototype.hasOwnProperty.call(value,key))throw new Error(`${path}: missing ${key}`);
+    for(const [key,item] of Object.entries(value)){
+      if(schema.additionalProperties===false&&!Object.prototype.hasOwnProperty.call(schema.properties||{},key))throw new Error(`${path}: unexpected ${key}`);
+      validateRequired(item,schema.properties?.[key],`${path}.${key}`);
+    }
+  }
+  if(kind==='array'){
+    if(schema.minItems!==undefined&&value.length<schema.minItems)throw new Error(`${path}: too few items`);
+    value.forEach((item:any,i:number)=>validateRequired(item,schema.items,`${path}[${i}]`));
   }
   return value;
 }
@@ -76,11 +87,7 @@ export function parseStructured<T>(raw:string,schema:any):T{
   }
 }
 
-function structuredResponseFormat(schema:any){
-  return {type:'json_schema',json_schema:{name:'watch_output',strict:true,schema}};
-}
-
-async function gatewayCall(env:any,messages:any[],purpose:ChatPurpose,maxTokens:number,responseFormat?:any){
+async function gatewayCall(env:any,messages:any[],purpose:ChatPurpose,maxTokens:number){
   const gateway=env.AI_GATEWAY_BASE?.replace(/\/$/,'');
   const token=env.AI_GATEWAY_TOKEN;
   if(!gateway||!token)throw new ModelRequestError('unconfigured','AI Gateway is not configured');
@@ -92,8 +99,6 @@ async function gatewayCall(env:any,messages:any[],purpose:ChatPurpose,maxTokens:
       body:JSON.stringify({
         model:routeFor(env,purpose),messages,
         temperature:purpose==='synthesis'?.16:.05,max_tokens:maxTokens,
-        ...(purpose!=='synthesis'?{reasoning_effort:'none'}:{}),
-        ...(responseFormat?{response_format:responseFormat}:{})
       }),
       signal:AbortSignal.timeout(85000)
     });
@@ -102,6 +107,7 @@ async function gatewayCall(env:any,messages:any[],purpose:ChatPurpose,maxTokens:
   const servedModel=res.headers.get('cf-aig-model')||'';
   const servedStep=res.headers.get('cf-aig-step')||'';
   if(!res.ok){
+    console.warn('AI Gateway rejected request',{purpose,provider:servedProvider||'unknown',model:servedModel||'unknown',step:servedStep||'unknown',status:res.status});
     const detail=(await res.text().catch(()=>'' )).replace(/\s+/g,' ').slice(0,420);
     if(res.status===429||/resource_exhausted|quota exceeded|rate limit/i.test(detail))throw new ModelRequestError('quota',`gateway HTTP ${res.status}${detail?`: ${detail}`:''}`,res.status);
     throw new ModelRequestError('transport',`gateway HTTP ${res.status}${detail?`: ${detail}`:''}`,res.status);
@@ -128,7 +134,8 @@ export async function runJson<T=any>(env:any,messages:any[],schema:any,purpose:C
   // Critical invariant: one logical structured operation issues at most one remote inference request.
   // Parsing/salvage below is local only; malformed output is durable state for a future cycle.
   if(env.AI_GATEWAY_BASE&&env.AI_GATEWAY_TOKEN){
-    const raw=await gatewayCall(env,messages,purpose,maxTokens,structuredResponseFormat(schema));
+    const structuredMessages=[{role:'system',content:`Return only JSON conforming to this schema. No Markdown or commentary. Schema: ${JSON.stringify(schema)}`},...messages];
+    const raw=await gatewayCall(env,structuredMessages,purpose,maxTokens);
     return parseStructured<T>(raw,schema);
   }
   if(!workersFallbackEnabled(env))throw new ModelRequestError('unconfigured','AI Gateway is not configured and Workers AI fallback is disabled');

@@ -6,7 +6,7 @@ const {locale='en'}=Astro.props as {locale?:Locale};
 ---
 <BaseLayout locale={locale} active="current" title={locale==='en'?'Development':'Perkembangan'}>
 <section class="story-page" data-story-page data-locale={locale}><div class="wrap story-wrap">
-<a class="story-back" href={locale==='pmy'?'/pmy/news/':'/news/'}>← {locale==='en'?'News':'Berita'}</a>
+<a class="story-back" href={locale==='pmy'?'/id/news/':'/news/'}>← {locale==='en'?'News':'Berita'}</a>
 <div class="story-loading" data-story-loading>{locale==='en'?'Loading development…':'Memuat perkembangan…'}</div>
 <article hidden data-story-content>
   <div class="story-kicker" data-story-kicker></div><h1 data-story-title></h1><p class="story-dek" data-story-summary></p>
@@ -34,7 +34,7 @@ if(page&&page.dataset.storyServer!=='true'){
   const publishers=new Set(articles.filter((a:any)=>!a.syndicated_from_article_id).map((a:any)=>a.publisher_id||a.publisher));
   const reportDates=articles.map((a:any)=>a.published_at).filter(Boolean).sort((a:string,b:string)=>Date.parse(a)-Date.parse(b)),latest=reportDates.at(-1)||'';
   const meta=page.querySelector<HTMLElement>('[data-story-meta]');if(meta)meta.textContent=`${articles.length} ${locale==='pmy'?'laporan':'reports'} · ${publishers.size||articles.length} ${locale==='pmy'?'sumber':'sources'}${latest?` · ${locale==='pmy'?'terbit':'published'} ${date(latest)}`:''}`;
-  const relations=page.querySelector<HTMLElement>('[data-story-relations]');if(relations){relations.replaceChildren();for(const issue of issues.slice(0,3)){const a=document.createElement('a');a.className='chip';a.href=`${locale==='pmy'?'/pmy':''}/topics/${issue.slug}/`;a.textContent=locale==='pmy'?(issue.title_id||issue.title_en):issue.title_en;relations.append(a)}for(const place of places.slice(0,3)){const span=document.createElement('span');span.className='chip';span.textContent=place.name;relations.append(span)}relations.hidden=relations.children.length===0}
+  const relations=page.querySelector<HTMLElement>('[data-story-relations]');if(relations){relations.replaceChildren();for(const issue of issues.slice(0,3)){const a=document.createElement('a');a.className='chip';a.href=`${locale==='pmy'?'/id':''}/topics/${issue.slug}/`;a.textContent=locale==='pmy'?(issue.title_id||issue.title_en):issue.title_en;relations.append(a)}for(const place of places.slice(0,3)){const span=document.createElement('span');span.className='chip';span.textContent=place.name;relations.append(span)}relations.hidden=relations.children.length===0}
   const points=locale==='pmy'?(s.key_points?.id||list(s.key_points_id_json)):(s.key_points?.en||list(s.key_points_en_json));const pointEl=page.querySelector<HTMLElement>('[data-story-points]');if(points?.length&&pointEl){pointEl.hidden=false;const ul=pointEl.querySelector('ul');for(const x of points.slice(0,5)){const li=document.createElement('li');li.textContent=String(x);ul?.append(li)}}
   const changed=page.querySelector<HTMLElement>('[data-story-changed]'),changedText=locale==='pmy'?(s.what_changed_id||s.what_changed):s.what_changed;if(changedText){changed.hidden=false;put(changed.querySelector('p'),changedText)}
   const common=list(s.common_ground_json),commonEl=page.querySelector<HTMLElement>('[data-story-common]');if(common.length&&publishers.size>1){commonEl.hidden=false;const ul=commonEl.querySelector('ul');for(const x of common){const li=document.createElement('li');li.textContent=String(x);ul?.append(li)}}

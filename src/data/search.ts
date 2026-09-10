@@ -42,8 +42,8 @@ export const searchCorpus = [
     publisher:item.publisher,
     evidenceRoles:item.evidenceRoles,
     title: { en: item.title, pmy: item.title },
-    text: { en: item.description||item.publisher, pmy: item.description||item.publisher },
+    text: { en: `Catalogue metadata: ${item.description||item.publisher}`, pmy: `Metadata katalog: ${item.description||item.publisher}` },
     href: item.url,
-    tags: [item.publisher, item.type, item.year,...item.topics,...item.places,...item.tags]
+    tags: [item.publisher,...item.authors,item.doi||'',item.isbn||'',item.type, item.year,...item.topics,...item.places,...item.tags]
   }))
 ];

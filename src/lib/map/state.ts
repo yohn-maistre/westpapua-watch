@@ -4,15 +4,16 @@ export function parseMapState(search:string):WatchMapState{
   const p=new URLSearchParams(search);
   const requested=(p.get('layers')||'').split(',').map(x=>x.trim()).filter(x=>x in layerById);
   const base=(p.get('base')||'atlas') as MapBaseId;
-  const view=(p.get('view')||'overview') as MapViewId;
+  const requestedView=p.get('view')||'current';
+  const view=(requestedView==='overview'?'current':requestedView==='climate'?'environment':requestedView) as MapViewId;
   const validBase=baseById[base]?base:'atlas';
-  const validView=viewById[view]?view:'overview';
+  const validView=viewById[view]?view:'current';
   return {
     base:validBase,
     view:validView,
     layers:p.has('layers')?requested:viewById[validView].layers.slice(),
     place:p.get('place'),period:p.get('period'),
-    explore:p.get('map')==='explore'||p.has('layers')||Boolean(p.get('place'))||validBase!=='atlas'||validView!=='overview'
+    explore:p.get('map')==='explore'||p.has('layers')||Boolean(p.get('place'))||validBase!=='atlas'||validView!=='current'
   };
 }
 export function writeMapState(state:WatchMapState){
@@ -29,4 +30,4 @@ export function writeMapState(state:WatchMapState){
   }
   history.replaceState(null,'',url);
 }
-export const defaultMapState=():WatchMapState=>({base:'atlas',view:'overview',layers:DEFAULT_LAYER_IDS.slice(),place:null,explore:false});
+export const defaultMapState=():WatchMapState=>({base:'atlas',view:'current',layers:DEFAULT_LAYER_IDS.slice(),place:null,explore:false});

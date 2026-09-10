@@ -1,7 +1,7 @@
 export type MapLayerFamily='boundaries'|'extraction'|'environment'|'infrastructure'|'population'|'current'|'conflict';
 export type MapLayerSourceType='pmtiles'|'live'|'raster'|'image';
 export type MapBaseId='atlas'|'satellite'|'night';
-export type MapViewId='overview'|'extraction'|'environment'|'climate'|'infrastructure'|'current'|'conflict';
+export type MapViewId='extraction'|'environment'|'infrastructure'|'current'|'conflict';
 export type MapLayerDefinition={
   id:string;family:MapLayerFamily;title:string;titleId:string;description:string;descriptionId:string;
   sourceType:MapLayerSourceType;source:string;sourceLayer?:string;tiles?:string[];sourceUrl:string;attribution:string;license:string;
@@ -60,13 +60,11 @@ export const MAP_FAMILIES:{id:MapLayerFamily;title:string;titleId:string}[]=[
 ];
 
 export const MAP_VIEWS:MapViewDefinition[]=[
-  {id:'overview',title:'Overview',titleId:'Ringkasan',layers:['province-boundaries','settlements','current-developments','fire-hotspots']},
+  {id:'current',title:'Current',titleId:'Sekarang',layers:['province-boundaries','settlements','current-developments','fire-hotspots']},
   {id:'conflict',title:'Conflict',titleId:'Konflik',layers:['province-boundaries','conflict-displacement','conflict-incidents','conflict-deployments']},
   {id:'extraction',title:'Extraction',titleId:'Ekstraksi',layers:['province-boundaries','cultural-regions','mining-permits','major-extraction-sites','forest-plantation-permits','current-developments']},
   {id:'environment',title:'Environment',titleId:'Lingkungan',layers:['province-boundaries','protected-areas','fire-hotspots','forest-loss','current-developments']},
-  {id:'climate',title:'Climate',titleId:'Iklim',layers:['province-boundaries','rainfall-anomaly','fire-hotspots']},
   {id:'infrastructure',title:'Infrastructure',titleId:'Infrastruktur',layers:['street-detail','province-boundaries','major-roads','airports','ports','settlements','current-developments']},
-  {id:'current',title:'Current',titleId:'Sekarang',layers:['province-boundaries','current-developments']}
 ];
 
 export const MAP_LAYERS:MapLayerDefinition[]=[
@@ -157,6 +155,14 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
     minZoom:3,maxZoom:12,defaultVisible:false,geometry:'image',style:{'raster-opacity':.64},availability:'status'
   },
   {
+    id:'surface-water-occurrence',family:'environment',title:'Water permanence',titleId:'Keberadaan air',
+    description:'Share of valid Landsat observations with water, 1984–2024. Pale pink to deep blue: occasional to persistent water. Not current flooding.',
+    descriptionId:'Persentase pengamatan Landsat yang menunjukkan air, 1984–2024. Merah muda hingga biru: jarang hingga menetap. Bukan banjir saat ini.',
+    sourceType:'raster',source:'https://storage.googleapis.com/water-world/tiles2024/occurrence/{z}/{x}/{y}.png',
+    sourceUrl:'https://global-surface-water.appspot.com/download',attribution:'Source: EC JRC/Google',license:'Copernicus open data',coverage:'1984–2024 · Landsat · 30 m',
+    minZoom:3,maxZoom:13,defaultVisible:false,geometry:'raster',style:{'raster-opacity':.7},availability:'always'
+  },
+  {
     id:'surface-water-change',family:'environment',title:'Surface-water change',titleId:'Perubahan air permukaan',
     description:'EC JRC Global Surface Water transitions, 1984–2024.',descriptionId:'Transisi Global Surface Water EC JRC, 1984–2024.',
     sourceType:'raster',source:'https://storage.googleapis.com/water-world/tiles2024/transitions/{z}/{x}/{y}.png',
@@ -223,4 +229,4 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
 
 export const layerById=Object.fromEntries(MAP_LAYERS.map(layer=>[layer.id,layer])) as Record<string,MapLayerDefinition>;
 export const viewById=Object.fromEntries(MAP_VIEWS.map(view=>[view.id,view])) as Record<MapViewId,MapViewDefinition>;
-export const DEFAULT_LAYER_IDS=viewById.overview.layers;
+export const DEFAULT_LAYER_IDS=viewById.current.layers;

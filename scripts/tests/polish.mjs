@@ -22,8 +22,18 @@ assert.ok(retrieveSite('MIFEE timeline').some(x=>x.kind==='timeline'));
 assert.ok(retrieveSite('noken resources').some(x=>x.url.includes('unesco')));
 const {onRequest:redirect}=await moduleAt('functions/_middleware.ts');
 const moved=await redirect({request:new Request('https://westpapua.watch/pmy/issues/mining-raja-ampat/?map=night'),next:()=>{throw Error('Old route should redirect')}});
-assert.equal(moved.status,308);assert.equal(moved.headers.get('location'),'https://westpapua.watch/pmy/topics/mining-raja-ampat/?map=night');
+assert.equal(moved.status,308);assert.equal(moved.headers.get('location'),'https://westpapua.watch/id/topics/mining-raja-ampat/?map=night');
 const {parseHTML}=await import('linkedom');globalThis.document=parseHTML('<html><body></body></html>').document;
 const {renderAnswer}=await moduleAt('src/lib/ask/markdown.ts');const container=document.createElement('div');container.append(renderAnswer('**Evidence**\n- One [S1]\n<script>alert(1)</script>',s=>document.createTextNode(s)));
 assert.equal(container.querySelector('strong').textContent,'Evidence');assert.equal(container.querySelectorAll('li').length,1);assert.equal(container.querySelectorAll('script').length,0);
 console.log('Passed: whole-site retrieval, locale/query preserving redirects, safe answer formatting.');
+
+const numbered=document.createElement('div');numbered.append(renderAnswer('1. First\n\n1. Second\n\n  Supporting paragraph\n\n1. Third',s=>document.createTextNode(s)));
+assert.equal(numbered.querySelectorAll('ol').length,1);assert.equal(numbered.querySelectorAll('li').length,3);assert.equal(numbered.querySelector('li:nth-child(2) p').textContent,'Supporting paragraph');
+const separated=document.createElement('div');separated.append(renderAnswer('1. First\n\nExplanation\n\n1. Second\n\n## Another list\n1. New',s=>document.createTextNode(s)));
+assert.equal(separated.querySelectorAll('ol')[1].getAttribute('start'),'2');assert.equal(separated.querySelectorAll('ol')[2].getAttribute('start'),null);
+const {withLocale}=await moduleAt('src/lib/i18n.ts');
+assert.equal(withLocale('/pmy/history/?x=1','pmy'),'/id/history/?x=1');assert.equal(withLocale('/id/news/','en'),'/news/');assert.equal(withLocale('/id/news/','pmy'),'/id/news/');
+for(const path of ['/pmy/','/pmy','/pmy/story/?id=42','/pmy/history/?base=night']){const res=await redirect({request:new Request('https://westpapua.watch'+path),next:()=>{throw Error('missing locale redirect')}});assert.equal(res.status,308);assert.equal(res.headers.get('location'),'https://westpapua.watch'+path.replace('/pmy','/id'));}
+assert.equal(parseMapState('').view,'current');assert.ok(parseMapState('').layers.includes('fire-hotspots'));assert.equal(parseMapState('?view=overview').view,'current');assert.equal(parseMapState('?view=climate').view,'environment');
+console.log('Passed: numbered lists, continuation paragraphs, canonical ID links, legacy redirects and map aliases.');

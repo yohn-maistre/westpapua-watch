@@ -19,7 +19,7 @@ export const onRequestPost:PagesFunction<Env>=async({request,env})=>{
   const len=Number(request.headers.get('content-length')||0);if(len>32000)return json({error:'Request too large.'},413);
   const ip=request.headers.get('CF-Connecting-IP')||'unknown';if(limited(ip))return json({error:'Too many requests. Try again in a minute.'},429);
   let body:any;try{const raw=await request.text();if(new TextEncoder().encode(raw).length>32000)return json({error:'Request too large.'},413);body=JSON.parse(raw)}catch{return json({error:'Invalid JSON.'},400)}
-  const history=chatHistory(body?.history),pageTitle=String(body?.pageTitle||'').slice(0,180);const query=String(body?.query||'').trim();const locale=body?.locale==='pmy'?'pmy':'en';
+  const history=chatHistory(body?.history),pageTitle=String(body?.pageTitle||'').slice(0,180);const query=String(body?.query||'').trim();const locale=(body?.locale==='pmy'||body?.locale==='id')?'pmy':'en';
   if(query.length<2||query.length>500)return json({error:'Question must be between 2 and 500 characters.'},400);
   if(env.WATCH_ENGINE){
     try{const forwarded=new Request('https://watch.internal/ask',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({query,locale,history,pageTitle})});const response=await env.WATCH_ENGINE.fetch(forwarded);if(response.status!==404){if(!response.headers.get('content-type')?.includes('json'))return json({error:'The Watch answer service is temporarily unavailable.'},502);let data:any;try{data=await response.json()}catch{return json({error:'The Watch answer service is temporarily unavailable.'},502)}return json(data,response.status)}}catch{}

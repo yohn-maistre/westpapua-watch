@@ -1,3 +1,5 @@
+> Runtime update (10 September 2026): see [EDITORIAL_RECOVERY_V5.md](EDITORIAL_RECOVERY_V5.md). Gateway structured output uses local validation; no application-level critic retry is performed.
+
 # Watch Engine 08.9 — Finish-line recovery
 
 Freeze 08.9 fixes the two blockers after Gemini synthesis began succeeding.

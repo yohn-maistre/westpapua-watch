@@ -7,10 +7,8 @@ export function t(value: Localized | string, locale: Locale): string {
 }
 
 export function withLocale(path: string, locale: Locale): string {
-  const clean = path.startsWith('/') ? path : `/${path}`;
-  if (locale === 'en') return clean.replace(/^\/pmy(?=\/|$)/, '') || '/';
-  if (clean === '/') return '/pmy/';
-  return clean.startsWith('/pmy/') ? clean : `/pmy${clean}`;
+  const clean = (path.startsWith('/') ? path : `/${path}`).replace(/^\/(?:pmy|id)(?=\/|$)/, '') || '/';
+  return locale === 'en' ? clean : clean === '/' ? '/id/' : `/id${clean}`;
 }
 
 export function alternateLocalePath(path: string, locale: Locale): string {
