@@ -1,0 +1,61 @@
+name: Run Watch cycle
+on:
+  workflow_dispatch:
+    inputs:
+      run_cycle:
+        description: Trigger one normal discovery and editorial cycle after collecting telemetry
+        type: boolean
+        required: true
+        default: true
+permissions:
+  contents: read
+concurrency:
+  group: watch-cycle-operator
+  cancel-in-progress: false
+jobs:
+  operate:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Read editorial status before cycle
+        env:
+          WATCH_ADMIN_TOKEN: ${{ secrets.WATCH_ADMIN_TOKEN }}
+        run: |
+          python3 - <<'PYTHON'
+          import json, os, urllib.request
+          token = os.environ.get('WATCH_ADMIN_TOKEN', '')
+          if not token:
+              raise SystemExit('WATCH_ADMIN_TOKEN production secret is required')
+          request = urllib.request.Request(
+              'https://westpapua.watch/api/admin/review-status',
+              headers={'Authorization': 'Bearer '+token, 'Accept': 'application/json'},
+          )
+          with urllib.request.urlopen(request, timeout=60) as response:
+              print('before='+response.read().decode())
+          PYTHON
+      - name: Trigger one normal Watch cycle
+        if: ${{ inputs.run_cycle }}
+        env:
+          WATCH_ADMIN_TOKEN: ${{ secrets.WATCH_ADMIN_TOKEN }}
+        run: |
+          python3 - <<'PYTHON'
+          import json, os, urllib.request
+          token = os.environ['WATCH_ADMIN_TOKEN']
+          request = urllib.request.Request(
+              'https://westpapua.watch/api/admin/run',
+              data=b'',
+              headers={'Authorization': 'Bearer '+token, 'Content-Type': 'application/json'},
+              method='POST',
+          )
+          with urllib.request.urlopen(request, timeout=60) as response:
+              print('trigger='+response.read().decode())
+          PYTHON
+      - name: Read public health after trigger
+        if: ${{ inputs.run_cycle }}
+        run: |
+          python3 - <<'PYTHON'
+          import urllib.request
+          for path in ('/api/engine-health', '/api/current?limit=6'):
+              with urllib.request.urlopen('https://westpapua.watch'+path, timeout=60) as response:
+                  print(path+'='+response.read().decode())
+          PYTHON
