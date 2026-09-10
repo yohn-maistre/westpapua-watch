@@ -130,3 +130,13 @@
 
 .issue-map-meta[data-issue-kind="issue"]{background:none!important;padding:0!important;border-radius:0}.issue-map-meta[data-issue-kind="issue"]::before,.issue-map-meta[data-issue-kind="issue"]::after{display:none!important}
 .resource-row[hidden]{display:none!important}
+
+/* Quiet, legible navigation actions shared by both header states. */
+.ask-trigger{display:inline-flex;align-items:center;justify-content:center;gap:.5rem!important;background:#d4cdee12!important;border-color:#c9c2ed33!important}
+.ask-icon{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5;flex:none}
+.compact-language-toggle{font-size:.72rem!important;letter-spacing:.08em;border-radius:9px!important;min-width:44px;display:grid;place-items:center}
+.compact-actions{gap:.5rem!important}.ask-trigger .key{font-size:.62rem;opacity:.65;border:1px solid #ffffff25;border-radius:4px;padding:1px 4px}
+.compact-nav{background:#0b0d14ec!important;backdrop-filter:blur(18px)}
+@media(max-width:760px){.ask-trigger .key{display:none}}
+
+.is-loading{position:relative;min-height:440px;border-radius:22px;background:linear-gradient(110deg,#141720 20%,#252938 45%,#141720 70%);background-size:220% 100%;animation:watch-skeleton 1.8s ease infinite}.is-loading>*{visibility:hidden}.hero[hidden],.signal[hidden]{display:none!important}@keyframes watch-skeleton{to{background-position:-220% 0}}@media(prefers-reduced-motion:reduce){.is-loading{animation:none}}

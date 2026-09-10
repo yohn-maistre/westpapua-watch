@@ -11,7 +11,7 @@ const alternatePath = alternateLocalePath(path, locale);
   <div class="compact-inner">
     <a class="compact-brand" href={withLocale('/',locale)} aria-label="West Papua Watch"><span>West Papua</span><em>Watch</em></a>
     <nav class="compact-links" aria-label="Sticky navigation">{NAV_ITEMS.map((item)=><a href={withLocale(item.href,locale)} aria-current={active===item.key?'page':undefined}>{item.key==='home'?<><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m3 10 9-7 9 7v11h-7v-7h-4v7H3Z"/></svg><span class="sr-only">{locale==='en'?'Home':'Beranda'}</span></>:t(item.label,locale)}</a>)}</nav>
-    <div class="compact-actions"><a class="compact-language-toggle" href={alternatePath} hreflang={locale==='en'?'pmy':'en'} data-language-swap>{locale==='en'?'PMY':'EN'}</a><button class="ask-trigger" type="button" data-ask-open>{locale==='en'?'Ask':'Tanya'}</button></div>
+    <div class="compact-actions"><a class="compact-language-toggle" href={alternatePath} hreflang={locale==='en'?'id':'en'} data-language-swap>{locale==='en'?'ID':'EN'}</a><button class="ask-trigger" type="button" data-ask-open><svg class="ask-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-8 8H5l-3 2v-10a9 9 0 0 1 18 0Z"/><path d="M8 10h8m-8 4h5"/></svg>{locale==='en'?'Ask':'Tanya'}</button></div>
   </div>
 </div>
 <script>

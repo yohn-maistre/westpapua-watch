@@ -304,5 +304,63 @@
       "human-rights-security"
     ],
     "description": ""
+  },
+  {
+    "id": "hrm-idp-march-2026",
+    "title": "IDP update: March 2026",
+    "publisher": "Human Rights Monitor",
+    "url": "https://humanrightsmonitor.org/reports/idp-update-march26-more-military-trigger-new-displacements-and-dampen-the-prospects-of-return/",
+    "type": "report",
+    "format": "web",
+    "language": "en",
+    "date": "2026-03-27",
+    "tags": [
+      "human-rights-security"
+    ],
+    "description": "Regional monitoring of displacement, including Nduga. Estimates and reported conditions are attributed to Human Rights Monitor."
+  },
+  {
+    "id": "ptfi-audit-2025",
+    "title": "PT Freeport Indonesia: 2024–2025 external environmental audit",
+    "publisher": "Freeport-McMoRan",
+    "url": "https://www.fcx.com/sites/fcx/files/documents/sustainability/audits/2024-2025PTFIEnvironmentalAuditExec.pdf",
+    "type": "report",
+    "format": "pdf",
+    "language": "en",
+    "date": "2025",
+    "tags": [
+      "environment-biodiversity",
+      "land-indigenous-rights"
+    ],
+    "description": "Company-published external audit covering tailings management, mine closure and environmental monitoring. Read alongside community accounts and independent research."
+  },
+  {
+    "id": "awyu-forest-report-2025",
+    "title": "Indonesian court blocks palm oil expansion, but leaves Indigenous land rights in limbo",
+    "publisher": "Mongabay",
+    "url": "https://news.mongabay.com/2025/03/indonesian-court-blocks-palm-oil-expansion-but-leaves-indigenous-land-rights-in-limbo/",
+    "date": "2025-03-06",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "land-indigenous-rights",
+      "environment-biodiversity"
+    ],
+    "description": "Reporting on separate Tanah Merah permit disputes and Awyu demands for recognition of customary rights."
+  },
+  {
+    "id": "awyu-statement-2024",
+    "title": "Awyu community response to the Indo Asiana Lestari appeal decision",
+    "publisher": "Greenpeace Southeast Asia",
+    "url": "https://www.greenpeace.org/southeastasia/press/66530/dark-day-for-indigenous-forests-in-tanah-papua-as-supreme-court-rejects-awyu-tribes-final-appeal/",
+    "date": "2024-11-01",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "land-indigenous-rights"
+    ],
+    "description": "A statement conveying the community and coalition position on the IAL case. Distinct from the MJR and KCP permit cases."
   }
 ]

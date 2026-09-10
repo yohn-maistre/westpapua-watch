@@ -1,0 +1,152 @@
+[
+  {
+    "slug": "nduga-displacement",
+    "category": "Human rights",
+    "title": {
+      "en": "Nduga: conflict and displacement",
+      "pmy": "Nduga: konflik dan pengungsian"
+    },
+    "summary": {
+      "en": "Displacement since 2018, access to schools and healthcare, and the conditions for returning home.",
+      "pmy": "Pengungsian sejak 2018, akses sekolah dan layanan kesehatan, serta kondisi untuk pulang."
+    },
+    "status": {
+      "en": "Following",
+      "pmy": "Dipantau"
+    },
+    "updatedAt": "2026-06-10",
+    "developmentSlugs": [],
+    "sourceIds": [
+      "hrm-idp-march-2026",
+      "conflict-source-21"
+    ],
+    "concepts": [
+      "internal-displacement",
+      "humanitarian-access"
+    ],
+    "background": {
+      "en": "Human Rights Monitor traces prolonged displacement from Nduga to late 2018. Its 2026 monitoring describes families living away from home and continuing gaps in access to education, healthcare and secure housing.",
+      "pmy": "Human Rights Monitor menelusuri pengungsian berkepanjangan dari Nduga sejak akhir 2018. Pemantauan 2026 menggambarkan keluarga yang masih tinggal jauh dari kampung serta kesenjangan akses pendidikan, kesehatan dan tempat tinggal layak."
+    }
+  },
+  {
+    "slug": "freeport-mimika",
+    "category": "Extraction",
+    "title": {
+      "en": "Freeport and Mimika",
+      "pmy": "Freeport dan Mimika"
+    },
+    "summary": {
+      "en": "Mining, river tailings, land and livelihoods from the highlands to the Mimika coast.",
+      "pmy": "Pertambangan, tailing sungai, tanah dan penghidupan dari pegunungan hingga pesisir Mimika."
+    },
+    "status": {
+      "en": "Following",
+      "pmy": "Dipantau"
+    },
+    "updatedAt": "2026-09-10",
+    "developmentSlugs": [],
+    "sourceIds": [
+      "ptfi-audit-2025",
+      "nasa-grasberg"
+    ],
+    "concepts": [
+      "extractivism",
+      "customary-land"
+    ],
+    "background": {
+      "en": "Freeport’s operations connect highland mining with a river tailings system extending into the Mimika lowlands. The company-published 2024–2025 external audit examines tailings management, mine closure and environmental monitoring. It records recommendations for further work; its conclusions should be read as the audit’s findings, alongside independent research and community accounts.",
+      "pmy": "Operasi Freeport menghubungkan pertambangan pegunungan dengan sistem tailing sungai hingga dataran rendah Mimika. Audit eksternal 2024–2025 yang diterbitkan perusahaan membahas pengelolaan tailing, penutupan tambang dan pemantauan lingkungan. Rekomendasi tindak lanjut dicatat di dalamnya; kesimpulannya perlu dibaca sebagai temuan audit, bersama penelitian independen dan kesaksian masyarakat."
+    }
+  },
+  {
+    "slug": "puncak-displacement",
+    "category": "Human rights",
+    "title": {
+      "en": "Displacement in Puncak",
+      "pmy": "Pengungsian di Puncak"
+    },
+    "summary": {
+      "en": "Access to shelter, services and home amid renewed displacement.",
+      "pmy": "Akses tempat tinggal, layanan dan kampung halaman di tengah pengungsian."
+    },
+    "status": {
+      "en": "Following",
+      "pmy": "Dipantau"
+    },
+    "updatedAt": "2026-06-10",
+    "sourceIds": [
+      "conflict-source-21",
+      "hrm-q2-2026"
+    ],
+    "developmentSlugs": [],
+    "concepts": [
+      "internal-displacement",
+      "humanitarian-access"
+    ],
+    "background": {
+      "en": "Human Rights Monitor’s June 2026 displacement update describes renewed displacement in Puncak and difficulties accessing shelter and basic services.",
+      "pmy": "Pembaruan pengungsian Human Rights Monitor pada Juni 2026 menggambarkan pengungsian baru di Puncak serta kesulitan memperoleh tempat tinggal dan layanan dasar."
+    }
+  },
+  {
+    "slug": "intan-jaya-displacement",
+    "category": "Human rights",
+    "title": {
+      "en": "Displacement in Intan Jaya",
+      "pmy": "Pengungsian di Intan Jaya"
+    },
+    "summary": {
+      "en": "Civilian displacement and access to assistance around Sugapa and surrounding districts.",
+      "pmy": "Pengungsian warga dan akses bantuan di Sugapa serta distrik sekitarnya."
+    },
+    "status": {
+      "en": "Following",
+      "pmy": "Dipantau"
+    },
+    "updatedAt": "2026-06-10",
+    "sourceIds": [
+      "conflict-source-21",
+      "hrm-q2-2026"
+    ],
+    "developmentSlugs": [],
+    "concepts": [
+      "internal-displacement",
+      "humanitarian-access"
+    ],
+    "background": {
+      "en": "Human Rights Monitor documents repeated displacement around Sugapa and other districts of Intan Jaya. Its dated reports describe changing access to assistance and conditions for return.",
+      "pmy": "Human Rights Monitor mendokumentasikan pengungsian berulang di sekitar Sugapa dan distrik lain di Intan Jaya. Laporan berkala menggambarkan perubahan akses bantuan dan kondisi untuk pulang."
+    }
+  },
+  {
+    "slug": "awyu-customary-forests",
+    "category": "Land",
+    "title": {
+      "en": "Awyu customary forests",
+      "pmy": "Hutan adat Awyu"
+    },
+    "summary": {
+      "en": "Forest permits, oil palm expansion and recognition of Awyu land rights in Boven Digoel.",
+      "pmy": "Izin hutan, perluasan sawit dan pengakuan hak atas tanah Awyu di Boven Digoel."
+    },
+    "status": {
+      "en": "Following",
+      "pmy": "Dipantau"
+    },
+    "updatedAt": "2025-03-06",
+    "sourceIds": [
+      "awyu-forest-report-2025",
+      "awyu-statement-2024"
+    ],
+    "developmentSlugs": [],
+    "concepts": [
+      "customary-land",
+      "extractivism"
+    ],
+    "background": {
+      "en": "Several distinct permit disputes concern Awyu customary forests. Reporting in March 2025 describes limits on further clearing by MJR and KCP while distinguishing that ruling from the separate Indo Asiana Lestari case. Recognition of customary land rights remains a separate question from whether a company holds permission to clear forest.",
+      "pmy": "Sejumlah sengketa izin yang berbeda menyangkut hutan adat Awyu. Laporan Maret 2025 membahas pembatasan pembukaan hutan oleh MJR dan KCP, dengan membedakan putusan itu dari perkara Indo Asiana Lestari. Pengakuan hak atas tanah adat tetap merupakan persoalan tersendiri, terpisah dari izin perusahaan untuk membuka hutan."
+    }
+  }
+]

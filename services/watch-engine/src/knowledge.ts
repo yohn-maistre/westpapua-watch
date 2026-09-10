@@ -1,3 +1,4 @@
+import {matchesFollowing,scopedFollowingSlugs} from '../../../shared/following';
 import type { StoryPacket } from './types';
 
 const ISSUE_RULES:[string,RegExp][]=[
@@ -9,7 +10,7 @@ const ISSUE_RULES:[string,RegExp][]=[
   ['culture-memory-expression',/seni|\bart\b|film|musik|music|sastra|literature|udeido|mambesak|budaya|culture|arsip|archive/i],
   ['political-status-representation',/otonomi|autonomy|self-determination|penentuan nasib|merdeka|political status|status politik|pif|pacific islands forum|representasi|representation/i]
 ];
-const ISSUE_SLUGS=new Set(ISSUE_RULES.map(([slug])=>slug));
+const ISSUE_SLUGS=new Set([...ISSUE_RULES.map(([slug])=>slug),...scopedFollowingSlugs]);
 const BROAD_ISSUE_RULES:[string,RegExp][]=[
   ['land-indigenous-rights',/indigenous|masyarakat adat|adat|customary|ulayat|land right|hak tanah|tanah adat|land grab|consent|persetujuan/i],
   ['extraction-industrial-development',/mining|tambang|nikel|nickel|emas|gold|tembaga|copper|freeport|grasberg|sawit|palm oil|logging|hti|plantation|perkebunan|food estate|psn|industrial|industri/i],
@@ -32,7 +33,8 @@ export function issueSlugsFor(text:string,candidates:string[]=[]){
   const out:string[]=[];
   const add=(slug:string)=>{if(ISSUE_SLUGS.has(slug)&&!out.includes(slug))out.push(slug)};
   // Candidate labels cannot assign a topic without evidence in the article text.
-  for(const [slug,rule] of ISSUE_RULES)if(rule.test(text))add(slug);
+  for(const slug of scopedFollowingSlugs)if(matchesFollowing(slug,text))add(slug);
+  for(const [slug,rule] of ISSUE_RULES)if(!scopedFollowingSlugs.includes(slug)&&rule.test(text))add(slug);
   return out;
 }
 

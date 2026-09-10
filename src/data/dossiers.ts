@@ -1,8 +1,10 @@
 import type { Issue } from './types';
+import following from '../../content/following.json';
 
 // Freeze 10.8: these named persistent subjects were the original public Issues.
 // They remain first-class Dossiers so existing URLs and Current relationships do not break.
 export const dossiers: Issue[] = [
+  ...(following as Issue[]),
   {
     slug:'mining-raja-ampat',category:'Environment',
     title:{en:'Mining in Raja Ampat',pmy:'Tambang di Raja Ampat'},

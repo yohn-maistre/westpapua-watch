@@ -2,7 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/home.css';
 import MapShell from '../components/map/MapShell.astro';
-import {dossiers as issues} from '../data/dossiers';
+import {dossierBySlug} from '../data/dossiers';
+import {featuredTopicSlugs} from '../data/topic-collections';
+const issues=featuredTopicSlugs.map(slug=>dossierBySlug[slug]);
 import {resources} from '../data/resources';
 import {developments} from '../data/developments';
 import {PROGRAMME} from '../data/site';
@@ -10,7 +12,7 @@ import {t,withLocale} from '../lib/i18n';
 import type {Locale} from '../data/types';
 const {locale='en'}=Astro.props as {locale?:Locale};
 const featuredResources=resources.slice(0,5);
-const fallbackCurrent=developments.slice(0,3);
+const fallbackCurrent=Array.from({length:3},()=>({image:'',imageAlt:'',category:'',place:'',title:{en:'',pmy:''},summary:{en:'',pmy:''}}));
 ---
 <BaseLayout locale={locale} active="home" description={locale==='en'?'A living reference system for West Papua: geography, ongoing issues, current developments, history and sources.':'Sistem referensi hidup untuk Papua Barat: geografi, isu, perkembangan, sejarah, dan sumber.'}>
   <h1 class="sr-only">West Papua Watch</h1>
@@ -18,14 +20,14 @@ const fallbackCurrent=developments.slice(0,3);
 
   <section class="section home-section"><div class="wrap">
     <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'News.':'Berita.'}</h2><a href={withLocale('/news/',locale)}>{locale==='en'?'All news →':'Semua perkembangan →'}</a></div>
-    <p class="feed-status" data-home-feed-status role="status">{locale==='en'?'Archive selection':'Pilihan arsip'}</p><div class="home-current-magazine" data-home-current data-locale={locale}>
+    <p class="feed-status" data-home-feed-status role="status">{locale==='en'?'Loading news…':'Memuat berita…'}</p><div class="home-current-magazine is-loading" aria-busy="true" inert data-home-current data-locale={locale}>
       {fallbackCurrent.slice(0,1).map((item)=><a class="home-current-card home-current-feature" data-home-current-card="0" href={withLocale('/news/',locale)}>
-        <img data-home-current-image src={item.image} alt={item.imageAlt} loading="lazy"/>
+        <img data-home-current-image src={item.image||undefined} alt={item.imageAlt} loading="lazy"/>
         <div class="home-current-copy"><small data-home-current-meta>{item.category} · {item.place}</small><h3 data-home-current-title>{t(item.title,locale)}</h3><p data-home-current-summary>{t(item.summary,locale)}</p></div>
       </a>)}
       <div class="home-current-stack">
         {fallbackCurrent.slice(1,3).map((item,index)=><a class="home-current-card" data-home-current-card={String(index+1)} href={withLocale('/news/',locale)}>
-          <img data-home-current-image src={item.image} alt={item.imageAlt} loading="lazy"/>
+          <img data-home-current-image src={item.image||undefined} alt={item.imageAlt} loading="lazy"/>
           <div class="home-current-copy"><small data-home-current-meta>{item.category} · {item.place}</small><h3 data-home-current-title>{t(item.title,locale)}</h3><p data-home-current-summary>{t(item.summary,locale)}</p></div>
         </a>)}
       </div>
@@ -33,7 +35,7 @@ const fallbackCurrent=developments.slice(0,3);
   </div></section>
 
   <section class="section home-section"><div class="wrap">
-    <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Topics.':'Topik.'}</h2><a href={withLocale('/topics/',locale)}>{locale==='en'?'All topics →':'Semua topik →'}</a></div>
+    <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Following.':'Dalam pantauan.'}</h2><a href={withLocale('/topics/',locale)}>{locale==='en'?'All topics →':'Semua topik →'}</a></div>
     <div class="home-issue-grid" data-home-issues>
       {issues.slice(0,4).map((issue,index)=><a class="home-issue" href={withLocale(`/topics/${issue.slug}/`,locale)} data-home-issue={issue.slug}>
         <small>{String(index+1).padStart(2,'0')}</small><h3>{t(issue.title,locale)}</h3><p>{t(issue.summary,locale)}</p>
@@ -56,25 +58,26 @@ const fallbackCurrent=developments.slice(0,3);
   </div></section>
 
 <script>
+import {fetchJSON} from '../lib/http';
 const root=document.querySelector<HTMLElement>('[data-home-current]');
 if(root){
   const locale=root.dataset.locale==='pmy'?'pmy':'en';
   const pick=(v:any)=>typeof v==='object'?(locale==='pmy'?(v.id||v.pmy||v.en):(v.en||v.id||'')):String(v||'');
   const rel=(iso:string)=>{if(!iso)return'';const h=Math.max(0,Math.round((Date.now()-new Date(iso).getTime())/36e5));return h<24?`${h}h`:`${Math.floor(h/24)}d`};
   const fallbackFor=(x:any)=>x.issue_slug?.includes('raja')?'/images/abstract/raja-ampat.svg':x.issue_slug?.includes('south-papua')?'/images/abstract/merauke.svg':x.issue_slug?.includes('conflict')?'/images/abstract/highlands.svg':'/images/abstract/oceanic.svg';
-  fetch('/api/current').then(r=>r.ok?r.json():null).then(data=>{
-    if(!data){const status=document.querySelector('[data-home-feed-status]');if(status)status.textContent=locale==='pmy'?'Berita tidak tersedia · pilihan arsip':'News unavailable · archive selection';return}const items=data.items||[];const status=document.querySelector('[data-home-feed-status]');if(status)status.textContent=items.length?(locale==='pmy'?'Laporan terbaru':'Latest reporting'):(locale==='pmy'?'Belum ada laporan terbit.':'No published reports yet.');
+  fetchJSON('/api/current').then(data=>{
+    if(!data){root.hidden=true;const status=document.querySelector('[data-home-feed-status]');if(status)status.textContent=locale==='pmy'?'Berita sementara tidak tersedia.':'News is temporarily unavailable.';return}const items=data.items||[];const status=document.querySelector('[data-home-feed-status]');if(status)status.textContent=items.length?(data.meta?.last_checked?`${locale==='pmy'?'Diperbarui':'Updated'} ${rel(data.meta.last_checked)}`:''):(locale==='pmy'?'Belum ada laporan terbit.':'No published reports yet.');
     root.querySelectorAll<HTMLElement>('[data-home-current-card]').forEach((card)=>{
       const i=Number(card.dataset.homeCurrentCard||0),x=items[i];if(!x){card.hidden=true;return}
       const a=card as HTMLAnchorElement;a.href=`${locale==='pmy'?'/pmy':''}${x.story_url}`;
       const title=card.querySelector<HTMLElement>('[data-home-current-title]'),summary=card.querySelector<HTMLElement>('[data-home-current-summary]'),meta=card.querySelector<HTMLElement>('[data-home-current-meta]'),img=card.querySelector<HTMLImageElement>('[data-home-current-image]');
-      if(title)title.textContent=pick(x.title);if(summary)summary.textContent=pick(x.summary);
+      if(title)title.textContent=pick(x.title);if(summary){const full=pick(x.summary);summary.textContent=full.length>260?full.slice(0,257).replace(/\s+\S*$/,'')+'…':full;}
       if(meta)meta.textContent=[x.category,x.place,`${x.article_count||1} ${locale==='pmy'?'laporan':'reports'}`,`${x.source_count||1} ${locale==='pmy'?'sumber':'sources'}`,rel(x.latest_report_at)].filter(Boolean).join(' · ');
       if(img){const fb=fallbackFor(x);img.src=x.image?.url||fb;img.alt=pick(x.title);img.onerror=()=>{img.onerror=null;img.src=fb}}
     })
-  }).catch(()=>{})
+  }).catch(()=>{root.hidden=true;const status=document.querySelector('[data-home-feed-status]');if(status)status.textContent=locale==='pmy'?'Berita sementara tidak tersedia.':'News is temporarily unavailable.'}).finally(()=>{root.classList.remove('is-loading');root.inert=false;root.setAttribute('aria-busy','false')})
 }
 const locale=document.documentElement.lang==='id'?'pmy':'en';
-fetch('/api/issues').then(r=>r.ok?r.json():null).then(data=>{for(const x of data?.items||[]){const card=document.querySelector<HTMLElement>(`[data-home-issue="${CSS.escape(x.slug)}"]`);if(!card)continue;const count=card.querySelector<HTMLElement>('[data-home-issue-count]'),updated=card.querySelector<HTMLElement>('[data-home-issue-updated]');if(count)count.textContent=locale==='pmy'?`${x.development_count||0} perkembangan · ${x.source_count||0} sumber`:`${x.development_count||0} stories · ${x.source_count||0} sources`;if(updated&&x.updated_at)updated.textContent=new Date(x.updated_at).toLocaleDateString()}}).catch(()=>{});
+for(const card of document.querySelectorAll<HTMLElement>('[data-home-issue]'))fetchJSON('/api/issue/'+encodeURIComponent(card.dataset.homeIssue!)).then(x=>{const updated=card.querySelector<HTMLElement>('[data-home-issue-updated]');if(updated)updated.textContent=x.updated_at?new Date(x.updated_at).toLocaleDateString(locale==='pmy'?'id-ID':'en-GB'):''}).catch(()=>{});
 </script>
 </BaseLayout>

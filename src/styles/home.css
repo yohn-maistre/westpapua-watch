@@ -69,3 +69,7 @@
 .home-current-stack .home-current-card{min-height:280px}.home-current-stack .home-current-copy{padding-top:6rem}
 .home-issue h3{line-height:.98}
 @media(max-width:760px){.home-current-feature .home-current-copy h3{font-size:clamp(2.4rem,10vw,4.5rem)}.home-current-stack .home-current-copy h3{font-size:clamp(1.8rem,7vw,2.7rem)}}
+
+/* Let both columns grow together; headlines remain complete. */
+@media(min-width:761px){.home-current-magazine{align-items:stretch}.home-current-stack{grid-template-rows:repeat(2,minmax(0,1fr));height:100%}.home-current-feature{height:100%}.home-current-feature .home-current-copy{padding-top:10rem}.home-current-feature .home-current-copy h3{font-size:clamp(2.6rem,4vw,4.2rem);line-height:1.02;letter-spacing:-.05em}.home-current-stack .home-current-copy h3{font-size:clamp(1.6rem,2.3vw,2.4rem);line-height:1.05}.home-current-feature .home-current-copy p{font-size:.95rem;line-height:1.6;margin-top:1.1rem}}
+.home-current-card[hidden],.home-current-magazine[hidden]{display:none!important}

@@ -60,7 +60,7 @@ export const MAP_FAMILIES:{id:MapLayerFamily;title:string;titleId:string}[]=[
 ];
 
 export const MAP_VIEWS:MapViewDefinition[]=[
-  {id:'overview',title:'Overview',titleId:'Ringkasan',layers:['province-boundaries','settlements','current-developments']},
+  {id:'overview',title:'Overview',titleId:'Ringkasan',layers:['province-boundaries','settlements','current-developments','fire-hotspots']},
   {id:'conflict',title:'Conflict',titleId:'Konflik',layers:['province-boundaries','conflict-displacement','conflict-incidents','conflict-deployments']},
   {id:'extraction',title:'Extraction',titleId:'Ekstraksi',layers:['province-boundaries','cultural-regions','mining-permits','major-extraction-sites','forest-plantation-permits','current-developments']},
   {id:'environment',title:'Environment',titleId:'Lingkungan',layers:['province-boundaries','protected-areas','fire-hotspots','forest-loss','current-developments']},
@@ -114,7 +114,7 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
     sourceType:'pmtiles',source:'/geo/mining.pmtiles',sourceLayer:'mining',sourceUrl:'https://geoportal.esdm.go.id/gis1/rest/services/Join_WIUP_vs_IPPKH/MapServer/0',
     attribution:'Kementerian ESDM · Ditjen Minerba',license:'Open ArcGIS service',coverage:'Six Papua provinces',
     minZoom:4,maxZoom:13,defaultVisible:false,geometry:'fill',
-    style:{'fill-color':'#a69bac','fill-opacity':.19,'fill-outline-color':'#746a7a'}
+    style:{'fill-color':'#be7898','fill-opacity':.34,'fill-outline-color':'#8e456c'}
   },
   {
     id:'major-extraction-sites',family:'extraction',title:'Major extraction sites',titleId:'Lokasi ekstraksi utama',
@@ -132,7 +132,7 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
     attribution:'KLHK · BIG Satu Peta',license:'Kebijakan Satu Peta / Satu Data',coverage:'Western New Guinea',
     coverageNotes:'Plantation coverage is partial where public services expose only local layers.',coverageNotesId:'Cakupan perkebunan sebagian karena layanan publik hanya membuka lapisan tertentu.',
     minZoom:4,maxZoom:13,defaultVisible:false,geometry:'fill',
-    style:{'fill-color':['match',['get','jenis'],'logging','#aaa38b','hti','#9eaa93','sawit','#b29a89','#a9a294'],'fill-opacity':.18,'fill-outline-color':'#7d7669'}
+    style:{'fill-color':['match',['get','jenis'],'logging','#ad8655','hti','#6f9f74','sawit','#ca8c66','#ab9864'],'fill-opacity':.32,'fill-outline-color':'#695143'}
   },
   {
     id:'protected-areas',family:'environment',title:'Protected areas',titleId:'Kawasan konservasi',

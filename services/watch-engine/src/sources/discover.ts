@@ -58,7 +58,7 @@ export async function discoverSourceBackfill(source:SourceConfig,days=14):Promis
 }
 
 export async function discoverEnabled():Promise<DiscoveredItem[]>{
-  const batches=await Promise.all(SOURCES.filter(source=>source.enabled).map(source=>discoverSource(source)));
+  const batches=await Promise.all(SOURCES.filter(source=>source.enabled).map(source=>discoverSource(source).catch(error=>{console.warn('Source discovery failed',source.id,error);return []})));
   batches.forEach((items,i)=>console.info('Source discovery',SOURCES.filter(s=>s.enabled)[i]?.id,items.length));
   const seen=new Set<string>();return interleave(batches).filter(item=>!seen.has(item.url)&&seen.add(item.url));
 }

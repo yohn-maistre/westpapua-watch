@@ -13,13 +13,16 @@ type Candidate={id:number;score:number;title:string;summary:string;event_signatu
 
 async function candidateDetails(env:any,id:number):Promise<Candidate|null>{
   const d:any=await env.DB.prepare(`SELECT d.id,d.title_en,d.title_id,d.summary_en,d.summary_id,d.event_signature,d.updated_at,sp.event_date,sp.places_json,sp.organizations_json FROM developments d LEFT JOIN development_articles da ON da.development_id=d.id LEFT JOIN articles a ON a.id=da.article_id LEFT JOIN story_packets sp ON sp.article_id=a.id WHERE d.id=? AND d.status NOT IN ('filtered','merged') ORDER BY julianday(COALESCE(a.published_at,a.fetched_at)) DESC LIMIT 1`).bind(id).first();
-  if(!d)return null;const members:any=await env.DB.prepare(`SELECT a.title,a.published_at,sp.event_date,sp.event_key,sp.summary FROM development_articles da JOIN articles a ON a.id=da.article_id LEFT JOIN story_packets sp ON sp.article_id=a.id WHERE da.development_id=? ORDER BY julianday(COALESCE(a.published_at,a.fetched_at)) DESC LIMIT 8`).bind(id).all();return {reports:members.results||[],id:Number(d.id),score:0,title:d.title_id||d.title_en||'',summary:d.summary_id||d.summary_en||'',event_signature:d.event_signature||'',event_date:d.event_date||d.updated_at,places:arr(d.places_json),organizations:arr(d.organizations_json)};
+  if(!d)return null;const members:any=await env.DB.prepare(`SELECT a.title,a.published_at,sp.event_date,sp.event_key,sp.summary,sp.places_json,sp.organizations_json,sp.people_json FROM development_articles da JOIN articles a ON a.id=da.article_id LEFT JOIN story_packets sp ON sp.article_id=a.id WHERE da.development_id=? ORDER BY julianday(COALESCE(a.published_at,a.fetched_at)) DESC LIMIT 16`).bind(id).all();const reports=members.results||[];return {reports,id:Number(d.id),score:0,title:d.title_id||d.title_en||'',summary:d.summary_id||d.summary_en||'',event_signature:d.event_signature||'',event_date:d.event_date||d.updated_at,places:[...new Set(reports.flatMap((r:any)=>arr(r.places_json)))],organizations:[...new Set(reports.flatMap((r:any)=>arr(r.organizations_json)))]};
 }
 
-function scoreCandidate(article:any,packet:StoryPacket,c:Candidate){
-  const lexical=Math.max(jaccard(`${packet.event_key||''} ${article.title}`,`${c.event_signature||''} ${c.title}`),jaccard(packet.summary,c.summary));
+export function scoreCandidate(article:any,packet:StoryPacket,c:Candidate){
+  const memberText=(c.reports||[]).map((r:any)=>`${r.event_key||''} ${r.title||''} ${r.summary||''}`).join(' ');
+  const lexical=Math.max(jaccard(`${packet.event_key||''} ${article.title}`,memberText),jaccard(`${packet.event_key||''} ${article.title}`,`${c.event_signature||''} ${c.title}`),jaccard(packet.summary,c.summary));
   const place=listOverlap(packet.places,c.places),org=listOverlap(packet.organizations,c.organizations),time=dateScore(packet.event_date||article.published_at,c.event_date);
-  return .52*lexical+.18*place+.14*org+.16*time;
+  const people=[...new Set((c.reports||[]).flatMap((r:any)=>arr(r.people_json)))];
+  const actor=listOverlap(packet.people,people);
+  return .40*lexical+.16*place+.10*org+.16*time+.18*actor;
 }
 
 async function denseIds(env:any,vector:number[]|null|undefined){
@@ -35,7 +38,7 @@ async function candidatesFor(env:any,input:ClusterInput){
 }
 
 async function createDevelopment(env:any,article:any,p:StoryPacket){
-  const issue=matchIssue(`${article.title} ${p.summary} ${p.issue_candidates.join(' ')}`),now=new Date().toISOString();
+  const issue=matchIssue(`${article.title} ${p.summary}`),now=new Date().toISOString();
   const signature=`${p.event_key||article.title}\n${p.action||''} ${p.object||''}\nPlaces: ${p.places.join(', ')}\nOrganizations: ${p.organizations.join(', ')}`.slice(0,2200);
   const ins:any=await env.DB.prepare(`INSERT INTO developments(issue_slug,title_en,summary_en,title_id,summary_id,event_signature,status,first_seen_at,updated_at,last_growth_at,pipeline_version,editorial_pending) VALUES(?,?,?,?,?,?,'candidate',?,?,?,?,1)`).bind(issue,article.title,p.summary,article.title,p.summary,signature,article.published_at||article.fetched_at,now,now,2).run();
   const id=Number(ins.meta.last_row_id);await syncDevelopmentKnowledge(env,id,p,article.title);await upsertDevelopmentSearch(env,id,{title:article.title,summary:p.summary,event_key:p.event_key,event_signature:signature,places:p.places,organizations:p.organizations,topics:p.topics});return id;
@@ -86,7 +89,7 @@ export async function reconcileRecentDevelopments(env:any,limit=10){
   for(const id of candidates){
    if(id===Number(seed.id))continue;const a=Math.min(id,Number(seed.id)),b=Math.max(id,Number(seed.id)),key=`${a}:${b}`;if(seen.has(key))continue;seen.add(key);
    const left=await candidateDetails(env,a),right=await candidateDetails(env,b);if(!left||!right||dateScore(left.event_date,right.event_date)<.25)continue;
-   const signature=JSON.stringify(["episode-v2",left.event_signature,left.title,right.event_signature,right.title]);
+   const signature=JSON.stringify(["episode-v3",left.event_signature,left.title,left.reports,right.event_signature,right.title,right.reports]);
    const previous:any=await env.DB.prepare(`SELECT signature FROM cluster_pair_reviews WHERE left_id=? AND right_id=?`).bind(a,b).first();if(previous?.signature===signature)continue;
    pairs.push({article_id:a,development_id:b,left,right,signature});if(pairs.length>=8)break;
   }if(pairs.length>=8)break;

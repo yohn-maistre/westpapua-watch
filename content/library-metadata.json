@@ -192,5 +192,19 @@
     "places": [
       "Intan Jaya"
     ]
+  },
+  "awyu-statement-2024": {
+    "itemType": "statement",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "publisherRole": "civil_society"
+  },
+  "ptfi-audit-2025": {
+    "itemType": "report",
+    "evidenceRoles": [
+      "reference"
+    ],
+    "publisherRole": "company"
   }
 }

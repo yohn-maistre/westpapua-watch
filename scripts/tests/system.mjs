@@ -45,3 +45,25 @@ try{
  assert.equal((await cleanupRecentIrrelevant({DB:db},30)).checked,0);
 }finally{await mf.dispose()}
 console.log('Passed: grounded relevance, episode partitions, period isolation, shared Library contract, all migrations, candidate writes, resource relations/API, idempotent cleanup.');
+
+// Following scope is based on direct subject evidence, never geography alone.
+const {matchesFollowing}=await moduleAt('shared/following.ts');
+assert.equal(matchesFollowing('south-papua-food-energy-estate','Police investigate a death in Merauke'),false);
+assert.equal(matchesFollowing('south-papua-food-energy-estate','Wanam communities oppose the PSN food estate in Merauke'),true);
+assert.equal(matchesFollowing('mining-raja-ampat','A music festival in Raja Ampat'),false);
+assert.equal(matchesFollowing('nduga-displacement','Nduga students win a mathematics contest'),false);
+assert.equal(matchesFollowing('nduga-displacement','Nduga families remain displaced from their homes'),true);
+assert.equal(matchesFollowing('puncak-displacement','Displaced families in Puncak Jaya'),false);
+assert.equal(matchesFollowing('freeport-mimika','Freeport tailings monitoring in Mimika'),true);
+const {onRequest:apiBoundary}=await moduleAt('functions/api/_middleware.ts');
+for(const headers of [{'content-type':'text/html'},{'content-type':'application/json'}]){
+ const response=await apiBoundary({next:async()=>new Response('<!DOCTYPE html><h1>Unavailable</h1>',{status:500,headers})});
+ assert.equal(response.status,502);assert.match(response.headers.get('content-type'),/json/);assert.equal(typeof(await response.json()).error,'string');
+}
+const healthy=await apiBoundary({next:async()=>Response.json({items:[]})});assert.equal(healthy.status,200);assert.deepEqual(await healthy.json(),{items:[]});
+console.log('Passed: Following scope excludes unrelated local stories; API boundary normalizes mislabeled HTML errors.');
+const {scoreCandidate}=await moduleAt('services/watch-engine/src/cluster/index.ts');
+const visitPacket={event_key:'Working visit to Deiyai',summary:'Education commitments during the working visit',places:['Deiyai'],organizations:[],people:['Meki Nawipa'],event_date:'2026-09-06'};
+const visitCandidate={id:1,title:'Education support announced',summary:'Promises of student support',event_signature:'education',places:['Deiyai'],organizations:[],event_date:'2026-09-06',reports:[{title:'Meki Nawipa working visit to Deiyai',event_key:'Working visit to Deiyai',summary:'Meetings with residents',people_json:'["Meki Nawipa"]'}]};
+assert.ok(scoreCandidate({title:'Local response to the visit'},visitPacket,visitCandidate)>scoreCandidate({title:'Local response to the visit'},visitPacket,{...visitCandidate,reports:[]}));
+console.log('Passed: earlier member reports and participants contribute to episode candidate retrieval.');

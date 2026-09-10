@@ -15,9 +15,11 @@ export class NewsCycleWorkflow extends WorkflowEntrypoint<any,unknown>{
       return {mode:'freeze09-maintenance',cleanup,knowledge};
     }
     const backfillDays=Math.max(0,Math.min(31,Number(params?.backfillDays||0)));const isBackfill=backfillDays>0;
-    const items=isBackfill
-      ?await step.do(`discover ${backfillDays}-day backfill`,{retries:{limit:2,delay:'30 seconds',backoff:'exponential'},timeout:'6 minutes'},()=>discoverBackfill(backfillDays))
-      :await step.do('discover enabled publishers',{retries:{limit:2,delay:'20 seconds',backoff:'exponential'},timeout:'3 minutes'},()=>discoverEnabled());
+    const discovery=isBackfill
+      ?step.do(`discover ${backfillDays}-day backfill`,{retries:{limit:2,delay:'30 seconds',backoff:'exponential'},timeout:'6 minutes'},()=>discoverBackfill(backfillDays))
+      :step.do('discover enabled publishers',{retries:{limit:2,delay:'20 seconds',backoff:'exponential'},timeout:'3 minutes'},()=>discoverEnabled());
+    let discoveryFailed=false;
+    const items=await Promise.resolve(discovery).catch(error=>{if(isBackfill)throw error;console.error('Discovery checkpoint failed; continuing existing editorial backlog',error);discoveryFailed=true;return []});
     const scanCap=isBackfill?2000:160,enqueueCap=isBackfill?480:120;
     const fresh=await step.do('remove known urls',async()=>{const out=[];for(const item of items.slice(0,scanCap)){const row=await this.env.DB.prepare(`SELECT id FROM articles WHERE canonical_url=?`).bind(item.url.replace(/\/$/,'')).first();if(!row)out.push(item);if(out.length>=enqueueCap)break}return out});
     const enqueued=await step.do('enqueue ingestion batches',async()=>{if(!fresh.length)return 0;for(let i=0;i<fresh.length;i+=4){const delaySeconds=isBackfill?Math.floor(i/4)*60:0;await this.env.INGEST_QUEUE.send({kind:'ingest_batch',items:fresh.slice(i,i+4)},{delaySeconds})}return fresh.length});
@@ -27,15 +29,15 @@ export class NewsCycleWorkflow extends WorkflowEntrypoint<any,unknown>{
     // cannot suddenly consume the whole writer quota.
     if(isBackfill)return {mode:'backfill',days:backfillDays,discovered:items.length,enqueued,editorial:{skipped:'normal-checkpoints-drain-backlog'}};
 
+    const editorial=await step.do('dispatch one editorial batch',{retries:{limit:1,delay:'15 seconds'},timeout:'1 minute'},()=>enqueueEditorialBacklog(this.env,4));
     const deferred=await step.do('retry deferred relevance',{retries:{limit:1,delay:'20 seconds'},timeout:'2 minutes'},()=>enqueueDeferredRelevance(this.env,10));
     const legacy=await step.do('reprocess legacy singleton backlog',{retries:{limit:1,delay:'20 seconds'},timeout:'2 minutes'},()=>enqueueLegacyReprocessing(this.env,10));
     await step.do('repair explicit relevance rejections',{retries:{limit:1,delay:'15 seconds'},timeout:'3 minutes'},()=>cleanupRecentIrrelevant(this.env,30));
-    const editorial=await step.do('dispatch one editorial batch',{retries:{limit:1,delay:'15 seconds'},timeout:'1 minute'},()=>enqueueEditorialBacklog(this.env,4));
     const reconcile=await step.do('reconcile only high-confidence recent duplicates',{retries:{limit:1,delay:'20 seconds'},timeout:'2 minutes'},()=>reconcileRecentDevelopments(this.env,10));
     const witHour=new Date(Date.now()+9*60*60*1000).getUTCHours();
     const emerging=witHour===18
       ?await step.do('daily emerging issue pass',{retries:{limit:1,delay:'30 seconds'},timeout:'4 minutes'},()=>detectEmergingIssues(this.env,24))
       :{checked:0,upserted:0,skipped:'daily-maintenance-window'};
-    return {deferred,legacy,editorial,reconcile,emerging,discovered:items.length,enqueued,cadence:'hourly'};
+    return {deferred,legacy,editorial,reconcile,emerging,discoveryFailed,discovered:items.length,enqueued,cadence:'hourly'};
   }
 }
