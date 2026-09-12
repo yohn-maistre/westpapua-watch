@@ -8,13 +8,15 @@ const desk=(v:any):WatchDesk=>['environment','land','human_rights','politics','c
 const WORD=/[\p{L}\p{N}]+/gu;
 const ENTITY=/West Papua|Papua Barat|Papua Tengah|Papua Pegunungan|Papua Selatan|Jayapura|Sentani|Raja Ampat|Sorong|Manokwari|Nabire|Merauke|Timika|Mimika|Biak|Wamena|Nduga|Intan Jaya|Yahukimo|Puncak|Fakfak|Kaimana|Tambrauw|Maybrat|ULMWP|KNPB|TPNPB|TNI|Polri|DPR|DPRK|MPR|PIF|Freeport|MIFEE|PSN/gi;
 
+// Provider gateways occasionally omit enrichment fields or add harmless labels. The
+// article id remains mandatory; absent relevance evidence becomes deferred below.
 const packetItemSchema={type:'object',properties:{
   item_type:{type:'string',enum:[...ITEM_TYPES]},evidence_roles:{type:'array',items:{type:'string',enum:[...EVIDENCE_ROLES]}},library_worthy:{type:'boolean'},library_reason:{type:'string'},article_id:{type:'integer'},summary_id:{type:'string'},key_points:{type:'array',items:{type:'string'}},what_changed:{type:'string'},
   event_date:{type:'string'},event_key:{type:'string'},action:{type:'string'},object:{type:'string'},
   places:{type:'array',items:{type:'string'}},people:{type:'array',items:{type:'string'}},organizations:{type:'array',items:{type:'string'}},topics:{type:'array',items:{type:'string'}},issue_candidates:{type:'array',items:{type:'string'}},
   watch_relevance:{type:'boolean'},watch_relevance_confidence:{type:'number'},watch_relevance_reason:{type:'string'},watch_relevance_evidence:{type:'array',items:{type:'string'}},
   watch_desk:{type:'string',enum:['environment','land','human_rights','politics','culture','regional','other']}
-},required:['item_type','evidence_roles','library_worthy','library_reason','article_id','summary_id','key_points','what_changed','event_date','event_key','action','object','places','people','organizations','topics','issue_candidates','watch_relevance','watch_relevance_confidence','watch_relevance_reason','watch_relevance_evidence','watch_desk'],additionalProperties:false};
+},required:['article_id'],additionalProperties:true};
 const EPISODE_GUIDANCE='For event_key name the bounded episode, such as a documented working visit with its date and area. Keep promises, meetings and reactions in action/object and key points. Related stops can share one visit identity only when the evidence links them. Do not create one event identity per promise or merge separate visits merely because the politician matches.';
 const batchSchema={type:'object',properties:{items:{type:'array',items:packetItemSchema}},required:['items'],additionalProperties:false};
 
