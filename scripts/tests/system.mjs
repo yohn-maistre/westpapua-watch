@@ -74,6 +74,8 @@ assert.throws(()=>parseStructured('{"items":[{"verdict":"pass","problem":"false"
 assert.throws(()=>parseStructured('{"items":[{"verdict":"sure","problem":false}]}',schema));
 assert.throws(()=>parseStructured('{"items":[{"verdict":"pass"}]}',schema));
 assert.equal(parseStructured('[{"verdict":"pass","problem":false}]',schema).items[0].verdict,'pass');
+const singleDevelopmentSchema={type:'object',properties:{items:{type:'array',items:{type:'object',properties:{development_id:{type:'integer'},title:{type:'string'}},required:['development_id','title'],additionalProperties:false}}},required:['items'],additionalProperties:false};
+assert.equal(parseStructured('{"development_id":7,"title":"One episode"}',singleDevelopmentSchema).items[0].development_id,7);
 assert.throws(()=>parseStructured('[{"verdict":"pass","problem":false}]',{type:'object',properties:{answer:{type:'string'}},required:['answer'],additionalProperties:false}));
 const originalFetch=globalThis.fetch;let calls=0;
 try{

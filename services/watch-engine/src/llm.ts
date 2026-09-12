@@ -77,11 +77,15 @@ function balancedJson(raw:string){
 }
 
 function normalizeBatchEnvelope(value:any,schema:any){
-  // Some OpenAI-compatible gateway providers return the requested batch itself
-  // instead of its {items:[...]} envelope. Accept only this exact, lossless form;
-  // every item still goes through the full schema validation below.
-  const props=schema?.properties||{};
-  if(Array.isArray(value)&&schema?.type==='object'&&schema?.additionalProperties===false&&Array.isArray(schema?.required)&&schema.required.length===1&&schema.required[0]==='items'&&Object.keys(props).length===1&&props.items?.type==='array')return {items:value};
+  // Dynamic providers may return either the batch payload or one object directly.
+  // Envelope recovery is lossless; every recovered item still validates locally.
+  const props=schema?.properties||{},items=props.items;
+  const isItemsEnvelope=schema?.type==='object'&&schema?.additionalProperties===false&&Array.isArray(schema?.required)&&schema.required.length===1&&schema.required[0]==='items'&&Object.keys(props).length===1&&items?.type==='array';
+  if(!isItemsEnvelope)return value;
+  if(Array.isArray(value))return {items:value};
+  const itemProps=items?.items?.properties||{};
+  const identity=['article_id','development_id'].find(key=>Object.prototype.hasOwnProperty.call(itemProps,key));
+  if(value&&typeof value==='object'&&!Array.isArray(value)&&!Object.prototype.hasOwnProperty.call(value,'items')&&identity&&Object.prototype.hasOwnProperty.call(value,identity))return {items:[value]};
   return value;
 }
 
