@@ -62,7 +62,8 @@ for(const headers of [{'content-type':'text/html'},{'content-type':'application/
 }
 const healthy=await apiBoundary({next:async()=>Response.json({items:[]})});assert.equal(healthy.status,200);assert.deepEqual(await healthy.json(),{items:[]});
 console.log('Passed: Following scope excludes unrelated local stories; API boundary normalizes mislabeled HTML errors.');
-const {scoreCandidate}=await moduleAt('services/watch-engine/src/cluster/index.ts');
+const {scoreCandidate,invalidAdjudicationMustCreateNewEvent}=await moduleAt('services/watch-engine/src/cluster/index.ts');
+const {ModelRequestError}=await moduleAt('services/watch-engine/src/llm.ts');assert.equal(invalidAdjudicationMustCreateNewEvent(new ModelRequestError('malformed','bare new_event')),true);assert.equal(invalidAdjudicationMustCreateNewEvent(new Error('Event adjudication omitted article')),true);assert.equal(invalidAdjudicationMustCreateNewEvent(new ModelRequestError('quota','quota')),false);
 const visitPacket={event_key:'Working visit to Deiyai',summary:'Education commitments during the working visit',places:['Deiyai'],organizations:[],people:['Meki Nawipa'],event_date:'2026-09-06'};
 const visitCandidate={id:1,title:'Education support announced',summary:'Promises of student support',event_signature:'education',places:['Deiyai'],organizations:[],event_date:'2026-09-06',reports:[{title:'Meki Nawipa working visit to Deiyai',event_key:'Working visit to Deiyai',summary:'Meetings with residents',people_json:'["Meki Nawipa"]'}]};
 assert.ok(scoreCandidate({title:'Local response to the visit'},visitPacket,visitCandidate)>scoreCandidate({title:'Local response to the visit'},visitPacket,{...visitCandidate,reports:[]}));
