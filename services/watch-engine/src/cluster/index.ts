@@ -51,11 +51,11 @@ async function attach(env:any,id:number,input:ClusterInput,method:string){
   await markDevelopmentEditorialPending(env,id);return id;
 }
 
-const adjudicationItem={type:'object',properties:{article_id:{type:'integer'},development_id:{type:'integer'},relation:{type:'string',enum:['same_event','new_event']},same_event:{type:'boolean'},reason:{type:'string'}},required:['article_id','development_id'],additionalProperties:false};
+const adjudicationItem={type:'object',properties:{article_id:{type:'integer'},development_id:{type:'integer'},relation:{type:'string',enum:['same_event','new_event']},same_event:{type:'boolean'},reason:{type:'string'}},required:['article_id','development_id'],additionalProperties:true};
 const adjudicationSchema={type:'object',properties:{items:{type:'array',items:adjudicationItem}},required:['items'],additionalProperties:false};
-// Gateway routes occasionally omit optional rationale/decision labels or emit the
-// legacy boolean field. An omitted decision must fail closed as a new event, never
-// silently merge records.
+// Gateway routes occasionally emit legacy aliases or extra rationale fields, and
+// may omit optional decision labels. An omitted decision must fail closed as a new
+// event, never silently merge records.
 const adjudicatedRelation=(decision:any)=>decision?.relation==='same_event'||decision?.same_event===true?'same_event':'new_event';
 
 export async function clusterArticles(env:any,inputs:ClusterInput[]){
