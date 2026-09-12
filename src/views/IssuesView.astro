@@ -9,9 +9,9 @@ const {locale='en'}=Astro.props as {locale?:Locale};const en=locale==='en';
 const featured=featuredTopicSlugs.map(s=>dossierBySlug[s]).filter(Boolean);
 const secondary=secondaryFollowingSlugs.map(s=>dossierBySlug[s]).filter(Boolean);
 ---
-<BaseLayout locale={locale} active="issues" title={en?'Topics':'Topik'}>
+<BaseLayout locale={locale} active="issues" title={en?'Issues':'Isu'}>
 <section class="section topics-editorial"><div class="wrap">
-<header class="topics-opening"><h1 class="page-title">{en?'Topics.':'Topik.'}</h1><a href="#topics">{en?'Browse topics':'Jelajahi topik'} <span aria-hidden="true">↓</span></a></header>
+<header class="topics-opening"><h1 class="page-title">{en?'Issues.':'Isu.'}</h1><a href="#topics">{en?'Browse issues':'Jelajahi isu'} <span aria-hidden="true">↓</span></a></header>
 <section id="following" aria-labelledby="following-title"><div class="topics-section-title"><h2 id="following-title">{en?'Following':'Dalam pantauan'}</h2><span>01—{String(featured.length+secondary.length).padStart(2,'0')}</span></div>
 <div class="following-mosaic">{featured.map((item,i)=><a class:list={['following-tile',`following-tile-${i}`]} href={withLocale(`/topics/${item.slug}/`,locale)}>
 <span class="following-number">{String(i+1).padStart(2,'0')}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span>
@@ -19,7 +19,7 @@ const secondary=secondaryFollowingSlugs.map(s=>dossierBySlug[s]).filter(Boolean)
 <footer>{item.sourceIds.length} {en?'references':'referensi'}</footer></a>)}
 {secondary.map((item,i)=><a class="following-tile following-small" href={withLocale(`/topics/${item.slug}/`,locale)}><span class="following-number">{String(featured.length+i+1).padStart(2,'0')}<span aria-hidden="true">↗</span></span><div class="following-copy"><h3>{t(item.title,locale)}</h3><p>{t(item.summary,locale)}</p></div></a>)}
 </div></section>
-<section id="topics" class="topics-directory" aria-labelledby="topics-title"><div class="topics-section-title"><h2 id="topics-title">{en?'Topics':'Topik'}</h2><span>{String(issues.length).padStart(2,'0')}</span></div><div class="topics-directory-grid">{issues.map((item,i)=><a href={withLocale(`/topics/${item.slug}/`,locale)}><span class="directory-number">{String(i+1).padStart(2,'0')}</span><div><h3>{t(item.title,locale)}</h3><p>{t(item.summary,locale)}</p></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a>)}</div></section>
+<section id="topics" class="topics-directory" aria-labelledby="topics-title"><div class="topics-section-title"><h2 id="topics-title">{en?'Issues':'Isu'}</h2><span>{String(issues.length).padStart(2,'0')}</span></div><div class="topics-directory-grid">{issues.map((item,i)=><a href={withLocale(`/topics/${item.slug}/`,locale)}><span class="directory-number">{String(i+1).padStart(2,'0')}</span><div><h3>{t(item.title,locale)}</h3><p>{t(item.summary,locale)}</p></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a>)}</div></section>
 </div></section></BaseLayout>
 <style>
 .topics-opening{display:flex;align-items:baseline;justify-content:space-between;gap:2rem;margin-bottom:3rem}.topics-opening>a{font-size:.85rem;color:var(--muted);white-space:nowrap}.topics-opening>a span{margin-left:1rem}.topics-section-title{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.5rem;gap:1rem}.topics-section-title h2{font-size:clamp(1.6rem,3vw,2.6rem);letter-spacing:-.045em;margin:0}.topics-section-title>span,.directory-number{font-size:.7rem;font-variant-numeric:tabular-nums;letter-spacing:.08em;color:var(--muted)}

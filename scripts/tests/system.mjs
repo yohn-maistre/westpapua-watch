@@ -107,3 +107,9 @@ assert.equal(normalizeLibraryItem({source_url:'https://example.com',metadata_jso
 assert.equal(retrieveLibrary([rich],'A. Author').length,1);
 const {libraryVisualTone}=await moduleAt('shared/library.ts');assert.equal(libraryVisualTone(rich),'research');assert.equal(libraryVisualTone(normalizeLibraryItem({type:'book'})),'book');assert.equal(libraryVisualTone(normalizeLibraryItem({type:'reporting'})),'website');
 console.log('Passed: bibliographic metadata, subtype groups, safe covers, type-based visual fallbacks and author search.');
+
+const libraryCss=await readFile('src/styles/library-list.css','utf8'),storyView=await readFile('src/views/StoryView.astro','utf8'),siteData=await readFile('src/data/site.ts','utf8'),issuesView=await readFile('src/views/IssuesView.astro','utf8'),synthRoute=JSON.parse(await readFile('config/ai-gateway/watch-synth.json','utf8'));
+assert.match(libraryCss,/library-media::before/);assert.match(libraryCss,/--library-glow/);assert.match(storyView,/hyphens:auto;overflow-wrap:anywhere/);
+assert.match(siteData,/en: 'Issues', pmy: 'Isu'/);assert.match(issuesView,/Browse issues/);assert.equal(synthRoute.elements.find(x=>x.id==='START').outputs.next.elementId,'gemini-lite-synth');
+assert.equal(synthRoute.elements.find(x=>x.id==='gemini-lite-synth').outputs.fallback.elementId,'minimax-synth');assert.equal(synthRoute.elements.find(x=>x.id==='minimax-synth').outputs.fallback.elementId,'qwen-synth');
+console.log('Passed: textured Library fallbacks, emergency headline wrapping, public Issues labels and Gemini-first synthesis routing.');

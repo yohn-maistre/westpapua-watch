@@ -22,7 +22,7 @@ const places=[...new Set(resources.flatMap(r=>r.places))].sort();
   <div class="resource-tools"><input class="resource-search" data-resource-search type="search" aria-label={locale==='en'?'Search library':'Cari pustaka'} placeholder={locale==='en'?'Search library':'Cari pustaka'} /></div>
   <ResourceFilters client:load locale={locale} facets={[
  {key:'following',label:locale==='en'?'Following':'Dalam pantauan',options:followingSlugs.map(slug=>dossierBySlug[slug]).map(d=>[d.slug,t(d.title,locale)])},
- {key:'topic',label:locale==='en'?'Topics':'Topik',options:TOPICS.map(([v,en,id])=>[v,locale==='en'?en:id])},
+ {key:'topic',label:locale==='en'?'Issues':'Isu',options:TOPICS.map(([v,en,id])=>[v,locale==='en'?en:id])},
  {key:'type',label:locale==='en'?'Type':'Jenis',options:LIBRARY_GROUPS.map(([v,en,id])=>[v,locale==='en'?en:id])},
  {key:'place',label:locale==='en'?'Place':'Lokasi',options:places.map(p=>[p,p])},
  {key:'language',label:locale==='en'?'Language':'Bahasa',options:[['id','Indonesia'],['en','English'],['multi',locale==='en'?'Multilingual':'Multibahasa']]}
