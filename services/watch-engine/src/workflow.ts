@@ -22,7 +22,7 @@ export class NewsCycleWorkflow extends WorkflowEntrypoint<any,unknown>{
     const items=await Promise.resolve(discovery).catch(error=>{if(isBackfill)throw error;console.error('Discovery checkpoint failed; continuing existing editorial backlog',error);discoveryFailed=true;return []});
     const scanCap=isBackfill?2000:160,enqueueCap=isBackfill?480:120;
     const fresh=await step.do('remove known urls',async()=>{const out=[];for(const item of items.slice(0,scanCap)){const row=await this.env.DB.prepare(`SELECT id FROM articles WHERE canonical_url=?`).bind(item.url.replace(/\/$/,'')).first();if(!row)out.push(item);if(out.length>=enqueueCap)break}return out});
-    const enqueued=await step.do('enqueue ingestion batches',async()=>{if(!fresh.length)return 0;for(let i=0;i<fresh.length;i+=4){const delaySeconds=isBackfill?Math.floor(i/4)*60:0;await this.env.INGEST_QUEUE.send({kind:'ingest_batch',items:fresh.slice(i,i+4)},{delaySeconds})}return fresh.length});
+    const enqueued=await step.do('enqueue ingestion messages',async()=>{if(!fresh.length)return 0;for(let i=0;i<fresh.length;i++){const delaySeconds=isBackfill?i*15:0;await this.env.INGEST_QUEUE.send(fresh[i],{delaySeconds})}return fresh.length});
 
     // A backfill only populates the durable ingestion/Development backlog. Normal
     // scheduled checkpoints own editorial admission, so a one-time archive import

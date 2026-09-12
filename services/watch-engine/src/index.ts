@@ -178,5 +178,5 @@ export default {
     return json({error:'Not found'},404);
   },
   async scheduled(controller:any,env:any,ctx:any){const slot=Math.floor(Number(controller.scheduledTime||Date.now())/1_800_000);const id=`cron-${slot}`;ctx.waitUntil(env.NEWS_CYCLE.create({id,params:{reason:'cloudflare-cron',scheduledTime:controller.scheduledTime,cron:controller.cron}}).catch((e:any)=>{const message=String(e?.message||e);if(/already|exist|duplicate/i.test(message)){console.log('news cycle already exists',id);return}throw e}))},
-  async queue(batch:any,env:any){for(const m of batch.messages){try{if(m.body?.kind==='editorial')await processEditorialJob(env,m.body);else await processArticle(env,m.body);m.ack()}catch(e){console.error('queue infrastructure job failed',batch.queue,m.body?.developmentId||m.body?.url,e);m.retry()}}}
+  async queue(batch:any,env:any){for(const m of batch.messages){try{if(m.body?.kind==='editorial')await processEditorialJob(env,m.body);else if(m.body?.kind==='ingest_batch'){for(const item of m.body.items||[])await env.INGEST_QUEUE.send(item)}else await processArticle(env,m.body);m.ack()}catch(e){console.error('queue infrastructure job failed',batch.queue,m.body?.developmentId||m.body?.url,e);m.retry()}}}
 };

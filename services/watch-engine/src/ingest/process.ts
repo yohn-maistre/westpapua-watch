@@ -78,11 +78,11 @@ export async function processArticle(env:any,message:IngestMessage|IngestBatchMe
 export async function enqueueDeferredRelevance(env:any,limit=10){
   const rows:any=await env.DB.prepare(`SELECT id,publisher_id,canonical_url,title,published_at,status,fetched_at FROM articles WHERE status='relevance_deferred' OR (status='relevance_queued' AND fetched_at<=datetime('now','-1 hour')) OR (status='normalized' AND fetched_at<=datetime('now','-1 hour') AND EXISTS(SELECT 1 FROM story_packets sp WHERE sp.article_id=articles.id AND sp.watch_relevance=1 AND sp.watch_relevance_confidence>=.70)) ORDER BY COALESCE(published_at,fetched_at) DESC LIMIT ?`).bind(Math.max(1,Math.min(30,limit))).all();
   const items:IngestMessage[]=[];for(const row of rows.results||[]){await env.DB.prepare(`UPDATE articles SET status='relevance_queued' WHERE id=?`).bind(row.id).run();items.push({sourceId:row.publisher_id,url:row.canonical_url,title:row.title,publishedAt:row.published_at,force:true})}
-  for(let i=0;i<items.length;i+=4)await env.INGEST_QUEUE.send({kind:'ingest_batch',items:items.slice(i,i+4)});return {queued:items.length};
+  for(const item of items)await env.INGEST_QUEUE.send(item);return {queued:items.length};
 }
 
 export async function enqueueLegacyReprocessing(env:any,limit=10){
   const rows:any=await env.DB.prepare(`SELECT d.id development_id,a.id article_id,a.publisher_id,a.canonical_url,a.title,a.published_at FROM developments d JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id WHERE d.pipeline_version=1 AND d.status IN ('candidate','held','retrying') GROUP BY d.id HAVING COUNT(da.article_id)=1 ORDER BY d.updated_at ASC LIMIT ?`).bind(limit).all();const items:IngestMessage[]=[];
   for(const row of rows.results||[]){await env.DB.prepare(`DELETE FROM development_articles WHERE development_id=?`).bind(row.development_id).run();await env.DB.prepare(`DELETE FROM developments WHERE id=?`).bind(row.development_id).run();await env.DB.prepare(`UPDATE articles SET status='normalized' WHERE id=?`).bind(row.article_id).run();items.push({sourceId:row.publisher_id,url:row.canonical_url,title:row.title,publishedAt:row.published_at,force:true})}
-  for(let i=0;i<items.length;i+=4)await env.INGEST_QUEUE.send({kind:'ingest_batch',items:items.slice(i,i+4)});return {queued:items.length};
+  for(const item of items)await env.INGEST_QUEUE.send(item);return {queued:items.length};
 }
