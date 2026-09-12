@@ -73,6 +73,8 @@ const schema={type:'object',properties:{items:{type:'array',items:{type:'object'
 assert.throws(()=>parseStructured('{"items":[{"verdict":"pass","problem":"false"}]}',schema));
 assert.throws(()=>parseStructured('{"items":[{"verdict":"sure","problem":false}]}',schema));
 assert.throws(()=>parseStructured('{"items":[{"verdict":"pass"}]}',schema));
+assert.equal(parseStructured('[{"verdict":"pass","problem":false}]',schema).items[0].verdict,'pass');
+assert.throws(()=>parseStructured('[{"verdict":"pass","problem":false}]',{type:'object',properties:{answer:{type:'string'}},required:['answer'],additionalProperties:false}));
 const originalFetch=globalThis.fetch;let calls=0;
 try{
  globalThis.fetch=async(url,options)=>{calls++;const body=JSON.parse(options.body);assert.equal(body.model,'dynamic/watch-fast');assert.equal(body.response_format,undefined);assert.equal(body.reasoning_effort,undefined);assert.match(body.messages[0].content,/Schema:/);return Response.json({choices:[{message:{content:'{"items":[{"verdict":"pass","problem":false}]}'}}]})};

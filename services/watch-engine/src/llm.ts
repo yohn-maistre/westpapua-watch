@@ -76,12 +76,21 @@ function balancedJson(raw:string){
   return null;
 }
 
+function normalizeBatchEnvelope(value:any,schema:any){
+  // Some OpenAI-compatible gateway providers return the requested batch itself
+  // instead of its {items:[...]} envelope. Accept only this exact, lossless form;
+  // every item still goes through the full schema validation below.
+  const props=schema?.properties||{};
+  if(Array.isArray(value)&&schema?.type==='object'&&schema?.additionalProperties===false&&Array.isArray(schema?.required)&&schema.required.length===1&&schema.required[0]==='items'&&Object.keys(props).length===1&&props.items?.type==='array')return {items:value};
+  return value;
+}
+
 export function parseStructured<T>(raw:string,schema:any):T{
   const clean=stripFence(raw);
-  try{return validateRequired(JSON.parse(clean),schema) as T}catch(first:any){
+  try{return validateRequired(normalizeBatchEnvelope(JSON.parse(clean),schema),schema) as T}catch(first:any){
     const fragment=balancedJson(clean);
     if(!fragment)throw new ModelRequestError('malformed',`no balanced JSON (${errorText(first)})`);
-    try{return validateRequired(JSON.parse(fragment),schema) as T}catch(second:any){
+    try{return validateRequired(normalizeBatchEnvelope(JSON.parse(fragment),schema),schema) as T}catch(second:any){
       throw new ModelRequestError('malformed',`invalid structured JSON (${errorText(second)})`);
     }
   }
