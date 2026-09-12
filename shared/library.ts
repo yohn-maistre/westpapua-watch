@@ -37,11 +37,7 @@ export function retrieveLibrary(items:LibraryItem[],query:string,limit=5){
 }
 
 export function safeVisualUrl(value:unknown){try{const url=new URL(String(value||''));return url.protocol==='https:'?url.href:undefined}catch{return undefined}}
-export function libraryVisualTone(item:Pick<LibraryItem,'topics'|'id'>){
- const topics=item.topics.join(' ');
- if(/environment|land-|climate|extraction/.test(topics))return 'land';
- if(/human-rights|conflict|politics/.test(topics))return 'rights';
- if(/culture|language|education|history/.test(topics))return 'culture';
- let hash=0;for(const ch of item.id)hash=(hash*31+ch.charCodeAt(0))>>>0;
- return ['land','rights','culture','society'][hash%4];
+export function libraryVisualTone(item:Pick<LibraryItem,'itemType'>){
+ const group=libraryGroup(item.itemType);
+ return group==='analysis'?'website':group;
 }

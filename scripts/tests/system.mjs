@@ -99,5 +99,5 @@ assert.equal(rich.itemType,'research');assert.equal(rich.subtype,'thesis');asser
 assert.equal(normalizeLibraryItem({url:'https://example.com',visual:{url:'javascript:alert(1)'}}).visual,undefined);
 assert.equal(normalizeLibraryItem({source_url:'https://example.com',metadata_json:JSON.stringify({authors:['A. Author'],visual:{url:'https://example.com/cover.jpg'}})}).authors[0],'A. Author');
 assert.equal(retrieveLibrary([rich],'A. Author').length,1);
-const {libraryVisualTone}=await moduleAt('shared/library.ts');assert.equal(libraryVisualTone(rich),libraryVisualTone(rich));
-console.log('Passed: bibliographic metadata, subtype groups, safe covers, deterministic visual fallbacks and author search.');
+const {libraryVisualTone}=await moduleAt('shared/library.ts');assert.equal(libraryVisualTone(rich),'research');assert.equal(libraryVisualTone(normalizeLibraryItem({type:'book'})),'book');assert.equal(libraryVisualTone(normalizeLibraryItem({type:'reporting'})),'website');
+console.log('Passed: bibliographic metadata, subtype groups, safe covers, type-based visual fallbacks and author search.');
