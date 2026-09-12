@@ -15,6 +15,8 @@ const parse=(v:any)=>{try{const x=JSON.parse(String(v||'[]'));return Array.isArr
 
 type Prepared={id:number;source:SourceConfig;extracted:ExtractedArticle;decision:PrefilterDecision;syndicatedFrom?:number|null;packet?:StoryPacket;row?:any};
 
+export const reusableRelevantPacket=(prior:any)=>prior?.watch_relevance===1&&Number(prior.watch_relevance_confidence)>=.70&&String(prior.summary||'').trim().length>0;
+
 function packetFromRow(prior:any,extracted:ExtractedArticle):StoryPacket{
   return {item_type:prior.item_type,evidence_roles:parse(prior.evidence_roles_json),library_worthy:prior.library_worthy===1,library_reason:prior.library_reason,summary:prior.summary,key_points:parse(prior.key_points_json),what_changed:prior.what_changed||'',event_date:prior.event_date||extracted.publishedAt,event_key:prior.event_key||extracted.title,action:prior.action||'',object:prior.object||'',places:parse(prior.places_json),people:parse(prior.people_json),organizations:parse(prior.organizations_json),topics:parse(prior.topics_json),issue_candidates:parse(prior.issue_candidates_json),watch_relevance:prior.watch_relevance===1,watch_relevance_confidence:Number(prior.watch_relevance_confidence||0),watch_relevance_reason:prior.watch_relevance_reason||'syndicated from prior packet',watch_relevance_evidence:parse(prior.watch_relevance_evidence_json),watch_desk:prior.watch_desk||'other'};
 }
@@ -22,8 +24,9 @@ function packetFromRow(prior:any,extracted:ExtractedArticle):StoryPacket{
 
 async function prepare(env:any,message:IngestMessage):Promise<Prepared|null>{
   const source=sourceById[message.sourceId];if(!source||!source.enabled)return null;
-  const incoming=canonical(message.url);let known:any=await env.DB.prepare(`SELECT id,status FROM articles WHERE canonical_url=?`).bind(incoming).first();
+  const incoming=canonical(message.url);let known:any=await env.DB.prepare(`SELECT * FROM articles WHERE canonical_url=?`).bind(incoming).first();
   if(!message.force&&(known?.status==='clustered'||known?.status==='filtered'))return null;
+  if(message.force&&known?.id&&String(known.body_excerpt||'').length>=250){const prior:any=await env.DB.prepare(`SELECT * FROM story_packets WHERE article_id=?`).bind(known.id).first();if(reusableRelevantPacket(prior)){const extracted:ExtractedArticle={canonicalUrl:known.canonical_url,title:known.title,description:known.summary||'',body:known.body_excerpt,publishedAt:known.published_at||message.publishedAt,language:known.language||source.language[0],extractionMethod:known.extraction_method||'fetch+fallback'};return {id:Number(known.id),source,extracted,decision:prefilterArticle(extracted,source),syndicatedFrom:known.syndicated_from_article_id||null,packet:packetFromRow(prior,extracted),row:known}}}
   const extracted=await extractArticle(message.url,source,env);if(!extracted)return null;
   const published=extracted.publishedAt||message.publishedAt;
   if(message.publishedAfter){const timestamp=Date.parse(published||'');if(!Number.isFinite(timestamp)||timestamp<Date.parse(message.publishedAfter)||timestamp>Date.now()+864e5){console.info('Backfill skipped: publication date outside window or unverified',message.sourceId,message.url);return null}}
@@ -76,7 +79,7 @@ export async function processArticle(env:any,message:IngestMessage|IngestBatchMe
 }
 
 export async function enqueueDeferredRelevance(env:any,limit=10){
-  const rows:any=await env.DB.prepare(`SELECT id,publisher_id,canonical_url,title,published_at,status,fetched_at FROM articles WHERE status='relevance_deferred' OR (status='relevance_queued' AND fetched_at<=datetime('now','-1 hour')) OR (status='normalized' AND fetched_at<=datetime('now','-1 hour') AND EXISTS(SELECT 1 FROM story_packets sp WHERE sp.article_id=articles.id AND sp.watch_relevance=1 AND sp.watch_relevance_confidence>=.70)) ORDER BY COALESCE(published_at,fetched_at) DESC LIMIT ?`).bind(Math.max(1,Math.min(30,limit))).all();
+  const rows:any=await env.DB.prepare(`SELECT a.id,a.publisher_id,a.canonical_url,a.title,a.published_at,a.status,a.fetched_at FROM articles a JOIN publishers p ON p.id=a.publisher_id LEFT JOIN story_packets sp ON sp.article_id=a.id WHERE (a.status='relevance_deferred' AND a.fetched_at<=datetime('now','-1 hour')) OR (a.status='relevance_queued' AND a.fetched_at<=datetime('now','-1 hour')) OR (a.status='normalized' AND a.fetched_at<=datetime('now','-1 hour') AND sp.watch_relevance=1 AND sp.watch_relevance_confidence>=.70) ORDER BY CASE WHEN a.status='normalized' AND sp.watch_relevance=1 AND sp.watch_relevance_confidence>=.70 THEN 0 ELSE 1 END,CASE WHEN sp.item_type IN ('reporting','news') THEN 0 ELSE 1 END,CASE WHEN date(COALESCE(sp.event_date,a.published_at,a.fetched_at))>=date('now','-14 days') THEN 0 ELSE 1 END,p.priority ASC,julianday(COALESCE(a.published_at,a.fetched_at)) DESC LIMIT ?`).bind(Math.max(1,Math.min(30,limit))).all();
   const items:IngestMessage[]=[];for(const row of rows.results||[]){await env.DB.prepare(`UPDATE articles SET status='relevance_queued' WHERE id=?`).bind(row.id).run();items.push({sourceId:row.publisher_id,url:row.canonical_url,title:row.title,publishedAt:row.published_at,force:true})}
   for(const [index,item] of items.entries())await env.INGEST_QUEUE.send(item,{delaySeconds:index*12});return {queued:items.length};
 }

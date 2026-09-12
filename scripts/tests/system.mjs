@@ -71,9 +71,10 @@ const grounded=fallbackDraft({dev:{title_en:'Existing grounded title',summary_en
 assert.equal(draftFrom({development_id:7,summary_id:'Ringkasan baru'},grounded).title_en,'Existing grounded title');
 assert.equal(draftFrom({development_id:7,summary_id:'Ringkasan baru'},grounded).summary_id,'Ringkasan baru');
 assert.deepEqual(draftFrom({development_id:7},grounded).places,['Deiyai']);
-const localBrief={items:[{title:'LBH asks police to finish the investigation',summary:'A'.repeat(100),published_at:new Date().toISOString(),role:'local_newsroom',item_type:'reporting',watch_relevance:1,watch_relevance_confidence:.95}]};
-assert.equal(sourceBriefEligible(localBrief),true);assert.equal(sourceBriefEligible({...localBrief,items:[...localBrief.items,{...localBrief.items[0]}]}),false);assert.equal(sourceBriefEligible({items:[{...localBrief.items[0],role:'civil_society'}]}),false);
-console.log('Passed: episode retrieval, grounded partial drafts and tightly bounded source-brief fallback.');
+const localBrief={items:[{title:'LBH asks police to finish the investigation',summary:'A'.repeat(100),published_at:new Date().toISOString(),event_date:new Date().toISOString().slice(0,10),role:'local_newsroom',item_type:'reporting',watch_relevance:1,watch_relevance_confidence:.95}]};
+assert.equal(sourceBriefEligible(localBrief),true);assert.equal(sourceBriefEligible({...localBrief,items:[...localBrief.items,{...localBrief.items[0]}]}),false);assert.equal(sourceBriefEligible({items:[{...localBrief.items[0],role:'civil_society'}]}),false);assert.equal(sourceBriefEligible({items:[{...localBrief.items[0],published_at:null,event_date:'2025-09-18'}]}),false);
+const {reusableRelevantPacket}=await moduleAt('services/watch-engine/src/ingest/process.ts');assert.equal(reusableRelevantPacket({watch_relevance:1,watch_relevance_confidence:.95,summary:'Grounded packet'}),true);assert.equal(reusableRelevantPacket({watch_relevance:0,watch_relevance_confidence:1,summary:'Irrelevant'}),false);assert.equal(reusableRelevantPacket({watch_relevance:1,watch_relevance_confidence:0,summary:'Failed packet'}),false);
+console.log('Passed: episode retrieval, grounded partial drafts, bounded source briefs and safe packet replay.');
 
 const {runJson,parseStructured}=await moduleAt('services/watch-engine/src/llm.ts');
 const schema={type:'object',properties:{items:{type:'array',items:{type:'object',properties:{verdict:{type:'string',enum:['pass','revise']},problem:{type:'boolean'}},required:['verdict','problem'],additionalProperties:false}}},required:['items'],additionalProperties:false};
