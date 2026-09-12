@@ -66,7 +66,12 @@ const {scoreCandidate}=await moduleAt('services/watch-engine/src/cluster/index.t
 const visitPacket={event_key:'Working visit to Deiyai',summary:'Education commitments during the working visit',places:['Deiyai'],organizations:[],people:['Meki Nawipa'],event_date:'2026-09-06'};
 const visitCandidate={id:1,title:'Education support announced',summary:'Promises of student support',event_signature:'education',places:['Deiyai'],organizations:[],event_date:'2026-09-06',reports:[{title:'Meki Nawipa working visit to Deiyai',event_key:'Working visit to Deiyai',summary:'Meetings with residents',people_json:'["Meki Nawipa"]'}]};
 assert.ok(scoreCandidate({title:'Local response to the visit'},visitPacket,visitCandidate)>scoreCandidate({title:'Local response to the visit'},visitPacket,{...visitCandidate,reports:[]}));
-console.log('Passed: earlier member reports and participants contribute to episode candidate retrieval.');
+const {fallbackDraft,draftFrom}=await moduleAt('services/watch-engine/src/cluster/editorial.ts');
+const grounded=fallbackDraft({dev:{title_en:'Existing grounded title',summary_en:'Existing grounded summary'},items:[{title:'Source title',places_json:'["Deiyai"]',topics_json:'["governance"]'}]});
+assert.equal(draftFrom({development_id:7,summary_id:'Ringkasan baru'},grounded).title_en,'Existing grounded title');
+assert.equal(draftFrom({development_id:7,summary_id:'Ringkasan baru'},grounded).summary_id,'Ringkasan baru');
+assert.deepEqual(draftFrom({development_id:7},grounded).places,['Deiyai']);
+console.log('Passed: earlier member reports contribute to episode retrieval; partial editorial output retains grounded fields.');
 
 const {runJson,parseStructured}=await moduleAt('services/watch-engine/src/llm.ts');
 const schema={type:'object',properties:{items:{type:'array',items:{type:'object',properties:{verdict:{type:'string',enum:['pass','revise']},problem:{type:'boolean'}},required:['verdict','problem'],additionalProperties:false}}},required:['items'],additionalProperties:false};
