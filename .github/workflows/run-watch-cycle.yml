@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: Read editorial status before cycle
+      - name: Read operator status before cycle
         env:
           WATCH_ADMIN_TOKEN: ${{ secrets.WATCH_ADMIN_TOKEN }}
         run: |
@@ -26,7 +26,7 @@ jobs:
             -H "Authorization: Bearer $WATCH_ADMIN_TOKEN" \
             -H 'Accept: application/json' \
             -H 'User-Agent: westpapua-watch-operator/1.0' \
-            https://westpapua.watch/api/admin/review-status
+            https://westpapua.watch/api/admin/status
       - name: Trigger one normal Watch cycle
         if: ${{ inputs.run_cycle }}
         env:
@@ -39,10 +39,10 @@ jobs:
             -H 'User-Agent: westpapua-watch-operator/1.0' \
             --data '' \
             https://westpapua.watch/api/admin/run
-      - name: Read public health after trigger
+      - name: Read public data after trigger
         if: ${{ inputs.run_cycle }}
         run: |
-          for path in /api/engine-health '/api/current?limit=6'; do
+          for path in /api/current?limit=6 /api/geo-status; do
             curl --fail-with-body --retry 2 --retry-all-errors --connect-timeout 15 --max-time 60 \
               -H 'Accept: application/json' \
               -H 'User-Agent: westpapua-watch-operator/1.0' \

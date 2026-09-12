@@ -101,12 +101,14 @@ This preserves reporting provenance while allowing the editorial interpretation 
 
 Do not run several Workflows concurrently. Trigger one, let its queue drain, inspect Current/critic diagnostics, then trigger the next if you want to accelerate backlog reprocessing.
 
-Useful public endpoints:
+Useful public reader endpoints:
 
-- `/api/engine-health`
 - `/api/current`
 - `/api/issues`
-- `/api/emerging-issues`
+
+Useful authenticated operator endpoint:
+
+- `/api/admin/status` (Bearer `WATCH_ADMIN_TOKEN`; combines bounded engine and editorial telemetry)
 
 Useful internal Worker endpoint:
 

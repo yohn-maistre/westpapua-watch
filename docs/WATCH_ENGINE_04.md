@@ -38,13 +38,13 @@ Variable: WATCH_ENGINE
 Service: westpapua-watch-engine
 ```
 
-Redeploy Pages, then visit:
+Redeploy Pages, then call the authenticated operator endpoint with `WATCH_ADMIN_TOKEN`:
 
 ```text
-/api/engine-health
+/api/admin/status
 ```
 
-The response should report the D1, R2, Vectorize, Workers AI, Browser Run, Queue and Workflow bindings as available.
+The response should expose only bounded health and editorial telemetry to an authorized operator. Public reader routes do not expose service health or binding details.
 
 ## Ingestion path
 

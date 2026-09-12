@@ -36,7 +36,7 @@ For Google AI Studio, prefer storing the Google API key in AI Gateway rather tha
 2. The Watch Engine deploy should no longer fail on paid Workflow scheduling.
 3. Add the Pages service binding `WATCH_ENGINE -> westpapua-watch-engine` if it is not already present.
 4. Redeploy Pages.
-5. Check `/api/engine-health`; `scheduler.mode` should be `cron-trigger`.
+5. Use the authenticated operator status endpoint (`/api/admin/status`) to confirm engine telemetry; do not expose engine health publicly.
 6. Trigger one manual cycle through the existing `/run` route or Wrangler Workflow command, then inspect D1 / Queue / Workflow logs.
 7. Leave `AUTO_PUBLISH=false` until clusters have been reviewed.
 
