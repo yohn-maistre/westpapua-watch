@@ -1,4 +1,4 @@
-import { ModelRequestError,runJson } from '../llm';
+import { runJson } from '../llm';
 import { jaccard,listOverlap,searchDevelopmentFts,upsertDevelopmentSearch } from '../search';
 import { issueSlugsFor,syncDevelopmentKnowledge } from '../knowledge';
 import { markDevelopmentEditorialPending } from './editorial';
@@ -57,7 +57,7 @@ const adjudicationSchema={type:'object',properties:{items:{type:'array',items:ad
 // may omit optional decision labels. An omitted decision must fail closed as a new
 // event, never silently merge records.
 const adjudicatedRelation=(decision:any)=>decision?.relation==='same_event'||decision?.same_event===true?'same_event':'new_event';
-export const invalidAdjudicationMustCreateNewEvent=(error:any)=>(error instanceof ModelRequestError&&error.code==='malformed')||/Event adjudication omitted article/.test(String(error?.message||error));
+export const invalidAdjudicationMustCreateNewEvent=(error:any)=>error?.code==='malformed'||/Event adjudication omitted article/.test(String(error?.message||error));
 
 export async function clusterArticles(env:any,inputs:ClusterInput[]){
  const results=new Map<number,number>();
