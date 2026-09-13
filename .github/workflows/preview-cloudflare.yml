@@ -12,6 +12,7 @@ concurrency:
 
 jobs:
   preview:
+    if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/feat/etnos-forum-explore'
     runs-on: ubuntu-latest
     # Preview credentials remain scoped to the existing protected environment.
     environment: production

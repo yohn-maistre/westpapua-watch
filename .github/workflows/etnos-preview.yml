@@ -1,0 +1,61 @@
+name: ETNOS lab (manual preview)
+on:
+  push:
+    branches: [feat/etnos-forum-explore]
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: 'Publish isolated preview (requires explicit owner approval)'
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: etnos-lab-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  preview:
+    if: github.ref == 'refs/heads/feat/etnos-forum-explore'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - run: npm run check:content
+      - run: node scripts/tests/etnos.mjs
+      - run: npm run build
+        env:
+          PUBLIC_SITE_URL: https://etnos-watch-lab.pages.dev
+      - name: Compile Pages functions
+        run: npx --no-install wrangler pages functions build functions --outdir /tmp/etnos-functions
+      - uses: actions/upload-artifact@v4
+        with:
+          name: etnos-lab-dist
+          path: dist
+      - name: Publish isolated branch preview
+        if: github.event_name == 'push' || inputs.deploy == true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          node scripts/prepare-etnos-preview.mjs
+          npx --no-install wrangler pages deploy dist --config wrangler.etnos-preview.jsonc --project-name=etnos-watch-lab --branch=etnos-forum-explore
+      - name: Verify branch entry
+        if: github.event_name == 'push' || inputs.deploy == true
+        run: |
+          curl --fail-with-body --retry 2 --connect-timeout 15 --max-time 60 https://etnos-forum-explore.etnos-watch-lab.pages.dev/etnos/ --output /tmp/etnos-preview.html
+          node --input-type=module -e "import fs from 'node:fs'; const html=fs.readFileSync('/tmp/etnos-preview.html','utf8'); if(!html.includes('ETNOS')) process.exit(1);"
+      - name: Install browser verifier (CI only)
+        if: github.event_name == 'push' || inputs.deploy == true
+        run: npm install --no-save --package-lock=false playwright && npx playwright install --with-deps chromium
+      - name: Exercise preview in browser
+        if: github.event_name == 'push' || inputs.deploy == true
+        run: node scripts/tests/etnos-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: etnos-browser-screenshots
+          path: /tmp/etnos-shots

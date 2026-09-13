@@ -1,0 +1,41 @@
+{
+  "provenance": "Place names, links and coordinates indexed from honai-metro wajah.json. No article text or images copied. Reference locations, not incident coordinates.",
+  "items": [
+    {
+      "title": "Kepulauan Raja Ampat",
+      "url": "https://id.wikipedia.org/wiki/Kepulauan_Raja_Ampat",
+      "source": "Wikipedia · indeks Honai Metro",
+      "coordinates": [
+        130.508,
+        -0.233
+      ]
+    },
+    {
+      "title": "Danau Sentani",
+      "url": "https://id.wikipedia.org/wiki/Danau_Sentani",
+      "source": "Wikipedia · indeks Honai Metro",
+      "coordinates": [
+        140.56,
+        -2.61
+      ]
+    },
+    {
+      "title": "Lembah Baliem",
+      "url": "https://id.wikipedia.org/wiki/Lembah_Baliem",
+      "source": "Wikipedia · indeks Honai Metro",
+      "coordinates": [
+        138.949,
+        -4.089
+      ]
+    },
+    {
+      "title": "Danau Paniai",
+      "url": "https://id.wikipedia.org/wiki/Danau_Paniai",
+      "source": "Wikipedia · indeks Honai Metro",
+      "coordinates": [
+        136.317,
+        -3.9
+      ]
+    }
+  ]
+}
