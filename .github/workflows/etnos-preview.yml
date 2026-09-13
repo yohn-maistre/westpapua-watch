@@ -47,7 +47,7 @@ jobs:
       - name: Verify branch entry
         if: github.event_name == 'push' || inputs.deploy == true
         run: |
-          curl --fail-with-body --retry 2 --connect-timeout 15 --max-time 60 https://etnos-forum-explore.etnos-watch-lab.pages.dev/etnos/ --output /tmp/etnos-preview.html
+          curl --fail-with-body --retry 5 --retry-all-errors --retry-delay 5 --connect-timeout 15 --max-time 60 https://etnos-forum-explore.etnos-watch-lab.pages.dev/etnos/ --output /tmp/etnos-preview.html
           node --input-type=module -e "import fs from 'node:fs'; const html=fs.readFileSync('/tmp/etnos-preview.html','utf8'); if(!html.includes('ETNOS')) process.exit(1);"
       - name: Install browser verifier (CI only)
         if: github.event_name == 'push' || inputs.deploy == true
