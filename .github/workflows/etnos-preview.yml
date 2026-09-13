@@ -42,7 +42,8 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           node scripts/prepare-etnos-preview.mjs
-          npx --no-install wrangler pages deploy dist --config wrangler.etnos-preview.jsonc --project-name=etnos-watch-lab --branch=etnos-forum-explore
+          cp wrangler.etnos-preview.jsonc wrangler.jsonc
+          npx --no-install wrangler pages deploy dist --project-name=etnos-watch-lab --branch=etnos-forum-explore
       - name: Verify branch entry
         if: github.event_name == 'push' || inputs.deploy == true
         run: |
