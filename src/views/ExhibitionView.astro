@@ -9,7 +9,8 @@ const laneOrder=['works','voices','archive'] as const;
 const laneLabels={works:{en:'Works',pmy:'Karya'},voices:{en:'Voices',pmy:'Suara'},archive:{en:'Archive',pmy:'Arsip'}};
 // Alternate media within each lane so consecutive works do not feel like duplicates.
 const varied=(items:typeof exhibitionItems)=>{const groups=new Map<string,typeof exhibitionItems>();for(const item of items){const key=item.mediaKind||'work';groups.set(key,[...(groups.get(key)||[]),item])}const result:typeof exhibitionItems=[];while([...groups.values()].some(g=>g.length))for(const group of groups.values()){const item=group.shift();if(item)result.push(item)}return result};
-const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:varied(exhibitionItems.filter(item=>item.lane===lane))}));
+const visualItems=exhibitionItems.filter(item=>item.rights!=='source-only');
+const lanes=laneOrder.map(lane=>({lane,label:`${locale==='en'?'Gallery':'Galeri'} ${laneOrder.indexOf(lane)+1}`,items:varied(visualItems.filter((item,i)=>i%3===laneOrder.indexOf(lane)))}));
 ---
 <BaseLayout locale={locale} active="exhibition" title={locale==='en'?'Exhibition view':'Tampilan pameran'} immersive={true} noFooter={true}>
   <div class="exhibition-wall" data-exhibition-wall>

@@ -1,0 +1,65 @@
+{
+  "source": "DJPK \u00b7 SIKD CakLur",
+  "sourceUrl": "https://djpk.kemenkeu.go.id/portal/data/tkdd",
+  "sourceAsOf": "2026-09-18",
+  "retrievedAt": "2026-09-17",
+  "year": 2026,
+  "unit": "IDR billion",
+  "scope": "Province-labelled accounts in the national transfer report; transfers are not provincial expenditure.",
+  "rows": [
+    {
+      "province": "Papua",
+      "generalBudget": 705.04,
+      "generalActual": 411.78,
+      "earmarkedBudget": 912.34,
+      "earmarkedActual": 516.66,
+      "infrastructureBudget": 530.56,
+      "infrastructureActual": 111.52
+    },
+    {
+      "province": "Papua Barat",
+      "generalBudget": 488.77,
+      "generalActual": 232.04,
+      "earmarkedBudget": 588.47,
+      "earmarkedActual": 274.55,
+      "infrastructureBudget": 436.77,
+      "infrastructureActual": 54.71
+    },
+    {
+      "province": "Papua Selatan",
+      "generalBudget": 558.95,
+      "generalActual": 264.59,
+      "earmarkedBudget": 675.24,
+      "earmarkedActual": 309.48,
+      "infrastructureBudget": 456.63,
+      "infrastructureActual": 54.93
+    },
+    {
+      "province": "Papua Tengah",
+      "generalBudget": 842.8,
+      "generalActual": 385.81,
+      "earmarkedBudget": 1078.77,
+      "earmarkedActual": 480.2,
+      "infrastructureBudget": 567.49,
+      "infrastructureActual": 72.24
+    },
+    {
+      "province": "Papua Pegunungan",
+      "generalBudget": 1189.31,
+      "generalActual": 604.37,
+      "earmarkedBudget": 1507.57,
+      "earmarkedActual": 827.93,
+      "infrastructureBudget": 588.39,
+      "infrastructureActual": 136.28
+    },
+    {
+      "province": "Papua Barat Daya",
+      "generalBudget": 524.72,
+      "generalActual": 145.29,
+      "earmarkedBudget": 624.59,
+      "earmarkedActual": 213.22,
+      "infrastructureBudget": 420.15,
+      "infrastructureActual": 41.81
+    }
+  ]
+}

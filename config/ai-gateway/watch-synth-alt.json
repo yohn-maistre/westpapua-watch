@@ -1,12 +1,12 @@
 {
-  "name": "watch-synth",
+  "name": "watch-synth-alt",
   "elements": [
     {
       "id": "START",
       "type": "start",
       "outputs": {
         "next": {
-          "elementId": "gemini-lite-synth"
+          "elementId": "qwen-synth"
         }
       }
     },
@@ -24,7 +24,7 @@
           "elementId": "END"
         },
         "fallback": {
-          "elementId": "qwen-synth"
+          "elementId": "END"
         }
       }
     },
@@ -42,7 +42,7 @@
           "elementId": "END"
         },
         "fallback": {
-          "elementId": "END"
+          "elementId": "gemini-lite-synth"
         }
       }
     },

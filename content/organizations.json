@@ -9,10 +9,10 @@
       "Jubi"
     ],
     "publisherIds": [
-      "jubi",
       "jubi"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "reporting"
   },
   {
     "id": "suara-papua",
@@ -26,7 +26,8 @@
     "publisherIds": [
       "suara-papua"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "reporting"
   },
   {
     "id": "aneta-papua",
@@ -40,7 +41,8 @@
     "publisherIds": [
       "aneta-papua"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "reporting"
   },
   {
     "id": "papuan-voices",
@@ -52,10 +54,10 @@
       "Papuan Voices"
     ],
     "publisherIds": [
-      "papuan-voices",
       "papuan-voices"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "culture"
   },
   {
     "id": "papuansspeak",
@@ -69,7 +71,8 @@
     "publisherIds": [
       "papuansspeak"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "kalawai",
@@ -83,7 +86,8 @@
     "publisherIds": [
       "kalawai"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "research"
   },
   {
     "id": "lao-lao-papua",
@@ -97,7 +101,8 @@
     "publisherIds": [
       "lao-lao-papua"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "reporting"
   },
   {
     "id": "nadi-papua",
@@ -111,7 +116,8 @@
     "publisherIds": [
       "nadi-papua"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "reporting"
   },
   {
     "id": "sa-perempuan-papua",
@@ -125,7 +131,8 @@
     "publisherIds": [
       "sa-perempuan-papua"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "yapkema",
@@ -139,7 +146,8 @@
     "publisherIds": [
       "yapkema"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "training-for-transformation-papua-yp3sp",
@@ -153,7 +161,8 @@
     "publisherIds": [
       "training-for-transformation-papua-yp3sp"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "pusaka-bentala-rakyat",
@@ -170,7 +179,8 @@
       "pusaka",
       "pusaka-bentala-rakyat"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "jerat-papua",
@@ -184,7 +194,8 @@
     "publisherIds": [
       "jerat-papua"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "walhi-papua",
@@ -198,7 +209,8 @@
     "publisherIds": [
       "walhi-papua"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "yali-papua",
@@ -212,7 +224,8 @@
     "publisherIds": [
       "yali-papua"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "bentara-papua",
@@ -226,7 +239,8 @@
     "publisherIds": [
       "bentara-papua"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "human-rights-monitor",
@@ -238,10 +252,10 @@
       "Human Rights Monitor"
     ],
     "publisherIds": [
-      "human-rights-monitor",
       "human-rights-monitor"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "papuans-behind-bars",
@@ -255,7 +269,8 @@
     "publisherIds": [
       "papuans-behind-bars"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "jpic-ofm-papua",
@@ -269,7 +284,8 @@
     "publisherIds": [
       "jpic-ofm-papua"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "research"
   },
   {
     "id": "asmat-archives",
@@ -283,7 +299,8 @@
     "publisherIds": [
       "asmat-archives"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "research"
   },
   {
     "id": "museum-loka-budaya-uncen",
@@ -297,7 +314,8 @@
     "publisherIds": [
       "museum-loka-budaya-uncen"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "research"
   },
   {
     "id": "papua-heritage-stichting-papua-erfgoed-pace",
@@ -311,7 +329,8 @@
     "publisherIds": [
       "papua-heritage-stichting-papua-erfgoed-pace"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "research"
   },
   {
     "id": "papua-collecties",
@@ -325,7 +344,8 @@
     "publisherIds": [
       "papua-collecties"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "reporting"
   },
   {
     "id": "west-papua-project-university-of-wollongong",
@@ -339,7 +359,8 @@
     "publisherIds": [
       "west-papua-project-university-of-wollongong"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "research"
   },
   {
     "id": "inside-indonesia-papua",
@@ -353,7 +374,8 @@
     "publisherIds": [
       "inside-indonesia-papua"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "research"
   },
   {
     "id": "brwa",
@@ -367,7 +389,8 @@
     "publisherIds": [
       "brwa"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "research"
   },
   {
     "id": "mapbiomas-indonesia",
@@ -381,7 +404,8 @@
     "publisherIds": [
       "mapbiomas-indonesia"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "research"
   },
   {
     "id": "nusantara-atlas",
@@ -395,7 +419,8 @@
     "publisherIds": [
       "nusantara-atlas"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "research"
   },
   {
     "id": "simtaru-papua",
@@ -409,7 +434,8 @@
     "publisherIds": [
       "simtaru-papua"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "research"
   },
   {
     "id": "rnz-pacific",
@@ -423,7 +449,8 @@
     "publisherIds": [
       "rnz-pacific"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "reporting"
   },
   {
     "id": "project-multatuli",
@@ -437,7 +464,8 @@
     "publisherIds": [
       "project-multatuli"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "reporting"
   },
   {
     "id": "mongabay-indonesia",
@@ -450,10 +478,10 @@
     ],
     "publisherIds": [
       "mongabay",
-      "mongabay-indonesia",
       "mongabay-indonesia"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "reporting"
   },
   {
     "id": "ajar-asia-justice-and-rights",
@@ -467,7 +495,8 @@
     "publisherIds": [
       "ajar-asia-justice-and-rights"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "tapol",
@@ -481,7 +510,8 @@
     "publisherIds": [
       "tapol"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "human-rights-watch",
@@ -495,7 +525,8 @@
     "publisherIds": [
       "human-rights-watch"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "greenpeace-indonesia",
@@ -509,7 +540,8 @@
     "publisherIds": [
       "greenpeace-indonesia"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "econusa",
@@ -523,7 +555,8 @@
     "publisherIds": [
       "econusa"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
   },
   {
     "id": "ulmwp",
@@ -537,6 +570,23 @@
     "publisherIds": [
       "ulmwp"
     ],
-    "provenance": "Resources ecosystem handoff · 17 September 2026"
+    "provenance": "Resources ecosystem handoff · 17 September 2026",
+    "category": "community"
+  },
+  {
+    "id": "bbc-indonesia",
+    "name": "BBC News Indonesia",
+    "description": "Indonesian-language reporting on Indonesia and the wider world, including Papua.",
+    "role": "Public-service media",
+    "url": "https://www.bbc.com/indonesia",
+    "aliases": [
+      "BBC Indonesia",
+      "BBC News Indonesia"
+    ],
+    "publisherIds": [
+      "bbc-indonesia"
+    ],
+    "provenance": "Watch enabled news-source registry",
+    "category": "reporting"
   }
 ]

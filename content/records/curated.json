@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": "law:uu-2-2021",
+    "slug": "uu-2-2021",
+    "kind": "law",
+    "title": "UU 2/2021 \u00b7 Papua special autonomy",
+    "description": "Second amendment to the 2001 Papua special-autonomy law. Enacted 19 July 2021; changes provisions concerning governance and special-autonomy revenue management.",
+    "topics": [
+      "politics-governance"
+    ],
+    "places": [
+      "Papua"
+    ],
+    "sources": [
+      {
+        "url": "https://peraturan.bpk.go.id/Details/172403/uu-no-2-tahun-2021",
+        "publisher": "JDIH BPK",
+        "publishedAt": "2021-07-19",
+        "retrievedAt": "2026-09-17"
+      }
+    ],
+    "libraryIds": [],
+    "relations": [],
+    "observations": [],
+    "status": "documented",
+    "validFrom": "2021-07-19"
+  }
+]

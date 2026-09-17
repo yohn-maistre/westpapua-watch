@@ -9,7 +9,7 @@ const {locale='en'}=Astro.props as {locale?:Locale};
 <a class="story-back" href={locale==='pmy'?'/id/news/':'/news/'}>← {locale==='en'?'News':'Berita'}</a>
 <div class="story-loading" data-story-loading>{locale==='en'?'Loading development…':'Memuat perkembangan…'}</div>
 <article hidden data-story-content>
-  <div class="story-kicker" data-story-kicker></div><h1 data-story-title></h1><p class="story-dek" data-story-summary></p>
+  <div class="story-kicker" data-story-kicker></div><h1 data-story-title></h1><p class="story-dek" data-story-summary></p><a class="chip" data-excerpt-source hidden></a>
   <div class="story-meta-line" data-story-meta></div><div class="story-relations" data-story-relations hidden></div>
   <figure class="story-figure" hidden data-story-figure><img data-story-image alt=""/><figcaption><a data-story-image-source target="_blank" rel="noreferrer"></a></figcaption></figure>
   <section class="story-block" hidden data-story-points><span>{locale==='en'?'At a glance':'Poin utama'}</span><ul></ul></section>
@@ -28,6 +28,7 @@ if(page&&page.dataset.storyServer!=='true'){
  else fetch(`/api/development/${id}`).then(async r=>{const d=await r.json();if(!r.ok)throw new Error(d.error||'Unavailable');return d}).then(data=>{
   if(data.redirect_id){location.replace(`${location.pathname}?id=${encodeURIComponent(data.redirect_id)}`);return}
   loading.hidden=true;content.hidden=false;const d=data.development||{},s=data.synthesis||{},articles=data.articles||[],issues=data.issues||[],places=data.places||[];
+  if(d.publication_kind==='source_excerpt'){const source=articles.find((a:any)=>Number(a.id)===Number(d.excerpt_article_id));const link=page.querySelector<HTMLAnchorElement>('[data-excerpt-source]');if(source&&link){link.hidden=false;link.href=source.canonical_url;link.rel='noreferrer';link.target='_blank';link.textContent=`${locale==='pmy'?'Baca laporan asli':'Read the original report'} · ${source.publisher} ↗`;}}
   put(page.querySelector('[data-story-kicker]'),issues[0]?.category||String(d.issue_slug||'Development').replaceAll('-',' '));
   put(page.querySelector('[data-story-title]'),locale==='pmy'?(d.title_id||d.title_en):d.title_en);
   put(page.querySelector('[data-story-summary]'),locale==='pmy'?(d.summary_id||d.summary_en):d.summary_en);

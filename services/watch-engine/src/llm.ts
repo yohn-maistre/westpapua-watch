@@ -35,6 +35,7 @@ function validateRequired(value:any,schema:any,path='$'):any{
   const kind=Array.isArray(value)?'array':value===null?'null':typeof value;
   const types=Array.isArray(schema.type)?schema.type:[schema.type];
   if(schema.type&&!types.some((t:string)=>t===kind||(t==='integer'&&Number.isInteger(value))))throw new Error(`${path}: expected ${types.join('|')}`);
+  if(kind==='string'&&schema.minLength!==undefined&&value.trim().length<schema.minLength)throw new Error(`${path}: string too short`);
   if(kind==='object'){
     for(const key of schema.required||[])if(!Object.prototype.hasOwnProperty.call(value,key))throw new Error(`${path}: missing ${key}`);
     for(const [key,item] of Object.entries(value)){
@@ -147,7 +148,7 @@ export async function runJson<T=any>(env:any,messages:any[],schema:any,purpose:C
   // Critical invariant: one logical structured operation issues at most one remote inference request.
   // Parsing/salvage below is local only; malformed output is durable state for a future cycle.
   if(env.AI_GATEWAY_BASE&&env.AI_GATEWAY_TOKEN){
-    const structuredMessages=[{role:'system',content:`Return only JSON conforming to this schema. No Markdown or commentary. Schema: ${JSON.stringify(schema)}`},...messages];
+    const structuredMessages=[{role:'system',content:messages.filter(m=>m.role==='system').map(m=>m.content).join('\n\n')+`\n\nReturn ONLY JSON conforming to this schema. No Markdown, reasoning, or commentary. Schema: ${JSON.stringify(schema)}`},...messages.filter(m=>m.role!=='system')];
     const raw=await gatewayCall(env,structuredMessages,purpose,maxTokens);
     return parseStructured<T>(raw,schema);
   }

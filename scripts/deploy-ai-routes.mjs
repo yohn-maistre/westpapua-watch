@@ -76,6 +76,6 @@ async function deployConfig(file){
 }
 
 const dir=path.resolve('config/ai-gateway');
-for(const name of ['watch-fast.json','watch-synth.json','watch-ask.json']){
+for(const name of ['watch-fast.json','watch-synth.json','watch-synth-alt.json','watch-ask.json']){
   await deployConfig(path.join(dir,name));
 }
