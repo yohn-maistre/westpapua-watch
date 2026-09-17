@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {publicRecords} from '../data/records';
+import {RECORD_KINDS} from '../../shared/records';
+import {withLocale} from '../lib/i18n';
+import '../styles/public-record.css';
+const {locale='en'}=Astro.props;const en=locale==='en';
+const labels:any={place:['Places','Wilayah'],organization:['Organizations','Organisasi'],person:['People','Tokoh'],office:['Offices','Jabatan'],program:['Programmes','Program'],project:['Projects','Proyek'],law:['Law','Hukum'],document:['Documents','Dokumen'],dataset:['Data & maps','Data & peta'],election:['Elections','Pemilu'],observation:['Indicators','Indikator'],collection:['Collections','Koleksi']};
+---
+<BaseLayout locale={locale} active="data" title={en?'Public record':'Catatan publik'}><main class="wrap record-index"><div class="record-heading"><span class="eyebrow">Data</span><h1>{en?'Public record.':'Catatan publik.'}</h1><a href="/records.json" download>{en?'Download catalogue':'Unduh katalog'} ↗</a></div>
+<div class="record-mosaic">{['papua-tengah','regional-finance','legal-records','election-data'].map((slug,i)=>{const r=publicRecords.find(r=>r.slug===slug)!;return <a class={`record-feature feature-${i}`} href={withLocale(`/data/${r.slug}/`,locale)}><span class="eyebrow">{labels[r.kind][en?0:1]}</span><h2>{r.title}</h2><p>{r.description}</p><span class="record-arrow">↗</span></a>})}</div>
+<div class="record-tools"><input type="search" class="resource-search" data-record-search aria-label={en?'Search public records':'Cari catatan publik'} placeholder={en?'Find a place, institution or document':'Cari wilayah, lembaga, atau dokumen'}/><div class="record-facets" role="group" aria-label={en?'Record type':'Jenis catatan'}><button class="chip" data-kind="" aria-pressed="true">{en?'All':'Semua'}</button>{RECORD_KINDS.filter(k=>publicRecords.some(r=>r.kind===k)).map(k=><button class="chip" data-kind={k} aria-pressed="false">{labels[k][en?0:1]} <small>{publicRecords.filter(r=>r.kind===k).length}</small></button>)}</div></div>
+<p data-record-count role="status"></p><div class="record-list">{publicRecords.map(r=><a data-record-kind={r.kind} data-record-text={`${r.title} ${r.description} ${r.topics.join(' ')} ${r.places.join(' ')}`.toLowerCase()} href={withLocale(`/data/${r.slug}/`,locale)}><small>{labels[r.kind][en?0:1]}</small><div><h3>{r.title}</h3><p>{r.description}</p></div><span aria-hidden="true">↗</span></a>)}</div><p data-record-empty hidden>{en?'No records catalogued for this selection yet.':'Belum ada catatan untuk pilihan ini.'}</p></main></BaseLayout>
+<script>
+const input=document.querySelector<HTMLInputElement>('[data-record-search]'),rows=[...document.querySelectorAll<HTMLElement>('[data-record-kind]')];let kind=new URL(location.href).searchParams.get('kind')||'';
+if(input)input.value=new URL(location.href).searchParams.get('q')||'';
+const apply=()=>{let count=0;for(const row of rows){row.hidden=!!kind&&row.dataset.recordKind!==kind||!row.dataset.recordText?.includes(input?.value.toLowerCase()||'');if(!row.hidden)count++}document.querySelector('[data-record-count]')!.textContent=`${count} / ${rows.length}`;(document.querySelector('[data-record-empty]') as HTMLElement).hidden=!!count;document.querySelectorAll<HTMLElement>('[data-kind]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.kind===kind)));const u=new URL(location.href);for(const [key,v] of [['kind',kind],['q',input?.value||'']])v?u.searchParams.set(key,v):u.searchParams.delete(key);history.replaceState(null,'',u)};
+input?.addEventListener('input',apply);document.querySelectorAll<HTMLElement>('[data-kind]').forEach(b=>b.addEventListener('click',()=>{kind=b.dataset.kind||'';apply()}));apply();
+</script>

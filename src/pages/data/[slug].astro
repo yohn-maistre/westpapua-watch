@@ -1,0 +1,6 @@
+---
+import RecordView from '../../views/RecordView.astro';
+import {publicRecords} from '../../data/records';
+export function getStaticPaths(){return publicRecords.map(record=>({params:{slug:record.slug},props:{record}}))}
+---
+<RecordView record={Astro.props.record} locale="en"/>

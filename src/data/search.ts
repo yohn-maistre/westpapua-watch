@@ -1,3 +1,4 @@
+import {publicRecords} from './records';
 import {events} from './events';
 import {exhibitionItems} from './exhibition';
 import {topicTimelines} from './topic-timelines';
@@ -8,6 +9,7 @@ import { historyChapters } from './history';
 import { resources } from './resources';
 
 export const searchCorpus = [
+ ...publicRecords.map(r=>({id:r.id,type:'record',title:{en:r.title,pmy:r.title},text:{en:`Catalogue record: ${r.description}. Sources: ${r.sources.map(s=>s.publisher+' '+s.url).join('; ')}`,pmy:`Catatan katalog: ${r.description}. Sumber: ${r.sources.map(s=>s.publisher+' '+s.url).join('; ')}`},href:`/data/${r.slug}/`,tags:[r.kind,...r.topics,...r.places]})),
  ...events.map((e:any)=>({id:`event:${e.id||e.slug||e.title?.en}`,type:'event',title:e.title,text:{en:JSON.stringify(e),pmy:JSON.stringify(e)},href:'/events/',tags:['events','acara',e.date]})),
  ...exhibitionItems.map(e=>({id:`exhibition:${e.slug}`,type:'exhibition',title:{en:e.title,pmy:e.title},text:{en:e.summary,pmy:e.summary},href:'/exhibition/view/',tags:['exhibition','artist','culture',e.type]})),
  ...Object.entries(topicTimelines).flatMap(([slug,items])=>items.map(e=>({id:`timeline:${e.id}`,type:'timeline',title:e.title,text:e.text,href:`/topics/${slug}/#timeline`,tags:['timeline','mifee',slug,e.date]}))),

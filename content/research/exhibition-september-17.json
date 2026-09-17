@@ -1,0 +1,942 @@
+[
+  {
+    "code": "W01",
+    "title": "The Koreri Transformation",
+    "sourceUrl": "https://www.biennaleofsydney.art/participants/udeido-collective/",
+    "creator": "Udeido Collective",
+    "year": "2024",
+    "medium": "mixed media installation",
+    "status": "RIGHTS",
+    "lane": "works"
+  },
+  {
+    "code": "W02",
+    "title": "The Timako Woo Chronicle",
+    "sourceUrl": "https://kadist.org/work/the-timako-woo-chronicle/",
+    "creator": "Udeido Collective",
+    "year": "2023",
+    "medium": "mixed-media installation, 150 × 400 cm",
+    "status": "RIGHTS",
+    "lane": "works"
+  },
+  {
+    "code": "W03",
+    "title": "Teweraut",
+    "sourceUrl": "https://framerframed.nl/en/projecten/pressing-matters-exhibition-tour-artist-talk-with-visiting-artist-ignasius-dicky-takndare-id/",
+    "creator": "Ignasius Dicky Takndare",
+    "year": "2018",
+    "medium": "painting",
+    "status": "RIGHTS",
+    "lane": "works"
+  },
+  {
+    "code": "W04",
+    "title": "A Little Gate to Koreri",
+    "sourceUrl": "https://www.artshelp.com/highlighting-papuan-endurance-the-udeido-collectives-creative-resistance-to-injustice/",
+    "creator": "Dicky Takndare",
+    "year": "",
+    "medium": "mixed-media installation",
+    "status": "METADATA",
+    "lane": "works"
+  },
+  {
+    "code": "W05",
+    "title": "Nao Temea Lamenge",
+    "sourceUrl": "https://www.artshelp.com/highlighting-papuan-endurance-the-udeido-collectives-creative-resistance-to-injustice/",
+    "creator": "Nelson Natkime",
+    "year": "",
+    "medium": "pen on paper",
+    "status": "METADATA",
+    "lane": "works"
+  },
+  {
+    "code": "W06",
+    "title": "Nelson Natkime's sixteen illuminated drawing panels",
+    "sourceUrl": "https://laune.id/papua-dalam-koreri-projection/",
+    "creator": "Nelson Natkime",
+    "year": "",
+    "medium": "drawings presented as illuminated box panels",
+    "status": "METADATA",
+    "lane": "works"
+  },
+  {
+    "code": "W07",
+    "title": "Silenced",
+    "sourceUrl": "https://ocula.com/magazine/spotlight/biennale-jogja-xvi-indonesia-with-oceania/",
+    "creator": "Yanto Gombo / Udeido Collective",
+    "year": "2021",
+    "medium": "monumental mural",
+    "status": "RIGHTS",
+    "lane": "works"
+  },
+  {
+    "code": "W08",
+    "title": "Di Tanah Orang Papua / On the Papuan Land",
+    "sourceUrl": "https://ocula.com/magazine/spotlight/biennale-jogja-xvi-indonesia-with-oceania/",
+    "creator": "",
+    "year": "2021",
+    "medium": "audiovisual installation",
+    "status": "RIGHTS",
+    "lane": "works"
+  },
+  {
+    "code": "W09",
+    "title": "Betty Adii's Biennale Jogja installation",
+    "sourceUrl": "https://www.thejakartapost.com/culture/2021/12/03/healing-wounds-papuan-art-collective-delivers-activism-through-fine-art",
+    "creator": "Betty Adii",
+    "year": "2021",
+    "medium": "resin sculptural installation",
+    "status": "METADATA",
+    "lane": "works"
+  },
+  {
+    "code": "W10",
+    "title": "Costantinus Raharusun's nutmeg installation",
+    "sourceUrl": "https://www.bbc.com/indonesia/majalah-61951602",
+    "creator": "Costantinus / Costan Raharusun",
+    "year": "2021",
+    "medium": "installation",
+    "status": "METADATA",
+    "lane": "works"
+  },
+  {
+    "code": "W11",
+    "title": "Jalan Salib, Yesus Dihukum Mati",
+    "sourceUrl": "https://www.bbc.com/indonesia/majalah-61951602",
+    "creator": "Donatus Moiwend",
+    "year": "",
+    "medium": "painting",
+    "status": "RIGHTS",
+    "lane": "works"
+  },
+  {
+    "code": "W12",
+    "title": "Singing for Life",
+    "sourceUrl": "https://jubi.id/mendalam/2026/time-for-papua-wereldmuseum-leiden-opens-first-major-exhibition-from-the-worlss-largest-papua-collection-in-sixta-years/",
+    "creator": "Dicky Takndare",
+    "year": "2026",
+    "medium": "polyester sculpture, nearly 3 m",
+    "status": "RIGHTS",
+    "lane": "works"
+  },
+  {
+    "code": "W13",
+    "title": "Bekaku Ba",
+    "sourceUrl": "",
+    "creator": "Michael Yan Devis",
+    "year": "",
+    "medium": "",
+    "status": "RIGHTS / verify individual image",
+    "lane": "works"
+  },
+  {
+    "code": "W14",
+    "title": "Tewed",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "RIGHTS / verify creator + image",
+    "lane": "works"
+  },
+  {
+    "code": "W15",
+    "title": "Toboo",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "RIGHTS / verify creator + image",
+    "lane": "works"
+  },
+  {
+    "code": "W16",
+    "title": "Karwar",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "RIGHTS / verify creator + image",
+    "lane": "works"
+  },
+  {
+    "code": "W17",
+    "title": "Nemangkawi Holes",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "RIGHTS / verify creator + image",
+    "lane": "works"
+  },
+  {
+    "code": "W18",
+    "title": "KUG",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "RIGHTS / verify creator + image",
+    "lane": "works"
+  },
+  {
+    "code": "W19",
+    "title": "Bihm",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "works"
+  },
+  {
+    "code": "W20",
+    "title": "Fansoway / Khombouw bark painting",
+    "sourceUrl": "https://en.jubi.id/fansoway-art-gallery-showcases-sentanis-unique-wood-skin-paintings/",
+    "creator": "",
+    "year": "",
+    "medium": "Khombouw bark painting and craft",
+    "status": "CONTACT",
+    "lane": "works"
+  },
+  {
+    "code": "W21",
+    "title": "Korlius Ohee / Sanggar Okina",
+    "sourceUrl": "https://www.kompas.id/artikel/korlius-ohee-sang-maestro-seni-lukis-kulit-kayu-dan-kepeduliannya-pada-warisan-sentani",
+    "creator": "Korlius Ohee",
+    "year": "",
+    "medium": "",
+    "status": "CONTACT",
+    "lane": "works"
+  },
+  {
+    "code": "W22",
+    "title": "Agus Ongge maro",
+    "sourceUrl": "https://jubi.id/mendalam/2026/time-for-papua-wereldmuseum-leiden-opens-first-major-exhibition-from-the-worlss-largest-papua-collection-in-sixta-years/",
+    "creator": "Agus Ongge",
+    "year": "1996",
+    "medium": "Sentani bark cloth / maro",
+    "status": "RIGHTS",
+    "lane": "works"
+  },
+  {
+    "code": "W23",
+    "title": "Noken / Men: String Bags of the Muyu Tribe of Southern West Papua",
+    "sourceUrl": "https://www.lagi-maama.com/noken-page",
+    "creator": "",
+    "year": "2025",
+    "medium": "",
+    "status": "RIGHTS / CONTACT",
+    "lane": "works"
+  },
+  {
+    "code": "W24",
+    "title": "Ki.Basic / Namblong noken",
+    "sourceUrl": "https://www.nowjakarta.co.id/ki-basic-carrying-culture-weaving-meaning/",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "CONTACT",
+    "lane": "works"
+  },
+  {
+    "code": "W25",
+    "title": "Ticia / Beatrix Antonieta Manggo",
+    "sourceUrl": "https://en.jubi.id/beatrix-manggo-takes-papuan-crafts-to-the-global-market/",
+    "creator": "Beatrix Antonieta Manggo",
+    "year": "",
+    "medium": "",
+    "status": "CONTACT",
+    "lane": "works"
+  },
+  {
+    "code": "W26",
+    "title": "Olong / Sentani coconut-leaf weaving",
+    "sourceUrl": "https://www.aman.or.id/index.php/news/read/2126",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "CONTACT",
+    "lane": "works"
+  },
+  {
+    "code": "W27",
+    "title": "Dari Wamena untuk Hollandia",
+    "sourceUrl": "https://jayatvpapua.com/impact-papua-satukan-film-budaya-dan-kreativitas-untuk-dorong-ekonomi-kreatif-papua/",
+    "creator": "",
+    "year": "2026",
+    "medium": "",
+    "status": "CONTACT",
+    "lane": "works"
+  },
+  {
+    "code": "W28",
+    "title": "Mosaba Fashion",
+    "sourceUrl": "https://www.bintangpapuaonline.com/mosaba-fashion-ketika-rajutan-dan-kekayaan-alam-papua-bertemu-dalam-satu-karya/",
+    "creator": "",
+    "year": "2026",
+    "medium": "knitwear / natural-material fashion",
+    "status": "CONTACT",
+    "lane": "works"
+  },
+  {
+    "code": "W29",
+    "title": "Impact Papua designers series",
+    "sourceUrl": "https://fokuspapua.com/gelar-fashion-show-noken-imaji-papua-dorong-tumbuhnya-industri-mode-lokal/",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "works"
+  },
+  {
+    "code": "W30",
+    "title": "Jeane Marien illustration feature",
+    "sourceUrl": "https://citrapapua.com/pameran-karya-impact-papua-menampilkan-ilustrasi-digital-karya-jeane-marien-dan-fotografi-karya-yosin-kogoya/",
+    "creator": "Jeane Marien",
+    "year": "",
+    "medium": "digital illustration",
+    "status": "CONTACT",
+    "lane": "works"
+  },
+  {
+    "code": "W31",
+    "title": "Yosin Kogoya photography feature",
+    "sourceUrl": "",
+    "creator": "Yosin Kogoya",
+    "year": "",
+    "medium": "landscape / portrait / human-interest photography",
+    "status": "CONTACT",
+    "lane": "works"
+  },
+  {
+    "code": "V01",
+    "title": "The Last Hope",
+    "sourceUrl": "https://sapukisah.asia-ajar.org/pameran-online-3",
+    "creator": "Blandina Yeimo",
+    "year": "2021",
+    "medium": "oil on paper",
+    "status": "RIGHTS",
+    "lane": "voices"
+  },
+  {
+    "code": "V02",
+    "title": "Ona Pak-Pak Mani Tombora",
+    "sourceUrl": "",
+    "creator": "Irene Wagab",
+    "year": "2021",
+    "medium": "reported by Jubi as acrylic on canvas, 40 × 60 cm",
+    "status": "RIGHTS",
+    "lane": "voices"
+  },
+  {
+    "code": "V03",
+    "title": "Broken",
+    "sourceUrl": "",
+    "creator": "Diana Yembise",
+    "year": "",
+    "medium": "acrylic on paper",
+    "status": "RIGHTS",
+    "lane": "voices"
+  },
+  {
+    "code": "V04",
+    "title": "Pain",
+    "sourceUrl": "",
+    "creator": "Nancy Nahuway",
+    "year": "",
+    "medium": "",
+    "status": "RIGHTS / verify medium and dimensions",
+    "lane": "voices"
+  },
+  {
+    "code": "V05–V10",
+    "title": "remaining Sa Pu Kisah works",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "voices"
+  },
+  {
+    "code": "V11",
+    "title": "Hikayat Tanah Kebar dan Perempuan Besi",
+    "sourceUrl": "https://sapukisah.asia-ajar.org/pameran-video-2",
+    "creator": "BOMBO Performing Arts",
+    "year": "2021",
+    "medium": "performing arts / video",
+    "status": "RIGHTS",
+    "lane": "voices"
+  },
+  {
+    "code": "V12",
+    "title": "Mama ET: Meregang Mimpi di Hutan Sendiri",
+    "sourceUrl": "https://sapukisah.asia-ajar.org/9-mama-et-meregang-mimpi-di-hutan-sendiri",
+    "creator": "",
+    "year": "",
+    "medium": "oral/story documentation",
+    "status": "RIGHTS",
+    "lane": "voices"
+  },
+  {
+    "code": "V13",
+    "title": "Hidup di Antara Tajam Batu Karang",
+    "sourceUrl": "https://sapukisah.asia-ajar.org/test-video",
+    "creator": "",
+    "year": "",
+    "medium": "video / participatory research",
+    "status": "RIGHTS",
+    "lane": "voices"
+  },
+  {
+    "code": "V14",
+    "title": "Papua Tells Stories / collection card",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "2022–23 project period",
+    "medium": "participatory photography",
+    "status": "RIGHTS / CONTACT",
+    "lane": "voices"
+  },
+  {
+    "code": "V15",
+    "title": "Christina Soge photo story",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "RIGHTS",
+    "lane": "voices"
+  },
+  {
+    "code": "V16–V18",
+    "title": "participant photo essays",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "voices"
+  },
+  {
+    "code": "V19",
+    "title": "Suara Kampung Imsar",
+    "sourceUrl": "https://papua.tribunnews.com/2025/02/13/pameran-foto-suara-kampung-imsar-di-kabupaten-jayapura-bukti-nyata-kehidupan-masyarakat",
+    "creator": "",
+    "year": "",
+    "medium": "community photography + stories",
+    "status": "CONTACT",
+    "lane": "voices"
+  },
+  {
+    "code": "V20",
+    "title": "Black Orchid Gallery selection",
+    "sourceUrl": "https://www.nadipapua.com/post-dari-hutan-hingga-tanah-adat-galeri-black-orchid-ceritakan-papua-lewat-foto-2063",
+    "creator": "",
+    "year": "",
+    "medium": "Papuan-made photography",
+    "status": "CONTACT",
+    "lane": "voices"
+  },
+  {
+    "code": "V21",
+    "title": "Sentani flood photo memory",
+    "sourceUrl": "https://papua.antaranews.com/berita/718620/komunitas-fotografer-jayapura-gelar-pameran-foto-banjir-bandang-sentani",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "CONTACT",
+    "lane": "voices"
+  },
+  {
+    "code": "V22",
+    "title": "Impact Papua 2026 photography collection",
+    "sourceUrl": "https://fokuspapua.com/34-fotografer-unjuk-karya-dalam-pameran-fotografi-impact-papua-di-museum-loka-budaya/",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "CONTACT",
+    "lane": "voices"
+  },
+  {
+    "code": "V23",
+    "title": "Voices from Merauke",
+    "sourceUrl": "https://peacebrigades.nl/en/news/hidden-faces-papua-exhibition-udeido-collective",
+    "creator": "",
+    "year": "2025",
+    "medium": "drawings and letters created with people affected by large-scale development in Merauke",
+    "status": "CONTACT / RIGHTS",
+    "lane": "voices"
+  },
+  {
+    "code": "V24",
+    "title": "Kal angam-kal: Stories from West Papua",
+    "sourceUrl": "https://footscrayarts.com/event/kal-angam-kal/",
+    "creator": "",
+    "year": "2024",
+    "medium": "youth-led intergenerational video interviews",
+    "status": "RIGHTS",
+    "lane": "voices"
+  },
+  {
+    "code": "A01",
+    "title": "Muman Minggil / The Road to Ancestor Land",
+    "sourceUrl": "https://www.kitlv.nl/event/muman-minggil/",
+    "creator": "Yonri Revolt + Mahardhika Yudha",
+    "year": "2023/24",
+    "medium": "",
+    "status": "READY / poster-rights check",
+    "lane": "archive"
+  },
+  {
+    "code": "A02",
+    "title": "Wisisi Nit Meke / Our Wisisi Music",
+    "sourceUrl": "https://ffd.or.id/en/film/our-wisisi-music/",
+    "creator": "Arief Budiman, Harun Rumbarar, Bonny Lanny",
+    "year": "2023",
+    "medium": "",
+    "status": "READY / poster-rights check",
+    "lane": "archive"
+  },
+  {
+    "code": "A03",
+    "title": "Mayday! May day! Mayday!",
+    "sourceUrl": "https://iffr.com/en/iffr/2023/films/mayday-may-day-mayday",
+    "creator": "Yonri Revolt",
+    "year": "2022",
+    "medium": "",
+    "status": "READY / image-rights check",
+    "lane": "archive"
+  },
+  {
+    "code": "A04",
+    "title": "The Silent Path / Soebertono Mote",
+    "sourceUrl": "https://ffd.or.id/film/the-silent-path/",
+    "creator": "Yonri Revolt",
+    "year": "2024",
+    "medium": "",
+    "status": "READY",
+    "lane": "archive"
+  },
+  {
+    "code": "A05",
+    "title": "Tete, Nene, Permisi",
+    "sourceUrl": "",
+    "creator": "Yonri Revolt",
+    "year": "2025",
+    "medium": "",
+    "status": "METADATA",
+    "lane": "archive"
+  },
+  {
+    "code": "A06",
+    "title": "Tong Masih Disini",
+    "sourceUrl": "https://jayatvpapua.com/impact-papua-satukan-film-budaya-dan-kreativitas-untuk-dorong-ekonomi-kreatif-papua/",
+    "creator": "",
+    "year": "2026",
+    "medium": "",
+    "status": "CONTACT",
+    "lane": "archive"
+  },
+  {
+    "code": "A07",
+    "title": "PESTA BABI",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "archive"
+  },
+  {
+    "code": "A08",
+    "title": "Our Land Has Gone",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "archive"
+  },
+  {
+    "code": "A55",
+    "title": "Jiwi Pokombu",
+    "sourceUrl": "https://www.linkedin.com/posts/rosadahlia_jiwi-pokombu-intime-for-papuaexhibition-activity-7450103989335113728-uxLH",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "CONTACT",
+    "lane": "archive"
+  },
+  {
+    "code": "A56",
+    "title": "Mambesak Vol. 1",
+    "sourceUrl": "https://papuaheritage.org/nl/AU/27/1",
+    "creator": "",
+    "year": "1983 page record",
+    "medium": "cassette",
+    "status": "READY / check image/audio embedding terms",
+    "lane": "archive"
+  },
+  {
+    "code": "A57",
+    "title": "Mambesak Vol. 2",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "archive"
+  },
+  {
+    "code": "A58",
+    "title": "Mambesak Vol. 3",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "archive"
+  },
+  {
+    "code": "A59",
+    "title": "Mambesak Vol. 4",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "archive"
+  },
+  {
+    "code": "A60",
+    "title": "Arnold Ap field / radio tape",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "archive"
+  },
+  {
+    "code": "A61",
+    "title": "Muo Remé, Dance of the Cassowary",
+    "sourceUrl": "https://papuaheritage.org/en/AU/10/1",
+    "creator": "",
+    "year": "",
+    "medium": "anthology of West Papuan music recordings",
+    "status": "RIGHTS",
+    "lane": "archive"
+  },
+  {
+    "code": "A62",
+    "title": "Guitar Bands of West Papua",
+    "sourceUrl": "https://www.concertzender.nl/programma/614335/",
+    "creator": "",
+    "year": "",
+    "medium": "radio programme / curated listening",
+    "status": "source-link",
+    "lane": "archive"
+  },
+  {
+    "code": "A63",
+    "title": "West Papua: Spirit of Mambesak",
+    "sourceUrl": "https://wantokmusik.bandcamp.com/album/west-papua-spirit-of-mambesak",
+    "creator": "Black Paradise",
+    "year": "",
+    "medium": "",
+    "status": "source-link / album art rights check",
+    "lane": "archive"
+  },
+  {
+    "code": "A64",
+    "title": "Black Brothers",
+    "sourceUrl": "https://kultur.media/en/interview/black-brothers/",
+    "creator": "",
+    "year": "",
+    "medium": "record / archival performance card",
+    "status": "RIGHTS / find specific record sleeve or public archival still",
+    "lane": "archive"
+  },
+  {
+    "code": "A65",
+    "title": "Korwar, Cenderawasih Bay",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/318765",
+    "creator": "",
+    "year": "late 19th–early 20th century",
+    "medium": "",
+    "status": "READY",
+    "lane": "archive"
+  },
+  {
+    "code": "A66",
+    "title": "Korwar, Cenderawasih Bay",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/316053",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "READY",
+    "lane": "archive"
+  },
+  {
+    "code": "A67",
+    "title": "Canoe Prow Ornament",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/313896",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "READY",
+    "lane": "archive"
+  },
+  {
+    "code": "A68",
+    "title": "Canoe Prow Ornament with cassowary feathers",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/316083",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "READY",
+    "lane": "archive"
+  },
+  {
+    "code": "A69",
+    "title": "Wuramon / spirit canoe",
+    "sourceUrl": "https://www.metmuseum.org/art/collection/search/313777",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "READY",
+    "lane": "archive"
+  },
+  {
+    "code": "A70",
+    "title": "Ancestral Figure / Korwar",
+    "sourceUrl": "https://www.brooklynmuseum.org/opencollection/objects/80174",
+    "creator": "",
+    "year": "early 20th century",
+    "medium": "",
+    "status": "READY",
+    "lane": "archive"
+  },
+  {
+    "code": "A71",
+    "title": "oldest korwar in the Netherlands",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "object-page / rights lookup needed",
+    "lane": "archive"
+  },
+  {
+    "code": "A72",
+    "title": "Wuramon, Joerat Asmat",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "object page needed",
+    "lane": "archive"
+  },
+  {
+    "code": "A73",
+    "title": "Bis pole by Mbatumos",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "archive"
+  },
+  {
+    "code": "A74",
+    "title": "Bis pole by Bifarq",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "object pages needed",
+    "lane": "archive"
+  },
+  {
+    "code": "A75",
+    "title": "Doroe mask costume",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "object page needed",
+    "lane": "archive"
+  },
+  {
+    "code": "A76",
+    "title": "Ancestor from Vondelpark",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "2000",
+    "medium": "",
+    "status": "RIGHTS",
+    "lane": "archive"
+  },
+  {
+    "code": "A77",
+    "title": "Mythological serpent",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "object page needed",
+    "lane": "archive"
+  },
+  {
+    "code": "A78",
+    "title": "Canoe prow with Chinese porcelain",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "object page needed",
+    "lane": "archive"
+  },
+  {
+    "code": "A79",
+    "title": "Dong Son bronze",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "archive"
+  },
+  {
+    "code": "A80",
+    "title": "Terfo weaving / historic loom + contemporary revival",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "archive"
+  },
+  {
+    "code": "A81",
+    "title": "Sentani calcite spatulas / house posts",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "archive"
+  },
+  {
+    "code": "A82",
+    "title": "Sentani calcite holder",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "archive"
+  },
+  {
+    "code": "A83",
+    "title": "bronze axe blade, Sentani-region trade history",
+    "sourceUrl": "",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "",
+    "lane": "archive"
+  },
+  {
+    "code": "A84",
+    "title": "Sentani flute orchestra",
+    "sourceUrl": "https://digitalcollections.universiteitleiden.nl/view/item/707976",
+    "creator": "",
+    "year": "1953–54",
+    "medium": "",
+    "status": "RIGHTS CHECK",
+    "lane": "archive"
+  },
+  {
+    "code": "A85",
+    "title": "Eranotali / Paniai Lake",
+    "sourceUrl": "https://digitalcollections.universiteitleiden.nl/view/item/693222",
+    "creator": "",
+    "year": "c. 1953",
+    "medium": "",
+    "status": "RIGHTS CHECK",
+    "lane": "archive"
+  },
+  {
+    "code": "A86",
+    "title": "Fakfak town view",
+    "sourceUrl": "https://digitalcollections.universiteitleiden.nl/view/item/702533",
+    "creator": "",
+    "year": "c. 1955",
+    "medium": "",
+    "status": "RIGHTS CHECK",
+    "lane": "archive"
+  },
+  {
+    "code": "A87",
+    "title": "Paniai aerial landscape",
+    "sourceUrl": "https://digitalcollections.universiteitleiden.nl/view/item/746475",
+    "creator": "",
+    "year": "1937",
+    "medium": "",
+    "status": "RIGHTS CHECK",
+    "lane": "archive"
+  },
+  {
+    "code": "A88",
+    "title": "Hollandia/Jayapura hospital photograph",
+    "sourceUrl": "https://digitalcollections.universiteitleiden.nl/view/item/701052",
+    "creator": "",
+    "year": "1953–58",
+    "medium": "",
+    "status": "SENSITIVE / RIGHTS CHECK",
+    "lane": "archive"
+  },
+  {
+    "code": "A89",
+    "title": "Manokwari household / transmigration-era interior",
+    "sourceUrl": "https://digitalcollections.universiteitleiden.nl/view/item/703934",
+    "creator": "",
+    "year": "c. 1955",
+    "medium": "",
+    "status": "CONTEXT / RIGHTS CHECK",
+    "lane": "archive"
+  },
+  {
+    "code": "A90",
+    "title": "Fakfak petroleum-industry houseboat drawing room",
+    "sourceUrl": "https://digitalcollections.universiteitleiden.nl/view/item/708897",
+    "creator": "",
+    "year": "c. 1955",
+    "medium": "",
+    "status": "CONTEXT / RIGHTS CHECK",
+    "lane": "archive"
+  },
+  {
+    "code": "A91",
+    "title": "Schetskaart van Nieuw Guinee, Sheet I",
+    "sourceUrl": "https://digitalcollections.anu.edu.au/items/c0e7aad1-d4a4-4ae3-9026-bb6de9bc82f1",
+    "creator": "",
+    "year": "1919",
+    "medium": "",
+    "status": "RIGHTS CHECK / likely straightforward archive use but verify item terms",
+    "lane": "archive"
+  },
+  {
+    "code": "A92",
+    "title": "Hand-drawn Manokwari maps",
+    "sourceUrl": "https://archivescollection.anu.edu.au/index.php/new-guinea-papers-relating-to-administration-of-netherlands-new-guinea-1958-two-hand-drawn-maps-of-manokwari-feb-1962-feb-1963-copy-of-west-new-guinea-irian-barat-or-papua-barat-by-dr-paul-w-van-der-veur-27-sep-1972",
+    "creator": "",
+    "year": "",
+    "medium": "",
+    "status": "INVENTORY / digitization availability unclear",
+    "lane": "archive"
+  }
+]

@@ -20,7 +20,7 @@ export default function ResourceFilters({facets,locale}:{facets:Facet[];locale:s
    document.querySelectorAll<HTMLElement>('[data-resource-row]').forEach(row=>{
     let places:string[]=[];try{places=JSON.parse(row.dataset.resourcePlaces||'[]')}catch{}
     const languages=(row.dataset.resourceLanguages||'').split(' ').filter(Boolean);if(languages.length>1)languages.push('multi');
-    const data:Record<string,string[]>={following:(row.dataset.resourceFollowing||'').split(' '),topic:(row.dataset.resourceBroad||'').split(' ').filter(v=>!following.has(v)),type:[row.dataset.resourceType||''],place:places,language:languages};
+    const data:Record<string,string[]>={organization:(row.dataset.resourceOrganizations||'').split(' '),following:(row.dataset.resourceFollowing||'').split(' '),topic:(row.dataset.resourceBroad||'').split(' ').filter(v=>!following.has(v)),type:[row.dataset.resourceType||''],place:places,language:languages};
     for(const f of facets)for(const value of new Set(data[f.key]||[]))if(value)all[f.key][value]=(all[f.key][value]||0)+1;
    });setCounts(all);
    setChoices(facets.map(f=>({...f,options:f.key==='place'||f.key==='language'?[...new Set([...f.options.map(o=>o[0]),...Object.keys(all[f.key])])].filter(v=>all[f.key][v]).sort().map(v=>[v,f.options.find(o=>o[0]===v)?.[1]||v] as [string,string]):f.options})));

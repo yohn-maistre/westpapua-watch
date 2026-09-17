@@ -1,0 +1,542 @@
+[
+  {
+    "id": "jubi",
+    "name": "Jubi",
+    "description": "reporting, long-form journalism, opinion, Pacific coverage",
+    "role": "Papuan newsroom",
+    "url": "https://jubi.id/",
+    "aliases": [
+      "Jubi"
+    ],
+    "publisherIds": [
+      "jubi",
+      "jubi"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "suara-papua",
+    "name": "Suara Papua",
+    "description": "reporting, grassroots perspectives, essays, public issues",
+    "role": "Papuan newsroom / commentary",
+    "url": "https://suarapapua.com/",
+    "aliases": [
+      "Suara Papua"
+    ],
+    "publisherIds": [
+      "suara-papua"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "aneta-papua",
+    "name": "Aneta Papua",
+    "description": "writing, media, experiences, knowledge and documentation from Papuan women and marginalized communities",
+    "role": "Papuan women's media",
+    "url": "https://aneta-papua.org/",
+    "aliases": [
+      "Aneta Papua"
+    ],
+    "publisherIds": [
+      "aneta-papua"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "papuan-voices",
+    "name": "Papuan Voices",
+    "description": "documentary film, community storytelling, Festival Film Papua, media training, study / screening resources",
+    "role": "Community documentary network",
+    "url": "https://papuanvoices.net/",
+    "aliases": [
+      "Papuan Voices"
+    ],
+    "publisherIds": [
+      "papuan-voices",
+      "papuan-voices"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "papuansspeak",
+    "name": "Papuansspeak",
+    "description": "youth writing, discussion, critical reflection, digital library / Pustaka",
+    "role": "Papuan youth platform",
+    "url": "https://papuansspeak.org/",
+    "aliases": [
+      "Papuansspeak"
+    ],
+    "publisherIds": [
+      "papuansspeak"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "kalawai",
+    "name": "Kalawai",
+    "description": "reporting, Indigenous issues, women, research, interviews, community learning, documentary / cultural discussion",
+    "role": "Media and community studies / grassroots knowledge platform",
+    "url": "https://kalawai.org/",
+    "aliases": [
+      "Kalawai"
+    ],
+    "publisherIds": [
+      "kalawai"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "lao-lao-papua",
+    "name": "Lao-Lao Papua",
+    "description": "essays, political education, movement analysis, history and critique",
+    "role": "Movement-oriented alternative media",
+    "url": "https://laolaopapua.com/",
+    "aliases": [
+      "Lao-Lao Papua"
+    ],
+    "publisherIds": [
+      "lao-lao-papua"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "nadi-papua",
+    "name": "Nadi Papua",
+    "description": "reporting, opinion, long-form, citizen / community voices",
+    "role": "Independent Papuan media",
+    "url": "https://nadipapua.com/",
+    "aliases": [
+      "Nadi Papua"
+    ],
+    "publisherIds": [
+      "nadi-papua"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "sa-perempuan-papua",
+    "name": "Sa Perempuan Papua",
+    "description": "safe spaces, women’s capacity building, gender-based violence, sexual / reproductive health, mental health",
+    "role": "Papuan women's community organization",
+    "url": "https://instagram.com/saperempuanpapua",
+    "aliases": [
+      "Sa Perempuan Papua"
+    ],
+    "publisherIds": [
+      "sa-perempuan-papua"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "yapkema",
+    "name": "YAPKEMA",
+    "description": "Meepago, health, education, economy, social issues, gender, community development",
+    "role": "Papua community development organization",
+    "url": "https://yapkema.id/",
+    "aliases": [
+      "YAPKEMA"
+    ],
+    "publisherIds": [
+      "yapkema"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "training-for-transformation-papua-yp3sp",
+    "name": "Training for Transformation Papua / YP3SP",
+    "description": "village-level development, food sovereignty, natural resources, rights, organizing, critical education",
+    "role": "Grassroots community organizing and education",
+    "url": "https://papuatransformation.org/",
+    "aliases": [
+      "Training for Transformation Papua / YP3SP"
+    ],
+    "publisherIds": [
+      "training-for-transformation-papua-yp3sp"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "pusaka-bentala-rakyat",
+    "name": "PUSAKA Bentala Rakyat",
+    "description": "customary land, agrarian conflict, forests, extractive projects, research, maps, reports",
+    "role": "Indigenous-rights / land / environment organization",
+    "url": "https://pusaka.or.id/",
+    "aliases": [
+      "PUSAKA Bentala Rakyat",
+      "PUSAKA",
+      "Pusaka Bentala Rakyat"
+    ],
+    "publisherIds": [
+      "pusaka",
+      "pusaka-bentala-rakyat"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "jerat-papua",
+    "name": "JERAT Papua",
+    "description": "customary territory, participatory mapping, research, policy advocacy, education, documentation of traditional knowledge",
+    "role": "Indigenous-rights organization",
+    "url": "https://jeratpapua.org/",
+    "aliases": [
+      "JERAT Papua"
+    ],
+    "publisherIds": [
+      "jerat-papua"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "walhi-papua",
+    "name": "WALHI Papua",
+    "description": "environment, land, forests, campaigns, research, documentation",
+    "role": "Environmental NGO",
+    "url": "https://walhipapua.org/",
+    "aliases": [
+      "WALHI Papua"
+    ],
+    "publisherIds": [
+      "walhi-papua"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "yali-papua",
+    "name": "YALI Papua",
+    "description": "forests, marine conservation, Indigenous communities, environmental advocacy",
+    "role": "Papua environmental organization",
+    "url": "https://yalipapua.org/",
+    "aliases": [
+      "YALI Papua"
+    ],
+    "publisherIds": [
+      "yali-papua"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "bentara-papua",
+    "name": "Bentara Papua",
+    "description": "West Papua community development, forests, water, climate, local livelihoods",
+    "role": "Community and environmental organization",
+    "url": "https://www.bentarapapua.org/",
+    "aliases": [
+      "Bentara Papua"
+    ],
+    "publisherIds": [
+      "bentara-papua"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "human-rights-monitor",
+    "name": "Human Rights Monitor",
+    "description": "case documentation, thematic reporting, periodic Papua monitoring, displacement, conflict, legal analysis",
+    "role": "Human-rights monitor",
+    "url": "https://humanrightsmonitor.org/",
+    "aliases": [
+      "Human Rights Monitor"
+    ],
+    "publisherIds": [
+      "human-rights-monitor",
+      "human-rights-monitor"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "papuans-behind-bars",
+    "name": "Papuans Behind Bars",
+    "description": "political prisoners, freedom of expression, assembly, detention and periodic reporting",
+    "role": "Civil-society documentation project",
+    "url": "https://papuansbehindbars.org/",
+    "aliases": [
+      "Papuans Behind Bars"
+    ],
+    "publisherIds": [
+      "papuans-behind-bars"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "jpic-ofm-papua",
+    "name": "JPIC OFM Papua",
+    "description": "long-running Papua human-rights documentation, Memoria Passionis, statements, analysis, community reporting",
+    "role": "Justice / peace / human-rights archive",
+    "url": "https://jpicofmpapua.org/",
+    "aliases": [
+      "JPIC OFM Papua"
+    ],
+    "publisherIds": [
+      "jpic-ofm-papua"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "asmat-archives",
+    "name": "Asmat Archives",
+    "description": "Asmat history, oral history, documents, photographs, historical materials, research, community archive work",
+    "role": "Cultural archive / community research center",
+    "url": "https://asmatarchives.org/",
+    "aliases": [
+      "Asmat Archives"
+    ],
+    "publisherIds": [
+      "asmat-archives"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "museum-loka-budaya-uncen",
+    "name": "Museum Loka Budaya UNCEN",
+    "description": "Papuan artefacts, cultural research, archaeology, ethnography, virtual exploration",
+    "role": "University museum / cultural research institution",
+    "url": "https://museum.uncen.ac.id/",
+    "aliases": [
+      "Museum Loka Budaya UNCEN"
+    ],
+    "publisherIds": [
+      "museum-loka-budaya-uncen"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "papua-heritage-stichting-papua-erfgoed-pace",
+    "name": "Papua Heritage / Stichting Papua Erfgoed / PACE",
+    "description": "historical photos, film, audio, documents, artefacts, Dutch-era collections",
+    "role": "Diaspora / external heritage archive",
+    "url": "https://papuaerfgoed.org/",
+    "aliases": [
+      "Papua Heritage / Stichting Papua Erfgoed / PACE"
+    ],
+    "publisherIds": [
+      "papua-heritage-stichting-papua-erfgoed-pace"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "papua-collecties",
+    "name": "Papua Collecties",
+    "description": "music, recordings, old media, archival material",
+    "role": "Historical audio / media collection",
+    "url": "https://www.papuacollecties.nl/",
+    "aliases": [
+      "Papua Collecties"
+    ],
+    "publisherIds": [
+      "papua-collecties"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "west-papua-project-university-of-wollongong",
+    "name": "West Papua Project — University of Wollongong",
+    "description": "conflict, history, politics, human rights, scholarship",
+    "role": "Academic research project",
+    "url": "https://www.uow.edu.au/arts-social-sciences-humanities/research/west-papua-project/",
+    "aliases": [
+      "West Papua Project — University of Wollongong"
+    ],
+    "publisherIds": [
+      "west-papua-project-university-of-wollongong"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "inside-indonesia-papua",
+    "name": "Inside Indonesia — Papua",
+    "description": "essays, history, policy, social analysis",
+    "role": "Long-form analysis / scholarship",
+    "url": "https://www.insideindonesia.org/",
+    "aliases": [
+      "Inside Indonesia — Papua"
+    ],
+    "publisherIds": [
+      "inside-indonesia-papua"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "brwa",
+    "name": "BRWA",
+    "description": "customary territory maps, recognition status, spatial data",
+    "role": "Indigenous territory registry / mapping",
+    "url": "https://www.brwa.or.id/",
+    "aliases": [
+      "BRWA"
+    ],
+    "publisherIds": [
+      "brwa"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "mapbiomas-indonesia",
+    "name": "MapBiomas Indonesia",
+    "description": "annual land-cover data, change detection, fire / alert layers",
+    "role": "Land-cover and land-use monitoring",
+    "url": "https://mapbiomas.id/",
+    "aliases": [
+      "MapBiomas Indonesia"
+    ],
+    "publisherIds": [
+      "mapbiomas-indonesia"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "nusantara-atlas",
+    "name": "Nusantara Atlas",
+    "description": "land clearing, concessions, fires, time series, PSN / South Papua monitoring",
+    "role": "Satellite / deforestation / concession monitoring",
+    "url": "https://nusantara-atlas.org/",
+    "aliases": [
+      "Nusantara Atlas"
+    ],
+    "publisherIds": [
+      "nusantara-atlas"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "simtaru-papua",
+    "name": "SIMTARU Papua",
+    "description": "planning documents, spatial datasets, interactive maps",
+    "role": "Government geospatial / spatial-planning portal",
+    "url": "https://simtaru.papua.go.id/",
+    "aliases": [
+      "SIMTARU Papua"
+    ],
+    "publisherIds": [
+      "simtaru-papua"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "rnz-pacific",
+    "name": "RNZ Pacific",
+    "description": "regional political, human-rights and Melanesian coverage of West Papua",
+    "role": "Pacific public-service media",
+    "url": "https://www.rnz.co.nz/news/pacific",
+    "aliases": [
+      "RNZ Pacific"
+    ],
+    "publisherIds": [
+      "rnz-pacific"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "project-multatuli",
+    "name": "Project Multatuli",
+    "description": "investigations, public-interest journalism, Papua-related deep dives",
+    "role": "Indonesian investigative newsroom",
+    "url": "https://projectmultatuli.org/",
+    "aliases": [
+      "Project Multatuli"
+    ],
+    "publisherIds": [
+      "project-multatuli"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "mongabay-indonesia",
+    "name": "Mongabay Indonesia",
+    "description": "forests, mining, land, Indigenous rights, biodiversity, Raja Ampat, Papua",
+    "role": "Environmental journalism",
+    "url": "https://www.mongabay.co.id/",
+    "aliases": [
+      "Mongabay Indonesia"
+    ],
+    "publisherIds": [
+      "mongabay",
+      "mongabay-indonesia",
+      "mongabay-indonesia"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "ajar-asia-justice-and-rights",
+    "name": "AJAR — Asia Justice and Rights",
+    "description": "participatory research, women’s rights, conflict, justice, Papua publications",
+    "role": "Regional human-rights organization",
+    "url": "https://asia-ajar.org/",
+    "aliases": [
+      "AJAR — Asia Justice and Rights"
+    ],
+    "publisherIds": [
+      "ajar-asia-justice-and-rights"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "tapol",
+    "name": "TAPOL",
+    "description": "Papua documentation, freedom of expression, rights reporting, advocacy",
+    "role": "International human-rights NGO",
+    "url": "https://tapol.org/",
+    "aliases": [
+      "TAPOL"
+    ],
+    "publisherIds": [
+      "tapol"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "human-rights-watch",
+    "name": "Human Rights Watch",
+    "description": "investigations and reports involving Papua",
+    "role": "International human-rights organization",
+    "url": "https://www.hrw.org/",
+    "aliases": [
+      "Human Rights Watch"
+    ],
+    "publisherIds": [
+      "human-rights-watch"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "greenpeace-indonesia",
+    "name": "Greenpeace Indonesia",
+    "description": "forests, Indigenous land, campaigns, environmental investigations",
+    "role": "Environmental NGO",
+    "url": "https://www.greenpeace.org/indonesia/",
+    "aliases": [
+      "Greenpeace Indonesia"
+    ],
+    "publisherIds": [
+      "greenpeace-indonesia"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "econusa",
+    "name": "EcoNusa",
+    "description": "forests, oceans, Indigenous rights, local organizations, community programs",
+    "role": "Eastern Indonesia environmental organization",
+    "url": "https://econusa.id/",
+    "aliases": [
+      "EcoNusa"
+    ],
+    "publisherIds": [
+      "econusa"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  },
+  {
+    "id": "ulmwp",
+    "name": "ULMWP",
+    "description": "official ULMWP statements, documents, positions and declarations",
+    "role": "Political organization / primary source",
+    "url": "https://www.ulmwp.org/",
+    "aliases": [
+      "ULMWP"
+    ],
+    "publisherIds": [
+      "ulmwp"
+    ],
+    "provenance": "Resources ecosystem handoff · 17 September 2026"
+  }
+]

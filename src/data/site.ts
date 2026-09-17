@@ -15,6 +15,7 @@ export const NAV_ITEMS = [
   { href: '/topics/', key: 'issues', label: { en: 'Issues', pmy: 'Isu' } },
   { href: '/history/', key: 'history', label: { en: 'History', pmy: 'Sejarah' } },
   { href: '/resources/', key: 'resources', label: { en: 'Library', pmy: 'Pustaka' } },
+  { href: '/data/', key: 'data', label: { en: 'Data', pmy: 'Data' } },
   { href: '/events/', key: 'events', label: { en: 'Events', pmy: 'Acara' } },
   { href: '/exhibition/view/', key: 'exhibition', label: { en: 'Exhibition', pmy: 'Pameran' } }
 ] as const;

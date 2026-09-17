@@ -2,18 +2,21 @@
 import '../styles/polish-01.css';
 import '../styles/polish-03.css';
 import '../styles/polish-04.css';
+import '../styles/exhibition-v6.css';
 import BaseLayout from '../layouts/BaseLayout.astro';import { exhibitionItems } from '../data/exhibition';import { sourceById } from '../data/sources';import { withLocale } from '../lib/i18n';import type { Locale } from '../data/types';import ui from '../../content/ui.json';
 const {locale='en'}=Astro.props as {locale?:Locale};
 const laneOrder=['works','voices','archive'] as const;
 const laneLabels={works:{en:'Works',pmy:'Karya'},voices:{en:'Voices',pmy:'Suara'},archive:{en:'Archive',pmy:'Arsip'}};
-const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:exhibitionItems.filter(item=>item.lane===lane)}));
+// Alternate media within each lane so consecutive works do not feel like duplicates.
+const varied=(items:typeof exhibitionItems)=>{const groups=new Map<string,typeof exhibitionItems>();for(const item of items){const key=item.mediaKind||'work';groups.set(key,[...(groups.get(key)||[]),item])}const result:typeof exhibitionItems=[];while([...groups.values()].some(g=>g.length))for(const group of groups.values()){const item=group.shift();if(item)result.push(item)}return result};
+const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:varied(exhibitionItems.filter(item=>item.lane===lane))}));
 ---
 <BaseLayout locale={locale} active="exhibition" title={locale==='en'?'Exhibition view':'Tampilan pameran'} immersive={true} noFooter={true}>
   <div class="exhibition-wall" data-exhibition-wall>
     <div class="exhibition-rails" data-exhibition-rails aria-label={locale==='en'?'Exhibition themes':'Tema pameran'}>
       {lanes.map((group,railIndex)=><section class:list={['exhibition-rail',`rail-${railIndex+1}`]} data-exhibition-rail data-index={String(railIndex)} data-speed={String([12,-9,10][railIndex])} aria-label={group.label}>
         <div class="exhibition-track">
-          {[...group.items,...group.items,...group.items].map((item,i)=>{const source=sourceById[item.sourceId];return <button class:list={['exhibit-card',`size-${(i+railIndex)%3}`]} type="button" data-exhibit-card data-title={item.title} data-type={item.type} data-summary={item.summary} data-source-label={item.publisher||source?.publisher||''} data-credit={item.credit||''} data-source-url={item.sourceUrl||source?.url||''} aria-label={`${item.title}. ${locale==='en'?'Open details':'Buka rincian'}`}><img src={item.image} alt=""/><span>{item.title}</span></button>})}
+          {[...group.items,...group.items,...group.items].map((item,i)=>{const source=sourceById[item.sourceId];return <button class:list={['exhibit-card',`size-${item.sizeHint==='large'?2:item.sizeHint==='small'?0:1}`,item.rights==='source-only'&&'is-catalogue']} type="button" data-exhibit-card data-title={item.title} data-type={item.type} data-summary={item.summary} data-source-label={item.publisher||source?.publisher||''} data-credit={item.credit||''} data-source-url={item.sourceUrl||source?.url||''} aria-label={`${item.title}. ${locale==='en'?'Open details':'Buka rincian'}`}><img src={item.image} alt="" loading="lazy" decoding="async"/><span class="exhibit-card-title">{item.rights==='source-only'&&<small>{item.type}</small>}{item.title}{item.rights==='source-only'&&<em>{item.creator||item.publisher}</em>}</span></button>})}
         </div>
       </section>)}
     </div>
@@ -21,7 +24,7 @@ const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:exhi
       <div class="exhibit-top"><span class="exhibit-kicker">{locale==='en'?'Exhibition':'Pameran'}</span><button class="exhibit-back" type="button" data-exhibit-back data-fallback={withLocale('/exhibition/',locale)}>← {locale==='en'?'Back':'Kembali'}</button></div>
       <div class="exhibit-lane-tabs" role="tablist" aria-label={locale==='en'?'Exhibition themes':'Tema pameran'}>{lanes.map((group,i)=><button class:list={[i===0&&'active']} type="button" role="tab" aria-selected={i===0?'true':'false'} data-lane-tab={String(i)}>{group.label}</button>)}</div>
       <h1 class="exhibit-title">{ui.exhibition.immersiveTitle[locale]}</h1>
-      <div class="exhibit-bottom"><a data-curtain-leave href={withLocale('/exhibition/',locale)}>{locale==='en'?'Browse artists, works & credits':'Lihat seniman, karya & kredit'} →</a></div>
+      <div class="exhibit-bottom"><button type="button" class="chip" data-exhibit-pause aria-pressed="false">{locale==='en'?'Pause':'Jeda'}</button><a data-curtain-leave href={withLocale('/exhibition/',locale)}>{locale==='en'?'Browse artists, works & credits':'Lihat seniman, karya & kredit'} →</a></div>
     </div>
 
     <dialog class="exhibit-focus" data-exhibit-focus aria-label={locale==='en'?'Work details':'Rincian karya'}>
@@ -55,15 +58,18 @@ const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:exhi
     const focusSourceLink=focusDialog?.querySelector<HTMLAnchorElement>('[data-exhibit-focus-source-link]');
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
     const baseOffsets=rails.map(()=>0),userOffsets=rails.map(()=>0);
+    let paused=false;
     let last=performance.now(),quietTimer:ReturnType<typeof setTimeout>|undefined,activeLane=0;
     let touch:{x:number;y:number;lastX:number;lastY:number;axis:'x'|'y'|null}|null=null;
     const markMoved=()=>{overlay?.classList.add('has-moved');if(quietTimer)clearTimeout(quietTimer);quietTimer=setTimeout(()=>overlay?.classList.remove('has-moved'),2800)};
     const wrap=(value:number,size:number)=>((value%size)+size)%size;
-    const activateLane=(next:number)=>{activeLane=Math.max(0,Math.min(rails.length-1,next));railsContainer?.style.setProperty('--active-lane',String(activeLane));rails.forEach((rail,i)=>rail.classList.toggle('is-active',i===activeLane));tabs.forEach((tab,i)=>{tab.classList.toggle('active',i===activeLane);tab.setAttribute('aria-selected',i===activeLane?'true':'false')});markMoved()};
+    const activateLane=(next:number)=>{activeLane=Math.max(0,Math.min(rails.length-1,next));railsContainer?.classList.add('has-active');railsContainer?.style.setProperty('--active-lane',String(activeLane));rails.forEach((rail,i)=>rail.classList.toggle('is-active',i===activeLane));tabs.forEach((tab,i)=>{tab.classList.toggle('active',i===activeLane);tab.setAttribute('aria-selected',i===activeLane?'true':'false')});markMoved()};
     const laneAt=(x:number,y:number)=>{const hit=document.elementFromPoint(x,y)?.closest<HTMLElement>('[data-exhibition-rail]');return hit?Number(hit.dataset.index||0):activeLane};
+    document.querySelector<HTMLButtonElement>('[data-exhibit-pause]')?.addEventListener('click',e=>{paused=!paused;const b=e.currentTarget as HTMLButtonElement;b.setAttribute('aria-pressed',String(paused));b.textContent=paused?(document.documentElement.lang==='id'?'Lanjut':'Resume'):(document.documentElement.lang==='id'?'Jeda':'Pause')});
+    rails.forEach((rail,i)=>rail.addEventListener('focusin',()=>activateLane(i)));
     tabs.forEach((tab,i)=>tab.addEventListener('click',()=>activateLane(i)));
     rails.forEach((rail,i)=>rail.addEventListener('pointerenter',event=>{if((event as PointerEvent).pointerType==='mouse')activateLane(i)}));
-    const tick=(now:number)=>{const dt=Math.min(.05,(now-last)/1000);last=now;rails.forEach((rail,i)=>{const track=rail.querySelector<HTMLElement>('.exhibition-track');const third=(track?.scrollHeight||0)/3;if(!third||!track)return;const speed=reduced?0:Number(rail.dataset.speed||0);baseOffsets[i]+=speed*dt;const local=wrap(baseOffsets[i]+userOffsets[i],third);track.style.transform=`translate3d(0,${-local}px,0)`});requestAnimationFrame(tick)};
+    const tick=(now:number)=>{const dt=Math.min(.05,(now-last)/1000);last=now;rails.forEach((rail,i)=>{const track=rail.querySelector<HTMLElement>('.exhibition-track');const third=(track?.scrollHeight||0)/3;if(!third||!track)return;const speed=reduced||paused||focusDialog?.open||document.hidden?0:Number(rail.dataset.speed||0);baseOffsets[i]+=speed*dt;const local=wrap(baseOffsets[i]+userOffsets[i],third);track.style.transform=`translate3d(0,${-local}px,0)`});requestAnimationFrame(tick)};
     wall?.addEventListener('wheel',event=>{const lane=laneAt(event.clientX,event.clientY);activateLane(lane);userOffsets[lane]+=event.deltaY*.48;markMoved()},{passive:true});
     wall?.addEventListener('touchstart',event=>{const p=event.touches[0];if(p){activateLane(laneAt(p.clientX,p.clientY));touch={x:p.clientX,y:p.clientY,lastX:p.clientX,lastY:p.clientY,axis:null}}},{passive:true});
     wall?.addEventListener('touchmove',event=>{const p=event.touches[0];if(!p||!touch)return;const totalX=p.clientX-touch.x,totalY=p.clientY-touch.y;if(!touch.axis&&Math.hypot(totalX,totalY)>12)touch.axis=Math.abs(totalX)>Math.abs(totalY)*1.1?'x':'y';if(touch.axis==='y'){userOffsets[activeLane]+=(touch.lastY-p.clientY)*1.08;markMoved()}touch.lastX=p.clientX;touch.lastY=p.clientY},{passive:true});
@@ -76,6 +82,7 @@ const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:exhi
     const back=document.querySelector<HTMLButtonElement>('[data-exhibit-back]');
     back?.addEventListener('click',()=>{const go=()=>{let sameOrigin=false;try{sameOrigin=!!document.referrer&&new URL(document.referrer).origin===location.origin}catch{}if(sameOrigin&&history.length>1)history.back();else location.href=back.dataset.fallback||'/exhibition/'};if(reduced){go();return}curtain?.classList.add('is-closing');setTimeout(go,620)});
     document.querySelectorAll<HTMLAnchorElement>('[data-curtain-leave]').forEach(link=>link.addEventListener('click',event=>{if(reduced)return;event.preventDefault();curtain?.classList.add('is-closing');setTimeout(()=>{location.href=link.href},620)}));
+    document.querySelectorAll<HTMLImageElement>('[data-exhibit-card] img').forEach(img=>img.addEventListener('error',()=>{img.src='/images/abstract/exhibition-1.svg'},{once:true}));
     activateLane(0);requestAnimationFrame(tick);
   </script>
 </BaseLayout>
