@@ -155,14 +155,25 @@ export async function queueDevelopmentForEditorial(env:any,id:number,_force=fals
 export async function enqueueEditorialBacklog(env:any,limit=MAX_EDITORIAL_BATCH){
   // Reclaim only expired dispatch leases, never editorial rejections.
   const recovered:any=await env.DB.prepare(`UPDATE developments SET editorial_pending=1,editorial_dispatch_id=NULL,editorial_dispatched_at=NULL,editorial_started_at=NULL,status=CASE WHEN status='published' THEN status ELSE 'held' END WHERE editorial_dispatch_id IS NOT NULL AND status NOT IN ('filtered','merged') AND julianday(COALESCE(editorial_started_at,editorial_dispatched_at))<julianday('now','-30 minutes')`).run();
-  const rows:any=await env.DB.prepare(`SELECT id FROM developments WHERE pipeline_version>=2 AND editorial_pending=1 AND status NOT IN ('filtered','merged') AND (editorial_not_before IS NULL OR julianday(editorial_not_before)<=julianday('now')) ORDER BY updated_at ASC,id ASC LIMIT ?`).bind(Math.min(MAX_EDITORIAL_BATCH,Math.max(1,limit))).all();
-  let queued=0;
+  const cap=Math.min(MAX_EDITORIAL_BATCH,Math.max(1,Math.floor(limit)||1));
+  // At most half the slots go to genuinely recent, unpublished reporting.
+  // The rest drain oldest eligible work; unused fresh slots also go to backlog.
+  // Source publication dates, not ingestion/retry timestamps, define freshness.
+  const rows:any=await env.DB.prepare(`WITH eligible AS (
+    SELECT d.id,d.status,d.updated_at,(SELECT MAX(julianday(a.published_at)) FROM development_articles da JOIN articles a ON a.id=da.article_id WHERE da.development_id=d.id AND julianday(a.published_at)<=julianday('now','+1 hour')) report_day
+    FROM developments d WHERE d.pipeline_version>=2 AND d.editorial_pending=1 AND d.status NOT IN ('filtered','merged') AND (d.editorial_not_before IS NULL OR julianday(d.editorial_not_before)<=julianday('now'))
+  ), fresh AS (
+    SELECT id FROM eligible WHERE status<>'published' AND report_day>=julianday('now','-48 hours') ORDER BY report_day DESC,id ASC LIMIT ?
+  ) SELECT e.id,CASE WHEN f.id IS NOT NULL THEN 'fresh' ELSE 'backlog' END admission_lane
+    FROM eligible e LEFT JOIN fresh f ON f.id=e.id
+    ORDER BY CASE WHEN f.id IS NOT NULL THEN 0 ELSE 1 END,e.updated_at ASC,e.id ASC LIMIT ?`).bind(Math.floor(cap/2),cap).all();
+  let queued=0,freshQueued=0,backlogQueued=0;
   for(const row of rows.results||[]){
     const id=Number(row.id),dispatchId=crypto.randomUUID(),now=new Date().toISOString();
     const claim:any=await env.DB.prepare(`UPDATE developments SET editorial_pending=0,editorial_dispatch_id=?,editorial_dispatched_at=?,editorial_started_at=NULL,status=CASE WHEN status='published' THEN status ELSE 'editorial_queued' END,updated_at=? WHERE id=? AND editorial_pending=1`).bind(dispatchId,now,now,id).run();
     if(!claim.meta?.changes)continue;
-    try{await env.EDITORIAL_QUEUE.send({kind:'editorial',dispatchId,developmentIds:[id]},{delaySeconds:queued*180});queued++}
+    try{await env.EDITORIAL_QUEUE.send({kind:'editorial',dispatchId,developmentIds:[id]},{delaySeconds:queued*180});queued++;if(row.admission_lane==='fresh')freshQueued++;else backlogQueued++}
     catch(e){await env.DB.prepare(`UPDATE developments SET editorial_pending=1,editorial_dispatch_id=NULL,editorial_dispatched_at=NULL,editorial_started_at=NULL,status=CASE WHEN status='published' THEN status ELSE 'held' END WHERE id=? AND editorial_dispatch_id=?`).bind(id,dispatchId).run();throw e}
   }
-  return {checked:(rows.results||[]).length,queued,recovered:Number(recovered.meta?.changes||0)};
+  return {checked:(rows.results||[]).length,queued,freshQueued,backlogQueued,recovered:Number(recovered.meta?.changes||0)};
 }

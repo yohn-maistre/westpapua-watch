@@ -19,6 +19,7 @@ const { locale='en', active='now', path=Astro.url.pathname } = Astro.props as { 
         <a class:list={[locale==='pmy' && 'active']} href={locale==='pmy'?path:alternateLocalePath(path, locale)} hreflang="id">ID</a>
       </div>
       <button class="ask-trigger" type="button" data-ask-open><svg class="ask-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-8 8H5l-3 2v-10a9 9 0 0 1 18 0Z"/><path d="M8 10h8m-8 4h5"/></svg><span>{locale==='en'?'Ask':'Tanya'}</span><span class="key">⌘K</span></button>
+      <button class="mobile-menu-trigger" type="button" data-menu-open aria-haspopup="dialog" aria-controls="watch-menu">Menu <span aria-hidden="true">☰</span></button>
     </div>
   </div>
 </header>

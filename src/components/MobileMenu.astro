@@ -1,0 +1,17 @@
+---
+import {NAV_ITEMS} from '../data/site';
+import {t,withLocale} from '../lib/i18n';
+const {locale='en',active='now'}=Astro.props;
+---
+<dialog id="watch-menu" class="watch-menu" aria-labelledby="watch-menu-title">
+  <div class="watch-menu-heading"><span id="watch-menu-title">West Papua <em>Watch</em></span><form method="dialog"><button autofocus aria-label={locale==='en'?'Close menu':'Tutup menu'}>✕</button></form></div>
+  <nav aria-label={locale==='en'?'Site navigation':'Navigasi situs'}>{NAV_ITEMS.map((item,i)=><a href={withLocale(item.href,locale)} aria-current={active===item.key?'page':undefined}><small>{String(i+1).padStart(2,'0')}</small><span>{t(item.label,locale)}</span><span aria-hidden="true">↗</span></a>)}</nav>
+</dialog>
+<script>
+const menu=document.querySelector<HTMLDialogElement>('#watch-menu');
+if(menu){
+ document.querySelectorAll<HTMLButtonElement>('[data-menu-open]').forEach(button=>button.addEventListener('click',()=>menu.showModal()));
+ menu.addEventListener('click',event=>{if(event.target===menu){const r=menu.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)menu.close()}});
+ const desktop=matchMedia('(min-width: 761px)');desktop.addEventListener('change',()=>{if(desktop.matches&&menu.open)menu.close()});
+}
+</script>

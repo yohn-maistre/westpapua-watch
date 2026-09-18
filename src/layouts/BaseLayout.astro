@@ -14,6 +14,7 @@ import type { Locale } from '../data/types';
 import ProgrammeBanner from '../components/ProgrammeBanner.astro';
 import Masthead from '../components/Masthead.astro';
 import CompactNav from '../components/CompactNav.astro';
+import MobileMenu from '../components/MobileMenu.astro';
 import AskDialog from '../components/AskDialog.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { alternateLocalePath, t } from '../lib/i18n';
@@ -47,6 +48,7 @@ const lang = locale==='pmy'?'id':'en';
   {!immersive && <Masthead locale={locale} active={active} path={Astro.url.pathname} />}
   {!immersive && <div class="nav-sentinel" data-nav-sentinel aria-hidden="true"></div>}
   {!immersive && <CompactNav locale={locale} active={active} path={Astro.url.pathname} />}
+  {!immersive && <MobileMenu locale={locale} active={active} />}
   <a class="skip-link" href="#main">{locale==='en'?'Skip to content':'Langsung ke konten'}</a><main id="main" tabindex="-1"><slot /></main>
   {!immersive && !noFooter && <SiteFooter locale={locale} />}
   {!immersive && <AskDialog locale={locale} />}

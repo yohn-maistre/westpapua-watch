@@ -1,3 +1,4 @@
+import {recordEngineActivity} from './activity';
 import { WorkflowEntrypoint } from 'cloudflare:workers';
 import { discoverBackfill,discoverEnabled } from './sources/discover';
 import { enqueueEditorialBacklog } from './cluster/editorial';
@@ -27,7 +28,7 @@ export class NewsCycleWorkflow extends WorkflowEntrypoint<any,unknown>{
     // A backfill only populates the durable ingestion/Development backlog. Normal
     // scheduled checkpoints own editorial admission, so a one-time archive import
     // cannot suddenly consume the whole writer quota.
-    if(isBackfill)return {mode:'backfill',days:backfillDays,discovered:items.length,enqueued,editorial:{skipped:'normal-checkpoints-drain-backlog'}};
+    if(isBackfill){const result={mode:'backfill',days:backfillDays,discovered:items.length,enqueued,editorial:{skipped:'normal-checkpoints-drain-backlog'}};await step.do('record completed backfill',()=>recordEngineActivity(this.env,'backfill',result));return result;}
 
     const editorial=await step.do('dispatch one editorial batch',{retries:{limit:1,delay:'15 seconds'},timeout:'1 minute'},()=>enqueueEditorialBacklog(this.env,4));
     const deferred=await step.do('retry deferred relevance',{retries:{limit:1,delay:'20 seconds'},timeout:'2 minutes'},()=>enqueueDeferredRelevance(this.env,10));
@@ -38,6 +39,8 @@ export class NewsCycleWorkflow extends WorkflowEntrypoint<any,unknown>{
     const emerging=witHour===18
       ?await step.do('daily emerging issue pass',{retries:{limit:1,delay:'30 seconds'},timeout:'4 minutes'},()=>detectEmergingIssues(this.env,24))
       :{checked:0,upserted:0,skipped:'daily-maintenance-window'};
-    return {deferred,legacy,editorial,reconcile,emerging,discoveryFailed,discovered:items.length,enqueued,cadence:'hourly'};
+    const result={deferred,legacy,editorial,reconcile,emerging,discoveryFailed,discovered:items.length,enqueued,cadence:'hourly'};
+    await step.do('record completed engine cycle',()=>recordEngineActivity(this.env,'normal',result));
+    return result;
   }
 }

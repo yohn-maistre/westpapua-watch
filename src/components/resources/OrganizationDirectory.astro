@@ -2,20 +2,71 @@
 import {organizations,organizationIdsFor} from '../../../shared/organizations';
 import {libraryItems} from '../../data/library';
 import {withLocale} from '../../lib/i18n';
-const {locale='en',expanded=false}=Astro.props;
-const category=(o:any)=>o.category||'community';
-const categories=[['all','All','Semua'],['reporting','Reporting','Jurnalisme'],['community','Community & advocacy','Komunitas & advokasi'],['research','Research & archives','Riset & arsip'],['culture','Arts & culture','Seni & budaya']];
+const {locale='en'}=Astro.props;const en=locale==='en';
+const categories=[['reporting','News & reporting','Berita & jurnalisme','150'],['community','Community & advocacy','Komunitas & advokasi','270'],['research','Research & archives','Riset & arsip','205'],['culture','Arts & culture','Seni & budaya','30']];
 const counts=Object.fromEntries(organizations.map(o=>[o.id,libraryItems.filter(r=>organizationIdsFor(r).includes(o.id)).length]));
 ---
-<section id="sites" class="organizations" aria-labelledby="organizations-title"><div class="section-head"><h2 id="organizations-title">{locale==='en'?'Sites & organizations.':'Situs & organisasi.'}</h2>{!expanded&&<a href={withLocale('/organizations/',locale)}>{locale==='en'?'Browse all':'Lihat semua'} ↗</a>}</div>
-{expanded&&<input class="resource-search" type="search" placeholder={locale==='en'?'Find an organization':'Cari organisasi'} aria-label={locale==='en'?'Find an organization':'Cari organisasi'} data-organization-search/>}
-<div class="organization-categories" role="group" aria-label="Category">{categories.map(([id,en,idLabel])=><button class="chip" data-organization-category={id} aria-pressed={id==='all'}>{locale==='en'?en:idLabel}</button>)}</div><div class="organization-grid">{(expanded?organizations:organizations.slice(0,6)).map((o,i)=><article class="organization-tile" style={`--tile-hue:${[150,210,270,30,185,330][i%6]}`} data-directory-category={category(o)} data-organization-text={`${o.name} ${o.role} ${o.description}`.toLowerCase()}><div class="eyebrow">{o.role}</div><h3><a href={o.url} target="_blank" rel="noreferrer">{o.name} ↗</a></h3><p>{o.description}</p><a class="organization-count" hidden={!counts[o.id]} data-organization-count={o.id} data-count-locale={locale} href={`${withLocale('/resources/',locale)}?organization=${o.id}#catalogue`}>{counts[o.id]?`${counts[o.id]} ${locale==='en'?'resources in Watch':'sumber di Watch'} →`:locale==='en'?'Explore in Watch →':'Jelajahi di Watch →'}</a></article>)}</div></section>
+<section id="sites" class="organizations" aria-labelledby="organizations-title">
+ <div class="section-head"><h2 id="organizations-title">{en?'Sites & organizations.':'Situs & organisasi.'}</h2><span class="directory-total">{organizations.length} {en?'sites':'situs'}</span></div>
+ <input class="resource-search" type="search" placeholder={en?'Find a site or organization':'Cari situs atau organisasi'} aria-label={en?'Find a site or organization':'Cari situs atau organisasi'} data-organization-search/>
+ <div class="directory-sections">{categories.map(([id,label,labelId,hue],i)=>{
+ const entries=organizations.filter(o=>(o.category||'community')===id);
+ return <details class="directory-section" style={`--tile-hue:${hue}`} data-directory-section>
+  <summary><span class="directory-number">0{i+1}</span><span class="directory-label">{en?label:labelId}</span><span class="directory-size">{entries.length}</span><span class="directory-plus" aria-hidden="true">+</span></summary>
+  <div class="directory-entries">{entries.map(o=><article class="organization-entry" data-organization-text={`${o.name} ${o.role} ${o.description}`.toLowerCase()}>
+   <h3><a href={o.url} target="_blank" rel="noreferrer">{o.name} <span aria-hidden="true">↗</span></a></h3><small class="organization-role">{o.role}</small><p>{o.description}</p>
+   <a class="organization-count" hidden={!counts[o.id]} data-organization-count={o.id} data-count-locale={locale} href={`${withLocale('/resources/',locale)}?organization=${o.id}#catalogue`}>{counts[o.id]} {en?'items in Library':'item di Pustaka'} →</a>
+  </article>)}</div>
+ </details>})}</div>
+ <p class="directory-empty" data-directory-empty hidden role="status">{en?'No matching sites. Try another name or subject.':'Tidak ada situs yang cocok. Coba nama atau topik lain.'}</p>
+</section>
 <script>
-const search=document.querySelector<HTMLInputElement>('[data-organization-search]');let active='all';const apply=()=>{const q=search?.value.trim().toLowerCase()||'';document.querySelectorAll<HTMLElement>('[data-organization-text]').forEach(tile=>tile.hidden=!(tile.dataset.organizationText?.includes(q)&&(active==='all'||tile.dataset.directoryCategory===active)));document.querySelectorAll<HTMLElement>('[data-organization-category]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.organizationCategory===active)))};search?.addEventListener('input',apply);document.querySelectorAll<HTMLElement>('[data-organization-category]').forEach(button=>button.addEventListener('click',()=>{active=button.dataset.organizationCategory||'all';apply()}));
-document.addEventListener('watch:library-loaded',()=>{const rows=[...document.querySelectorAll<HTMLElement>('[data-resource-row]')];if(!rows.length)return;document.querySelectorAll<HTMLElement>('[data-organization-count]').forEach(link=>{const count=rows.filter(row=>row.dataset.resourceOrganizations?.split(' ').includes(link.dataset.organizationCount!)).length;link.hidden=!count;link.textContent=count?`${count} ${link.dataset.countLocale==='en'?'items in Library':'item di Pustaka'} →`:link.dataset.countLocale==='en'?'Explore in Library →':'Jelajahi Pustaka →'})});
+const directory=document.querySelector<HTMLElement>('#sites');
+if(directory){
+ const search=directory.querySelector<HTMLInputElement>('[data-organization-search]')!;
+ const sections=[...directory.querySelectorAll<HTMLDetailsElement>('[data-directory-section]')];
+ let savedOpen:boolean[]|null=null;
+ search.addEventListener('input',()=>{
+  const q=search.value.trim().toLowerCase();let total=0;
+  if(q&&!savedOpen)savedOpen=sections.map(s=>s.open);
+  sections.forEach((section,i)=>{
+   let count=0;section.querySelectorAll<HTMLElement>('[data-organization-text]').forEach(row=>{row.hidden=!row.dataset.organizationText?.includes(q);if(!row.hidden)count++});
+   section.hidden=!count;total+=count;
+   if(q)section.open=!!count;else if(savedOpen)section.open=savedOpen[i];
+  });
+  if(!q)savedOpen=null;
+  (directory.querySelector('[data-directory-empty]') as HTMLElement).hidden=total>0;
+ });
+ // Keep browsing compact; search may intentionally open more than one category.
+ sections.forEach(section=>section.addEventListener('toggle',()=>{if(section.open&&!search.value.trim())sections.forEach(other=>{if(other!==section)other.open=false})}));
+}
+document.addEventListener('watch:library-loaded',()=>{const rows=[...document.querySelectorAll<HTMLElement>('[data-resource-row]')];if(!rows.length)return;document.querySelectorAll<HTMLElement>('[data-organization-count]').forEach(link=>{const count=rows.filter(row=>row.dataset.resourceOrganizations?.split(' ').includes(link.dataset.organizationCount!)).length;link.hidden=!count;link.textContent=`${count} ${link.dataset.countLocale==='en'?'items in Library':'item di Pustaka'} →`})});
 </script>
-<style is:global>.organizations{margin:3rem 0}.organization-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:1.5rem}.organization-tile{display:flex;flex-direction:column;min-height:230px;padding:26px;border-radius:18px;background:radial-gradient(ellipse at 100% 0,hsl(var(--tile-hue) 20% 35% / .8),transparent 75%),#14171e;border:1px solid #ffffff12}.organization-tile h3{font-size:1.5rem;line-height:1.1;margin:24px 0 14px}.organization-tile p{font-size:.9rem;color:#cbcbd2;line-height:1.5}.organization-count{margin-top:auto;padding-top:26px;font-size:.8rem}.organization-tile[hidden],.organization-count[hidden]{display:none!important}@media(max-width:760px){.organization-grid{grid-template-columns:1fr 1fr}.organization-tile{padding:20px;min-height:250px}}@media(max-width:460px){.organization-grid{grid-template-columns:1fr}.organization-tile{min-height:190px}}</style>
-
 <style is:global>
-.organizations{scroll-margin-top:140px}.organization-categories{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.2rem 0}.organization-categories [aria-pressed=true]{background:#e9e4f5;color:#181620}.organization-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}.organization-tile{grid-column:span 2;position:relative;overflow:hidden;isolation:isolate;min-height:240px;background:radial-gradient(ellipse at 100% 0,hsl(var(--tile-hue) 24% 40% / .9),transparent 90%),#161b24}.organization-tile:nth-child(7n+1),.organization-tile:nth-child(7n+2){grid-column:span 3;min-height:280px}.organization-tile::before,.organization-tile::after{content:'';position:absolute;z-index:-1;pointer-events:none;inset:-25% -15% 10% 20%;border:1px solid #ffffff0c;border-radius:48%;transform:rotate(-25deg);box-shadow:0 0 0 30px #ffffff03,0 0 0 60px #ffffff03,0 0 0 90px #ffffff03}.organization-tile::after{inset:0;background:linear-gradient(0deg,#090c1466,transparent);border:0;box-shadow:none;border-radius:0}.organization-tile h3{font-size:clamp(1.5rem,2.5vw,2.4rem);letter-spacing:-.045em;max-width:90%}.organization-tile:focus-within{outline:2px solid #e4dbff;outline-offset:3px}.organization-tile p{max-width:44ch}.organization-tile .eyebrow{color:#d1d1db}.organization-tile[hidden],.organization-count[hidden]{display:none!important}@media(max-width:650px){.organization-grid{grid-template-columns:1fr 1fr}.organization-tile,.organization-tile:nth-child(7n+1),.organization-tile:nth-child(7n+2){grid-column:auto;min-height:230px;padding:22px}.organization-tile:first-child{grid-column:1/-1}.organization-tile h3{font-size:1.55rem}}@media(max-width:380px){.organization-grid{grid-template-columns:1fr}.organization-tile{min-height:180px}}
+.organizations{margin:3rem 0 5rem;scroll-margin-top:110px}
+.directory-total{color:#a4a1af;font-size:.8rem;white-space:nowrap}
+.organizations>.resource-search{width:min(100%,460px);margin:0 0 22px}
+.directory-sections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.directory-section{min-width:0;border:1px solid #ffffff14;border-radius:18px;overflow:hidden;background:#11141c}
+.directory-section[open]{grid-column:1/-1}
+.directory-section summary{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:18px;min-height:116px;padding:24px;cursor:pointer;list-style:none;background:radial-gradient(ellipse at 100% 0,hsl(var(--tile-hue) 24% 34%),transparent 100%),#181b24}
+.directory-section summary::-webkit-details-marker{display:none}
+.directory-section summary::before{content:'';position:absolute;z-index:-1;width:330px;height:330px;right:-70px;top:-180px;border:1px solid #ffffff0e;border-radius:50%;box-shadow:0 0 0 28px #ffffff03,0 0 0 56px #ffffff03,0 0 0 84px #ffffff03;pointer-events:none}
+.directory-number,.directory-size{font-size:.75rem;color:#d1ccd9;font-variant-numeric:tabular-nums}
+.directory-label{font-size:clamp(1.15rem,2vw,1.65rem);font-weight:650;letter-spacing:-.035em;line-height:1.15}
+.directory-plus{font-size:1.6rem;font-weight:300;transition:transform .2s}
+.directory-section[open] .directory-plus{transform:rotate(45deg)}
+.directory-entries{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;padding:8px 26px 20px}
+.organization-entry{min-width:0;padding:24px 0;border-bottom:1px solid #ffffff12}
+.organization-entry h3{font-size:1.3rem;letter-spacing:-.035em;line-height:1.25;margin:0 0 8px;overflow-wrap:anywhere}
+.organization-entry h3 a{display:flex;justify-content:space-between;gap:12px}
+.organization-entry h3 span{color:#aca5bf;flex-shrink:0;font-weight:400}
+.organization-role{display:block;font-size:.72rem;color:#b6adc5;line-height:1.5}
+.organization-entry p{color:#aaa8b4;font-size:.88rem;line-height:1.55;margin:12px 0;max-width:55ch}
+.organization-count{display:inline-block;font-size:.76rem;color:#ddd5ee;padding:8px 0}
+.directory-section summary:focus-visible,.organization-entry a:focus-visible{outline:2px solid #d3c4ef;outline-offset:-3px}
+.directory-empty{color:#b7b1c3}
+.organization-entry[hidden],.organization-count[hidden],.directory-section[hidden],.directory-empty[hidden]{display:none!important}
+@media(max-width:650px){.directory-sections{grid-template-columns:1fr;gap:10px}.directory-section summary{min-height:92px;padding:20px;gap:14px}.directory-label{font-size:1.25rem}.directory-entries{grid-template-columns:1fr;padding-inline:20px}.organizations{margin-bottom:3rem}.directory-total{display:none}}
+@media(prefers-reduced-motion:reduce){.directory-plus{transition:none}}
 </style>
