@@ -13,6 +13,8 @@
     "cf:dev": "npm run build && wrangler pages dev dist",
     "cf:deploy": "npm run build && wrangler pages deploy dist --project-name=westpapua-watch",
     "check:content": "node scripts/check-content.mjs",
+    "archive:validate": "node scripts/archive-media.mjs validate",
+    "archive:sync": "node scripts/archive-media.mjs sync",
     "steward:content": "node scripts/steward-content.mjs",
     "steward:daily": "node scripts/watch-daily.mjs",
     "watch:config": "node scripts/render-watch-config.mjs",

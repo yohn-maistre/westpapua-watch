@@ -1,0 +1,443 @@
+{
+  "sections": [
+    {
+      "id": "first-cameras",
+      "label": {"en": "First cameras", "pmy": "Kamera pertama"},
+      "range": "1925–1926",
+      "intro": {"en": "Early surviving film records from Merauke, Yapen and the Mamberamo expedition.", "pmy": "Rekaman film awal yang masih tersimpan dari Merauke, Yapen, dan ekspedisi Mamberamo."}
+    },
+    {
+      "id": "highlands",
+      "label": {"en": "Into the highlands", "pmy": "Ke pegunungan"},
+      "range": "1938–1939",
+      "intro": {"en": "Expedition photographs from the Baliem Valley and central highlands.", "pmy": "Foto ekspedisi dari Lembah Baliem dan pegunungan tengah."}
+    },
+    {
+      "id": "war-reconstruction",
+      "label": {"en": "War & reconstruction", "pmy": "Perang & pembangunan kembali"},
+      "range": "1944–1949",
+      "intro": {"en": "Film and photographs around Hollandia, Merauke and Noemfoor during the Pacific War and its aftermath.", "pmy": "Film dan foto dari Hollandia, Merauke, dan Noemfoor pada masa Perang Pasifik dan sesudahnya."}
+    },
+    {
+      "id": "everyday",
+      "label": {"en": "Everyday Papua", "pmy": "Papua sehari-hari"},
+      "range": "1950–1958",
+      "intro": {"en": "Settlements, transport, public services and changing towns across Papua.", "pmy": "Kampung, transportasi, layanan publik, dan kota-kota yang berubah di Papua."}
+    },
+    {
+      "id": "political-future",
+      "label": {"en": "A political future", "pmy": "Masa depan politik"},
+      "range": "1960–1961",
+      "intro": {"en": "Elections, the New Guinea Council and symbols of a changing political order.", "pmy": "Pemilihan, Dewan Nugini, dan simbol-simbol perubahan politik."}
+    },
+    {
+      "id": "transfer",
+      "label": {"en": "Transfer", "pmy": "Peralihan"},
+      "range": "1962–1963",
+      "intro": {"en": "Records from the final months of Dutch administration and the transition to United Nations administration.", "pmy": "Catatan dari bulan-bulan terakhir pemerintahan Belanda dan peralihan ke pemerintahan Perserikatan Bangsa-Bangsa."}
+    }
+  ],
+  "items": [
+    {
+      "id": "merauke-hurley-1925",
+      "section": "first-cameras",
+      "date": "c. 1925",
+      "title": {"en": "Merauke on film", "pmy": "Merauke dalam film"},
+      "place": "Merauke",
+      "mediaType": "film",
+      "duration": "02:13",
+      "layout": "wide",
+      "archive": {
+        "institution": "Australian Screen Online / NFSA",
+        "identifier": "Thursday Island and Merauke, clip 2",
+        "sourceUrl": "https://aso.gov.au/titles/historical/thursday-island-and-merauke/clip2/",
+        "creator": "Frank Hurley"
+      },
+      "editorial": {
+        "caption": {"en": "A surviving film segment made in Merauke in the mid-1920s.", "pmy": "Potongan film yang dibuat di Merauke pada pertengahan 1920-an."},
+        "context": {"en": "The archive notes that Papuan people were filmed through the ethnographic conventions of the period. Watch links to the official copy rather than rehosting it.", "pmy": "Arsip mencatat bahwa orang Papua direkam dengan cara pandang etnografis pada masa itu. Watch menautkan salinan resmi dan tidak meng-host ulang film ini."}
+      },
+      "access": {"mode": "external", "rightsStatus": "restricted", "rightsHolder": "NFSA / rights holders", "rightsVerifiedAt": "2026-09-20"}
+    },
+    {
+      "id": "smithsonian-mamberamo-1926",
+      "section": "first-cameras",
+      "date": "1926",
+      "title": {"en": "The Mamberamo expedition films", "pmy": "Film ekspedisi Mamberamo"},
+      "place": "Mamberamo and central highlands",
+      "mediaType": "film",
+      "duration": "30 selections",
+      "layout": "hero",
+      "archive": {
+        "institution": "Smithsonian Institution Libraries",
+        "identifier": "Dutch-American Expedition to New Guinea",
+        "sourceUrl": "https://www.sil.si.edu/expeditions/1926/video/index.cfm",
+        "creator": "Dutch-American Expedition to New Guinea"
+      },
+      "editorial": {
+        "caption": {"en": "Thirty digitised film selections from the 1926 expedition through Yapen, the Mamberamo and the central highlands.", "pmy": "Tiga puluh pilihan film digital dari ekspedisi 1926 melalui Yapen, Mamberamo, dan pegunungan tengah."},
+        "context": {"en": "The Smithsonian keeps the expedition record online and notes that local perspectives are largely absent from the original record. These films remain linked to the institution until reuse rights are cleared.", "pmy": "Smithsonian menyimpan catatan ekspedisi ini secara daring dan mencatat bahwa suara masyarakat setempat hampir tidak ada dalam catatan asli. Film ini tetap ditautkan ke institusi sampai hak penggunaan ulang jelas."}
+      },
+      "access": {"mode": "external", "rightsStatus": "unknown", "rightsHolder": "Smithsonian Institution / item rights vary", "rightsVerifiedAt": "2026-09-20"}
+    },
+    {
+      "id": "archbold-baliem-1938",
+      "section": "highlands",
+      "date": "c. 1938",
+      "title": {"en": "Baliem Valley during the Archbold expedition", "pmy": "Lembah Baliem saat ekspedisi Archbold"},
+      "place": "Baliem Valley",
+      "mediaType": "photo",
+      "layout": "hero",
+      "archive": {
+        "institution": "Leiden University Libraries / KITLV",
+        "identifier": "KITLV 113841",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Archbold_expeditie_in_de_Baliem-vallei,_KITLV_113841.tiff",
+        "creator": "Unknown photographer"
+      },
+      "editorial": {
+        "caption": {"en": "A landscape photograph from the Third Archbold Expedition in the Baliem Valley.", "pmy": "Foto bentang alam dari Ekspedisi Archbold Ketiga di Lembah Baliem."},
+        "context": {"en": "The image is preserved by Leiden University Libraries and published under CC BY 4.0.", "pmy": "Foto ini disimpan Leiden University Libraries dan diterbitkan dengan lisensi CC BY 4.0."}
+      },
+      "access": {"mode": "self_host", "rightsStatus": "cc_by", "license": "CC BY 4.0", "licenseUrl": "https://creativecommons.org/licenses/by/4.0/", "rightsVerifiedAt": "2026-09-20"},
+      "media": {
+        "source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Archbold_expeditie_in_de_Baliem-vallei%2C_KITLV_113841.tiff?width=1920",
+        "poster": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Archbold_expeditie_in_de_Baliem-vallei%2C_KITLV_113841.tiff?width=1280",
+        "mirror": {"image": "history/archbold-baliem-1938/image.webp", "poster": "history/archbold-baliem-1938/poster.webp"}
+      },
+      "relatedHistoryEvents": ["history-1949"]
+    },
+    {
+      "id": "awm-hollandia-1944",
+      "section": "war-reconstruction",
+      "date": "22 Apr 1944",
+      "title": {"en": "Invasion of Hollandia", "pmy": "Invasi Hollandia"},
+      "place": "Hollandia / Jayapura",
+      "mediaType": "film",
+      "duration": "13:14",
+      "layout": "wide",
+      "archive": {
+        "institution": "Australian War Memorial",
+        "identifier": "F01731",
+        "sourceUrl": "https://www.awm.gov.au/collection/F01731",
+        "creator": "William Montague Carty"
+      },
+      "editorial": {
+        "caption": {"en": "Actuality footage of the 1944 Allied landing and advance around Hollandia, Lake Sentani and the airfield.", "pmy": "Rekaman langsung pendaratan dan pergerakan Sekutu tahun 1944 di sekitar Hollandia, Danau Sentani, dan lapangan terbang."},
+        "context": {"en": "The full wartime reel includes material that is not used as an automatic preview. The Australian War Memorial marks the film as public domain; Watch links to the institutional player until a clean delivery copy is prepared.", "pmy": "Rekaman perang lengkap memuat bagian yang tidak dipakai sebagai pratinjau otomatis. Australian War Memorial menandai film ini sebagai domain publik; Watch menautkan pemutar resmi sampai salinan tayang yang bersih disiapkan."}
+      },
+      "access": {"mode": "external", "rightsStatus": "public_domain", "license": "Public domain", "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/", "rightsVerifiedAt": "2026-09-20"}
+    },
+    {
+      "id": "awm-merauke-1944",
+      "section": "war-reconstruction",
+      "date": "24 May 1944",
+      "title": {"en": "Merauke Force", "pmy": "Merauke Force"},
+      "place": "Merauke",
+      "mediaType": "film",
+      "duration": "09:59",
+      "layout": "standard",
+      "archive": {
+        "institution": "Australian War Memorial",
+        "identifier": "F01742",
+        "sourceUrl": "https://www.awm.gov.au/collection/C189088",
+        "creator": "Frank N. Bagnall"
+      },
+      "editorial": {
+        "caption": {"en": "Wartime footage made around Merauke, including patrols, fishing, aircraft and naval activity.", "pmy": "Rekaman masa perang di sekitar Merauke, termasuk patroli, memancing, pesawat, dan kegiatan laut."},
+        "context": {"en": "The Australian War Memorial marks this reel as public domain. It remains on the institutional player until a web derivative is prepared for R2.", "pmy": "Australian War Memorial menandai rekaman ini sebagai domain publik. Untuk sementara film tetap diputar dari sumber resmi sampai turunan web disiapkan untuk R2."}
+      },
+      "access": {"mode": "external", "rightsStatus": "public_domain", "license": "Public domain", "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/", "rightsVerifiedAt": "2026-09-20"}
+    },
+    {
+      "id": "awm-noemfoor-1944",
+      "section": "war-reconstruction",
+      "date": "1944–1945",
+      "title": {"en": "Noemfoor", "pmy": "Noemfoor"},
+      "place": "Noemfoor / Numfor",
+      "mediaType": "film",
+      "duration": "03:22",
+      "layout": "standard",
+      "archive": {
+        "institution": "Australian War Memorial",
+        "identifier": "F02155",
+        "sourceUrl": "https://www.awm.gov.au/collection/C189399",
+        "creator": "Australian War Memorial collection"
+      },
+      "editorial": {
+        "caption": {"en": "A short wartime reel from Noemfoor, including aircraft, transport and air-sea rescue activity.", "pmy": "Rekaman pendek masa perang dari Noemfoor, termasuk pesawat, transportasi, dan kegiatan penyelamatan udara-laut."},
+        "context": {"en": "The Australian War Memorial marks this film as public domain. Watch keeps it on the official player until a curated web copy is prepared.", "pmy": "Australian War Memorial menandai film ini sebagai domain publik. Watch tetap memakai pemutar resmi sampai salinan web yang dikurasi disiapkan."}
+      },
+      "access": {"mode": "external", "rightsStatus": "public_domain", "license": "Public domain", "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/", "rightsVerifiedAt": "2026-09-20"}
+    },
+    {
+      "id": "openbeelden-conference-1950",
+      "section": "everyday",
+      "date": "4 Dec 1950",
+      "title": {"en": "New Guinea conference opens", "pmy": "Konferensi Nugini dibuka"},
+      "place": "The Hague",
+      "mediaType": "film",
+      "duration": "01:13",
+      "layout": "standard",
+      "archive": {
+        "institution": "Netherlands Institute for Sound and Vision / Open Beelden",
+        "identifier": "Week 50-49",
+        "sourceUrl": "https://vpro.openbeelden.nl/media/1493/Opening_van_de_Nieuw_Guinea_conferentie.nl",
+        "creator": "Polygoon-Profilti"
+      },
+      "editorial": {
+        "caption": {"en": "Dutch and Indonesian representatives meet in The Hague in December 1950, with a map locating New Guinea in the region.", "pmy": "Wakil Belanda dan Indonesia bertemu di Den Haag pada Desember 1950, dengan peta yang menunjukkan posisi Nugini di kawasan."},
+        "context": {"en": "A Dutch cinema newsreel. Its narration reflects the editorial framing of the producer and period.", "pmy": "Film berita bioskop Belanda. Narasinya mengikuti cara pandang produser dan masa pembuatannya."}
+      },
+      "access": {"mode": "self_host", "rightsStatus": "cc_by_sa", "license": "CC BY-SA 3.0 NL", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/nl/", "rightsVerifiedAt": "2026-09-20"},
+      "media": {
+        "poster": "https://vpro.openbeelden.nl/images/597623/WEEKNUMMER504-HRE00015911.png",
+        "playback": "https://vpro.openbeelden.nl/files/BG/WEEKNUMMER504-HRE00015911.mp4",
+        "mirror": {"poster": "history/openbeelden-conference-1950/poster.webp", "preview": "history/openbeelden-conference-1950/preview.mp4", "playback": "history/openbeelden-conference-1950/video.mp4"},
+        "previewStart": 4,
+        "previewDuration": 8
+      }
+    },
+    {
+      "id": "serido-biak-1950",
+      "section": "everyday",
+      "date": "1950",
+      "title": {"en": "Coastal kampung at Serido", "pmy": "Kampung pesisir Serido"},
+      "place": "Serido, Biak",
+      "mediaType": "photo",
+      "layout": "wide",
+      "archive": {
+        "institution": "Nationaal Archief",
+        "identifier": "142-1255",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zeekampong_Serido_(Biak),_Bestanddeelnr_142-1255.tif",
+        "creator": "Kantoor voor Voorlichting en Radio Omroep Nieuw-Guinea"
+      },
+      "editorial": {
+        "caption": {"en": "A coastal settlement at Serido, Biak, photographed in 1950.", "pmy": "Kampung pesisir di Serido, Biak, dipotret pada 1950."},
+        "context": {"en": "The Nationaal Archief image is available under CC0.", "pmy": "Foto Nationaal Archief ini tersedia dengan lisensi CC0."}
+      },
+      "access": {"mode": "self_host", "rightsStatus": "cc0", "license": "CC0 1.0", "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/", "rightsVerifiedAt": "2026-09-20"},
+      "media": {
+        "source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Zeekampong_Serido_%28Biak%29%2C_Bestanddeelnr_142-1255.tif?width=1920",
+        "poster": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Zeekampong_Serido_%28Biak%29%2C_Bestanddeelnr_142-1255.tif?width=1280",
+        "mirror": {"image": "history/serido-biak-1950/image.webp", "poster": "history/serido-biak-1950/poster.webp"}
+      }
+    },
+    {
+      "id": "openbeelden-mld-1955",
+      "section": "everyday",
+      "date": "1 Jan 1955",
+      "title": {"en": "Biak to the Wissel Lakes", "pmy": "Biak ke Wisselmeren"},
+      "place": "Biak, Paniai and Sorong",
+      "mediaType": "film",
+      "duration": "02:02",
+      "layout": "hero",
+      "archive": {
+        "institution": "Netherlands Institute for Sound and Vision / Open Beelden",
+        "identifier": "Week 55-02",
+        "sourceUrl": "https://eye.openbeelden.nl/media/17389",
+        "creator": "Polygoon-Profilti"
+      },
+      "editorial": {
+        "caption": {"en": "Catalina flying boats travel from Biak toward the Wissel Lakes, with transport activity and aerial views of Sorong.", "pmy": "Pesawat Catalina terbang dari Biak menuju Wisselmeren, dengan kegiatan transportasi dan pemandangan udara Sorong."},
+        "context": {"en": "A Dutch cinema newsreel. Watch preserves the source credit and separates the archive description from current context.", "pmy": "Film berita bioskop Belanda. Watch mempertahankan kredit sumber dan memisahkan deskripsi arsip dari konteks sekarang."}
+      },
+      "access": {"mode": "self_host", "rightsStatus": "cc_by_sa", "license": "CC BY-SA 3.0 NL", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/nl/", "rightsVerifiedAt": "2026-09-20"},
+      "media": {
+        "poster": "https://eye.openbeelden.nl/images/597641/WEEKNUMMER550-HRE0001DB59.png",
+        "playback": "https://eye.openbeelden.nl/files/17/17402.17390.WEEKNUMMER550-HRE0001DB59.mp4",
+        "mirror": {"poster": "history/openbeelden-mld-1955/poster.webp", "preview": "history/openbeelden-mld-1955/preview.mp4", "playback": "history/openbeelden-mld-1955/video.mp4"},
+        "previewStart": 14,
+        "previewDuration": 9
+      }
+    },
+    {
+      "id": "mokmer-biak-1955",
+      "section": "everyday",
+      "date": "Jul 1955",
+      "title": {"en": "Mokmer airfield", "pmy": "Lapangan terbang Mokmer"},
+      "place": "Biak",
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Nationaal Archief",
+        "identifier": "142-0422",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Het_Mokmer-vliegveld_te_Biak,_Bestanddeelnr_142-0422.tif",
+        "creator": "Kantoor voor Voorlichting en Radio Omroep Nieuw-Guinea"
+      },
+      "editorial": {
+        "caption": {"en": "Mokmer airfield on Biak in July 1955.", "pmy": "Lapangan terbang Mokmer di Biak pada Juli 1955."},
+        "context": {"en": "The Nationaal Archief image is available under CC0.", "pmy": "Foto Nationaal Archief ini tersedia dengan lisensi CC0."}
+      },
+      "access": {"mode": "self_host", "rightsStatus": "cc0", "license": "CC0 1.0", "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/", "rightsVerifiedAt": "2026-09-20"},
+      "media": {
+        "source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Het_Mokmer-vliegveld_te_Biak%2C_Bestanddeelnr_142-0422.tif?width=1920",
+        "poster": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Het_Mokmer-vliegveld_te_Biak%2C_Bestanddeelnr_142-0422.tif?width=1280",
+        "mirror": {"image": "history/mokmer-biak-1955/image.webp", "poster": "history/mokmer-biak-1955/poster.webp"}
+      }
+    },
+    {
+      "id": "openbeelden-clinic-ship-1958",
+      "section": "everyday",
+      "date": "17 Nov 1958",
+      "title": {"en": "A clinic ship for Raja Ampat", "pmy": "Kapal poliklinik untuk Raja Ampat"},
+      "place": "Raja Ampat / Zaandam",
+      "mediaType": "film",
+      "duration": "01:11",
+      "layout": "standard",
+      "archive": {
+        "institution": "Netherlands Institute for Sound and Vision / Open Beelden",
+        "identifier": "Week 58-47",
+        "sourceUrl": "https://www.openbeelden.nl/media/118796/Tewaterlating_van_polikliniekschip_voor_Nieuw_Guinea.nl",
+        "creator": "Polygoon-Profilti"
+      },
+      "editorial": {
+        "caption": {"en": "The launch of a clinic ship intended for medical work in Raja Ampat.", "pmy": "Peluncuran kapal poliklinik yang ditujukan untuk pelayanan medis di Raja Ampat."},
+        "context": {"en": "The footage was made in the Netherlands and records the public-service project from the producer's perspective.", "pmy": "Rekaman dibuat di Belanda dan mencatat proyek layanan publik dari sudut pandang produsernya."}
+      },
+      "access": {"mode": "self_host", "rightsStatus": "cc_by_sa", "license": "CC BY-SA 3.0 NL", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/nl/", "rightsVerifiedAt": "2026-09-20"},
+      "media": {
+        "poster": "https://www.openbeelden.nl/images/598701/Tewaterlating_van_polikliniekschip_voor_Nieuw-Guinea_%280_35%29.png",
+        "playback": "https://www.openbeelden.nl/files/01/18/118807.118795.WEEKNUMMER584-HRE00012A31.mp4",
+        "mirror": {"poster": "history/openbeelden-clinic-ship-1958/poster.webp", "preview": "history/openbeelden-clinic-ship-1958/preview.mp4", "playback": "history/openbeelden-clinic-ship-1958/video.mp4"},
+        "previewStart": 20,
+        "previewDuration": 8
+      }
+    },
+    {
+      "id": "council-election-1961",
+      "section": "political-future",
+      "date": "Feb 1961",
+      "title": {"en": "Council election in Hollandia", "pmy": "Pemilihan Dewan di Hollandia"},
+      "place": "Hollandia / Jayapura",
+      "mediaType": "photo",
+      "layout": "wide",
+      "archive": {
+        "institution": "Nationaal Archief",
+        "identifier": "144-0367",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Verkiezingen_voor_de_Nieuw-Guinea_Raad._Hollandia._Nicolaas_Jouwe_en_J.O._de_Rijke_reiken_elkaar_de_vriendenhand,_Bestanddeelnr_144-0367.tif",
+        "creator": "Kantoor voor Voorlichting en Radio Omroep Nieuw-Guinea"
+      },
+      "editorial": {
+        "caption": {"en": "Nicolaas Jouwe and J.O. de Rijke during the 1961 New Guinea Council election in Hollandia.", "pmy": "Nicolaas Jouwe dan J.O. de Rijke pada pemilihan Dewan Nugini 1961 di Hollandia."},
+        "context": {"en": "The Nationaal Archief image is available under CC0.", "pmy": "Foto Nationaal Archief ini tersedia dengan lisensi CC0."}
+      },
+      "access": {"mode": "self_host", "rightsStatus": "cc0", "license": "CC0 1.0", "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/", "rightsVerifiedAt": "2026-09-20"},
+      "media": {
+        "source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Verkiezingen_voor_de_Nieuw-Guinea_Raad._Hollandia._Nicolaas_Jouwe_en_J.O._de_Rijke_reiken_elkaar_de_vriendenhand%2C_Bestanddeelnr_144-0367.tif?width=1920",
+        "poster": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Verkiezingen_voor_de_Nieuw-Guinea_Raad._Hollandia._Nicolaas_Jouwe_en_J.O._de_Rijke_reiken_elkaar_de_vriendenhand%2C_Bestanddeelnr_144-0367.tif?width=1280",
+        "mirror": {"image": "history/council-election-1961/image.webp", "poster": "history/council-election-1961/poster.webp"}
+      },
+      "relatedHistoryEvents": ["history-1961"]
+    },
+    {
+      "id": "council-opening-1961",
+      "section": "political-future",
+      "date": "5 Apr 1961",
+      "title": {"en": "Opening of the New Guinea Council", "pmy": "Pembukaan Dewan Nugini"},
+      "place": "Hollandia / Jayapura",
+      "mediaType": "photo",
+      "layout": "hero",
+      "archive": {
+        "institution": "Nationaal Archief",
+        "identifier": "143-0126",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Opening_Nieuw-Guinea_Raad,_Bestanddeelnr_143-0126.tif",
+        "creator": "Kantoor voor Voorlichting en Radio Omroep Nieuw-Guinea"
+      },
+      "editorial": {
+        "caption": {"en": "The opening of the New Guinea Council in Hollandia on 5 April 1961.", "pmy": "Pembukaan Dewan Nugini di Hollandia pada 5 April 1961."},
+        "context": {"en": "The Nationaal Archief image is available under CC0.", "pmy": "Foto Nationaal Archief ini tersedia dengan lisensi CC0."}
+      },
+      "access": {"mode": "self_host", "rightsStatus": "cc0", "license": "CC0 1.0", "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/", "rightsVerifiedAt": "2026-09-20"},
+      "media": {
+        "source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Opening_Nieuw-Guinea_Raad%2C_Bestanddeelnr_143-0126.tif?width=1920",
+        "poster": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Opening_Nieuw-Guinea_Raad%2C_Bestanddeelnr_143-0126.tif?width=1280",
+        "mirror": {"image": "history/council-opening-1961/image.webp", "poster": "history/council-opening-1961/poster.webp"}
+      },
+      "relatedHistoryEvents": ["history-1961"]
+    },
+    {
+      "id": "openbeelden-flag-1961",
+      "section": "political-future",
+      "date": "17 Nov 1961",
+      "title": {"en": "Flags made for New Guinea", "pmy": "Pembuatan bendera untuk Nugini"},
+      "place": "Vlaardingen",
+      "mediaType": "film",
+      "duration": "01:26",
+      "layout": "standard",
+      "archive": {
+        "institution": "Netherlands Institute for Sound and Vision / Open Beelden",
+        "identifier": "Week 61-48",
+        "sourceUrl": "https://eye.openbeelden.nl/media/670291/Vlag_voor_Nieuw_Guinea.en",
+        "creator": "Polygoon-Profilti"
+      },
+      "editorial": {
+        "caption": {"en": "Newsreel footage of flag production in the Netherlands in November 1961.", "pmy": "Rekaman berita tentang pembuatan bendera di Belanda pada November 1961."},
+        "context": {"en": "The footage was made outside Papua and is used here as a record connected to the political events of late 1961.", "pmy": "Rekaman dibuat di luar Papua dan dipakai di sini sebagai catatan yang terkait dengan peristiwa politik akhir 1961."}
+      },
+      "access": {"mode": "self_host", "rightsStatus": "cc_by_sa", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/", "rightsVerifiedAt": "2026-09-20"},
+      "media": {
+        "poster": "https://eye.openbeelden.nl/images/675704/Vlag_voor_Nieuw-Guinea_%280_43%29.png",
+        "playback": "https://eye.openbeelden.nl/files/06/70/670666.670290.WEEKNUMMER614-HRE0001DC3D_1303240_1390000.mp4",
+        "mirror": {"poster": "history/openbeelden-flag-1961/poster.webp", "preview": "history/openbeelden-flag-1961/preview.mp4", "playback": "history/openbeelden-flag-1961/video.mp4"},
+        "previewStart": 8,
+        "previewDuration": 8
+      },
+      "relatedHistoryEvents": ["history-1961"]
+    },
+    {
+      "id": "openbeelden-plateel-1962",
+      "section": "transfer",
+      "date": "3 Oct 1962",
+      "title": {"en": "Farewell of Governor Plateel", "pmy": "Perpisahan Gubernur Plateel"},
+      "place": "Hollandia / Sentani",
+      "mediaType": "film",
+      "duration": "01:33",
+      "layout": "hero",
+      "archive": {
+        "institution": "Netherlands Institute for Sound and Vision / Open Beelden",
+        "identifier": "Week 62-41",
+        "sourceUrl": "https://eye.openbeelden.nl/media/17560/Nieuws_uit_Nieuw_Guinea_afscheid_van_gouverneur_Plateel.en",
+        "creator": "Polygoon-Profilti"
+      },
+      "editorial": {
+        "caption": {"en": "Farewell scenes in the New Guinea Council building and at Sentani shortly before the transfer to United Nations administration.", "pmy": "Adegan perpisahan di gedung Dewan Nugini dan di Sentani, tidak lama sebelum peralihan ke pemerintahan PBB."},
+        "context": {"en": "A Dutch cinema newsreel. The institutional source and period framing are retained in the record.", "pmy": "Film berita bioskop Belanda. Sumber institusi dan cara pandang zamannya tetap dicatat."}
+      },
+      "access": {"mode": "self_host", "rightsStatus": "cc_by_sa", "license": "CC BY-SA 3.0", "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/", "rightsVerifiedAt": "2026-09-20"},
+      "media": {
+        "poster": "https://eye.openbeelden.nl/images/601757/WEEKNUMMER624-HRE00014DA6.png",
+        "playback": "https://eye.openbeelden.nl/files/17/17571.17561.WEEKNUMMER624-HRE00014DA6.mp4",
+        "mirror": {"poster": "history/openbeelden-plateel-1962/poster.webp", "preview": "history/openbeelden-plateel-1962/preview.mp4", "playback": "history/openbeelden-plateel-1962/video.mp4"},
+        "previewStart": 12,
+        "previewDuration": 9
+      },
+      "relatedHistoryEvents": ["history-1962"]
+    },
+    {
+      "id": "evacuees-1962",
+      "section": "transfer",
+      "date": "29 May 1962",
+      "title": {"en": "Evacuees from Biak and Fak-Fak", "pmy": "Evakuasi dari Biak dan Fak-Fak"},
+      "place": "Schiphol / Biak / Fak-Fak",
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Nationaal Archief / Anefo",
+        "identifier": "347034_040",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Evacu%C3%A9s_uit_Biak_en_Fak-Fak_arriveerden_op_Schiphol,_Bestanddeelnr_347034_040.tif",
+        "creator": "F.N. Broers / Anefo"
+      },
+      "editorial": {
+        "caption": {"en": "An evacuee from Fak-Fak arriving at Schiphol in May 1962.", "pmy": "Seorang warga yang dievakuasi dari Fak-Fak tiba di Schiphol pada Mei 1962."},
+        "context": {"en": "The photograph is part of a Nationaal Archief series on evacuation from Netherlands New Guinea and is available under CC0.", "pmy": "Foto ini bagian dari seri Nationaal Archief tentang evakuasi dari Nugini Belanda dan tersedia dengan lisensi CC0."}
+      },
+      "access": {"mode": "self_host", "rightsStatus": "cc0", "license": "CC0 1.0", "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/", "rightsVerifiedAt": "2026-09-20"},
+      "media": {
+        "source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Evacu%C3%A9s_uit_Biak_en_Fak-Fak_arriveerden_op_Schiphol%2C_Bestanddeelnr_347034_040.tif?width=1920",
+        "poster": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Evacu%C3%A9s_uit_Biak_en_Fak-Fak_arriveerden_op_Schiphol%2C_Bestanddeelnr_347034_040.tif?width=1280",
+        "mirror": {"image": "history/evacuees-1962/image.webp", "poster": "history/evacuees-1962/poster.webp"}
+      },
+      "relatedHistoryEvents": ["history-1962"]
+    }
+  ]
+}

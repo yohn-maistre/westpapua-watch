@@ -1,0 +1,128 @@
+---
+import {archiveSections,archiveText} from '../../data/archive';
+import type {Locale} from '../../data/types';
+const {locale='en'}=Astro.props as {locale?:Locale};
+const en=locale==='en';
+const payload=archiveSections.flatMap(section=>section.items).map(item=>({
+  id:item.id,
+  title:archiveText(item.title,locale),
+  date:item.date,
+  place:item.place||'',
+  mediaType:item.mediaType,
+  duration:item.duration||'',
+  caption:archiveText(item.editorial.caption,locale),
+  context:archiveText(item.editorial.context,locale),
+  institution:item.archive.institution,
+  identifier:item.archive.identifier||'',
+  sourceUrl:item.archive.sourceUrl,
+  creator:item.archive.creator||'',
+  license:item.access.license||'',
+  licenseUrl:item.access.licenseUrl||'',
+  rightsStatus:item.access.rightsStatus,
+  accessMode:item.access.mode,
+  poster:item.resolved.poster,
+  image:item.resolved.image,
+  playback:item.resolved.playback,
+  preview:item.resolved.preview
+}));
+---
+<section class="history-archive" id="archive" aria-labelledby="archive-title">
+  <div class="wrap archive-head">
+    <div>
+      <p class="archive-kicker">{en?'From the archive':'Dari arsip'}</p>
+      <h2 id="archive-title">{en?'Film, photographs and documents.':'Film, foto, dan dokumen.'}</h2>
+    </div>
+    <p>{en?'Selected visual records from the 1920s to the early 1960s. Source descriptions and current context are kept separate.':'Pilihan catatan visual dari 1920-an sampai awal 1960-an. Deskripsi sumber dan konteks sekarang dipisahkan.'}</p>
+  </div>
+
+  {archiveSections.map((section,sectionIndex)=><section class="archive-section" aria-labelledby={`archive-${section.id}`}>
+    <header class="wrap archive-section-head">
+      <div><span>{String(sectionIndex+1).padStart(2,'0')}</span><h3 id={`archive-${section.id}`}>{archiveText(section.label,locale)}</h3></div>
+      <div><strong>{section.range}</strong><p>{archiveText(section.intro,locale)}</p></div>
+    </header>
+    <div class="wrap archive-grid">
+      {section.items.map(item=><button
+        type="button"
+        class:list={['archive-tile',`archive-${item.layout}`,!item.resolved.poster&&'archive-no-image']}
+        data-archive-id={item.id}
+        data-archive-preview={item.resolved.preview||undefined}
+        aria-label={`${archiveText(item.title,locale)}, ${item.date}`}
+      >
+        <span class="archive-visual">
+          {item.resolved.poster?<img src={item.resolved.poster} alt="" loading="lazy" decoding="async"/>:<span class="archive-placeholder" aria-hidden="true"><b>{item.date}</b><em>{item.mediaType}</em></span>}
+          <span class="archive-preview-slot" aria-hidden="true"></span>
+          {item.mediaType==='film'&&<span class="archive-play" aria-hidden="true">▶</span>}
+        </span>
+        <span class="archive-meta">
+          <span><b>{item.date}</b>{item.place&&<em>{item.place}</em>}</span>
+          <span><strong>{archiveText(item.title,locale)}</strong><small>{item.mediaType}{item.duration?` · ${item.duration}`:''}</small></span>
+        </span>
+      </button>)}
+    </div>
+  </section>)}
+
+  <div class="wrap archive-note"><p>{en?'Catalogue wording can be dated. Watch preserves source provenance while adding present-day context separately.':'Bahasa katalog lama kadang sudah ketinggalan zaman. Watch mempertahankan asal sumber dan menambahkan konteks sekarang secara terpisah.'}</p></div>
+
+  <dialog class="archive-dialog" data-archive-dialog>
+    <button class="archive-close" type="button" data-archive-close aria-label={en?'Close':'Tutup'}>×</button>
+    <div class="archive-dialog-grid">
+      <div class="archive-dialog-media" data-archive-media></div>
+      <article class="archive-dialog-copy">
+        <p class="archive-dialog-date" data-archive-date></p>
+        <h3 data-archive-title></h3>
+        <p class="archive-dialog-place" data-archive-place></p>
+        <p class="archive-dialog-caption" data-archive-caption></p>
+        <div class="archive-context"><small>{en?'Context':'Konteks'}</small><p data-archive-context></p></div>
+        <dl class="archive-provenance">
+          <div><dt>{en?'Archive':'Arsip'}</dt><dd data-archive-institution></dd></div>
+          <div data-archive-creator-row><dt>{en?'Creator':'Pembuat'}</dt><dd data-archive-creator></dd></div>
+          <div data-archive-license-row><dt>{en?'Rights':'Hak penggunaan'}</dt><dd data-archive-license></dd></div>
+        </dl>
+        <div class="archive-actions"><a data-archive-source target="_blank" rel="noreferrer">{en?'Open source record ↗':'Buka catatan sumber ↗'}</a><a data-archive-license-link target="_blank" rel="noreferrer" hidden>{en?'License ↗':'Lisensi ↗'}</a></div>
+      </article>
+    </div>
+  </dialog>
+  <script type="application/json" data-archive-payload set:html={JSON.stringify(payload).replace(/</g,'\\u003c')}></script>
+</section>
+
+<style>
+.history-archive{background:#080a10;color:#f2f0f5;padding:clamp(4rem,9vw,9rem) 0 5rem;--archive-line:#ffffff1f;--archive-muted:#a9a8b2;scroll-margin-top:var(--compact-nav-actual-height,110px)}
+.archive-head{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,.6fr);gap:clamp(2rem,8vw,8rem);align-items:end;padding-bottom:clamp(4rem,8vw,7rem)}.archive-kicker{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#b9b4d7;margin:0 0 1rem}.archive-head h2{font-size:clamp(3rem,7.7vw,8rem);line-height:.9;letter-spacing:-.065em;max-width:10ch;margin:0}.archive-head>p{color:var(--archive-muted);line-height:1.65;max-width:43ch;margin:0 0 .35rem}
+.archive-section{padding:0 0 clamp(4rem,8vw,8rem)}.archive-section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.7fr);gap:2rem;border-top:1px solid var(--archive-line);padding:1rem 0 1.5rem}.archive-section-head>div:first-child{display:grid;grid-template-columns:44px 1fr;gap:1rem;align-items:start}.archive-section-head span{font-size:.65rem;letter-spacing:.14em;color:var(--archive-muted)}.archive-section-head h3{font-size:clamp(1.6rem,3vw,3.1rem);letter-spacing:-.045em;line-height:1;margin:0}.archive-section-head>div:last-child{display:grid;grid-template-columns:100px 1fr;gap:1.25rem}.archive-section-head strong{font-size:.8rem;font-weight:600}.archive-section-head p{font-size:.8rem;line-height:1.55;color:var(--archive-muted);margin:0;max-width:52ch}
+.archive-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-flow:dense;gap:10px}.archive-tile{appearance:none;border:0;padding:0;background:#11141c;color:inherit;text-align:left;cursor:pointer;display:flex;flex-direction:column;min-width:0;overflow:hidden;position:relative;border-radius:2px;grid-column:span 4}.archive-wide{grid-column:span 7}.archive-hero{grid-column:span 8}.archive-portrait{grid-column:span 4}.archive-standard{grid-column:span 5}.archive-visual{position:relative;display:block;aspect-ratio:16/10;background:#151923;overflow:hidden}.archive-portrait .archive-visual{aspect-ratio:4/5}.archive-no-image .archive-visual{background:linear-gradient(140deg,#121622,#202536)}.archive-visual img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.72) contrast(1.02);transition:transform .45s ease,filter .45s ease}.archive-tile:is(:hover,:focus-visible) img{transform:scale(1.018);filter:saturate(.9) contrast(1.03)}.archive-preview-slot{position:absolute;inset:0;display:block}.archive-preview-slot video{display:block;width:100%;height:100%;object-fit:cover}.archive-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:1rem}.archive-placeholder b{font-size:clamp(2.5rem,6vw,6.5rem);letter-spacing:-.07em;line-height:.85;color:#e7e4ee}.archive-placeholder em{font-style:normal;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:#a9a8b2}.archive-play{position:absolute;right:12px;bottom:12px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#f4f1e9;color:#11151c;font-size:.72rem;padding-left:2px}.archive-meta{display:grid;grid-template-columns:minmax(90px,.35fr) 1fr;gap:1rem;padding:.85rem .9rem 1rem;border-top:1px solid var(--archive-line)}.archive-meta>span{display:grid;gap:.3rem;align-content:start}.archive-meta b,.archive-meta small,.archive-meta em{font-size:.62rem;line-height:1.35;font-style:normal;color:var(--archive-muted);font-weight:500}.archive-meta strong{font-size:.9rem;line-height:1.18;font-weight:600}.archive-meta small{text-transform:uppercase;letter-spacing:.08em}
+.archive-note{border-top:1px solid var(--archive-line);padding-top:1rem}.archive-note p{margin:0;color:var(--archive-muted);font-size:.72rem;line-height:1.55;max-width:75ch}
+.archive-dialog{width:min(1180px,96vw);max-height:92svh;padding:0;border:1px solid #ffffff1f;background:#0d1017;color:#f4f1f7;border-radius:10px;overflow:hidden}.archive-dialog::backdrop{background:#03050bea;backdrop-filter:blur(8px)}.archive-close{position:absolute;z-index:5;right:9px;top:8px;width:42px;height:42px;border:0;border-radius:50%;background:#11151ccc;color:#fff;font:inherit;font-size:1.7rem;cursor:pointer}.archive-dialog-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,.75fr);min-height:min(720px,86svh)}.archive-dialog-media{background:#06080d;display:grid;place-items:center;min-width:0}.archive-dialog-media img,.archive-dialog-media video{display:block;width:100%;height:100%;max-height:86svh;object-fit:contain}.archive-dialog-empty{padding:3rem;display:grid;place-items:center;text-align:center;color:#aaa8b2}.archive-dialog-copy{padding:clamp(2rem,4vw,3.5rem);overflow:auto}.archive-dialog-date{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#b9b4d7;margin:0 0 1.25rem}.archive-dialog-copy h3{font-size:clamp(2.1rem,4vw,4.4rem);letter-spacing:-.055em;line-height:.95;margin:0 0 .7rem}.archive-dialog-place{color:var(--archive-muted);font-size:.8rem;margin:0 0 2rem}.archive-dialog-caption{font-size:1.02rem;line-height:1.65;margin:0 0 2rem}.archive-context{border-top:1px solid var(--archive-line);padding-top:1rem}.archive-context small{font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:var(--archive-muted)}.archive-context p{font-size:.84rem;line-height:1.65;color:#c5c3cb}.archive-provenance{margin:2rem 0 0;border-top:1px solid var(--archive-line)}.archive-provenance>div{display:grid;grid-template-columns:80px 1fr;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--archive-line);font-size:.72rem}.archive-provenance dt{color:var(--archive-muted)}.archive-provenance dd{margin:0}.archive-actions{display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;padding-top:1.5rem}.archive-actions a{font-size:.75rem;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){.history-archive{padding-top:4rem}.archive-head{grid-template-columns:1fr;gap:1.5rem;padding-bottom:4rem}.archive-head h2{font-size:clamp(3.2rem,15vw,5rem)}.archive-section-head{grid-template-columns:1fr;gap:1rem}.archive-section-head>div:last-child{grid-template-columns:80px 1fr}.archive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.archive-tile,.archive-standard,.archive-portrait{grid-column:span 1}.archive-wide,.archive-hero{grid-column:1/-1}.archive-meta{grid-template-columns:1fr;gap:.5rem}.archive-meta>span:first-child{display:flex;justify-content:space-between;gap:.7rem}.archive-dialog{width:100vw;max-width:none;max-height:100svh;height:100svh;border-radius:0;border:0}.archive-dialog-grid{display:block;min-height:100%}.archive-dialog-media{min-height:42svh;max-height:55svh}.archive-dialog-media img,.archive-dialog-media video{max-height:55svh}.archive-dialog-copy{padding:1.5rem 1.1rem 3rem}.archive-close{position:fixed;right:10px;top:calc(env(safe-area-inset-top,0px) + 8px)}}
+@media(max-width:420px){.archive-grid{grid-template-columns:1fr}.archive-tile,.archive-standard,.archive-portrait,.archive-wide,.archive-hero{grid-column:1}.archive-visual,.archive-portrait .archive-visual{aspect-ratio:16/10}}
+@media(prefers-reduced-motion:reduce){.archive-visual img{transition:none}.archive-preview-slot{display:none}}
+@media print{.history-archive{background:white;color:black}.archive-grid{display:block}.archive-tile{margin-bottom:1rem}.archive-play{display:none}.archive-dialog{display:none}.archive-section-head p,.archive-note p,.archive-meta b,.archive-meta small,.archive-meta em{color:#444}}
+</style>
+
+<script>
+const root=document.querySelector('.history-archive');
+if(root){
+  const dataNode=root.querySelector('[data-archive-payload]');
+  const items=dataNode?JSON.parse(dataNode.textContent||'[]'):[];
+  const byId=new Map(items.map(item=>[item.id,item]));
+  const dialog=root.querySelector('[data-archive-dialog]');
+  const media=dialog?.querySelector('[data-archive-media]');
+  const set=(selector,value)=>{const node=dialog?.querySelector(selector);if(node)node.textContent=value||''};
+  const openItem=(item)=>{
+    if(!dialog||!media)return;
+    media.replaceChildren();
+    if(item.mediaType==='film'&&item.playback){const video=document.createElement('video');video.src=item.playback;video.poster=item.poster||'';video.controls=true;video.preload='metadata';video.playsInline=true;media.append(video)}
+    else if(item.image||item.poster){const image=document.createElement('img');image.src=item.image||item.poster;image.alt=item.caption||item.title;media.append(image)}
+    else{const empty=document.createElement('div');empty.className='archive-dialog-empty';empty.textContent=item.mediaType==='film'?'Playback stays with the source archive.':'Media stays with the source archive.';media.append(empty)}
+    set('[data-archive-date]',item.date+(item.duration?` · ${item.duration}`:''));set('[data-archive-title]',item.title);set('[data-archive-place]',item.place);set('[data-archive-caption]',item.caption);set('[data-archive-context]',item.context);set('[data-archive-institution]',item.identifier?`${item.institution} · ${item.identifier}`:item.institution);set('[data-archive-creator]',item.creator);set('[data-archive-license]',item.license||item.rightsStatus.replaceAll('_',' '));
+    const creatorRow=dialog.querySelector('[data-archive-creator-row]');if(creatorRow)creatorRow.hidden=!item.creator;
+    const source=dialog.querySelector('[data-archive-source]');if(source)source.href=item.sourceUrl;
+    const licenseRow=dialog.querySelector('[data-archive-license-row]');if(licenseRow)licenseRow.hidden=!(item.license||item.rightsStatus);
+    const licenseLink=dialog.querySelector('[data-archive-license-link]');if(licenseLink){licenseLink.hidden=!item.licenseUrl;if(item.licenseUrl)licenseLink.href=item.licenseUrl}
+    dialog.showModal();
+  };
+  root.querySelectorAll('[data-archive-id]').forEach(tile=>tile.addEventListener('click',()=>{const item=byId.get(tile.dataset.archiveId);if(item)openItem(item)}));
+  const close=()=>{if(!dialog)return;dialog.querySelectorAll('video').forEach(video=>{video.pause();video.removeAttribute('src');video.load()});dialog.close()};
+  dialog?.querySelector('[data-archive-close]')?.addEventListener('click',close);dialog?.addEventListener('cancel',event=>{event.preventDefault();close()});dialog?.addEventListener('click',event=>{if(event.target===dialog)close()});
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&matchMedia('(hover: hover) and (pointer: fine)').matches){let timer=0;let active=null;const stop=()=>{if(timer)clearTimeout(timer);timer=0;if(active){active.pause();active.remove();active=null}};root.querySelectorAll('[data-archive-preview]').forEach(tile=>{tile.addEventListener('pointerenter',()=>{stop();const src=tile.dataset.archivePreview;if(!src)return;timer=setTimeout(()=>{const slot=tile.querySelector('.archive-preview-slot');if(!slot)return;const video=document.createElement('video');video.src=src;video.muted=true;video.loop=true;video.playsInline=true;video.preload='none';slot.append(video);active=video;video.play().catch(()=>stop())},180)});tile.addEventListener('pointerleave',stop);tile.addEventListener('focusout',stop)});}
+}
+</script>

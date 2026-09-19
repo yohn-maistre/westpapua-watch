@@ -31,3 +31,17 @@ export const PROGRAMME = {
   },
   href: '/events/'
 };
+
+// The masthead carries the most consequential current public development.
+// Keep the event card above independent so it remains an archive of the programme.
+export const BANNER = {
+  kicker: {
+    en: 'Merauke · PSN road case',
+    pmy: 'Merauke · perkara jalan PSN'
+  },
+  title: {
+    en: 'Court grants Malind lawsuit over the 135 km PSN road',
+    pmy: 'PTUN kabulkan gugatan Malind soal jalan PSN 135 km'
+  },
+  href: '/topics/south-papua-food-energy-estate/'
+} satisfies {kicker: Localized; title: Localized; href: string};

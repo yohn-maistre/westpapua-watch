@@ -1,0 +1,38 @@
+name: Archive media
+on:
+  workflow_dispatch:
+    inputs:
+      ids:
+        description: Optional comma-separated archive item IDs. Leave blank to sync every self-hosted item.
+        required: false
+        type: string
+permissions:
+  contents: read
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - name: Install
+        run: npm ci --no-audit --no-fund
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+      - name: Validate archive manifest
+        run: npm run archive:validate
+      - name: Sync open archive media to R2
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          ARCHIVE_MEDIA_BUCKET: westpapua-watch-media
+          ARCHIVE_IDS: ${{ inputs.ids }}
+        run: |
+          if [ -n "$ARCHIVE_IDS" ]; then
+            npm run archive:sync -- --ids="$ARCHIVE_IDS"
+          else
+            npm run archive:sync
+          fi
