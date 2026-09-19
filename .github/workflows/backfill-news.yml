@@ -27,7 +27,7 @@ jobs:
           assert 1 <= days <= 31
           token = os.environ.get('WATCH_ADMIN_TOKEN', '')
           if not token: raise SystemExit('WATCH_ADMIN_TOKEN repository secret is required')
-          request = urllib.request.Request('https://westpapua.watch/api/admin/backfill', data=json.dumps({'days': days}).encode(), headers={'Authorization': 'Bearer '+token, 'Content-Type': 'application/json'}, method='POST')
+          request = urllib.request.Request('https://westpapua.watch/api/admin/backfill', data=json.dumps({'days': days}).encode(), headers={'Authorization': 'Bearer '+token, 'Content-Type': 'application/json', 'User-Agent': 'westpapua-watch-operator/1.0'}, method='POST')
           with urllib.request.urlopen(request, timeout=60) as response:
               print(response.read().decode())
           PYTHON
