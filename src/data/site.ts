@@ -40,8 +40,8 @@ export const BANNER = {
     pmy: 'Merauke · perkara jalan PSN'
   },
   title: {
-    en: 'Court grants Malind lawsuit over the 135 km PSN road',
-    pmy: 'PTUN kabulkan gugatan Malind soal jalan PSN 135 km'
+    en: 'Court rejects Malind lawsuit over the 135 km PSN road',
+    pmy: 'PTUN tolak gugatan Malind soal jalan PSN 135 km'
   },
   href: '/topics/south-papua-food-energy-estate/'
 } satisfies {kicker: Localized; title: Localized; href: string};
