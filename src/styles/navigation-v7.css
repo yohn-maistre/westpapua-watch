@@ -26,5 +26,17 @@ body:has(.watch-menu[open]){overflow:hidden}
  .compact-nav .ask-trigger .ask-icon{width:19px;height:19px}
  .compact-nav .compact-language-toggle{min-height:44px;min-width:38px;display:grid;place-items:center;padding:8px!important}
  .compact-nav .mobile-menu-trigger{padding-inline:12px}
+
+ /* On phones the menu is an application layer, not a floating card. */
+ .watch-menu{position:fixed;inset:0 0 0 auto;width:min(82vw,410px);height:100dvh;max-height:none;margin:0;padding:calc(18px + env(safe-area-inset-top)) 18px calc(20px + env(safe-area-inset-bottom));border:0;border-left:1px solid #ffffff1c;border-radius:0;background:#10131b;color:#f4f2fa;box-shadow:-28px 0 80px #0008;overflow:auto;transform:translateX(100%);opacity:0;transition:transform .24s cubic-bezier(.2,.8,.2,1),opacity .18s ease}
+ .watch-menu[open].is-visible{transform:translateX(0);opacity:1}
+ .watch-menu::backdrop{background:#04060b73;backdrop-filter:blur(3px)}
+ .watch-menu-heading{position:sticky;top:0;z-index:2;margin:-4px -2px 12px;padding:4px 2px 14px;background:linear-gradient(#10131b 82%,transparent)}
+ .watch-menu nav{display:block;border-top:1px solid #ffffff18}
+ .watch-menu nav a{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:12px;padding:17px 4px;border:0;border-bottom:1px solid #ffffff16;border-radius:0;background:transparent;font-size:1.08rem}
+ .watch-menu nav small{grid-column:1;color:#8f8b9d;font-size:.62rem}
+ .watch-menu nav a[aria-current=page]{background:transparent;color:#fff}
+ .watch-menu nav a[aria-current=page] span:nth-child(2){font-weight:750}
+ .watch-menu nav a[aria-current=page] small{color:#c5bce0}
 }
-@media(max-width:350px){.compact-nav .compact-inner{padding-inline:10px!important;gap:6px}.compact-nav .compact-brand{font-size:11px!important}.compact-nav .mobile-menu-trigger{gap:5px;padding-inline:9px}.watch-menu{padding:16px}.watch-menu nav a{padding:16px 12px;font-size:.95rem}}
+@media(max-width:350px){.compact-nav .compact-inner{padding-inline:10px!important;gap:6px}.compact-nav .compact-brand{font-size:11px!important}.compact-nav .mobile-menu-trigger{gap:5px;padding-inline:9px}.watch-menu{width:92vw;padding-inline:14px}.watch-menu nav a{font-size:1rem}}

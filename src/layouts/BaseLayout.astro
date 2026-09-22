@@ -11,7 +11,7 @@ import '../styles/polish-10-8.css';
 import '../styles/navigation-v7.css';
 import { SITE } from '../data/site';
 import type { Locale } from '../data/types';
-import ProgrammeBanner from '../components/ProgrammeBanner.astro';
+import FollowingTicker from '../components/FollowingTicker.astro';
 import Masthead from '../components/Masthead.astro';
 import CompactNav from '../components/CompactNav.astro';
 import MobileMenu from '../components/MobileMenu.astro';
@@ -44,7 +44,7 @@ const lang = locale==='pmy'?'id':'en';
   <title>{pageTitle}</title>
 </head>
 <body class:list={[immersive && 'exhibition-view-body']}>
-  {!immersive && <ProgrammeBanner locale={locale} />}
+  {!immersive && <FollowingTicker locale={locale} />}
   {!immersive && <Masthead locale={locale} active={active} path={Astro.url.pathname} />}
   {!immersive && <div class="nav-sentinel" data-nav-sentinel aria-hidden="true"></div>}
   {!immersive && <CompactNav locale={locale} active={active} path={Astro.url.pathname} />}
@@ -59,8 +59,6 @@ const lang = locale==='pmy'?'id':'en';
     if(navSentinel){const io=new IntersectionObserver(([e])=>{const crossed=!e.isIntersecting&&e.boundingClientRect.top<0;document.body.classList.toggle('nav-collapsed',crossed);const nav=q('[data-compact-nav]');if(nav){nav.inert=!crossed;nav.setAttribute('aria-hidden',String(!crossed))}},{threshold:0});io.observe(navSentinel)}
     const compactNav=q('[data-compact-nav]');
     if(compactNav){const syncCompactHeight=()=>document.documentElement.style.setProperty('--compact-nav-actual-height',`${Math.ceil(compactNav.getBoundingClientRect().height)}px`);syncCompactHeight();new ResizeObserver(syncCompactHeight).observe(compactNav);window.addEventListener('resize',syncCompactHeight,{passive:true})}
-    const banner=q('[data-programme-start]');
-    if(banner){const out=q('[data-countdown]',banner);const start=new Date(banner.dataset.programmeStart);const end=new Date(banner.dataset.programmeEnd);const tick=()=>{const now=new Date();let txt='10–12 Sep';if(now<start){const ms=start-now,d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4);txt=`starts in ${d}d ${h}h ${m}m`}else if(now<=end)txt='happening now';else txt='programme archive';if(out)out.textContent=txt};tick();setInterval(tick,60000)}
   </script>
 </body>
 </html>

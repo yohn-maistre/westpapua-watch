@@ -4,7 +4,7 @@ import type { StoryPacket } from './types';
 const ISSUE_RULES:[string,RegExp][]=[
   ['mining-raja-ampat',/raja ampat|gag nikel|waigeo|kawe.*tambang|tambang.*raja ampat/i],
   ['lake-sentani-watershed',/danau sentani|lake sentani|cycloop/i],
-  ['south-papua-food-energy-estate',/mifee|food estate|cetak sawah|tebu.*merauke|sugar.*merauke|psn.*merauke|proyek pangan.*merauke/i],
+  ['south-papua-food-energy-estate',/mifee|food estate|cetak sawah|tebu.*merauke|sugar.*merauke|psn.*merauke|merauke.*psn|proyek strategis nasional.*merauke|national strategic project.*merauke|wanam.*muting|muting.*wanam|135\s*(?:km|kilomet).*merauke|merauke.*135\s*(?:km|kilomet)|proyek pangan.*merauke/i],
   ['conflict-displacement-access',/pengungsi|displacement|konflik|conflict|militer|military|tni|operasi keamanan|security operation/i],
   ['women-gender',/perempuan|mama-mama|women|gender|kekerasan berbasis gender|femicide/i],
   ['culture-memory-expression',/seni|\bart\b|film|musik|music|sastra|literature|udeido|mambesak|budaya|culture|arsip|archive/i],
@@ -80,10 +80,32 @@ ${packet.issue_candidates.join(' ')}`;
   return {issues:issueSlugs,places:packet.places.length};
 }
 
+export async function syncDevelopmentAggregateKnowledge(env:any,developmentId:number){
+  const rows:any=await env.DB.prepare(`SELECT a.title,a.summary article_summary,sp.* FROM development_articles da JOIN articles a ON a.id=da.article_id LEFT JOIN story_packets sp ON sp.article_id=a.id WHERE da.development_id=? ORDER BY julianday(COALESCE(a.published_at,a.fetched_at)) ASC`).bind(developmentId).all();
+  const items=rows.results||[];if(!items.length)return {issues:[],places:0};
+  const collect=(key:string)=>unique(items.flatMap((r:any)=>jsonArray(r[key])));
+  const summaries=items.map((r:any)=>String(r.summary||r.article_summary||'')).filter(Boolean),titles=items.map((r:any)=>String(r.title||'')).filter(Boolean);
+  const packet:StoryPacket={summary:summaries.join('\n').slice(0,12000),key_points:collect('key_points_json'),what_changed:items.map((r:any)=>String(r.what_changed||'')).filter(Boolean).join('\n').slice(0,5000),event_date:items.map((r:any)=>r.event_date).find(Boolean),event_key:items.map((r:any)=>r.event_key).find(Boolean),action:items.map((r:any)=>r.action).filter(Boolean).join(' · ').slice(0,1200),object:items.map((r:any)=>r.object).filter(Boolean).join(' · ').slice(0,1200),places:collect('places_json'),people:collect('people_json'),organizations:collect('organizations_json'),topics:collect('topics_json'),issue_candidates:collect('issue_candidates_json')};
+  const evidence=[...titles,summaries.join(' '),packet.what_changed,packet.action||'',packet.object||'',packet.places.join(' '),packet.people.join(' '),packet.organizations.join(' '),packet.topics.join(' ')].join('\n');
+  const matched=issueSlugsFor(evidence,packet.issue_candidates);
+  // Rebuild engine-generated relations from the complete Development. A later report can add
+  // missing context, while removed/merged reports cannot leave stale topic or dossier links behind.
+  await env.DB.batch([
+    env.DB.prepare(`DELETE FROM development_issues WHERE development_id=?`).bind(developmentId),
+    env.DB.prepare(`DELETE FROM development_broad_issues WHERE development_id=? AND relation IN ('topic','dossier')`).bind(developmentId),
+    env.DB.prepare(`DELETE FROM development_places WHERE development_id=?`).bind(developmentId)
+  ]);
+  const result=await syncDevelopmentKnowledge(env,developmentId,packet,evidence);
+  const current:any=await env.DB.prepare(`SELECT issue_slug FROM developments WHERE id=?`).bind(developmentId).first();
+  if(matched[0])await env.DB.prepare(`UPDATE developments SET issue_slug=? WHERE id=?`).bind(matched[0],developmentId).run();
+  else if(scopedFollowingSlugs.includes(String(current?.issue_slug||'')))await env.DB.prepare(`UPDATE developments SET issue_slug=NULL WHERE id=?`).bind(developmentId).run();
+  return result;
+}
+
 export async function reindexKnowledge(env:any,limit=500){
   const rows:any=await env.DB.prepare(`SELECT d.id,a.title,sp.summary,sp.key_points_json,sp.what_changed,sp.event_date,sp.event_key,sp.action,sp.object,sp.places_json,sp.people_json,sp.organizations_json,sp.topics_json,sp.issue_candidates_json,sp.watch_relevance,sp.watch_relevance_confidence,sp.watch_desk FROM developments d JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id JOIN story_packets sp ON sp.article_id=a.id WHERE d.status<>'merged' ORDER BY d.updated_at DESC LIMIT ?`).bind(Math.max(1,Math.min(2000,limit))).all();
-  let linked=0;for(const r of rows.results||[]){const packet:StoryPacket={summary:r.summary||'',key_points:jsonArray(r.key_points_json),what_changed:r.what_changed||'',event_date:r.event_date||undefined,event_key:r.event_key||undefined,action:r.action||undefined,object:r.object||undefined,places:jsonArray(r.places_json),people:jsonArray(r.people_json),organizations:jsonArray(r.organizations_json),topics:jsonArray(r.topics_json),issue_candidates:jsonArray(r.issue_candidates_json),watch_relevance:r.watch_relevance===1,watch_relevance_confidence:Number(r.watch_relevance_confidence||0),watch_desk:r.watch_desk||'other'};await syncDevelopmentKnowledge(env,Number(r.id),packet,r.title||'');linked++}
-  return {rows:linked};
+  const ids=[...new Set((rows.results||[]).map((r:any)=>Number(r.id)))];for(const id of ids)await syncDevelopmentAggregateKnowledge(env,id);
+  return {rows:ids.length};
 }
 
 function jsonArray(value:any){try{const x=JSON.parse(String(value||'[]'));return Array.isArray(x)?x.map(String):[]}catch{return[]}}

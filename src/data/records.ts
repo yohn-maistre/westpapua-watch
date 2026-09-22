@@ -1,6 +1,7 @@
 import apbd from '../../content/data/apbd.json';
 import otsus from '../../content/data/otsus.json';
 import hdi from '../../content/data/hdi.json';
+import watchObservations from '../../content/data/watch-observations.json';
 import {libraryItems} from './library';
 import {organizations,organizationIdsFor} from '../../shared/organizations';
 import {recordSlug,validateRecord,type PublicRecord} from '../../shared/records';
@@ -15,7 +16,8 @@ const gateways:PublicRecord[]=[
  ['election-data','Election data','dataset','KPU datasets covering elections, participation and representation.','https://opendata.kpu.go.id/','KPU'],
  ['legal-records','Laws & regulations','collection','Search published regulations and their source documents.','https://peraturan.bpk.go.id/','JDIH BPK']
 ].map(([slug,title,kind,description,url,publisher])=>({...base,id:'source:'+slug,slug,title,kind:kind as any,description,sources:[{url,publisher,retrievedAt:'2026-09-17',note:'Source directory; individual records are not yet synchronized.'}]}));
-export const publicRecords:PublicRecord[]=[...orgRecords,...places,...gateways,...catalogue,...curated as PublicRecord[]];
+const measuredChange:PublicRecord={...base,id:'dataset:watch-measured-change',slug:'watch-measured-change',kind:'dataset',title:'Measured change',description:'Source-attributed observations used by the Watch Data page. Different scopes and methods remain separate.',topics:['human-rights-conflict-security','land-indigenous-rights','environment-biodiversity','climate-disasters'],places:['Papua'],sources:[...new Map((watchObservations.items as any[]).map(o=>[o.source.url,o.source])).values()],observations:(watchObservations.items as any[]).map(o=>({metric:o.metric,value:o.value,unit:o.unit,period:o.period,place:o.place,measure:o.measure,method:o.method,geographyVersion:'Source-specific geography; inspect scope and source.',source:o.source,definition:o.qualifier?`${o.qualifier} ${o.value} ${o.unit}`:undefined,scope:o.scope,uncertainty:o.uncertainty,relatedFollowing:o.relatedFollowing||[]})),status:'documented'};
+export const publicRecords:PublicRecord[]=[...orgRecords,...places,...gateways,measuredChange,...catalogue,...curated as PublicRecord[]];
 // One observation pool feeds the dashboard, province pages and JSON exports.
 const apbdSource={url:apbd.sourceUrl,publisher:'DJPK · APBD',retrievedAt:apbd.diambil,note:'Fiscal year 2024, period 12; snapshot via Detak Detik.'};
 const otsusSource={url:otsus.sourceUrl,publisher:otsus.source,publishedAt:otsus.sourceAsOf,retrievedAt:otsus.retrievedAt,note:otsus.scope};
@@ -34,8 +36,8 @@ for(const record of places){
  observation('Earmarked Otsus transferred',transfers.earmarkedActual,'IDR billion','2026','transfer',otsusSource,'Province-labelled account in national TKD report'),
  observation('Infrastructure allocation',transfers.infrastructureBudget,'IDR billion','2026','allocation',otsusSource,'Province-labelled account in national TKD report'),
  observation('Infrastructure transferred',transfers.infrastructureActual,'IDR billion','2026','transfer',otsusSource,'Province-labelled account in national TKD report'),
- observation('Human Development Index',index.previous,'index (0–100)','2023','observed',hdiSource,'BPS HDI series in appendix 4'),
- observation('Human Development Index',index.current,'index (0–100)','2024','observed',hdiSource,'BPS HDI series in appendix 4')];
+ observation('Human Development Index',index.previous,'index (0–100)',String(hdi.years[0]),'observed',hdiSource,'BPS HDI province series'),
+ observation('Human Development Index',index.current,'index (0–100)',String(hdi.years[1]),'observed',hdiSource,'BPS HDI province series')];
  record.sources=[apbdSource,otsusSource,hdiSource];record.status='documented';record.description='Provincial expenditure, special-autonomy transfers and human-development indicators. Each observation preserves its period, unit and source.';
 }
 const finance=gateways.find(x=>x.slug==='regional-finance')!;finance.observations=places.flatMap(x=>x.observations.filter(o=>o.metric.startsWith('APBD')));finance.sources=[apbdSource];finance.description='2024 provincial budgets and reported expenditure for all six provinces; period 12.';finance.status='documented';

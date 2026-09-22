@@ -50,6 +50,9 @@ console.log('Passed: grounded relevance, episode partitions, period isolation, s
 const {matchesFollowing}=await moduleAt('shared/following.ts');
 assert.equal(matchesFollowing('south-papua-food-energy-estate','Police investigate a death in Merauke'),false);
 assert.equal(matchesFollowing('south-papua-food-energy-estate','Wanam communities oppose the PSN food estate in Merauke'),true);
+assert.equal(matchesFollowing('south-papua-food-energy-estate','Malind communities challenge a 135 km Wanam–Muting National Strategic Project road in Merauke'),true);
+assert.equal(matchesFollowing('south-papua-food-energy-estate','Merauke university renovation audit'),false);
+assert.equal(matchesFollowing('awyu-customary-forests','Awyu representatives reject a Proyek Strategis Nasional on customary land'),true);
 assert.equal(matchesFollowing('mining-raja-ampat','A music festival in Raja Ampat'),false);
 assert.equal(matchesFollowing('nduga-displacement','Nduga students win a mathematics contest'),false);
 assert.equal(matchesFollowing('nduga-displacement','Nduga families remain displaced from their homes'),true);

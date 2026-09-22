@@ -1,0 +1,25 @@
+---
+import '../styles/following.css';
+import {dossierBySlug} from '../data/dossiers';
+import {followingStyle,followingTickerSlugs} from '../data/topic-collections';
+import {t,withLocale} from '../lib/i18n';
+import type {Locale} from '../data/types';
+const {locale='en'}=Astro.props as {locale?:Locale};
+const items=followingTickerSlugs.map(slug=>dossierBySlug[slug]).filter(Boolean);
+const loop=[...items,...items];
+---
+<aside class="following-ticker" data-following-ticker data-locale={locale} aria-label={locale==='en'?'Following':'Dalam pantauan'}>
+  <div class="following-ticker-label"><span>{locale==='en'?'Following':'Dipantau'}</span></div>
+  <div class="following-ticker-viewport"><div class="following-ticker-track">
+    {loop.map((issue,index)=>{const duplicate=index>=items.length;return <a class="following-ticker-item" data-following-item={issue.slug} data-following-duplicate={duplicate?'true':'false'} href={withLocale(`/topics/${issue.slug}/`,locale)} style={followingStyle(issue.slug)} aria-hidden={duplicate?'true':undefined} tabindex={duplicate?-1:undefined}>
+      <span class="following-ticker-topic" data-following-topic>{t(issue.title,locale)}</span><strong data-following-headline>{t(issue.summary,locale)}</strong><small data-following-meta>{locale==='en'?'Latest development':'Perkembangan terbaru'}</small><i aria-hidden="true">→</i>
+    </a>})}
+  </div></div>
+</aside>
+<script>
+const ticker=document.querySelector<HTMLElement>('[data-following-ticker]');
+if(ticker){
+ const locale=ticker.dataset.locale==='pmy'?'pmy':'en',pick=(v:any)=>typeof v==='object'?(locale==='pmy'?(v.id||v.pmy||v.en):(v.en||v.id||'')):String(v||''),day=(iso:string)=>iso?new Date(iso).toLocaleDateString(locale==='pmy'?'id-ID':'en-GB',{day:'numeric',month:'short'}):'';
+ fetch('/api/following',{headers:{accept:'application/json'}}).then(r=>r.ok?r.json():null).then(data=>{if(!data?.items?.length)return;const rows=[...ticker.querySelectorAll<HTMLElement>('[data-following-item]')];for(const entry of data.items){const slug=String(entry.slug||''),dev=entry.development;if(!slug||!dev)continue;for(const row of rows.filter(x=>x.dataset.followingItem===slug)){(row as HTMLAnchorElement).href=`${locale==='pmy'?'/id':''}${dev.story_url}`;const topic=row.querySelector<HTMLElement>('[data-following-topic]'),headline=row.querySelector<HTMLElement>('[data-following-headline]'),meta=row.querySelector<HTMLElement>('[data-following-meta]');if(topic)topic.textContent=pick(entry.title);if(headline)headline.textContent=locale==='pmy'?(dev.title_id||dev.title_en):dev.title_en;if(meta)meta.textContent=[`${dev.article_count||1} ${locale==='pmy'?'laporan':'reports'}`,`${dev.source_count||1} ${locale==='pmy'?'sumber':'sources'}`,day(dev.latest_report_at)].filter(Boolean).join(' · ')}}}).catch(()=>{});
+}
+</script>

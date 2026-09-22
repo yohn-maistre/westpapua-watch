@@ -56,12 +56,11 @@ const mapView:MapViewId=
   {background&&<section class="following-background"><h2>{locale==='en'?'Background':'Latar belakang'}</h2><div><p>{t(background,locale)}</p><SourceList sourceIds={issue.sourceIds}/></div></section>}
   <nav class="topic-local-index" aria-label={locale==='en'?'On this page':'Di halaman ini'}><a href="#overview">{locale==='en'?'Overview':'Ringkasan'}</a><a href="#latest">{locale==='en'?'Latest':'Terbaru'}</a>{topicTimelines[issue.slug]&&<a href="#timeline">{locale==='en'?'Timeline':'Linimasa'}</a>}<a href="#sources">{locale==='en'?'Library':'Pustaka'}</a><a href="#places">{locale==='en'?'Places':'Lokasi'}</a></nav><div class="dossier-grid">
 
-    <section class="box" id="latest"><h2>{locale==='en'?'Latest stories':'Berita terbaru'}</h2><div data-live-issue-updates data-issue-slug={issue.slug} data-locale={locale}>{devs.map(d=><p class="issue-update"><a href={withLocale('/',locale)}><strong>{t(d.title,locale)}</strong></a><br/><small>{d.updatedAt} · {d.sourceIds.length} {locale==='en'?'sources':'sumber'}</small></p>)}</div></section>
+    <section class="box" id="latest"><h2>{locale==='en'?'Latest developments':'Perkembangan terbaru'}</h2><div data-live-issue-updates data-issue-slug={issue.slug} data-locale={locale}>{devs.map(d=><p class="issue-update"><a href={withLocale('/',locale)}><strong>{t(d.title,locale)}</strong></a><br/><small>{d.updatedAt} · {d.sourceIds.length} {locale==='en'?'sources':'sumber'}</small></p>)}</div></section>
   </div>
 
   <TopicTimeline slug={issue.slug} locale={locale}/><div id="places"></div><MapShell locale={locale} mode="context" context="issue" contextValue={issue.slug} initialView={mapView} />
 
-  <section class="section issue-sources"><div class="section-head section-head-simple"><h2>{locale==='en'?'Latest reporting.':'Laporan terbaru.'}</h2></div><div data-live-issue-reporting>{reportingIds.length?<SourceList sourceIds={reportingIds}/>:<p>{locale==='en'?'No indexed reporting yet.':'Belum ada laporan terindeks.'}</p>}</div></section>
   <section class="section issue-sources" id="sources"><div class="section-head section-head-simple"><h2>{locale==='en'?'Library.':'Pustaka.'}</h2><a href={withLocale('/resources/',locale)+'?topic='+issue.slug}>{locale==='en'?'Browse all ↗':'Lihat semua ↗'}</a></div><ResourceList items={relatedLibrary} locale={locale} topic={issue.slug}/></section>
 </div>
 

@@ -1,6 +1,6 @@
 import { runJson } from '../llm';
 import { jaccard,listOverlap,searchDevelopmentFts,upsertDevelopmentSearch } from '../search';
-import { issueSlugsFor,syncDevelopmentKnowledge } from '../knowledge';
+import { issueSlugsFor,syncDevelopmentAggregateKnowledge,syncDevelopmentKnowledge } from '../knowledge';
 import { markDevelopmentEditorialPending } from './editorial';
 import type { StoryPacket } from '../types';
 
@@ -46,7 +46,7 @@ async function createDevelopment(env:any,article:any,p:StoryPacket){
 
 async function attach(env:any,id:number,input:ClusterInput,method:string){
   await env.DB.prepare(`INSERT OR IGNORE INTO development_articles(development_id,article_id,membership_score,membership_method) VALUES(?,?,?,?)`).bind(id,input.article.id,1,method).run();
-  await syncDevelopmentKnowledge(env,id,input.packet,input.article.title||'');
+  await syncDevelopmentAggregateKnowledge(env,id);
   await env.DB.prepare(`UPDATE developments SET last_growth_at=?,updated_at=?,editorial_pending=1 WHERE id=?`).bind(new Date().toISOString(),new Date().toISOString(),id).run();
   await markDevelopmentEditorialPending(env,id);return id;
 }
@@ -64,7 +64,7 @@ export async function clusterArticles(env:any,inputs:ClusterInput[]){
  // Resolve sequentially so later reports can see stories created in this batch.
  for(const input of inputs){
   const linked:any=await env.DB.prepare(`SELECT development_id FROM development_articles WHERE article_id=? LIMIT 1`).bind(input.article.id).first();
-  if(linked?.development_id){await syncDevelopmentKnowledge(env,Number(linked.development_id),input.packet,input.article.title||'');await markDevelopmentEditorialPending(env,Number(linked.development_id));results.set(Number(input.article.id),Number(linked.development_id));continue}
+  if(linked?.development_id){await syncDevelopmentAggregateKnowledge(env,Number(linked.development_id));await markDevelopmentEditorialPending(env,Number(linked.development_id));results.set(Number(input.article.id),Number(linked.development_id));continue}
   const candidates=await candidatesFor(env,input);let chosen:Candidate|undefined;
   if(candidates.length){
    const prompt=JSON.stringify({article:{id:input.article.id,title:input.article.title,...input.packet,date:input.packet.event_date||input.article.published_at},candidates});
@@ -112,7 +112,7 @@ export async function reconcileRecentDevelopments(env:any,limit=10){
    env.DB.prepare(`UPDATE developments SET status='merged',merged_into_id=?,editorial_pending=0,updated_at=? WHERE id=?`).bind(keep,now,drop),
    env.DB.prepare(`DELETE FROM development_articles WHERE development_id=?`).bind(drop),
    env.DB.prepare(`UPDATE developments SET last_growth_at=?,editorial_pending=1,updated_at=? WHERE id=?`).bind(now,now,keep)
-  ]);await markDevelopmentEditorialPending(env,keep);merged++;
+  ]);await syncDevelopmentAggregateKnowledge(env,keep);await markDevelopmentEditorialPending(env,keep);merged++;
  }
  return {checked:pairs.length,merged};
 }

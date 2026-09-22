@@ -4,14 +4,20 @@ import {t,withLocale} from '../lib/i18n';
 const {locale='en',active='now'}=Astro.props;
 ---
 <dialog id="watch-menu" class="watch-menu" aria-labelledby="watch-menu-title">
-  <div class="watch-menu-heading"><span id="watch-menu-title">West Papua <em>Watch</em></span><form method="dialog"><button autofocus aria-label={locale==='en'?'Close menu':'Tutup menu'}>✕</button></form></div>
+  <div class="watch-menu-heading"><span id="watch-menu-title">West Papua <em>Watch</em></span><button type="button" data-menu-close autofocus aria-label={locale==='en'?'Close menu':'Tutup menu'}>✕</button></div>
   <nav aria-label={locale==='en'?'Site navigation':'Navigasi situs'}>{NAV_ITEMS.map((item,i)=><a href={withLocale(item.href,locale)} aria-current={active===item.key?'page':undefined}><small>{String(i+1).padStart(2,'0')}</small><span>{t(item.label,locale)}</span><span aria-hidden="true">↗</span></a>)}</nav>
 </dialog>
 <script>
 const menu=document.querySelector<HTMLDialogElement>('#watch-menu');
 if(menu){
- document.querySelectorAll<HTMLButtonElement>('[data-menu-open]').forEach(button=>button.addEventListener('click',()=>menu.showModal()));
- menu.addEventListener('click',event=>{if(event.target===menu){const r=menu.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)menu.close()}});
- const desktop=matchMedia('(min-width: 761px)');desktop.addEventListener('change',()=>{if(desktop.matches&&menu.open)menu.close()});
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)');let timer:number|undefined;
+ const openMenu=()=>{if(menu.open)return;menu.showModal();requestAnimationFrame(()=>requestAnimationFrame(()=>menu.classList.add('is-visible')))};
+ const closeMenu=(immediate=false)=>{if(!menu.open)return;menu.classList.remove('is-visible');if(timer)clearTimeout(timer);if(immediate||reduce.matches)menu.close();else timer=window.setTimeout(()=>menu.close(),240)};
+ document.querySelectorAll<HTMLButtonElement>('[data-menu-open]').forEach(button=>button.addEventListener('click',openMenu));
+ menu.querySelector<HTMLButtonElement>('[data-menu-close]')?.addEventListener('click',()=>closeMenu());
+ menu.addEventListener('cancel',event=>{event.preventDefault();closeMenu()});
+ menu.addEventListener('click',event=>{if(event.target===menu)closeMenu()});
+ const desktop=matchMedia('(min-width: 761px)');desktop.addEventListener('change',()=>{if(desktop.matches)closeMenu(true)});
+ menu.addEventListener('close',()=>menu.classList.remove('is-visible'));
 }
 </script>

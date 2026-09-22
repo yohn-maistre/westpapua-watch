@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {issues} from '../data/issues';
 import {dossierBySlug} from '../data/dossiers';
-import {featuredTopicSlugs,secondaryFollowingSlugs} from '../data/topic-collections';
+import {featuredTopicSlugs,secondaryFollowingSlugs,followingStyle} from '../data/topic-collections';
 import {t,withLocale} from '../lib/i18n';
 import type {Locale} from '../data/types';
 const {locale='en'}=Astro.props as {locale?:Locale};const en=locale==='en';
@@ -13,11 +13,11 @@ const secondary=secondaryFollowingSlugs.map(s=>dossierBySlug[s]).filter(Boolean)
 <section class="section topics-editorial"><div class="wrap">
 <header class="topics-opening"><h1 class="page-title">{en?'Issues.':'Isu.'}</h1><a href="#topics">{en?'Browse issues':'Jelajahi isu'} <span aria-hidden="true">↓</span></a></header>
 <section id="following" aria-labelledby="following-title"><div class="topics-section-title"><h2 id="following-title">{en?'Following':'Dalam pantauan'}</h2><span>01—{String(featured.length+secondary.length).padStart(2,'0')}</span></div>
-<div class="following-mosaic">{featured.map((item,i)=><a class:list={['following-tile',`following-tile-${i}`]} href={withLocale(`/topics/${item.slug}/`,locale)}>
+<div class="following-mosaic">{featured.map((item,i)=><a class:list={['following-tile',`following-tile-${i}`]} href={withLocale(`/topics/${item.slug}/`,locale)} data-following-slug={item.slug} style={followingStyle(item.slug)}>
 <span class="following-number">{String(i+1).padStart(2,'0')}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></span>
 <div class="following-copy"><h3>{t(item.title,locale)}</h3><p>{t(item.summary,locale)}</p></div>
 <footer>{item.sourceIds.length} {en?'references':'referensi'}</footer></a>)}
-{secondary.map((item,i)=><a class="following-tile following-small" href={withLocale(`/topics/${item.slug}/`,locale)}><span class="following-number">{String(featured.length+i+1).padStart(2,'0')}<span aria-hidden="true">↗</span></span><div class="following-copy"><h3>{t(item.title,locale)}</h3><p>{t(item.summary,locale)}</p></div></a>)}
+{secondary.map((item,i)=><a class="following-tile following-small" href={withLocale(`/topics/${item.slug}/`,locale)} data-following-slug={item.slug} style={followingStyle(item.slug)}><span class="following-number">{String(featured.length+i+1).padStart(2,'0')}<span aria-hidden="true">↗</span></span><div class="following-copy"><h3>{t(item.title,locale)}</h3><p>{t(item.summary,locale)}</p></div></a>)}
 </div></section>
 <section id="topics" class="topics-directory" aria-labelledby="topics-title"><div class="topics-section-title"><h2 id="topics-title">{en?'Issues':'Isu'}</h2><span>{String(issues.length).padStart(2,'0')}</span></div><div class="topics-directory-grid">{issues.map((item,i)=><a href={withLocale(`/topics/${item.slug}/`,locale)}><span class="directory-number">{String(i+1).padStart(2,'0')}</span><div><h3>{t(item.title,locale)}</h3><p>{t(item.summary,locale)}</p></div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a>)}</div></section>
 </div></section></BaseLayout>

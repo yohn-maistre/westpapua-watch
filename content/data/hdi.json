@@ -1,44 +1,20 @@
 {
-  "source": "BPS Provinsi Papua",
-  "sourceUrl": "https://web-api.bps.go.id/download.php?f=mpL0CC4i6ioV0UuwatyhdUpLclFTWWpORmpmM09kdHRBZzVLeXd0UnQwSnh5aWNiK3pSdnpEd3pVUkM5a2R6aVladWowUC83WlpVMi9EUkZ4MVE3bDdFbzVrY09NejY5NU9qMW0rbzBmQzdjR0hDZ01sVlJHN1E2czVTZXdvSHdHTk5xZldrMHJiWmhyVTRxRWV6Nkd0YllZbnFvZm5HazkwK3RscUQxNnNsZEEvU3REaGtIU1BnM0NpMzM0Um14V3BzZ3lXanFDbkNzaGhCK3NQc3gvK1NKWjJYd1J6YmhCSE9naHR0alJjcU51anphTmZDVU15UVE5bXl1enJHRCtpYmY3V0JMTFlIQ1F2ZlFhcGhtNzNqT0VPMGdlNW1wUko5OEhkRTRsLytmaGV1YjlpeXViSUxSRTZvPQ%3D%3D",
-  "publication": "Indikator Penting Provinsi Papua Tengah, Februari 2025",
-  "page": "63 (PDF page 81), appendix 4",
+  "source": "BPS-Statistics Indonesia",
+  "sourceUrl": "https://www.bps.go.id/en/statistics-table/3/V25GaFNHaExaMnhITm1sWmRrUlJZelJzYUc1SGR6MDkjMw==/indeks-pembangunan-manusia-menurut-provinsi--2023.html?year=2025",
+  "publication": "Human Development Index by Province, 2025",
+  "page": "BPS statistical table",
   "years": [
-    2023,
-    2024
+    2024,
+    2025
   ],
-  "unit": "index, 0\u2013100",
-  "retrievedAt": "2026-09-17",
+  "unit": "index, 0–100",
+  "retrievedAt": "2026-09-22",
   "rows": [
-    {
-      "province": "Papua",
-      "previous": 73.23,
-      "current": 73.83
-    },
-    {
-      "province": "Papua Barat",
-      "previous": 66.84,
-      "current": 67.69
-    },
-    {
-      "province": "Papua Selatan",
-      "previous": 68.24,
-      "current": 68.86
-    },
-    {
-      "province": "Papua Tengah",
-      "previous": 59.44,
-      "current": 60.25
-    },
-    {
-      "province": "Papua Pegunungan",
-      "previous": 53.45,
-      "current": 54.43
-    },
-    {
-      "province": "Papua Barat Daya",
-      "previous": 69.07,
-      "current": 69.65
-    }
+    {"province": "Papua", "previous": 73.83, "current": 74.69},
+    {"province": "Papua Barat", "previous": 67.69, "current": 68.48},
+    {"province": "Papua Selatan", "previous": 68.86, "current": 69.54},
+    {"province": "Papua Tengah", "previous": 60.25, "current": 60.64},
+    {"province": "Papua Pegunungan", "previous": 54.43, "current": 54.91},
+    {"province": "Papua Barat Daya", "previous": 69.65, "current": 70.55}
   ]
 }

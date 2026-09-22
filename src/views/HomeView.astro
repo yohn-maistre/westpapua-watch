@@ -3,11 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/home.css';
 import MapShell from '../components/map/MapShell.astro';
 import {dossierBySlug} from '../data/dossiers';
-import {featuredTopicSlugs} from '../data/topic-collections';
+import {featuredTopicSlugs,followingStyle} from '../data/topic-collections';
 const issues=featuredTopicSlugs.map(slug=>dossierBySlug[slug]);
 import {resources} from '../data/resources';
-import {developments} from '../data/developments';
-import {PROGRAMME} from '../data/site';
 import {t,withLocale} from '../lib/i18n';
 import type {Locale} from '../data/types';
 const {locale='en'}=Astro.props as {locale?:Locale};
@@ -16,6 +14,21 @@ const fallbackCurrent=Array.from({length:3},()=>({image:'',imageAlt:'',category:
 ---
 <BaseLayout locale={locale} active="home" description={locale==='en'?'A living reference system for West Papua: geography, ongoing issues, current developments, history and sources.':'Sistem referensi hidup untuk Papua Barat: geografi, isu, perkembangan, sejarah, dan sumber.'}>
   <h1 class="sr-only">West Papua Watch</h1>
+
+  <section class="section home-section home-following"><div class="wrap">
+    <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Following.':'Dalam pantauan.'}</h2><a href={withLocale('/topics/',locale)}>{locale==='en'?'All issues →':'Semua isu →'}</a></div>
+    <a class="home-following-feature is-loading" data-home-following-feature data-locale={locale} href={withLocale(`/topics/${issues[0].slug}/`,locale)} style={followingStyle(issues[0].slug)} aria-busy="true">
+      <img data-home-following-image src="/images/abstract/merauke.svg" alt="" loading="eager"/>
+      <div class="home-following-feature-copy"><small data-home-following-kicker>{t(issues[0].title,locale)}</small><h3 data-home-following-title>{t(issues[0].title,locale)}</h3><p data-home-following-summary>{t(issues[0].summary,locale)}</p><span data-home-following-meta>{locale==='en'?'Loading latest development…':'Memuat perkembangan terbaru…'}</span></div>
+    </a>
+    <div class="home-issue-grid" data-home-issues>
+      {issues.map((issue,index)=><a class="home-issue" href={withLocale(`/topics/${issue.slug}/`,locale)} data-home-issue={issue.slug} style={followingStyle(issue.slug)}>
+        <small>{String(index+1).padStart(2,'0')}</small><h3>{t(issue.title,locale)}</h3><p>{t(issue.summary,locale)}</p>
+        <footer><span data-home-issue-count>{issue.sourceIds.length} {locale==='en'?'sources':'sumber'}</span><span data-home-issue-updated>{issue.updatedAt}</span></footer>
+      </a>)}
+    </div>
+  </div></section>
+
   <MapShell locale={locale} mode="home" />
 
   <section class="section home-section"><div class="wrap">
@@ -35,49 +48,22 @@ const fallbackCurrent=Array.from({length:3},()=>({image:'',imageAlt:'',category:
   </div></section>
 
   <section class="section home-section"><div class="wrap">
-    <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Following.':'Dalam pantauan.'}</h2><a href={withLocale('/topics/',locale)}>{locale==='en'?'All issues →':'Semua isu →'}</a></div>
-    <div class="home-issue-grid" data-home-issues>
-      {issues.slice(0,4).map((issue,index)=><a class="home-issue" href={withLocale(`/topics/${issue.slug}/`,locale)} data-home-issue={issue.slug}>
-        <small>{String(index+1).padStart(2,'0')}</small><h3>{t(issue.title,locale)}</h3><p>{t(issue.summary,locale)}</p>
-        <footer><span data-home-issue-count>{issue.sourceIds.length} {locale==='en'?'sources':'sumber'}</span><span data-home-issue-updated>{issue.updatedAt}</span></footer>
-      </a>)}
-    </div>
-  </div></section>
-
-  <section class="section home-section"><div class="wrap">
     <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Library.':'Pustaka.'}</h2><a href={withLocale('/resources/',locale)}>{locale==='en'?'Open library →':'Buka pustaka →'}</a></div>
     <div class="home-resource-list">{featuredResources.map(r=><a href={r.url} target="_blank" rel="noreferrer"><span><small>{r.type} · {r.year}</small><strong>{r.title}</strong></span><span>{r.publisher}</span><i>↗</i></a>)}</div>
   </div></section>
 
-  <section class="section home-section home-programme"><div class="wrap">
-    <a class="home-programme-card" href={withLocale(PROGRAMME.href,locale)}>
-      <div class="home-programme-copy"><small>{PROGRAMME.label} · {PROGRAMME.place}</small><h3>Oceanic Solidarity</h3><p>{t(PROGRAMME.title,locale)}</p></div>
-      <div class="home-programme-art" aria-hidden="true"></div>
-      <div class="home-programme-meta"><span>10–12 Sep 2026</span><span>Programme →</span></div>
-    </a>
-  </div></section>
-
 <script>
 import {fetchJSON} from '../lib/http';
-const root=document.querySelector<HTMLElement>('[data-home-current]');
-if(root){
-  const locale=root.dataset.locale==='pmy'?'pmy':'en';
-  const pick=(v:any)=>typeof v==='object'?(locale==='pmy'?(v.id||v.pmy||v.en):(v.en||v.id||'')):String(v||'');
-  const rel=(iso:string)=>{if(!iso)return'';const h=Math.max(0,Math.round((Date.now()-new Date(iso).getTime())/36e5));return h<24?`${h}h`:`${Math.floor(h/24)}d`};
-  const fallbackFor=(x:any)=>x.issue_slug?.includes('raja')?'/images/abstract/raja-ampat.svg':x.issue_slug?.includes('south-papua')?'/images/abstract/merauke.svg':x.issue_slug?.includes('conflict')?'/images/abstract/highlands.svg':'/images/abstract/oceanic.svg';
-  fetchJSON('/api/current').then(data=>{
-    if(!data){root.hidden=true;const status=document.querySelector('[data-home-feed-status]');if(status)status.textContent=locale==='pmy'?'Berita sementara tidak tersedia.':'News is temporarily unavailable.';return}const items=data.items||[];const status=document.querySelector('[data-home-feed-status]');if(status)status.setAttribute('title',locale==='pmy'?'Siklus mesin terakhir selesai':'Last completed engine cycle');if(status)status.textContent=items.length?(data.meta?.engine_activity?.completed_at?`${locale==='pmy'?'Diperbarui':'Updated'} ${rel(data.meta.engine_activity.completed_at)}`:''):(locale==='pmy'?'Belum ada laporan terbit.':'No published reports yet.');
-    root.querySelectorAll<HTMLElement>('[data-home-current-card]').forEach((card)=>{
-      const i=Number(card.dataset.homeCurrentCard||0),x=items[i];if(!x){card.hidden=true;return}
-      const a=card as HTMLAnchorElement;a.href=`${locale==='pmy'?'/id':''}${x.story_url}`;
-      const title=card.querySelector<HTMLElement>('[data-home-current-title]'),summary=card.querySelector<HTMLElement>('[data-home-current-summary]'),meta=card.querySelector<HTMLElement>('[data-home-current-meta]'),img=card.querySelector<HTMLImageElement>('[data-home-current-image]');
-      if(title)title.textContent=pick(x.title);if(summary){const full=pick(x.summary);summary.textContent=full.length>260?full.slice(0,257).replace(/\s+\S*$/,'')+'…':full;}
-      if(meta)meta.textContent=[x.category,x.place,`${x.article_count||1} ${locale==='pmy'?'laporan':'reports'}`,`${x.source_count||1} ${locale==='pmy'?'sumber':'sources'}`,rel(x.latest_report_at)].filter(Boolean).join(' · ');
-      if(img){const fb=fallbackFor(x);img.src=x.image?.url||fb;img.alt=pick(x.title);img.onerror=()=>{img.onerror=null;img.src=fb}}
-    })
-  }).catch(()=>{root.hidden=true;const status=document.querySelector('[data-home-feed-status]');if(status)status.textContent=locale==='pmy'?'Berita sementara tidak tersedia.':'News is temporarily unavailable.'}).finally(()=>{root.classList.remove('is-loading');root.inert=false;root.setAttribute('aria-busy','false')})
-}
+const root=document.querySelector<HTMLElement>('[data-home-current]'),following=document.querySelector<HTMLElement>('[data-home-following-feature]');
 const locale=document.documentElement.lang==='id'?'pmy':'en';
-for(const card of document.querySelectorAll<HTMLElement>('[data-home-issue]'))fetchJSON('/api/issue/'+encodeURIComponent(card.dataset.homeIssue!)).then(x=>{const updated=card.querySelector<HTMLElement>('[data-home-issue-updated]');if(updated)updated.textContent=x.updated_at?new Date(x.updated_at).toLocaleDateString(locale==='pmy'?'id-ID':'en-GB'):''}).catch(()=>{});
+const pick=(v:any)=>typeof v==='object'?(locale==='pmy'?(v.id||v.pmy||v.en):(v.en||v.id||'')):String(v||'');
+const rel=(iso:string)=>{if(!iso)return'';const h=Math.max(0,Math.round((Date.now()-new Date(iso).getTime())/36e5));return h<24?`${h}h`:`${Math.floor(h/24)}d`};
+const fallbackFor=(x:any)=>x.issue_slug?.includes('raja')?'/images/abstract/raja-ampat.svg':x.issue_slug?.includes('south-papua')?'/images/abstract/merauke.svg':x.issue_slug?.includes('conflict')||x.issue_slug?.includes('nduga')?'/images/abstract/highlands.svg':'/images/abstract/oceanic.svg';
+Promise.all([fetchJSON('/api/following'),fetchJSON('/api/current?page=1&limit=24')]).then(([followData,data])=>{
+  const items=data?.items||[],entry=(followData?.items||[]).find((x:any)=>x.development),x=entry?.development;
+  if(following){if(x){(following as HTMLAnchorElement).href=`${locale==='pmy'?'/id':''}${x.story_url}`;following.dataset.followingSlug=entry.slug||'';const theme=document.querySelector<HTMLElement>(`[data-home-issue="${entry.slug||''}"]`);if(theme){const cs=getComputedStyle(theme);for(const k of ['--following-a','--following-b','--following-glow'])following.style.setProperty(k,cs.getPropertyValue(k))}const title=following.querySelector<HTMLElement>('[data-home-following-title]'),summary=following.querySelector<HTMLElement>('[data-home-following-summary]'),kicker=following.querySelector<HTMLElement>('[data-home-following-kicker]'),meta=following.querySelector<HTMLElement>('[data-home-following-meta]'),img=following.querySelector<HTMLImageElement>('[data-home-following-image]');if(title)title.textContent=locale==='pmy'?(x.title_id||x.title_en):x.title_en;if(summary)summary.textContent=locale==='pmy'?(x.summary_id||x.summary_en):x.summary_en;if(kicker)kicker.textContent=pick(entry.title);if(meta)meta.textContent=[`${x.article_count||1} ${locale==='pmy'?'laporan':'reports'}`,`${x.source_count||1} ${locale==='pmy'?'sumber':'sources'}`,rel(x.latest_report_at)].join(' · ');if(img){const fb=fallbackFor({...x,issue_slug:entry.slug});img.src=x.image?.url||fb;img.alt=locale==='pmy'?(x.title_id||x.title_en):x.title_en;img.onerror=()=>{img.onerror=null;img.src=fb}}}following.classList.remove('is-loading');following.setAttribute('aria-busy','false')}
+  if(root){const status=document.querySelector('[data-home-feed-status]');if(status)status.setAttribute('title',locale==='pmy'?'Siklus mesin terakhir selesai':'Last completed engine cycle');if(status)status.textContent=items.length?(data?.meta?.engine_activity?.completed_at?`${locale==='pmy'?'Diperbarui':'Updated'} ${rel(data.meta.engine_activity.completed_at)}`:''):(locale==='pmy'?'Belum ada laporan terbit.':'No published reports yet.');root.querySelectorAll<HTMLElement>('[data-home-current-card]').forEach(card=>{const i=Number(card.dataset.homeCurrentCard||0),x=items[i];if(!x){card.hidden=true;return}const a=card as HTMLAnchorElement;a.href=`${locale==='pmy'?'/id':''}${x.story_url}`;const title=card.querySelector<HTMLElement>('[data-home-current-title]'),summary=card.querySelector<HTMLElement>('[data-home-current-summary]'),meta=card.querySelector<HTMLElement>('[data-home-current-meta]'),img=card.querySelector<HTMLImageElement>('[data-home-current-image]');if(title)title.textContent=pick(x.title);if(summary){const full=pick(x.summary);summary.textContent=full.length>260?full.slice(0,257).replace(/\s+\S*$/,'')+'…':full}if(meta)meta.textContent=[x.category,x.place,`${x.article_count||1} ${locale==='pmy'?'laporan':'reports'}`,`${x.source_count||1} ${locale==='pmy'?'sumber':'sources'}`,rel(x.latest_report_at)].filter(Boolean).join(' · ');if(img){const fb=fallbackFor(x);img.src=x.image?.url||fb;img.alt=pick(x.title);img.onerror=()=>{img.onerror=null;img.src=fb}}});root.classList.remove('is-loading');root.inert=false;root.setAttribute('aria-busy','false')}
+}).catch(()=>{if(following){following.classList.remove('is-loading');following.setAttribute('aria-busy','false')}if(root){root.hidden=true;const status=document.querySelector('[data-home-feed-status]');if(status)status.textContent=locale==='pmy'?'Berita sementara tidak tersedia.':'News is temporarily unavailable.'}});
+for(const card of document.querySelectorAll<HTMLElement>('[data-home-issue]'))fetchJSON('/api/issue/'+encodeURIComponent(card.dataset.homeIssue!)).then(x=>{const updated=card.querySelector<HTMLElement>('[data-home-issue-updated]'),count=card.querySelector<HTMLElement>('[data-home-issue-count]');if(updated)updated.textContent=x.updated_at?new Date(x.updated_at).toLocaleDateString(locale==='pmy'?'id-ID':'en-GB'):'';if(count)count.textContent=`${x.source_count||0} ${locale==='pmy'?'sumber':'sources'}`}).catch(()=>{});
 </script>
 </BaseLayout>
