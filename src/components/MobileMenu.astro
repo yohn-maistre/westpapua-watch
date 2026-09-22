@@ -5,7 +5,7 @@ const {locale='en',active='now'}=Astro.props;
 ---
 <dialog id="watch-menu" class="watch-menu" aria-labelledby="watch-menu-title">
   <div class="watch-menu-heading"><span id="watch-menu-title">West Papua <em>Watch</em></span><button type="button" data-menu-close autofocus aria-label={locale==='en'?'Close menu':'Tutup menu'}>✕</button></div>
-  <nav aria-label={locale==='en'?'Site navigation':'Navigasi situs'}>{NAV_ITEMS.map((item,i)=><a href={withLocale(item.href,locale)} aria-current={active===item.key?'page':undefined}><small>{String(i+1).padStart(2,'0')}</small><span>{t(item.label,locale)}</span><span aria-hidden="true">↗</span></a>)}</nav>
+  <nav aria-label={locale==='en'?'Site navigation':'Navigasi situs'}>{NAV_ITEMS.map((item,i)=><a href={withLocale(item.href,locale)} aria-current={active===item.key?'page':undefined}><small>{String(i+1).padStart(2,'0')}</small><span>{item.key==='exhibition'&&<span aria-hidden="true" class="menu-star">✦ </span>}{t(item.label,locale)}</span><span aria-hidden="true">↗</span></a>)}</nav>
 </dialog>
 <script>
 const menu=document.querySelector<HTMLDialogElement>('#watch-menu');

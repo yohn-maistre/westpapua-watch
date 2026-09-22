@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {issues} from '../data/issues';
-import {dossierBySlug} from '../data/dossiers';
+import {followingCaseBySlug} from '../data/following-cases';
 import {featuredTopicSlugs,secondaryFollowingSlugs,followingStyle} from '../data/topic-collections';
 import {t,withLocale} from '../lib/i18n';
 import type {Locale} from '../data/types';
 const {locale='en'}=Astro.props as {locale?:Locale};const en=locale==='en';
-const featured=featuredTopicSlugs.map(s=>dossierBySlug[s]).filter(Boolean);
-const secondary=secondaryFollowingSlugs.map(s=>dossierBySlug[s]).filter(Boolean);
+const featured=featuredTopicSlugs.map(s=>followingCaseBySlug[s]).filter(Boolean);
+const secondary=secondaryFollowingSlugs.map(s=>followingCaseBySlug[s]).filter(Boolean);
 ---
 <BaseLayout locale={locale} active="issues" title={en?'Issues':'Isu'}>
 <section class="section topics-editorial"><div class="wrap">

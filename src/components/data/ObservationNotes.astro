@@ -1,0 +1,4 @@
+---
+const {item,locale='en'}=Astro.props;
+---
+<div class="observation-source"><a href={item.source.url} target="_blank" rel="noreferrer">{item.source.publisher} ↗</a><details><summary>{locale==='en'?'Method & scope':'Metode & cakupan'}</summary><p>{item.scope}</p><p>{item.method}</p><p>{item.uncertainty}</p></details></div>

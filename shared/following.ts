@@ -26,3 +26,9 @@ export function matchesFollowing(slug:string,text:string):boolean{
  }
 }
 export const scopedFollowingSlugs=['awyu-customary-forests','nduga-displacement','puncak-displacement','intan-jaya-displacement','freeport-mimika','mining-raja-ampat','south-papua-food-energy-estate'];
+
+/** A Following case must be supported within at least one individual report. */
+export function matchesFollowingEvidence(slug:string,reports:string[]):boolean{
+ return reports.some(report=>matchesFollowing(slug,report));
+}
+export type FollowingCase = {slug:string;title:{en:string;id?:string};summary?:{en:string;id?:string}};

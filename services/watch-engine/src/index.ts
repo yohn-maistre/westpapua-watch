@@ -1,5 +1,5 @@
 import {engineActivity} from './activity';
-import {followingTickerSlugs,matchesFollowing} from '../../../shared/following';
+import {followingTickerSlugs,matchesFollowing,matchesFollowingEvidence} from '../../../shared/following';
 import {resources} from './library-api';
 import { NewsCycleWorkflow } from './workflow';
 import { processArticle } from './ingest/process';
@@ -99,13 +99,13 @@ async function issues(env:any){
 async function dossier(env:any,slug:string){
   const meta:any=await env.DB.prepare(`SELECT * FROM issues WHERE slug=? AND active=1`).bind(slug).first();if(!meta)return null;
   const rows:any=await env.DB.prepare(`SELECT d.id,d.title_en,d.title_id,d.summary_en,d.summary_id,d.updated_at,d.ranking_score,di.relation,di.score,
-    GROUP_CONCAT(a.title || ' ' || COALESCE(a.summary,''),' ' ) evidence_text,
+    json_group_array(a.title || ' ' || COALESCE(a.summary,'')) evidence_reports,
     strftime('%Y-%m-%dT%H:%M:%SZ',MAX(julianday(a.published_at))) latest_report_at,
     COUNT(DISTINCT CASE WHEN a.content_hash IS NOT NULL THEN a.content_hash ELSE 'id:' || a.id END) article_count,
     COUNT(DISTINCT CASE WHEN a.syndicated_from_article_id IS NULL THEN a.publisher_id END) source_count
     FROM development_issues di JOIN developments d ON d.id=di.development_id JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id
     WHERE di.issue_slug=? AND d.status='published' GROUP BY d.id ORDER BY MAX(julianday(COALESCE(a.published_at,a.fetched_at))) DESC LIMIT 30`).bind(slug).all();
-  const developments=[];for(const d of rows.results||[]){const image:any=await imageForDevelopment(env,d.id);developments.push({...d,story_url:`/story/?id=${d.id}`,image:image?{url:image.url,source_url:image.source_url,credit:image.credit||image.publisher,caption:image.caption}:null})}
+  const developments=[];for(const d of rows.results||[]){if(!matchesFollowingEvidence(slug,parseArray(d.evidence_reports)))continue;const image:any=await imageForDevelopment(env,d.id);developments.push({...d,story_url:`/story/?id=${d.id}`,image:image?{url:image.url,source_url:image.source_url,credit:image.credit||image.publisher,caption:image.caption}:null})}
   const deltas:any=await env.DB.prepare(`SELECT id,development_id,delta_summary,delta_summary_id,significance,created_at FROM issue_delta_candidates WHERE issue_slug=? AND status='published' ORDER BY created_at DESC LIMIT 40`).bind(slug).all();
   const reporting:any=await env.DB.prepare(`SELECT DISTINCT d.id development_id,a.publisher_id,a.canonical_url,a.title,a.published_at,p.name publisher,p.role,COALESCE(a.published_at,a.fetched_at) report_at FROM development_issues di JOIN developments d ON d.id=di.development_id JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id JOIN publishers p ON p.id=a.publisher_id WHERE di.issue_slug=? AND d.status='published' ORDER BY julianday(COALESCE(a.published_at,a.fetched_at)) DESC LIMIT 24`).bind(slug).all();
   const accepted=new Set(developments.map(d=>Number(d.id)));
@@ -138,9 +138,15 @@ async function issue(env:any,slug:string){
 async function following(env:any){
   const items=[];
   for(const slug of followingTickerSlugs){
-    const record:any=await dossier(env,slug);if(!record)continue;
-    const development=record.developments?.[0]||null;
-    items.push({slug,title:{en:record.title_en,id:record.title_id||record.title_en},summary:{en:record.summary_en,id:record.summary_id||record.summary_en},updated_at:record.updated_at||null,development});
+    const record:any=await env.DB.prepare(`SELECT title_en,title_id FROM dossiers WHERE slug=? AND active=1`).bind(slug).first();if(!record)continue;
+    // Small projection: the strip does not need whole case histories or images.
+    const rows:any=await env.DB.prepare(`SELECT d.id,d.title_en,d.title_id,
+      json_group_array(a.title || ' ' || COALESCE(a.summary,'')) evidence_reports,
+      strftime('%Y-%m-%dT%H:%M:%SZ',MAX(julianday(a.published_at))) latest_report_at
+      FROM development_issues di JOIN developments d ON d.id=di.development_id JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id
+      WHERE di.issue_slug=? AND d.status='published' AND julianday(a.published_at)<=julianday('now','+1 hour') GROUP BY d.id ORDER BY MAX(julianday(a.published_at)) DESC LIMIT 40`).bind(slug).all();
+    const d=(rows.results||[]).find((r:any)=>matchesFollowingEvidence(slug,parseArray(r.evidence_reports)));
+    if(d)items.push({slug,title:{en:record.title_en,id:record.title_id||record.title_en},development:{id:d.id,title_en:d.title_en,title_id:d.title_id,latest_report_at:d.latest_report_at,story_url:`/story/?id=${d.id}`}});
   }
   return {items};
 }

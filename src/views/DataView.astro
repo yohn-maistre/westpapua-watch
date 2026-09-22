@@ -4,5 +4,5 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/public-record.css';
 const {locale='en'}=Astro.props;const en=locale==='en';
 ---
-<BaseLayout locale={locale} active="data" title="Data"><div class="wrap record-index"><div class="record-heading"><span class="eyebrow">Data</span><h1>{en?'Measured change.':'Perubahan terukur.'}</h1><a href="/data/observations.json" download>{en?'Download observations':'Unduh observasi'} ↓</a></div>
+<BaseLayout locale={locale} active="data" title="Data"><div class="wrap record-index"><div class="record-heading"><span class="eyebrow">Data</span><h1>{en?'Data.':'Data.'}</h1><a href="/data/observations.json" download>{en?'Download observations':'Unduh observasi'} ↓</a></div>
 <DataDashboard locale={locale}/></div></BaseLayout>

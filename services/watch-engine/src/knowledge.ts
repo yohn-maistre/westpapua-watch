@@ -51,9 +51,9 @@ async function resolvePlace(env:any,name:string){
   return {slug,name:label,kind:'reported',latitude:null,longitude:null};
 }
 
-export async function syncDevelopmentKnowledge(env:any,developmentId:number,packet:StoryPacket,text=''){
+export async function syncDevelopmentKnowledge(env:any,developmentId:number,packet:StoryPacket,text='',verifiedIssueSlugs?:string[]){
   const now=new Date().toISOString();
-  const issueSlugs=issueSlugsFor(`${text}\n${packet.summary}`,packet.issue_candidates);
+  const issueSlugs=verifiedIssueSlugs??issueSlugsFor(`${text}\n${packet.summary}`,packet.issue_candidates);
   for(let i=0;i<issueSlugs.length;i++){
     const slug=issueSlugs[i];
     await env.DB.prepare(`INSERT INTO development_issues(development_id,issue_slug,score,relation,created_at,updated_at) VALUES(?,?,?,?,?,?) ON CONFLICT(development_id,issue_slug) DO UPDATE SET score=MAX(development_issues.score,excluded.score),relation=CASE WHEN development_issues.relation='primary' THEN 'primary' ELSE excluded.relation END,updated_at=excluded.updated_at`).bind(developmentId,slug,i===0?1:.72,i===0?'primary':'related',now,now).run();
@@ -87,7 +87,7 @@ export async function syncDevelopmentAggregateKnowledge(env:any,developmentId:nu
   const summaries=items.map((r:any)=>String(r.summary||r.article_summary||'')).filter(Boolean),titles=items.map((r:any)=>String(r.title||'')).filter(Boolean);
   const packet:StoryPacket={summary:summaries.join('\n').slice(0,12000),key_points:collect('key_points_json'),what_changed:items.map((r:any)=>String(r.what_changed||'')).filter(Boolean).join('\n').slice(0,5000),event_date:items.map((r:any)=>r.event_date).find(Boolean),event_key:items.map((r:any)=>r.event_key).find(Boolean),action:items.map((r:any)=>r.action).filter(Boolean).join(' · ').slice(0,1200),object:items.map((r:any)=>r.object).filter(Boolean).join(' · ').slice(0,1200),places:collect('places_json'),people:collect('people_json'),organizations:collect('organizations_json'),topics:collect('topics_json'),issue_candidates:collect('issue_candidates_json')};
   const evidence=[...titles,summaries.join(' '),packet.what_changed,packet.action||'',packet.object||'',packet.places.join(' '),packet.people.join(' '),packet.organizations.join(' '),packet.topics.join(' ')].join('\n');
-  const matched=issueSlugsFor(evidence,packet.issue_candidates);
+  const matched=unique(items.flatMap((r:any)=>issueSlugsFor(`${r.title||''} ${r.article_summary||''} ${r.summary||''}`,jsonArray(r.issue_candidates_json))));
   // Rebuild engine-generated relations from the complete Development. A later report can add
   // missing context, while removed/merged reports cannot leave stale topic or dossier links behind.
   await env.DB.batch([
@@ -95,7 +95,7 @@ export async function syncDevelopmentAggregateKnowledge(env:any,developmentId:nu
     env.DB.prepare(`DELETE FROM development_broad_issues WHERE development_id=? AND relation IN ('topic','dossier')`).bind(developmentId),
     env.DB.prepare(`DELETE FROM development_places WHERE development_id=?`).bind(developmentId)
   ]);
-  const result=await syncDevelopmentKnowledge(env,developmentId,packet,evidence);
+  const result=await syncDevelopmentKnowledge(env,developmentId,packet,evidence,matched);
   const current:any=await env.DB.prepare(`SELECT issue_slug FROM developments WHERE id=?`).bind(developmentId).first();
   if(matched[0])await env.DB.prepare(`UPDATE developments SET issue_slug=? WHERE id=?`).bind(matched[0],developmentId).run();
   else if(scopedFollowingSlugs.includes(String(current?.issue_slug||'')))await env.DB.prepare(`UPDATE developments SET issue_slug=NULL WHERE id=?`).bind(developmentId).run();

@@ -40,3 +40,6 @@ body:has(.watch-menu[open]){overflow:hidden}
  .watch-menu nav a[aria-current=page] small{color:#c5bce0}
 }
 @media(max-width:350px){.compact-nav .compact-inner{padding-inline:10px!important;gap:6px}.compact-nav .compact-brand{font-size:11px!important}.compact-nav .mobile-menu-trigger{gap:5px;padding-inline:9px}.watch-menu{width:92vw;padding-inline:14px}.watch-menu nav a{font-size:1rem}}
+
+.menu-star{color:#c5b3ee}.watch-menu nav a[aria-current=page]{border-bottom-color:#c5b3ee}
+@media(prefers-reduced-motion:reduce){.watch-menu{transition:none!important}}

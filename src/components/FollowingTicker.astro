@@ -1,25 +1,34 @@
 ---
 import '../styles/following.css';
-import {dossierBySlug} from '../data/dossiers';
-import {followingStyle,followingTickerSlugs} from '../data/topic-collections';
-import {t,withLocale} from '../lib/i18n';
-import type {Locale} from '../data/types';
-const {locale='en'}=Astro.props as {locale?:Locale};
-const items=followingTickerSlugs.map(slug=>dossierBySlug[slug]).filter(Boolean);
-const loop=[...items,...items];
+import {withLocale} from '../lib/i18n';
+const {locale='en'}=Astro.props;const en=locale==='en';
 ---
-<aside class="following-ticker" data-following-ticker data-locale={locale} aria-label={locale==='en'?'Following':'Dalam pantauan'}>
-  <div class="following-ticker-label"><span>{locale==='en'?'Following':'Dipantau'}</span></div>
-  <div class="following-ticker-viewport"><div class="following-ticker-track">
-    {loop.map((issue,index)=>{const duplicate=index>=items.length;return <a class="following-ticker-item" data-following-item={issue.slug} data-following-duplicate={duplicate?'true':'false'} href={withLocale(`/topics/${issue.slug}/`,locale)} style={followingStyle(issue.slug)} aria-hidden={duplicate?'true':undefined} tabindex={duplicate?-1:undefined}>
-      <span class="following-ticker-topic" data-following-topic>{t(issue.title,locale)}</span><strong data-following-headline>{t(issue.summary,locale)}</strong><small data-following-meta>{locale==='en'?'Latest development':'Perkembangan terbaru'}</small><i aria-hidden="true">→</i>
-    </a>})}
-  </div></div>
+<aside class="following-ticker" data-following-ticker data-locale={locale} aria-label={en?'Following updates':'Kabar dalam pantauan'}>
+ <div class="following-wash" aria-hidden="true"><i></i><i></i><i></i></div>
+ <div class="following-ticker-inner">
+ <a class="following-update" data-update-link href={withLocale('/topics/',locale)}><span data-update-case>{en?'Following':'Dalam pantauan'}</span><strong data-update-title>{en?'Explore the stories we’re following':'Jelajahi isu yang kami pantau'}</strong><time data-update-date></time></a>
+ <div class="following-controls" hidden data-update-controls><button data-update-prev aria-label={en?'Previous update':'Kabar sebelumnya'}>←</button><button data-update-pause aria-label={en?'Pause updates':'Jeda pergantian kabar'} aria-pressed="false">Ⅱ</button><button data-update-next aria-label={en?'Next update':'Kabar berikutnya'}>→</button></div>
+ </div>
 </aside>
 <script>
-const ticker=document.querySelector<HTMLElement>('[data-following-ticker]');
-if(ticker){
- const locale=ticker.dataset.locale==='pmy'?'pmy':'en',pick=(v:any)=>typeof v==='object'?(locale==='pmy'?(v.id||v.pmy||v.en):(v.en||v.id||'')):String(v||''),day=(iso:string)=>iso?new Date(iso).toLocaleDateString(locale==='pmy'?'id-ID':'en-GB',{day:'numeric',month:'short'}):'';
- fetch('/api/following',{headers:{accept:'application/json'}}).then(r=>r.ok?r.json():null).then(data=>{if(!data?.items?.length)return;const rows=[...ticker.querySelectorAll<HTMLElement>('[data-following-item]')];for(const entry of data.items){const slug=String(entry.slug||''),dev=entry.development;if(!slug||!dev)continue;for(const row of rows.filter(x=>x.dataset.followingItem===slug)){(row as HTMLAnchorElement).href=`${locale==='pmy'?'/id':''}${dev.story_url}`;const topic=row.querySelector<HTMLElement>('[data-following-topic]'),headline=row.querySelector<HTMLElement>('[data-following-headline]'),meta=row.querySelector<HTMLElement>('[data-following-meta]');if(topic)topic.textContent=pick(entry.title);if(headline)headline.textContent=locale==='pmy'?(dev.title_id||dev.title_en):dev.title_en;if(meta)meta.textContent=[`${dev.article_count||1} ${locale==='pmy'?'laporan':'reports'}`,`${dev.source_count||1} ${locale==='pmy'?'sumber':'sources'}`,day(dev.latest_report_at)].filter(Boolean).join(' · ')}}}).catch(()=>{});
+import {fetchJSON} from '../lib/http';
+const root=document.querySelector<HTMLElement>('[data-following-ticker]');
+if(root){
+ const en=root.dataset.locale!=='pmy',reduce=matchMedia('(prefers-reduced-motion: reduce)');
+ const palette:Record<string,string[]>={
+ 'south-papua-food-energy-estate':['#c2d6ae','#afd1c9','#d8c8ed'],
+ 'awyu-customary-forests':['#acceb9','#cbd5a6','#c6bdeb'],
+ 'nduga-displacement':['#d0b6d0','#b4c8e7','#d9c2e8'],
+ 'mining-raja-ampat':['#a5d6d8','#afc4e5','#cdc0ed'],
+ 'freeport-mimika':['#dec3ae','#c4b8de','#b4ceda']};
+ let items:any[]=[],index=0,paused=reduce.matches,timer:number|undefined;
+ const link=root.querySelector<HTMLAnchorElement>('[data-update-link]')!,pause=root.querySelector<HTMLButtonElement>('[data-update-pause]')!;
+ const stop=()=>{if(timer)clearInterval(timer);timer=undefined};
+ const render=()=>{if(!reduce.matches)link.animate?.([{opacity:.35,transform:'translateY(3px)'},{opacity:1,transform:'translateY(0)'}],{duration:360,easing:'ease-out'});const entry=items[index],d=entry?.development;if(!d)return;link.href=`${en?'':'/id'}${d.story_url}`;root.querySelector('[data-update-case]')!.textContent=en?entry.title.en:entry.title.id||entry.title.en;root.querySelector('[data-update-title]')!.textContent=en?d.title_en:d.title_id||d.title_en;const time=root.querySelector<HTMLTimeElement>('[data-update-date]')!;time.dateTime=d.latest_report_at;time.textContent=new Date(d.latest_report_at).toLocaleDateString(en?'en-GB':'id-ID',{day:'numeric',month:'short'});(palette[entry.slug]||['#c6b8ef','#a9d1ed','#e0b8d4']).forEach((colour,i)=>root.style.setProperty(`--wash-${i}`,colour));};
+ const schedule=()=>{stop();if(items.length>1&&!paused&&!document.hidden&&!root.matches(':hover')&&!root.contains(document.activeElement))timer=window.setInterval(()=>{index=(index+1)%items.length;render()},9000)};
+ const sync=()=>{pause.setAttribute('aria-pressed',String(paused));pause.setAttribute('aria-label',paused?(en?'Resume updates':'Lanjutkan pergantian kabar'):(en?'Pause updates':'Jeda pergantian kabar'));pause.textContent=paused?'▷':'Ⅱ';root.classList.toggle('is-paused',paused);schedule()};
+ root.querySelector('[data-update-next]')!.addEventListener('click',()=>{index=(index+1)%items.length;render();schedule()});root.querySelector('[data-update-prev]')!.addEventListener('click',()=>{index=(index+items.length-1)%items.length;render();schedule()});pause.addEventListener('click',()=>{paused=!paused;sync()});
+ root.addEventListener('mouseenter',stop);root.addEventListener('mouseleave',schedule);root.addEventListener('focusin',stop);root.addEventListener('focusout',()=>setTimeout(schedule,0));document.addEventListener('visibilitychange',schedule);reduce.addEventListener('change',()=>{paused=reduce.matches;sync()});
+ fetchJSON('/api/following').then(data=>{const seen=new Set();items=(data?.items||[]).filter((x:any)=>{const d=x.development;if(!d?.title_en||!/^\/story\/\?id=\d+$/.test(d.story_url)||!Number.isFinite(Date.parse(d.latest_report_at))||seen.has(d.id))return false;seen.add(d.id);return true}).sort((a:any,b:any)=>Date.parse(b.development.latest_report_at)-Date.parse(a.development.latest_report_at));if(items.length){render();(root.querySelector('[data-update-controls]') as HTMLElement).hidden=items.length<2;sync()}}).catch(()=>{});
 }
 </script>
