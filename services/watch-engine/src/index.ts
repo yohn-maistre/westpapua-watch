@@ -185,9 +185,15 @@ export default {
 
     // Everything below this point is operational/editorial state and requires the
     // Worker secret. Missing configuration fails closed.
-    if(['/review/critic','/review/status','/emerging-issues','/run','/backfill','/maintenance/freeze09'].includes(url.pathname)&&!adminAuthorized(request,env))return denyAdmin();
+    if(['/review/critic','/review/status','/review/sources','/emerging-issues','/run','/backfill','/maintenance/freeze09'].includes(url.pathname)&&!adminAuthorized(request,env))return denyAdmin();
     if(url.pathname==='/review/critic'&&request.method==='GET'){const rows:any=await env.DB.prepare(`SELECT cr.*,d.title_en,d.status FROM critic_reviews cr JOIN developments d ON d.id=cr.development_id ORDER BY cr.created_at DESC LIMIT 50`).all();return json({items:rows.results||[]})}
     if(url.pathname==='/review/status'&&request.method==='GET')return json(await editorialStatus(env));
+    if(url.pathname==='/review/sources'&&request.method==='GET'){
+      const {SOURCES}=await import('./sources/registry');
+      const rows:any=await env.DB.prepare(`SELECT a.publisher_id,COUNT(DISTINCT a.id) ingested,MAX(a.fetched_at) latest_ingested,COUNT(DISTINCT CASE WHEN d.status='published' THEN a.id END) published_articles,COUNT(DISTINCT CASE WHEN d.status='published' THEN d.id END) published_stories,COUNT(DISTINCT CASE WHEN a.status='relevance_deferred' THEN a.id END) relevance_deferred FROM articles a LEFT JOIN development_articles da ON da.article_id=a.id LEFT JOIN developments d ON d.id=da.development_id GROUP BY a.publisher_id`).all();
+      const byId=new Map((rows.results||[]).map((row:any)=>[row.publisher_id,row]));
+      return json({sources:SOURCES.map(s=>({id:s.id,name:s.name,enabled:s.enabled,feed:s.feed||null,stats:byId.get(s.id)||{ingested:0,published_articles:0,published_stories:0,relevance_deferred:0}}))},200,'no-store');
+    }
     if(url.pathname==='/emerging-issues'&&request.method==='GET')return json({items:await emerging(env)});
     if(url.pathname==='/run'&&request.method==='POST'){const instance=await env.NEWS_CYCLE.create({params:{reason:'manual'}});return json({id:instance.id},202)}
     if(url.pathname==='/backfill'&&request.method==='POST'){let body:any={};try{body=await request.json()}catch{}const days=Math.max(1,Math.min(31,Number(body?.days||14)));const instance=await env.NEWS_CYCLE.create({id:`backfill-${Date.now()}-${crypto.randomUUID().slice(0,8)}`,params:{reason:'manual-backfill',backfillDays:days}});return json({id:instance.id,days},202)}

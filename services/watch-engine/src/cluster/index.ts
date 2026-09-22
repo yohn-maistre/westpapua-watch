@@ -87,7 +87,11 @@ export async function reconcileRecentDevelopments(env:any,limit=10){
  const rows:any=await env.DB.prepare(`SELECT id,title_en,title_id,event_signature FROM developments WHERE status IN ('published','candidate','retrying','editorial_queued') AND julianday(updated_at)>=julianday('now','-14 days') ORDER BY julianday(updated_at) DESC LIMIT ?`).bind(limit).all();
  const pairs:any[]=[],seen=new Set<string>();
  for(const seed of rows.results||[]){
-  const candidates=await searchDevelopmentFts(env,`${seed.event_signature||''} ${seed.title_id||seed.title_en}`,8);
+  // FTS can miss two accounts of the same episode when one names the
+  // organization and another names the affected village. Bring in a few
+  // developments sharing a recorded place, then let adjudication decide.
+  const nearby:any=await env.DB.prepare(`SELECT DISTINCT other.development_id id FROM development_places own JOIN development_places other ON own.place_slug=other.place_slug JOIN developments d ON d.id=other.development_id WHERE own.development_id=? AND other.development_id<>? AND d.status NOT IN ('merged','filtered') AND julianday(d.updated_at)>=julianday('now','-14 days') ORDER BY d.updated_at DESC LIMIT 8`).bind(seed.id,seed.id).all();
+  const candidates=[...new Set([...(await searchDevelopmentFts(env,`${seed.event_signature||''} ${seed.title_id||seed.title_en}`,8)),...(nearby.results||[]).map((r:any)=>Number(r.id))])].slice(0,12);
   for(const id of candidates){
    if(id===Number(seed.id))continue;const a=Math.min(id,Number(seed.id)),b=Math.max(id,Number(seed.id)),key=`${a}:${b}`;if(seen.has(key))continue;seen.add(key);
    const left=await candidateDetails(env,a),right=await candidateDetails(env,b);if(!left||!right||dateScore(left.event_date,right.event_date)<.25)continue;

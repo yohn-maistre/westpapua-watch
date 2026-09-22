@@ -37,7 +37,7 @@ const fallbackCurrent=Array.from({length:3},()=>({image:'',imageAlt:'',category:
   <section class="section home-section"><div class="wrap">
     <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Following.':'Dalam pantauan.'}</h2><a href={withLocale('/topics/',locale)}>{locale==='en'?'All issues →':'Semua isu →'}</a></div>
     <div class="home-issue-grid" data-home-issues>
-      {issues.slice(0,4).map((issue,index)=><a class="home-issue" href={withLocale(`/topics/${issue.slug}/`,locale)} data-home-issue={issue.slug} style={followingStyle(issue.slug)}>
+      {issues.slice(0,4).map((issue,index)=><a class="home-issue home-issue-following" href={withLocale(`/topics/${issue.slug}/`,locale)} data-home-issue={issue.slug} style={followingStyle(issue.slug)}>
         <small>{String(index+1).padStart(2,'0')}</small><h3>{t(issue.title,locale)}</h3><p>{t(issue.summary,locale)}</p>
         <footer><span data-home-issue-count>{issue.sourceIds.length} {locale==='en'?'sources':'sumber'}</span><span data-home-issue-updated>{issue.updatedAt}</span></footer>
       </a>)}

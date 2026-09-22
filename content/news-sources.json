@@ -180,6 +180,22 @@
     "libraryPolicy": "selective"
   },
   {
+    "id": "antara-papua",
+    "name": "ANTARA News Papua",
+    "homepage": "https://papua.antaranews.com/",
+    "feed": "https://papua.antaranews.com/rss/terkini.xml",
+    "role": "state_media",
+    "ownership": "state_owned",
+    "language": [
+      "id"
+    ],
+    "scope": "papua",
+    "enabled": true,
+    "priority": 2,
+    "notes": "Regional RSS; keep state ownership visible and attribute claims.",
+    "libraryPolicy": "selective"
+  },
+  {
     "id": "kalawai",
     "name": "Kalawai",
     "homepage": "https://kalawai.org/",

@@ -1,0 +1,20 @@
+---
+import series from '../../../content/data/poverty-2025.json';
+const {locale='en'}=Astro.props;const en=locale==='en';
+const label=(n:number)=>new Intl.NumberFormat(en?'en-GB':'id-ID',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n);
+---
+<section class="poverty-spread data-section" id="poverty" aria-labelledby="poverty-title">
+  <header class="data-section-head"><span class="eyebrow">05 / BPS · {series.period}</span><h2 id="poverty-title">{en?'Poverty by province':'Kemiskinan menurut provinsi'}</h2></header>
+  <div class="poverty-plot" role="group" aria-label={en?'Percentage of residents below the poverty line':'Persentase penduduk di bawah garis kemiskinan'}>
+    <div class="poverty-plot-grid" aria-hidden="true"><span>0</span><span>10</span><span>20</span><span>30%</span></div>
+    {series.rows.map((row,i)=><div class="poverty-row" style={`--rank:${i};--extent:${row.value/30*100}%`}>
+      <div class="poverty-label"><span>{row.province}</span><strong>{label(row.value)}%</strong></div>
+      <div class="poverty-track" role="img" aria-label={`${row.province}: ${label(row.value)}%`}><span class="poverty-wash"></span><i class="poverty-end"></i></div>
+      <a href={row.source} target="_blank" rel="noopener noreferrer" aria-label={`${en?'BPS source for':'Sumber BPS untuk'} ${row.province}`}>BPS ↗</a>
+    </div>)}
+  </div>
+  <p class="data-source">{en?'BPS poverty rate (P0), September 2025; each province has its own official release. The percentage is a share of residents in that province, not a count of people.':'Tingkat kemiskinan BPS (P0), September 2025; setiap provinsi memiliki berita resmi sendiri. Angka ini adalah persentase penduduk tiap provinsi, bukan jumlah orang.'}</p>
+</section>
+<style>
+.poverty-spread{margin-bottom:32px}.poverty-plot{position:relative;isolation:isolate;margin-top:32px;padding:26px clamp(18px,4vw,50px);border-radius:26px;border:1px solid #ffffff17;background:radial-gradient(ellipse at 18% 12%,#afa0cc18,transparent 52%),radial-gradient(ellipse at 88% 86%,#9fc9c218,transparent 60%),#171922;overflow:hidden}.poverty-plot::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.13;background:repeating-radial-gradient(ellipse at 100% 70%,transparent 0 38px,#c7b6d8 39px 40px,transparent 41px 63px)}.poverty-plot-grid{display:flex;justify-content:space-between;padding:0 48px 18px 24%;color:#9d9daa;font-size:.72rem}.poverty-row{display:grid;grid-template-columns:minmax(145px,24%) minmax(0,1fr) 42px;align-items:center;gap:18px;min-height:76px;border-top:1px solid #ffffff13;position:relative}.poverty-label{display:flex;align-items:baseline;justify-content:space-between;gap:10px;min-width:0}.poverty-label span{font-size:clamp(.83rem,1.3vw,1.03rem)}.poverty-label strong{font-weight:500;color:#e3dfed;font-variant-numeric:tabular-nums}.poverty-track{position:relative;height:35px;background:linear-gradient(90deg,#ffffff0b 1px,transparent 1px) 0 0/33.333% 100%}.poverty-wash{position:absolute;left:0;top:9px;height:18px;width:var(--extent);border-radius:2px 18px 18px 2px;background:linear-gradient(90deg,#a490c7 0%,#b3abc9 48%,#a7d1bf 100%);box-shadow:0 0 28px #b2b8cf3b;opacity:calc(.74 + var(--rank)*.035)}.poverty-end{position:absolute;top:5px;left:var(--extent);width:2px;height:26px;background:#ecf6f2;box-shadow:0 0 14px #d5e8de}.poverty-row a{font-size:.67rem;color:#b8afca;justify-self:end;white-space:nowrap}.poverty-row a:hover{color:#fff}@media(max-width:740px){.poverty-plot{padding:22px}.poverty-row{grid-template-columns:1fr 38px;gap:5px 12px;padding:14px 0;min-height:0}.poverty-label{grid-column:1/-1}.poverty-track{grid-column:1;grid-row:2}.poverty-row a{grid-column:2;grid-row:2}.poverty-plot-grid{padding:0 45px 14px 0}}
+</style>

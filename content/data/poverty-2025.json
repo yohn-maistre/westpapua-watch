@@ -1,0 +1,13 @@
+{
+  "period": "September 2025",
+  "measure": "Percentage of residents below the BPS poverty line (P0)",
+  "publisher": "Badan Pusat Statistik",
+  "rows": [
+    {"province":"Papua","value":17.82,"source":"https://papua.bps.go.id/id/pressrelease/2026/02/06/1398/profil-kemiskinan-provinsi-papua--september-2025.html"},
+    {"province":"Papua Barat","value":19.58,"source":"https://papuabarat.bps.go.id/id/pressrelease/2026/02/05/1158/pada-september-2025--persentase-penduduk-miskin-papua-barat-sebesar-19-58-persen--menurun-1-08-persen-poin-terhadap-maret-2025-.html"},
+    {"province":"Papua Selatan","value":19.26,"source":"https://papua.bps.go.id/id/pressrelease/2026/02/06/1400/poverty-profile-of-papua-selatan-province--september-2025.html"},
+    {"province":"Papua Tengah","value":29.45,"source":"https://papua.bps.go.id/id/pressrelease/2026/02/06/1395/profil-kemiskinan-provinsi-papua-tengah--september-2025.html"},
+    {"province":"Papua Pegunungan","value":27.21,"source":"https://papua.bps.go.id/id/pressrelease/2026/02/06/1393/profil-kemiskinan-provinsi-papua-pegunungan--september-2025.html"},
+    {"province":"Papua Barat Daya","value":17.50,"source":"https://papuabarat.bps.go.id/id/pressrelease/2026/02/05/1161/in-september-2025--the-poverty-rate-in-papua-barat-daya-was-17-50-percent--decreasing-0-45-percentage-points-compared-to-march-2025-.html"}
+  ]
+}
