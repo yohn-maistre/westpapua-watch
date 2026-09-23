@@ -34,7 +34,7 @@ const mapView:MapViewId=
 ---
 <BaseLayout locale={locale} active="issues" title={t(issue.title,locale)} description={t(issue.summary,locale)}>
 <div class="wrap">
-  <a class="story-back issue-back" href={withLocale('/topics/#following',locale)}>← {locale==='en'?'Following':'Dalam pantauan'}</a>
+  <a class="story-back issue-back" href={withLocale(issue.slug==='awyu-customary-forests'?'/topics/south-papua-food-energy-estate/#related-land':'/topics/#following',locale)}>← {issue.slug==='awyu-customary-forests'?(locale==='en'?'South Papua land cases':'Kasus tanah Papua Selatan'):(locale==='en'?'Following':'Dalam pantauan')}</a>
 
   <h1 class="page-title issue-page-title">{t(issue.title,locale)}</h1>
 
@@ -54,6 +54,7 @@ const mapView:MapViewId=
   </section>
 
   {background&&<section class="following-background"><h2>{locale==='en'?'Background':'Latar belakang'}</h2><div><p>{t(background,locale)}</p><SourceList sourceIds={issue.sourceIds}/></div></section>}
+  {issue.slug==='south-papua-food-energy-estate'&&<aside class="following-background" id="related-land"><h2>{locale==='en'?'Related land case':'Kasus tanah terkait'}</h2><div><a href={withLocale('/topics/awyu-customary-forests/',locale)}><strong>{locale==='en'?'Awyu customary forests ↗':'Hutan adat Awyu ↗'}</strong></a><p>{locale==='en'?'The Awyu oil-palm permit dispute is a separate case in Boven Digoel. It shares questions about customary land and forest rights with the Merauke projects.':'Sengketa izin perkebunan sawit Awyu merupakan kasus tersendiri di Boven Digoel. Kasus ini berkaitan dengan proyek Merauke melalui persoalan hak atas tanah dan hutan adat.'}</p></div></aside>}
   <nav class="topic-local-index" aria-label={locale==='en'?'On this page':'Di halaman ini'}><a href="#overview">{locale==='en'?'Overview':'Ringkasan'}</a><a href="#latest">{locale==='en'?'Latest':'Terbaru'}</a>{topicTimelines[issue.slug]&&<a href="#timeline">{locale==='en'?'Timeline':'Linimasa'}</a>}<a href="#sources">{locale==='en'?'Library':'Pustaka'}</a><a href="#places">{locale==='en'?'Places':'Lokasi'}</a></nav><div class="dossier-grid">
 
     <section class="box" id="latest"><h2>{locale==='en'?'Latest developments':'Perkembangan terbaru'}</h2><div data-live-issue-updates data-issue-slug={issue.slug} data-locale={locale}>{devs.map(d=><p class="issue-update"><a href={withLocale('/',locale)}><strong>{t(d.title,locale)}</strong></a><br/><small>{d.updatedAt} · {d.sourceIds.length} {locale==='en'?'sources':'sumber'}</small></p>)}</div></section>

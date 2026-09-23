@@ -13,6 +13,7 @@ export const followingVisualBySlug:Record<string,FollowingVisual>={
   'mining-raja-ampat':{a:'#243c48',b:'#497d84',glow:'#70b5bd'},
   'freeport-mimika':{a:'#493930',b:'#a68065',glow:'#d0a07f'},
   'awyu-customary-forests':{a:'#21382f',b:'#557858',glow:'#86aa79'},
+  'papuan-civic-space':{a:'#30334e',b:'#697a9e',glow:'#bea9d6'},
   'puncak-displacement':{a:'#303246',b:'#665c7a',glow:'#a99bbc'},
   'intan-jaya-displacement':{a:'#342f3d',b:'#7a596c',glow:'#bd839d'}
 };

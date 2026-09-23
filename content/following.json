@@ -120,6 +120,18 @@
     }
   },
   {
+    "slug": "papuan-civic-space",
+    "category": "Civic rights",
+    "title": {"en": "Civic space in Papua", "pmy": "Ruang sipil di Tanah Papua"},
+    "summary": {"en": "The ability to report, organize, assemble and express Papuan perspectives in public.", "pmy": "Ruang untuk meliput, berorganisasi, berkumpul, dan menyampaikan pandangan orang Papua di hadapan publik."},
+    "status": {"en": "Following", "pmy": "Dipantau"},
+    "updatedAt": "2026-06-12",
+    "developmentSlugs": [],
+    "sourceIds": ["civic-internet-ruling-2020", "civic-mimika-journalists-2025", "civic-film-screenings-2026"],
+    "concepts": [],
+    "background": {"en": "Papuan civic life includes journalism, student discussion, community advocacy and cultural work. The 2019 internet shutdown, subsequent press-freedom concerns and debate around public film screenings are distinct episodes. This page follows documented changes in the space to report, organize and be heard; sources retain their own accounts of each event.", "pmy": "Kehidupan sipil di Tanah Papua mencakup kerja jurnalistik, diskusi mahasiswa, advokasi masyarakat, dan kegiatan budaya. Pemblokiran internet pada 2019, persoalan kebebasan pers setelahnya, serta perdebatan tentang pemutaran film adalah peristiwa yang berbeda. Halaman ini mengikuti perubahan yang terdokumentasi dalam ruang untuk meliput, berorganisasi, dan menyampaikan pendapat; setiap sumber tetap bertanggung jawab atas laporannya."}
+  },
+  {
     "slug": "awyu-customary-forests",
     "category": "Land",
     "title": {

@@ -335,6 +335,42 @@
     "description": "Company-published external audit covering tailings management, mine closure and environmental monitoring. Read alongside community accounts and independent research."
   },
   {
+    "id": "civic-internet-ruling-2020",
+    "title": "Court ruling on internet blackout in Papua",
+    "publisher": "Amnesty International Indonesia",
+    "url": "https://www.amnesty.id/kabar-terbaru/siaran-pers/court-ruling-on-internet-blackout-is-a-rare-victory-for-freedom-of-expression-in-papua/06/2020/",
+    "date": "2020-06-03",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "tags": ["human-rights-conflict-security", "infrastructure-connectivity"],
+    "description": "The organization's account of a court ruling on the August–September 2019 internet shutdown."
+  },
+  {
+    "id": "civic-mimika-journalists-2025",
+    "title": "Journalists' safety committee statement on Mimika press intimidation",
+    "publisher": "Aliansi Jurnalis Independen",
+    "url": "https://www.aji.or.id/informasi/kkj-kecam-keras-persekusi-dan-intimidasi-kasat-reskrim-mimika-dan-anggota-polisi-terhadap",
+    "date": "2025-10-07",
+    "type": "article",
+    "format": "web",
+    "language": "id",
+    "tags": ["human-rights-conflict-security"],
+    "description": "Primary statement from the journalists' safety coalition concerning a reported Mimika incident."
+  },
+  {
+    "id": "civic-film-screenings-2026",
+    "title": "Concerns about screenings of a Papua documentary",
+    "publisher": "Human Rights Watch",
+    "url": "https://www.hrw.org/id/news/2026/06/12/indonesian-authorities-intensify-crackdown-on-documentary",
+    "date": "2026-06-12",
+    "type": "article",
+    "format": "web",
+    "language": "id",
+    "tags": ["human-rights-conflict-security", "education-language-culture"],
+    "description": "Reporting and attribution on public film screenings and freedom of expression."
+  },
+  {
     "id": "awyu-forest-report-2025",
     "title": "Indonesian court blocks palm oil expansion, but leaves Indigenous land rights in limbo",
     "publisher": "Mongabay",

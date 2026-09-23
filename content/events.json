@@ -1,14 +1,256 @@
 {
+  "asOf": "2026-09-23",
   "events": [
-    {"id":"opening-night-2026","date":"2026-09-10","time":"19:30","title":"Opening Night 2026","place":"Tolhuistuin · Amsterdam","summary":"The opening night of Read My World with dance, music and readings.","sourceId":"read-my-world-2026","hidden":false},
-    {"id":"singing-to-survive","date":"2026-09-12","time":"21:00","title":"Singing to Survive","place":"Tolhuistuin · Amsterdam","summary":"A programme on the role of Mambesak’s music in the resistance movement of West Papua.","sourceId":"read-my-world-saturday","hidden":false},
-    {"id":"sounds-of-the-island","date":"2026-09-12","time":"22:00","title":"Sounds of the island","place":"Tolhuistuin · Amsterdam","summary":"Poetry, rhythm and song across island worlds, including West Papua.","sourceId":"read-my-world-saturday","hidden":false},
-    {"id":"i-am-a-papuan","date":"2026-09-12","time":"21:30","title":"I Am a Papuan","place":"Tolhuistuin · Amsterdam","summary":"Theatrical storytelling with a post-show discussion.","sourceId":"read-my-world-saturday","hidden":false}
+    {
+      "id": "opening-night-2026",
+      "date": "2026-09-10",
+      "endDate": "2026-09-10",
+      "time": "19:30",
+      "timezone": "Europe/Amsterdam",
+      "title": "Opening Night 2026",
+      "place": "Tolhuistuin · Amsterdam",
+      "region": "International",
+      "kind": "Programme",
+      "format": "In person",
+      "summary": {
+        "en": "The opening night of Read My World with dance, music and readings.",
+        "pmy": "Malam pembukaan Read My World dengan tari, musik, dan pembacaan karya."
+      },
+      "sourceUrl": "https://readmyworld.nl/",
+      "sourceId": "read-my-world-2026",
+      "organizer": "Read My World",
+      "series": "Read My World 2026",
+      "issueSlug": "culture-memory-expression"
+    },
+    {
+      "id": "singing-to-survive",
+      "date": "2026-09-12",
+      "endDate": "2026-09-12",
+      "time": "21:00",
+      "timezone": "Europe/Amsterdam",
+      "title": "Singing to Survive",
+      "place": "Tolhuistuin · Amsterdam",
+      "region": "International",
+      "kind": "Programme",
+      "format": "In person",
+      "summary": {
+        "en": "A programme on the role of Mambesak’s music in the resistance movement of West Papua.",
+        "pmy": "Program tentang musik Mambesak dan gerakan perlawanan di Papua Barat."
+      },
+      "sourceUrl": "https://readmyworld.nl/",
+      "sourceId": "read-my-world-saturday",
+      "organizer": "Read My World",
+      "series": "Read My World 2026",
+      "issueSlug": "culture-memory-expression"
+    },
+    {
+      "id": "sounds-of-the-island",
+      "date": "2026-09-12",
+      "endDate": "2026-09-12",
+      "time": "22:00",
+      "timezone": "Europe/Amsterdam",
+      "title": "Sounds of the island",
+      "place": "Tolhuistuin · Amsterdam",
+      "region": "International",
+      "kind": "Programme",
+      "format": "In person",
+      "summary": {
+        "en": "Poetry, rhythm and song across island worlds, including West Papua.",
+        "pmy": "Puisi, ritme, dan lagu dari berbagai dunia kepulauan, termasuk Papua Barat."
+      },
+      "sourceUrl": "https://readmyworld.nl/",
+      "sourceId": "read-my-world-saturday",
+      "organizer": "Read My World",
+      "series": "Read My World 2026",
+      "issueSlug": "culture-memory-expression"
+    },
+    {
+      "id": "i-am-a-papuan",
+      "date": "2026-09-12",
+      "endDate": "2026-09-12",
+      "time": "21:30",
+      "timezone": "Europe/Amsterdam",
+      "title": "I Am a Papuan",
+      "place": "Tolhuistuin · Amsterdam",
+      "region": "International",
+      "kind": "Programme",
+      "format": "In person",
+      "summary": {
+        "en": "Theatrical storytelling with a post-show discussion.",
+        "pmy": "Pementasan cerita yang dilanjutkan dengan diskusi."
+      },
+      "sourceUrl": "https://readmyworld.nl/",
+      "sourceId": "read-my-world-saturday",
+      "organizer": "Read My World",
+      "series": "Read My World 2026",
+      "issueSlug": "culture-memory-expression"
+    },
+    {
+      "id": "time-for-papua-leiden-2026",
+      "date": "2026-02-13",
+      "endDate": "2027-01-03",
+      "time": null,
+      "timezone": "Europe/Amsterdam",
+      "openEnded": true,
+      "title": "Time for Papua",
+      "place": "Wereldmuseum Leiden · Netherlands",
+      "region": "International",
+      "kind": "Exhibition",
+      "format": "In person",
+      "summary": {
+        "en": "An exhibition of Papuan objects and stories at Wereldmuseum Leiden.",
+        "pmy": "Pameran benda dan cerita dari Papua di Wereldmuseum Leiden."
+      },
+      "sourceUrl": "https://leiden.wereldmuseum.nl/en/whats-on/exhibitions/time-papua",
+      "sourceId": "wereldmuseum-time-for-papua",
+      "organizer": "Wereldmuseum Leiden",
+      "issueSlug": "culture-memory-expression"
+    },
+    {
+      "id": "pesta-babi-sheffield-2026",
+      "date": "2026-09-27",
+      "endDate": "2026-09-27",
+      "time": "13:30",
+      "timezone": "Europe/London",
+      "title": "Pesta Babi · Sheffield screening and Q&A",
+      "place": "Showroom Cinema · Sheffield",
+      "region": "International",
+      "kind": "Screening",
+      "format": "In person",
+      "summary": {
+        "en": "Film screening followed by a discussion on Papua.",
+        "pmy": "Pemutaran film dilanjutkan dengan diskusi tentang Papua."
+      },
+      "sourceUrl": "https://www.eventbrite.co.uk/e/pesta-babi-colonialism-in-our-time-qa-tickets-1999707237177",
+      "sourceId": "pesta-babi-sheffield-event",
+      "organizer": "Papua Partners",
+      "issueSlug": "south-papua-food-energy-estate",
+      "series": "Pesta Babi · screenings"
+    },
+    {
+      "id": "pesta-babi-london-2026",
+      "date": "2026-09-29",
+      "endDate": "2026-09-29",
+      "time": "18:30",
+      "timezone": "Europe/London",
+      "title": "Pesta Babi · London screening and Q&A",
+      "place": "BLOC Cinema · London",
+      "region": "International",
+      "kind": "Screening",
+      "format": "In person",
+      "summary": {
+        "en": "A screening and discussion at Queen Mary University of London.",
+        "pmy": "Pemutaran dan diskusi di Queen Mary University of London."
+      },
+      "sourceUrl": "https://www.eventbrite.co.uk/e/pesta-babi-colonialism-in-our-time-film-screening-at-bloc-cinema-qa-tickets-1999668551467",
+      "sourceId": "pesta-babi-london-event",
+      "organizer": "Queen Mary University of London",
+      "issueSlug": "south-papua-food-energy-estate",
+      "series": "Pesta Babi · screenings"
+    },
+    {
+      "id": "pesta-babi-philadelphia-2026",
+      "date": "2026-09-30",
+      "endDate": "2026-09-30",
+      "time": "17:30",
+      "timezone": "America/New_York",
+      "title": "Pesta Babi · film and discussion",
+      "place": "University of Pennsylvania · Philadelphia",
+      "region": "International",
+      "kind": "Screening",
+      "format": "In person",
+      "summary": {
+        "en": "A film screening with a discussion hosted by the university.",
+        "pmy": "Pemutaran film dan diskusi yang diselenggarakan universitas."
+      },
+      "sourceUrl": "https://www.asc.upenn.edu/news-events/events/pesta-babi-kolonialisme-di-zaman-kita-pig-feast-colonialism-in-our-time-film-screening-and-discussion",
+      "sourceId": "pesta-babi-penn-event",
+      "organizer": "University of Pennsylvania",
+      "issueSlug": "south-papua-food-energy-estate",
+      "series": "Pesta Babi · screenings"
+    },
+    {
+      "id": "pesona-raja-ampat-2026",
+      "date": "2026-10-01",
+      "endDate": "2026-10-03",
+      "time": null,
+      "timezone": "Asia/Jayapura",
+      "title": "Festival Pesona Raja Ampat",
+      "place": "Raja Ampat · Papua Barat Daya",
+      "region": "Papua",
+      "kind": "Festival",
+      "format": "In person",
+      "summary": {
+        "en": "A cultural and marine tourism festival; the source lists dates but no start time.",
+        "pmy": "Festival budaya dan wisata bahari; sumber mencantumkan tanggal tanpa jam mulai."
+      },
+      "sourceUrl": "https://www.indonesia.travel/id/id/events/event-detail/festival-pesona-raja-ampat-2026",
+      "sourceId": "pesona-raja-ampat-event",
+      "organizer": "Wonderful Indonesia",
+      "issueSlug": "culture-memory-expression"
+    },
+    {
+      "id": "weight-of-return-dublin-2026",
+      "date": "2026-10-10",
+      "endDate": "2026-10-10",
+      "time": "09:00",
+      "timezone": "Europe/Dublin",
+      "title": "The Weight of Return",
+      "place": "Sandycove · Dublin",
+      "region": "International",
+      "kind": "Installation",
+      "format": "In person",
+      "summary": {
+        "en": "An installation and live monologue concerning displacement in Papua; the performance is listed for noon.",
+        "pmy": "Instalasi dan monolog tentang pengungsian di Papua; pertunjukan dijadwalkan pukul 12.00."
+      },
+      "sourceUrl": "https://smashingtimes.ie/event/the-weight-of-return/",
+      "sourceId": "weight-of-return-event",
+      "organizer": "Peace Bridges International & Udeido Collective",
+      "issueSlug": "conflict-displacement-access"
+    },
+    {
+      "id": "uin-papua-clan-dialogue-2026",
+      "date": "2026-07-29",
+      "endDate": "2026-07-29",
+      "time": null,
+      "timezone": "Asia/Jakarta",
+      "title": "Membangun Ekonomi dan Budaya Papua",
+      "place": "FISIP UIN Jakarta · South Tangerang",
+      "region": "Indonesia",
+      "kind": "Public discussion",
+      "format": "In person and online",
+      "summary": {
+        "en": "A university discussion with Papuan customary representatives on clans, culture and development.",
+        "pmy": "Diskusi kampus bersama perwakilan masyarakat adat Papua tentang marga, budaya, dan pembangunan."
+      },
+      "sourceUrl": "https://fisip.uinjkt.ac.id/id/diskusi-publik-membangun-ekonomi-dan-budaya-papua-melalui-penguatan-peran-klanmarga-sebagai-aktor-pembangunan",
+      "sourceId": "uin-papua-clan-dialogue",
+      "organizer": "FISIP UIN Syarif Hidayatullah Jakarta",
+      "issueSlug": "culture-memory-expression"
+    }
   ],
   "campaignMaterials": [
-    {"id":"programme","label":"Programme","value":"Read My World 2026","href":"https://readmyworld.nl/","hidden":false},
-    {"id":"campaign","label":"Campaign","value":"SOS Papua","href":"#","hidden":false},
-    {"id":"resources","label":"Resources","value":"Reports and source library","href":"/resources/","hidden":false},
-    {"id":"exhibition","label":"Exhibition","value":"Artists, collectives and works","href":"/exhibition/view/","hidden":false}
+    {
+      "id": "programme",
+      "label": "Programme archive",
+      "value": "Read My World 2026",
+      "href": "https://readmyworld.nl/",
+      "hidden": false
+    },
+    {
+      "id": "resources",
+      "label": "Resources",
+      "value": "Reports and source library",
+      "href": "/resources/",
+      "hidden": false
+    },
+    {
+      "id": "exhibition",
+      "label": "Exhibition",
+      "value": "Artists, collectives and works",
+      "href": "/exhibition/view/",
+      "hidden": false
+    }
   ]
 }
