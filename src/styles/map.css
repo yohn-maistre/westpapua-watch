@@ -100,3 +100,24 @@
 }
 
 .watch-map button[hidden]{display:none!important}
+
+/* Expanded Atlas workspace: every View gets the same rail; Language adds a contextual panel. */
+.watch-map-view-rail,.watch-map-language{display:none}
+.watch-map.map-expanded .watch-map-viewbar{display:none!important}
+.watch-map.map-expanded .watch-map-view-rail{position:absolute;z-index:9;left:12px;top:70px;width:154px;display:grid;gap:4px;padding:8px;border:1px solid #30323a24;border-radius:18px;background:#faf9f4ee;box-shadow:0 14px 40px #11131c1c}
+.watch-map-view-rail>span{font-size:.58rem;text-transform:uppercase;letter-spacing:.14em;color:#696a74;padding:.45rem .55rem .3rem}
+.watch-map-view-rail button{width:100%;justify-content:flex-start!important;text-align:left;border:0!important;border-radius:10px!important;background:transparent!important;padding:.65rem .7rem!important;min-height:40px!important}
+.watch-map-view-rail button.active{background:#dedeee!important;color:#393950!important}
+.watch-map.map-expanded[data-map-language='true'] .watch-map-language:not([hidden]){position:absolute;z-index:8;right:12px;top:70px;bottom:42px;width:min(370px,calc(100% - 190px));display:flex;flex-direction:column;padding:1rem;border:1px solid #30323a24;border-radius:20px;background:#faf9f5f2;color:#30323a;box-shadow:0 20px 60px #11131c20;overflow:auto;overscroll-behavior:contain}
+.watch-map-language header{display:flex;justify-content:space-between;gap:1rem;align-items:end;padding:.15rem .15rem .85rem;border-bottom:1px solid #30323a18}
+.watch-map-language header>div{display:grid;gap:.2rem}.watch-map-language header small,.watch-map-language header>span{font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:#6a6b75}.watch-map-language header strong{font-size:1.3rem;letter-spacing:-.035em}
+.watch-map-language label{margin:.85rem 0}.watch-map-language input{width:100%;border:1px solid #30323a2b;border-radius:11px;background:#fff;color:#30323a;padding:.72rem .8rem;font:inherit;font-size:.82rem}
+.watch-language-mosaic{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.watch-language-mosaic button{position:relative;display:flex!important;flex-direction:column;align-items:flex-start!important;justify-content:space-between!important;min-height:112px!important;white-space:normal!important;text-align:left!important;border-radius:12px!important;padding:.8rem!important;background:linear-gradient(145deg,hsl(calc(210 + var(--language-i)*12) 18% 87%),#fff)!important;border-color:#30323a16!important;overflow:hidden}.watch-language-mosaic button:before{content:'';position:absolute;width:120px;aspect-ratio:1;border:1px solid #52536b12;border-radius:50%;right:-45px;top:-62px;box-shadow:0 0 0 22px #52536b08}.watch-language-mosaic small,.watch-language-mosaic span{position:relative;font-size:.54rem;line-height:1.3;color:#6b6b75}.watch-language-mosaic strong{position:relative;font-size:1.08rem;line-height:1;letter-spacing:-.035em}.watch-map-language>p{font-size:.66rem;line-height:1.45;color:#696a74;margin:1rem .15rem 0}
+@media(min-width:761px){.watch-map.map-expanded .watch-map-basebar{left:182px!important}}
+@media(max-width:760px){
+ .watch-map.map-expanded .watch-map-view-rail{left:12px;right:12px;top:62px;width:auto;display:flex;gap:5px;overflow-x:auto;padding:5px;scrollbar-width:none}.watch-map.map-expanded .watch-map-view-rail::-webkit-scrollbar{display:none}.watch-map-view-rail>span{display:none}.watch-map-view-rail button{flex:0 0 auto;width:auto!important;padding:.55rem .7rem!important}
+ .watch-map.map-expanded .watch-map-basebar{top:112px!important}
+ .watch-map.map-expanded[data-map-language='true'] .watch-map-language:not([hidden]){left:0;right:0;top:auto;bottom:0;width:auto;max-height:42dvh;border-radius:22px 22px 0 0;border-inline:0;border-bottom:0;padding:1rem calc(1rem + env(safe-area-inset-right)) calc(1rem + env(safe-area-inset-bottom)) calc(1rem + env(safe-area-inset-left))}
+ .watch-language-mosaic{grid-template-columns:repeat(2,minmax(0,1fr))}.watch-language-mosaic button{min-height:104px!important}
+ .watch-map.map-expanded[data-map-language='true'] .watch-map-feature{bottom:44dvh!important;max-height:34dvh!important}
+}

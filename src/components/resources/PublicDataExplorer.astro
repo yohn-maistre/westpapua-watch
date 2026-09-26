@@ -1,0 +1,129 @@
+---
+import hdi from '../../../content/data/hdi.json';
+import poverty from '../../../content/data/poverty-2025.json';
+import otsus from '../../../content/data/otsus.json';
+import apbd from '../../../content/data/apbd.json';
+import sppg from '../../../content/data/sppg.json';
+import observations from '../../../content/data/watch-observations.json';
+import languages from '../../../content/data/languages-curated.json';
+import {withLocale} from '../../lib/i18n';
+const {locale='en'}=Astro.props;const en=locale==='en';
+const nf=(value:number,d=1)=>new Intl.NumberFormat(en?'en-GB':'id-ID',{maximumFractionDigits:d,minimumFractionDigits:d}).format(value);
+const int=(value:number)=>new Intl.NumberFormat(en?'en-GB':'id-ID').format(value);
+const povertyByProvince=Object.fromEntries(poverty.rows.map(row=>[row.province,row.value]));
+const otsusRows=otsus.rows.map(row=>({province:row.province,budget:row.generalBudget+row.earmarkedBudget,actual:row.generalActual+row.earmarkedActual}));
+const otsusMax=Math.max(...otsusRows.map(row=>row.budget));
+const apbdRows=apbd.baris.map(row=>({province:row.nama.replace('Provinsi ',''),budget:row.bA/1e12,actual:row.b/1e12}));
+const apbdMax=Math.max(...apbdRows.map(row=>Math.max(row.budget,row.actual)));
+const uniqueSppg=[...new Map(sppg.features.map((f:any)=>[String(f.properties?.id||JSON.stringify(f.geometry)),f])).values()] as any[];
+const provinceNames=['PAPUA BARAT DAYA','PAPUA PEGUNUNGAN','PAPUA TENGAH','PAPUA SELATAN','PAPUA BARAT','PAPUA'];
+const displayProvince=(name:string)=>name.toLowerCase().replace(/(^|\s)\S/g,m=>m.toUpperCase());
+const sppgByProvince=provinceNames.map(name=>({name:displayProvince(name),count:uniqueSppg.filter((f:any)=>String(f.properties?.alamat||'').toUpperCase().includes(name)).length})).filter(x=>x.count>0);
+const forest=observations.items.filter(x=>x.group==='Forest & land');
+const maxForest=Math.max(...forest.map(x=>x.value));
+const ice=observations.items.find(x=>x.measure==='share');
+const hotspots=observations.items.find(x=>x.measure==='detection');
+const panels=[
+ {id:'people',index:'01',en:'People',idLabel:'Penduduk'},
+ {id:'finance',index:'02',en:'Public finance',idLabel:'Keuangan publik'},
+ {id:'services',index:'03',en:'Services',idLabel:'Layanan publik'},
+ {id:'environment',index:'04',en:'Environment',idLabel:'Lingkungan'},
+ {id:'languages',index:'05',en:'Languages',idLabel:'Bahasa'},
+ {id:'law',index:'06',en:'Law',idLabel:'Hukum'}
+];
+---
+<section class="public-data" id="public-data" data-public-data data-locale={locale} aria-labelledby="public-data-title">
+  <header class="public-data-head">
+    <div><span class="eyebrow">{en?'REFERENCE DATA':'DATA RUJUKAN'}</span><h2 id="public-data-title">{en?'Public data.':'Data publik.'}</h2></div>
+    <p>{en?'A compact view of selected public records used across Watch. Sources, dates and scope stay attached to every measure.':'Ringkasan data publik terpilih yang digunakan di Watch. Sumber, tanggal, dan cakupan tetap melekat pada setiap ukuran.'}</p>
+  </header>
+
+  <div class="public-data-shell">
+    <nav class="public-data-spine" aria-label={en?'Data views':'Tampilan data'}>
+      {panels.map((panel,i)=><button type="button" data-data-view={panel.id} aria-pressed={i===0?'true':'false'}><small>{panel.index}</small><span>{en?panel.en:panel.idLabel}</span></button>)}
+    </nav>
+
+    <div class="public-data-stage" data-data-stage>
+      <div class="public-data-stage-meta"><span data-data-kicker>{en?'People':'Penduduk'}</span><span data-data-position>01 / 06</span></div>
+
+      <section class="public-data-panel is-active" data-data-panel="people" aria-label={en?'People data':'Data penduduk'}>
+        <div class="data-panel-title"><div><small>BPS · 2024–2025</small><h3>{en?'Living conditions by province':'Kondisi hidup menurut provinsi'}</h3></div><div class="data-segmented" data-segmented="people"><button type="button" data-metric="hdi" aria-pressed="true">IPM</button><button type="button" data-metric="poverty" aria-pressed="false">{en?'Poverty':'Kemiskinan'}</button></div></div>
+        <div class="province-comparison" data-people-chart>
+          {hdi.rows.map((row)=><div class="province-comparison-row" data-hdi={row.current} data-poverty={povertyByProvince[row.province]??0}>
+            <span>{row.province}</span><div class="comparison-track"><i style={`--value:${row.current}%`}></i></div><strong data-value>{nf(row.current,2)}</strong>
+          </div>)}
+        </div>
+        <footer><span data-people-unit>{en?'Human Development Index · 0–100':'Indeks Pembangunan Manusia · 0–100'}</span><a href={hdi.sourceUrl} target="_blank" rel="noreferrer">BPS ↗</a></footer>
+      </section>
+
+      <section class="public-data-panel" data-data-panel="finance" hidden aria-label={en?'Public finance data':'Data keuangan publik'}>
+        <div class="data-panel-title"><div><small>DJPK · 2024 / 2026</small><h3>{en?'Provincial public finance':'Keuangan publik provinsi'}</h3></div><div class="data-segmented" data-segmented="finance"><button type="button" data-metric="otsus" aria-pressed="true">Otsus</button><button type="button" data-metric="apbd" aria-pressed="false">APBD</button></div></div>
+        <div class="finance-comparison" data-finance-chart>
+          {otsusRows.map(row=><div class="finance-row" data-province={row.province} data-otsus-budget={row.budget} data-otsus-actual={row.actual} data-apbd-budget={apbdRows.find(x=>x.province===row.province)?.budget??0} data-apbd-actual={apbdRows.find(x=>x.province===row.province)?.actual??0}>
+            <div><span>{row.province}</span><strong data-finance-value>{nf(row.actual/1000,2)} <small>/ {nf(row.budget/1000,2)}</small></strong></div>
+            <div class="finance-track"><i class="finance-budget" style={`--budget:${row.budget/otsusMax*100}%`}></i><i class="finance-actual" style={`--actual:${row.actual/otsusMax*100}%`}></i></div>
+          </div>)}
+        </div>
+        <footer><span data-finance-unit>{en?'Rp trillion · transferred / allocation':'Rp triliun · tersalurkan / pagu'}</span><a href={otsus.sourceUrl} target="_blank" rel="noreferrer">DJPK ↗</a></footer>
+      </section>
+
+      <section class="public-data-panel" data-data-panel="services" hidden aria-label={en?'Public services data':'Data layanan publik'}>
+        <div class="data-panel-title"><div><small>MBG · {sppg.snapshot}</small><h3>{en?'Recorded nutrition-service units':'Unit layanan gizi yang tercatat'}</h3></div><strong class="data-big-number">{uniqueSppg.length}</strong></div>
+        <div class="service-layout">
+          <div class="service-provinces">{sppgByProvince.map(row=><div><span>{row.name}</span><strong>{row.count}</strong></div>)}</div>
+          <aside><strong>0</strong><span>{en?'marked operational in this snapshot':'berstatus beroperasi dalam cuplikan ini'}</span><p>{en?'Records describe listed units and status fields, not confirmed meal delivery or complete present-day coverage.':'Catatan menunjukkan unit dan status yang tercantum, bukan konfirmasi penyaluran makanan atau cakupan terkini yang lengkap.'}</p></aside>
+        </div>
+        <footer><span>{en?'Dated third-party monitoring snapshot':'Cuplikan pemantauan pihak ketiga bertanggal'}</span><a href={sppg.source} target="_blank" rel="noreferrer">SismonBGN ↗</a></footer>
+      </section>
+
+      <section class="public-data-panel" data-data-panel="environment" hidden aria-label={en?'Environment data':'Data lingkungan'}>
+        <div class="data-panel-title"><div><small>{en?'SELECTED OBSERVATIONS':'PENGAMATAN TERPILIH'}</small><h3>{en?'Forest & climate signals':'Sinyal hutan & iklim'}</h3></div></div>
+        <div class="environment-grid">
+          <div class="forest-mini">{forest.map(row=><div><div><span>{row.place}</span><strong>{int(row.value)} <small>ha</small></strong></div><i><b style={`width:${row.value/maxForest*100}%`}></b></i></div>)}</div>
+          <article class="environment-stat"><small>{ice?.place} · {ice?.period}</small><strong>{ice?.value}%</strong><span>{en?'of 1988 tropical-ice area remaining':'dari luas es tropis tahun 1988 yang tersisa'}</span></article>
+          <article class="environment-stat"><small>{hotspots?.place}</small><strong>{int(hotspots?.value||0)}</strong><span>{en?'high-confidence thermal detections':'deteksi panas berkeyakinan tinggi'}</span></article>
+        </div>
+        <footer><span>{en?'Each measure has a different scope; values are not additive.':'Setiap ukuran memiliki cakupan berbeda; nilainya tidak dapat dijumlahkan.'}</span><a href={withLocale('/data/',locale)}>{en?'Methods & downloads':'Metode & unduhan'} ↗</a></footer>
+      </section>
+
+      <section class="public-data-panel" data-data-panel="languages" hidden aria-label={en?'Language reference data':'Data rujukan bahasa'}>
+        <div class="data-panel-title"><div><small>Glottolog 5.3</small><h3>{en?'Languages of Papua':'Bahasa-bahasa Papua'}</h3></div><a class="data-primary-link" href={withLocale('/?view=language&map=explore',locale)}>{en?'Explore in Atlas':'Jelajahi di Atlas'} ↗</a></div>
+        <div class="language-data-mosaic">{languages.map((language,i)=><a href={`https://glottolog.org/resource/languoid/id/${language.glottocode}`} target="_blank" rel="noreferrer" style={`--i:${i}`}><small>{String(i+1).padStart(2,'0')}</small><strong>{language.name}</strong><span>{language.family} · {language.glottocode} ↗</span></a>)}</div>
+        <footer><span>{en?'Selected records, not an exhaustive list or language-boundary map.':'Catatan terpilih, bukan daftar lengkap atau peta batas bahasa.'}</span><a href="https://glottolog.org/" target="_blank" rel="noreferrer">Glottolog ↗</a></footer>
+      </section>
+
+      <section class="public-data-panel" data-data-panel="law" hidden aria-label={en?'Legal reference data':'Data rujukan hukum'}>
+        <div class="data-panel-title"><div><small>UU 2 / 2021</small><h3>{en?'Papua special autonomy':'Otonomi khusus Papua'}</h3></div></div>
+        <div class="law-reference"><p>{en?'The 2021 law is the second amendment to the 2001 special-autonomy law and changes provisions concerning governance and special-autonomy funding.':'Undang-undang tahun 2021 merupakan perubahan kedua atas UU Otonomi Khusus tahun 2001 dan mengubah ketentuan mengenai pemerintahan serta pendanaan otonomi khusus.'}</p><dl><div><dt>{en?'Enacted':'Ditetapkan'}</dt><dd>19 July 2021</dd></div><div><dt>{en?'Amends':'Mengubah'}</dt><dd>UU 21/2001 · UU 35/2008</dd></div></dl></div>
+        <footer><span>{en?'Official legal record':'Catatan hukum resmi'}</span><a href="https://peraturan.bpk.go.id/Details/172403/uu-no-2-tahun-2021" target="_blank" rel="noreferrer">JDIH BPK ↗</a></footer>
+      </section>
+    </div>
+  </div>
+  <noscript><p class="public-data-noscript"><a href={withLocale('/data/',locale)}>{en?'Open the full data reference':'Buka referensi data lengkap'} ↗</a></p></noscript>
+</section>
+
+<script>
+const root=document.querySelector<HTMLElement>('[data-public-data]');
+if(root){
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+ const buttons=[...root.querySelectorAll<HTMLButtonElement>('[data-data-view]')],panels=[...root.querySelectorAll<HTMLElement>('[data-data-panel]')];
+ const kicker=root.querySelector<HTMLElement>('[data-data-kicker]'),position=root.querySelector<HTMLElement>('[data-data-position]');
+ const activate=(id:string)=>{const next=panels.find(p=>p.dataset.dataPanel===id),current=panels.find(p=>!p.hidden);if(!next||next===current)return;const button=buttons.find(b=>b.dataset.dataView===id),index=Math.max(0,buttons.indexOf(button!));
+   buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));if(kicker&&button)kicker.textContent=button.querySelector('span')?.textContent||'';if(position)position.textContent=`${String(index+1).padStart(2,'0')} / ${String(buttons.length).padStart(2,'0')}`;
+   const show=()=>{if(current)current.hidden=true;next.hidden=false;next.classList.add('is-active');if(!reduce.matches)next.animate([{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:420,easing:'cubic-bezier(.2,.8,.2,1)'});};
+   if(current&&!reduce.matches){const a=current.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(-6px)'}],{duration:180,easing:'ease-in'});a.finished.then(show).catch(show)}else show();
+ };
+ buttons.forEach(button=>button.addEventListener('click',()=>activate(button.dataset.dataView||'')));
+ const peopleRows=[...root.querySelectorAll<HTMLElement>('[data-people-chart] .province-comparison-row')],peopleUnit=root.querySelector<HTMLElement>('[data-people-unit]');
+ root.querySelectorAll<HTMLButtonElement>('[data-segmented="people"] button').forEach(button=>button.addEventListener('click',()=>{const mode=button.dataset.metric||'hdi';root.querySelectorAll<HTMLButtonElement>('[data-segmented="people"] button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));peopleRows.forEach(row=>{const value=Number(mode==='poverty'?row.dataset.poverty:row.dataset.hdi)||0,max=mode==='poverty'?30:100;const bar=row.querySelector<HTMLElement>('.comparison-track i'),label=row.querySelector<HTMLElement>('[data-value]');if(bar)bar.style.setProperty('--value',`${value/max*100}%`);if(label)label.textContent=mode==='poverty'?`${value.toLocaleString(document.documentElement.lang==='id'?'id-ID':'en-GB',{minimumFractionDigits:2,maximumFractionDigits:2})}%`:value.toLocaleString(document.documentElement.lang==='id'?'id-ID':'en-GB',{minimumFractionDigits:2,maximumFractionDigits:2})});if(peopleUnit)peopleUnit.textContent=mode==='poverty'?(document.documentElement.lang==='id'?'Penduduk di bawah garis kemiskinan BPS · %':'Residents below the BPS poverty line · %'):(document.documentElement.lang==='id'?'Indeks Pembangunan Manusia · 0–100':'Human Development Index · 0–100')})}));
+ const financeRows=[...root.querySelectorAll<HTMLElement>('[data-finance-chart] .finance-row')],financeUnit=root.querySelector<HTMLElement>('[data-finance-unit]');
+ root.querySelectorAll<HTMLButtonElement>('[data-segmented="finance"] button').forEach(button=>button.addEventListener('click',()=>{const mode=button.dataset.metric||'otsus';root.querySelectorAll<HTMLButtonElement>('[data-segmented="finance"] button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));const max=mode==='otsus'?Math.max(...financeRows.map(r=>Number(r.dataset.otsusBudget)||0)):Math.max(...financeRows.map(r=>Number(r.dataset.apbdBudget)||0));financeRows.forEach(row=>{const budget=Number(mode==='otsus'?row.dataset.otsusBudget:row.dataset.apbdBudget)||0,actual=Number(mode==='otsus'?row.dataset.otsusActual:row.dataset.apbdActual)||0;row.querySelector<HTMLElement>('.finance-budget')?.style.setProperty('--budget',`${budget/max*100}%`);row.querySelector<HTMLElement>('.finance-actual')?.style.setProperty('--actual',`${actual/max*100}%`);const label=row.querySelector<HTMLElement>('[data-finance-value]');if(label){const scale=mode==='otsus'?1000:1;label.innerHTML=`${(actual/scale).toLocaleString(document.documentElement.lang==='id'?'id-ID':'en-GB',{maximumFractionDigits:2})} <small>/ ${(budget/scale).toLocaleString(document.documentElement.lang==='id'?'id-ID':'en-GB',{maximumFractionDigits:2})}</small>`}});if(financeUnit)financeUnit.textContent=mode==='otsus'?(document.documentElement.lang==='id'?'Rp triliun · tersalurkan / pagu':'Rp trillion · transferred / allocation'):(document.documentElement.lang==='id'?'Rp triliun · realisasi / anggaran':'Rp trillion · expenditure / budget') }));
+}
+</script>
+
+<style>
+.public-data{scroll-margin-top:120px;margin-top:clamp(5rem,9vw,9rem)}.public-data-head{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:end;margin-bottom:2rem}.public-data-head h2{font-size:clamp(3rem,6vw,6.2rem);line-height:.9;letter-spacing:-.065em;margin:.7rem 0 0}.public-data-head>p{max-width:48ch;color:var(--muted);line-height:1.6;margin:0 0 .4rem}.public-data-shell{display:grid;grid-template-columns:minmax(165px,.28fr) minmax(0,1fr);gap:clamp(1rem,2.7vw,2.6rem);align-items:start}.public-data-spine{position:sticky;top:calc(var(--compact-nav-actual-height,72px) + 20px);display:grid;border-top:1px solid var(--line)}.public-data-spine button{appearance:none;background:transparent;color:var(--muted);border:0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:32px 1fr;gap:.55rem;text-align:left;padding:1rem 0;font:inherit;cursor:pointer;transition:color .2s,transform .2s}.public-data-spine button small{font-size:.62rem;letter-spacing:.1em;color:var(--muted-2)}.public-data-spine button span{font-size:.92rem}.public-data-spine button[aria-pressed=true]{color:var(--ink);transform:translateX(4px)}.public-data-stage{--field-a:#242b3a;--field-b:#1a202b;position:relative;min-height:620px;border:1px solid #ffffff18;border-radius:28px;overflow:hidden;padding:clamp(1.25rem,3vw,2.8rem);background:radial-gradient(ellipse at 92% 8%,#a794c62b,transparent 45%),radial-gradient(ellipse at 12% 88%,#7daea222,transparent 48%),linear-gradient(145deg,var(--field-a),var(--field-b));box-shadow:0 28px 80px #0002;isolation:isolate}.public-data-stage:before{content:'';position:absolute;z-index:-1;width:70%;aspect-ratio:1;border:1px solid #ffffff12;border-radius:50%;right:-25%;top:-35%;box-shadow:0 0 0 70px #ffffff04,0 0 0 140px #ffffff025}.public-data-stage-meta{display:flex;justify-content:space-between;gap:1rem;border-bottom:1px solid #ffffff16;padding-bottom:1rem;font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:#b7b5c2}.public-data-panel{padding-top:clamp(1.8rem,4vw,3.8rem)}.public-data-panel.is-active{opacity:1}.data-panel-title{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;margin-bottom:2.2rem}.data-panel-title small{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#aaa9b8}.data-panel-title h3{font-size:clamp(2.1rem,4.4vw,4.7rem);line-height:.95;letter-spacing:-.06em;margin:.5rem 0 0;max-width:14ch}.data-segmented{display:flex;gap:3px;padding:3px;border:1px solid #ffffff1c;border-radius:999px;background:#0d101755}.data-segmented button{appearance:none;border:0;border-radius:999px;background:transparent;color:#b8b6c3;padding:.55rem .8rem;font:inherit;font-size:.72rem;cursor:pointer}.data-segmented button[aria-pressed=true]{background:#e9e6f1;color:#22232c}.public-data-panel footer{display:flex;justify-content:space-between;gap:1.2rem;align-items:flex-end;border-top:1px solid #ffffff17;margin-top:2rem;padding-top:1rem;font-size:.72rem;color:#aaa9b7}.public-data-panel footer a{text-decoration:underline;text-underline-offset:3px}.province-comparison-row{display:grid;grid-template-columns:minmax(120px,190px) minmax(0,1fr) 90px;gap:1.1rem;align-items:center;min-height:62px;border-top:1px solid #ffffff12}.province-comparison-row:first-child{border-top:0}.province-comparison-row>span{font-size:.88rem}.province-comparison-row>strong{text-align:right;font-size:1rem;font-variant-numeric:tabular-nums;font-weight:600}.comparison-track{height:2px;background:#ffffff16;position:relative}.comparison-track i{position:absolute;left:0;top:-4px;height:10px;width:var(--value);max-width:100%;border-radius:999px;background:linear-gradient(90deg,#9a8ac0,#b5d4c3);box-shadow:0 0 20px #aebbd44b;transition:width .5s cubic-bezier(.2,.8,.2,1)}.finance-row{padding:13px 0;border-top:1px solid #ffffff12}.finance-row:first-child{border-top:0}.finance-row>div:first-child{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.65rem}.finance-row strong{font-variant-numeric:tabular-nums}.finance-row strong small{color:#aaa9b7;font-weight:400}.finance-track{position:relative;height:18px}.finance-track i{position:absolute;left:0;border-radius:4px;transition:width .5s cubic-bezier(.2,.8,.2,1)}.finance-budget{top:0;height:18px;width:var(--budget);border:1px solid #a9afc55c;background:#ffffff03}.finance-actual{top:5px;height:8px;width:var(--actual);background:linear-gradient(90deg,#9e8bbd,#b9d1c2)}.data-big-number{font-size:clamp(4rem,9vw,8rem);line-height:.8;letter-spacing:-.08em;font-weight:500}.service-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:2rem}.service-provinces>div{display:flex;justify-content:space-between;gap:1rem;padding:1rem 0;border-top:1px solid #ffffff14}.service-provinces strong{font-size:1.4rem}.service-layout aside{padding:1.4rem;border-left:1px solid #ffffff18}.service-layout aside>strong{display:block;font-size:4.5rem;letter-spacing:-.07em;line-height:1}.service-layout aside>span{display:block;margin:.4rem 0 1.2rem;color:#c9c5d2}.service-layout aside p{font-size:.82rem;line-height:1.6;color:#aaa9b7}.environment-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:1rem}.forest-mini{padding:1rem 1.2rem;border:1px solid #ffffff16;border-radius:18px;background:#0b0e1438}.forest-mini>div{padding:.9rem 0;border-top:1px solid #ffffff12}.forest-mini>div:first-child{border-top:0}.forest-mini>div>div{display:flex;justify-content:space-between;gap:1rem;align-items:baseline}.forest-mini strong small{font-size:.65rem;color:#aaa9b7}.forest-mini i{display:block;height:8px;background:#ffffff0d;border-radius:99px;margin-top:.7rem;overflow:hidden}.forest-mini b{display:block;height:100%;background:linear-gradient(90deg,#8da998,#b7cdbc);border-radius:99px}.environment-stat{display:flex;flex-direction:column;justify-content:flex-end;min-height:230px;padding:1.2rem;border:1px solid #ffffff16;border-radius:18px;background:linear-gradient(145deg,#ffffff08,#ffffff02)}.environment-stat small{color:#aaa9b7}.environment-stat strong{font-size:clamp(3.5rem,7vw,6.5rem);line-height:.9;letter-spacing:-.075em;margin:auto 0 1rem;font-weight:500}.environment-stat span{font-size:.78rem;line-height:1.45;color:#c4c1cc}.language-data-mosaic{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:8px}.language-data-mosaic a{grid-column:span 3;min-height:135px;padding:1rem;border:1px solid #ffffff18;border-radius:14px;background:linear-gradient(140deg,hsl(calc(205 + var(--i)*13) 22% 34% / .38),#ffffff04);display:flex;flex-direction:column;justify-content:space-between;transition:transform .2s,border-color .2s}.language-data-mosaic a:nth-child(1),.language-data-mosaic a:nth-child(6){grid-column:span 4}.language-data-mosaic a:nth-child(2),.language-data-mosaic a:nth-child(5){grid-column:span 2}.language-data-mosaic a:hover{transform:translateY(-3px);border-color:#d5c9ec66}.language-data-mosaic strong{font-size:clamp(1.3rem,2.4vw,2.3rem);line-height:1;letter-spacing:-.045em}.language-data-mosaic small,.language-data-mosaic span{font-size:.58rem;letter-spacing:.08em;color:#b8b4c4}.data-primary-link{font-size:.78rem;border-bottom:1px solid #ffffff2a;padding-bottom:.2rem;white-space:nowrap}.law-reference{display:grid;grid-template-columns:1.25fr .75fr;gap:3rem;align-items:start}.law-reference>p{font-size:clamp(1.05rem,2vw,1.45rem);line-height:1.55;color:#d1ced8;max-width:45ch;margin:0}.law-reference dl{margin:0}.law-reference dl>div{display:flex;justify-content:space-between;gap:1rem;padding:1rem 0;border-top:1px solid #ffffff16}.law-reference dt{color:#aaa9b7}.law-reference dd{margin:0;text-align:right}.public-data-noscript{margin:1rem 0;color:var(--muted)}
+@media(max-width:900px){.public-data-head{grid-template-columns:1fr;gap:1rem}.public-data-shell{grid-template-columns:1fr}.public-data-spine{position:static;display:flex;overflow-x:auto;scrollbar-width:none;border:0;border-bottom:1px solid var(--line);padding-bottom:.4rem}.public-data-spine::-webkit-scrollbar{display:none}.public-data-spine button{flex:none;display:flex;gap:.45rem;border:0;padding:.8rem .55rem}.public-data-spine button[aria-pressed=true]{transform:none;border-bottom:1px solid #c7bee1}.public-data-stage{min-height:0}.environment-grid{grid-template-columns:1fr 1fr}.forest-mini{grid-column:1/-1}.service-layout{grid-template-columns:1fr}.service-layout aside{border-left:0;border-top:1px solid #ffffff18;padding-inline:0}.language-data-mosaic{grid-template-columns:repeat(2,minmax(0,1fr))}.language-data-mosaic a,.language-data-mosaic a:nth-child(1),.language-data-mosaic a:nth-child(2),.language-data-mosaic a:nth-child(5),.language-data-mosaic a:nth-child(6){grid-column:span 1}.law-reference{grid-template-columns:1fr;gap:1rem}}
+@media(max-width:560px){.public-data{margin-top:4rem}.public-data-stage{border-radius:22px;padding:1rem}.data-panel-title{display:block}.data-segmented{width:max-content;margin-top:1rem}.province-comparison-row{grid-template-columns:1fr 70px;gap:.45rem 1rem;padding:.75rem 0}.province-comparison-row .comparison-track{grid-column:1/-1;grid-row:2}.province-comparison-row>strong{grid-column:2;grid-row:1}.environment-grid{grid-template-columns:1fr}.forest-mini{grid-column:auto}.environment-stat{min-height:180px}.language-data-mosaic a{min-height:118px}.public-data-panel footer{align-items:flex-start;flex-direction:column}.data-panel-title h3{font-size:2.25rem}}
+@media(prefers-reduced-motion:reduce){.comparison-track i,.finance-track i,.language-data-mosaic a,.public-data-spine button{transition:none!important}}
+</style>

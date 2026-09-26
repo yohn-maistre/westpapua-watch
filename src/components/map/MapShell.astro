@@ -5,6 +5,7 @@ import '../../styles/map.css';
 import {MAP_BASES,MAP_FAMILIES,MAP_LAYERS,MAP_VIEWS} from '../../lib/map/registry';
 import type {MapViewId} from '../../lib/map/registry';
 import type {Locale} from '../../data/types';
+import languages from '../../../content/data/languages-curated.json';
 const {
   locale='en',mode='home',title='',eyebrow='',context='',contextValue='',initialView='current'
 }=Astro.props as {
@@ -38,6 +39,11 @@ const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
       <div>{MAP_BASES.map(base=><button type="button" data-map-base={base.id}>{baseFor(base)}</button>)}</div>
     </div>
 
+    <nav class="watch-map-view-rail" data-map-view-rail aria-label={labels.view}>
+      <span>{labels.view}</span>
+      {MAP_VIEWS.map(view=><button type="button" data-map-view={view.id}>{viewFor(view)}</button>)}
+    </nav>
+
     <details class="watch-map-viewbar" data-map-presets>
       <summary><span data-map-preset-label>{viewFor(MAP_VIEWS.find(v=>v.id===initialView)||MAP_VIEWS[0])}</span><span aria-hidden="true"> ↑</span></summary>
       <div>{MAP_VIEWS.map(view=><button type="button" data-map-view={view.id}>{viewFor(view)}</button>)}</div>
@@ -61,6 +67,13 @@ const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
       <div class="watch-map-place-results" data-map-place-results></div>
       {MAP_FAMILIES.map(f=><section><h3>{familyFor(f)}</h3>{MAP_LAYERS.filter(x=>x.family===f.id).map(layer=><button type="button" data-map-layer={layer.id}><span><strong>{labelFor(layer)}</strong><small>{noteFor(layer)}</small></span><i></i></button>)}</section>)}
       <button class="watch-map-return" type="button" data-map-return>{labels.return}</button>
+    </aside>
+
+    <aside class="watch-map-language" data-map-language-panel hidden aria-label={locale==='pmy'?'Bahasa dalam tampilan':'Languages in view'}>
+      <header><div><small>Glottolog 5.3</small><strong>{locale==='pmy'?'Bahasa dalam tampilan':'Languages in view'}</strong></div><span>{languages.length} {locale==='pmy'?'catatan terpilih':'selected'}</span></header>
+      <label><span class="sr-only">{locale==='pmy'?'Cari bahasa':'Search languages'}</span><input type="search" data-map-language-search placeholder={locale==='pmy'?'Cari bahasa':'Search languages'} /></label>
+      <div class="watch-language-mosaic">{languages.map((language,i)=><button type="button" data-map-language-focus data-name={language.name} data-glottocode={language.glottocode} data-family={language.family} data-lat={language.latitude} data-lng={language.longitude} style={`--language-i:${i}`}><small>{String(i+1).padStart(2,'0')}</small><strong>{language.name}</strong><span>{language.family}</span></button>)}</div>
+      <p>{locale==='pmy'?'Titik menunjukkan referensi lokasi bahasa, bukan batas wilayah bahasa atau adat.':'Points are language-location references, not language or customary boundaries.'}</p>
     </aside>
 
     <aside class="watch-map-feature" data-map-feature hidden>

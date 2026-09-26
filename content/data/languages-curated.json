@@ -1,10 +1,10 @@
 [
-  {"name":"Biak","glottocode":"biak1248"},
-  {"name":"Meyah","glottocode":"meya1236"},
-  {"name":"Ekari","glottocode":"ekar1243"},
-  {"name":"Western Dani","glottocode":"west2594"},
-  {"name":"Kamoro","glottocode":"kamo1255"},
-  {"name":"Central Asmat","glottocode":"cent2117"},
-  {"name":"Marind","glottocode":"nucl1622"},
-  {"name":"Angguruk Yali","glottocode":"angg1239"}
+  {"name":"Biak","glottocode":"biak1248","family":"Austronesian","latitude":-0.9523,"longitude":135.8790},
+  {"name":"Meyah","glottocode":"meya1236","family":"East Bird's Head","latitude":-0.7670,"longitude":133.8810},
+  {"name":"Ekari","glottocode":"ekar1243","family":"Nuclear Trans New Guinea","latitude":-3.8333,"longitude":135.5000},
+  {"name":"Western Dani","glottocode":"west2594","family":"Nuclear Trans New Guinea","latitude":-3.7770,"longitude":138.9090},
+  {"name":"Kamoro","glottocode":"kamo1255","family":"Nuclear Trans New Guinea","latitude":-4.3000,"longitude":135.8800},
+  {"name":"Central Asmat","glottocode":"cent2117","family":"Nuclear Trans New Guinea","latitude":-5.5000,"longitude":138.5000},
+  {"name":"Marind","glottocode":"nucl1622","family":"Anim","latitude":-8.1600,"longitude":140.0100},
+  {"name":"Angguruk Yali","glottocode":"angg1239","family":"Nuclear Trans New Guinea","latitude":-4.0836,"longitude":139.4570}
 ]

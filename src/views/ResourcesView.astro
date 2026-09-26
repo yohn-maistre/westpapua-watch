@@ -1,5 +1,6 @@
 ---
 import OrganizationDirectory from '../components/resources/OrganizationDirectory.astro';
+import PublicDataExplorer from '../components/resources/PublicDataExplorer.astro';
 import {organizations} from '../../shared/organizations';
 import {dossierBySlug} from '../data/dossiers';
 import {followingSlugs} from '../data/topic-collections';
@@ -21,13 +22,13 @@ const places=[...new Set(resources.flatMap(r=>r.places))].sort();
 <BaseLayout locale={locale} active="resources" title={locale==='en'?'Resources':'Sumber'}>
 <section class="section resources-index"><div class="wrap">
   <h1 class="page-title">{locale==='en'?'Resources.':'Sumber.'}</h1>
-  <nav class="resource-jumps" aria-label={locale==='en'?'On this page':'Di halaman ini'}><a href="#sites">{locale==='en'?'Sites & organizations':'Situs & organisasi'} ↓</a><a href="#catalogue">{locale==='en'?'Library':'Pustaka'} ↓</a></nav>
+  <nav class="resource-jumps" aria-label={locale==='en'?'On this page':'Di halaman ini'}><a href="#sites">{locale==='en'?'Sites & organizations':'Situs & organisasi'} ↓</a><a href="#public-data">{locale==='en'?'Public data':'Data publik'} ↓</a><a href="#catalogue">{locale==='en'?'Library':'Pustaka'} ↓</a><a href="#glossary">{locale==='en'?'Terms':'Istilah'} ↓</a></nav>
   <OrganizationDirectory locale={locale} expanded/>
-  <h2 class="resource-library-title" id="catalogue">{locale==='en'?'Library.':'Pustaka.'}</h2><div class="resource-tools"><input class="resource-search" data-resource-search type="search" aria-label={locale==='en'?'Search library':'Cari pustaka'} placeholder={locale==='en'?'Search library':'Cari pustaka'} /></div>
+  <PublicDataExplorer locale={locale}/><h2 class="resource-library-title" id="catalogue">{locale==='en'?'Library.':'Pustaka.'}</h2><div class="resource-tools"><input class="resource-search" data-resource-search type="search" aria-label={locale==='en'?'Search library':'Cari pustaka'} placeholder={locale==='en'?'Search library':'Cari pustaka'} /></div>
   <ResourceFilters client:load locale={locale} facets={[
  {key:'organization',label:locale==='en'?'Organization':'Organisasi',options:organizations.map(o=>[o.id,o.name])},
  {key:'following',label:locale==='en'?'Following':'Dalam pantauan',options:followingSlugs.map(slug=>dossierBySlug[slug]).map(d=>[d.slug,t(d.title,locale)])},
- {key:'topic',label:locale==='en'?'Issues':'Isu',options:TOPICS.map(([v,en,id])=>[v,locale==='en'?en:id])},
+ {key:'topic',label:locale==='en'?'Topics':'Topik',options:TOPICS.map(([v,en,id])=>[v,locale==='en'?en:id])},
  {key:'type',label:locale==='en'?'Type':'Jenis',options:LIBRARY_GROUPS.map(([v,en,id])=>[v,locale==='en'?en:id])},
  {key:'place',label:locale==='en'?'Place':'Lokasi',options:places.map(p=>[p,p])},
  {key:'language',label:locale==='en'?'Language':'Bahasa',options:[['id','Indonesia'],['en','English'],['multi',locale==='en'?'Multilingual':'Multibahasa']]}
@@ -65,5 +66,5 @@ document.querySelector<HTMLButtonElement>('[data-resource-export]')?.addEventLis
 </script>
 </BaseLayout>
 
-<style>.resource-jumps{display:flex;gap:2rem;margin:1.5rem 0 3rem;font-size:.9rem}.resource-library-title{font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-.06em;margin:5rem 0 2rem;scroll-margin-top:140px}</style>
+<style>.resource-jumps{display:flex;gap:1.8rem;margin:1.5rem 0 3rem;font-size:.9rem;overflow-x:auto;scrollbar-width:none;white-space:nowrap}.resource-jumps::-webkit-scrollbar{display:none}.resource-library-title{font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-.06em;margin:5rem 0 2rem;scroll-margin-top:140px}</style>
 <script>if([...new URL(location.href).searchParams.keys()].some(k=>['q','organization','following','topic','type','place','language'].includes(k)))document.getElementById('catalogue')?.scrollIntoView();</script>

@@ -1,0 +1,142 @@
+{
+  "type": "FeatureCollection",
+  "name": "watch-language-reference-points",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.879,
+          -0.9523
+        ]
+      },
+      "properties": {
+        "name": "Biak",
+        "glottocode": "biak1248",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.881,
+          -0.767
+        ]
+      },
+      "properties": {
+        "name": "Meyah",
+        "glottocode": "meya1236",
+        "family": "East Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.5,
+          -3.8333
+        ]
+      },
+      "properties": {
+        "name": "Ekari",
+        "glottocode": "ekar1243",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.909,
+          -3.777
+        ]
+      },
+      "properties": {
+        "name": "Western Dani",
+        "glottocode": "west2594",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.88,
+          -4.3
+        ]
+      },
+      "properties": {
+        "name": "Kamoro",
+        "glottocode": "kamo1255",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.5,
+          -5.5
+        ]
+      },
+      "properties": {
+        "name": "Central Asmat",
+        "glottocode": "cent2117",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.01,
+          -8.16
+        ]
+      },
+      "properties": {
+        "name": "Marind",
+        "glottocode": "nucl1622",
+        "family": "Anim",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.457,
+          -4.0836
+        ]
+      },
+      "properties": {
+        "name": "Angguruk Yali",
+        "glottocode": "angg1239",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    }
+  ]
+}

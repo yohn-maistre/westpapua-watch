@@ -11,3 +11,19 @@
 @media(max-width:600px){.library-list .library-entry{grid-template-columns:78px minmax(0,1fr) 12px!important;gap:14px!important;padding:20px 0!important;min-height:136px}.library-list .library-media{border-radius:9px}.library-list .library-entry h2{font-size:1.17rem!important}.library-description{-webkit-line-clamp:2}.library-entry-meta{font-size:.55rem;line-height:1.6}}
 
 .library-more{display:flex;gap:12px;justify-content:center;margin:2rem 0}.library-more [hidden]{display:none!important}
+
+/* Atmospheric rows: category wash persists whether or not a real cover exists. */
+.library-list .library-entry{position:relative;isolation:isolate;overflow:hidden}
+.library-list .library-entry::before{content:"";position:absolute;z-index:-2;inset:4px 0;pointer-events:none;opacity:.34;background:radial-gradient(ellipse at 2% 26%,var(--library-glow,#777b98) 0%,transparent 34%),linear-gradient(100deg,var(--library-base,#292b39) 0%,transparent 46%)}
+.library-list .library-entry::after{content:"";position:absolute;z-index:-1;left:-190px;top:50%;width:430px;aspect-ratio:1;transform:translateY(-50%);pointer-events:none;border:1px solid #ffffff08;border-radius:50%;box-shadow:0 0 0 46px #ffffff025,0 0 0 92px #ffffff018;opacity:.7}
+.library-list .library-entry:has(.library-media:empty){grid-template-columns:minmax(0,1fr) 24px!important}
+.library-list .library-entry:has(.library-media:empty) .library-media{display:none!important}
+.library-list .library-entry:has(.library-media:empty)>.library-entry-body{grid-column:1!important;padding-left:clamp(8px,2vw,22px)}
+.library-list .library-entry:has(.library-media:empty)>.library-open{grid-column:2!important}
+.library-list .library-media:has(img){box-shadow:0 14px 38px #0003}
+@media(max-width:600px){
+ .library-list .library-entry::before{inset:2px 0;opacity:.31;background:radial-gradient(ellipse at 0% 28%,var(--library-glow,#777b98) 0%,transparent 48%),linear-gradient(95deg,var(--library-base,#292b39) 0%,transparent 70%)}
+ .library-list .library-entry::after{left:-235px;width:390px;opacity:.52}
+ .library-list .library-entry:has(.library-media:empty){grid-template-columns:minmax(0,1fr) 12px!important;min-height:126px}
+ .library-list .library-entry:has(.library-media:empty)>.library-entry-body{padding:8px 0 8px 12px}
+}

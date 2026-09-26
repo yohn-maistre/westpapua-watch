@@ -1,7 +1,7 @@
-export type MapLayerFamily='boundaries'|'extraction'|'environment'|'infrastructure'|'population'|'current'|'conflict';
+export type MapLayerFamily='boundaries'|'extraction'|'environment'|'infrastructure'|'population'|'current'|'conflict'|'language';
 export type MapLayerSourceType='pmtiles'|'live'|'raster'|'image';
 export type MapBaseId='atlas'|'satellite'|'night';
-export type MapViewId='extraction'|'environment'|'infrastructure'|'current'|'conflict';
+export type MapViewId='extraction'|'environment'|'infrastructure'|'current'|'conflict'|'language';
 export type MapLayerDefinition={
   id:string;family:MapLayerFamily;title:string;titleId:string;description:string;descriptionId:string;
   sourceType:MapLayerSourceType;source:string;sourceLayer?:string;tiles?:string[];sourceUrl:string;attribution:string;license:string;
@@ -56,6 +56,7 @@ export const MAP_FAMILIES:{id:MapLayerFamily;title:string;titleId:string}[]=[
   {id:'environment',title:'Environment',titleId:'Lingkungan'},
   {id:'infrastructure',title:'Infrastructure',titleId:'Infrastruktur'},
   {id:'population',title:'Population',titleId:'Penduduk'},
+  {id:'language',title:'Languages',titleId:'Bahasa'},
   {id:'current',title:'Current',titleId:'Sekarang'}
 ];
 
@@ -65,6 +66,7 @@ export const MAP_VIEWS:MapViewDefinition[]=[
   {id:'extraction',title:'Extraction',titleId:'Ekstraksi',layers:['province-boundaries','cultural-regions','mining-permits','major-extraction-sites','forest-plantation-permits','current-developments']},
   {id:'environment',title:'Environment',titleId:'Lingkungan',layers:['province-boundaries','protected-areas','fire-hotspots','forest-loss','current-developments']},
   {id:'infrastructure',title:'Infrastructure',titleId:'Infrastruktur',layers:['street-detail','province-boundaries','major-roads','airports','ports','settlements','current-developments']},
+  {id:'language',title:'Languages',titleId:'Bahasa',layers:['province-boundaries','cultural-regions','languages']},
 ];
 
 export const MAP_LAYERS:MapLayerDefinition[]=[
@@ -105,6 +107,15 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
     coverageNotesId:'Tidak tersedia sampai penggunaan ulang geometri jelas diperbolehkan; tanpa scraping atau impor lokasi sensitif.',
     minZoom:5,maxZoom:14,defaultVisible:false,geometry:'fill',
     style:{'fill-color':'#a79c83','fill-opacity':.12,'fill-outline-color':'#7e745f'},availability:'status'
+  },
+  {
+    id:'languages',family:'language',title:'Language reference points',titleId:'Titik referensi bahasa',
+    description:'Selected language-level records shown as representative reference points. Points are not language boundaries or customary territories.',
+    descriptionId:'Pilihan catatan tingkat bahasa yang ditampilkan sebagai titik referensi. Titik bukan batas bahasa atau wilayah adat.',
+    sourceType:'live',source:'/data/languages.geojson',sourceUrl:'https://glottolog.org/',attribution:'Glottolog 5.3 · selected reference records',license:'Glottolog data / public reference metadata',coverage:'Curated Western New Guinea selection',
+    coverageNotes:'Representative points only; the current selection is deliberately non-exhaustive.',coverageNotesId:'Hanya titik referensi; pilihan saat ini sengaja belum lengkap.',
+    minZoom:3,maxZoom:14,defaultVisible:false,geometry:'circle',
+    style:{'circle-radius':['interpolate',['linear'],['zoom'],3,5,8,8.5],'circle-color':'#75689d','circle-opacity':.82,'circle-stroke-color':'#faf8f3','circle-stroke-width':1.2},availability:'always'
   },
   {
     id:'mining-permits',family:'extraction',title:'Mining permits',titleId:'Izin tambang',
