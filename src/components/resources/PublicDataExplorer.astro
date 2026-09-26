@@ -115,9 +115,31 @@ if(root){
  };
  buttons.forEach(button=>button.addEventListener('click',()=>activate(button.dataset.dataView||'')));
  const peopleRows=[...root.querySelectorAll<HTMLElement>('[data-people-chart] .province-comparison-row')],peopleUnit=root.querySelector<HTMLElement>('[data-people-unit]');
- root.querySelectorAll<HTMLButtonElement>('[data-segmented="people"] button').forEach(button=>button.addEventListener('click',()=>{const mode=button.dataset.metric||'hdi';root.querySelectorAll<HTMLButtonElement>('[data-segmented="people"] button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));peopleRows.forEach(row=>{const value=Number(mode==='poverty'?row.dataset.poverty:row.dataset.hdi)||0,max=mode==='poverty'?30:100;const bar=row.querySelector<HTMLElement>('.comparison-track i'),label=row.querySelector<HTMLElement>('[data-value]');if(bar)bar.style.setProperty('--value',`${value/max*100}%`);if(label)label.textContent=mode==='poverty'?`${value.toLocaleString(document.documentElement.lang==='id'?'id-ID':'en-GB',{minimumFractionDigits:2,maximumFractionDigits:2})}%`:value.toLocaleString(document.documentElement.lang==='id'?'id-ID':'en-GB',{minimumFractionDigits:2,maximumFractionDigits:2})});if(peopleUnit)peopleUnit.textContent=mode==='poverty'?(document.documentElement.lang==='id'?'Penduduk di bawah garis kemiskinan BPS · %':'Residents below the BPS poverty line · %'):(document.documentElement.lang==='id'?'Indeks Pembangunan Manusia · 0–100':'Human Development Index · 0–100')})}));
+ root.querySelectorAll<HTMLButtonElement>('[data-segmented="people"] button').forEach(button=>button.addEventListener('click',()=>{
+  const mode=button.dataset.metric||'hdi';
+  root.querySelectorAll<HTMLButtonElement>('[data-segmented="people"] button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+  peopleRows.forEach(row=>{
+   const value=Number(mode==='poverty'?row.dataset.poverty:row.dataset.hdi)||0,max=mode==='poverty'?30:100;
+   const bar=row.querySelector<HTMLElement>('.comparison-track i'),label=row.querySelector<HTMLElement>('[data-value]');
+   if(bar)bar.style.setProperty('--value',`${value/max*100}%`);
+   if(label)label.textContent=mode==='poverty'?`${value.toLocaleString(document.documentElement.lang==='id'?'id-ID':'en-GB',{minimumFractionDigits:2,maximumFractionDigits:2})}%`:value.toLocaleString(document.documentElement.lang==='id'?'id-ID':'en-GB',{minimumFractionDigits:2,maximumFractionDigits:2});
+  });
+  if(peopleUnit)peopleUnit.textContent=mode==='poverty'?(document.documentElement.lang==='id'?'Penduduk di bawah garis kemiskinan BPS · %':'Residents below the BPS poverty line · %'):(document.documentElement.lang==='id'?'Indeks Pembangunan Manusia · 0–100':'Human Development Index · 0–100');
+ }));
  const financeRows=[...root.querySelectorAll<HTMLElement>('[data-finance-chart] .finance-row')],financeUnit=root.querySelector<HTMLElement>('[data-finance-unit]');
- root.querySelectorAll<HTMLButtonElement>('[data-segmented="finance"] button').forEach(button=>button.addEventListener('click',()=>{const mode=button.dataset.metric||'otsus';root.querySelectorAll<HTMLButtonElement>('[data-segmented="finance"] button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));const max=mode==='otsus'?Math.max(...financeRows.map(r=>Number(r.dataset.otsusBudget)||0)):Math.max(...financeRows.map(r=>Number(r.dataset.apbdBudget)||0));financeRows.forEach(row=>{const budget=Number(mode==='otsus'?row.dataset.otsusBudget:row.dataset.apbdBudget)||0,actual=Number(mode==='otsus'?row.dataset.otsusActual:row.dataset.apbdActual)||0;row.querySelector<HTMLElement>('.finance-budget')?.style.setProperty('--budget',`${budget/max*100}%`);row.querySelector<HTMLElement>('.finance-actual')?.style.setProperty('--actual',`${actual/max*100}%`);const label=row.querySelector<HTMLElement>('[data-finance-value]');if(label){const scale=mode==='otsus'?1000:1;label.innerHTML=`${(actual/scale).toLocaleString(document.documentElement.lang==='id'?'id-ID':'en-GB',{maximumFractionDigits:2})} <small>/ ${(budget/scale).toLocaleString(document.documentElement.lang==='id'?'id-ID':'en-GB',{maximumFractionDigits:2})}</small>`}});if(financeUnit)financeUnit.textContent=mode==='otsus'?(document.documentElement.lang==='id'?'Rp triliun · tersalurkan / pagu':'Rp trillion · transferred / allocation'):(document.documentElement.lang==='id'?'Rp triliun · realisasi / anggaran':'Rp trillion · expenditure / budget') }));
+ root.querySelectorAll<HTMLButtonElement>('[data-segmented="finance"] button').forEach(button=>button.addEventListener('click',()=>{
+  const mode=button.dataset.metric||'otsus';
+  root.querySelectorAll<HTMLButtonElement>('[data-segmented="finance"] button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+  const max=mode==='otsus'?Math.max(...financeRows.map(r=>Number(r.dataset.otsusBudget)||0)):Math.max(...financeRows.map(r=>Number(r.dataset.apbdBudget)||0));
+  financeRows.forEach(row=>{
+   const budget=Number(mode==='otsus'?row.dataset.otsusBudget:row.dataset.apbdBudget)||0,actual=Number(mode==='otsus'?row.dataset.otsusActual:row.dataset.apbdActual)||0;
+   row.querySelector<HTMLElement>('.finance-budget')?.style.setProperty('--budget',`${budget/max*100}%`);
+   row.querySelector<HTMLElement>('.finance-actual')?.style.setProperty('--actual',`${actual/max*100}%`);
+   const label=row.querySelector<HTMLElement>('[data-finance-value]');
+   if(label){const scale=mode==='otsus'?1000:1;label.innerHTML=`${(actual/scale).toLocaleString(document.documentElement.lang==='id'?'id-ID':'en-GB',{maximumFractionDigits:2})} <small>/ ${(budget/scale).toLocaleString(document.documentElement.lang==='id'?'id-ID':'en-GB',{maximumFractionDigits:2})}</small>`;}
+  });
+  if(financeUnit)financeUnit.textContent=mode==='otsus'?(document.documentElement.lang==='id'?'Rp triliun · tersalurkan / pagu':'Rp trillion · transferred / allocation'):(document.documentElement.lang==='id'?'Rp triliun · realisasi / anggaran':'Rp trillion · expenditure / budget');
+ }));
 }
 </script>
 
