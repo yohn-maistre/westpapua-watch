@@ -12,9 +12,9 @@
 
 .library-more{display:flex;gap:12px;justify-content:center;margin:2rem 0}.library-more [hidden]{display:none!important}
 
-/* Atmospheric rows: category wash persists whether or not a real cover exists. */
-.library-list .library-entry{position:relative;isolation:isolate;overflow:hidden}
-.library-list .library-entry::before{content:"";position:absolute;z-index:-2;inset:4px 0;pointer-events:none;opacity:.34;background:radial-gradient(ellipse at 2% 26%,var(--library-glow,#777b98) 0%,transparent 34%),linear-gradient(100deg,var(--library-base,#292b39) 0%,transparent 46%)}
+/* Atmospheric rows: let the wash breathe past row edges instead of ending in a hard rectangle. */
+.library-list .library-entry{position:relative;isolation:isolate;overflow:visible}
+.library-list .library-entry::before{content:"";position:absolute;z-index:-2;inset:-8px -5vw;pointer-events:none;opacity:.34;background:radial-gradient(ellipse at 7% 28%,var(--library-glow,#777b98) 0%,transparent 50%),linear-gradient(100deg,var(--library-base,#292b39) 0%,transparent 72%)}
 .library-list .library-entry::after{content:"";position:absolute;z-index:-1;left:-190px;top:50%;width:430px;aspect-ratio:1;transform:translateY(-50%);pointer-events:none;border:1px solid #ffffff08;border-radius:50%;box-shadow:0 0 0 46px #ffffff025,0 0 0 92px #ffffff018;opacity:.7}
 .library-list .library-entry:has(.library-media:empty){grid-template-columns:minmax(0,1fr) 24px!important}
 .library-list .library-entry:has(.library-media:empty) .library-media{display:none!important}

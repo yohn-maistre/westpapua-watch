@@ -7,13 +7,98 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          135.879,
-          -0.9523
+          139.213,
+          -3.04582
         ]
       },
       "properties": {
-        "name": "Biak",
-        "glottocode": "biak1248",
+        "name": "Abawiri",
+        "glottocode": "foau1240",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.891,
+          -2.92281
+        ]
+      },
+      "properties": {
+        "name": "Abinomn",
+        "glottocode": "abin1243",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.416,
+          -0.57073
+        ]
+      },
+      "properties": {
+        "name": "Abun",
+        "glottocode": "abun1252",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.043,
+          -6.34674
+        ]
+      },
+      "properties": {
+        "name": "Aghu",
+        "glottocode": "aghu1255",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.158,
+          -1.8522
+        ]
+      },
+      "properties": {
+        "name": "Airoran",
+        "glottocode": "airo1242",
+        "family": "Greater Kwerba",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.917,
+          -0.17957
+        ]
+      },
+      "properties": {
+        "name": "Ambel",
+        "glottocode": "waig1244",
         "family": "Austronesian",
         "source": "Glottolog 5.3",
         "location_note": "Representative language reference point; not a language boundary or customary territory."
@@ -24,14 +109,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          133.881,
-          -0.767
+          137.903651,
+          -1.763355
         ]
       },
       "properties": {
-        "name": "Meyah",
-        "glottocode": "meya1236",
-        "family": "East Bird's Head",
+        "name": "Ambermo",
+        "glottocode": "ambe1246",
+        "family": "Unclassifiable",
         "source": "Glottolog 5.3",
         "location_note": "Representative language reference point; not a language boundary or customary territory."
       }
@@ -41,82 +126,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          135.5,
-          -3.8333
+          137.716,
+          -1.73908
         ]
       },
       "properties": {
-        "name": "Ekari",
-        "glottocode": "ekar1243",
-        "family": "Nuclear Trans New Guinea",
-        "source": "Glottolog 5.3",
-        "location_note": "Representative language reference point; not a language boundary or customary territory."
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          138.909,
-          -3.777
-        ]
-      },
-      "properties": {
-        "name": "Western Dani",
-        "glottocode": "west2594",
-        "family": "Nuclear Trans New Guinea",
-        "source": "Glottolog 5.3",
-        "location_note": "Representative language reference point; not a language boundary or customary territory."
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          135.88,
-          -4.3
-        ]
-      },
-      "properties": {
-        "name": "Kamoro",
-        "glottocode": "kamo1255",
-        "family": "Nuclear Trans New Guinea",
-        "source": "Glottolog 5.3",
-        "location_note": "Representative language reference point; not a language boundary or customary territory."
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          138.5,
-          -5.5
-        ]
-      },
-      "properties": {
-        "name": "Central Asmat",
-        "glottocode": "cent2117",
-        "family": "Nuclear Trans New Guinea",
-        "source": "Glottolog 5.3",
-        "location_note": "Representative language reference point; not a language boundary or customary territory."
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          140.01,
-          -8.16
-        ]
-      },
-      "properties": {
-        "name": "Marind",
-        "glottocode": "nucl1622",
-        "family": "Anim",
+        "name": "Anasi",
+        "glottocode": "anas1239",
+        "family": "Bookkeeping",
         "source": "Glottolog 5.3",
         "location_note": "Representative language reference point; not a language boundary or customary territory."
       }
@@ -134,6 +151,4205 @@
         "name": "Angguruk Yali",
         "glottocode": "angg1239",
         "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.866,
+          -1.7543
+        ]
+      },
+      "properties": {
+        "name": "Ansus",
+        "glottocode": "ansu1237",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.728,
+          -0.75267
+        ]
+      },
+      "properties": {
+        "name": "As",
+        "glottocode": "asss1237",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.123,
+          -5.98341
+        ]
+      },
+      "properties": {
+        "name": "Asue Awyu",
+        "glottocode": "asue1235",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.666,
+          -6.27123
+        ]
+      },
+      "properties": {
+        "name": "Atohwaim",
+        "glottocode": "atoh1238",
+        "family": "Kayagaric",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.096,
+          -3.43705
+        ]
+      },
+      "properties": {
+        "name": "Auye",
+        "glottocode": "auye1238",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.724,
+          -5.05875
+        ]
+      },
+      "properties": {
+        "name": "Awbono",
+        "glottocode": "awbo1238",
+        "family": "Bayono-Awbono",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.063,
+          -2.71886
+        ]
+      },
+      "properties": {
+        "name": "Awera",
+        "glottocode": "awer1241",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.604,
+          -3.00564
+        ]
+      },
+      "properties": {
+        "name": "Awyi",
+        "glottocode": "awyi1241",
+        "family": "Border",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.914,
+          -1.98844
+        ]
+      },
+      "properties": {
+        "name": "Bagusa",
+        "glottocode": "bagu1251",
+        "family": "Greater Kwerba",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.637,
+          -3.10628
+        ]
+      },
+      "properties": {
+        "name": "Baham",
+        "glottocode": "baha1258",
+        "family": "West Bomberai",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.054,
+          -2.28732
+        ]
+      },
+      "properties": {
+        "name": "Barapasi",
+        "glottocode": "bara1375",
+        "family": "Geelvink Bay",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.646,
+          -0.862394
+        ]
+      },
+      "properties": {
+        "name": "Batanta",
+        "glottocode": "bata1295",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.629,
+          -2.44717
+        ]
+      },
+      "properties": {
+        "name": "Bauzi",
+        "glottocode": "bauz1241",
+        "family": "Geelvink Bay",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.617,
+          -5.21728
+        ]
+      },
+      "properties": {
+        "name": "Bayono",
+        "glottocode": "bayo1260",
+        "family": "Bayono-Awbono",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.866,
+          -2.26904
+        ]
+      },
+      "properties": {
+        "name": "Berik",
+        "glottocode": "beri1254",
+        "family": "Tor-Orya",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.879,
+          -0.9523
+        ]
+      },
+      "properties": {
+        "name": "Biak",
+        "glottocode": "biak1248",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.568,
+          -7.35942
+        ]
+      },
+      "properties": {
+        "name": "Bian Marind",
+        "glottocode": "bian1251",
+        "family": "Anim",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.272,
+          -1.99574
+        ]
+      },
+      "properties": {
+        "name": "Biga",
+        "glottocode": "biga1238",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.68,
+          -2.92042
+        ]
+      },
+      "properties": {
+        "name": "Biritai",
+        "glottocode": "biri1259",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.576,
+          -2.28044
+        ]
+      },
+      "properties": {
+        "name": "Bonggo",
+        "glottocode": "bong1287",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.038,
+          -2.79301
+        ]
+      },
+      "properties": {
+        "name": "Burate",
+        "glottocode": "bura1276",
+        "family": "Geelvink Bay",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.203,
+          -2.47582
+        ]
+      },
+      "properties": {
+        "name": "Burmeso",
+        "glottocode": "burm1264",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.03,
+          -5.12217
+        ]
+      },
+      "properties": {
+        "name": "Burumakok",
+        "glottocode": "buru1307",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.327,
+          -3.54561
+        ]
+      },
+      "properties": {
+        "name": "Buruwai",
+        "glottocode": "buru1308",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.032,
+          -1.73681
+        ]
+      },
+      "properties": {
+        "name": "Busami",
+        "glottocode": "busa1254",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.566,
+          -6.43005
+        ]
+      },
+      "properties": {
+        "name": "Casuarina Coast Asmat",
+        "glottocode": "casu1237",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.471,
+          -5.80391
+        ]
+      },
+      "properties": {
+        "name": "Central Asmat",
+        "glottocode": "cent2117",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.693,
+          -6.29363
+        ]
+      },
+      "properties": {
+        "name": "Central Awyu",
+        "glottocode": "cent2118",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.461,
+          -5.58276
+        ]
+      },
+      "properties": {
+        "name": "Citak",
+        "glottocode": "cita1245",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.496,
+          -4.17345
+        ]
+      },
+      "properties": {
+        "name": "Damal",
+        "glottocode": "dama1272",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.421,
+          -3.28643
+        ]
+      },
+      "properties": {
+        "name": "Dao",
+        "glottocode": "daoo1238",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.632,
+          -3.72183
+        ]
+      },
+      "properties": {
+        "name": "Dem",
+        "glottocode": "demm1245",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.694,
+          -2.54564
+        ]
+      },
+      "properties": {
+        "name": "Demisa",
+        "glottocode": "demi1242",
+        "family": "Geelvink Bay",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.166,
+          -2.38475
+        ]
+      },
+      "properties": {
+        "name": "Demta",
+        "glottocode": "demt1241",
+        "family": "Sentanic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.947,
+          -3.52309
+        ]
+      },
+      "properties": {
+        "name": "Dera (Indonesia)",
+        "glottocode": "dera1245",
+        "family": "Senagi",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.455,
+          -5.12627
+        ]
+      },
+      "properties": {
+        "name": "Diuwe",
+        "glottocode": "diuw1238",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.983,
+          -2.08016
+        ]
+      },
+      "properties": {
+        "name": "Dombano",
+        "glottocode": "aran1237",
+        "family": "South Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.22,
+          -3.24832
+        ]
+      },
+      "properties": {
+        "name": "Doutai",
+        "glottocode": "dout1240",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.768,
+          -3.62591
+        ]
+      },
+      "properties": {
+        "name": "Dubu",
+        "glottocode": "dubu1240",
+        "family": "Pauwasi",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.391,
+          -2.73859
+        ]
+      },
+      "properties": {
+        "name": "Dusner",
+        "glottocode": "dusn1237",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.964,
+          -3.21832
+        ]
+      },
+      "properties": {
+        "name": "Duvle",
+        "glottocode": "duvl1242",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.200358,
+          -3.013068
+        ]
+      },
+      "properties": {
+        "name": "Duvle-Wano-Pidgin",
+        "glottocode": "duvl1238",
+        "family": "Pidgin",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.914,
+          -7.0038
+        ]
+      },
+      "properties": {
+        "name": "Edera Awyu",
+        "glottocode": "eder1237",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.387,
+          -3.11078
+        ]
+      },
+      "properties": {
+        "name": "Edopi",
+        "glottocode": "edop1238",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.045,
+          -4.33691
+        ]
+      },
+      "properties": {
+        "name": "Eipomek",
+        "glottocode": "eipo1242",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.018,
+          -3.88974
+        ]
+      },
+      "properties": {
+        "name": "Ekari",
+        "glottocode": "ekar1243",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.418,
+          -3.00176
+        ]
+      },
+      "properties": {
+        "name": "Elseng",
+        "glottocode": "else1239",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.903,
+          -3.74242
+        ]
+      },
+      "properties": {
+        "name": "Emumu",
+        "glottocode": "emum1240",
+        "family": "Pauwasi",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.053,
+          -2.71182
+        ]
+      },
+      "properties": {
+        "name": "Eritai",
+        "glottocode": "erit1239",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.867,
+          -3.14497
+        ]
+      },
+      "properties": {
+        "name": "Fayu",
+        "glottocode": "fayu1238",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.279,
+          -2.72229
+        ]
+      },
+      "properties": {
+        "name": "Gresi",
+        "glottocode": "gres1240",
+        "family": "Nimboranic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.037,
+          -1.13531
+        ]
+      },
+      "properties": {
+        "name": "Hatam",
+        "glottocode": "hata1243",
+        "family": "Hatam-Mansim",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.164,
+          -4.36349
+        ]
+      },
+      "properties": {
+        "name": "Hupla",
+        "glottocode": "hupl1238",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.69,
+          -3.14537
+        ]
+      },
+      "properties": {
+        "name": "Iau",
+        "glottocode": "iauu1242",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.271,
+          -2.81013
+        ]
+      },
+      "properties": {
+        "name": "Iha",
+        "glottocode": "ihaa1241",
+        "family": "West Bomberai",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.586,
+          -2.94438
+        ]
+      },
+      "properties": {
+        "name": "Irarutu",
+        "glottocode": "irar1238",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.595,
+          -1.88775
+        ]
+      },
+      "properties": {
+        "name": "Isirawa",
+        "glottocode": "isir1237",
+        "family": "Greater Kwerba",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.341,
+          -2.18342
+        ]
+      },
+      "properties": {
+        "name": "Itik",
+        "glottocode": "itik1240",
+        "family": "Tor-Orya",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.2969,
+          -2.2478
+        ]
+      },
+      "properties": {
+        "name": "Jofotek-Bromnya",
+        "glottocode": "jofo1235",
+        "family": "Tor-Orya",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.528,
+          -1.92547
+        ]
+      },
+      "properties": {
+        "name": "Kaburi",
+        "glottocode": "kabu1249",
+        "family": "South Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.312,
+          -1.78077
+        ]
+      },
+      "properties": {
+        "name": "Kais",
+        "glottocode": "kais1235",
+        "family": "South Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.161,
+          -2.94448
+        ]
+      },
+      "properties": {
+        "name": "Kaiy",
+        "glottocode": "kaiy1239",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.617,
+          -1.43074
+        ]
+      },
+      "properties": {
+        "name": "Kalabra",
+        "glottocode": "kala1256",
+        "family": "West Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.883,
+          -4.30433
+        ]
+      },
+      "properties": {
+        "name": "Kamoro",
+        "glottocode": "kamo1255",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.766,
+          -3.52696
+        ]
+      },
+      "properties": {
+        "name": "Kapori",
+        "glottocode": "kapo1250",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.795818,
+          -2.388426
+        ]
+      },
+      "properties": {
+        "name": "Kaptiau",
+        "glottocode": "kapt1235",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.663,
+          -0.7871
+        ]
+      },
+      "properties": {
+        "name": "Karon Dori",
+        "glottocode": "karo1303",
+        "family": "Maybratic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.14,
+          -3.39188
+        ]
+      },
+      "properties": {
+        "name": "Kaure-Narau",
+        "glottocode": "kaur1271",
+        "family": "Kaure-Kosare",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.157,
+          -2.22799
+        ]
+      },
+      "properties": {
+        "name": "Kauwera",
+        "glottocode": "kauw1242",
+        "family": "Greater Kwerba",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.932,
+          -6.37677
+        ]
+      },
+      "properties": {
+        "name": "Kayagar",
+        "glottocode": "kaya1328",
+        "family": "Kayagaric",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.14,
+          -3.19328
+        ]
+      },
+      "properties": {
+        "name": "Kehu",
+        "glottocode": "kehu1238",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.988,
+          -2.24495
+        ]
+      },
+      "properties": {
+        "name": "Kemberano",
+        "glottocode": "kemb1235",
+        "family": "South Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.434,
+          -3.89065
+        ]
+      },
+      "properties": {
+        "name": "Kembra",
+        "glottocode": "kemb1250",
+        "family": "Lepki-Murkim-Kembra",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.372,
+          -2.64894
+        ]
+      },
+      "properties": {
+        "name": "Kemtuik",
+        "glottocode": "kemt1242",
+        "family": "Nimboranic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.443,
+          -4.50417
+        ]
+      },
+      "properties": {
+        "name": "Ketengban",
+        "glottocode": "kete1254",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.604,
+          -5.34647
+        ]
+      },
+      "properties": {
+        "name": "Ketum",
+        "glottocode": "ketu1238",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.104,
+          -6.79732
+        ]
+      },
+      "properties": {
+        "name": "Kia River Awyu",
+        "glottocode": "jair1235",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.355,
+          -8.01899
+        ]
+      },
+      "properties": {
+        "name": "Kimaama",
+        "glottocode": "kima1246",
+        "family": "Kolopom",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.884,
+          -4.2742
+        ]
+      },
+      "properties": {
+        "name": "Kimki",
+        "glottocode": "kimk1238",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.282,
+          -3.18494
+        ]
+      },
+      "properties": {
+        "name": "Kirikiri",
+        "glottocode": "kiri1256",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.813619,
+          -2.414345
+        ]
+      },
+      "properties": {
+        "name": "Kofei",
+        "glottocode": "kofe1239",
+        "family": "Geelvink Bay",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.598971,
+          -5.551923
+        ]
+      },
+      "properties": {
+        "name": "Kokenop Mandobo",
+        "glottocode": "koke1241",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.449,
+          -2.12872
+        ]
+      },
+      "properties": {
+        "name": "Kokoda",
+        "glottocode": "koko1265",
+        "family": "South Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.902,
+          -5.54543
+        ]
+      },
+      "properties": {
+        "name": "Kombai",
+        "glottocode": "komb1274",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.213,
+          -5.25453
+        ]
+      },
+      "properties": {
+        "name": "Komyandaret",
+        "glottocode": "komy1238",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.0675,
+          -8.37424
+        ]
+      },
+      "properties": {
+        "name": "Koneraw",
+        "glottocode": "kone1241",
+        "family": "Mombum-Koneraw",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.926,
+          -4.91191
+        ]
+      },
+      "properties": {
+        "name": "Kopkaka",
+        "glottocode": "kopk1238",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.680215,
+          -4.535733
+        ]
+      },
+      "properties": {
+        "name": "Korapun-Bromley",
+        "glottocode": "kora1298",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.047,
+          -5.26952
+        ]
+      },
+      "properties": {
+        "name": "Korowai",
+        "glottocode": "koro1312",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.678,
+          -4.53497
+        ]
+      },
+      "properties": {
+        "name": "Korupun-Sela",
+        "glottocode": "koru1245",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.502,
+          -2.26271
+        ]
+      },
+      "properties": {
+        "name": "Korur",
+        "glottocode": "anus1237",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.197,
+          -3.78748
+        ]
+      },
+      "properties": {
+        "name": "Kosadle",
+        "glottocode": "kosa1251",
+        "family": "Kaure-Kosare",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.645,
+          -4.06603
+        ]
+      },
+      "properties": {
+        "name": "Kosarek Yale",
+        "glottocode": "kosa1249",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.468,
+          -4.21954
+        ]
+      },
+      "properties": {
+        "name": "Kowiai",
+        "glottocode": "kowi1239",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.012,
+          -5.02008
+        ]
+      },
+      "properties": {
+        "name": "Kwer",
+        "glottocode": "kwer1265",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.486,
+          -2.2137
+        ]
+      },
+      "properties": {
+        "name": "Kwerba",
+        "glottocode": "nucl1595",
+        "family": "Greater Kwerba",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.436,
+          -2.56457
+        ]
+      },
+      "properties": {
+        "name": "Kwerba Mamberamo",
+        "glottocode": "kwer1263",
+        "family": "Greater Kwerba",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.135,
+          -2.99145
+        ]
+      },
+      "properties": {
+        "name": "Kwerisa",
+        "glottocode": "kwer1264",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.853,
+          -2.03622
+        ]
+      },
+      "properties": {
+        "name": "Kwesten",
+        "glottocode": "kwes1245",
+        "family": "Tor-Orya",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.5137,
+          -2.3038
+        ]
+      },
+      "properties": {
+        "name": "Kwinsu",
+        "glottocode": "kwin1242",
+        "family": "Tor-Orya",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.749,
+          -0.3592
+        ]
+      },
+      "properties": {
+        "name": "Legenyem",
+        "glottocode": "lege1241",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.464,
+          -4.1059
+        ]
+      },
+      "properties": {
+        "name": "Lepki",
+        "glottocode": "lepk1238",
+        "family": "Lepki-Murkim-Kembra",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.992,
+          -4.25684
+        ]
+      },
+      "properties": {
+        "name": "Lower Grand Valley Dani",
+        "glottocode": "lowe1415",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.071,
+          -3.4511
+        ]
+      },
+      "properties": {
+        "name": "Mairasi",
+        "glottocode": "nucl1594",
+        "family": "Mairasic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.273,
+          -7.74424
+        ]
+      },
+      "properties": {
+        "name": "Maklew",
+        "glottocode": "makl1246",
+        "family": "Bulaka River",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.751,
+          -2.29479
+        ]
+      },
+      "properties": {
+        "name": "Mander",
+        "glottocode": "mand1443",
+        "family": "Tor-Orya",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.624,
+          -5.69357
+        ]
+      },
+      "properties": {
+        "name": "Mandobo Atas",
+        "glottocode": "mand1444",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.451,
+          -6.37255
+        ]
+      },
+      "properties": {
+        "name": "Mandobo Bawah",
+        "glottocode": "mand1445",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.011116,
+          -0.915054
+        ]
+      },
+      "properties": {
+        "name": "Mansim",
+        "glottocode": "mans1260",
+        "family": "Hatam-Mansim",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.797,
+          -1.66738
+        ]
+      },
+      "properties": {
+        "name": "Marau",
+        "glottocode": "mara1397",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.009,
+          -8.15651
+        ]
+      },
+      "properties": {
+        "name": "Marind",
+        "glottocode": "nucl1622",
+        "family": "Anim",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.688,
+          -8.5692
+        ]
+      },
+      "properties": {
+        "name": "Marori",
+        "glottocode": "moro1289",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.294,
+          -1.74679
+        ]
+      },
+      "properties": {
+        "name": "Massep",
+        "glottocode": "mass1263",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.075,
+          -1.8801
+        ]
+      },
+      "properties": {
+        "name": "Matbat",
+        "glottocode": "matb1237",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.752,
+          -2.36944
+        ]
+      },
+      "properties": {
+        "name": "Mawes",
+        "glottocode": "mawe1251",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.591,
+          -1.3679
+        ]
+      },
+      "properties": {
+        "name": "Maybrat",
+        "glottocode": "maib1239",
+        "family": "Maybratic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.566,
+          -2.74438
+        ]
+      },
+      "properties": {
+        "name": "Mbaruan",
+        "glottocode": "bedo1237",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.326,
+          -2.52264
+        ]
+      },
+      "properties": {
+        "name": "Mekwei",
+        "glottocode": "mekw1241",
+        "family": "Nimboranic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.378,
+          -2.07828
+        ]
+      },
+      "properties": {
+        "name": "Meoswar",
+        "glottocode": "meos1237",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.731,
+          -3.3828
+        ]
+      },
+      "properties": {
+        "name": "Mer",
+        "glottocode": "merr1239",
+        "family": "Mairasic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.618,
+          -1.18016
+        ]
+      },
+      "properties": {
+        "name": "Meyah",
+        "glottocode": "meya1236",
+        "family": "East Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.945,
+          -4.06322
+        ]
+      },
+      "properties": {
+        "name": "Mid Grand Valley Dani",
+        "glottocode": "midg1235",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.909,
+          -1.22329
+        ]
+      },
+      "properties": {
+        "name": "Misool-Salawati Ma'ya",
+        "glottocode": "maya1282",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.264,
+          -2.57316
+        ]
+      },
+      "properties": {
+        "name": "Mlap",
+        "glottocode": "mlap1238",
+        "family": "Nimboranic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.52,
+          -0.96532
+        ]
+      },
+      "properties": {
+        "name": "Moi (Indonesia)",
+        "glottocode": "moii1235",
+        "family": "West Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.557,
+          -3.41946
+        ]
+      },
+      "properties": {
+        "name": "Molof",
+        "glottocode": "molo1262",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.773,
+          -8.27141
+        ]
+      },
+      "properties": {
+        "name": "Mombum",
+        "glottocode": "nucl1452",
+        "family": "Mombum-Koneraw",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.821,
+          -4.812
+        ]
+      },
+      "properties": {
+        "name": "Momina",
+        "glottocode": "momi1242",
+        "family": "Bookkeeping",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.405,
+          -4.89854
+        ]
+      },
+      "properties": {
+        "name": "Momogo-Pupis-Irogo",
+        "glottocode": "nort2917",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.26,
+          -5.04431
+        ]
+      },
+      "properties": {
+        "name": "Momuna",
+        "glottocode": "momu1241",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.886,
+          -3.72962
+        ]
+      },
+      "properties": {
+        "name": "Moni",
+        "glottocode": "moni1261",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.845,
+          -2.85747
+        ]
+      },
+      "properties": {
+        "name": "Mor (Bomberai Peninsula)",
+        "glottocode": "morb1239",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.965,
+          -1.04083
+        ]
+      },
+      "properties": {
+        "name": "Moraid",
+        "glottocode": "mora1239",
+        "family": "West Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.823,
+          -5.11036
+        ]
+      },
+      "properties": {
+        "name": "Morop-Dintere",
+        "glottocode": "iwur1240",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.145,
+          -1.62201
+        ]
+      },
+      "properties": {
+        "name": "Moskona",
+        "glottocode": "mosk1236",
+        "family": "East Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.166,
+          -0.7489
+        ]
+      },
+      "properties": {
+        "name": "Mpur",
+        "glottocode": "mpur1239",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.918,
+          -1.66773
+        ]
+      },
+      "properties": {
+        "name": "Munggui",
+        "glottocode": "mung1269",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.913,
+          -4.07548
+        ]
+      },
+      "properties": {
+        "name": "Murkim",
+        "glottocode": "murk1238",
+        "family": "Lepki-Murkim-Kembra",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.098,
+          -2.80683
+        ]
+      },
+      "properties": {
+        "name": "Nabi",
+        "glottocode": "kuri1260",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.727,
+          -2.65036
+        ]
+      },
+      "properties": {
+        "name": "Nafri",
+        "glottocode": "nafr1241",
+        "family": "Sentanic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.512,
+          -5.19377
+        ]
+      },
+      "properties": {
+        "name": "Nakai",
+        "glottocode": "naka1265",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.883,
+          -4.26068
+        ]
+      },
+      "properties": {
+        "name": "Nalca",
+        "glottocode": "nalc1240",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.66,
+          -3.58
+        ]
+      },
+      "properties": {
+        "name": "Namla",
+        "glottocode": "naml1240",
+        "family": "Namla-Tofanma",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.876,
+          -3.43594
+        ]
+      },
+      "properties": {
+        "name": "Narau",
+        "glottocode": "nara1265",
+        "family": "Bookkeeping",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.019,
+          -7.93553
+        ]
+      },
+      "properties": {
+        "name": "Ndom",
+        "glottocode": "ndom1245",
+        "family": "Kolopom",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.411,
+          -4.34043
+        ]
+      },
+      "properties": {
+        "name": "Nduga",
+        "glottocode": "ndug1245",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.011,
+          -3.62735
+        ]
+      },
+      "properties": {
+        "name": "Nggem",
+        "glottocode": "ngge1241",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.753,
+          -8.85301
+        ]
+      },
+      "properties": {
+        "name": "Ngkontar Baedi",
+        "glottocode": "badi1247",
+        "family": "Yam",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.818,
+          -8.87044
+        ]
+      },
+      "properties": {
+        "name": "Ngkontar Ngkolmpu",
+        "glottocode": "ngka1235",
+        "family": "Yam",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.179,
+          -2.5803
+        ]
+      },
+      "properties": {
+        "name": "Nimboran",
+        "glottocode": "nucl1633",
+        "family": "Nimboranic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.39,
+          -4.4737
+        ]
+      },
+      "properties": {
+        "name": "Ninia Yali",
+        "glottocode": "nini1235",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.753,
+          -4.14421
+        ]
+      },
+      "properties": {
+        "name": "Nipsan",
+        "glottocode": "nips1240",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.6,
+          -1.95386
+        ]
+      },
+      "properties": {
+        "name": "Nisa-Anasi",
+        "glottocode": "nisa1239",
+        "family": "Geelvink Bay",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.068,
+          -5.93647
+        ]
+      },
+      "properties": {
+        "name": "North Awyu",
+        "glottocode": "nort2918",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.518,
+          -3.53189
+        ]
+      },
+      "properties": {
+        "name": "North Kamrau",
+        "glottocode": "kamb1302",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.84,
+          -5.55319
+        ]
+      },
+      "properties": {
+        "name": "North Muyu",
+        "glottocode": "nort2916",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.924,
+          -2.88029
+        ]
+      },
+      "properties": {
+        "name": "Obokuitai",
+        "glottocode": "obok1239",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.062,
+          -2.75976
+        ]
+      },
+      "properties": {
+        "name": "Onin",
+        "glottocode": "onin1245",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.083,
+          -2.83
+        ]
+      },
+      "properties": {
+        "name": "Onin Pidgin",
+        "glottocode": "onin1237",
+        "family": "Pidgin",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.6015,
+          -2.51361
+        ]
+      },
+      "properties": {
+        "name": "Ormu",
+        "glottocode": "ormu1248",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.89,
+          -2.76483
+        ]
+      },
+      "properties": {
+        "name": "Orya",
+        "glottocode": "orya1242",
+        "family": "Tor-Orya",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.605,
+          -2.87535
+        ]
+      },
+      "properties": {
+        "name": "Papasena",
+        "glottocode": "papa1269",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.651,
+          -2.53482
+        ]
+      },
+      "properties": {
+        "name": "Papuan Malay",
+        "glottocode": "papu1250",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.907,
+          -1.77301
+        ]
+      },
+      "properties": {
+        "name": "Papuma",
+        "glottocode": "papu1251",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.26,
+          -3.76869
+        ]
+      },
+      "properties": {
+        "name": "Pass Valley Yali",
+        "glottocode": "pass1247",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.8,
+          -1.65
+        ]
+      },
+      "properties": {
+        "name": "Pauwi",
+        "glottocode": "pauw1243",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.619,
+          -1.64224
+        ]
+      },
+      "properties": {
+        "name": "Pom",
+        "glottocode": "pomm1237",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.304,
+          -2.05779
+        ]
+      },
+      "properties": {
+        "name": "Puragi",
+        "glottocode": "pura1253",
+        "family": "South Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.352,
+          -2.37609
+        ]
+      },
+      "properties": {
+        "name": "Rasawa",
+        "glottocode": "rasa1243",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.484,
+          -7.50746
+        ]
+      },
+      "properties": {
+        "name": "Riantana",
+        "glottocode": "rian1263",
+        "family": "Kolopom",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.833,
+          -1.05325
+        ]
+      },
+      "properties": {
+        "name": "Salawati",
+        "glottocode": "made1253",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.34,
+          -1.84878
+        ]
+      },
+      "properties": {
+        "name": "Samarokena",
+        "glottocode": "sama1240",
+        "family": "Greater Kwerba",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.497,
+          -2.385
+        ]
+      },
+      "properties": {
+        "name": "Saponi",
+        "glottocode": "sapo1254",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.79,
+          -2.33349
+        ]
+      },
+      "properties": {
+        "name": "Sauri",
+        "glottocode": "saur1251",
+        "family": "Geelvink Bay",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.627,
+          -3.16632
+        ]
+      },
+      "properties": {
+        "name": "Sause",
+        "glottocode": "saus1247",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.643,
+          -5.99286
+        ]
+      },
+      "properties": {
+        "name": "Sawi",
+        "glottocode": "sawi1257",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.218,
+          -1.36931
+        ]
+      },
+      "properties": {
+        "name": "Seget",
+        "glottocode": "sege1235",
+        "family": "West Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.454,
+          -3.71553
+        ]
+      },
+      "properties": {
+        "name": "Semimi",
+        "glottocode": "semi1264",
+        "family": "Mairasic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.588,
+          -5.17582
+        ]
+      },
+      "properties": {
+        "name": "Sempan",
+        "glottocode": "semp1241",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.77,
+          -3.41983
+        ]
+      },
+      "properties": {
+        "name": "Senggi",
+        "glottocode": "seng1285",
+        "family": "Border",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.512,
+          -2.6013
+        ]
+      },
+      "properties": {
+        "name": "Sentani",
+        "glottocode": "nucl1632",
+        "family": "Sentanic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.252,
+          -1.87766
+        ]
+      },
+      "properties": {
+        "name": "Serui-Laut",
+        "glottocode": "seru1244",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.287,
+          -2.80285
+        ]
+      },
+      "properties": {
+        "name": "Sikaritai",
+        "glottocode": "sika1263",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.003,
+          -4.52544
+        ]
+      },
+      "properties": {
+        "name": "Silimo",
+        "glottocode": "sili1249",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.902,
+          -2.64378
+        ]
+      },
+      "properties": {
+        "name": "Skou",
+        "glottocode": "nucl1634",
+        "family": "Sko",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.897,
+          -8.91812
+        ]
+      },
+      "properties": {
+        "name": "Smärky Kanum",
+        "glottocode": "smar1235",
+        "family": "Yam",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.75,
+          -1.86998
+        ]
+      },
+      "properties": {
+        "name": "Sobei",
+        "glottocode": "sobe1238",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.969,
+          -8.40452
+        ]
+      },
+      "properties": {
+        "name": "Sota Kanum",
+        "glottocode": "sota1242",
+        "family": "Yam",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.95,
+          -1.49611
+        ]
+      },
+      "properties": {
+        "name": "Sougb",
+        "glottocode": "mani1235",
+        "family": "East Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.538,
+          -7.36301
+        ]
+      },
+      "properties": {
+        "name": "South Awyu",
+        "glottocode": "sout2941",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.44698,
+          -3.62525
+        ]
+      },
+      "properties": {
+        "name": "South Kamrau",
+        "glottocode": "sout3425",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.815,
+          -6.01385
+        ]
+      },
+      "properties": {
+        "name": "South Muyu",
+        "glottocode": "sout2940",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.32,
+          -7.93
+        ]
+      },
+      "properties": {
+        "name": "Southern Yelmek",
+        "glottocode": "yelm1242",
+        "family": "Bulaka River",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.92,
+          -3.28373
+        ]
+      },
+      "properties": {
+        "name": "Sowanda",
+        "glottocode": "sowa1245",
+        "family": "Border",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.157,
+          -2.07971
+        ]
+      },
+      "properties": {
+        "name": "Suabo",
+        "glottocode": "suab1238",
+        "family": "South Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.396,
+          -2.45368
+        ]
+      },
+      "properties": {
+        "name": "Tabla",
+        "glottocode": "tabl1243",
+        "family": "Sentanic",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.7495,
+          -2.9408
+        ]
+      },
+      "properties": {
+        "name": "Taikat",
+        "glottocode": "taik1255",
+        "family": "Border",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.892,
+          -6.64493
+        ]
+      },
+      "properties": {
+        "name": "Tamagario",
+        "glottocode": "tama1336",
+        "family": "Kayagaric",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.233,
+          -5.57962
+        ]
+      },
+      "properties": {
+        "name": "Tamnim Citak",
+        "glottocode": "tamn1235",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.18,
+          -2.5523
+        ]
+      },
+      "properties": {
+        "name": "Tanahmerah",
+        "glottocode": "tana1288",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.532,
+          -2.84228
+        ]
+      },
+      "properties": {
+        "name": "Tandia",
+        "glottocode": "tand1253",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.269,
+          -5.13343
+        ]
+      },
+      "properties": {
+        "name": "Tangko",
+        "glottocode": "tang1353",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.115497,
+          -2.322279
+        ]
+      },
+      "properties": {
+        "name": "Tarpia",
+        "glottocode": "tarp1240",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.899,
+          -2.8406
+        ]
+      },
+      "properties": {
+        "name": "Tause",
+        "glottocode": "taus1252",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.061,
+          -3.43455
+        ]
+      },
+      "properties": {
+        "name": "Taworta",
+        "glottocode": "tawo1244",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.753,
+          -2.35042
+        ]
+      },
+      "properties": {
+        "name": "Tefaro",
+        "glottocode": "tefa1238",
+        "family": "Geelvink Bay",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          131.985,
+          -1.51049
+        ]
+      },
+      "properties": {
+        "name": "Tehit",
+        "glottocode": "tehi1237",
+        "family": "West Bird's Head",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.591,
+          -3.74322
+        ]
+      },
+      "properties": {
+        "name": "Tofanma",
+        "glottocode": "tofa1246",
+        "family": "Namla-Tofanma",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.803,
+          -3.87428
+        ]
+      },
+      "properties": {
+        "name": "Towei",
+        "glottocode": "towe1240",
+        "family": "Pauwasi",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.027,
+          -2.15863
+        ]
+      },
+      "properties": {
+        "name": "Trimuris",
+        "glottocode": "trim1239",
+        "family": "Greater Kwerba",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.186,
+          -5.39076
+        ]
+      },
+      "properties": {
+        "name": "Tsaukambo",
+        "glottocode": "tsak1250",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.551,
+          -3.37462
+        ]
+      },
+      "properties": {
+        "name": "Tunggare",
+        "glottocode": "tung1293",
+        "family": "Geelvink Bay",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.1,
+          -4.69676
+        ]
+      },
+      "properties": {
+        "name": "Una",
+        "glottocode": "unaa1239",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.901,
+          -3.94368
+        ]
+      },
+      "properties": {
+        "name": "Upper Grand Valley Dani",
+        "glottocode": "uppe1430",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.502,
+          -3.63853
+        ]
+      },
+      "properties": {
+        "name": "Usku",
+        "glottocode": "usku1243",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.1098,
+          -2.1111
+        ]
+      },
+      "properties": {
+        "name": "Vitou",
+        "glottocode": "vito1235",
+        "family": "Tor-Orya",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.757,
+          -1.77297
+        ]
+      },
+      "properties": {
+        "name": "Wabo",
+        "glottocode": "wabo1240",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.84,
+          -3.8238
+        ]
+      },
+      "properties": {
+        "name": "Walak",
+        "glottocode": "wala1269",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.48,
+          -5.44334
+        ]
+      },
+      "properties": {
+        "name": "Wambon",
+        "glottocode": "wamb1259",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.108,
+          -7.451
+        ]
+      },
+      "properties": {
+        "name": "Wanam Yelmek",
+        "glottocode": "wana1273",
+        "family": "Bulaka River",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.996,
+          -2.25622
+        ]
+      },
+      "properties": {
+        "name": "Wandamen",
+        "glottocode": "wand1267",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.194,
+          -5.60094
+        ]
+      },
+      "properties": {
+        "name": "Wanggom",
+        "glottocode": "wang1299",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.678,
+          -3.47858
+        ]
+      },
+      "properties": {
+        "name": "Wano",
+        "glottocode": "wano1243",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          137.566,
+          -1.65941
+        ]
+      },
+      "properties": {
+        "name": "Warembori",
+        "glottocode": "ware1253",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.337,
+          -2.47357
+        ]
+      },
+      "properties": {
+        "name": "Wares",
+        "glottocode": "ware1254",
+        "family": "Unattested",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.931,
+          -3.139
+        ]
+      },
+      "properties": {
+        "name": "Waris",
+        "glottocode": "wari1266",
+        "family": "Border",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.456,
+          -3.23021
+        ]
+      },
+      "properties": {
+        "name": "Waritai",
+        "glottocode": "wari1264",
+        "family": "Lakes Plain",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.638,
+          -5.7716
+        ]
+      },
+      "properties": {
+        "name": "Warkay-Bipim",
+        "glottocode": "wark1247",
+        "family": "Anim",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.633,
+          -2.31142
+        ]
+      },
+      "properties": {
+        "name": "Waropen",
+        "glottocode": "waro1242",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.597,
+          -0.2828
+        ]
+      },
+      "properties": {
+        "name": "Wauyai",
+        "glottocode": "wauy1237",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.217,
+          -3.77127
+        ]
+      },
+      "properties": {
+        "name": "Western Dani",
+        "glottocode": "west2594",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.484,
+          -1.62746
+        ]
+      },
+      "properties": {
+        "name": "Woi",
+        "glottocode": "woii1237",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.703,
+          -3.41642
+        ]
+      },
+      "properties": {
+        "name": "Wolani",
+        "glottocode": "wola1243",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.519,
+          -2.37997
+        ]
+      },
+      "properties": {
+        "name": "Woria",
+        "glottocode": "wori1246",
+        "family": "Geelvink Bay",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.06,
+          -1.82635
+        ]
+      },
+      "properties": {
+        "name": "Yaben (Konda)",
+        "glottocode": "kond1303",
+        "family": "Konda-Yahadian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.897,
+          -3.39765
+        ]
+      },
+      "properties": {
+        "name": "Yafi",
+        "glottocode": "yafi1240",
+        "family": "Pauwasi",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.096,
+          -1.94317
+        ]
+      },
+      "properties": {
+        "name": "Yahadian",
+        "glottocode": "yaha1248",
+        "family": "Konda-Yahadian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.582,
+          -5.61024
+        ]
+      },
+      "properties": {
+        "name": "Yaosakor Asmat",
+        "glottocode": "yaos1235",
+        "family": "Nuclear Trans New Guinea",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.249,
+          -6.66632
+        ]
+      },
+      "properties": {
+        "name": "Yaqay",
+        "glottocode": "yaqa1246",
+        "family": "Anim",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          132.705,
+          -2.83746
+        ]
+      },
+      "properties": {
+        "name": "Yarikman",
+        "glottocode": "erok1237",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.879,
+          -3.32519
+        ]
+      },
+      "properties": {
+        "name": "Yaur",
+        "glottocode": "yaur1239",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.263,
+          -1.77196
+        ]
+      },
+      "properties": {
+        "name": "Yawa",
+        "glottocode": "nucl1454",
+        "family": "Yawa-Saweru",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.863,
+          -7.87489
+        ]
+      },
+      "properties": {
+        "name": "Yei",
+        "glottocode": "yeii1239",
+        "family": "Yam",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.656,
+          -3.01713
+        ]
+      },
+      "properties": {
+        "name": "Yeretuar",
+        "glottocode": "yere1243",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.025,
+          -3.62803
+        ]
+      },
+      "properties": {
+        "name": "Yerisiam",
+        "glottocode": "ires1239",
+        "family": "Austronesian",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          140.653,
+          -4.05884
+        ]
+      },
+      "properties": {
+        "name": "Yetfa",
+        "glottocode": "yetf1238",
+        "family": "Unclassified",
+        "source": "Glottolog 5.3",
+        "location_note": "Representative language reference point; not a language boundary or customary territory."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.028,
+          -1.68798
+        ]
+      },
+      "properties": {
+        "name": "Yoke",
+        "glottocode": "yoke1238",
+        "family": "Austronesian",
         "source": "Glottolog 5.3",
         "location_note": "Representative language reference point; not a language boundary or customary territory."
       }

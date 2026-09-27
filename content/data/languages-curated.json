@@ -1,10 +1,1794 @@
 [
-  {"name":"Biak","glottocode":"biak1248","family":"Austronesian","latitude":-0.9523,"longitude":135.8790},
-  {"name":"Meyah","glottocode":"meya1236","family":"East Bird's Head","latitude":-0.7670,"longitude":133.8810},
-  {"name":"Ekari","glottocode":"ekar1243","family":"Nuclear Trans New Guinea","latitude":-3.8333,"longitude":135.5000},
-  {"name":"Western Dani","glottocode":"west2594","family":"Nuclear Trans New Guinea","latitude":-3.7770,"longitude":138.9090},
-  {"name":"Kamoro","glottocode":"kamo1255","family":"Nuclear Trans New Guinea","latitude":-4.3000,"longitude":135.8800},
-  {"name":"Central Asmat","glottocode":"cent2117","family":"Nuclear Trans New Guinea","latitude":-5.5000,"longitude":138.5000},
-  {"name":"Marind","glottocode":"nucl1622","family":"Anim","latitude":-8.1600,"longitude":140.0100},
-  {"name":"Angguruk Yali","glottocode":"angg1239","family":"Nuclear Trans New Guinea","latitude":-4.0836,"longitude":139.4570}
+  {
+    "name": "Abawiri",
+    "glottocode": "foau1240",
+    "family": "Lakes Plain",
+    "latitude": -3.04582,
+    "longitude": 139.213
+  },
+  {
+    "name": "Abinomn",
+    "glottocode": "abin1243",
+    "family": "Unclassified",
+    "latitude": -2.92281,
+    "longitude": 138.891
+  },
+  {
+    "name": "Abun",
+    "glottocode": "abun1252",
+    "family": "Unclassified",
+    "latitude": -0.57073,
+    "longitude": 132.416
+  },
+  {
+    "name": "Aghu",
+    "glottocode": "aghu1255",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -6.34674,
+    "longitude": 140.043
+  },
+  {
+    "name": "Airoran",
+    "glottocode": "airo1242",
+    "family": "Greater Kwerba",
+    "latitude": -1.8522,
+    "longitude": 138.158
+  },
+  {
+    "name": "Ambel",
+    "glottocode": "waig1244",
+    "family": "Austronesian",
+    "latitude": -0.17957,
+    "longitude": 130.917
+  },
+  {
+    "name": "Ambermo",
+    "glottocode": "ambe1246",
+    "family": "Unclassifiable",
+    "latitude": -1.763355,
+    "longitude": 137.903651
+  },
+  {
+    "name": "Anasi",
+    "glottocode": "anas1239",
+    "family": "Bookkeeping",
+    "latitude": -1.73908,
+    "longitude": 137.716
+  },
+  {
+    "name": "Angguruk Yali",
+    "glottocode": "angg1239",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.0836,
+    "longitude": 139.457
+  },
+  {
+    "name": "Ansus",
+    "glottocode": "ansu1237",
+    "family": "Austronesian",
+    "latitude": -1.7543,
+    "longitude": 135.866
+  },
+  {
+    "name": "As",
+    "glottocode": "asss1237",
+    "family": "Austronesian",
+    "latitude": -0.75267,
+    "longitude": 131.728
+  },
+  {
+    "name": "Asue Awyu",
+    "glottocode": "asue1235",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.98341,
+    "longitude": 139.123
+  },
+  {
+    "name": "Atohwaim",
+    "glottocode": "atoh1238",
+    "family": "Kayagaric",
+    "latitude": -6.27123,
+    "longitude": 138.666
+  },
+  {
+    "name": "Auye",
+    "glottocode": "auye1238",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.43705,
+    "longitude": 136.096
+  },
+  {
+    "name": "Awbono",
+    "glottocode": "awbo1238",
+    "family": "Bayono-Awbono",
+    "latitude": -5.05875,
+    "longitude": 139.724
+  },
+  {
+    "name": "Awera",
+    "glottocode": "awer1241",
+    "family": "Lakes Plain",
+    "latitude": -2.71886,
+    "longitude": 136.063
+  },
+  {
+    "name": "Awyi",
+    "glottocode": "awyi1241",
+    "family": "Border",
+    "latitude": -3.00564,
+    "longitude": 140.604
+  },
+  {
+    "name": "Bagusa",
+    "glottocode": "bagu1251",
+    "family": "Greater Kwerba",
+    "latitude": -1.98844,
+    "longitude": 137.914
+  },
+  {
+    "name": "Baham",
+    "glottocode": "baha1258",
+    "family": "West Bomberai",
+    "latitude": -3.10628,
+    "longitude": 132.637
+  },
+  {
+    "name": "Barapasi",
+    "glottocode": "bara1375",
+    "family": "Geelvink Bay",
+    "latitude": -2.28732,
+    "longitude": 137.054
+  },
+  {
+    "name": "Batanta",
+    "glottocode": "bata1295",
+    "family": "Austronesian",
+    "latitude": -0.862394,
+    "longitude": 130.646
+  },
+  {
+    "name": "Bauzi",
+    "glottocode": "bauz1241",
+    "family": "Geelvink Bay",
+    "latitude": -2.44717,
+    "longitude": 137.629
+  },
+  {
+    "name": "Bayono",
+    "glottocode": "bayo1260",
+    "family": "Bayono-Awbono",
+    "latitude": -5.21728,
+    "longitude": 139.617
+  },
+  {
+    "name": "Berik",
+    "glottocode": "beri1254",
+    "family": "Tor-Orya",
+    "latitude": -2.26904,
+    "longitude": 138.866
+  },
+  {
+    "name": "Biak",
+    "glottocode": "biak1248",
+    "family": "Austronesian",
+    "latitude": -0.9523,
+    "longitude": 135.879
+  },
+  {
+    "name": "Bian Marind",
+    "glottocode": "bian1251",
+    "family": "Anim",
+    "latitude": -7.35942,
+    "longitude": 140.568
+  },
+  {
+    "name": "Biga",
+    "glottocode": "biga1238",
+    "family": "Austronesian",
+    "latitude": -1.99574,
+    "longitude": 130.272
+  },
+  {
+    "name": "Biritai",
+    "glottocode": "biri1259",
+    "family": "Lakes Plain",
+    "latitude": -2.92042,
+    "longitude": 137.68
+  },
+  {
+    "name": "Bonggo",
+    "glottocode": "bong1287",
+    "family": "Austronesian",
+    "latitude": -2.28044,
+    "longitude": 139.576
+  },
+  {
+    "name": "Burate",
+    "glottocode": "bura1276",
+    "family": "Geelvink Bay",
+    "latitude": -2.79301,
+    "longitude": 136.038
+  },
+  {
+    "name": "Burmeso",
+    "glottocode": "burm1264",
+    "family": "Unclassified",
+    "latitude": -2.47582,
+    "longitude": 138.203
+  },
+  {
+    "name": "Burumakok",
+    "glottocode": "buru1307",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.12217,
+    "longitude": 140.03
+  },
+  {
+    "name": "Buruwai",
+    "glottocode": "buru1308",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.54561,
+    "longitude": 133.327
+  },
+  {
+    "name": "Busami",
+    "glottocode": "busa1254",
+    "family": "Austronesian",
+    "latitude": -1.73681,
+    "longitude": 136.032
+  },
+  {
+    "name": "Casuarina Coast Asmat",
+    "glottocode": "casu1237",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -6.43005,
+    "longitude": 138.566
+  },
+  {
+    "name": "Central Asmat",
+    "glottocode": "cent2117",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.80391,
+    "longitude": 138.471
+  },
+  {
+    "name": "Central Awyu",
+    "glottocode": "cent2118",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -6.29363,
+    "longitude": 139.693
+  },
+  {
+    "name": "Citak",
+    "glottocode": "cita1245",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.58276,
+    "longitude": 139.461
+  },
+  {
+    "name": "Damal",
+    "glottocode": "dama1272",
+    "family": "Unclassified",
+    "latitude": -4.17345,
+    "longitude": 137.496
+  },
+  {
+    "name": "Dao",
+    "glottocode": "daoo1238",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.28643,
+    "longitude": 136.421
+  },
+  {
+    "name": "Dem",
+    "glottocode": "demm1245",
+    "family": "Unclassified",
+    "latitude": -3.72183,
+    "longitude": 137.632
+  },
+  {
+    "name": "Demisa",
+    "glottocode": "demi1242",
+    "family": "Geelvink Bay",
+    "latitude": -2.54564,
+    "longitude": 136.694
+  },
+  {
+    "name": "Demta",
+    "glottocode": "demt1241",
+    "family": "Sentanic",
+    "latitude": -2.38475,
+    "longitude": 140.166
+  },
+  {
+    "name": "Dera (Indonesia)",
+    "glottocode": "dera1245",
+    "family": "Senagi",
+    "latitude": -3.52309,
+    "longitude": 140.947
+  },
+  {
+    "name": "Diuwe",
+    "glottocode": "diuw1238",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.12627,
+    "longitude": 139.455
+  },
+  {
+    "name": "Dombano",
+    "glottocode": "aran1237",
+    "family": "South Bird's Head",
+    "latitude": -2.08016,
+    "longitude": 132.983
+  },
+  {
+    "name": "Doutai",
+    "glottocode": "dout1240",
+    "family": "Lakes Plain",
+    "latitude": -3.24832,
+    "longitude": 138.22
+  },
+  {
+    "name": "Dubu",
+    "glottocode": "dubu1240",
+    "family": "Pauwasi",
+    "latitude": -3.62591,
+    "longitude": 140.768
+  },
+  {
+    "name": "Dusner",
+    "glottocode": "dusn1237",
+    "family": "Austronesian",
+    "latitude": -2.73859,
+    "longitude": 134.391
+  },
+  {
+    "name": "Duvle",
+    "glottocode": "duvl1242",
+    "family": "Lakes Plain",
+    "latitude": -3.21832,
+    "longitude": 137.964
+  },
+  {
+    "name": "Duvle-Wano-Pidgin",
+    "glottocode": "duvl1238",
+    "family": "Pidgin",
+    "latitude": -3.013068,
+    "longitude": 138.200358
+  },
+  {
+    "name": "Edera Awyu",
+    "glottocode": "eder1237",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -7.0038,
+    "longitude": 139.914
+  },
+  {
+    "name": "Edopi",
+    "glottocode": "edop1238",
+    "family": "Lakes Plain",
+    "latitude": -3.11078,
+    "longitude": 137.387
+  },
+  {
+    "name": "Eipomek",
+    "glottocode": "eipo1242",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.33691,
+    "longitude": 140.045
+  },
+  {
+    "name": "Ekari",
+    "glottocode": "ekar1243",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.88974,
+    "longitude": 136.018
+  },
+  {
+    "name": "Elseng",
+    "glottocode": "else1239",
+    "family": "Unclassified",
+    "latitude": -3.00176,
+    "longitude": 140.418
+  },
+  {
+    "name": "Emumu",
+    "glottocode": "emum1240",
+    "family": "Pauwasi",
+    "latitude": -3.74242,
+    "longitude": 140.903
+  },
+  {
+    "name": "Eritai",
+    "glottocode": "erit1239",
+    "family": "Lakes Plain",
+    "latitude": -2.71182,
+    "longitude": 138.053
+  },
+  {
+    "name": "Fayu",
+    "glottocode": "fayu1238",
+    "family": "Lakes Plain",
+    "latitude": -3.14497,
+    "longitude": 136.867
+  },
+  {
+    "name": "Gresi",
+    "glottocode": "gres1240",
+    "family": "Nimboranic",
+    "latitude": -2.72229,
+    "longitude": 140.279
+  },
+  {
+    "name": "Hatam",
+    "glottocode": "hata1243",
+    "family": "Hatam-Mansim",
+    "latitude": -1.13531,
+    "longitude": 134.037
+  },
+  {
+    "name": "Hupla",
+    "glottocode": "hupl1238",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.36349,
+    "longitude": 139.164
+  },
+  {
+    "name": "Iau",
+    "glottocode": "iauu1242",
+    "family": "Lakes Plain",
+    "latitude": -3.14537,
+    "longitude": 137.69
+  },
+  {
+    "name": "Iha",
+    "glottocode": "ihaa1241",
+    "family": "West Bomberai",
+    "latitude": -2.81013,
+    "longitude": 132.271
+  },
+  {
+    "name": "Irarutu",
+    "glottocode": "irar1238",
+    "family": "Austronesian",
+    "latitude": -2.94438,
+    "longitude": 133.586
+  },
+  {
+    "name": "Isirawa",
+    "glottocode": "isir1237",
+    "family": "Greater Kwerba",
+    "latitude": -1.88775,
+    "longitude": 138.595
+  },
+  {
+    "name": "Itik",
+    "glottocode": "itik1240",
+    "family": "Tor-Orya",
+    "latitude": -2.18342,
+    "longitude": 139.341
+  },
+  {
+    "name": "Jofotek-Bromnya",
+    "glottocode": "jofo1235",
+    "family": "Tor-Orya",
+    "latitude": -2.2478,
+    "longitude": 139.2969
+  },
+  {
+    "name": "Kaburi",
+    "glottocode": "kabu1249",
+    "family": "South Bird's Head",
+    "latitude": -1.92547,
+    "longitude": 132.528
+  },
+  {
+    "name": "Kais",
+    "glottocode": "kais1235",
+    "family": "South Bird's Head",
+    "latitude": -1.78077,
+    "longitude": 132.312
+  },
+  {
+    "name": "Kaiy",
+    "glottocode": "kaiy1239",
+    "family": "Lakes Plain",
+    "latitude": -2.94448,
+    "longitude": 138.161
+  },
+  {
+    "name": "Kalabra",
+    "glottocode": "kala1256",
+    "family": "West Bird's Head",
+    "latitude": -1.43074,
+    "longitude": 131.617
+  },
+  {
+    "name": "Kamoro",
+    "glottocode": "kamo1255",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.30433,
+    "longitude": 135.883
+  },
+  {
+    "name": "Kapori",
+    "glottocode": "kapo1250",
+    "family": "Unclassified",
+    "latitude": -3.52696,
+    "longitude": 139.766
+  },
+  {
+    "name": "Kaptiau",
+    "glottocode": "kapt1235",
+    "family": "Austronesian",
+    "latitude": -2.388426,
+    "longitude": 139.795818
+  },
+  {
+    "name": "Karon Dori",
+    "glottocode": "karo1303",
+    "family": "Maybratic",
+    "latitude": -0.7871,
+    "longitude": 132.663
+  },
+  {
+    "name": "Kaure-Narau",
+    "glottocode": "kaur1271",
+    "family": "Kaure-Kosare",
+    "latitude": -3.39188,
+    "longitude": 140.14
+  },
+  {
+    "name": "Kauwera",
+    "glottocode": "kauw1242",
+    "family": "Greater Kwerba",
+    "latitude": -2.22799,
+    "longitude": 138.157
+  },
+  {
+    "name": "Kayagar",
+    "glottocode": "kaya1328",
+    "family": "Kayagaric",
+    "latitude": -6.37677,
+    "longitude": 138.932
+  },
+  {
+    "name": "Kehu",
+    "glottocode": "kehu1238",
+    "family": "Unclassified",
+    "latitude": -3.19328,
+    "longitude": 136.14
+  },
+  {
+    "name": "Kemberano",
+    "glottocode": "kemb1235",
+    "family": "South Bird's Head",
+    "latitude": -2.24495,
+    "longitude": 132.988
+  },
+  {
+    "name": "Kembra",
+    "glottocode": "kemb1250",
+    "family": "Lepki-Murkim-Kembra",
+    "latitude": -3.89065,
+    "longitude": 140.434
+  },
+  {
+    "name": "Kemtuik",
+    "glottocode": "kemt1242",
+    "family": "Nimboranic",
+    "latitude": -2.64894,
+    "longitude": 140.372
+  },
+  {
+    "name": "Ketengban",
+    "glottocode": "kete1254",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.50417,
+    "longitude": 140.443
+  },
+  {
+    "name": "Ketum",
+    "glottocode": "ketu1238",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.34647,
+    "longitude": 140.604
+  },
+  {
+    "name": "Kia River Awyu",
+    "glottocode": "jair1235",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -6.79732,
+    "longitude": 140.104
+  },
+  {
+    "name": "Kimaama",
+    "glottocode": "kima1246",
+    "family": "Kolopom",
+    "latitude": -8.01899,
+    "longitude": 138.355
+  },
+  {
+    "name": "Kimki",
+    "glottocode": "kimk1238",
+    "family": "Unclassified",
+    "latitude": -4.2742,
+    "longitude": 140.884
+  },
+  {
+    "name": "Kirikiri",
+    "glottocode": "kiri1256",
+    "family": "Lakes Plain",
+    "latitude": -3.18494,
+    "longitude": 137.282
+  },
+  {
+    "name": "Kofei",
+    "glottocode": "kofe1239",
+    "family": "Geelvink Bay",
+    "latitude": -2.414345,
+    "longitude": 136.813619
+  },
+  {
+    "name": "Kokenop Mandobo",
+    "glottocode": "koke1241",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.551923,
+    "longitude": 140.598971
+  },
+  {
+    "name": "Kokoda",
+    "glottocode": "koko1265",
+    "family": "South Bird's Head",
+    "latitude": -2.12872,
+    "longitude": 132.449
+  },
+  {
+    "name": "Kombai",
+    "glottocode": "komb1274",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.54543,
+    "longitude": 139.902
+  },
+  {
+    "name": "Komyandaret",
+    "glottocode": "komy1238",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.25453,
+    "longitude": 140.213
+  },
+  {
+    "name": "Koneraw",
+    "glottocode": "kone1241",
+    "family": "Mombum-Koneraw",
+    "latitude": -8.37424,
+    "longitude": 138.0675
+  },
+  {
+    "name": "Kopkaka",
+    "glottocode": "kopk1238",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.91191,
+    "longitude": 139.926
+  },
+  {
+    "name": "Korapun-Bromley",
+    "glottocode": "kora1298",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.535733,
+    "longitude": 139.680215
+  },
+  {
+    "name": "Korowai",
+    "glottocode": "koro1312",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.26952,
+    "longitude": 140.047
+  },
+  {
+    "name": "Korupun-Sela",
+    "glottocode": "koru1245",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.53497,
+    "longitude": 139.678
+  },
+  {
+    "name": "Korur",
+    "glottocode": "anus1237",
+    "family": "Austronesian",
+    "latitude": -2.26271,
+    "longitude": 139.502
+  },
+  {
+    "name": "Kosadle",
+    "glottocode": "kosa1251",
+    "family": "Kaure-Kosare",
+    "latitude": -3.78748,
+    "longitude": 140.197
+  },
+  {
+    "name": "Kosarek Yale",
+    "glottocode": "kosa1249",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.06603,
+    "longitude": 139.645
+  },
+  {
+    "name": "Kowiai",
+    "glottocode": "kowi1239",
+    "family": "Austronesian",
+    "latitude": -4.21954,
+    "longitude": 133.468
+  },
+  {
+    "name": "Kwer",
+    "glottocode": "kwer1265",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.02008,
+    "longitude": 140.012
+  },
+  {
+    "name": "Kwerba",
+    "glottocode": "nucl1595",
+    "family": "Greater Kwerba",
+    "latitude": -2.2137,
+    "longitude": 138.486
+  },
+  {
+    "name": "Kwerba Mamberamo",
+    "glottocode": "kwer1263",
+    "family": "Greater Kwerba",
+    "latitude": -2.56457,
+    "longitude": 138.436
+  },
+  {
+    "name": "Kwerisa",
+    "glottocode": "kwer1264",
+    "family": "Lakes Plain",
+    "latitude": -2.99145,
+    "longitude": 138.135
+  },
+  {
+    "name": "Kwesten",
+    "glottocode": "kwes1245",
+    "family": "Tor-Orya",
+    "latitude": -2.03622,
+    "longitude": 138.853
+  },
+  {
+    "name": "Kwinsu",
+    "glottocode": "kwin1242",
+    "family": "Tor-Orya",
+    "latitude": -2.3038,
+    "longitude": 139.5137
+  },
+  {
+    "name": "Legenyem",
+    "glottocode": "lege1241",
+    "family": "Austronesian",
+    "latitude": -0.3592,
+    "longitude": 130.749
+  },
+  {
+    "name": "Lepki",
+    "glottocode": "lepk1238",
+    "family": "Lepki-Murkim-Kembra",
+    "latitude": -4.1059,
+    "longitude": 140.464
+  },
+  {
+    "name": "Lower Grand Valley Dani",
+    "glottocode": "lowe1415",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.25684,
+    "longitude": 138.992
+  },
+  {
+    "name": "Mairasi",
+    "glottocode": "nucl1594",
+    "family": "Mairasic",
+    "latitude": -3.4511,
+    "longitude": 134.071
+  },
+  {
+    "name": "Maklew",
+    "glottocode": "makl1246",
+    "family": "Bulaka River",
+    "latitude": -7.74424,
+    "longitude": 139.273
+  },
+  {
+    "name": "Mander",
+    "glottocode": "mand1443",
+    "family": "Tor-Orya",
+    "latitude": -2.29479,
+    "longitude": 138.751
+  },
+  {
+    "name": "Mandobo Atas",
+    "glottocode": "mand1444",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.69357,
+    "longitude": 140.624
+  },
+  {
+    "name": "Mandobo Bawah",
+    "glottocode": "mand1445",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -6.37255,
+    "longitude": 140.451
+  },
+  {
+    "name": "Mansim",
+    "glottocode": "mans1260",
+    "family": "Hatam-Mansim",
+    "latitude": -0.915054,
+    "longitude": 134.011116
+  },
+  {
+    "name": "Marau",
+    "glottocode": "mara1397",
+    "family": "Austronesian",
+    "latitude": -1.66738,
+    "longitude": 135.797
+  },
+  {
+    "name": "Marind",
+    "glottocode": "nucl1622",
+    "family": "Anim",
+    "latitude": -8.15651,
+    "longitude": 140.009
+  },
+  {
+    "name": "Marori",
+    "glottocode": "moro1289",
+    "family": "Unclassified",
+    "latitude": -8.5692,
+    "longitude": 140.688
+  },
+  {
+    "name": "Massep",
+    "glottocode": "mass1263",
+    "family": "Unclassified",
+    "latitude": -1.74679,
+    "longitude": 138.294
+  },
+  {
+    "name": "Matbat",
+    "glottocode": "matb1237",
+    "family": "Austronesian",
+    "latitude": -1.8801,
+    "longitude": 130.075
+  },
+  {
+    "name": "Mawes",
+    "glottocode": "mawe1251",
+    "family": "Unclassified",
+    "latitude": -2.36944,
+    "longitude": 139.752
+  },
+  {
+    "name": "Maybrat",
+    "glottocode": "maib1239",
+    "family": "Maybratic",
+    "latitude": -1.3679,
+    "longitude": 132.591
+  },
+  {
+    "name": "Mbaruan",
+    "glottocode": "bedo1237",
+    "family": "Austronesian",
+    "latitude": -2.74438,
+    "longitude": 132.566
+  },
+  {
+    "name": "Mekwei",
+    "glottocode": "mekw1241",
+    "family": "Nimboranic",
+    "latitude": -2.52264,
+    "longitude": 140.326
+  },
+  {
+    "name": "Meoswar",
+    "glottocode": "meos1237",
+    "family": "Austronesian",
+    "latitude": -2.07828,
+    "longitude": 134.378
+  },
+  {
+    "name": "Mer",
+    "glottocode": "merr1239",
+    "family": "Mairasic",
+    "latitude": -3.3828,
+    "longitude": 134.731
+  },
+  {
+    "name": "Meyah",
+    "glottocode": "meya1236",
+    "family": "East Bird's Head",
+    "latitude": -1.18016,
+    "longitude": 133.618
+  },
+  {
+    "name": "Mid Grand Valley Dani",
+    "glottocode": "midg1235",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.06322,
+    "longitude": 138.945
+  },
+  {
+    "name": "Misool-Salawati Ma'ya",
+    "glottocode": "maya1282",
+    "family": "Austronesian",
+    "latitude": -1.22329,
+    "longitude": 130.909
+  },
+  {
+    "name": "Mlap",
+    "glottocode": "mlap1238",
+    "family": "Nimboranic",
+    "latitude": -2.57316,
+    "longitude": 140.264
+  },
+  {
+    "name": "Moi (Indonesia)",
+    "glottocode": "moii1235",
+    "family": "West Bird's Head",
+    "latitude": -0.96532,
+    "longitude": 131.52
+  },
+  {
+    "name": "Molof",
+    "glottocode": "molo1262",
+    "family": "Unclassified",
+    "latitude": -3.41946,
+    "longitude": 140.557
+  },
+  {
+    "name": "Mombum",
+    "glottocode": "nucl1452",
+    "family": "Mombum-Koneraw",
+    "latitude": -8.27141,
+    "longitude": 138.773
+  },
+  {
+    "name": "Momina",
+    "glottocode": "momi1242",
+    "family": "Bookkeeping",
+    "latitude": -4.812,
+    "longitude": 139.821
+  },
+  {
+    "name": "Momogo-Pupis-Irogo",
+    "glottocode": "nort2917",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.89854,
+    "longitude": 138.405
+  },
+  {
+    "name": "Momuna",
+    "glottocode": "momu1241",
+    "family": "Unclassified",
+    "latitude": -5.04431,
+    "longitude": 139.26
+  },
+  {
+    "name": "Moni",
+    "glottocode": "moni1261",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.72962,
+    "longitude": 136.886
+  },
+  {
+    "name": "Mor (Bomberai Peninsula)",
+    "glottocode": "morb1239",
+    "family": "Unclassified",
+    "latitude": -2.85747,
+    "longitude": 132.845
+  },
+  {
+    "name": "Moraid",
+    "glottocode": "mora1239",
+    "family": "West Bird's Head",
+    "latitude": -1.04083,
+    "longitude": 131.965
+  },
+  {
+    "name": "Morop-Dintere",
+    "glottocode": "iwur1240",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.11036,
+    "longitude": 140.823
+  },
+  {
+    "name": "Moskona",
+    "glottocode": "mosk1236",
+    "family": "East Bird's Head",
+    "latitude": -1.62201,
+    "longitude": 133.145
+  },
+  {
+    "name": "Mpur",
+    "glottocode": "mpur1239",
+    "family": "Unclassified",
+    "latitude": -0.7489,
+    "longitude": 133.166
+  },
+  {
+    "name": "Munggui",
+    "glottocode": "mung1269",
+    "family": "Austronesian",
+    "latitude": -1.66773,
+    "longitude": 135.918
+  },
+  {
+    "name": "Murkim",
+    "glottocode": "murk1238",
+    "family": "Lepki-Murkim-Kembra",
+    "latitude": -4.07548,
+    "longitude": 140.913
+  },
+  {
+    "name": "Nabi",
+    "glottocode": "kuri1260",
+    "family": "Austronesian",
+    "latitude": -2.80683,
+    "longitude": 134.098
+  },
+  {
+    "name": "Nafri",
+    "glottocode": "nafr1241",
+    "family": "Sentanic",
+    "latitude": -2.65036,
+    "longitude": 140.727
+  },
+  {
+    "name": "Nakai",
+    "glottocode": "naka1265",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.19377,
+    "longitude": 140.512
+  },
+  {
+    "name": "Nalca",
+    "glottocode": "nalc1240",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.26068,
+    "longitude": 139.883
+  },
+  {
+    "name": "Namla",
+    "glottocode": "naml1240",
+    "family": "Namla-Tofanma",
+    "latitude": -3.58,
+    "longitude": 140.66
+  },
+  {
+    "name": "Narau",
+    "glottocode": "nara1265",
+    "family": "Bookkeeping",
+    "latitude": -3.43594,
+    "longitude": 139.876
+  },
+  {
+    "name": "Ndom",
+    "glottocode": "ndom1245",
+    "family": "Kolopom",
+    "latitude": -7.93553,
+    "longitude": 138.019
+  },
+  {
+    "name": "Nduga",
+    "glottocode": "ndug1245",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.34043,
+    "longitude": 138.411
+  },
+  {
+    "name": "Nggem",
+    "glottocode": "ngge1241",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.62735,
+    "longitude": 139.011
+  },
+  {
+    "name": "Ngkontar Baedi",
+    "glottocode": "badi1247",
+    "family": "Yam",
+    "latitude": -8.85301,
+    "longitude": 140.753
+  },
+  {
+    "name": "Ngkontar Ngkolmpu",
+    "glottocode": "ngka1235",
+    "family": "Yam",
+    "latitude": -8.87044,
+    "longitude": 140.818
+  },
+  {
+    "name": "Nimboran",
+    "glottocode": "nucl1633",
+    "family": "Nimboranic",
+    "latitude": -2.5803,
+    "longitude": 140.179
+  },
+  {
+    "name": "Ninia Yali",
+    "glottocode": "nini1235",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.4737,
+    "longitude": 139.39
+  },
+  {
+    "name": "Nipsan",
+    "glottocode": "nips1240",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.14421,
+    "longitude": 139.753
+  },
+  {
+    "name": "Nisa-Anasi",
+    "glottocode": "nisa1239",
+    "family": "Geelvink Bay",
+    "latitude": -1.95386,
+    "longitude": 137.6
+  },
+  {
+    "name": "North Awyu",
+    "glottocode": "nort2918",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.93647,
+    "longitude": 140.068
+  },
+  {
+    "name": "North Kamrau",
+    "glottocode": "kamb1302",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.53189,
+    "longitude": 133.518
+  },
+  {
+    "name": "North Muyu",
+    "glottocode": "nort2916",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.55319,
+    "longitude": 140.84
+  },
+  {
+    "name": "Obokuitai",
+    "glottocode": "obok1239",
+    "family": "Lakes Plain",
+    "latitude": -2.88029,
+    "longitude": 137.924
+  },
+  {
+    "name": "Onin",
+    "glottocode": "onin1245",
+    "family": "Austronesian",
+    "latitude": -2.75976,
+    "longitude": 132.062
+  },
+  {
+    "name": "Onin Pidgin",
+    "glottocode": "onin1237",
+    "family": "Pidgin",
+    "latitude": -2.83,
+    "longitude": 132.083
+  },
+  {
+    "name": "Ormu",
+    "glottocode": "ormu1248",
+    "family": "Austronesian",
+    "latitude": -2.51361,
+    "longitude": 140.6015
+  },
+  {
+    "name": "Orya",
+    "glottocode": "orya1242",
+    "family": "Tor-Orya",
+    "latitude": -2.76483,
+    "longitude": 139.89
+  },
+  {
+    "name": "Papasena",
+    "glottocode": "papa1269",
+    "family": "Lakes Plain",
+    "latitude": -2.87535,
+    "longitude": 138.605
+  },
+  {
+    "name": "Papuan Malay",
+    "glottocode": "papu1250",
+    "family": "Austronesian",
+    "latitude": -2.53482,
+    "longitude": 139.651
+  },
+  {
+    "name": "Papuma",
+    "glottocode": "papu1251",
+    "family": "Austronesian",
+    "latitude": -1.77301,
+    "longitude": 135.907
+  },
+  {
+    "name": "Pass Valley Yali",
+    "glottocode": "pass1247",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.76869,
+    "longitude": 139.26
+  },
+  {
+    "name": "Pauwi",
+    "glottocode": "pauw1243",
+    "family": "Austronesian",
+    "latitude": -1.65,
+    "longitude": 137.8
+  },
+  {
+    "name": "Pom",
+    "glottocode": "pomm1237",
+    "family": "Austronesian",
+    "latitude": -1.64224,
+    "longitude": 135.619
+  },
+  {
+    "name": "Puragi",
+    "glottocode": "pura1253",
+    "family": "South Bird's Head",
+    "latitude": -2.05779,
+    "longitude": 132.304
+  },
+  {
+    "name": "Rasawa",
+    "glottocode": "rasa1243",
+    "family": "Lakes Plain",
+    "latitude": -2.37609,
+    "longitude": 136.352
+  },
+  {
+    "name": "Riantana",
+    "glottocode": "rian1263",
+    "family": "Kolopom",
+    "latitude": -7.50746,
+    "longitude": 138.484
+  },
+  {
+    "name": "Salawati",
+    "glottocode": "made1253",
+    "family": "Austronesian",
+    "latitude": -1.05325,
+    "longitude": 130.833
+  },
+  {
+    "name": "Samarokena",
+    "glottocode": "sama1240",
+    "family": "Greater Kwerba",
+    "latitude": -1.84878,
+    "longitude": 138.34
+  },
+  {
+    "name": "Saponi",
+    "glottocode": "sapo1254",
+    "family": "Lakes Plain",
+    "latitude": -2.385,
+    "longitude": 136.497
+  },
+  {
+    "name": "Sauri",
+    "glottocode": "saur1251",
+    "family": "Geelvink Bay",
+    "latitude": -2.33349,
+    "longitude": 136.79
+  },
+  {
+    "name": "Sause",
+    "glottocode": "saus1247",
+    "family": "Unclassified",
+    "latitude": -3.16632,
+    "longitude": 139.627
+  },
+  {
+    "name": "Sawi",
+    "glottocode": "sawi1257",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.99286,
+    "longitude": 138.643
+  },
+  {
+    "name": "Seget",
+    "glottocode": "sege1235",
+    "family": "West Bird's Head",
+    "latitude": -1.36931,
+    "longitude": 131.218
+  },
+  {
+    "name": "Semimi",
+    "glottocode": "semi1264",
+    "family": "Mairasic",
+    "latitude": -3.71553,
+    "longitude": 134.454
+  },
+  {
+    "name": "Sempan",
+    "glottocode": "semp1241",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.17582,
+    "longitude": 137.588
+  },
+  {
+    "name": "Senggi",
+    "glottocode": "seng1285",
+    "family": "Border",
+    "latitude": -3.41983,
+    "longitude": 140.77
+  },
+  {
+    "name": "Sentani",
+    "glottocode": "nucl1632",
+    "family": "Sentanic",
+    "latitude": -2.6013,
+    "longitude": 140.512
+  },
+  {
+    "name": "Serui-Laut",
+    "glottocode": "seru1244",
+    "family": "Austronesian",
+    "latitude": -1.87766,
+    "longitude": 136.252
+  },
+  {
+    "name": "Sikaritai",
+    "glottocode": "sika1263",
+    "family": "Lakes Plain",
+    "latitude": -2.80285,
+    "longitude": 138.287
+  },
+  {
+    "name": "Silimo",
+    "glottocode": "sili1249",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.52544,
+    "longitude": 139.003
+  },
+  {
+    "name": "Skou",
+    "glottocode": "nucl1634",
+    "family": "Sko",
+    "latitude": -2.64378,
+    "longitude": 140.902
+  },
+  {
+    "name": "Smärky Kanum",
+    "glottocode": "smar1235",
+    "family": "Yam",
+    "latitude": -8.91812,
+    "longitude": 140.897
+  },
+  {
+    "name": "Sobei",
+    "glottocode": "sobe1238",
+    "family": "Austronesian",
+    "latitude": -1.86998,
+    "longitude": 138.75
+  },
+  {
+    "name": "Sota Kanum",
+    "glottocode": "sota1242",
+    "family": "Yam",
+    "latitude": -8.40452,
+    "longitude": 140.969
+  },
+  {
+    "name": "Sougb",
+    "glottocode": "mani1235",
+    "family": "East Bird's Head",
+    "latitude": -1.49611,
+    "longitude": 133.95
+  },
+  {
+    "name": "South Awyu",
+    "glottocode": "sout2941",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -7.36301,
+    "longitude": 139.538
+  },
+  {
+    "name": "South Kamrau",
+    "glottocode": "sout3425",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.62525,
+    "longitude": 133.44698
+  },
+  {
+    "name": "South Muyu",
+    "glottocode": "sout2940",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -6.01385,
+    "longitude": 140.815
+  },
+  {
+    "name": "Southern Yelmek",
+    "glottocode": "yelm1242",
+    "family": "Bulaka River",
+    "latitude": -7.93,
+    "longitude": 139.32
+  },
+  {
+    "name": "Sowanda",
+    "glottocode": "sowa1245",
+    "family": "Border",
+    "latitude": -3.28373,
+    "longitude": 140.92
+  },
+  {
+    "name": "Suabo",
+    "glottocode": "suab1238",
+    "family": "South Bird's Head",
+    "latitude": -2.07971,
+    "longitude": 132.157
+  },
+  {
+    "name": "Tabla",
+    "glottocode": "tabl1243",
+    "family": "Sentanic",
+    "latitude": -2.45368,
+    "longitude": 140.396
+  },
+  {
+    "name": "Taikat",
+    "glottocode": "taik1255",
+    "family": "Border",
+    "latitude": -2.9408,
+    "longitude": 140.7495
+  },
+  {
+    "name": "Tamagario",
+    "glottocode": "tama1336",
+    "family": "Kayagaric",
+    "latitude": -6.64493,
+    "longitude": 138.892
+  },
+  {
+    "name": "Tamnim Citak",
+    "glottocode": "tamn1235",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.57962,
+    "longitude": 139.233
+  },
+  {
+    "name": "Tanahmerah",
+    "glottocode": "tana1288",
+    "family": "Unclassified",
+    "latitude": -2.5523,
+    "longitude": 133.18
+  },
+  {
+    "name": "Tandia",
+    "glottocode": "tand1253",
+    "family": "Austronesian",
+    "latitude": -2.84228,
+    "longitude": 134.532
+  },
+  {
+    "name": "Tangko",
+    "glottocode": "tang1353",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.13343,
+    "longitude": 140.269
+  },
+  {
+    "name": "Tarpia",
+    "glottocode": "tarp1240",
+    "family": "Austronesian",
+    "latitude": -2.322279,
+    "longitude": 140.115497
+  },
+  {
+    "name": "Tause",
+    "glottocode": "taus1252",
+    "family": "Lakes Plain",
+    "latitude": -2.8406,
+    "longitude": 136.899
+  },
+  {
+    "name": "Taworta",
+    "glottocode": "tawo1244",
+    "family": "Lakes Plain",
+    "latitude": -3.43455,
+    "longitude": 139.061
+  },
+  {
+    "name": "Tefaro",
+    "glottocode": "tefa1238",
+    "family": "Geelvink Bay",
+    "latitude": -2.35042,
+    "longitude": 136.753
+  },
+  {
+    "name": "Tehit",
+    "glottocode": "tehi1237",
+    "family": "West Bird's Head",
+    "latitude": -1.51049,
+    "longitude": 131.985
+  },
+  {
+    "name": "Tofanma",
+    "glottocode": "tofa1246",
+    "family": "Namla-Tofanma",
+    "latitude": -3.74322,
+    "longitude": 140.591
+  },
+  {
+    "name": "Towei",
+    "glottocode": "towe1240",
+    "family": "Pauwasi",
+    "latitude": -3.87428,
+    "longitude": 140.803
+  },
+  {
+    "name": "Trimuris",
+    "glottocode": "trim1239",
+    "family": "Greater Kwerba",
+    "latitude": -2.15863,
+    "longitude": 138.027
+  },
+  {
+    "name": "Tsaukambo",
+    "glottocode": "tsak1250",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.39076,
+    "longitude": 140.186
+  },
+  {
+    "name": "Tunggare",
+    "glottocode": "tung1293",
+    "family": "Geelvink Bay",
+    "latitude": -3.37462,
+    "longitude": 135.551
+  },
+  {
+    "name": "Una",
+    "glottocode": "unaa1239",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -4.69676,
+    "longitude": 140.1
+  },
+  {
+    "name": "Upper Grand Valley Dani",
+    "glottocode": "uppe1430",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.94368,
+    "longitude": 138.901
+  },
+  {
+    "name": "Usku",
+    "glottocode": "usku1243",
+    "family": "Unclassified",
+    "latitude": -3.63853,
+    "longitude": 140.502
+  },
+  {
+    "name": "Vitou",
+    "glottocode": "vito1235",
+    "family": "Tor-Orya",
+    "latitude": -2.1111,
+    "longitude": 139.1098
+  },
+  {
+    "name": "Wabo",
+    "glottocode": "wabo1240",
+    "family": "Austronesian",
+    "latitude": -1.77297,
+    "longitude": 136.757
+  },
+  {
+    "name": "Walak",
+    "glottocode": "wala1269",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.8238,
+    "longitude": 138.84
+  },
+  {
+    "name": "Wambon",
+    "glottocode": "wamb1259",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.44334,
+    "longitude": 140.48
+  },
+  {
+    "name": "Wanam Yelmek",
+    "glottocode": "wana1273",
+    "family": "Bulaka River",
+    "latitude": -7.451,
+    "longitude": 139.108
+  },
+  {
+    "name": "Wandamen",
+    "glottocode": "wand1267",
+    "family": "Austronesian",
+    "latitude": -2.25622,
+    "longitude": 133.996
+  },
+  {
+    "name": "Wanggom",
+    "glottocode": "wang1299",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.60094,
+    "longitude": 140.194
+  },
+  {
+    "name": "Wano",
+    "glottocode": "wano1243",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.47858,
+    "longitude": 137.678
+  },
+  {
+    "name": "Warembori",
+    "glottocode": "ware1253",
+    "family": "Austronesian",
+    "latitude": -1.65941,
+    "longitude": 137.566
+  },
+  {
+    "name": "Wares",
+    "glottocode": "ware1254",
+    "family": "Unattested",
+    "latitude": -2.47357,
+    "longitude": 139.337
+  },
+  {
+    "name": "Waris",
+    "glottocode": "wari1266",
+    "family": "Border",
+    "latitude": -3.139,
+    "longitude": 140.931
+  },
+  {
+    "name": "Waritai",
+    "glottocode": "wari1264",
+    "family": "Lakes Plain",
+    "latitude": -3.23021,
+    "longitude": 138.456
+  },
+  {
+    "name": "Warkay-Bipim",
+    "glottocode": "wark1247",
+    "family": "Anim",
+    "latitude": -5.7716,
+    "longitude": 138.638
+  },
+  {
+    "name": "Waropen",
+    "glottocode": "waro1242",
+    "family": "Austronesian",
+    "latitude": -2.31142,
+    "longitude": 136.633
+  },
+  {
+    "name": "Wauyai",
+    "glottocode": "wauy1237",
+    "family": "Austronesian",
+    "latitude": -0.2828,
+    "longitude": 130.597
+  },
+  {
+    "name": "Western Dani",
+    "glottocode": "west2594",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.77127,
+    "longitude": 138.217
+  },
+  {
+    "name": "Woi",
+    "glottocode": "woii1237",
+    "family": "Austronesian",
+    "latitude": -1.62746,
+    "longitude": 135.484
+  },
+  {
+    "name": "Wolani",
+    "glottocode": "wola1243",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -3.41642,
+    "longitude": 136.703
+  },
+  {
+    "name": "Woria",
+    "glottocode": "wori1246",
+    "family": "Geelvink Bay",
+    "latitude": -2.37997,
+    "longitude": 136.519
+  },
+  {
+    "name": "Yaben (Konda)",
+    "glottocode": "kond1303",
+    "family": "Konda-Yahadian",
+    "latitude": -1.82635,
+    "longitude": 132.06
+  },
+  {
+    "name": "Yafi",
+    "glottocode": "yafi1240",
+    "family": "Pauwasi",
+    "latitude": -3.39765,
+    "longitude": 140.897
+  },
+  {
+    "name": "Yahadian",
+    "glottocode": "yaha1248",
+    "family": "Konda-Yahadian",
+    "latitude": -1.94317,
+    "longitude": 132.096
+  },
+  {
+    "name": "Yaosakor Asmat",
+    "glottocode": "yaos1235",
+    "family": "Nuclear Trans New Guinea",
+    "latitude": -5.61024,
+    "longitude": 138.582
+  },
+  {
+    "name": "Yaqay",
+    "glottocode": "yaqa1246",
+    "family": "Anim",
+    "latitude": -6.66632,
+    "longitude": 139.249
+  },
+  {
+    "name": "Yarikman",
+    "glottocode": "erok1237",
+    "family": "Austronesian",
+    "latitude": -2.83746,
+    "longitude": 132.705
+  },
+  {
+    "name": "Yaur",
+    "glottocode": "yaur1239",
+    "family": "Austronesian",
+    "latitude": -3.32519,
+    "longitude": 134.879
+  },
+  {
+    "name": "Yawa",
+    "glottocode": "nucl1454",
+    "family": "Yawa-Saweru",
+    "latitude": -1.77196,
+    "longitude": 136.263
+  },
+  {
+    "name": "Yei",
+    "glottocode": "yeii1239",
+    "family": "Yam",
+    "latitude": -7.87489,
+    "longitude": 140.863
+  },
+  {
+    "name": "Yeretuar",
+    "glottocode": "yere1243",
+    "family": "Austronesian",
+    "latitude": -3.01713,
+    "longitude": 134.656
+  },
+  {
+    "name": "Yerisiam",
+    "glottocode": "ires1239",
+    "family": "Austronesian",
+    "latitude": -3.62803,
+    "longitude": 135.025
+  },
+  {
+    "name": "Yetfa",
+    "glottocode": "yetf1238",
+    "family": "Unclassified",
+    "latitude": -4.05884,
+    "longitude": 140.653
+  },
+  {
+    "name": "Yoke",
+    "glottocode": "yoke1238",
+    "family": "Austronesian",
+    "latitude": -1.68798,
+    "longitude": 138.028
+  }
 ]

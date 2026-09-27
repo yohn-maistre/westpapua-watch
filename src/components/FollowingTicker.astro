@@ -5,35 +5,26 @@ const {locale='en'}=Astro.props;const en=locale==='en';
 ---
 <aside class="following-ticker" data-following-ticker data-locale={locale} aria-label={en?'Following updates':'Kabar dalam pantauan'}>
  <div class="following-wash" aria-hidden="true"><i></i><i></i><i></i></div>
- <div class="following-ticker-inner">
- <a class="following-update" data-update-link href={withLocale('/topics/',locale)}><span data-update-case>{en?'Following':'Dalam pantauan'}</span><strong data-update-title><span data-update-text>{en?'Explore the stories we’re following':'Jelajahi isu yang kami pantau'}</span></strong><time data-update-date></time></a>
+ <div class="following-ticker-inner" data-following-viewport tabindex="0">
+  <div class="following-track" data-following-track><a class="following-update" href={withLocale('/topics/',locale)}><span>{en?'Following':'Dalam pantauan'}</span><b aria-hidden="true">✦</b><strong>{en?'Explore the stories we’re following':'Jelajahi isu yang kami pantau'}</strong></a></div>
  </div>
 </aside>
 <script>
 import {fetchJSON} from '../lib/http';
 const root=document.querySelector<HTMLElement>('[data-following-ticker]');
 if(root){
- const en=root.dataset.locale!=='pmy',reduce=matchMedia('(prefers-reduced-motion: reduce)');
- const palette:Record<string,string[]>={
- 'south-papua-food-energy-estate':['#c2d6ae','#afd1c9','#d8c8ed'],
- 'papuan-civic-space':['#bbc5ea','#d2bbdf','#aecfd7'],
- 'nduga-displacement':['#d0b6d0','#b4c8e7','#d9c2e8'],
- 'mining-raja-ampat':['#a5d6d8','#afc4e5','#cdc0ed'],
- 'freeport-mimika':['#dec3ae','#c4b8de','#b4ceda']};
- let items:any[]=[],index=0,timer:number|undefined,holding=false,swiped=false,startX=0,startY=0;
- const link=root.querySelector<HTMLAnchorElement>('[data-update-link]')!;
- const title=root.querySelector<HTMLElement>('[data-update-title]')!,words=root.querySelector<HTMLElement>('[data-update-text]')!;
+ const en=root.dataset.locale!=='pmy',reduce=matchMedia('(prefers-reduced-motion: reduce)'),viewport=root.querySelector<HTMLElement>('[data-following-viewport]')!,track=root.querySelector<HTMLElement>('[data-following-track]')!;
  const shortNames:Record<string,[string,string]>={'south-papua-food-energy-estate':['South Papua','Papua Selatan'],'papuan-civic-space':['Civic space','Ruang sipil'],'nduga-displacement':['Nduga','Nduga'],'mining-raja-ampat':['Raja Ampat','Raja Ampat'],'freeport-mimika':['Mimika','Mimika']};
- const stop=()=>{if(timer)window.clearTimeout(timer);timer=undefined};
- const render=()=>{if(!reduce.matches)link.animate?.([{opacity:.4},{opacity:1}],{duration:360,easing:'ease-out'});const entry=items[index],d=entry?.development;if(!d)return;link.href=`${en?'':'/id'}${d.story_url}`;root.querySelector('[data-update-case]')!.textContent=shortNames[entry.slug]?.[en?0:1]||(en?entry.title.en:entry.title.id||entry.title.en);words.textContent=en?d.title_en:d.title_id||d.title_en;link.setAttribute('aria-label',`${en?entry.title.en:entry.title.id||entry.title.en}: ${words.textContent}`);const time=root.querySelector<HTMLTimeElement>('[data-update-date]')!;time.dateTime=d.latest_report_at;time.textContent=new Date(d.latest_report_at).toLocaleDateString(en?'en-GB':'id-ID',{day:'numeric',month:'short'});(palette[entry.slug]||['#c6b8ef','#a9d1ed','#e0b8d4']).forEach((colour,i)=>root.style.setProperty(`--wash-${i}`,colour));};
- const schedule=()=>{stop();words.classList.remove('is-travelling');if(items.length<2||reduce.matches||holding||document.hidden||(matchMedia('(hover: hover)').matches&&root.matches(':hover'))||root.contains(document.activeElement))return;const distance=Math.max(0,Math.ceil(words.scrollWidth-title.clientWidth)),startDwell=1400,endDwell=3600,shortDwell=6200,travel=distance>8?Math.max(2600,Math.min(18000,distance/34*1000)):0;title.style.setProperty('--ticker-travel',`-${distance}px`);title.style.setProperty('--ticker-time',`${travel}ms`);title.style.setProperty('--ticker-delay',`${startDwell}ms`);if(distance>8)words.classList.add('is-travelling');const total=distance>8?startDwell+travel+endDwell:shortDwell;timer=window.setTimeout(()=>{const advance=()=>{index=(index+1)%items.length;render();schedule()};if(reduce.matches){advance();return}const a=link.animate([{opacity:1,transform:'translateY(0)'},{opacity:.35,transform:'translateY(-2px)'}],{duration:220,easing:'ease-in'});a.finished.then(advance).catch(advance)},total)};
- const move=(step:number)=>{if(items.length<2)return;index=(index+step+items.length)%items.length;render();schedule()};
- root.addEventListener('pointerdown',event=>{if(event.pointerType==='mouse')return;startX=event.clientX;startY=event.clientY;swiped=false;holding=true;root.classList.add('is-holding');stop()});
- root.addEventListener('pointerup',event=>{if(!holding)return;holding=false;root.classList.remove('is-holding');const dx=event.clientX-startX;if(Math.abs(dx)>42&&Math.abs(dx)>Math.abs(event.clientY-startY)*1.3){swiped=true;event.preventDefault();move(dx<0?1:-1)}else schedule()});
- root.addEventListener('pointercancel',()=>{holding=false;root.classList.remove('is-holding');schedule()});
- link.addEventListener('click',event=>{if(swiped){event.preventDefault();swiped=false}});
- link.addEventListener('keydown',event=>{if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();move(event.key==='ArrowRight'?1:-1)}});
- root.addEventListener('mouseenter',stop);root.addEventListener('mouseleave',schedule);root.addEventListener('focusin',stop);root.addEventListener('focusout',()=>setTimeout(schedule,0));document.addEventListener('visibilitychange',schedule);reduce.addEventListener('change',schedule);window.addEventListener('resize',schedule);
- fetchJSON('/api/following').then(data=>{const seen=new Set();items=(data?.items||[]).filter((x:any)=>{const d=x.development;if(!d?.title_en||!/^\/story\/\?id=\d+$/.test(d.story_url)||!Number.isFinite(Date.parse(d.latest_report_at))||seen.has(d.id))return false;seen.add(d.id);return true}).sort((a:any,b:any)=>Date.parse(b.development.latest_report_at)-Date.parse(a.development.latest_report_at));if(items.length){render();schedule()}}).catch(()=>{});
+ let paused=false,resumeTimer=0,last=performance.now(),dragging=false,startX=0,startScroll=0,moved=false;
+ const pause=(ms=1200)=>{paused=true;window.clearTimeout(resumeTimer);if(ms>0)resumeTimer=window.setTimeout(()=>paused=false,ms)};
+ const linkFor=(entry:any)=>{const d=entry.development,a=document.createElement('a');a.className='following-update';a.href=`${en?'':'/id'}${d.story_url}`;const topic=document.createElement('span');topic.textContent=shortNames[entry.slug]?.[en?0:1]||(en?entry.title.en:entry.title.id||entry.title.en);const star=document.createElement('b');star.setAttribute('aria-hidden','true');star.textContent='✦';const title=document.createElement('strong');title.textContent=en?d.title_en:d.title_id||d.title_en;const time=document.createElement('time');time.dateTime=d.latest_report_at;time.textContent=new Date(d.latest_report_at).toLocaleDateString(en?'en-GB':'id-ID',{day:'numeric',month:'short'});a.append(topic,star,title,time);return a};
+ const render=(items:any[])=>{track.replaceChildren();const segment=document.createElement('div');segment.className='following-segment';items.forEach(item=>segment.append(linkFor(item)));track.append(segment);if(!reduce.matches){const clone=segment.cloneNode(true) as HTMLElement;clone.setAttribute('aria-hidden','true');clone.querySelectorAll('a').forEach(a=>a.tabIndex=-1);track.append(clone)}};
+ const tick=(now:number)=>{const dt=Math.min(60,now-last);last=now;if(!reduce.matches&&!paused&&!document.hidden&&track.scrollWidth>viewport.clientWidth){viewport.scrollLeft+=dt*.028;const half=track.scrollWidth/2;if(half&&viewport.scrollLeft>=half)viewport.scrollLeft-=half}requestAnimationFrame(tick)};
+ viewport.addEventListener('wheel',event=>{const horizontal=Math.abs(event.deltaX)>Math.abs(event.deltaY)*1.15;if(event.shiftKey||horizontal){event.preventDefault();viewport.scrollLeft+=event.shiftKey?event.deltaY:event.deltaX;pause()}},{passive:false});
+ viewport.addEventListener('pointerdown',event=>{if(event.pointerType!=='mouse')return;dragging=true;moved=false;startX=event.clientX;startScroll=viewport.scrollLeft;viewport.setPointerCapture(event.pointerId);root.classList.add('is-holding');pause(0)});
+ viewport.addEventListener('pointermove',event=>{if(!dragging)return;const dx=event.clientX-startX;if(Math.abs(dx)>3)moved=true;viewport.scrollLeft=startScroll-dx});
+ viewport.addEventListener('pointerup',event=>{if(!dragging)return;dragging=false;root.classList.remove('is-holding');viewport.releasePointerCapture(event.pointerId);pause()});viewport.addEventListener('pointercancel',()=>{dragging=false;root.classList.remove('is-holding');pause()});viewport.addEventListener('click',event=>{if(moved){event.preventDefault();moved=false}},true);
+ viewport.addEventListener('touchstart',()=>pause(0),{passive:true});viewport.addEventListener('touchend',()=>pause(),{passive:true});root.addEventListener('mouseenter',()=>pause(0));root.addEventListener('mouseleave',()=>pause());root.addEventListener('focusin',()=>pause(0));root.addEventListener('focusout',()=>pause());document.addEventListener('visibilitychange',()=>{paused=document.hidden});reduce.addEventListener('change',()=>location.reload());
+ fetchJSON('/api/following').then(data=>{const seen=new Set();const items=(data?.items||[]).filter((x:any)=>{const d=x.development;if(!d?.title_en||!/^\/story\/\?id=\d+$/.test(d.story_url)||!Number.isFinite(Date.parse(d.latest_report_at))||seen.has(d.id))return false;seen.add(d.id);return true}).sort((a:any,b:any)=>Date.parse(b.development.latest_report_at)-Date.parse(a.development.latest_report_at));if(items.length)render(items)}).catch(()=>{});requestAnimationFrame(tick);
 }
 </script>

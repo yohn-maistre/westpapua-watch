@@ -438,6 +438,27 @@
         "mirror": {"image": "history/evacuees-1962/image.webp", "poster": "history/evacuees-1962/poster.webp"}
       },
       "relatedHistoryEvents": ["history-1962"]
+    },
+    {
+      "id": "papua-erfgoed-atom-age-1962",
+      "section": "transfer",
+      "date": "1962",
+      "title": {"en": "From Stone Age to Atom Age", "pmy": "Dari Zaman Batu ke Zaman Atom"},
+      "place": "Western New Guinea",
+      "mediaType": "film",
+      "layout": "wide",
+      "archive": {
+        "institution": "Stichting Papua Erfgoed",
+        "identifier": "FI/1200/29",
+        "sourceUrl": "https://www.papuaerfgoed.org/en/FI/1200/29",
+        "creator": "Collection record"
+      },
+      "editorial": {
+        "caption": {"en": "A 1962 educational film record covering daily life, education, the New Guinea Council, transport and public services.", "pmy": "Catatan film pendidikan tahun 1962 tentang kehidupan sehari-hari, pendidikan, Dewan Nugini, transportasi, dan layanan publik."},
+        "context": {"en": "The source page exposes descriptive metadata and stills, but no clear blanket reuse licence. Watch keeps media with the source archive.", "pmy": "Halaman sumber menampilkan metadata dan gambar diam, tetapi tidak mencantumkan lisensi penggunaan ulang yang jelas. Media tetap berada di arsip sumber."}
+      },
+      "access": {"mode": "external", "rightsStatus": "unknown", "rightsHolder": "Stichting Papua Erfgoed / underlying rights holders", "rightsVerifiedAt": "2026-09-27"},
+      "relatedHistoryEvents": ["history-1961", "history-1962"]
     }
   ]
 }

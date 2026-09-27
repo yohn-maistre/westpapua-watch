@@ -1,0 +1,27 @@
+{
+  "default": {
+    "dataset": "Glottolog 5.3",
+    "geometry": "representative points",
+    "scope": "six current Papua provinces",
+    "recordCount": 256,
+    "note": "Points are not language or customary-territory boundaries."
+  },
+  "build": {
+    "mode": "pinned offline seed",
+    "seed": "content/data/languages-source.tsv",
+    "generated": "2026-09-27",
+    "administrativeReference": "BIG Area Batas Wilayah Administrasi Provinsi, MapServer layer 12",
+    "administrativeReferenceUrl": "https://geoservices.big.go.id/rbi/rest/services/BATASWILAYAH/BATAS_WILAYAH/MapServer/12",
+    "offlineMaskCrossCheck": "denyherianto/indonesia-geojson-topojson-maps-with-38-provinces",
+    "offlineMaskLicense": "CC BY 4.0",
+    "reason": "Normal builds must not depend on a live BIG geometry query; the pinned seed keeps phone/CI builds deterministic."
+  },
+  "historicalCandidate": {
+    "label": "Language Atlas · 1981/83",
+    "dataset": "Glottography wurm1981pacific v2.0",
+    "record": "https://zenodo.org/records/18643982",
+    "geometry": "speaker-area polygons",
+    "license": "CC BY-NC 4.0",
+    "status": "future optional historical/reference layer; not a default current-boundary layer"
+  }
+}

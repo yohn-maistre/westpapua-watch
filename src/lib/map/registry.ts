@@ -110,10 +110,10 @@ export const MAP_LAYERS:MapLayerDefinition[]=[
   },
   {
     id:'languages',family:'language',title:'Language reference points',titleId:'Titik referensi bahasa',
-    description:'Selected language-level records shown as representative reference points. Points are not language boundaries or customary territories.',
-    descriptionId:'Pilihan catatan tingkat bahasa yang ditampilkan sebagai titik referensi. Titik bukan batas bahasa atau wilayah adat.',
-    sourceType:'live',source:'/data/languages.geojson',sourceUrl:'https://glottolog.org/',attribution:'Glottolog 5.3 · selected reference records',license:'Glottolog data / public reference metadata',coverage:'Curated Western New Guinea selection',
-    coverageNotes:'Representative points only; the current selection is deliberately non-exhaustive.',coverageNotesId:'Hanya titik referensi; pilihan saat ini sengaja belum lengkap.',
+    description:'Glottolog 5.3 language-level records whose representative coordinates fall within the six current Papua provinces. Points are not language or customary boundaries.',
+    descriptionId:'Catatan tingkat bahasa Glottolog 5.3 dengan koordinat referensi di enam provinsi Papua saat ini. Titik bukan batas bahasa atau wilayah adat.',
+    sourceType:'live',source:'/data/languages.geojson',sourceUrl:'https://glottolog.org/',attribution:'Glottolog 5.3 · BIG province geometry',license:'Glottolog CC BY 4.0 · BIG public geospatial service',coverage:'Six current Papua provinces',
+    coverageNotes:'Representative language locations only. A dated Wurm–Hattori 1981/83 polygon atlas can be added separately as a historical reference layer.',coverageNotesId:'Hanya lokasi referensi bahasa. Atlas poligon Wurm–Hattori 1981/83 dapat ditambahkan terpisah sebagai lapisan sejarah.',
     minZoom:3,maxZoom:14,defaultVisible:false,geometry:'circle',
     style:{'circle-radius':['interpolate',['linear'],['zoom'],3,5,8,8.5],'circle-color':'#75689d','circle-opacity':.82,'circle-stroke-color':'#faf8f3','circle-stroke-width':1.2},availability:'always'
   },
