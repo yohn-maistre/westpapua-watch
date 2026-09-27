@@ -1,13 +1,83 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';import { exhibitionItems } from '../data/exhibition';import { sourceById } from '../data/sources';import { withLocale } from '../lib/i18n';import type { Locale } from '../data/types';
-const {locale='en'}=Astro.props as {locale?:Locale};
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { exhibitionItems } from '../data/exhibition';
+import { sourceById } from '../data/sources';
+import { withLocale } from '../lib/i18n';
+import type { Locale } from '../data/types';
+const { locale = 'en' } = Astro.props as { locale?: Locale };
+const groups = [
+  { lane: 'works', en: 'Artworks', pmy: 'Karya seni', detail: 'Painting, installation and collective practice' },
+  { lane: 'voices', en: 'Performance & media', pmy: 'Pertunjukan & media', detail: 'Film, music, poetry and live work' },
+  { lane: 'archive', en: 'Objects & archive', pmy: 'Objek & arsip', detail: 'Collections, recordings and historical material' },
+] as const;
 ---
-<BaseLayout locale={locale} active="exhibition" title={locale==='en'?'Exhibition':'Pameran'}>
-<section class="section"><div class="wrap"><h1 class="page-title">{locale==='en'?'Artists, collectives, writers, works, and archive material.':'Seniman, kolektif, penulis, karya, deng materi arsip.'}</h1><p class="page-intro"><a class="chip primary" href={withLocale('/exhibition/view/',locale)}>{locale==='en'?'Enter exhibition view':'Masuk tampilan pameran'} ↗</a></p><input class="resource-search" type="search" data-exhibit-search aria-label={locale==='en'?'Search exhibition':'Cari pameran'} placeholder={locale==='en'?'Find a work, artist or medium':'Cari karya, seniman, atau medium'}/><p data-exhibit-count role="status"></p><div class="exhibition-grid">{exhibitionItems.map(item=><article class="work-card" data-exhibit-text={[item.title,item.type,item.creator,item.summary].join(' ').toLowerCase()}><img src={item.image} alt="" loading="lazy"/><div class="body"><div class="eyebrow">{item.type}</div><h2>{item.title}</h2><p>{item.summary}</p><small class="muted">{item.credit}</small><p style="margin-top:.7rem"><a href={item.sourceUrl||sourceById[item.sourceId]?.url} target="_blank" rel="noreferrer">{item.publisher||sourceById[item.sourceId]?.publisher} ↗</a></p></div></article>)}</div></div></section>
+<BaseLayout locale={locale} active="exhibition" title={locale === 'en' ? 'Exhibition' : 'Pameran'}>
+  <section class="section exhibition-index"><div class="wrap">
+    <div class="index-intro"><div><p class="eyebrow">{locale === 'en' ? 'Exhibition / Catalogue' : 'Pameran / Katalog'}</p><h1>{locale === 'en' ? 'A living collection.' : 'Koleksi yang hidup.'}</h1><p>{locale === 'en' ? 'Artists, performances, works and archival traces from and about West Papua. Each record leads to its original source and credit.' : 'Seniman, pertunjukan, karya, deng jejak arsip dari deng tentang Papua Barat. Buka sumber asli deng kredit tiap karya.'}</p></div><a class="index-enter" href={withLocale('/exhibition/view/', locale)}>{locale === 'en' ? 'Enter the moving wall' : 'Masuk dinding pameran'} <span aria-hidden="true">↗</span></a></div>
+    <div class="index-tools"><label for="exhibition-search">{locale === 'en' ? 'Find a work' : 'Cari karya'}</label><input id="exhibition-search" type="search" data-exhibit-search placeholder={locale === 'en' ? 'Title, artist, medium…' : 'Judul, seniman, medium…'} /><p data-exhibit-count role="status"></p></div>
+    {groups.map((group, groupIndex) => {
+      const items = exhibitionItems.filter(item => item.lane === group.lane);
+      return <section class="index-group" data-exhibit-group aria-labelledby={`exhibit-group-${group.lane}`}>
+        <header><span class="index-number">0{groupIndex + 1}</span><div><h2 id={`exhibit-group-${group.lane}`}>{group[locale]}</h2><p>{group.detail}</p></div><span class="index-number">{String(items.length).padStart(2, '0')}</span></header>
+        <div class="index-list">{items.map(item => {
+          const sourceUrl = item.sourceUrl || sourceById[item.sourceId]?.url;
+          const visual = item.rights !== 'source-only';
+          return <article class="index-item" data-exhibit-text={[item.title, item.type, item.creator, item.summary, item.publisher].join(' ').toLowerCase()}>
+            <div class="index-media">{visual ? <img src={item.image} alt="" loading="lazy" decoding="async" /> : <span aria-hidden="true">✳</span>}</div>
+            <div class="index-copy"><span class="eyebrow">{item.type}{item.year && ` · ${item.year}`}</span><h3>{item.title}</h3><p class="index-creator">{item.creator || item.publisher}</p><p class="index-summary">{item.summary}</p><small>{item.credit}</small></div>
+            {sourceUrl && <a class="index-source" href={sourceUrl} target="_blank" rel="noreferrer" aria-label={`${item.title}: ${locale === 'en' ? 'open original source' : 'buka sumber asli'}`}><span>{locale === 'en' ? 'Source' : 'Sumber'}</span><span aria-hidden="true">↗</span></a>}
+          </article>;
+        })}</div>
+      </section>;
+    })}
+  </div></section>
 </BaseLayout>
-
 <script>
-const search=document.querySelector<HTMLInputElement>('[data-exhibit-search]');const cards=[...document.querySelectorAll<HTMLElement>('[data-exhibit-text]')];
-const filter=()=>{let count=0;for(const card of cards){card.hidden=!card.dataset.exhibitText?.includes(search?.value.trim().toLowerCase()||'');if(!card.hidden)count++}document.querySelector('[data-exhibit-count]')!.textContent=`${count} / ${cards.length}`};search?.addEventListener('input',filter);filter();
+  const search = document.querySelector<HTMLInputElement>('[data-exhibit-search]');
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-exhibit-text]')];
+  const groups = [...document.querySelectorAll<HTMLElement>('[data-exhibit-group]')];
+  const count = document.querySelector<HTMLElement>('[data-exhibit-count]');
+  const filter = () => {
+    let visible = 0;
+    const query = search?.value.trim().toLocaleLowerCase() || '';
+    for (const card of cards) { card.hidden = !card.dataset.exhibitText?.includes(query); if (!card.hidden) visible++; }
+    for (const group of groups) group.hidden = !group.querySelector('[data-exhibit-text]:not([hidden])');
+    if (count) count.textContent = `${visible} / ${cards.length}`;
+  };
+  search?.addEventListener('input', filter); filter();
+  document.querySelectorAll<HTMLImageElement>('.index-media img').forEach(img => {
+    const fallback = () => { const mark = document.createElement('span'); mark.setAttribute('aria-hidden', 'true'); mark.textContent = '✳'; img.replaceWith(mark); };
+    img.addEventListener('error', fallback, { once: true });
+    if (img.complete && !img.naturalWidth) fallback();
+  });
 </script>
-<style>.work-card[hidden]{display:none}.resource-search{margin:1.5rem 0 .5rem;width:100%}[data-exhibit-count]{color:var(--muted);margin-bottom:1.5rem}</style>
+<style>
+  .exhibition-index{padding-top:clamp(4rem,8vw,8rem)}
+  .index-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(170px,270px);align-items:end;gap:3rem;padding-bottom:clamp(4rem,8vw,8rem);border-bottom:1px solid var(--line)}
+  .index-intro h1{font-size:clamp(3.8rem,10vw,10rem);line-height:.86;letter-spacing:-.08em;max-width:10ch;margin:.6rem 0 1.5rem}
+  .index-intro p:not(.eyebrow){max-width:56ch;color:var(--muted);line-height:1.6}
+  .index-enter{display:flex;justify-content:space-between;gap:1rem;padding:1.4rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:1.1rem;transition:padding .2s,color .2s}
+  .index-enter:hover{padding-left:.5rem;color:#c9c2ec}
+  .index-tools{display:flex;align-items:center;gap:1rem;padding:1.5rem 0 2rem;border-bottom:1px solid var(--line)}
+  .index-tools label{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+  .index-tools input{flex:1;min-width:0;padding:.8rem 1rem;border:1px solid var(--line);border-radius:0;background:transparent;color:inherit;font:inherit}
+  .index-tools input:focus-visible{outline:2px solid #b4aee6;outline-offset:2px}
+  .index-tools p{min-width:4rem;text-align:right;color:var(--muted);font-size:.8rem}
+  .index-group{padding:4rem 0 5rem}.index-group[hidden],.index-item[hidden]{display:none}
+  .index-group>header{display:grid;grid-template-columns:4rem 1fr auto;gap:1rem;align-items:start;padding-bottom:2rem}
+  .index-number{color:var(--muted);font-size:.75rem;letter-spacing:.12em}
+  .index-group h2{font-size:clamp(2.7rem,6vw,6rem);letter-spacing:-.065em;line-height:.95;margin:0 0 .6rem}
+  .index-group header p{color:var(--muted);font-size:.86rem;margin:0}
+  .index-item{display:grid;grid-template-columns:minmax(90px,16%) minmax(0,1fr) 7rem;gap:clamp(1rem,3vw,3rem);align-items:start;min-width:0;padding:1.45rem 0;border-top:1px solid var(--line)}
+  .index-media{display:flex;align-items:center;justify-content:center;aspect-ratio:1.25/1;max-height:170px;color:#68677d;background:radial-gradient(circle at 50% 42%,#9290b01c,transparent 68%);font:2rem Georgia,serif}
+  .index-media img{height:100%;width:100%;object-fit:contain;background:#14151a}
+  .index-item .eyebrow{color:#aaa7c0;font-size:.67rem;text-transform:uppercase;letter-spacing:.1em}
+  .index-item h3{font-size:clamp(1.35rem,2.4vw,2.5rem);line-height:1.08;letter-spacing:-.045em;margin:.55rem 0 .45rem;max-width:28ch}
+  .index-creator{font-size:.9rem;margin:.3rem 0;color:#c6c4ce}
+  .index-summary{max-width:64ch;margin:.6rem 0;color:var(--muted);line-height:1.5;font-size:.84rem}
+  .index-item small{color:#777784;font-size:.7rem}
+  .index-source{display:flex;justify-content:space-between;gap:.5rem;padding:.4rem 0;border-bottom:1px solid #696676;font-size:.75rem;transition:color .2s}
+  .index-source:hover{color:#c9c2ec}
+  @media(max-width:760px){.index-intro{grid-template-columns:1fr;gap:2rem}.index-intro h1{font-size:clamp(3.7rem,16vw,6rem)}.index-tools{flex-wrap:wrap}.index-tools input{flex-basis:65%}.index-group{padding:3rem 0}.index-group>header{grid-template-columns:2rem 1fr auto}.index-item{grid-template-columns:72px minmax(0,1fr);gap:1rem;padding:1.2rem 0}.index-media{aspect-ratio:1/1}.index-media:not(:has(img)){background:none;justify-content:flex-start;font-size:1rem}.index-summary{display:none}.index-source{grid-column:2;justify-content:flex-start;width:max-content;margin-top:-.6rem}.index-source span:last-child{margin-left:.5rem}}
+  @media(prefers-reduced-motion:reduce){.index-enter,.index-source{transition:none}}
+</style>
