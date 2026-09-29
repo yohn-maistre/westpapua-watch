@@ -1,0 +1,28 @@
+/* News uses the same lilac field and concentric line as the Following mosaic. */
+.development-card .media{background:#66627f}
+.development-card .media img,.home-current-card img,.hero-composite .hero-media>img{background:#66627f}
+
+.now-header.now-header-minimal{justify-content:space-between}
+.news-sources-trigger{border:0;background:transparent;color:var(--ink-soft);font:inherit;font-size:.78rem;cursor:pointer;padding:.5rem 0}
+.news-sources-trigger:hover,.news-sources-trigger:focus-visible{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+.news-sources-dialog{width:min(820px,calc(100vw - 28px));max-height:min(86dvh,900px);margin:auto;padding:0;border:1px solid #ffffff24;border-radius:22px;background:#11141e;color:var(--ink);box-shadow:0 35px 130px #000b;overflow:auto}
+.news-sources-dialog::backdrop{background:#05060bd1;backdrop-filter:blur(8px)}
+.news-sources-inner{padding:clamp(1.3rem,4vw,2.7rem)}
+.news-sources-head{display:flex;align-items:start;justify-content:space-between;gap:1rem}
+.news-sources-head h2{margin:0;font-size:clamp(2.4rem,6vw,4.2rem);line-height:1;letter-spacing:-.055em}
+.news-sources-head button{flex:none;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:#ffffff08;color:inherit;font:inherit;font-size:1.5rem;cursor:pointer}
+.news-sources-inner>p{max-width:55ch;margin:1rem 0 2.4rem;color:var(--muted);line-height:1.5;font-size:.9rem}
+.news-sources-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 2.5rem}
+.news-sources-groups section{min-width:0}
+.news-sources-groups h3{margin:0 0 .5rem;color:var(--muted-2);font-size:.67rem;font-weight:650;letter-spacing:.1em;text-transform:uppercase}
+.news-sources-groups a{display:flex;justify-content:space-between;gap:1rem;padding:.73rem 0;border-top:1px solid var(--line);font-size:.95rem;line-height:1.3}
+.news-sources-groups a span:last-child{color:var(--muted-2)}
+.news-sources-groups a:hover{color:#c7bdf1}
+.news-sources-dialog :focus-visible{outline:2px solid #c7bdf1;outline-offset:3px}
+@media(max-width:620px){.news-sources-groups{grid-template-columns:1fr;gap:1.6rem}.news-sources-dialog{max-height:calc(100dvh - 20px)}}
+
+/* Labels under the story actions are metadata, not a third row of buttons. */
+.hero-composite .current-topic-tags{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .6rem;width:100%;margin-top:.25rem}
+.current-topic-tags[hidden]{display:none}
+.current-topic-tags .topic-chip{padding:0;border:0;background:none;box-shadow:none;color:var(--muted-2);font-size:.68rem;line-height:1.5;font-weight:500;letter-spacing:.015em}
+.current-topic-tags .topic-chip+.topic-chip::before{content:"·";margin-right:.6rem;color:var(--muted-2)}
