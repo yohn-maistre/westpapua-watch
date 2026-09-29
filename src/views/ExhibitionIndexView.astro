@@ -6,19 +6,19 @@ import { withLocale } from '../lib/i18n';
 import type { Locale } from '../data/types';
 const { locale = 'en' } = Astro.props as { locale?: Locale };
 const groups = [
-  { lane: 'works', en: 'Artworks', pmy: 'Karya seni', detail: 'Painting, installation and collective practice' },
-  { lane: 'voices', en: 'Performance & media', pmy: 'Pertunjukan & media', detail: 'Film, music, poetry and live work' },
-  { lane: 'archive', en: 'Objects & archive', pmy: 'Objek & arsip', detail: 'Collections, recordings and historical material' },
+  { lane: 'works', en: 'Artworks', pmy: 'Karya seni' },
+  { lane: 'voices', en: 'Performance & media', pmy: 'Pertunjukan & media' },
+  { lane: 'archive', en: 'Objects & archive', pmy: 'Objek & arsip' },
 ] as const;
 ---
 <BaseLayout locale={locale} active="exhibition" title={locale === 'en' ? 'Exhibition' : 'Pameran'}>
   <section class="section exhibition-index"><div class="wrap">
-    <div class="index-intro"><div><p class="eyebrow">{locale === 'en' ? 'Exhibition / Catalogue' : 'Pameran / Katalog'}</p><h1>{locale === 'en' ? 'A living collection.' : 'Koleksi yang hidup.'}</h1><p>{locale === 'en' ? 'Artists, performances, works and archival traces from and about West Papua. Each record leads to its original source and credit.' : 'Seniman, pertunjukan, karya, deng jejak arsip dari deng tentang Papua Barat. Buka sumber asli deng kredit tiap karya.'}</p></div><a class="index-enter" href={withLocale('/exhibition/view/', locale)}>{locale === 'en' ? 'Enter the moving wall' : 'Masuk dinding pameran'} <span aria-hidden="true">↗</span></a></div>
+    <div class="index-intro"><div><h1>{locale === 'en' ? 'Exhibition.' : 'Pameran.'}</h1><p>{locale === 'en' ? 'Artists and works from Papua.' : 'Seniman deng karya dari Papua.'}</p></div><a class="index-enter" href={withLocale('/exhibition/view/', locale)}>{locale === 'en' ? 'Exhibition view' : 'Tampilan pameran'} <span aria-hidden="true">↗</span></a></div>
     <div class="index-tools"><label for="exhibition-search">{locale === 'en' ? 'Find a work' : 'Cari karya'}</label><input id="exhibition-search" type="search" data-exhibit-search placeholder={locale === 'en' ? 'Title, artist, medium…' : 'Judul, seniman, medium…'} /><p data-exhibit-count role="status"></p></div>
     {groups.map((group, groupIndex) => {
       const items = exhibitionItems.filter(item => item.lane === group.lane);
       return <section class="index-group" data-exhibit-group aria-labelledby={`exhibit-group-${group.lane}`}>
-        <header><span class="index-number">0{groupIndex + 1}</span><div><h2 id={`exhibit-group-${group.lane}`}>{group[locale]}</h2><p>{group.detail}</p></div><span class="index-number">{String(items.length).padStart(2, '0')}</span></header>
+        <header><span class="index-number">0{groupIndex + 1}</span><h2 id={`exhibit-group-${group.lane}`}>{group[locale]}</h2><span class="index-number">{String(items.length).padStart(2, '0')}</span></header>
         <div class="index-list">{items.map(item => {
           const sourceUrl = item.sourceUrl || sourceById[item.sourceId]?.url;
           const visual = item.rights !== 'source-only';
