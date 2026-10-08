@@ -1,8 +1,9 @@
-import {storySynthesisSections} from '../../shared/story-synthesis';
 type Env = { WATCH_ENGINE?: Fetcher };
 const escape = (v:unknown) => String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
 const url = (v:unknown) => {if(typeof v!=='string'||!v.trim())return '';try{const u=new URL(String(v),'https://westpapua.watch');return ['https:','http:'].includes(u.protocol)?u.href:''}catch{return ''}};
 const array=(v:any):any[]=>{if(Array.isArray(v))return v;try{const a=JSON.parse(v||'[]');return Array.isArray(a)?a:[]}catch{return []}};
+const normalized=(v:any)=>String(v||'').toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim();
+const sectionsFor=(s:any,local:boolean,summary='')=>{const points=array(local?(s.key_points?.id||s.key_points_id_json):(s.key_points?.en||s.key_points_en_json)).filter(x=>typeof x==='string'),changed=String((local?s.what_changed_id:s.what_changed)||'').trim(),stored=(()=>{try{return typeof s.common_ground_json==='object'?s.common_ground_json:JSON.parse(s.common_ground_json||'null')}catch{return null}})(),common=stored?.version===2?array(stored.items).map((x:any)=>local?x.text_id:x.text_en):local?array(s.common_ground_id_json):array(s.common_ground_json),redundant=new Set([summary,...points].map(normalized).filter(Boolean));return {points,changed:redundant.has(normalized(changed))?'':changed,common:common.filter((x:any)=>typeof x==='string'&&x.trim()&&!redundant.has(normalized(x))).map((x:string)=>x.trim())}};
 const date=(v:string,local:boolean)=>v&&Number.isFinite(Date.parse(v))?new Date(v).toLocaleDateString(local?'id-ID':'en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}):'';
 
 // Render the existing static story shell at the edge: readable without JS,
@@ -34,7 +35,7 @@ export const storyPage:PagesFunction<Env> = async context => {
  set('[data-story-source-count]',`${publishers.size} ${local?'sumber':'sources'}`);
  rw.on('meta[name="description"],meta[property="og:description"]',{element(e){e.setAttribute('content',summary||'')}}).on('meta[property="og:title"]',{element(e){e.setAttribute('content',title)}}).on('meta[property="og:url"]',{element(e){e.setAttribute('content',canonical.href)}}).on('link[rel="canonical"]',{element(e){e.setAttribute('href',canonical.href)}}).on('a[hreflang],link[rel="alternate"]',{element(e){const href=e.getAttribute('href');if(href){const next=new URL(href,requestUrl);next.searchParams.set('id',id!);e.setAttribute('href',next.href)}}});
  if(d.publication_kind==='source_excerpt'){const source=articles.find((a:any)=>Number(a.id)===Number(d.excerpt_article_id));if(source&&url(source.canonical_url))rw.on('[data-excerpt-source]',{element(e){e.removeAttribute('hidden');e.setAttribute('href',url(source.canonical_url));e.setAttribute('target','_blank');e.setAttribute('rel','noreferrer');e.setInnerContent(`${local?'Baca laporan asli':'Read the original report'} · ${source.publisher} ↗`)}});}
- const sections=storySynthesisSections(s,local?'pmy':'en',summary);
+ const sections=sectionsFor(s,local,summary);
  if(sections.points.length){rw.on('[data-story-points]',{element(e){e.removeAttribute('hidden')}});html('[data-story-points] ul',sections.points.map(p=>`<li>${escape(p)}</li>`).join(''))}
  if(sections.changed){rw.on('[data-story-changed]',{element(e){e.removeAttribute('hidden')}});set('[data-story-changed] p',sections.changed)}
  if(sections.common.length&&publishers.size>1){rw.on('[data-story-common]',{element(e){e.removeAttribute('hidden')}});html('[data-story-common] ul',sections.common.map(p=>`<li>${escape(p)}</li>`).join(''))}
