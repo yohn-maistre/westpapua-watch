@@ -16,7 +16,7 @@ const sourcePlates=new Set([
   'kiney-waloboney','rmw-opening-night-2026','rmw-ocean-solidarities',
   'rmw-saudara-papua','rmw-i-am-a-papuan','our-land-has-gone',
   'papua-erfgoed-stone-atom-age','wisisi-nit-meke-our-wisisi-music',
-  'mambesak-vol-1','korwar-cenderawasih-bay'
+  'mambesak-vol-1'
 ]);
 const visualItems=exhibitionItems.filter(item=>item.rights!=='source-only'||sourcePlates.has(item.slug));
 const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:varied(visualItems.filter(item=>item.lane===lane))}));
@@ -26,7 +26,7 @@ const lanes=laneOrder.map(lane=>({lane,label:laneLabels[lane][locale],items:vari
     <div class="exhibition-rails" data-exhibition-rails aria-label={locale==='en'?'Exhibition themes':'Tema pameran'}>
       {lanes.map((group,railIndex)=><section class:list={['exhibition-rail',`rail-${railIndex+1}`]} data-exhibition-rail data-index={String(railIndex)} data-speed={String([12,-9,10][railIndex])} aria-label={group.label}>
         <div class="exhibition-track">
-          {[...group.items,...group.items,...group.items].map((item,i)=>{const source=sourceById[item.sourceId];return <button class:list={['exhibit-card',`size-${item.sizeHint==='large'?2:item.sizeHint==='small'?0:1}`,item.rights==='source-only'&&'is-catalogue',item.slug.startsWith('rmw-')&&'is-programme',(item.publisher?.startsWith('Sa Pu Kisah')||item.publisher?.startsWith('Mairi'))&&'is-painting']} style={`--plate-index:${i%7}`} type="button" data-exhibit-card data-title={item.title} data-type={item.type} data-creator={item.creator||item.publisher||''} data-summary={item.summary} data-source-label={item.publisher||source?.publisher||''} data-credit={item.credit||''} data-source-url={item.sourceUrl||source?.url||''} aria-label={`${item.title}. ${locale==='en'?'Open details':'Buka rincian'}`}>{item.rights!=='source-only'&&<img src={item.image} alt="" loading="lazy" decoding="async"/>}<span class="exhibit-card-title">{item.rights==='source-only'&&<small>{item.type}</small>}{item.title}{item.rights==='source-only'&&<em>{item.creator||item.publisher}</em>}</span>{item.rights==='source-only'&&<span class="exhibit-plate-no" aria-hidden="true">{String(i%group.items.length+1).padStart(2,'0')}</span>}</button>})}
+          {[...group.items,...group.items,...group.items].map((item,i)=>{const source=sourceById[item.sourceId];return <button class:list={['exhibit-card',`size-${item.sizeHint==='large'?2:item.sizeHint==='small'?0:1}`,item.rights==='source-only'&&'is-catalogue',item.slug.startsWith('rmw-')&&'is-programme',(item.publisher?.startsWith('Sa Pu Kisah')||item.publisher?.startsWith('Mairi'))&&'is-painting']} style={`--plate-index:${i%7}`} type="button" data-exhibit-card data-title={item.title} data-type={item.type} data-creator={item.creator||item.publisher||''} data-summary={locale==='pmy'?(item.summaryId||item.summary):item.summary} data-source-label={item.publisher||source?.publisher||''} data-credit={item.credit||''} data-source-url={item.sourceUrl||source?.url||''} aria-label={`${item.title}. ${locale==='en'?'Open details':'Buka rincian'}`}>{item.rights!=='source-only'&&<img src={item.image} alt="" loading="lazy" decoding="async"/>}<span class="exhibit-card-title">{item.rights==='source-only'&&<small>{item.type}</small>}{item.title}{item.rights==='source-only'&&<em>{item.creator||item.publisher}</em>}</span>{item.rights==='source-only'&&<span class="exhibit-plate-no" aria-hidden="true">{String(i%group.items.length+1).padStart(2,'0')}</span>}</button>})}
         </div>
       </section>)}
     </div>

@@ -1,7 +1,7 @@
 export const featuredFollowingSlugs=['south-papua-food-energy-estate','nduga-displacement','mining-raja-ampat','freeport-mimika'] as const;
-export const secondaryFollowingSlugs=['papuan-civic-space','puncak-displacement','intan-jaya-displacement'] as const;
+export const secondaryFollowingSlugs=['papuan-civic-space','puncak-displacement','intan-jaya-displacement','awyu-customary-forests'] as const;
 export const curatedFollowingSlugs=[...featuredFollowingSlugs,...secondaryFollowingSlugs] as const;
-export const followingTickerSlugs=['south-papua-food-energy-estate','papuan-civic-space','nduga-displacement','mining-raja-ampat','freeport-mimika'] as const;
+export const followingTickerSlugs=[...featuredFollowingSlugs,...secondaryFollowingSlugs] as const;
 
 /** Editorial scopes: place alone never assigns reporting to a persistent story. */
 export function matchesFollowing(slug:string,text:string):boolean{

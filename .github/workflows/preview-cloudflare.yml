@@ -35,7 +35,7 @@ jobs:
       - name: Build Pages
         run: npm run build
       - name: Check public response regressions
-        run: npm run check:polish && npm run check:system
+        run: npm run check:polish && npm run check:system && npm run check:explorer
       - name: Deploy branch preview
         id: deploy
         env:

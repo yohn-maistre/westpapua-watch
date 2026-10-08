@@ -1,0 +1,188 @@
+{
+  "id": "initial-2026-10-08",
+  "kind": "initial",
+  "to": "2026-10-08T00:00:00+09:00",
+  "publishedAt": "2026-10-08T00:00:00+09:00",
+  "title": {
+    "en": "Land and public life",
+    "pmy": "Tanah dan kehidupan publik"
+  },
+  "intro": [
+    {
+      "text": {
+        "en": "Reports on food and energy development in the south, displacement in the highlands and public film screenings show how decisions about land and security affect livelihoods, public services and discussion. This opening review brings together records from different places and periods.",
+        "pmy": "Laporan tentang pengembangan pangan dan energi di selatan, pengungsian di pegunungan, serta pemutaran film publik memperlihatkan bagaimana keputusan atas tanah dan keamanan memengaruhi penghidupan, layanan publik, dan diskusi. Tinjauan awal ini menghimpun catatan dari tempat dan periode berbeda."
+      },
+      "sourceIds": [
+        "hria-launch",
+        "hrm-q2"
+      ]
+    }
+  ],
+  "threads": [
+    {
+      "id": "land-and-consent",
+      "topics": [
+        "land-indigenous-rights",
+        "economy-livelihoods",
+        "environment-biodiversity"
+      ],
+      "title": {
+        "en": "Land, consent and food",
+        "pmy": "Tanah, persetujuan, dan pangan"
+      },
+      "paragraphs": [
+        {
+          "text": {
+            "en": "Merauke’s present projects have a longer background. The 2013 Malind field study describes how MIFEE land negotiations and forest conversion affected community food sources and relationships. Pusaka’s strategic-project timeline follows later decisions, including the 2023 designation and the April 2024 sugar and bioethanol task force. These records concern related but distinct programmes. They do not justify treating every concession, rice project and plantation as one unchanged estate.",
+            "pmy": "Proyek Merauke sekarang memiliki latar yang lebih panjang. Kajian lapangan Malind 2013 menjelaskan pengaruh perundingan tanah MIFEE serta perubahan hutan terhadap sumber pangan dan hubungan masyarakat. Linimasa proyek strategis Pusaka mengikuti keputusan berikutnya, termasuk penetapan 2023 dan satgas gula serta bioetanol April 2024. Catatan ini menyangkut program terkait yang berbeda, bukan alasan menyatukan seluruh konsesi, proyek padi, dan perkebunan menjadi satu kawasan yang tidak berubah."
+          },
+          "sourceIds": [
+            "mifee",
+            "psn"
+          ]
+        },
+        {
+          "text": {
+            "en": "Pusaka’s August 2026 assessment launch brings the reported effects on customary communities and the environment alongside government development targets. Its event description is a record of Pusaka’s findings and position; the full assessment and site evidence are needed for specific conclusions. Planned hectares are not cleared hectares. The practical stakes concern who retains access to forest food, gardens and water, how consent is recorded, and what remedies exist when land negotiations are disputed.",
+            "pmy": "Peluncuran kajian Pusaka pada Agustus 2026 mempertemukan laporan dampak bagi masyarakat adat dan lingkungan dengan target pembangunan pemerintah. Deskripsi kegiatan mencatat temuan serta posisi Pusaka; kajian lengkap dan bukti lokasi diperlukan untuk kesimpulan tertentu. Luas rencana berbeda dari luas yang dibuka. Persoalan nyata menyangkut akses pangan hutan, kebun, dan air, pencatatan persetujuan, serta pemulihan ketika perundingan tanah disengketakan."
+          },
+          "sourceIds": [
+            "hria-launch",
+            "mifee",
+            "psn"
+          ]
+        }
+      ],
+      "question": {
+        "en": "Which territories have actually been cleared, and what consent and livelihood records exist for each project?",
+        "pmy": "Wilayah mana benar-benar sudah dibuka, dan bagaimana catatan persetujuan serta penghidupan untuk tiap proyek?"
+      }
+    },
+    {
+      "id": "displacement-and-services",
+      "topics": [
+        "human-rights-conflict-security",
+        "health-food-public-services",
+        "education-language-culture"
+      ],
+      "title": {
+        "en": "Displacement and public services",
+        "pmy": "Pengungsian dan layanan publik"
+      },
+      "paragraphs": [
+        {
+          "text": {
+            "en": "Human Rights Monitor’s April–June 2026 review reports further operations and armed violence in Puncak and Intan Jaya, with operations also recorded in Nduga and other regencies. It describes civilian harm, fear and interruption of health and education services. These are attributed monitoring findings. Regional displacement estimates cannot be transferred to an individual case, and the report’s coverage period should remain visible when interpreting its account.",
+            "pmy": "Tinjauan Human Rights Monitor April–Juni 2026 melaporkan operasi serta kekerasan bersenjata di Puncak dan Intan Jaya, dengan operasi juga tercatat di Nduga serta kabupaten lain. Laporan menggambarkan korban sipil, ketakutan, dan gangguan layanan kesehatan serta pendidikan. Ini merupakan temuan pemantauan yang diberi atribusi. Perkiraan pengungsian regional tidak dapat dipindahkan ke satu kasus; periode pelaporan perlu tetap diperhatikan."
+          },
+          "sourceIds": [
+            "hrm-q2"
+          ]
+        },
+        {
+          "text": {
+            "en": "Earlier reporting from Beoga shows how these pressures can affect services: in April 2021 a health worker told ANTARA that fear, closed shops and food shortages followed the killing of two teachers. That historical episode is not proof of the same conditions in every village today. It identifies the questions to test in new reporting: whether staff can work safely, whether families can reach food and care, and whether returning residents can actually use their villages and schools.",
+            "pmy": "Laporan Beoga sebelumnya memperlihatkan pengaruh tekanan ini terhadap layanan: pada April 2021 tenaga kesehatan mengatakan kepada ANTARA bahwa ketakutan, kios tutup, dan kekurangan pangan terjadi setelah dua guru dibunuh. Peristiwa lama itu tidak membuktikan kondisi yang sama di setiap kampung sekarang. Peristiwa tersebut membantu menentukan pertanyaan bagi peliputan baru: keselamatan petugas, akses pangan dan perawatan, serta kemampuan warga yang pulang memakai kampung dan sekolahnya."
+          },
+          "sourceIds": [
+            "beoga-2021"
+          ]
+        }
+      ],
+      "question": {
+        "en": "Which services are functioning in the affected villages, and can independent observers verify conditions for safe return?",
+        "pmy": "Layanan mana berfungsi di kampung terdampak, dan apakah pengamat independen dapat memeriksa kondisi kepulangan aman?"
+      }
+    },
+    {
+      "id": "public-expression",
+      "topics": [
+        "society-culture-religion",
+        "politics-governance-representation"
+      ],
+      "title": {
+        "en": "Public discussion and cultural work",
+        "pmy": "Diskusi publik dan karya budaya"
+      },
+      "paragraphs": [
+        {
+          "text": {
+            "en": "The second-quarter HRM review records intimidation and dispersal of Pesta Babi screenings, while noting the documentary’s online release on 22 May 2026. This connects two distinct subjects: what the film says about southern land projects, and whether audiences and organisers can show and discuss it. The monitoring claims require attribution; a work’s availability online does not by itself settle whether a local public screening can proceed safely.",
+            "pmy": "Tinjauan HRM kuartal kedua mencatat intimidasi serta pembubaran pemutaran Pesta Babi dan perilisan daring pada 22 Mei 2026. Ini menghubungkan dua persoalan berbeda: isi film tentang proyek tanah di selatan, serta kemampuan khalayak dan penyelenggara menonton maupun membahasnya. Klaim pemantauan perlu atribusi; ketersediaan karya secara daring tidak dengan sendirinya memastikan keamanan pemutaran publik setempat."
+          },
+          "sourceIds": [
+            "hrm-q2"
+          ]
+        },
+        {
+          "text": {
+            "en": "The 2020 administrative-court ruling on the 2019 internet shutdown provides an earlier legal reference for access to information. It concerns specific government actions, not a finding that all restrictions subsequently ended. New screening, student and journalism cases need their own dates, actors and evidence. Following them separately makes it possible to assess remedies and recurring practices without turning every controversy into one continuous event.",
+            "pmy": "Putusan pengadilan administrasi 2020 tentang pemutusan internet 2019 memberi rujukan hukum sebelumnya bagi akses informasi. Putusan menyangkut tindakan pemerintah tertentu, bukan menyatakan seluruh pembatasan setelahnya berakhir. Kasus pemutaran, mahasiswa, dan jurnalisme baru memerlukan tanggal, pelaku, serta bukti sendiri. Pemantauan terpisah memungkinkan penilaian pemulihan dan praktik berulang tanpa menjadikan seluruh kontroversi sebagai satu peristiwa terus-menerus."
+          },
+          "sourceIds": [
+            "shutdown"
+          ]
+        }
+      ],
+      "question": {
+        "en": "What happened at each reported screening, who acted, and what response or remedy followed?",
+        "pmy": "Apa yang terjadi dalam tiap pemutaran yang dilaporkan, siapa bertindak, dan tanggapan atau pemulihan apa menyusul?"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "id": "beoga-2021",
+      "title": "Pengungsi Beoga Puncak minta dievakuasi",
+      "publisher": "ANTARA",
+      "url": "https://papua.antaranews.com/berita/629122/pengungsi-beoga-puncak-minta-dievakuasi-persediaan-makanan-mulai-menipis",
+      "publishedAt": "2021-04-11",
+      "text": "ANTARA interviewed a health worker seeking evacuation after two teachers were killed on 8 and 9 April 2021. Shops were closed and food was running short."
+    },
+    {
+      "id": "hrm-q2",
+      "title": "Papua Monitor: second quarter 2026",
+      "publisher": "Human Rights Monitor",
+      "url": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
+      "publishedAt": "2026-08-01",
+      "text": "HRM reports military operations and armed violence in Puncak and Intan Jaya during April–June 2026; security operations also in Nduga. It attributes disruption of health and education services and displacement to recurring violence and fear. It records intimidation and dispersal of Pesta Babi screenings; the documentary was released online on 22 May 2026. This is an attributed monitoring record, not independent verification of every allegation.",
+      "datePrecision": "month"
+    },
+    {
+      "id": "hria-launch",
+      "title": "Elegi Selatan Papua",
+      "publisher": "Yayasan Pusaka Bentala Rakyat",
+      "url": "https://pusaka.or.id/event/elegi-selatan-papua/",
+      "publishedAt": "2026-08-12",
+      "text": "Pusaka announced the 13 August 2026 Jayapura launch and discussion of a Human Rights Impact Assessment of South Papua food and energy projects. Pusaka describes impacts on customary land, communities and the environment; the event page is a description of its findings, not the full assessment."
+    },
+    {
+      "id": "mifee",
+      "title": "A sweetness like unto death: voices of the indigenous Malind of Merauke",
+      "publisher": "Forest Peoples Programme · 2013",
+      "url": "https://www.forestpeoples.org/publications-resources/reports/article/a-sweetness-like-unto-death-voices-of-the-indigenous-malind-of-merauke-papua/",
+      "publishedAt": "2013-01-01",
+      "text": "Field study documents Malind community experiences of MIFEE, land negotiation, forest conversion and changes to food systems.",
+      "datePrecision": "year"
+    },
+    {
+      "id": "psn",
+      "title": "Merauke National Strategic Project timeline",
+      "publisher": "Yayasan Pusaka Bentala Rakyat",
+      "url": "https://pusaka.or.id/en/lini-masa/merauke-national-strategic-project-timeline/",
+      "publishedAt": "2024-04-19",
+      "text": "Pusaka timeline distinguishes the 2023 strategic-project designation and the April 2024 sugar and bioethanol task force from the rice programme. Planned area is not cleared area.",
+      "datePrecision": "event-context"
+    },
+    {
+      "id": "shutdown",
+      "title": "Court ruling on internet blackout",
+      "publisher": "Amnesty International Indonesia · 2020",
+      "url": "https://www.amnesty.id/kabar-terbaru/siaran-pers/court-ruling-on-internet-blackout-is-a-rare-victory-for-freedom-of-expression-in-papua/06/2020/",
+      "publishedAt": "2020-06-03",
+      "text": "Amnesty reports the Jakarta administrative court ruling that 2019 government internet throttling and shutdown were unlawful."
+    }
+  ],
+  "from": "2026-10-01T00:00:00+09:00"
+}

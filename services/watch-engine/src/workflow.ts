@@ -44,3 +44,8 @@ export class NewsCycleWorkflow extends WorkflowEntrypoint<any,unknown>{
     return result;
   }
 }
+
+// Separate workflow instances keep the weekly desk out of fast-news admission.
+export class WeeklyReviewWorkflow extends WorkflowEntrypoint<any,unknown>{
+ async run(event:any,step:any){const {runWeeklyReview}=await import('./weekly');const params=event?.payload||event?.params||{};return step.do('draft and verify weekly review',{retries:{limit:1,delay:'30 seconds'},timeout:'8 minutes'},()=>runWeeklyReview(this.env,params.cutoff||Date.now()))}
+}

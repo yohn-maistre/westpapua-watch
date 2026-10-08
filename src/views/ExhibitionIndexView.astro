@@ -25,7 +25,7 @@ const groups = [
           const visual = item.rights !== 'source-only';
           return <article class="index-item" data-exhibit-text={[item.title, item.type, item.creator, item.summary, item.publisher].join(' ').toLowerCase()}>
             <div class="index-media">{visual ? <img src={item.image} alt="" loading="lazy" decoding="async" /> : <span aria-hidden="true">✳</span>}</div>
-            <div class="index-copy"><span class="eyebrow">{item.type}{item.year && ` · ${item.year}`}</span><h3>{item.title}</h3><p class="index-creator">{item.creator || item.publisher}</p><p class="index-summary">{item.summary}</p><small>{item.credit}</small></div>
+            <div class="index-copy"><span class="eyebrow">{item.type}{item.year && ` · ${item.year}`}</span><h3>{item.title}</h3><p class="index-creator">{item.creator || item.publisher}</p><p class="index-summary">{locale==='pmy'?(item.summaryId||item.summary):item.summary}</p><small>{item.credit}</small></div>
             {sourceUrl && <a class="index-source" href={sourceUrl} target="_blank" rel="noreferrer" aria-label={`${item.title}: ${locale === 'en' ? 'open original source' : 'buka sumber asli'}`}><span>{locale === 'en' ? 'Source' : 'Sumber'}</span><ArrowIcon direction="up-right" size={16}/></a>}
           </article>;
         })}</div>

@@ -26,3 +26,8 @@
 .current-topic-tags[hidden]{display:none}
 .current-topic-tags .topic-chip{padding:0;border:0;background:none;box-shadow:none;color:var(--muted-2);font-size:.68rem;line-height:1.5;font-weight:500;letter-spacing:.015em}
 .current-topic-tags .topic-chip+.topic-chip::before{content:"·";margin-right:.6rem;color:var(--muted-2)}
+
+/* One compact desk row; reporting metadata stays outside the headline. */
+.now-header.now-header-minimal{padding:1.2rem 0 .5rem;border-bottom:0;gap:1rem;align-items:center}
+.news-desk-meta{display:flex;align-items:center;gap:1.2rem;margin-left:auto;min-width:0}.news-desk-meta .news-sources-trigger{min-height:44px;padding:.5rem 0}.news-desk-meta .current-live-state{font-size:.65rem;letter-spacing:0;text-transform:none;justify-content:flex-end;gap:.4rem}.news-desk-meta .current-live-state::before{box-shadow:none;width:4px;height:4px;flex:none}.news-desk-meta .current-live-state:empty{display:none}
+@media(max-width:620px){.now-header.now-header-minimal{padding:1rem 0 .2rem;gap:.6rem}.news-desk-meta{display:grid;gap:0;justify-items:end;max-width:40%;text-align:right}.news-desk-meta .news-sources-trigger{min-height:30px;font-size:.72rem;padding:0}.news-desk-meta .current-live-state{font-size:.6rem;line-height:1.25;letter-spacing:0}.now-header.now-header-minimal+.news-sources-dialog+.hero{padding-top:1rem}}

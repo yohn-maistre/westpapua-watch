@@ -14,7 +14,9 @@ import { t,withLocale } from '../lib/i18n';
 import type { Issue,Locale } from '../data/types';
 import type {MapViewId} from '../lib/map/registry';
 const {locale='en',issue}=Astro.props as {locale?:Locale;issue:Issue};
-const background=followingNotes.find(x=>x.slug===issue.slug)?.background;
+const note=followingNotes.find(x=>x.slug===issue.slug);
+const background=note?.background;
+const initialState=note?.state;
 const devs=developments.filter(d=>issue.developmentSlugs.includes(d.slug));
 const reportingIds=issue.sourceIds.filter(id=>sourceById[id]?.type==='journalism');
 const relatedLibrary=libraryForTopic(issue.slug);
@@ -53,8 +55,9 @@ const mapView:MapViewId=
     </aside>
   </section>
 
-  {background&&<section class="following-background"><h2>{locale==='en'?'Background':'Latar belakang'}</h2><div><p>{t(background,locale)}</p><SourceList sourceIds={issue.sourceIds}/></div></section>}
+  {background&&<section class="following-background"><h2>{locale==='en'?'Background':'Latar belakang'}</h2><div>{t(background,locale).split('\n\n').map(paragraph=><p>{paragraph}</p>)}<details class="following-reference-list"><summary>{locale==='en'?'Sources':'Sumber'} <span>{note?.backgroundSources?.length}</span></summary>{note?.backgroundSources?.map(source=><a href={source.url} target="_blank" rel="noreferrer"><strong>{source.title}</strong><small>{source.publisher}</small></a>)}</details></div></section>}
   {issue.slug==='south-papua-food-energy-estate'&&<aside class="following-background" id="related-land"><h2>{locale==='en'?'Related land case':'Kasus tanah terkait'}</h2><div><a href={withLocale('/topics/awyu-customary-forests/',locale)}><strong>{locale==='en'?'Awyu customary forests ↗':'Hutan adat Awyu ↗'}</strong></a><p>{locale==='en'?'The Awyu oil-palm permit dispute is a separate case in Boven Digoel. It shares questions about customary land and forest rights with the Merauke projects.':'Sengketa izin perkebunan sawit Awyu merupakan kasus tersendiri di Boven Digoel. Kasus ini berkaitan dengan proyek Merauke melalui persoalan hak atas tanah dan hutan adat.'}</p></div></aside>}
+  {initialState&&<section class="following-state" id="overview" data-following-state data-slug={issue.slug}><header><h2>{locale==='en'?'Current picture':'Gambaran terkini'}</h2><time data-state-date datetime={initialState.asOf}>{new Date(initialState.asOf+'T00:00:00Z').toLocaleDateString(locale==='en'?'en-GB':'id-ID',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'})}</time></header><p data-state-summary>{t(initialState.summary,locale)}</p><div data-state-questions>{initialState.questions.map(q=><p>{t(q,locale)}</p>)}</div><details class="following-reference-list"><summary>{locale==='en'?'Sources':'Sumber'}</summary><div data-state-sources>{note?.backgroundSources?.filter(source=>initialState.sourceIds.includes(source.id)).map(source=><a href={source.url} target="_blank" rel="noreferrer"><strong>{source.title}</strong><small>{source.publisher}</small></a>)}</div></details></section>}
   <nav class="topic-local-index" aria-label={locale==='en'?'On this page':'Di halaman ini'}><a href="#overview">{locale==='en'?'Overview':'Ringkasan'}</a><a href="#latest">{locale==='en'?'Latest':'Terbaru'}</a>{topicTimelines[issue.slug]&&<a href="#timeline">{locale==='en'?'Timeline':'Linimasa'}</a>}<a href="#sources">{locale==='en'?'Library':'Pustaka'}</a><a href="#places">{locale==='en'?'Places':'Lokasi'}</a></nav><div class="dossier-grid">
 
     <section class="box" id="latest"><h2>{locale==='en'?'Latest developments':'Perkembangan terbaru'}</h2><div data-live-issue-updates data-issue-slug={issue.slug} data-locale={locale}>{devs.map(d=><p class="issue-update"><a href={withLocale('/',locale)}><strong>{t(d.title,locale)}</strong></a><br/><small>{d.updatedAt} · {d.sourceIds.length} {locale==='en'?'sources':'sumber'}</small></p>)}</div></section>
@@ -69,9 +72,10 @@ const mapView:MapViewId=
 const issuePage=document.querySelector<HTMLElement>('[data-issue-page]'),updates=document.querySelector<HTMLElement>('[data-live-issue-updates]'),slug=issuePage?.dataset.issueSlug||updates?.dataset.issueSlug||'',locale=issuePage?.dataset.locale==='pmy'?'pmy':'en';
 if(issuePage&&slug)fetch(`/api/issue/${encodeURIComponent(slug)}`).then(r=>r.ok?r.json():null).then(data=>{
   if(!data)return;
+  if(data.state){const state=data.state,pick=(v:any)=>locale==='pmy'?(v?.pmy||v?.id):v?.en;const summary=document.querySelector('[data-state-summary]'),questions=document.querySelector('[data-state-questions]'),sources=document.querySelector('[data-state-sources]'),date=document.querySelector<HTMLTimeElement>('[data-state-date]');if(summary&&pick(state.summary))summary.textContent=pick(state.summary);if(questions){questions.replaceChildren(...(state.questions||[]).map((q:any)=>{const p=document.createElement('p');p.textContent=pick(q);return p}))}if(date&&state.asOf){date.dateTime=state.asOf;date.textContent=new Date(state.asOf).toLocaleDateString(locale==='pmy'?'id-ID':'en-GB',{day:'numeric',month:'short',year:'numeric'})}if(sources&&state.evidence){sources.replaceChildren(...state.evidence.map((source:any)=>{const a=document.createElement('a'),title=document.createElement('strong'),publisher=document.createElement('small');a.href=source.url;a.target='_blank';a.rel='noreferrer';title.textContent=source.title;publisher.textContent=source.publisher;a.append(title,publisher);return a}))}}
   if(data.kind)issuePage.dataset.issueKind=data.kind;
   const set=(sel:string,v:any)=>{const n=document.querySelector<HTMLElement>(sel);if(n&&v!=null)n.textContent=String(v)};
-  set('[data-live-issue-summary]',locale==='pmy'?(data.summary_id||data.summary_en):data.summary_en);
+  // Keep the sourced opening orientation; live reporting updates below it.
   set('[data-live-issue-overview]',locale==='pmy'?(data.summary_id||data.summary_en):data.summary_en);
   set('[data-live-issue-status]',locale==='pmy'?(data.status_id||data.status_en):data.status_en);
   if(!data.updated_at)set('[data-live-issue-updated]',locale==='pmy'?'Belum ada laporan':'No reports yet');
@@ -102,5 +106,8 @@ if(issuePage&&slug)fetch(`/api/issue/${encodeURIComponent(slug)}`).then(r=>r.ok?
 .issue-dossier-card small{font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
 .issue-dossier-card h3{font-size:clamp(1.8rem,3.3vw,3rem);line-height:.92;letter-spacing:-.05em;margin:1rem 0 .7rem}.issue-dossier-card p{margin:0;color:var(--muted)}
 @media(max-width:700px){.issue-dossier-grid{grid-template-columns:1fr}}
+</style>
+<style>
+.following-state{padding:2.5rem 0;margin:1rem 0;border-block:1px solid var(--line)}.following-state header{display:flex;justify-content:space-between;gap:1rem;align-items:baseline}.following-state h2{font-size:clamp(1.8rem,3vw,3rem);letter-spacing:-.04em;margin:0}.following-state time{font-size:.72rem;color:var(--muted)}.following-state>p{font-size:clamp(1.1rem,2vw,1.5rem);line-height:1.6;max-width:65ch}.following-state [data-state-questions]{max-width:65ch;color:var(--muted);font-size:.92rem;line-height:1.6}.following-reference-list{max-width:65ch;font-size:.8rem;margin-top:1.4rem}.following-reference-list summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:.8rem}.following-reference-list a{display:grid;gap:.35rem;padding:.9rem 0;border-top:1px solid var(--line)}.following-reference-list small{color:var(--muted);font-size:.72rem}.following-reference-list strong{font-weight:500}.following-background p{line-height:1.7;max-width:65ch}
 </style>
 </BaseLayout>

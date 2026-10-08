@@ -14,7 +14,7 @@ export default function HistoryPathControls({paths,locale}:{paths:Path[];locale:
  const index=paths.findIndex(p=>p.id===state.path),previous=paths[(index-1+paths.length)%paths.length],next=paths[(index+1)%paths.length];
  const choose=(path:HistoryPath)=>{selected.current=true;setOpen(false);document.dispatchEvent(new CustomEvent('watch:history-select',{detail:{path}}))};
  return <div className="prototype-path-control" data-history-controls>
-  <Button data-path-previous aria-label={previous.label} onClick={()=>choose(previous.id)}><Arrow back/></Button>
+  <Button data-path-previous aria-label={`${locale==='en'?'Previous path':'Jalur sebelumnya'}: ${previous.label}`} onClick={()=>choose(previous.id)}><Arrow back/></Button>
   <Popover.Root open={open} onOpenChange={value=>{if(value)selected.current=false;setOpen(value)}}>
    <Popover.Trigger data-path-index-open className="prototype-path-name"><span data-active-path>{paths[index].label}</span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4 3 3 3-3" fill="none" stroke="currentColor"/></svg></Popover.Trigger>
    <Popover.Portal><Popover.Positioner align="start" sideOffset={8} collisionPadding={12} className="history-path-positioner"><Popover.Popup data-path-popup className="history-path-popup" finalFocus={()=>selected.current?false:true}>
@@ -24,7 +24,7 @@ export default function HistoryPathControls({paths,locale}:{paths:Path[];locale:
     </RadioGroup>
    </Popover.Popup></Popover.Positioner></Popover.Portal>
   </Popover.Root>
-  <Button data-path-next aria-label={next.label} onClick={()=>choose(next.id)}><Arrow/></Button>
+  <Button data-path-next aria-label={`${locale==='en'?'Next path':'Jalur berikutnya'}: ${next.label}`} onClick={()=>choose(next.id)}><Arrow/></Button>
   <Toggle className="prototype-map-toggle" data-history-map-toggle pressed={state.mapOpen} onPressedChange={value=>document.dispatchEvent(new CustomEvent('watch:history-map-toggle',{detail:{open:value}}))} aria-label={locale==='en'?(state.mapOpen?'Hide map':'Show map'):(state.mapOpen?'Sembunyikan peta':'Lihat peta')} aria-expanded={state.mapOpen} aria-controls="history-context-map">
    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" aria-hidden="true"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Zm6-3v15m6-12v15"/></svg>
   </Toggle>

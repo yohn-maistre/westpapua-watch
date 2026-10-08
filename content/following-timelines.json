@@ -1,0 +1,226 @@
+{
+  "nduga-displacement": [
+    {
+      "id": "nduga-displacement-origin",
+      "date": "2018-12-02",
+      "title": {
+        "en": "Worksite killings and response",
+        "pmy": "Pembunuhan di lokasi kerja dan tanggapan"
+      },
+      "text": {
+        "en": "The December killings and subsequent operations are a starting point in the present displacement chronology. HRW described disputed accounts and called for civilian protection.",
+        "pmy": "Pembunuhan Desember dan operasi berikutnya menjadi titik awal penting kronologi pengungsian sekarang. HRW mencatat penuturan yang berbeda dan meminta pelindungan warga sipil."
+      },
+      "source": "https://www.hrw.org/news/2018/12/09/indonesia-papuan-militants-kill-17",
+      "publisher": "Human Rights Watch"
+    },
+    {
+      "id": "nduga-displacement-q2-2026",
+      "date": "2026",
+      "title": {
+        "en": "Second-quarter monitoring",
+        "pmy": "Pemantauan kuartal kedua"
+      },
+      "text": {
+        "en": "HRM’s April–June 2026 report records further operations and concerns for displaced civilians. Its regional totals are not a count for this case alone.",
+        "pmy": "Laporan HRM April–Juni 2026 mencatat operasi berikutnya serta kekhawatiran bagi warga pengungsi. Jumlah regional bukan jumlah kasus ini saja."
+      },
+      "source": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
+      "publisher": "Human Rights Monitor"
+    }
+  ],
+  "puncak-displacement": [
+    {
+      "id": "puncak-displacement-origin",
+      "date": "2021-04-11",
+      "title": {
+        "en": "Beoga evacuation requests",
+        "pmy": "Permintaan evakuasi Beoga"
+      },
+      "text": {
+        "en": "ANTARA interviewed a health worker seeking evacuation after two teachers were killed. Closed shops and fear were disrupting access to food and services.",
+        "pmy": "ANTARA mewawancarai tenaga kesehatan yang meminta evakuasi setelah dua guru dibunuh. Kios tutup dan ketakutan mengganggu akses pangan serta layanan."
+      },
+      "source": "https://papua.antaranews.com/berita/629122/pengungsi-beoga-puncak-minta-dievakuasi-persediaan-makanan-mulai-menipis",
+      "publisher": "ANTARA"
+    },
+    {
+      "id": "puncak-displacement-q2-2026",
+      "date": "2026",
+      "title": {
+        "en": "Second-quarter monitoring",
+        "pmy": "Pemantauan kuartal kedua"
+      },
+      "text": {
+        "en": "HRM’s April–June 2026 report records further operations and concerns for displaced civilians. Its regional totals are not a count for this case alone.",
+        "pmy": "Laporan HRM April–Juni 2026 mencatat operasi berikutnya serta kekhawatiran bagi warga pengungsi. Jumlah regional bukan jumlah kasus ini saja."
+      },
+      "source": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
+      "publisher": "Human Rights Monitor"
+    }
+  ],
+  "intan-jaya-displacement": [
+    {
+      "id": "intan-jaya-displacement-origin",
+      "date": "2020-09-19",
+      "title": {
+        "en": "Pastor Yeremia Zanambani killed",
+        "pmy": "Pendeta Yeremia Zanambani dibunuh"
+      },
+      "text": {
+        "en": "The killing became a reference point in church and humanitarian investigations of violence around Sugapa.",
+        "pmy": "Pembunuhan menjadi rujukan penyelidikan gereja serta tim kemanusiaan tentang kekerasan sekitar Sugapa."
+      },
+      "source": "http://www.asia-pacific-solidarity.net/news/2021-01-07/intan-jaya-conflict-risk-of-more-widespread-violence-future.html",
+      "publisher": "Humanitarian Team / solidarity archive"
+    },
+    {
+      "id": "intan-jaya-displacement-q2-2026",
+      "date": "2026",
+      "title": {
+        "en": "Second-quarter monitoring",
+        "pmy": "Pemantauan kuartal kedua"
+      },
+      "text": {
+        "en": "HRM’s April–June 2026 report records further operations and concerns for displaced civilians. Its regional totals are not a count for this case alone.",
+        "pmy": "Laporan HRM April–Juni 2026 mencatat operasi berikutnya serta kekhawatiran bagi warga pengungsi. Jumlah regional bukan jumlah kasus ini saja."
+      },
+      "source": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
+      "publisher": "Human Rights Monitor"
+    }
+  ],
+  "freeport-mimika": [
+    {
+      "id": "first-contract",
+      "date": "1967",
+      "title": {
+        "en": "First Freeport contract",
+        "pmy": "Kontrak pertama Freeport"
+      },
+      "text": {
+        "en": "PT Freeport Indonesia dates its first contract with Indonesia to 1967, before Pepera. This corporate record establishes the contractual chronology.",
+        "pmy": "PT Freeport Indonesia mencatat kontrak pertamanya dengan Indonesia pada 1967, sebelum Pepera. Catatan perusahaan ini menjadi sumber kronologi kontrak."
+      },
+      "source": "https://ptfi.co.id/en/about/history",
+      "publisher": "PT Freeport Indonesia"
+    },
+    {
+      "id": "majority-ownership",
+      "date": "2018-12-21",
+      "title": {
+        "en": "Majority Indonesian ownership",
+        "pmy": "Kepemilikan mayoritas Indonesia"
+      },
+      "text": {
+        "en": "PTFI records completion of the transaction giving Indonesia a 51.2% majority stake. Ownership changes do not by themselves settle customary-land or environmental questions.",
+        "pmy": "PTFI mencatat selesainya transaksi yang memberi Indonesia kepemilikan mayoritas 51,2%. Perubahan kepemilikan tidak dengan sendirinya menyelesaikan persoalan tanah adat atau lingkungan."
+      },
+      "source": "https://ptfi.co.id/en/about/history",
+      "publisher": "PT Freeport Indonesia"
+    },
+    {
+      "id": "mine-recovery-2026",
+      "date": "2026-04-09",
+      "title": {
+        "en": "Company account of mine recovery",
+        "pmy": "Penuturan perusahaan tentang pemulihan tambang"
+      },
+      "text": {
+        "en": "PTFI commemorated workers killed in the September 2025 wet-material incident and February–March 2026 shootings. It reported production at 40–50% during recovery; its target was not a completed result.",
+        "pmy": "PTFI mengenang pekerja yang meninggal dalam insiden material basah September 2025 serta penembakan Februari–Maret 2026. Perusahaan melaporkan produksi 40–50% selama pemulihan; sasaran produksi bukan hasil yang sudah tercapai."
+      },
+      "source": "https://ebk.ptfi.co.id/id/video/hut-ke-59-freeport-bangkit-bersama-menuju-operasi-berkelanjutan",
+      "publisher": "PT Freeport Indonesia"
+    }
+  ],
+  "mining-raja-ampat": [
+    {
+      "id": "four-revocations",
+      "date": "2025-06-10",
+      "title": {
+        "en": "Four permits revoked",
+        "pmy": "Empat izin dicabut"
+      },
+      "text": {
+        "en": "ESDM announced the revocation of permits for ASP, MRP, KSM and Nurham. PT Gag Nikel’s permit remained in force.",
+        "pmy": "ESDM mengumumkan pencabutan izin ASP, MRP, KSM, dan Nurham. Izin PT Gag Nikel tetap berlaku."
+      },
+      "source": "https://www.esdm.go.id/en/media-center/news-archives/pemerintah-cabut-empat-izin-perusahaan-tambang-di-raja-ampat",
+      "publisher": "Ministry of Energy and Mineral Resources · 2025"
+    },
+    {
+      "id": "public-information-ruling",
+      "date": "2026-09-14",
+      "title": {
+        "en": "Court upholds access to revocation records",
+        "pmy": "Pengadilan menguatkan akses catatan pencabutan"
+      },
+      "text": {
+        "en": "Greenpeace reports that PTUN Jakarta rejected BKPM’s objection to disclosing the four revocation decisions and their implementation details, affirming the Central Information Commission’s decision.",
+        "pmy": "Greenpeace melaporkan bahwa PTUN Jakarta menolak keberatan BKPM atas pembukaan empat keputusan pencabutan serta rincian pelaksanaannya, menguatkan putusan Komisi Informasi Pusat."
+      },
+      "source": "https://www.greenpeace.org/indonesia/siaran-pers/67809/greenpeace-menang-ptun-perintahkan-pemerintah-buka-sk-pencabutan-izin-4-tambang-nikel-di-raja-ampat/",
+      "publisher": "Greenpeace Indonesia"
+    }
+  ],
+  "awyu-customary-forests": [
+    {
+      "id": "ial-cassation",
+      "date": "2024-09-18",
+      "title": {
+        "en": "Cassation rejected in IAL case",
+        "pmy": "Kasasi perkara IAL ditolak"
+      },
+      "text": {
+        "en": "WALHI and the coalition report that decision 458 K/TUN/LH/2024 rejected Hendrikus Woro’s cassation concerning PT Indo Asiana Lestari’s environmental approval. One judge dissented.",
+        "pmy": "WALHI bersama koalisi melaporkan bahwa putusan 458 K/TUN/LH/2024 menolak kasasi Hendrikus Woro terkait persetujuan lingkungan PT Indo Asiana Lestari. Satu hakim berbeda pendapat."
+      },
+      "source": "https://www.walhi.or.id/mahkamah-agung-tolak-kasasi-suku-awyu-perjuangan-selamatkan-hutan-papua-kian-berat",
+      "publisher": "WALHI / Save Papuan Customary Forests Coalition"
+    }
+  ],
+  "papuan-civic-space": [
+    {
+      "id": "anti-racism",
+      "date": "2019",
+      "title": {
+        "en": "Anti-racism protests",
+        "pmy": "Protes antirasisme"
+      },
+      "text": {
+        "en": "HRW documents racist abuse against Papuan students, the August 2019 protests, arrests and subsequent discrimination.",
+        "pmy": "HRW mendokumentasikan penghinaan rasis terhadap mahasiswa Papua, protes Agustus 2019, penangkapan, serta diskriminasi berikutnya."
+      },
+      "source": "https://www.hrw.org/report/2024/09/18/if-its-not-racism-what-is-it/discrimination-and-other-abuses-against-papuans-in",
+      "publisher": "Human Rights Watch · 2024"
+    },
+    {
+      "id": "internet-ruling",
+      "date": "2020-06-03",
+      "title": {
+        "en": "Court rules internet shutdown unlawful",
+        "pmy": "Pengadilan menyatakan pemutusan internet melanggar hukum"
+      },
+      "text": {
+        "en": "Amnesty reports the Jakarta administrative court ruling that government internet throttling and shutdown in Papua in 2019 were unlawful.",
+        "pmy": "Amnesty melaporkan putusan pengadilan administrasi Jakarta bahwa pelambatan dan pemutusan internet oleh pemerintah di Papua pada 2019 melanggar hukum."
+      },
+      "source": "https://www.amnesty.id/kabar-terbaru/siaran-pers/court-ruling-on-internet-blackout-is-a-rare-victory-for-freedom-of-expression-in-papua/06/2020/",
+      "publisher": "Amnesty International Indonesia · 2020"
+    },
+    {
+      "id": "screening-monitoring",
+      "date": "2026",
+      "title": {
+        "en": "Film-screening monitoring",
+        "pmy": "Pemantauan pemutaran film"
+      },
+      "text": {
+        "en": "HRM’s April–June monitoring records intimidation and dispersal of Pesta Babi screenings. The documentary was released online on 22 May 2026.",
+        "pmy": "Pemantauan HRM April–Juni mencatat intimidasi dan pembubaran pemutaran Pesta Babi. Film dokumenter tersebut dirilis daring pada 22 Mei 2026."
+      },
+      "source": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
+      "publisher": "Human Rights Monitor"
+    }
+  ]
+}

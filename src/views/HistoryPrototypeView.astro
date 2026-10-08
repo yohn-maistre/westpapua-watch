@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HistoryArrow from '../components/history/HistoryArrow.astro';
 import HistoryPathControls from '../components/history/HistoryPathControls';
 import MapShell from '../components/map/MapShell.astro';
+import ArchiveMosaic from '../components/history/ArchiveMosaic.astro';
+import {libraryItems} from '../data/library';
 import HistoryRecordDialog from '../components/history/HistoryRecordDialog.astro';
 import {prototypeHistoryRecords as records,historyPaths,historyEras,recordsForPath,companionFor} from '../data/history-prototype';
 import {archiveItemById,archiveText} from '../data/archive';
@@ -10,20 +12,20 @@ import {t,withLocale} from '../lib/i18n';
 import type {Locale} from '../data/types';
 import '../styles/history-prototype.css';
 const {locale='en'}=Astro.props as {locale?:Locale};const en=locale==='en';
-const route=withLocale('/history/prototype/',locale);
+const route=withLocale('/history/',locale);
 const pathHref=(path:string,id?:string)=>`${route}?path=${path}${id?`#${id}`:''}`;
 const metadata=records.map(r=>({id:r.id,year:r.year,era:r.era,paths:r.paths,date:t(r.yearLabel,locale),places:r.places}));
 ---
-<BaseLayout locale={locale} active="history" title={en?'History · Preview':'Sejarah · Pratinjau'}>
+<BaseLayout locale={locale} active="history" title={en?'History':'Sejarah'}>
 <div class="history-prototype" data-history-prototype data-locale={locale}>
   <header class="wrap prototype-opening" id="paths">
-    <a class="prototype-return" href={withLocale('/history/',locale)}>{en?'History':'Sejarah'} <HistoryArrow direction="up-right"/></a>
     <h1>{en?'History.':'Sejarah.'}</h1>
     <nav class="prototype-path-index" aria-label={en?'History paths':'Jalur sejarah'}>
-      {historyPaths.filter(p=>p.id!=='all').map(p=><a href={pathHref(p.id,recordsForPath(p.id)[0].id)} data-history-path={p.id}><strong>{t(p.label,locale)}</strong><span>{t(p.start,locale)}</span><HistoryArrow direction="down-right"/></a>)}
+      {historyPaths.filter(p=>p.id!=='all').map(p=><a href={pathHref(p.id,p.startId||recordsForPath(p.id)[0].id)} data-history-path={p.id} data-target-event={p.startId}><strong>{t(p.label,locale)}</strong><span>{t(p.start,locale)}</span><HistoryArrow direction="down-right"/></a>)}
     </nav>
-    <div class="prototype-opening-footer"><a href={pathHref('all',records[0].id)} data-history-path="all">{en?'Full chronology':'Kronologi lengkap'} <HistoryArrow direction="down"/></a><a href={`${withLocale('/history/',locale)}#archive`}>{en?'Archive':'Arsip'} <HistoryArrow direction="up-right"/></a></div>
+    <div class="prototype-opening-footer"><a href={pathHref('all',records[0].id)} data-history-path="all">{en?'Full chronology':'Kronologi lengkap'} <HistoryArrow direction="down"/></a><a href={pathHref('political','history-1949')} data-history-path="political" data-target-event="history-1949">1949 <HistoryArrow direction="down"/></a><a href="#archive">{en?'Archive':'Arsip'} <HistoryArrow direction="up-right"/></a></div>
   </header>
+  <p class="wrap history-reading-note">{en?'Dated events and regional accounts. Living practices are labelled separately.':'Peristiwa bertanggal dan catatan regional. Praktik yang hidup diberi label tersendiri.'}</p>
   <div class="prototype-reader" data-history-reader>
     <aside class="prototype-margin">
       <HistoryPathControls client:load locale={locale} paths={historyPaths.map(p=>({id:p.id,label:t(p.label,locale),start:t(p.start,locale)}))}/>
@@ -43,9 +45,10 @@ const metadata=records.map(r=>({id:r.id,year:r.year,era:r.era,paths:r.paths,date
         <div class:list={['prototype-spread',companion&&'has-companion']}>
           <div class="prototype-account">
             <h2>{t(r.title,locale)}</h2>
-            {r.media&&<figure><a href={r.media.src} target="_blank" aria-label={en?'Enlarge image':'Perbesar gambar'}><img src={r.media.src} alt={t(r.media.caption,locale)} loading="lazy" width="1000" height="750"/></a><figcaption>{t(r.media.caption,locale)} <a href={r.media.url} target="_blank" rel="noreferrer">{r.media.credit}</a> · <a href={r.media.licenseUrl} target="_blank" rel="noreferrer">{r.media.license}</a></figcaption></figure>}
+            {r.media&&<figure><a href={r.media.src} target="_blank" aria-label={en?'Enlarge image':'Perbesar gambar'}><img src={r.media.src} alt={t(r.media.caption,locale)} loading="lazy" width="1000" height="750"/></a><figcaption>{t(r.media.caption,locale)} <a href={r.media.url} target="_blank" rel="noreferrer">{r.media.credit}</a>{r.media.license&&<> · <a href={r.media.licenseUrl} target="_blank" rel="noreferrer">{r.media.license}</a></>}</figcaption></figure>}
             {t(r.body,locale).split('\n\n').map(p=><p>{p}</p>)}
             {r.archiveIds.length>0&&<div class="prototype-archive-records">{r.archiveIds.map(id=>{const a=archiveItemById[id];return <button type="button" data-history-record={id}><span>{a.date}</span><strong>{archiveText(a.title,locale)}</strong><span>{a.mediaType==='film'?(en?'Film':'Film'):(en?'Photograph':'Foto')} <HistoryArrow direction="up-right"/></span></button>})}</div>}
+            {(()=>{const matches=libraryItems.filter(item=>r.sources.some(source=>source.url===item.url)).slice(0,2);return matches.length>0&&<div class="history-library-links">{matches.map(item=><a href={`${withLocale('/resources/',locale)}?q=${encodeURIComponent(item.title)}`}><small>{en?'Library':'Pustaka'}</small><strong>{item.title}</strong><HistoryArrow direction="up-right"/></a>)}</div>})()}
             <details class="prototype-sources"><summary>{en?'Sources':'Sumber'} <span>{r.sources.length}</span></summary>{r.sources.map(s=><a href={s.url} target="_blank" rel="noreferrer"><small>{s.publisher}</small><span>{s.title} <HistoryArrow direction="up-right"/></span></a>)}</details>
           </div>
           {companion&&<aside class="prototype-companion"><a href={pathHref(companion.paths[0],companion.id)} data-history-path={companion.paths[0]} data-target-event={companion.id}><span>{t(historyPaths.find(p=>p.id===companion.paths[0])!.label,locale)} <HistoryArrow/></span><small>{t(companion.yearLabel,locale)}</small><h3>{t(companion.title,locale)}</h3><p>{t(companion.body,locale).split('\n\n')[0]}</p><span class="prototype-companion-link">{en?'Continue':'Lanjutkan'} <HistoryArrow direction="up-right"/></span></a></aside>}
@@ -57,6 +60,7 @@ const metadata=records.map(r=>({id:r.id,year:r.year,era:r.era,paths:r.paths,date
   <p class="sr-only" data-history-announcement role="status" aria-live="polite"></p>
   <script type="application/json" data-history-prototype-data set:html={JSON.stringify({records:metadata,paths:historyPaths.map(p=>({id:p.id,label:t(p.label,locale)})),eras:historyEras.map(e=>({id:e.id,label:t(e.label,locale)}))}).replace(/</g,'\\u003c')}></script>
 </div>
+<ArchiveMosaic locale={locale}/>
 <HistoryRecordDialog locale={locale}/>
 <script>import {initHistoryPrototype} from '../lib/history-prototype';initHistoryPrototype();</script>
 </BaseLayout>

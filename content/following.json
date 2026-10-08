@@ -25,8 +25,51 @@
       "humanitarian-access"
     ],
     "background": {
-      "en": "Human Rights Monitor traces prolonged displacement from Nduga to late 2018. Its 2026 monitoring describes families living away from home and continuing gaps in access to education, healthcare and secure housing.",
-      "pmy": "Human Rights Monitor menelusuri pengungsian berkepanjangan dari Nduga sejak akhir 2018. Pemantauan 2026 menggambarkan keluarga yang masih tinggal jauh dari kampung serta kesenjangan akses pendidikan, kesehatan dan tempat tinggal layak."
+      "en": "The present displacement case has a major starting point in the December 2018 killings at a Trans-Papua road worksite and the subsequent security operations. Accounts of the victims and circumstances differed; Human Rights Watch called for investigation and protection of civilians on all sides.\n\nLater monitoring follows people living away from their villages, the interruption of schooling and healthcare, and the conditions needed for safe return. A district-wide total cannot be inferred from one incident or one destination. Nduga has its own chronology: figures and events from Puncak or Intan Jaya should not be imported into it. Access for independent reporters and humanitarian workers affects what can be verified.",
+      "pmy": "Kasus pengungsian sekarang memiliki titik awal penting pada pembunuhan di lokasi kerja jalan Trans-Papua pada Desember 2018 dan operasi keamanan berikutnya. Penuturan tentang korban serta keadaan kejadian berbeda; Human Rights Watch meminta penyelidikan dan pelindungan warga sipil dari semua pihak.\n\nPemantauan berikutnya mengikuti warga yang tinggal jauh dari kampung, terputusnya sekolah serta layanan kesehatan, dan kondisi untuk pulang dengan aman. Jumlah seluruh kabupaten tidak dapat disimpulkan dari satu kejadian atau satu tempat tujuan. Nduga memiliki kronologi tersendiri; angka dan peristiwa Puncak atau Intan Jaya tidak boleh dipindahkan ke sini. Akses jurnalis independen serta pekerja kemanusiaan memengaruhi verifikasi."
+    },
+    "backgroundSources": [
+      {
+        "id": "nduga-2018",
+        "title": "Indonesia: Papuan militants kill 17",
+        "publisher": "Human Rights Watch",
+        "url": "https://www.hrw.org/news/2018/12/09/indonesia-papuan-militants-kill-17",
+        "publishedAt": "2018-12-09",
+        "text": "HRW describes the December 2018 Nduga worksite killings, disputed accounts of the victims, security operations and a lack of independent access."
+      },
+      {
+        "id": "hrm-q2",
+        "title": "Papua Monitor: second quarter 2026",
+        "publisher": "Human Rights Monitor",
+        "url": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
+        "publishedAt": "2026-08-01",
+        "text": "HRM reports military operations and armed violence in Puncak and Intan Jaya during April–June 2026; security operations also in Nduga. It attributes disruption of health and education services and displacement to recurring violence and fear. It records intimidation and dispersal of Pesta Babi screenings; the documentary was released online on 22 May 2026. This is an attributed monitoring record, not independent verification of every allegation.",
+        "datePrecision": "month"
+      }
+    ],
+    "reviewedAt": "2026-10-08",
+    "state": {
+      "asOf": "2026-06-30",
+      "reviewedAt": "2026-10-08",
+      "summary": {
+        "en": "HRM’s second-quarter monitoring includes renewed security operations in Nduga. Safe return, schooling and healthcare remain central to this case.",
+        "pmy": "Pemantauan HRM kuartal kedua mencakup operasi keamanan di Nduga. Kepulangan aman, sekolah, dan layanan kesehatan tetap menjadi inti kasus."
+      },
+      "change": {
+        "en": "HRM’s second-quarter monitoring records security operations and displacement concerns.",
+        "pmy": "Pemantauan kuartal kedua HRM mencatat operasi keamanan dan persoalan pengungsian."
+      },
+      "questions": [
+        {
+          "en": "Which villages and services are accessible, and can independent observers verify return conditions?",
+          "pmy": "Kampung dan layanan mana dapat diakses, dan apakah pengamat independen dapat memeriksa kondisi kepulangan?"
+        }
+      ],
+      "sourceIds": [
+        "nduga-2018",
+        "hrm-q2"
+      ],
+      "kind": "curated"
     }
   },
   {
@@ -55,8 +98,50 @@
       "customary-land"
     ],
     "background": {
-      "en": "Freeport’s operations connect highland mining with a river tailings system extending into the Mimika lowlands. The company-published 2024–2025 external audit examines tailings management, mine closure and environmental monitoring. It records recommendations for further work; its conclusions should be read as the audit’s findings, alongside independent research and community accounts.",
-      "pmy": "Operasi Freeport menghubungkan pertambangan pegunungan dengan sistem tailing sungai hingga dataran rendah Mimika. Audit eksternal 2024–2025 yang diterbitkan perusahaan membahas pengelolaan tailing, penutupan tambang dan pemantauan lingkungan. Rekomendasi tindak lanjut dicatat di dalamnya; kesimpulannya perlu dibaca sebagai temuan audit, bersama penelitian independen dan kesaksian masyarakat."
+      "en": "Freeport’s first Indonesian contract was signed in 1967, before Pepera. Mining development connected the highlands with lowland processing, settlements and transport infrastructure. Amungme relationships with highland land and Kamoro relationships with rivers and coastal livelihoods give this history its local context.\n\nOwnership, revenue and jobs answer only part of the question. Land access, compensation, tailings and the river–coast system require community accounts and environmental evidence alongside company reports. The 2018 change in ownership did not itself establish that these concerns were resolved. Watch follows specific agreements and reported effects rather than treating every Mimika story as a mining development.",
+      "pmy": "Kontrak pertama Freeport dengan Indonesia ditandatangani pada 1967, sebelum Pepera. Pengembangan tambang menghubungkan pegunungan dengan pengolahan, permukiman, dan pengangkutan di dataran rendah. Hubungan Amungme dengan tanah pegunungan serta Kamoro dengan sungai dan penghidupan pesisir memberi konteks setempat.\n\nKepemilikan, pendapatan, dan pekerjaan hanya menjawab sebagian persoalan. Akses tanah, ganti rugi, tailing, serta hubungan sungai dan pesisir memerlukan penuturan masyarakat dan bukti lingkungan bersama laporan perusahaan. Perubahan kepemilikan 2018 tidak dengan sendirinya menyelesaikan persoalan tersebut. Watch mengikuti perjanjian serta dampak tertentu, bukan menganggap setiap berita Mimika sebagai perkembangan tambang."
+    },
+    "backgroundSources": [
+      {
+        "id": "freeport",
+        "title": "History of PT Freeport Indonesia",
+        "publisher": "PT Freeport Indonesia",
+        "url": "https://ptfi.co.id/en/about/history",
+        "publishedAt": "2018-12-21",
+        "text": "PTFI history records the first contract in 1967 and majority Indonesian ownership in 2018. Corporate history is first-party evidence, not an independent environmental assessment."
+      },
+      {
+        "id": "freeport-recovery-2026",
+        "title": "HUT ke-59 Freeport: Bangkit Bersama Menuju Operasi Berkelanjutan",
+        "publisher": "PT Freeport Indonesia",
+        "url": "https://ebk.ptfi.co.id/id/video/hut-ke-59-freeport-bangkit-bersama-menuju-operasi-berkelanjutan",
+        "publishedAt": "2026-04-09",
+        "text": "PTFI’s 9 April 2026 account commemorates seven employees killed in the 8 September 2025 Grasberg Block Cave wet-material incident and two killed in separate shootings in February and March 2026. It reports production at 40–50% during recovery and a target to approach full production by year-end. These are corporate statements; the target is not an achieved outcome."
+      }
+    ],
+    "reviewedAt": "2026-10-08",
+    "state": {
+      "asOf": "2026-04-09",
+      "reviewedAt": "2026-10-08",
+      "summary": {
+        "en": "PTFI’s April 2026 account commemorates seven workers killed in the September 2025 Grasberg Block Cave incident and two killed in separate shootings in February and March 2026. The company reports mine recovery and production at 40–50%. Its year-end production target is a stated plan, alongside questions about worker safety, security and community impacts.",
+        "pmy": "Penuturan PTFI April 2026 mengenang tujuh pekerja yang meninggal dalam insiden Grasberg Block Cave September 2025 serta dua yang meninggal dalam penembakan berbeda pada Februari dan Maret 2026. Perusahaan melaporkan pemulihan tambang dengan produksi 40–50%. Sasaran produksi akhir tahun merupakan rencana yang dinyatakan, di tengah persoalan keselamatan pekerja, keamanan, serta dampak bagi masyarakat."
+      },
+      "change": {
+        "en": "Freeport reports mine recovery and commemorates workers killed in accidents and shootings.",
+        "pmy": "Freeport melaporkan pemulihan tambang dan mengenang pekerja yang meninggal dalam insiden serta penembakan."
+      },
+      "questions": [
+        {
+          "en": "What independent findings establish the causes, safeguards and progress of mine recovery?",
+          "pmy": "Temuan independen apa yang menjelaskan penyebab, pengamanan, serta kemajuan pemulihan tambang?"
+        }
+      ],
+      "sourceIds": [
+        "freeport",
+        "freeport-recovery-2026"
+      ],
+      "kind": "curated"
     }
   },
   {
@@ -85,8 +170,51 @@
       "humanitarian-access"
     ],
     "background": {
-      "en": "Human Rights Monitor’s June 2026 displacement update describes renewed displacement in Puncak and difficulties accessing shelter and basic services.",
-      "pmy": "Pembaruan pengungsian Human Rights Monitor pada Juni 2026 menggambarkan pengungsian baru di Puncak serta kesulitan memperoleh tempat tinggal dan layanan dasar."
+      "en": "Puncak’s displacement history includes violence around Beoga and later operations elsewhere in the regency. After two teachers were killed in April 2021, ANTARA interviewed a health worker seeking evacuation, describing closed shops and shortages. That episode connects civilian safety directly with the ability to keep local services operating.\n\nLater monitoring records renewed violence and displacement in Puncak. Returning home requires more than a decline in headlines: residents need safety, food, functioning services and access to their villages. Puncak and Puncak Jaya are different regencies, and this case also remains separate from Nduga and Intan Jaya.",
+      "pmy": "Sejarah pengungsian Puncak mencakup kekerasan sekitar Beoga serta operasi berikutnya di bagian lain kabupaten. Setelah dua guru dibunuh pada April 2021, ANTARA mewawancarai tenaga kesehatan yang meminta evakuasi dan menjelaskan penutupan kios serta kekurangan bahan makanan. Peristiwa ini menghubungkan keselamatan warga dengan keberlanjutan layanan setempat.\n\nPemantauan berikutnya mencatat kekerasan dan pengungsian baru di Puncak. Kepulangan membutuhkan lebih dari berkurangnya berita: warga memerlukan keamanan, pangan, layanan yang berfungsi, dan akses kampung. Puncak dan Puncak Jaya merupakan kabupaten berbeda. Kasus ini juga terpisah dari Nduga dan Intan Jaya."
+    },
+    "backgroundSources": [
+      {
+        "id": "beoga-2021",
+        "title": "Pengungsi Beoga Puncak minta dievakuasi",
+        "publisher": "ANTARA",
+        "url": "https://papua.antaranews.com/berita/629122/pengungsi-beoga-puncak-minta-dievakuasi-persediaan-makanan-mulai-menipis",
+        "publishedAt": "2021-04-11",
+        "text": "ANTARA interviewed a health worker seeking evacuation after two teachers were killed on 8 and 9 April 2021. Shops were closed and food was running short."
+      },
+      {
+        "id": "hrm-q2",
+        "title": "Papua Monitor: second quarter 2026",
+        "publisher": "Human Rights Monitor",
+        "url": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
+        "publishedAt": "2026-08-01",
+        "text": "HRM reports military operations and armed violence in Puncak and Intan Jaya during April–June 2026; security operations also in Nduga. It attributes disruption of health and education services and displacement to recurring violence and fear. It records intimidation and dispersal of Pesta Babi screenings; the documentary was released online on 22 May 2026. This is an attributed monitoring record, not independent verification of every allegation.",
+        "datePrecision": "month"
+      }
+    ],
+    "reviewedAt": "2026-10-08",
+    "state": {
+      "asOf": "2026-06-30",
+      "reviewedAt": "2026-10-08",
+      "summary": {
+        "en": "HRM reports further violence and displacement in Puncak during April–June 2026, including concerns over civilian settlements.",
+        "pmy": "HRM melaporkan kekerasan dan pengungsian lebih lanjut di Puncak selama April–Juni 2026, termasuk kekhawatiran tentang permukiman sipil."
+      },
+      "change": {
+        "en": "HRM records further operations and concerns for displaced civilians in Puncak.",
+        "pmy": "HRM mencatat operasi lanjutan dan persoalan warga pengungsi di Puncak."
+      },
+      "questions": [
+        {
+          "en": "What protection, assistance and functioning services are available to displaced families?",
+          "pmy": "Pelindungan, bantuan, dan layanan apa tersedia bagi keluarga pengungsi?"
+        }
+      ],
+      "sourceIds": [
+        "beoga-2021",
+        "hrm-q2"
+      ],
+      "kind": "curated"
     }
   },
   {
@@ -115,21 +243,132 @@
       "humanitarian-access"
     ],
     "background": {
-      "en": "Human Rights Monitor documents repeated displacement around Sugapa and other districts of Intan Jaya. Its dated reports describe changing access to assistance and conditions for return.",
-      "pmy": "Human Rights Monitor mendokumentasikan pengungsian berulang di sekitar Sugapa dan distrik lain di Intan Jaya. Laporan berkala menggambarkan perubahan akses bantuan dan kondisi untuk pulang."
+      "en": "Violence around Sugapa and surrounding districts has displaced civilians and limited access to services. The killing of Pastor Yeremia Zanambani on 19 September 2020 became a major reference point in church and humanitarian investigations. Those records need attribution and should not be reduced to assumptions about the motives behind every later incident.\n\nHuman Rights Monitor’s second-quarter 2026 account describes further operations, civilian harm and displacement in Intan Jaya. Watch follows the specific villages, dates and sources involved, including whether assistance reaches displaced families and what would make return possible. A regional estimate of displaced people is not an Intan Jaya count.",
+      "pmy": "Kekerasan sekitar Sugapa dan distrik sekitarnya menyebabkan pengungsian serta membatasi akses layanan. Pembunuhan Pendeta Yeremia Zanambani pada 19 September 2020 menjadi rujukan penting dalam penyelidikan gereja dan tim kemanusiaan. Catatan tersebut perlu atribusi dan tidak boleh diringkas menjadi dugaan motif untuk seluruh kejadian berikutnya.\n\nHuman Rights Monitor pada kuartal kedua 2026 menjelaskan operasi, korban sipil, serta pengungsian lebih lanjut di Intan Jaya. Watch mengikuti kampung, tanggal, dan sumber tertentu, termasuk akses bantuan bagi keluarga pengungsi serta kondisi yang memungkinkan kepulangan. Perkiraan pengungsi seluruh wilayah bukan jumlah Intan Jaya."
+    },
+    "backgroundSources": [
+      {
+        "id": "intan-2020",
+        "title": "The Intan Jaya conflict",
+        "publisher": "Humanitarian Team / solidarity archive",
+        "url": "http://www.asia-pacific-solidarity.net/news/2021-01-07/intan-jaya-conflict-risk-of-more-widespread-violence-future.html",
+        "publishedAt": "2021-01-07",
+        "text": "The Humanitarian Team documented violence around Sugapa and the killing of Pastor Yeremia Zanambani on 19 September 2020, alongside concerns over civilian protection."
+      },
+      {
+        "id": "hrm-q2",
+        "title": "Papua Monitor: second quarter 2026",
+        "publisher": "Human Rights Monitor",
+        "url": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
+        "publishedAt": "2026-08-01",
+        "text": "HRM reports military operations and armed violence in Puncak and Intan Jaya during April–June 2026; security operations also in Nduga. It attributes disruption of health and education services and displacement to recurring violence and fear. It records intimidation and dispersal of Pesta Babi screenings; the documentary was released online on 22 May 2026. This is an attributed monitoring record, not independent verification of every allegation.",
+        "datePrecision": "month"
+      }
+    ],
+    "reviewedAt": "2026-10-08",
+    "state": {
+      "asOf": "2026-06-30",
+      "reviewedAt": "2026-10-08",
+      "summary": {
+        "en": "HRM’s April–June monitoring describes civilian harm and renewed displacement in Intan Jaya. Incident records need village-level verification.",
+        "pmy": "Pemantauan HRM April–Juni mencatat korban sipil dan pengungsian baru di Intan Jaya. Catatan kejadian membutuhkan verifikasi di tingkat kampung."
+      },
+      "change": {
+        "en": "HRM records armed violence and disruption of services in Intan Jaya.",
+        "pmy": "HRM mencatat kekerasan bersenjata dan gangguan layanan di Intan Jaya."
+      },
+      "questions": [
+        {
+          "en": "Can affected families obtain care and assistance, and what would make return safe?",
+          "pmy": "Apakah keluarga terdampak memperoleh perawatan dan bantuan, dan apa yang memungkinkan kepulangan aman?"
+        }
+      ],
+      "sourceIds": [
+        "intan-2020",
+        "hrm-q2"
+      ],
+      "kind": "curated"
     }
   },
   {
     "slug": "papuan-civic-space",
     "category": "Civic rights",
-    "title": {"en": "Civic space in Papua", "pmy": "Ruang sipil di Tanah Papua"},
-    "summary": {"en": "The ability to report, organize, assemble and express Papuan perspectives in public.", "pmy": "Ruang untuk meliput, berorganisasi, berkumpul, dan menyampaikan pandangan orang Papua di hadapan publik."},
-    "status": {"en": "Following", "pmy": "Dipantau"},
+    "title": {
+      "en": "Civic space in Papua",
+      "pmy": "Ruang sipil di Tanah Papua"
+    },
+    "summary": {
+      "en": "The ability to report, organize, assemble and express Papuan perspectives in public.",
+      "pmy": "Ruang untuk meliput, berorganisasi, berkumpul, dan menyampaikan pandangan orang Papua di hadapan publik."
+    },
+    "status": {
+      "en": "Following",
+      "pmy": "Dipantau"
+    },
     "updatedAt": "2026-06-12",
     "developmentSlugs": [],
-    "sourceIds": ["civic-internet-ruling-2020", "civic-mimika-journalists-2025", "civic-film-screenings-2026"],
+    "sourceIds": [
+      "civic-internet-ruling-2020",
+      "civic-mimika-journalists-2025",
+      "civic-film-screenings-2026"
+    ],
     "concepts": [],
-    "background": {"en": "Papuan civic life includes journalism, student discussion, community advocacy and cultural work. The 2019 internet shutdown, subsequent press-freedom concerns and debate around public film screenings are distinct episodes. This page follows documented changes in the space to report, organize and be heard; sources retain their own accounts of each event.", "pmy": "Kehidupan sipil di Tanah Papua mencakup kerja jurnalistik, diskusi mahasiswa, advokasi masyarakat, dan kegiatan budaya. Pemblokiran internet pada 2019, persoalan kebebasan pers setelahnya, serta perdebatan tentang pemutaran film adalah peristiwa yang berbeda. Halaman ini mengikuti perubahan yang terdokumentasi dalam ruang untuk meliput, berorganisasi, dan menyampaikan pendapat; setiap sumber tetap bertanggung jawab atas laporannya."}
+    "background": {
+      "en": "Civic space concerns the practical ability to report, organise, discuss and make cultural work. The August 2019 anti-racism protests and internet shutdown are major reference points. The Jakarta administrative court later found the shutdown unlawful, but that ruling did not establish that every subsequent restriction ended.\n\nRecent cases include journalism, student organising and public film screenings. Each needs its own date, authority and evidence. Pesta Babi links debate about South Papua’s land projects with the ability to show and discuss a documentary; monitoring reports of intimidation and dispersal should remain attributed. Disagreement with a work and an action preventing people from seeing it are different things.",
+      "pmy": "Ruang sipil menyangkut kemampuan nyata untuk meliput, berorganisasi, berdiskusi, dan membuat karya budaya. Protes antirasisme Agustus 2019 serta pemutusan internet menjadi rujukan penting. Pengadilan administrasi Jakarta kemudian menyatakan pemutusan itu melanggar hukum, tetapi putusan tidak membuktikan bahwa seluruh pembatasan berikutnya berakhir.\n\nKasus baru mencakup jurnalisme, organisasi mahasiswa, serta pemutaran film publik. Masing-masing membutuhkan tanggal, pihak yang bertindak, dan bukti tersendiri. Pesta Babi menghubungkan perdebatan proyek tanah Papua Selatan dengan kebebasan menonton serta membahas dokumenter. Laporan intimidasi dan pembubaran tetap diberi atribusi. Ketidaksetujuan terhadap karya berbeda dari tindakan menghalangi orang menontonnya."
+    },
+    "backgroundSources": [
+      {
+        "id": "racism",
+        "title": "If It’s Not Racism, What Is It?",
+        "publisher": "Human Rights Watch · 2024",
+        "url": "https://www.hrw.org/report/2024/09/18/if-its-not-racism-what-is-it/discrimination-and-other-abuses-against-papuans-in",
+        "publishedAt": "2024-09-18",
+        "text": "HRW documents racist abuse against Papuan students, August 2019 protests, arrests and subsequent discrimination."
+      },
+      {
+        "id": "shutdown",
+        "title": "Court ruling on internet blackout",
+        "publisher": "Amnesty International Indonesia · 2020",
+        "url": "https://www.amnesty.id/kabar-terbaru/siaran-pers/court-ruling-on-internet-blackout-is-a-rare-victory-for-freedom-of-expression-in-papua/06/2020/",
+        "publishedAt": "2020-06-03",
+        "text": "Amnesty reports the Jakarta administrative court ruling that 2019 government internet throttling and shutdown were unlawful."
+      },
+      {
+        "id": "hrm-q2",
+        "title": "Papua Monitor: second quarter 2026",
+        "publisher": "Human Rights Monitor",
+        "url": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
+        "publishedAt": "2026-08-01",
+        "text": "HRM reports military operations and armed violence in Puncak and Intan Jaya during April–June 2026; security operations also in Nduga. It attributes disruption of health and education services and displacement to recurring violence and fear. It records intimidation and dispersal of Pesta Babi screenings; the documentary was released online on 22 May 2026. This is an attributed monitoring record, not independent verification of every allegation.",
+        "datePrecision": "month"
+      }
+    ],
+    "reviewedAt": "2026-10-08",
+    "state": {
+      "asOf": "2026-06-30",
+      "reviewedAt": "2026-10-08",
+      "summary": {
+        "en": "HRM records intimidation and dispersal of Pesta Babi screenings during its second-quarter monitoring. The documentary was released online on 22 May.",
+        "pmy": "HRM mencatat intimidasi dan pembubaran pemutaran Pesta Babi dalam pemantauan kuartal kedua. Dokumenter dirilis daring pada 22 Mei."
+      },
+      "change": {
+        "en": "HRM records intimidation and dispersal of Pesta Babi screenings.",
+        "pmy": "HRM mencatat intimidasi serta pembubaran pemutaran Pesta Babi."
+      },
+      "questions": [
+        {
+          "en": "Which screening incidents are documented, and what remedies were available to organizers?",
+          "pmy": "Insiden pemutaran mana terdokumentasi, dan pemulihan apa tersedia bagi penyelenggara?"
+        }
+      ],
+      "sourceIds": [
+        "racism",
+        "shutdown",
+        "hrm-q2"
+      ],
+      "kind": "curated"
+    }
   },
   {
     "slug": "awyu-customary-forests",
@@ -157,8 +396,188 @@
       "extractivism"
     ],
     "background": {
-      "en": "Several distinct permit disputes concern Awyu customary forests. Reporting in March 2025 describes limits on further clearing by MJR and KCP while distinguishing that ruling from the separate Indo Asiana Lestari case. Recognition of customary land rights remains a separate question from whether a company holds permission to clear forest.",
-      "pmy": "Sejumlah sengketa izin yang berbeda menyangkut hutan adat Awyu. Laporan Maret 2025 membahas pembatasan pembukaan hutan oleh MJR dan KCP, dengan membedakan putusan itu dari perkara Indo Asiana Lestari. Pengakuan hak atas tanah adat tetap merupakan persoalan tersendiri, terpisah dari izin perusahaan untuk membuka hutan."
+      "en": "Awyu communities in Boven Digoel have challenged plantation permissions affecting customary forests. Hendrikus Woro’s case concerns PT Indo Asiana Lestari’s environmental approval. Proceedings involving PT Kartika Cipta Pratama and PT Megakarya Jaya Raya are separate and should not be merged into one court outcome.\n\nThe Supreme Court rejected the IAL cassation in a decision made on 18 September 2024, with a dissenting judge; the coalition discussed the accessible ruling on 1 November. A judgment on that permission does not determine every customary-land claim or establish what has been cleared. The continuing questions concern consent, legal recognition, forest access and the actual effects of each company’s activities.",
+      "pmy": "Masyarakat Awyu di Boven Digoel menggugat izin perkebunan yang memengaruhi hutan adat. Perkara Hendrikus Woro menyangkut persetujuan lingkungan PT Indo Asiana Lestari. Perkara PT Kartika Cipta Pratama dan PT Megakarya Jaya Raya berbeda dan tidak boleh disatukan sebagai satu hasil pengadilan.\n\nMahkamah Agung menolak kasasi IAL melalui keputusan 18 September 2024, dengan seorang hakim menyatakan pendapat berbeda. Koalisi membahas putusan yang sudah dapat diakses pada 1 November. Putusan izin tersebut tidak menentukan seluruh klaim tanah adat atau membuktikan luas pembukaan. Pertanyaan berlanjut menyangkut persetujuan, pengakuan hukum, akses hutan, dan dampak nyata aktivitas tiap perusahaan."
+    },
+    "backgroundSources": [
+      {
+        "id": "awyu-2024",
+        "title": "Mahkamah Agung tolak kasasi suku Awyu",
+        "publisher": "WALHI / Save Papuan Customary Forests Coalition",
+        "url": "https://www.walhi.or.id/mahkamah-agung-tolak-kasasi-suku-awyu-perjuangan-selamatkan-hutan-papua-kian-berat",
+        "publishedAt": "2024-11-01",
+        "text": "The coalition reports decision 458 K/TUN/LH/2024, decided 18 September 2024, rejecting Hendrikus Woro’s cassation over PT Indo Asiana Lestari’s environmental approval. One judge dissented. PT Kartika Cipta Pratama and PT Megakarya Jaya Raya cases were separate."
+      }
+    ],
+    "reviewedAt": "2026-10-08",
+    "state": {
+      "asOf": "2024-09-18",
+      "reviewedAt": "2026-10-08",
+      "summary": {
+        "en": "The IAL cassation was rejected with a dissenting opinion. Other company cases and customary-land claims must be followed separately.",
+        "pmy": "Kasasi IAL ditolak dengan pendapat berbeda. Perkara perusahaan lain dan klaim tanah adat perlu diikuti secara terpisah."
+      },
+      "change": {
+        "en": "Coalition reports cassation rejected in Hendrikus Woro’s environmental-permit case.",
+        "pmy": "Koalisi melaporkan penolakan kasasi perkara persetujuan lingkungan Hendrikus Woro."
+      },
+      "questions": [
+        {
+          "en": "What is the present status of each permission, court proceeding and affected customary territory?",
+          "pmy": "Bagaimana status tiap izin, perkara pengadilan, dan wilayah adat terdampak?"
+        }
+      ],
+      "sourceIds": [
+        "awyu-2024"
+      ],
+      "kind": "curated"
+    }
+  },
+  {
+    "slug": "south-papua-food-energy-estate",
+    "category": "Land",
+    "title": {
+      "en": "South Papua food and energy estate",
+      "pmy": "Proyek pangan dan energi Papua Selatan"
+    },
+    "summary": {
+      "en": "South Papua food and energy estate",
+      "pmy": "Proyek pangan dan energi Papua Selatan"
+    },
+    "status": {
+      "en": "Following",
+      "pmy": "Dipantau"
+    },
+    "updatedAt": "2026-10-08",
+    "developmentSlugs": [],
+    "sourceIds": [],
+    "concepts": [
+      "customary-land"
+    ],
+    "background": {
+      "en": "Merauke’s food and energy projects take place on customary territories with existing forests, sago landscapes, gardens and clan relationships. Malind testimony gathered during MIFEE describes how land negotiation and forest conversion affected food sources and everyday life. These are working landscapes and social relationships, not vacant land.\n\nMIFEE began in 2010. Later strategic projects include sugar and bioethanol development and a separate rice programme, with different companies, approvals and sites. The questions are which territories are affected, how consent was obtained, what has actually been cleared, and whether communities retain access to food, water and livelihoods. Awyu litigation in Boven Digoel is a related but distinct case.",
+      "pmy": "Proyek pangan dan energi Merauke berlangsung di wilayah adat yang sudah memiliki hutan, bentang sagu, kebun, dan hubungan antarmarga. Kesaksian Malind selama MIFEE menjelaskan dampak perundingan tanah serta perubahan hutan terhadap sumber pangan dan hidup sehari-hari. Wilayah tersebut merupakan ruang penghidupan dan hubungan sosial, bukan tanah kosong.\n\nMIFEE dimulai pada 2010. Proyek strategis berikutnya mencakup gula dan bioetanol serta program padi yang terpisah, dengan perusahaan, persetujuan, dan lokasi berbeda. Pertanyaannya menyangkut wilayah terdampak, proses persetujuan, pembukaan yang benar-benar terjadi, serta akses masyarakat terhadap pangan, air, dan penghidupan. Gugatan Awyu di Boven Digoel merupakan kasus terkait yang berbeda."
+    },
+    "backgroundSources": [
+      {
+        "id": "mifee",
+        "title": "A sweetness like unto death: voices of the indigenous Malind of Merauke",
+        "publisher": "Forest Peoples Programme · 2013",
+        "url": "https://www.forestpeoples.org/publications-resources/reports/article/a-sweetness-like-unto-death-voices-of-the-indigenous-malind-of-merauke-papua/",
+        "publishedAt": "2013-01-01",
+        "text": "Field study documents Malind community experiences of MIFEE, land negotiation, forest conversion and changes to food systems.",
+        "datePrecision": "year"
+      },
+      {
+        "id": "psn",
+        "title": "Merauke National Strategic Project timeline",
+        "publisher": "Yayasan Pusaka Bentala Rakyat",
+        "url": "https://pusaka.or.id/en/lini-masa/merauke-national-strategic-project-timeline/",
+        "publishedAt": "2024-04-19",
+        "text": "Pusaka timeline distinguishes the 2023 strategic-project designation and the April 2024 sugar and bioethanol task force from the rice programme. Planned area is not cleared area.",
+        "datePrecision": "event-context"
+      },
+      {
+        "id": "hria-launch",
+        "title": "Elegi Selatan Papua",
+        "publisher": "Yayasan Pusaka Bentala Rakyat",
+        "url": "https://pusaka.or.id/event/elegi-selatan-papua/",
+        "publishedAt": "2026-08-12",
+        "text": "Pusaka announced the 13 August 2026 Jayapura launch and discussion of a Human Rights Impact Assessment of South Papua food and energy projects. Pusaka describes impacts on customary land, communities and the environment; the event page is a description of its findings, not the full assessment."
+      }
+    ],
+    "reviewedAt": "2026-10-08",
+    "state": {
+      "asOf": "2026-08-13",
+      "reviewedAt": "2026-10-08",
+      "summary": {
+        "en": "Pusaka’s August assessment brings community impacts into the record alongside project targets. Rice and sugar/bioethanol remain distinct programmes.",
+        "pmy": "Kajian Pusaka pada Agustus memasukkan dampak bagi masyarakat bersama target proyek. Padi dan gula/bioetanol tetap merupakan program berbeda."
+      },
+      "change": {
+        "en": "Pusaka launches a human-rights assessment of Merauke food and energy projects.",
+        "pmy": "Pusaka meluncurkan penilaian HAM atas proyek pangan dan energi Merauke."
+      },
+      "questions": [
+        {
+          "en": "Which territories have been cleared, and what consent and food access are documented?",
+          "pmy": "Wilayah mana sudah dibuka, dan bagaimana bukti persetujuan serta akses pangan?"
+        }
+      ],
+      "sourceIds": [
+        "mifee",
+        "psn",
+        "hria-launch"
+      ],
+      "kind": "curated"
+    }
+  },
+  {
+    "slug": "mining-raja-ampat",
+    "category": "Environment",
+    "title": {
+      "en": "Mining in Raja Ampat",
+      "pmy": "Tambang di Raja Ampat"
+    },
+    "summary": {
+      "en": "Mining in Raja Ampat",
+      "pmy": "Tambang di Raja Ampat"
+    },
+    "status": {
+      "en": "Following",
+      "pmy": "Dipantau"
+    },
+    "updatedAt": "2026-10-08",
+    "developmentSlugs": [],
+    "sourceIds": [],
+    "concepts": [
+      "customary-land"
+    ],
+    "background": {
+      "en": "Mining in Raja Ampat involves particular islands, permits, companies and customary territories. Tourism and marine conservation make the region internationally visible, but the effects of extraction also concern forest, freshwater and local livelihoods on the islands themselves.\n\nOn 10 June 2025 the government announced four permit revocations, while distinguishing PT Gag Nikel, whose permit remained. This was not an announcement that all mining had ended. Following the decision requires evidence of operations, compliance and site recovery, as well as community accounts. An island-specific observation should not be presented as a measurement for the whole archipelago.",
+      "pmy": "Pertambangan Raja Ampat melibatkan pulau, izin, perusahaan, dan wilayah adat tertentu. Pariwisata serta konservasi laut membuat kawasan ini dikenal luas, tetapi dampak ekstraksi juga menyangkut hutan, air tawar, dan penghidupan penduduk pulau.\n\nPada 10 Juni 2025 pemerintah mengumumkan pencabutan empat izin dan membedakannya dari PT Gag Nikel yang izinnya tetap berlaku. Pengumuman itu bukan penghentian seluruh pertambangan. Pemantauan keputusan memerlukan bukti operasi, kepatuhan, serta pemulihan lokasi bersama penuturan masyarakat. Pengamatan satu pulau tidak dapat disajikan sebagai ukuran seluruh kepulauan."
+    },
+    "backgroundSources": [
+      {
+        "id": "raja",
+        "title": "Four mining permits revoked in Raja Ampat",
+        "publisher": "Ministry of Energy and Mineral Resources · 2025",
+        "url": "https://www.esdm.go.id/en/media-center/news-archives/pemerintah-cabut-empat-izin-perusahaan-tambang-di-raja-ampat",
+        "publishedAt": "2025-06-10",
+        "text": "ESDM announced revocation of ASP, MRP, KSM and Nurham mining permits. PT Gag Nikel’s permit remained; revocation does not establish ecological rehabilitation."
+      },
+      {
+        "id": "raja-court-2026",
+        "title": "PTUN orders disclosure of Raja Ampat permit-revocation records",
+        "publisher": "Greenpeace Indonesia",
+        "url": "https://www.greenpeace.org/indonesia/siaran-pers/67809/greenpeace-menang-ptun-perintahkan-pemerintah-buka-sk-pencabutan-izin-4-tambang-nikel-di-raja-ampat/",
+        "publishedAt": "2026-09-14",
+        "text": "Greenpeace reports that PTUN Jakarta rejected BKPM’s objection on 14 September 2026, affirming the Central Information Commission’s 10 June 2026 decision that the four permit-revocation documents and implementation details were public information. This is a disclosure ruling, not proof of ecological rehabilitation or confirmation that the documents had been released."
+      }
+    ],
+    "reviewedAt": "2026-10-08",
+    "state": {
+      "asOf": "2026-09-14",
+      "reviewedAt": "2026-10-08",
+      "summary": {
+        "en": "Greenpeace reports that PTUN Jakarta upheld public access to the four permit-revocation decisions and implementation records on 14 September 2026. The dispute now includes whether the announced revocations can be checked through official documents; disclosure and ecological recovery remain separate questions.",
+        "pmy": "Greenpeace melaporkan bahwa PTUN Jakarta menguatkan akses publik atas empat keputusan pencabutan izin serta catatan pelaksanaannya pada 14 September 2026. Sengketa kini mencakup kemampuan memeriksa pengumuman pencabutan melalui dokumen resmi. Keterbukaan dokumen dan pemulihan lingkungan tetap menjadi persoalan berbeda."
+      },
+      "change": {
+        "en": "PTUN Jakarta upholds access to permit-revocation records, Greenpeace reports.",
+        "pmy": "PTUN Jakarta menguatkan akses atas catatan pencabutan izin, menurut Greenpeace."
+      },
+      "questions": [
+        {
+          "en": "Have the revocation decisions and implementation records been released?",
+          "pmy": "Apakah keputusan pencabutan serta catatan pelaksanaannya sudah dibuka?"
+        }
+      ],
+      "sourceIds": [
+        "raja",
+        "raja-court-2026"
+      ],
+      "kind": "curated"
     }
   }
 ]

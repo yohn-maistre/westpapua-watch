@@ -1,7 +1,9 @@
+import additions from '../../content/following-timelines.json';
 // Selected, sourced milestones. Dates are event dates; entries are editorial,
 // never generated from publication timestamps. Programme names remain distinct.
 export type Milestone={id:string;date:string;title:{en:string;pmy:string};text:{en:string;pmy:string};source:string;publisher:string};
 export const topicTimelines:Record<string,Milestone[]>={
+ ...additions,
  'south-papua-food-energy-estate':[
  {id:'mifee-launch',date:'2010',title:{en:'MIFEE launched',pmy:'MIFEE diluncurkan'},text:{en:'The Merauke Integrated Food and Energy Estate was launched as a large-scale agribusiness programme. A 2013 study examines its land politics and resistance.',pmy:'Merauke Integrated Food and Energy Estate diluncurkan sebagai program agribisnis skala besar. Kajian 2013 membahas politik pertanahan dan perlawanan terhadapnya.'},source:'https://aseas.univie.ac.at/index.php/aseas/article/view/2571/2159',publisher:'Ginting & Pye · ASEAS (2013)'},
  {id:'mifee-rights',date:'2011-08-14',title:{en:'Civil-society concerns over MIFEE',pmy:'Kekhawatiran masyarakat sipil tentang MIFEE'},text:{en:'TAPOL published a statement raising concerns about land conversion and the rights of Malind communities. This entry records the organisation’s position.',pmy:'TAPOL menerbitkan pernyataan tentang alih fungsi lahan dan hak masyarakat Malind. Entri ini mencatat posisi organisasi tersebut.'},source:'https://tapol.org/press-statements/mifee-project-violates-human-rights',publisher:'TAPOL'},

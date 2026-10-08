@@ -1,27 +1,30 @@
+import expansion from '../../content/history-explorer.json';
 import { historyChapters } from './history';
 import { archiveItemById } from './archive';
 import { itemBySourceId } from './library';
 import type { Localized } from './types';
 
-export type HistoryPath = 'all' | 'political' | 'archaeology' | 'culture' | 'social' | 'land';
+export type HistoryPath = 'all' | 'political' | 'archaeology' | 'culture' | 'peoples' | 'social' | 'land';
 export type HistoryPlace = { label: string; longitude: number; latitude: number };
 export type HistoryRecord = {
   id: string; year: number; era: string; paths: HistoryPath[];
   yearLabel: Localized; title: Localized; body: Localized;
   sources: { title: string; publisher: string; url: string }[];
-  media?: { src: string; caption: Localized; credit: string; url: string; license: string; licenseUrl: string };
-  archiveIds: string[]; places: HistoryPlace[];
+  media?: { src: string; caption: Localized; credit: string; url: string; license?: string; licenseUrl?: string };
+  archiveIds: string[]; resourceIds?:string[]; places: HistoryPlace[];
 };
-export const historyPaths: { id: HistoryPath; label: Localized; start: Localized }[] = [
-  { id:'political',label:{en:'Political history',pmy:'Sejarah politik'},start:{en:'1949',pmy:'1949'} },
-  { id:'archaeology',label:{en:'Archaeology',pmy:'Arkeologi'},start:{en:'55,000 years ago',pmy:'55.000 tahun lalu'} },
-  { id:'culture',label:{en:'Culture',pmy:'Budaya'},start:{en:'1978',pmy:'1978'} },
-  { id:'social',label:{en:'Social life',pmy:'Kehidupan sosial'},start:{en:'1950',pmy:'1950'} },
-  { id:'land',label:{en:'Land & work',pmy:'Tanah & pekerjaan'},start:{en:'1970s',pmy:'1970-an'} },
-  { id:'all',label:{en:'Full chronology',pmy:'Kronologi lengkap'},start:{en:'All dates',pmy:'Semua tahun'} },
+export const historyPaths: { id: HistoryPath; label: Localized; start: Localized; startId?:string }[] = [
+ {id:'archaeology',label:{en:'Deep time',pmy:'Masa awal'},start:{en:'Landscape & settlement',pmy:'Bentang alam & permukiman'},startId:'history-geography'},
+ {id:'peoples',label:{en:'Peoples & languages',pmy:'Masyarakat & bahasa'},start:{en:'Movement & contact',pmy:'Perpindahan & hubungan'},startId:'history-austronesian'},
+ {id:'social',label:{en:'Society & exchange',pmy:'Masyarakat & pertukaran'},start:{en:'Regional histories',pmy:'Sejarah regional'},startId:'history-leadership'},
+ {id:'culture',label:{en:'Culture & knowledge',pmy:'Budaya & pengetahuan'},start:{en:'Living practices',pmy:'Praktik yang hidup'},startId:'history-khombouw'},
+ {id:'political',label:{en:'Political history',pmy:'Sejarah politik'},start:{en:'1828 onward',pmy:'Sejak 1828'},startId:'history-1828'},
+ {id:'land',label:{en:'Land & work',pmy:'Tanah & penghidupan'},start:{en:'Food, forests & industry',pmy:'Pangan, hutan & industri'},startId:'history-sago'},
+ {id:'all',label:{en:'Full chronology',pmy:'Kronologi lengkap'},start:{en:'All dates',pmy:'Semua tahun'}}
 ];
 export const historyEras = [
   { id:'early',label:{en:'Early settlement',pmy:'Permukiman awal'} },
+  { id:'colonial',label:{en:'1828–1948',pmy:'1828–1948'} },
   { id:'postwar',label:{en:'1949–1960',pmy:'1949–1960'} },
   { id:'transfer',label:{en:'1961–1969',pmy:'1961–1969'} },
   { id:'public-life',label:{en:'1970–1997',pmy:'1970–1997'} },
@@ -67,7 +70,7 @@ const conciseBodies: Record<string,Localized> = {
 };
 const curated: HistoryRecord[] = historyChapters.map(c=>({
   id:c.id,...membership[c.id],yearLabel:c.yearLabel,title:directTitles[c.id]||c.title,
-  body:conciseBodies[c.id]||c.body,media:c.media,
+  body:c.body,media:c.media,
   sources:c.sourceIds.map(id=>itemBySourceId[id]).filter(Boolean).map(s=>({title:s.title,publisher:s.publisher,url:s.url})),
   archiveIds:Object.values(archiveItemById).filter(a=>a.relatedHistoryEvents?.includes(c.id)).map(a=>a.id),
   places:membership[c.id].places||[],
@@ -86,7 +89,7 @@ const archaeology: HistoryRecord[] = [
     body:{en:'Research at Toé Kria documents occupation of inland rainforest in the Bird’s Head from around 24,000 calibrated years before present. The record concerns this site, rather than a single settlement history for all of Papua.',pmy:'Penelitian di Toé Kria mencatat hunian di hutan pedalaman Kepala Burung sejak sekitar 24.000 tahun terkalibrasi sebelum kini. Temuan ini berkaitan dengan situs tersebut, bukan satu riwayat permukiman untuk seluruh Papua.'},
     sources:[{title:'Late Pleistocene human occupation of inland rainforest, Bird’s Head, Irian Jaya',publisher:'Pasveer, Clarke & Miller · 2002',url:'https://researchportalplus.anu.edu.au/en/publications/late-pleistocene-human-occupation-of-inland-rainforest-birds-head/'}],archiveIds:[],places:[]},
 ];
-export const prototypeHistoryRecords: HistoryRecord[] = [...archaeology,...curated,
+export const prototypeHistoryRecords: HistoryRecord[] = [...(expansion.records as HistoryRecord[]),...archaeology,...curated,
   archiveRecord('serido-biak-1950',1950,'postwar',[biak]),
   archiveRecord('hollandia-housing-1953',1953,'postwar',[jayapura]),
   archiveRecord('manokwari-street-1954',1954,'postwar',[manokwari]),
@@ -97,6 +100,9 @@ export const prototypeHistoryRecords: HistoryRecord[] = [...archaeology,...curat
 ].sort((a,b)=>a.year-b.year);
 export const recordsForPath = (path:HistoryPath)=>prototypeHistoryRecords.filter(r=>path==='all'||r.paths.includes(path));
 export function companionFor(record:HistoryRecord):HistoryRecord|undefined {
+  if(!['history-mololo','history-1961','history-1969','history-freeport-contract','history-mambesak','history-reformasi','history-mifee'].includes(record.id))return;
   return prototypeHistoryRecords.filter(r=>r.id!==record.id&&r.era===record.era&&!r.paths.some(p=>record.paths.includes(p)))
     .sort((a,b)=>Math.abs(a.year-record.year)-Math.abs(b.year-record.year))[0];
 }
+
+export const historyRecords=prototypeHistoryRecords;

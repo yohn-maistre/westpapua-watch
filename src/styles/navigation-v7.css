@@ -80,28 +80,18 @@ body:has(.watch-menu[open]){overflow:hidden}
   .compact-nav .compact-links>a:first-child{grid-row:1/3!important;border-right:1px solid var(--line)}
 }
 
-/* The compact phone bar reads as two lines: signature and tools, then one menu. */
-@media(max-width:760px){
-  .compact-nav .compact-inner{grid-template-rows:auto auto!important;gap:0!important}
-  .compact-nav .compact-brand{padding-block:12px!important}
-  .compact-nav .compact-inner .compact-links{
-    display:flex!important;grid-column:1/-1!important;grid-row:2!important;
-    justify-content:flex-start!important;align-items:stretch!important;
-    gap:0!important;min-height:42px;max-width:100%;overflow-x:auto!important;overflow-y:hidden!important;
-    scroll-padding-inline:12px;scrollbar-width:none;overscroll-behavior-x:contain;
-    border-top:1px solid var(--line)!important;border-bottom:0!important;
-    -webkit-mask-image:none!important;mask-image:none!important;
-  }
-  .compact-nav .compact-inner .compact-links::-webkit-scrollbar{display:none}
-  .compact-nav .compact-inner .compact-links>a{
-    flex:0 0 auto;grid-row:auto!important;min-width:0!important;min-height:42px!important;
-    padding:.5rem .67rem!important;border-right:0!important;
-    font-size:.72rem!important;line-height:1.15;white-space:nowrap!important;
-  }
-  .compact-nav .compact-inner .compact-links>a:first-child{padding-inline:.85rem!important}
-  .compact-nav .compact-inner .compact-links>a[aria-current=page]{box-shadow:inset 0 -2px #aaa1db}
-}
-
 .masthead .masthead-utils>.ask-trigger{height:44px;min-height:44px;border-radius:12px;padding-inline:12px;gap:7px;margin:0;line-height:1}
 .masthead .masthead-utils>.ask-trigger .ask-icon{width:20px;height:20px}
 @media(prefers-reduced-motion:reduce){.watch-language-control>a::before{transition:none}}
+
+/* All seven destinations remain visible; tools share the neutral masthead grammar. */
+@media(max-width:760px){
+ .compact-nav .compact-inner{padding-inline:10px!important}
+ .compact-nav .compact-inner .compact-links{display:grid!important;grid-template-columns:34px repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,32px)!important;overflow:visible!important;border-top:0!important}
+ .compact-nav .compact-inner .compact-links>a{min-height:32px!important;padding:.3rem .2rem!important;font-size:.73rem!important;white-space:normal!important}
+ .compact-nav .compact-inner .compact-links>a:first-child{grid-row:1/3!important;border:0!important}
+ .compact-nav .compact-actions>.ask-trigger{width:auto!important;padding:0 9px!important;gap:6px!important;font-size:.7rem!important;background:transparent!important;border:0!important}
+ .compact-nav .compact-actions>.ask-trigger>span{display:inline!important}
+ .compact-nav .compact-brand{font-size:12px!important}
+ .masthead .masthead-nav>a:first-child{border-right:0!important}
+}

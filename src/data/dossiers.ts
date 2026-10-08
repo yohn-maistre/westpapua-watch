@@ -3,7 +3,7 @@ import following from '../../content/following.json';
 
 // Freeze 10.8: these named persistent subjects were the original public Issues.
 // They remain first-class Dossiers so existing URLs and Current relationships do not break.
-export const dossiers: Issue[] = [
+const dossierCandidates: Issue[] = [
   ...(following as Issue[]),
   {
     slug:'mining-raja-ampat',category:'Environment',
@@ -55,4 +55,5 @@ export const dossiers: Issue[] = [
     developmentSlugs:['read-my-world-2026-programme'],sourceIds:['read-my-world-2026','udeido-biennale-jogja','udeido-papoeahuis'],concepts:['collective-memory']
   }
 ];
+export const dossiers=dossierCandidates.filter((item,index,items)=>items.findIndex(x=>x.slug===item.slug)===index);
 export const dossierBySlug=Object.fromEntries(dossiers.map(x=>[x.slug,x]));

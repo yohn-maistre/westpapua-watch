@@ -1,13 +1,16 @@
 import {engineActivity} from './activity';
-import {followingTickerSlugs,matchesFollowing,matchesFollowingEvidence} from '../../../shared/following';
+import {matchesFollowing,matchesFollowingEvidence} from '../../../shared/following';
 import {resources} from './library-api';
-import { NewsCycleWorkflow } from './workflow';
+import {readWeekly,readCaseState} from './weekly';
+import {witWeek} from '../../../shared/analysis';
+import caseSeeds from '../../../content/following.json';
+import { WeeklyReviewWorkflow,NewsCycleWorkflow } from './workflow';
 import { processArticle } from './ingest/process';
 import { processEditorialJob } from './cluster/editorial';
 import { answerQuestion } from './ask';
 import { cleanupRecentIrrelevant,reindexKnowledge } from './knowledge';
 import { fireHotspots,geographicStatus } from './geo';
-export { NewsCycleWorkflow };
+export { NewsCycleWorkflow,WeeklyReviewWorkflow };
 
 const json=(data:any,status=200,cache='no-store')=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':cache,'x-content-type-options':'nosniff'}});
 const parseArray=(v:any)=>{try{const x=JSON.parse(String(v||'[]'));return Array.isArray(x)?x.map(String):[]}catch{return[]}};
@@ -113,7 +116,8 @@ async function dossier(env:any,slug:string){
   const acceptedDeltas=(deltas.results||[]).filter((r:any)=>accepted.has(Number(r.development_id)));
   const src:any=await env.DB.prepare(`SELECT COUNT(DISTINCT CASE WHEN a.syndicated_from_article_id IS NULL THEN a.publisher_id END) n FROM development_issues di JOIN developments d ON d.id=di.development_id JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id WHERE di.issue_slug=? AND d.status='published' AND d.id IN (${developments.map(()=>'?').join(',')||'NULL'})`).bind(slug,...developments.map(d=>d.id)).first();
   const broad:any=await env.DB.prepare(`SELECT b.slug,b.title_en,b.title_id FROM dossier_issues di JOIN broad_issues b ON b.slug=di.broad_issue_slug WHERE di.dossier_slug=? AND b.active=1 ORDER BY b.sort_order`).bind(slug).all();
-  return {...meta,kind:'dossier',areas:broad.results||[],updated_at:developments[0]?.latest_report_at||meta.last_seen_at||meta.updated_at,development_count:developments.length,source_count:Number(src?.n||0),current_status:acceptedDeltas[0]?{en:acceptedDeltas[0].delta_summary,id:acceptedDeltas[0].delta_summary_id||acceptedDeltas[0].delta_summary}:{en:developments[0]?.summary_en||meta.summary_en,id:developments[0]?.summary_id||meta.summary_id},developments,deltas:acceptedDeltas,reporting:acceptedReports};
+  const state=await readCaseState(env,slug);
+  return {...meta,state,kind:'dossier',areas:broad.results||[],updated_at:developments[0]?.latest_report_at||meta.last_seen_at||meta.updated_at,development_count:developments.length,source_count:Number(src?.n||0),current_status:acceptedDeltas[0]?{en:acceptedDeltas[0].delta_summary,id:acceptedDeltas[0].delta_summary_id||acceptedDeltas[0].delta_summary}:{en:developments[0]?.summary_en||meta.summary_en,id:developments[0]?.summary_id||meta.summary_id},developments,deltas:acceptedDeltas,reporting:acceptedReports};
 }
 
 async function issue(env:any,slug:string){
@@ -136,19 +140,8 @@ async function issue(env:any,slug:string){
   return {...meta,kind:'issue',updated_at:developments[0]?.latest_report_at||null,development_count:developments.length,source_count:Number(src?.n||0),current_status:{en:developments[0]?.summary_en||meta.summary_en,id:developments[0]?.summary_id||meta.summary_id},developments,deltas:[],reporting:reporting.results||[],dossiers:dossiers.results||[],areas:[]};
 }
 async function following(env:any){
-  const items=[];
-  for(const slug of followingTickerSlugs){
-    const record:any=await env.DB.prepare(`SELECT title_en,title_id FROM dossiers WHERE slug=? AND active=1`).bind(slug).first();if(!record)continue;
-    // Small projection: the strip does not need whole case histories or images.
-    const rows:any=await env.DB.prepare(`SELECT d.id,d.title_en,d.title_id,
-      json_group_array(a.title || ' ' || COALESCE(a.summary,'')) evidence_reports,
-      strftime('%Y-%m-%dT%H:%M:%SZ',MAX(julianday(a.published_at))) latest_report_at
-      FROM development_issues di JOIN developments d ON d.id=di.development_id JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id
-      WHERE di.issue_slug=? AND d.status='published' AND julianday(a.published_at)<=julianday('now','+1 hour') GROUP BY d.id ORDER BY MAX(julianday(a.published_at)) DESC LIMIT 40`).bind(slug).all();
-    const d=(rows.results||[]).find((r:any)=>matchesFollowingEvidence(slug,parseArray(r.evidence_reports)));
-    if(d)items.push({slug,title:{en:record.title_en,id:record.title_id||record.title_en},development:{id:d.id,title_en:d.title_en,title_id:d.title_id,latest_report_at:d.latest_report_at,story_url:`/story/?id=${d.id}`}});
-  }
-  return {items};
+ const items=[];for(const seed of caseSeeds){const state=await readCaseState(env,seed.slug);if(state)items.push({slug:seed.slug,title:seed.title,state,case_url:`/topics/${seed.slug}/#overview`})}
+ return {items};
 }
 async function emerging(env:any){const rows:any=await env.DB.prepare(`SELECT * FROM emerging_issues WHERE status='emerging' ORDER BY last_seen_at DESC,development_count DESC LIMIT 20`).all();return rows.results||[]}
 
@@ -173,6 +166,7 @@ export default {
     }
     if(url.pathname==='/search'&&request.method==='GET')return json(await publicSearch(env,url),200,'public, max-age=60');
     if(url.pathname==='/current'&&request.method==='GET')return json(await current(env,url),200,'public, max-age=60, stale-while-revalidate=180');
+    if(url.pathname==='/weekly'&&request.method==='GET'){const data=await readWeekly(env,url.searchParams.get('id')||undefined);return data.edition?json(data,200,'public, max-age=120, stale-while-revalidate=300'):json({error:'Not found'},404)}
     if(url.pathname==='/following'&&request.method==='GET')return json(await following(env),200,'public, max-age=60, stale-while-revalidate=300');
     const dm=url.pathname.match(/^\/development\/(\d+)$/);if(dm&&request.method==='GET'){const item=await development(env,Number(dm[1]));return item?json(item):json({error:'Not found'},404)}
     if(url.pathname==='/issues'&&request.method==='GET')return json(await issues(env),200,'public, max-age=60, stale-while-revalidate=180');
@@ -185,7 +179,7 @@ export default {
 
     // Everything below this point is operational/editorial state and requires the
     // Worker secret. Missing configuration fails closed.
-    if(['/review/critic','/review/status','/review/sources','/emerging-issues','/run','/backfill','/maintenance/freeze09'].includes(url.pathname)&&!adminAuthorized(request,env))return denyAdmin();
+    if(['/review/critic','/review/status','/review/sources','/emerging-issues','/run','/backfill','/maintenance/freeze09','/review/weekly','/run/weekly'].includes(url.pathname)&&!adminAuthorized(request,env))return denyAdmin();
     if(url.pathname==='/review/critic'&&request.method==='GET'){const rows:any=await env.DB.prepare(`SELECT cr.*,d.title_en,d.status FROM critic_reviews cr JOIN developments d ON d.id=cr.development_id ORDER BY cr.created_at DESC LIMIT 50`).all();return json({items:rows.results||[]})}
     if(url.pathname==='/review/status'&&request.method==='GET')return json(await editorialStatus(env));
     if(url.pathname==='/review/sources'&&request.method==='GET'){
@@ -195,11 +189,13 @@ export default {
       return json({sources:SOURCES.map(s=>({id:s.id,name:s.name,enabled:s.enabled,feed:s.feed||null,stats:byId.get(s.id)||{ingested:0,published_articles:0,published_stories:0,relevance_deferred:0}}))},200,'no-store');
     }
     if(url.pathname==='/emerging-issues'&&request.method==='GET')return json({items:await emerging(env)});
+    if(url.pathname==='/review/weekly'&&request.method==='GET'){const rows=await env.DB.prepare('SELECT * FROM analysis_jobs ORDER BY week_id DESC LIMIT 12').all();return json({items:rows.results||[]})}
+    if(url.pathname==='/run/weekly'&&request.method==='POST'){const window=witWeek(Date.now());const instance=await env.WEEKLY_REVIEW.create({id:`weekly-manual-${window.id}-${crypto.randomUUID().slice(0,8)}`,params:{cutoff:Date.now()}});return json({id:instance.id},202)}
     if(url.pathname==='/run'&&request.method==='POST'){const instance=await env.NEWS_CYCLE.create({params:{reason:'manual'}});return json({id:instance.id},202)}
     if(url.pathname==='/backfill'&&request.method==='POST'){let body:any={};try{body=await request.json()}catch{}const days=Math.max(1,Math.min(31,Number(body?.days||14)));const instance=await env.NEWS_CYCLE.create({id:`backfill-${Date.now()}-${crypto.randomUUID().slice(0,8)}`,params:{reason:'manual-backfill',backfillDays:days}});return json({id:instance.id,days},202)}
     if(url.pathname==='/maintenance/freeze09'&&request.method==='POST'){let body:any={};try{body=await request.json()}catch{}const cleanup=await cleanupRecentIrrelevant(env,Math.max(1,Math.min(90,Number(body?.days||30)))),knowledge=await reindexKnowledge(env,Math.max(1,Math.min(2000,Number(body?.limit||1000))));return json({cleanup,knowledge})}
     return json({error:'Not found'},404);
   },
-  async scheduled(controller:any,env:any,ctx:any){const slot=Math.floor(Number(controller.scheduledTime||Date.now())/1_800_000);const id=`cron-${slot}`;ctx.waitUntil(env.NEWS_CYCLE.create({id,params:{reason:'cloudflare-cron',scheduledTime:controller.scheduledTime,cron:controller.cron}}).catch((e:any)=>{const message=String(e?.message||e);if(/already|exist|duplicate/i.test(message)){console.log('news cycle already exists',id);return}throw e}))},
+  async scheduled(controller:any,env:any,ctx:any){if(controller.cron==='0 0 * * 1'){const cutoff=Number(controller.scheduledTime||Date.now()),week=witWeek(cutoff);ctx.waitUntil(env.WEEKLY_REVIEW.create({id:`weekly-${week.id}`,params:{cutoff}}).catch((error:any)=>{if(!/already|exist|duplicate/i.test(String(error)))throw error}));return}const slot=Math.floor(Number(controller.scheduledTime||Date.now())/1_800_000);const id=`cron-${slot}`;ctx.waitUntil(env.NEWS_CYCLE.create({id,params:{reason:'cloudflare-cron',scheduledTime:controller.scheduledTime,cron:controller.cron}}).catch((e:any)=>{const message=String(e?.message||e);if(/already|exist|duplicate/i.test(message)){console.log('news cycle already exists',id);return}throw e}))},
   async queue(batch:any,env:any){for(const m of batch.messages){try{if(m.body?.kind==='editorial')await processEditorialJob(env,m.body);else if(m.body?.kind==='ingest_batch'){for(const item of m.body.items||[])await env.INGEST_QUEUE.send(item)}else await processArticle(env,m.body);m.ack()}catch(e){console.error('queue infrastructure job failed',batch.queue,m.body?.developmentId||m.body?.url,e);m.retry()}}}
 };

@@ -12,4 +12,4 @@ const cataloguePlate=(slug:string,lane:string)=>{
 export const exhibitionItems=raw.items.filter(item=>!item.hidden).map(item=>({
   ...item,
   image:item.rights==='source-only'?cataloguePlate(item.slug,item.lane):item.image
-})) as Array<{slug:string;title:string;type:string;lane:'works'|'voices'|'crafts';summary:string;image:string;sourceId:string;sourceUrl?:string;publisher?:string;credit?:string;creator?:string;year?:string;mediaKind?:string;rights?:string;provenance?:string;sizeHint?:string;hidden?:boolean}>;
+})) as Array<{slug:string;title:string;type:string;lane:'works'|'voices'|'crafts';summary:string;summaryId?:string;image:string;sourceId:string;sourceUrl?:string;publisher?:string;credit?:string;creator?:string;year?:string;mediaKind?:string;rights?:string;provenance?:string;sizeHint?:string;hidden?:boolean}>;

@@ -1,4 +1,5 @@
 ---
+import featuredIds from '../../content/library-featured.json';
 import OrganizationDirectory from '../components/resources/OrganizationDirectory.astro';
 import {organizations} from '../../shared/organizations';
 import {dossierBySlug} from '../data/dossiers';
@@ -16,14 +17,8 @@ const {locale='en'}=Astro.props as {locale?:Locale};
 const TOPICS=issues.map(i=>[i.slug,i.title.en,i.title.pmy] as const);
 const places=[...new Set(resources.flatMap(r=>r.places))].sort();
 const years=[...new Set(resources.map(r=>r.year))].filter(y=>/^\d{4}$/.test(y)).sort((a,b)=>Number(b)-Number(a));
-// A fixed editorial selection makes the opening stable across live corpus refreshes.
-const featuredTitles=[
- 'Papua monitor q1 2026','West Papuans between Transnationalism',
- 'Rencana Induk Percepatan Pembangunan Papua','OUTOFPAPUA Lexical Database',
- 'Papua Road Map: Negotiating','PESTA BABI:','Arnold Ap / Mambesak',
- 'The Papua Conflict: Jakarta'
-];
-const featured=featuredTitles.map(title=>resources.find(item=>item.title.toLowerCase().startsWith(title.toLowerCase()))).filter((item):item is (typeof resources)[number]=>Boolean(item));
+// Stable IDs preserve the edit across title changes.
+const featured=featuredIds.map(id=>resources.find(item=>item.id===id)).filter((item):item is (typeof resources)[number]=>Boolean(item));
 const indexItems=[['sites',locale==='en'?'Sites & organizations':'Situs & organisasi'],['catalogue',locale==='en'?'Library':'Pustaka'],['glossary',locale==='en'?'Terms':'Istilah']];
 ---
 <BaseLayout locale={locale} active="resources" title={locale==='en'?'Resources':'Sumber'}>

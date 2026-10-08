@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-09-23",
+  "asOf": "2026-10-08",
   "events": [
     {
       "id": "opening-night-2026",
@@ -228,6 +228,139 @@
       "sourceId": "uin-papua-clan-dialogue",
       "organizer": "FISIP UIN Syarif Hidayatullah Jakarta",
       "issueSlug": "culture-memory-expression"
+    },
+    {
+      "id": "pusaka-elegi-2026",
+      "date": "2026-08-13",
+      "endDate": "2026-08-13",
+      "time": "14:00",
+      "timezone": "Asia/Jayapura",
+      "title": "Elegi Selatan Papua",
+      "place": "Aula Sophie, P3W-GKI · Jayapura",
+      "region": "Papua",
+      "kind": "Public discussion",
+      "format": "In person",
+      "summary": {
+        "en": "Pusaka’s launch and discussion of its Human Rights Impact Assessment of South Papua food and energy projects, with a Jubi TV livestream.",
+        "pmy": "Peluncuran dan diskusi Human Rights Impact Assessment Pusaka tentang proyek pangan dan energi Papua Selatan, dengan siaran langsung Jubi TV."
+      },
+      "sourceUrl": "https://pusaka.or.id/event/elegi-selatan-papua/",
+      "sourceId": "pusaka-elegi-2026",
+      "organizer": "Yayasan Pusaka Bentala Rakyat"
+    },
+    {
+      "id": "pusaka-merauke-discussion-2026",
+      "date": "2026-02-27",
+      "endDate": "2026-02-27",
+      "time": null,
+      "timezone": "Asia/Jakarta",
+      "title": "Ada Proyek Apa di Papua Selatan",
+      "place": "Tjikini Lima · Jakarta",
+      "region": "Indonesia",
+      "kind": "Public discussion",
+      "format": "In person",
+      "summary": {
+        "en": "A discussion of Tempo’s 25 January reporting on South Papua food and energy expansion, hosted by Pusaka. The event date is taken from the detail page, rather than the archive publication date.",
+        "pmy": "Diskusi laporan Tempo 25 Januari tentang perluasan proyek pangan dan energi Papua Selatan, diselenggarakan Pusaka. Tanggal kegiatan mengikuti halaman rincian, bukan tanggal terbit arsip."
+      },
+      "sourceUrl": "https://pusaka.or.id/event/ada-proyek-apa-di-papua-selatan/",
+      "sourceId": "pusaka-merauke-discussion-2026",
+      "organizer": "Yayasan Pusaka Bentala Rakyat"
+    },
+    {
+      "id": "pusaka-book-nature-2025",
+      "date": "2025-06-14",
+      "endDate": "2025-06-14",
+      "time": "17:00",
+      "timezone": "Asia/Jakarta",
+      "title": "Perampokan Alam: Kapitalisme dan Krisis Ekologis",
+      "place": "Perpustakaan Bunga di Tembok",
+      "region": "Indonesia",
+      "kind": "Book discussion",
+      "format": "In person / recorded",
+      "summary": {
+        "en": "A book discussion connecting Foster and Clark’s analysis with MIFEE and later Merauke projects. A recording is linked on the host page.",
+        "pmy": "Diskusi buku yang menghubungkan kajian Foster dan Clark dengan MIFEE serta proyek Merauke berikutnya. Rekaman ditautkan di halaman penyelenggara."
+      },
+      "sourceUrl": "https://pusaka.or.id/event/diskusi-buku-perampokan-alam-kapitalisme-dan-krisis-ekologis/",
+      "sourceId": "pusaka-book-nature-2025",
+      "organizer": "Yayasan Pusaka Bentala Rakyat"
+    },
+    {
+      "id": "pusaka-year-discussion-2025",
+      "date": "2025-11-07",
+      "endDate": "2025-11-07",
+      "time": "15:00",
+      "timezone": "Asia/Jakarta",
+      "title": "Setahun Rezim Perang",
+      "place": "Ruang Cipta 1 · Taman Ismail Marzuki, Jakarta",
+      "region": "Indonesia",
+      "kind": "Public discussion",
+      "format": "In person",
+      "summary": {
+        "en": "A Pusaka discussion with speakers from JPIC OFM Papua, BRIN and Aliansi Mahasiswa Papua, on economic policy, human rights and militarism. The title is the organizer’s wording.",
+        "pmy": "Diskusi Pusaka bersama pembicara JPIC OFM Papua, BRIN, dan Aliansi Mahasiswa Papua tentang kebijakan ekonomi, HAM, serta militerisme. Judul mengikuti penyelenggara."
+      },
+      "sourceUrl": "https://pusaka.or.id/event/diskusi-publik-setahun-rezim-perang/",
+      "sourceId": "pusaka-year-discussion-2025",
+      "organizer": "Yayasan Pusaka Bentala Rakyat"
+    },
+    {
+      "id": "papuan-voices-archive-workshop-2026",
+      "date": "2026-08-07",
+      "endDate": "2026-08-07",
+      "time": null,
+      "timezone": "Asia/Jayapura",
+      "title": "Pengelolaan arsip berbasis komunitas",
+      "place": "Festival Film Papua ke-8 · Jayapura",
+      "region": "Papua",
+      "kind": "Workshop",
+      "format": "In person",
+      "summary": {
+        "en": "Papuan Voices’ community-archive workshop during the eighth Papua Film Festival. Speakers discussed identifying and preserving audiovisual and community records.",
+        "pmy": "Lokakarya arsip komunitas Papuan Voices saat Festival Film Papua kedelapan. Pembicara membahas identifikasi dan pelestarian catatan audiovisual serta komunitas."
+      },
+      "sourceUrl": "https://jubi.id/mamta/2026/pengelolaan-arsip-berbasis-komunitas-penting-untuk-menjaga-ingatan-kolektif/",
+      "sourceId": "papuan-voices-archive-workshop-2026",
+      "organizer": "Papuan Voices"
+    },
+    {
+      "id": "um-papua-semarak-2026",
+      "date": "2026-06-13",
+      "endDate": "2026-06-13",
+      "time": null,
+      "timezone": "Asia/Jayapura",
+      "title": "SEMARAK UM Papua: Mengenal Dunia Humas dan Peluang Karier di Era Digital",
+      "place": "Universitas Muhammadiyah Papua · Jayapura",
+      "region": "Papua",
+      "kind": "Seminar",
+      "format": "In person",
+      "summary": {
+        "en": "A student-organised communications seminar for university and secondary-school students, documented by Universitas Muhammadiyah Papua.",
+        "pmy": "Seminar komunikasi yang diselenggarakan mahasiswa untuk mahasiswa dan pelajar sekolah menengah, didokumentasikan Universitas Muhammadiyah Papua."
+      },
+      "sourceUrl": "https://umpapua.ac.id/2026/06/13/semarak-um-papua-2026-hadirkan-seminar-kehumasan-kenalkan-dunia-humas-dan-peluang-karier-di-era-digital/",
+      "sourceId": "um-papua-semarak-2026",
+      "organizer": "Universitas Muhammadiyah Papua"
+    },
+    {
+      "id": "amptpi-history-books-wamena-2025",
+      "date": "2025-10-15",
+      "endDate": "2025-10-15",
+      "time": null,
+      "timezone": "Asia/Jayapura",
+      "title": "AMPTPI: diskusi buku sejarah Papua",
+      "place": "Wamena · Papua Pegunungan",
+      "region": "Papua",
+      "kind": "Book discussion",
+      "format": "In person",
+      "summary": {
+        "en": "AMPTPI’s 21st anniversary brought together customary-council representatives, students and civil-society participants for a discussion of Markus Haluk’s five-volume series on history, politics, human rights and democracy. Nadi Papua reports the event took place on 15 October.",
+        "pmy": "Peringatan 21 tahun AMPTPI mempertemukan perwakilan dewan adat, mahasiswa, serta masyarakat sipil untuk diskusi lima seri buku Markus Haluk tentang sejarah, politik, HAM, dan demokrasi. Nadi Papua melaporkan kegiatan berlangsung pada 15 Oktober."
+      },
+      "sourceUrl": "https://www.nadipapua.com/post-perayaan-hut-ke21-amptpi-disksui-buku-seri-sejarah-papua-dan-seruan-hidupkan-organisasi--455",
+      "sourceId": "nadi-amptpi-2025",
+      "organizer": "AMPTPI"
     }
   ],
   "campaignMaterials": [

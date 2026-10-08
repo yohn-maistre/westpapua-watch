@@ -1,4 +1,5 @@
 ---
+import WeeklyReview from '../components/WeeklyReview.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/home.css';
 import MapShell from '../components/map/MapShell.astro';
@@ -33,6 +34,8 @@ const fallbackCurrent=Array.from({length:3},()=>({image:'',imageAlt:'',category:
       </div>
     </div>
   </div></section>
+
+  <section class="wrap"><WeeklyReview locale={locale} compact/></section>
 
   <section class="section home-section"><div class="wrap">
     <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Following.':'Dalam pantauan.'}</h2><a href={withLocale('/topics/',locale)}>{locale==='en'?'All issues →':'Semua isu →'}</a></div>

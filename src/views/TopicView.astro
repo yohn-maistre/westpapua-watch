@@ -1,4 +1,5 @@
 ---
+import WeeklyReview from '../components/WeeklyReview.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ResourceList from '../components/resources/ResourceList.astro';
 import {libraryForTopic} from '../data/library';
@@ -11,7 +12,7 @@ const {issue,locale='en'}=Astro.props as {issue:Issue;locale:Locale};const en=lo
 <a class="story-back" href={withLocale('/topics/#topics',locale)}>← {en?'Issues':'Isu'}</a>
 <header class="topic-page-head"><h1 class="page-title">{t(issue.title,locale)}</h1><p>{t(issue.summary,locale)}</p></header>
 <nav class="topic-page-index" aria-label={en?'On this page':'Di halaman ini'}><a href="#reporting">{en?'News':'Berita'}</a><a href="#library">{en?'Library':'Pustaka'}</a></nav>
-<section id="reporting" class="section"><div class="section-head section-head-simple"><h2>{en?'News.':'Berita.'}</h2><span data-topic-time></span></div><p role="status" data-topic-status>{en?'Loading news…':'Memuat berita…'}</p><div class="topic-news-grid" data-topic-news aria-busy="true">{[0,1,2].map(()=><div class="topic-news-skeleton" aria-hidden="true"></div>)}</div></section>
+<WeeklyReview locale={locale} compact topic={issue.slug}/><section id="reporting" class="section"><div class="section-head section-head-simple"><h2>{en?'News.':'Berita.'}</h2><span data-topic-time></span></div><p role="status" data-topic-status>{en?'Loading news…':'Memuat berita…'}</p><div class="topic-news-grid" data-topic-news aria-busy="true">{[0,1,2].map(()=><div class="topic-news-skeleton" aria-hidden="true"></div>)}</div></section>
 <section id="library" class="section"><div class="section-head section-head-simple"><h2>{en?'Library.':'Pustaka.'}</h2><a href={withLocale('/resources/',locale)+'?topic='+issue.slug}>{en?'Browse all ↗':'Lihat semua ↗'}</a></div><ResourceList items={libraryForTopic(issue.slug)} locale={locale} topic={issue.slug}/></section>
 </div>
 <script>

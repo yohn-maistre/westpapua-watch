@@ -751,5 +751,229 @@
     ],
     "description": "A report on PFI Timika’s photo exhibition. Records include the airport runway in 1973, credited to Freeport, and older Kokonao photographs held by Marthin Maturbongs.",
     "date": "2025-10-12"
+  },
+  {
+    "id": "west-new-guinea-2025",
+    "title": "West New Guinea: Social, Biological, and Material Histories",
+    "publisher": "Gaffney & Tolla / ANU Press",
+    "url": "https://press.anu.edu.au/publications/series/terra-australis/west-new-guinea",
+    "date": "2025",
+    "type": "book",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "education"
+    ],
+    "description": "An interdisciplinary regional volume covering archaeology, languages, population history and contemporary material practices."
+  },
+  {
+    "id": "west-new-guinea-languages-2025",
+    "title": "Language as a lens into the prehistory of West New Guinea",
+    "publisher": "Laura Arnold / ANU Press",
+    "url": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch03.pdf",
+    "date": "2025",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "education"
+    ],
+    "description": "A regional review of language families, isolates and contact in western New Guinea."
+  },
+  {
+    "id": "west-new-guinea-population-2025",
+    "title": "Deep histories in New Guinea: Insights from human genetics on regional demography and archaic introgression",
+    "publisher": "Jacobs, Kusuma & Attenborough / ANU Press",
+    "url": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch04.pdf",
+    "date": "2025",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "education"
+    ],
+    "description": "A regional synthesis of population history and genetics, with explicit sampling limitations."
+  },
+  {
+    "id": "west-new-guinea-ch07-2025",
+    "title": "A submerged landscape at the entrance of Sahul",
+    "publisher": "Boesl, Adhityatama & Wall / ANU Press",
+    "url": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch07.pdf",
+    "date": "2025",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "research"
+    ],
+    "description": "A regional study in West New Guinea: Social, Biological, and Material Histories, edited by Dylan Gaffney and Marlin Tolla."
+  },
+  {
+    "id": "west-new-guinea-ch08-2025",
+    "title": "First footsteps across the Lydekker Line",
+    "publisher": "Gaffney et al. / ANU Press",
+    "url": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch08.pdf",
+    "date": "2025",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "research"
+    ],
+    "description": "A regional study in West New Guinea: Social, Biological, and Material Histories, edited by Dylan Gaffney and Marlin Tolla."
+  },
+  {
+    "id": "west-new-guinea-ch09-2025",
+    "title": "Last Glacial Maximum to Late Holocene occupation on the Bomberai Peninsula",
+    "publisher": "Mene, Setiawan & Gaffney / ANU Press",
+    "url": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch09.pdf",
+    "date": "2025",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "research"
+    ],
+    "description": "A regional study in West New Guinea: Social, Biological, and Material Histories, edited by Dylan Gaffney and Marlin Tolla."
+  },
+  {
+    "id": "west-new-guinea-ch11-2025",
+    "title": "Rock art from caves in the Keerom Regency, Papua Province",
+    "publisher": "Klementin Fairyo / ANU Press",
+    "url": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch11.pdf",
+    "date": "2025",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "research"
+    ],
+    "description": "A regional study in West New Guinea: Social, Biological, and Material Histories, edited by Dylan Gaffney and Marlin Tolla."
+  },
+  {
+    "id": "west-new-guinea-ch12-2025",
+    "title": "Prehistoric sites in the western Lake Sentani area",
+    "publisher": "Hari Suroto / ANU Press",
+    "url": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch12.pdf",
+    "date": "2025",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "research"
+    ],
+    "description": "A regional study in West New Guinea: Social, Biological, and Material Histories, edited by Dylan Gaffney and Marlin Tolla."
+  },
+  {
+    "id": "west-new-guinea-ch13-2025",
+    "title": "Decorated pottery from the Kayu Batu area, Jayapura",
+    "publisher": "Klementin Fairyo / ANU Press",
+    "url": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch13.pdf",
+    "date": "2025",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "research"
+    ],
+    "description": "A regional study in West New Guinea: Social, Biological, and Material Histories, edited by Dylan Gaffney and Marlin Tolla."
+  },
+  {
+    "id": "west-new-guinea-ch15-2025",
+    "title": "Agentive seas and animate canoes: Marind-anim marine voyaging",
+    "publisher": "Ian J. McNiven / ANU Press",
+    "url": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch15.pdf",
+    "date": "2025",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "research"
+    ],
+    "description": "A regional study in West New Guinea: Social, Biological, and Material Histories, edited by Dylan Gaffney and Marlin Tolla."
+  },
+  {
+    "id": "west-new-guinea-ch16-2025",
+    "title": "Carving time: Axes and ancestrality in Asmat",
+    "publisher": "Tom Powell Davies / ANU Press",
+    "url": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch16.pdf",
+    "date": "2025",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "research"
+    ],
+    "description": "A regional study in West New Guinea: Social, Biological, and Material Histories, edited by Dylan Gaffney and Marlin Tolla."
+  },
+  {
+    "id": "west-new-guinea-ch18-2025",
+    "title": "Meege as bride price in Mee culture",
+    "publisher": "Martinus Tekege / ANU Press",
+    "url": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch18.pdf",
+    "date": "2025",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "research"
+    ],
+    "description": "A regional study in West New Guinea: Social, Biological, and Material Histories, edited by Dylan Gaffney and Marlin Tolla."
+  },
+  {
+    "id": "west-new-guinea-ch19-2025",
+    "title": "Muyu noken (men): Shifting economic opportunities and cultural values",
+    "publisher": "Veronika Triariyani Kanem / ANU Press",
+    "url": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch19.pdf",
+    "date": "2025",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "research"
+    ],
+    "description": "A regional study in West New Guinea: Social, Biological, and Material Histories, edited by Dylan Gaffney and Marlin Tolla."
+  },
+  {
+    "id": "west-new-guinea-ch20-2025",
+    "title": "A collection of relationships: Kamoro material culture in the museum",
+    "publisher": "Karen Jacobs / ANU Press",
+    "url": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch20.pdf",
+    "date": "2025",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture",
+      "research"
+    ],
+    "description": "A regional study in West New Guinea: Social, Biological, and Material Histories, edited by Dylan Gaffney and Marlin Tolla."
   }
 ]
