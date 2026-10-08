@@ -84,6 +84,59 @@ const {packetSummary}=await moduleAt('services/watch-engine/src/ingest/story.ts'
 const {reusableRelevantPacket}=await moduleAt('services/watch-engine/src/ingest/process.ts');assert.equal(reusableRelevantPacket({watch_relevance:1,watch_relevance_confidence:.95,summary:'Grounded packet'}),true);assert.equal(reusableRelevantPacket({watch_relevance:0,watch_relevance_confidence:1,summary:'Irrelevant'}),false);assert.equal(reusableRelevantPacket({watch_relevance:1,watch_relevance_confidence:0,summary:'Failed packet'}),false);
 console.log('Passed: episode retrieval, grounded partial drafts, bounded source briefs and safe packet replay.');
 
+// One bilingual contract is shared by client and edge HTML. Unlabelled legacy
+// English and missing Indonesian changes must not leak into Indonesian pages.
+const {storySynthesisSections}=await moduleAt('shared/story-synthesis.ts');
+const pair={text_en:'Both reports identify haze-related disruption in the province.',text_id:'Kedua laporan mencatat gangguan terkait kabut asap di provinsi ini.',source_article_ids:[11,12]};
+const sections={common_ground_json:JSON.stringify({version:2,items:[pair]}),what_changed:'A newly documented closure.',what_changed_id:'Penutupan yang baru dilaporkan.',key_points_id_json:'[]'};
+assert.deepEqual(storySynthesisSections(sections,'pmy').common,[pair.text_id]);
+assert.deepEqual(storySynthesisSections(sections,'en').common,[pair.text_en]);
+assert.deepEqual(storySynthesisSections({common_ground_json:'["English legacy text"]'},'pmy').common,[]);
+assert.equal(storySynthesisSections({what_changed:'English only'},'pmy').changed,'');
+assert.equal(storySynthesisSections({what_changed_id:'Ringkasan yang sama.'},'pmy','Ringkasan yang sama!').changed,'');
+const {groundSynthesisDraft}=await moduleAt('services/watch-engine/src/cluster/synthesis-quality.ts');
+const evidenceJob={previous:{summary:'Earlier reporting described reduced visibility.'},items:[{id:11,publisher_id:'jubi'},{id:12,publisher_id:'antara'},{id:13,publisher_id:'copy',syndicated_from_article_id:11}]};
+const evidenceDraft={summary_en:'An episode summary.',summary_id:'Ringkasan peristiwa.',key_points_en:[],key_points_id:[],common_ground_items:[pair],what_changed_en:'Flights have now been cancelled.',what_changed_id:'Penerbangan kini dibatalkan.',what_changed_article_ids:[12]};
+assert.equal(groundSynthesisDraft(evidenceJob,evidenceDraft).common_ground_items.length,1);
+assert.equal(groundSynthesisDraft(evidenceJob,evidenceDraft).what_changed_id,evidenceDraft.what_changed_id);
+assert.equal(groundSynthesisDraft({...evidenceJob,previous:null},evidenceDraft).what_changed_id,'');
+assert.equal(groundSynthesisDraft(evidenceJob,{...evidenceDraft,what_changed_article_ids:[999]}).what_changed_id,'');
+assert.equal(groundSynthesisDraft(evidenceJob,{...evidenceDraft,what_changed_en:evidenceDraft.summary_en}).what_changed_id,'');
+for(const claim of [{...pair,source_article_ids:[11,13]},{...pair,source_article_ids:[11,999]},{...pair,text_id:pair.text_en},{...pair,text_en:evidenceDraft.summary_en}]){
+ assert.equal(groundSynthesisDraft(evidenceJob,{...evidenceDraft,common_ground_items:[claim]}).common_ground_items.length,0);
+}
+console.log('Passed: localized synthesis, legacy-language isolation, cited original publishers, invalid evidence rejection and meaningful change baseline.');
+
+// Exercise an actual editorial job through D1 and deterministic model fixtures:
+// an expanded episode headline, bilingual common ground and its report IDs survive publication.
+const editorialDB=new Miniflare(await convertV4MiniflareOptions({modules:true,script:'export default {fetch(){return new Response("ok")}}',compatibilityDate:'2026-08-29',d1Databases:{DB:'synthesis-test'}}));
+try{
+ const db=await editorialDB.getD1Database('DB');
+ for(const name of (await readdir('services/watch-engine/migrations')).filter(n=>n.endsWith('.sql')).sort()){
+  const sql=await readFile('services/watch-engine/migrations/'+name,'utf8');
+  for(const statement of sql.replace(/--[^\n]*/g,'').split(';').map(s=>s.trim()).filter(Boolean))await db.prepare(statement).run();
+ }
+ for(const id of ['jubi','antara'])await db.prepare("INSERT INTO publishers(id,name,homepage,role,ownership,updated_at) VALUES(?,?,?,'local_newsroom','independent',datetime('now'))").bind(id,id,'https://example.com/'+id).run();
+ for(const [id,publisher,title] of [[11,'jubi','Haze disrupts flights'],[12,'antara','Health services report respiratory cases during haze']]){
+  await db.prepare("INSERT INTO articles(id,publisher_id,canonical_url,title,summary,published_at,fetched_at) VALUES(?,?,?,?,?,datetime('now'),datetime('now'))").bind(id,publisher,'https://example.com/'+id,title,'The report describes haze and its documented effects in West Papua, with attribution to local authorities.').run();
+ }
+ await db.prepare("INSERT INTO developments(id,title_en,title_id,summary_en,summary_id,status,updated_at,editorial_pending,editorial_dispatch_id) VALUES(1,'Flights disrupted by haze','Penerbangan terganggu kabut asap','Earlier reporting described reduced visibility.','Laporan sebelumnya mencatat jarak pandang berkurang.','published',datetime('now'),1,'test-dispatch')").run();
+ for(const id of [11,12])await db.prepare('INSERT INTO development_articles(development_id,article_id) VALUES(1,?)').bind(id).run();
+ await db.prepare("INSERT INTO development_syntheses(development_id,title,summary,created_at) VALUES(1,'Flights disrupted by haze','Earlier reporting described reduced visibility.','2026-01-01')").run();
+ const generated={development_id:1,title_en:'Haze disrupts flights amid respiratory health concerns in West Papua',title_id:'Kabut asap mengganggu penerbangan di tengah kekhawatiran kesehatan di Papua Barat',...evidenceDraft,summary_en:'Reports document flight disruption and respiratory complaints during haze in West Papua.',summary_id:'Laporan mencatat gangguan penerbangan dan keluhan pernapasan saat kabut asap di Papua Barat.',common_ground:[pair],places:['Papua Barat'],topics:[]};
+ let writerCalls=0,criticCalls=0;
+ const {processEditorialJob}=await moduleAt('services/watch-engine/src/cluster/editorial.ts');
+ const result=await processEditorialJob({DB:db,AUTO_PUBLISH:'true',ENABLE_WORKERS_AI_FALLBACK:'true',AI:{run:async(_model,input)=>{
+  if(input.messages[0].content.includes('Audit EACH')){criticCalls++;assert.match(input.messages[1].content,/PREVIOUS PUBLICATION/);assert.match(input.messages[1].content,/source_article_ids/);return {response:{items:[{development_id:1,verdict:'pass',unsupported_claims:[],framing_problems:[],cluster_problem:false,relevance_problem:false,note:'Fixture audit'}]}}}
+  writerCalls++;assert.match(input.messages[1].content,/ARTICLE 11/);assert.match(input.messages[1].content,/ARTICLE 12/);return {response:{items:[generated]}};
+ }}},{dispatchId:'test-dispatch',developmentIds:[1]});
+ assert.ok(result.results,JSON.stringify(result));assert.equal(result.results[0].status,'published');assert.equal(writerCalls,1);assert.equal(criticCalls,1);
+ const dev=await db.prepare('SELECT title_id FROM developments WHERE id=1').first();assert.equal(dev.title_id,generated.title_id);
+ const saved=await db.prepare('SELECT * FROM development_syntheses WHERE development_id=1 ORDER BY id DESC LIMIT 1').first();
+ assert.deepEqual(JSON.parse(saved.common_ground_json),{version:2,items:[pair]});assert.equal(saved.what_changed_id,evidenceDraft.what_changed_id);
+}finally{await editorialDB.dispose()}
+console.log('Passed: amended episode title and bilingual source-supported synthesis persist through the editorial job.');
+
 const {runJson,parseStructured}=await moduleAt('services/watch-engine/src/llm.ts');
 const schema={type:'object',properties:{items:{type:'array',items:{type:'object',properties:{verdict:{type:'string',enum:['pass','revise']},problem:{type:'boolean'}},required:['verdict','problem'],additionalProperties:false}}},required:['items'],additionalProperties:false};
 assert.throws(()=>parseStructured('{"items":[{"verdict":"pass","problem":"false"}]}',schema));

@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import {existsSync} from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
@@ -38,6 +39,13 @@ function validate(){
     if(!https(item.archive?.sourceUrl))fail(`${item.id} source record must be https`);if(!allowedModes.has(item.access?.mode))fail(`${item.id} has invalid access mode`);
     if(!item.access?.rightsStatus||!item.access?.rightsVerifiedAt)fail(`${item.id} needs rights status and verification date`);
     if(item.access?.licenseUrl&&!https(item.access.licenseUrl))fail(`${item.id} licenseUrl must be https`);
+    if(item.archive?.mirrorUrl&&!https(item.archive.mirrorUrl))fail(`${item.id} mirror record must be https`);
+    if(item.media?.mirrorSource&&!https(item.media.mirrorSource))fail(`${item.id} mirror source must be https`);
+    for(const field of ['localImage','localPoster','localPlayback']){
+      const value=item.media?.[field];if(!value)continue;
+      if(!/^\/(?:images|media)\/history\/[a-z0-9/_-]+\.(?:jpg|webp|mp4)$/.test(value)||value.includes('..'))fail(`${item.id} has unsafe ${field}`);
+      else if(!existsSync(path.join(ROOT,'public',value.slice(1))))fail(`${item.id} is missing ${field}`);
+    }
     if(item.access?.mode==='self_host'){
       if(!allowedRights.has(item.access.rightsStatus))fail(`${item.id} cannot self-host with rights=${item.access.rightsStatus}`);
       if(!item.media)fail(`${item.id} self_host item needs media`);
@@ -92,12 +100,13 @@ try{
     }
     if(item.mediaType==='film'){
       const input=path.join(dir,'source.mp4');const posterInput=path.join(dir,'poster-source');const poster=path.join(dir,'poster.webp');const preview=path.join(dir,'preview.mp4');const playback=path.join(dir,'video.mp4');
-      await fetchFile(item.media.playback,input);
+      await fetchFile(item.media.mirrorSource||item.media.playback,input);
       const start=String(Math.max(0,Number(item.media.previewStart||0)));const duration=String(Math.max(4,Math.min(15,Number(item.media.previewDuration||8))));
       if(!dryRun){
         run('ffmpeg',['-y','-i',input,'-vf',scaleFilter(1280),'-c:v','libx264','-preset','medium','-crf','24','-pix_fmt','yuv420p','-c:a','aac','-b:a','96k','-movflags','+faststart',playback]);
         run('ffmpeg',['-y','-ss',start,'-i',input,'-t',duration,'-an','-vf',`${scaleFilter(640)},fps=24`,'-c:v','libx264','-preset','medium','-crf','27','-pix_fmt','yuv420p','-movflags','+faststart',preview]);
-        if(item.media.poster){await fetchFile(item.media.poster,posterInput);run('ffmpeg',['-y','-i',posterInput,'-vf',scaleFilter(1100),'-frames:v','1','-c:v','libwebp','-quality','80',poster])}
+        if(item.media.localPoster){await fs.copyFile(path.join(ROOT,'public',item.media.localPoster.slice(1)),posterInput);run('ffmpeg',['-y','-i',posterInput,'-vf',scaleFilter(1100),'-frames:v','1','-c:v','libwebp','-quality','80',poster])}
+        else if(item.media.poster){await fetchFile(item.media.poster,posterInput);run('ffmpeg',['-y','-i',posterInput,'-vf',scaleFilter(1100),'-frames:v','1','-c:v','libwebp','-quality','80',poster])}
         else run('ffmpeg',['-y','-ss',start,'-i',input,'-frames:v','1','-vf',scaleFilter(1100),'-c:v','libwebp','-quality','80',poster]);
       }
       upload(item.media.mirror.poster,poster,'image/webp');upload(item.media.mirror.preview,preview,'video/mp4');upload(item.media.mirror.playback,playback,'video/mp4');

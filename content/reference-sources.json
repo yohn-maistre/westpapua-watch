@@ -343,7 +343,10 @@
     "type": "article",
     "format": "web",
     "language": "en",
-    "tags": ["human-rights-conflict-security", "infrastructure-connectivity"],
+    "tags": [
+      "human-rights-conflict-security",
+      "infrastructure-connectivity"
+    ],
     "description": "The organization's account of a court ruling on the August–September 2019 internet shutdown."
   },
   {
@@ -355,7 +358,9 @@
     "type": "article",
     "format": "web",
     "language": "id",
-    "tags": ["human-rights-conflict-security"],
+    "tags": [
+      "human-rights-conflict-security"
+    ],
     "description": "Primary statement from the journalists' safety coalition concerning a reported Mimika incident."
   },
   {
@@ -367,7 +372,10 @@
     "type": "article",
     "format": "web",
     "language": "id",
-    "tags": ["human-rights-conflict-security", "education-language-culture"],
+    "tags": [
+      "human-rights-conflict-security",
+      "education-language-culture"
+    ],
     "description": "Reporting and attribution on public film screenings and freedom of expression."
   },
   {
@@ -398,5 +406,350 @@
       "land-indigenous-rights"
     ],
     "description": "A statement conveying the community and coalition position on the IAL case. Distinct from the MJR and KCP permit cases."
+  },
+  {
+    "id": "exhibit-reference-pesta-babi",
+    "title": "PESTA BABI",
+    "publisher": "Redaksi Jubi TV",
+    "url": "https://www.youtube.com/watch?v=MpdrWgDRVf8",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "A documentary by Dandhy Laksono and Cypri Paju Dale. Watch the full film through Jubi’s published edition.",
+    "date": "2026"
+  },
+  {
+    "id": "exhibit-reference-our-land-has-gone",
+    "title": "Our Land Has Gone",
+    "publisher": "LifeMosaic",
+    "url": "https://www.lifemosaic.net/eng/resources/video/our-land-has-gone",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "Malind Anim residents of Zanegi discuss changes to their land and livelihoods. A film by Gekko Studio, Pusaka and SKP KAME.",
+    "date": "2012"
+  },
+  {
+    "id": "exhibit-reference-rmw-speaking-at-a-cost",
+    "title": "Speaking at a Cost",
+    "publisher": "Read My World",
+    "url": "https://readmyworld.nl/en/program-item/speaking-at-a-cost/",
+    "type": "collection",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "A Read My World discussion on the consequences of public speech and activism, with Gispa Ferdinanda Warijo contributing from a West Papuan context.",
+    "date": "2026"
+  },
+  {
+    "id": "exhibit-reference-papua-erfgoed-stone-atom-age",
+    "title": "From Stone Age to Atom Age",
+    "publisher": "Stichting Papua Erfgoed",
+    "url": "https://www.papuaerfgoed.org/en/FI/1200/29",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "A 1962 educational film record spanning daily life, education, the New Guinea Council, transport and public services.",
+    "date": "1962"
+  },
+  {
+    "id": "exhibit-reference-mama-et-meregang-mimpi-di-hutan-sendiri",
+    "title": "Mama ET: Meregang Mimpi di Hutan Sendiri",
+    "publisher": "Collection source",
+    "url": "https://sapukisah.asia-ajar.org/9-mama-et-meregang-mimpi-di-hutan-sendiri",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "oral/story documentation",
+    "date": ""
+  },
+  {
+    "id": "exhibit-reference-hidup-di-antara-tajam-batu-karang",
+    "title": "Hidup di Antara Tajam Batu Karang",
+    "publisher": "Collection source",
+    "url": "https://sapukisah.asia-ajar.org/test-video",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "video / participatory research",
+    "date": ""
+  },
+  {
+    "id": "exhibit-reference-kal-angam-kal-stories-from-west-papua",
+    "title": "Kal angam-kal: Stories from West Papua",
+    "publisher": "Footscray Community Arts",
+    "url": "https://footscrayarts.com/event/kal-angam-kal/",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "2024 · youth-led intergenerational video interviews",
+    "date": "2024"
+  },
+  {
+    "id": "exhibit-reference-muman-minggil-the-road-to-ancestor-land",
+    "title": "Muman Minggil / The Road to Ancestor Land",
+    "publisher": "KITLV",
+    "url": "https://www.kitlv.nl/event/muman-minggil/",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "Yonri Revolt + Mahardhika Yudha · 2023/24",
+    "date": ""
+  },
+  {
+    "id": "exhibit-reference-wisisi-nit-meke-our-wisisi-music",
+    "title": "Wisisi Nit Meke / Our Wisisi Music",
+    "publisher": "Festival Film Dokumenter",
+    "url": "https://ffd.or.id/en/film/our-wisisi-music/",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "Arief Budiman, Harun Rumbarar, Bonny Lanny · 2023",
+    "date": "2023"
+  },
+  {
+    "id": "exhibit-reference-mayday-may-day-mayday",
+    "title": "Mayday! May day! Mayday!",
+    "publisher": "IFFR",
+    "url": "https://iffr.com/en/iffr/2023/films/mayday-may-day-mayday",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "Yonri Revolt · 2022",
+    "date": "2022"
+  },
+  {
+    "id": "exhibit-reference-the-silent-path-soebertono-mote",
+    "title": "The Silent Path / Soebertono Mote",
+    "publisher": "Festival Film Dokumenter",
+    "url": "https://ffd.or.id/film/the-silent-path/",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "Yonri Revolt · 2024",
+    "date": "2024"
+  },
+  {
+    "id": "exhibit-reference-muo-rem-dance-of-the-cassowary",
+    "title": "Muo Remé, Dance of the Cassowary",
+    "publisher": "Collection source",
+    "url": "https://papuaheritage.org/en/AU/10/1",
+    "type": "collection",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "anthology of West Papuan music recordings",
+    "date": ""
+  },
+  {
+    "id": "exhibit-reference-black-brothers",
+    "title": "Black Brothers",
+    "publisher": "Collection source",
+    "url": "https://kultur.media/en/interview/black-brothers/",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "record / archival performance card",
+    "date": ""
+  },
+  {
+    "id": "exhibit-reference-sentani-flute-orchestra",
+    "title": "Sentani flute orchestra",
+    "publisher": "Leiden University Libraries",
+    "url": "https://digitalcollections.universiteitleiden.nl/view/item/707976",
+    "type": "collection",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "1953–54",
+    "date": ""
+  },
+  {
+    "id": "exhibit-reference-schetskaart-van-nieuw-guinee-sheet-i",
+    "title": "Schetskaart van Nieuw Guinee, Sheet I",
+    "publisher": "Australian National University Digital Collections",
+    "url": "https://digitalcollections.anu.edu.au/items/c0e7aad1-d4a4-4ae3-9026-bb6de9bc82f1",
+    "type": "collection",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "1919",
+    "date": "1919"
+  },
+  {
+    "id": "archive-cook-papers",
+    "title": "Edwin Cook and Susan Pflanz Cook Collection",
+    "publisher": "UC San Diego Library / Calisphere",
+    "url": "https://calisphere.org/collections/5020/",
+    "type": "collection",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "Photographs include Wamena’s market and the Jayapura waterfront in September 1972. The collection also covers Papua New Guinea; locations must be checked individually.",
+    "date": ""
+  },
+  {
+    "id": "archive-peter-loud",
+    "title": "West Papua photographs, c.1996",
+    "publisher": "Peter Loud",
+    "url": "https://www.peterloud.uk/photos/Indonesia/Papua.html",
+    "type": "collection",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "Photographs of Wamena’s market, Wamerek, Kurima and bridges in the Baliem Valley, dated approximately 1996 by the photographer.",
+    "date": ""
+  },
+  {
+    "id": "archive-mckee-baliem-1993",
+    "title": "Baliem Valley photographs, 1993",
+    "publisher": "Michael McKee / Ze Wandering Frogs",
+    "url": "https://www.zewanderingfrogs.com/wamena/papua-tribes-and-traditions-an-adventurer-takes-us-back-to-1993-baliem-valley-in-photos",
+    "type": "collection",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "Michael McKee’s scanned slides from a 1993 trek in the Baliem Valley, published with his account in 2018.",
+    "date": "2018"
+  },
+  {
+    "id": "archive-manokwari-ernste",
+    "title": "Manokwari Bay, c.1960",
+    "publisher": "Bert Ernste",
+    "url": "https://blog.ernste.net/2018/06/22/baai-van-manokwariherinneringen-aan-nederlands-nieuw-guinea-14/",
+    "type": "collection",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "A postcard from a family album, described as Manokwari around 1960. The original postcard photographer is not identified.",
+    "date": "2018"
+  },
+  {
+    "id": "archive-uncen-hampton",
+    "title": "Hampton collection returned to Museum Loka Budaya",
+    "publisher": "Universitas Cenderawasih",
+    "url": "https://www.uncen.ac.id/ribuan-artefak-dan-arsip-budaya-o-w-hampton-resmi-diserahkan-ke-museum-loka-budaya-uncen/",
+    "type": "article",
+    "format": "web",
+    "language": "id",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "Uncen’s report on the return of Hampton’s highlands collections, including photographs and audio. Individual records and reuse terms are not yet available online.",
+    "date": "2026-08-06"
+  },
+  {
+    "id": "archive-tempo-amamapare-1980",
+    "title": "Oil terminal near Amamapare, 1980",
+    "publisher": "TEMPO",
+    "url": "https://data.tempo.co/foto/detail/P050220252315024/terminal-minyak-pt-freeport-indonesia-di-irian-jaya",
+    "type": "collection",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "Fikri Jufri’s photograph of Freeport’s oil terminal near Amamapare, catalogued as 1980. The 2025 upload date is separate from the photograph date.",
+    "date": ""
+  },
+  {
+    "id": "archive-fakfak-heger",
+    "title": "Fakfak photographs from the 1960s",
+    "publisher": "Phaul Heger",
+    "url": "https://phaul-heger.blogspot.com/2012/02/tempoe-doloe-fakfak-60.html",
+    "type": "collection",
+    "format": "web",
+    "language": "id",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "A local photo essay on Fakfak, with captions identifying the 1960s and 1961. Original photographers and reuse rights are not supplied.",
+    "date": "2012-02-08"
+  },
+  {
+    "id": "archive-mimika-photo-2025",
+    "title": "Mimika Photo Exhibition 2025",
+    "publisher": "New Guinea Kurir",
+    "url": "https://www.newguineakurir.com/2025/10/12/menceritakan-sejarah-mimika-lewat-foto/",
+    "type": "article",
+    "format": "web",
+    "language": "id",
+    "tags": [
+      "history",
+      "culture"
+    ],
+    "description": "A report on PFI Timika’s photo exhibition. Records include the airport runway in 1973, credited to Freeport, and older Kokonao photographs held by Marthin Maturbongs.",
+    "date": "2025-10-12"
   }
 ]

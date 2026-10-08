@@ -1,0 +1,5 @@
+---
+import ArrowIcon from '../ArrowIcon.astro';
+const {direction='right'}=Astro.props as {direction?:'right'|'up-right'|'down-right'|'down'|'up'};
+---
+<ArrowIcon direction={direction}/>

@@ -5,8 +5,8 @@ import '../styles/polish-04.css';
 import '../styles/exhibition-v6.css';
 import BaseLayout from '../layouts/BaseLayout.astro';import { exhibitionItems } from '../data/exhibition';import { sourceById } from '../data/sources';import { withLocale } from '../lib/i18n';import type { Locale } from '../data/types';import ui from '../../content/ui.json';
 const {locale='en'}=Astro.props as {locale?:Locale};
-const laneOrder=['works','voices','archive'] as const;
-const laneLabels={works:{en:'Art',pmy:'Karya'},voices:{en:'Performance',pmy:'Pertunjukan'},archive:{en:'Archive',pmy:'Arsip'}};
+const laneOrder=['works','voices','crafts'] as const;
+const laneLabels={works:{en:'Art',pmy:'Karya'},voices:{en:'Performance',pmy:'Pertunjukan'},crafts:{en:'Crafts',pmy:'Kriya'}};
 // Alternate media within each lane so consecutive works do not feel like duplicates.
 const varied=(items:typeof exhibitionItems)=>{const groups=new Map<string,typeof exhibitionItems>();for(const item of items){const key=item.mediaKind||'work';groups.set(key,[...(groups.get(key)||[]),item])}const result:typeof exhibitionItems=[];while([...groups.values()].some(g=>g.length))for(const group of groups.values()){const item=group.shift();if(item)result.push(item)}return result};
 // The moving wall is an edit of the catalogue, not a loop of every reference.

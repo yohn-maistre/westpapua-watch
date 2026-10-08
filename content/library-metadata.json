@@ -206,5 +206,368 @@
       "reference"
     ],
     "publisherRole": "company"
+  },
+  "exhibit-reference-pesta-babi": {
+    "places": [],
+    "authors": [],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-our-land-has-gone": {
+    "places": [],
+    "authors": [],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-rmw-speaking-at-a-cost": {
+    "places": [],
+    "authors": [
+      "Gispa Ferdinanda Warijo · Asmae Amaddaou · Dalilla Hermans · Mahutin Awunou"
+    ],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-papua-erfgoed-stone-atom-age": {
+    "places": [],
+    "authors": [
+      "Collection record FI/1200/29"
+    ],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-mama-et-meregang-mimpi-di-hutan-sendiri": {
+    "places": [],
+    "authors": [],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-hidup-di-antara-tajam-batu-karang": {
+    "places": [],
+    "authors": [],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-kal-angam-kal-stories-from-west-papua": {
+    "places": [],
+    "authors": [],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-muman-minggil-the-road-to-ancestor-land": {
+    "places": [],
+    "authors": [
+      "Yonri Revolt + Mahardhika Yudha"
+    ],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-wisisi-nit-meke-our-wisisi-music": {
+    "places": [],
+    "authors": [
+      "Arief Budiman, Harun Rumbarar, Bonny Lanny"
+    ],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-mayday-may-day-mayday": {
+    "places": [],
+    "authors": [
+      "Yonri Revolt"
+    ],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-the-silent-path-soebertono-mote": {
+    "places": [],
+    "authors": [
+      "Yonri Revolt"
+    ],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-muo-rem-dance-of-the-cassowary": {
+    "places": [],
+    "authors": [],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-black-brothers": {
+    "places": [],
+    "authors": [],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-sentani-flute-orchestra": {
+    "places": [],
+    "authors": [],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "exhibit-reference-schetskaart-van-nieuw-guinee-sheet-i": {
+    "places": [],
+    "authors": [],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "archive-cook-papers": {
+    "places": [
+      "Wamena",
+      "Jayapura"
+    ],
+    "authors": [
+      "Edwin A. Cook",
+      "Susan Pflanz Cook"
+    ],
+    "accessType": "Copyrighted images; permission required for reuse",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "archive-peter-loud": {
+    "places": [
+      "Wamena",
+      "Baliem Valley"
+    ],
+    "authors": [
+      "Peter Loud"
+    ],
+    "accessType": "Copyrighted images; source viewing",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "archive-mckee-baliem-1993": {
+    "places": [
+      "Baliem Valley"
+    ],
+    "authors": [
+      "Michael McKee"
+    ],
+    "accessType": "Source viewing; reuse permission unconfirmed",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "archive-manokwari-ernste": {
+    "places": [
+      "Manokwari"
+    ],
+    "authors": [],
+    "accessType": "Source viewing; original image rights unconfirmed",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "archive-uncen-hampton": {
+    "places": [
+      "Jayapura",
+      "Jayawijaya"
+    ],
+    "authors": [],
+    "accessType": "Source record",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "archive-tempo-amamapare-1980": {
+    "places": [
+      "Amamapare",
+      "Mimika"
+    ],
+    "authors": [
+      "Fikri Jufri"
+    ],
+    "accessType": "TEMPO source record; licensed reuse required",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "primary_source"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "archive-fakfak-heger": {
+    "places": [
+      "Fak-Fak"
+    ],
+    "accessType": "Source viewing; image reuse rights unconfirmed",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "reference"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
+  },
+  "archive-mimika-photo-2025": {
+    "places": [
+      "Timika",
+      "Mimika",
+      "Kokonao"
+    ],
+    "accessType": "Source viewing; image reuse rights unconfirmed",
+    "lastVerifiedAt": "2026-10-08",
+    "evidenceRoles": [
+      "reference"
+    ],
+    "provenance": {
+      "kind": "archive-research",
+      "verifiedAt": "2026-10-08",
+      "rights": "source-only"
+    }
   }
 }

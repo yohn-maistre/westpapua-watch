@@ -7,10 +7,10 @@ import type {MapViewId} from '../../lib/map/registry';
 import type {Locale} from '../../data/types';
 import languages from '../../../content/data/languages-curated.json';
 const {
-  locale='en',mode='home',title='',eyebrow='',context='',contextValue='',initialView='current'
+  locale='en',mode='home',title='',eyebrow='',context='',contextValue='',initialView='current',historyFeatures=''
 }=Astro.props as {
   locale?:Locale;mode?:'home'|'context';title?:string;eyebrow?:string;
-  context?:'issue'|'development'|'';contextValue?:string;initialView?:MapViewId;
+  context?:'issue'|'development'|'history'|'';contextValue?:string;initialView?:MapViewId;historyFeatures?:string;
 };
 const labels=locale==='pmy'
   ?{base:'Dasar',layers:'Lapisan',overview:'Ikhtisar',north:'Utara',expand:'Perlebar',close:'Tutup',return:'Kembali ke tampilan halaman',search:'Cari tempat',source:'Sumber',view:'Tampilan',all:'Semua'}
@@ -21,14 +21,12 @@ const familyFor=(family:any)=>locale==='pmy'?family.titleId:family.title;
 const viewFor=(view:any)=>locale==='pmy'?view.titleId:view.title;
 const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
 ---
-<section class:list={['watch-map',mode==='context'&&'watch-map-context']} data-watch-map data-map-mode={mode} data-locale={locale} data-context={context} data-context-value={contextValue} data-initial-view={initialView} data-explore="false" aria-label={locale==='pmy'?'Peta Papua Barat':'West Papua map'}>
+<section class:list={['watch-map',mode==='context'&&'watch-map-context']} data-watch-map data-map-mode={mode} data-locale={locale} data-context={context} data-context-value={contextValue} data-history-features={historyFeatures||undefined} data-initial-view={initialView} data-explore="false" aria-label={locale==='pmy'?'Peta Papua Barat':'West Papua map'}>
   <div class="watch-map-frame">
     <div class="watch-map-canvas" data-map-canvas></div>
     <div class="watch-map-fallback" data-map-fallback hidden>
       <div>
-        <strong>{locale==='pmy'?'Peta tidak tersedia.':'Map unavailable.'}</strong>
-        <p>{locale==='pmy'?'Isu, berita, dan sumber data tetap tersedia.':'Browse issues, news and dataset sources below.'}</p>
-        <nav><a href={locale==='pmy'?'/id/topics/':'/topics/'}>{locale==='pmy'?'Isu':'Issues'}</a><a href={locale==='pmy'?'/id/news/':'/news/'}>{locale==='pmy'?'Berita':'News'}</a></nav>
+        {context==='history'?<><img src="/images/history/prototype/geography.svg" alt={locale==='pmy'?'Peta referensi geografis Nugini':'Geographic reference map of New Guinea'}/><svg data-history-map-points viewBox="0 0 600 380" aria-hidden="true"></svg><small>Natural Earth · {locale==='pmy'?'Referensi geografis':'Geographic reference'}</small></>:<><strong>{locale==='pmy'?'Peta tidak tersedia.':'Map unavailable.'}</strong><p>{locale==='pmy'?'Isu, berita, dan sumber data tetap tersedia.':'Browse issues, news and dataset sources below.'}</p><nav><a href={locale==='pmy'?'/id/topics/':'/topics/'}>{locale==='pmy'?'Isu':'Issues'}</a><a href={locale==='pmy'?'/id/news/':'/news/'}>{locale==='pmy'?'Berita':'News'}</a></nav></>}
       </div>
     </div>
 

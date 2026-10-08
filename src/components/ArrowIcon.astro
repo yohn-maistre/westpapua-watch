@@ -1,0 +1,5 @@
+---
+const {direction='right',size=20}=Astro.props as {direction?:'right'|'up-right'|'down-right'|'down'|'up';size?:number};
+const rotation={right:0,'up-right':-45,'down-right':45,down:90,up:-90}[direction];
+---
+<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" style={`transform:rotate(${rotation}deg);flex:none;vertical-align:middle`}><path d="M4 12h15m-6-6 6 6-6 6"/></svg>

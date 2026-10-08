@@ -37,6 +37,9 @@ function developmentFeature(data:any,id:any){
 }
 async function currentGeoJSON(root:HTMLElement):Promise<FeatureCollection>{
   const context=root.dataset.context||'',value=root.dataset.contextValue||'';
+  if(context==='history'){
+    try{const data=JSON.parse(root.dataset.historyFeatures||'');return data.type==='FeatureCollection'&&Array.isArray(data.features)?data:emptyFC()}catch{return emptyFC()}
+  }
   if(context==='development'){
     const id=value==='query:id'?new URL(location.href).searchParams.get('id'):value;if(!id||!/^\d+$/.test(id))return emptyFC();
     const d=await jsonOr<any>(`/api/development/${id}`,null);if(!d)return emptyFC();const f=developmentFeature(d,id);return f?{type:'FeatureCollection',features:[f]}:emptyFC();
@@ -103,11 +106,11 @@ function interactiveVisualLayers(def:MapLayerDefinition):string[]{if(def.geometr
 async function initOne(root:HTMLElement){
   ensureProtocol();const locale:'en'|'pmy'=root.dataset.locale==='pmy'?'pmy':'en';const canvas=root.querySelector<HTMLElement>('[data-map-canvas]');if(!canvas)return;
   const lowMemory=lowMemoryDevice();root.dataset.mapLowMemory=lowMemory?'true':'false';
-  const status=await jsonOr<any>('/api/geo-status',{layers:{}});status.layers||={};
+  const status=root.dataset.context==='history'?{layers:{}}:await jsonOr<any>('/api/geo-status',{layers:{}});status.layers||={};
   const state=parseMapState(location.search),context=root.dataset.context||'';let current=emptyFC();try{current=await currentGeoJSON(root)}catch{}
   if(context==='development'&&current.features.length===0){root.hidden=true;return}
   const requested=(state.explore&&!context?state.view:root.dataset.initialView||'current') as MapViewId,initialView=viewById[requested]?requested:'current';
-  let enabled=new Set<string>(state.explore&&!context?state.layers:viewById[initialView].layers),activeView:MapViewId|null=initialView,activeBase:MapBaseId=state.base||'atlas';let selectedPlace=state.place,initializing=true;const resetLayers=viewById[initialView].layers.slice();let period=conflictPeriod(new URLSearchParams(location.search).get('period')); const motion=matchMedia('(prefers-reduced-motion: reduce)').matches?0:450;
+  let enabled=new Set<string>(context==='history'?[]:state.explore&&!context?state.layers:viewById[initialView].layers),activeView:MapViewId|null=initialView,activeBase:MapBaseId=state.base||'atlas';let selectedPlace=state.place,initializing=true;const resetLayers=context==='history'?[]:viewById[initialView].layers.slice();let period=conflictPeriod(new URLSearchParams(location.search).get('period')); const motion=matchMedia('(prefers-reduced-motion: reduce)').matches?0:450;
 
   const labels=await jsonOr<FeatureCollection>('/data/atlas-labels.geojson',emptyFC());
   const map=new maplibregl.Map({
@@ -119,7 +122,7 @@ async function initOne(root:HTMLElement){
   map.addControl(new maplibregl.NavigationControl({showCompass:false,visualizePitch:false}),'bottom-right');
   let contextLossTimer=0;map.getCanvas().addEventListener('webglcontextlost',()=>{root.dataset.mapRenderer='context-lost';clearTimeout(contextLossTimer);contextLossTimer=window.setTimeout(()=>showFallback(root,'webgl-context-lost'),2400)});
   map.getCanvas().addEventListener('webglcontextrestored',()=>{clearTimeout(contextLossTimer);root.classList.remove('map-fallback');const fb=root.querySelector<HTMLElement>('[data-map-fallback]');if(fb)fb.hidden=true;root.dataset.mapRenderer=rendererFor(map)});
-  map.on('error',(event:any)=>console.warn('[Watch map]',event?.error||event));
+  map.on('error',(event:any)=>{console.warn('[Watch map]',event?.error||event);if(context==='history'&&event.sourceId?.startsWith('watch-base-'))showFallback(root,'tile-unavailable')});
   const unavailable=new Set<string>(),interactive=new Map<string,string>(),baseLayers=new Map<MapBaseId,string>();
   let silhouetteAvailable=false;
 
@@ -143,10 +146,11 @@ async function initOne(root:HTMLElement){
     for(const x of ['watch-context-land','watch-west-papua-land','watch-hillshade'])if(map.getLayer(x))map.setLayoutProperty(x,'visibility','none');
     for(const b of ['atlas','satellite','night'] as const){let layer=baseLayers.get(b);if(activeBase===b&&!layer)layer=ensureBaseRaster(b);if(layer&&map.getLayer(layer))map.setLayoutProperty(layer,'visibility',activeBase===b?'visible':'none')}
     const photographic=activeBase!=='atlas',text=photographic?'#f7f6fb':'#626570',halo=photographic?'rgba(10,11,16,.82)':'#f6f5fa';
-    for(const layer of ['watch-province-labels','watch-settlement-labels','watch-cultural-regions-label','watch-language-labels','watch-language-cluster-count'])if(map.getLayer(layer)){map.setPaintProperty(layer,'text-color',text);map.setPaintProperty(layer,'text-halo-color',halo);map.setPaintProperty(layer,'text-halo-width',photographic?1.6:1.1)}
+    for(const layer of ['watch-history-labels','watch-province-labels','watch-settlement-labels','watch-cultural-regions-label','watch-language-labels','watch-language-cluster-count'])if(map.getLayer(layer)){map.setPaintProperty(layer,'text-color',text);map.setPaintProperty(layer,'text-halo-color',halo);map.setPaintProperty(layer,'text-halo-width',photographic?1.6:1.1)}
     if(map.getLayer('watch-province-boundaries'))map.setPaintProperty('watch-province-boundaries','line-color',photographic?'#f0eef7':'#555864');
     if(map.getLayer('watch-cultural-regions-line'))map.setPaintProperty('watch-cultural-regions-line','line-color',photographic?'#d4cff1':'#77799f');
     root.querySelectorAll<HTMLButtonElement>('[data-map-base]').forEach(b=>{b.classList.toggle('active',b.dataset.mapBase===activeBase);b.setAttribute('aria-pressed',String(b.dataset.mapBase===activeBase))});
+    for(const boundary of ['province-boundaries','cultural-regions'])setLayerVisibility(boundary,enabled.has(boundary));
     updateCredit();if(!initializing)write();
   }
   function updateCredit(){const node=root.querySelector<HTMLElement>('[data-map-credit]'),def=baseById[activeBase];if(!node)return;node.textContent=[def.attribution,'BIG · Bappenas · ESDM · NASA FIRMS',locale==='pmy'?'sumber: metadata lapisan':'source: layer metadata'].filter(Boolean).join(' · ')}
@@ -193,16 +197,28 @@ async function initOne(root:HTMLElement){
   }
   map.on('load',async()=>{
     await addAtlasPlate();map.addSource('watch-label-points',{type:'geojson',data:labels});
+    if(context==='history'){
+      current=await currentGeoJSON(root);
+      map.addSource('watch-history-source',{type:'geojson',data:current});
+      map.addLayer({id:'watch-history-points',type:'circle',source:'watch-history-source',paint:{'circle-color':'#8674b3','circle-radius':5,'circle-stroke-color':'#f6f5fa','circle-stroke-width':2}});
+      map.addLayer({id:'watch-history-labels',type:'symbol',source:'watch-history-source',layout:{'text-field':['get','name'],'text-size':11,'text-offset':[0,1.2],'text-anchor':'top','text-font':['Noto Sans Regular']},paint:{'text-color':'#3d3f48','text-halo-color':'#f6f5fa','text-halo-width':1.3}});
+    }
     for(const def of MAP_LAYERS){
       if(!available(def)){unavailable.add(def.id);continue}
       if(!enabled.has(def.id))continue;
       await registerLayer(def);
     }
     applyBase(activeBase);syncControls();
-    if(context&&current.features.length)fitFeatures(current);else if(state.place&&!context)await focusPlace(state.place);
+    if(context==='history')map.fitBounds(WEST_PAPUA_BOUNDS,{padding:18,duration:0});
+    else if(context&&current.features.length)fitFeatures(current);else if(state.place&&!context)await focusPlace(state.place);
     else if(!context)map.fitBounds(WEST_PAPUA_BOUNDS,{padding:innerWidth<=520?24:42,duration:0});
     initializing=false;
     if(new URL(location.href).searchParams.get('mapDebug')==='1'){(map as any).showTileBoundaries=true;const d=root.querySelector<HTMLElement>('[data-map-debug]');if(d){d.hidden=false;d.textContent=`${root.dataset.mapRenderer} · lowMemory ${lowMemory} · unavailable ${[...unavailable].join(', ')||'none'}`}}
+  });
+  if(context==='history')root.addEventListener('watch:history-context',async()=>{
+    current=await currentGeoJSON(root);const source=map.getSource('watch-history-source') as GeoJSONSource|undefined;
+    source?.setData(current as any);setText(root.querySelector('[data-map-state]'),root.dataset.historyPeriod||'');
+    map.resize();
   });
 
   function setLayerVisibility(id:string,visible:boolean){
@@ -211,7 +227,7 @@ async function initOne(root:HTMLElement){
     if(id==='cultural-regions')ids.push('watch-cultural-regions-line','watch-cultural-regions-label');
     if(id==='settlements')ids.push('watch-settlement-labels');
     if(id==='languages')ids.push('watch-language-labels','watch-language-clusters','watch-language-cluster-count');
-    for(const layer of ids)if(map.getLayer(layer))map.setLayoutProperty(layer,'visibility',visible?'visible':'none');
+    for(const layer of ids)if(map.getLayer(layer))map.setLayoutProperty(layer,'visibility',visible&&!(activeBase==='night'&&(id==='province-boundaries'||id==='cultural-regions'))?'visible':'none');
   }
   function activeInteractiveIds(){return [...interactive.keys()].filter(id=>map.getLayer(id)&&map.getLayoutProperty(id,'visibility')!=='none')}
   map.on('click',(e:MapMouseEvent)=>{const ids=activeInteractiveIds();if(!ids.length)return;const fs=map.queryRenderedFeatures(e.point,{layers:ids});const f=fs[0];if(!f)return;const def=layerById[interactive.get(f.layer.id)||''];if(def)populateFeaturePanel(root,f,def,locale)});
@@ -279,4 +295,4 @@ async function initOne(root:HTMLElement){
   root.querySelectorAll<HTMLButtonElement>('[data-map-return]').forEach(b=>b.addEventListener('click',()=>{const d=defaultMapState();activeBase=d.base;selectedPlace=null;enabled=new Set(resetLayers);void applyVisibility();applyBase('atlas');root.dataset.explore='false';if(!context)writeMapState(d);if(context&&current.features.length)fitFeatures(current);else map.fitBounds(WEST_PAPUA_BOUNDS,{padding:40,duration:motion});panelOpen(false)}));
   document.addEventListener('keydown',e=>{if(e.key==='Tab'){const scope=panel&&!panel.hidden?panel:root.classList.contains('map-expanded')?root:null;if(scope){const nodes=[...scope.querySelectorAll<HTMLElement>('button:not(:disabled),a[href],input,[tabindex="0"]')].filter(n=>n.getClientRects().length&&!n.closest('[hidden]'));const first=nodes[0],last=nodes.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}}}if(e.key!=='Escape')return;if(panel&&!panel.hidden){panelOpen(false);return}const f=root.querySelector<HTMLElement>('[data-map-feature]');if(f&&!f.hidden){f.hidden=true;return}if(root.classList.contains('map-expanded'))expand(false)});
 }
-export function initWatchMaps(){document.querySelectorAll<HTMLElement>('[data-watch-map]').forEach(root=>{if(root.dataset.mapInitialized==='true')return;root.dataset.mapInitialized='true';initOne(root).catch(err=>{console.warn('Watch map unavailable',err);showFallback(root,err instanceof Error?err.name:'initialization-failed')})})}
+export function initWatchMaps(){document.querySelectorAll<HTMLElement>('[data-watch-map]').forEach(root=>{if(root.dataset.mapInitialized)return;const start=()=>{root.dataset.mapInitialized='true';initOne(root).catch(err=>{console.warn('Watch map unavailable',err);showFallback(root,err instanceof Error?err.name:'initialization-failed')})};if(root.dataset.context==='history'){root.dataset.mapInitialized='deferred';const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){observer.disconnect();start()}},{rootMargin:'100px'});observer.observe(root)}else start()})}

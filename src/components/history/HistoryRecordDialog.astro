@@ -1,0 +1,59 @@
+---
+import {archiveItems} from '../../data/archive';
+import HistoryArrow from './HistoryArrow.astro';
+import type {Locale} from '../../data/types';
+const {locale='en'}=Astro.props as {locale?:Locale};
+const en=locale==='en';
+const objects=archiveItems.map(a=>({id:a.id,date:a.date,title:a.title[locale],caption:a.editorial.caption[locale],
+  type:a.mediaType,source:a.archive.mirrorUrl||a.archive.sourceUrl,credit:[a.archive.creator||a.archive.institution,a.access.rightsHolder,a.media?.conversion?.[locale]].filter(Boolean).join(' · '),
+  license:a.access.license||'',licenseUrl:a.access.licenseUrl||'',
+  image:a.resolved.image,poster:a.resolved.poster,
+  playback:a.access.mode==='self_host'?a.resolved.playback:null}));
+---
+<dialog class="history-record-dialog" data-history-record-dialog aria-labelledby="history-record-title" data-unavailable={en?'Media unavailable.':'Media tidak tersedia.'}>
+  <button class="history-record-close" type="button" data-record-close aria-label={en?'Close':'Tutup'}>×</button>
+  <div class="history-record-media" data-record-media></div>
+  <div class="history-record-copy"><p class="history-record-error" data-record-error hidden role="status"></p><small data-record-date></small><h2 id="history-record-title"></h2><p data-record-caption></p><footer><span data-record-credit></span><a data-record-license target="_blank" rel="noreferrer"></a><a data-record-source target="_blank" rel="noreferrer">{en?'Open archive':'Buka arsip'} <HistoryArrow direction="up-right"/></a></footer></div>
+</dialog>
+<script type="application/json" data-history-record-data set:html={JSON.stringify(objects).replace(/</g,'\\u003c')}></script>
+<script>
+  type RecordObject={id:string;date:string;title:string;caption:string;type:string;source:string;credit:string;license:string;licenseUrl:string;image:string|null;poster:string|null;playback:string|null};
+  const dialog=document.querySelector<HTMLDialogElement>('[data-history-record-dialog]');
+  if(dialog){
+    const objects=JSON.parse(document.querySelector('[data-history-record-data]')?.textContent||'[]') as RecordObject[];
+    const media=dialog.querySelector<HTMLElement>('[data-record-media]')!;
+    const error=dialog.querySelector<HTMLElement>('[data-record-error]')!;
+    let timer=0;
+    function release(){clearTimeout(timer);media.querySelectorAll('video,audio').forEach(el=>{const v=el as HTMLMediaElement;v.pause();v.removeAttribute('src');v.load()});media.replaceChildren()}
+    function open(id:string){
+      const a=objects.find(a=>a.id===id);if(!a)return;
+      release();error.hidden=true;error.textContent='';
+      dialog!.querySelector('[data-record-date]')!.textContent=a.date;
+      dialog!.querySelector('#history-record-title')!.textContent=a.title;
+      dialog!.querySelector('[data-record-caption]')!.textContent=a.caption;
+      dialog!.querySelector('[data-record-credit]')!.textContent=a.credit;
+      const license=dialog!.querySelector<HTMLAnchorElement>('[data-record-license]')!;
+      license.textContent=a.license;license.href=a.licenseUrl||a.source;license.hidden=!a.license;
+      dialog!.querySelector<HTMLAnchorElement>('[data-record-source]')!.href=a.source;
+      const fail=()=>{error.textContent=dialog!.dataset.unavailable||'';error.hidden=false};
+      if(a.type==='film'&&a.playback){
+        const video=document.createElement('video');video.controls=true;video.playsInline=true;video.preload='metadata';
+        if(a.poster)video.poster=a.poster;
+        video.addEventListener('error',()=>{video.hidden=true;fail()},{once:true});
+        video.addEventListener('loadedmetadata',()=>{clearTimeout(timer);error.hidden=true});
+        media.append(video);video.src=a.playback;
+        timer=window.setTimeout(()=>{if(video.readyState===0)fail()},15000);
+      }else if(a.type==='photo'&&a.image){
+        const img=document.createElement('img');img.alt=a.caption;img.addEventListener('error',()=>{img.hidden=true;fail()},{once:true});media.append(img);img.src=a.image;
+      }
+      if(!dialog!.open)dialog!.showModal();
+    }
+    document.querySelectorAll<HTMLElement>('[data-history-record]').forEach(button=>button.addEventListener('click',()=>open(button.dataset.historyRecord!)));
+    dialog.querySelector('[data-record-close]')!.addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('close',release);
+    dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
+  }
+</script>
+<style>
+.history-record-dialog{width:min(1050px,calc(100% - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid #ffffff25;border-radius:12px;background:#11151c;color:#f4f3fb;overflow:auto;overscroll-behavior:contain}.history-record-dialog::backdrop{background:#05070de8;backdrop-filter:blur(6px)}.history-record-close{position:sticky;top:8px;float:right;z-index:2;margin:8px;width:44px;height:44px;border:1px solid #ffffff30;border-radius:50%;background:#11151ce8;color:inherit;font-size:1.8rem;cursor:pointer}.history-record-media{clear:both;display:grid;place-items:center;background:#07090e}.history-record-media:empty{display:none}.history-record-media video,.history-record-media img{display:block;width:100%;max-height:60dvh;object-fit:contain}.history-record-media [hidden]{display:none}.history-record-copy{padding:clamp(1.2rem,4vw,3rem)}.history-record-copy>small{color:#aaa9ba;font-size:.75rem}.history-record-copy h2{font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.055em;line-height:1.05;margin:.8rem 0}.history-record-copy>p{max-width:65ch;line-height:1.65}.history-record-copy footer{display:flex;flex-wrap:wrap;gap:.7rem 1.2rem;margin-top:2rem;padding-top:1rem;border-top:1px solid #ffffff22;font-size:.72rem;color:#b9b8c7}.history-record-copy footer>a:last-child{margin-left:auto;color:#f4f3fb;text-decoration:underline;text-underline-offset:4px}.history-record-error{color:#c4c7ff}.history-record-dialog :focus-visible{outline:2px solid #c4c7ff;outline-offset:3px}
+</style>
