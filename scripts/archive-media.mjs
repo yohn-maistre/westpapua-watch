@@ -8,7 +8,7 @@ const ROOT=process.cwd();
 const MANIFEST=path.join(ROOT,'content/archive-media.json');
 const BUCKET=process.env.ARCHIVE_MEDIA_BUCKET||'westpapua-watch-media';
 const allowedRights=new Set(['public_domain','cc0','cc_by','cc_by_sa']);
-const allowedModes=new Set(['self_host','external','official_embed','permission_pending']);
+const allowedModes=new Set(['self_host','external','official_embed','permission_pending','editorial']);
 const allowedLayouts=new Set(['hero','wide','standard','portrait']);
 const allowedMedia=new Set(['film','photo','document','audio']);
 const args=process.argv.slice(2);
@@ -38,6 +38,8 @@ function validate(){
     if(!allowedMedia.has(item.mediaType))fail(`${item.id} has invalid mediaType`);if(!allowedLayouts.has(item.layout))fail(`${item.id} has invalid layout`);
     if(!https(item.archive?.sourceUrl))fail(`${item.id} source record must be https`);if(!allowedModes.has(item.access?.mode))fail(`${item.id} has invalid access mode`);
     if(!item.access?.rightsStatus||!item.access?.rightsVerifiedAt)fail(`${item.id} needs rights status and verification date`);
+    // Credited editorial inclusions are kept distinct from openly licensed R2 sync.
+    if(item.access?.mode==='editorial'&&!item.access.editorialAuthorization)fail(`${item.id} needs an editorial authorization record`);
     if(item.access?.licenseUrl&&!https(item.access.licenseUrl))fail(`${item.id} licenseUrl must be https`);
     if(item.archive?.mirrorUrl&&!https(item.archive.mirrorUrl))fail(`${item.id} mirror record must be https`);
     if(item.media?.mirrorSource&&!https(item.media.mirrorSource))fail(`${item.id} mirror source must be https`);

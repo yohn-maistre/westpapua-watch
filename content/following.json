@@ -45,6 +45,27 @@
         "publishedAt": "2026-08-01",
         "text": "HRM reports military operations and armed violence in Puncak and Intan Jaya during April–June 2026; security operations also in Nduga. It attributes disruption of health and education services and displacement to recurring violence and fear. It records intimidation and dispersal of Pesta Babi screenings; the documentary was released online on 22 May 2026. This is an attributed monitoring record, not independent verification of every allegation.",
         "datePrecision": "month"
+      },
+      {
+        "id": "nduga-emergency-school-source",
+        "title": "Displaced children attend emergency school",
+        "publisher": "VOA · Alam Burhanan",
+        "url": "https://projects.voanews.com/kebebasan-pers-papua/indonesian/impact/pengungsi-konflik-nduga-bangun-sekolah-darurat.html",
+        "text": "VOA visited a temporary school in the Weneroma church compound in Wamena. Volunteer teachers and families were trying to continue children’s education after displacement from Nduga. Children’s school records and funding were difficult to transfer, showing how the consequences persisted beyond the initial flight from home."
+      },
+      {
+        "id": "nduga-displacement-aid-appeal-source",
+        "title": "UN experts call for humanitarian access",
+        "publisher": "OHCHR · UN Special Procedures",
+        "url": "https://www.ohchr.org/en/press-releases/2022/03/indonesia-un-experts-sound-alarm-serious-papua-abuses-call-urgent-aid",
+        "text": "UN experts described prolonged displacement since late 2018, interrupted food, healthcare and education, and restrictions on relief access across highland Papua. Their appeal calls for independent investigations and durable solutions. The regional estimates cover several conflict areas, rather than this regency alone."
+      },
+      {
+        "id": "nduga-displacement-operations-2023-source",
+        "title": "Church network reports intensified operations",
+        "publisher": "World Council of Churches / Human Rights Monitor",
+        "url": "https://www.oikoumene.org/news/human-rights-groups-see-extreme-increase-in-military-deployments-and-operations-in-papua",
+        "text": "The World Council of Churches relayed Human Rights Monitor’s account of increased deployments and raids, naming Nduga, Puncak and Intan Jaya among the main affected regencies. The report links military operations with community fears, including around schools and healthcare. This is a monitoring assessment, not a new census of displaced people."
       }
     ],
     "reviewedAt": "2026-10-08",
@@ -117,6 +138,13 @@
         "url": "https://ebk.ptfi.co.id/id/video/hut-ke-59-freeport-bangkit-bersama-menuju-operasi-berkelanjutan",
         "publishedAt": "2026-04-09",
         "text": "PTFI’s 9 April 2026 account commemorates seven employees killed in the 8 September 2025 Grasberg Block Cave wet-material incident and two killed in separate shootings in February and March 2026. It reports production at 40–50% during recovery and a target to approach full production by year-end. These are corporate statements; the target is not an achieved outcome."
+      },
+      {
+        "id": "first-contract-source",
+        "title": "First Freeport contract",
+        "publisher": "Freeport-McMoRan",
+        "url": "https://www.fcx.com/about/history",
+        "text": "PT Freeport Indonesia dates its first contract with Indonesia to 1967, before Pepera. This corporate record establishes the contractual chronology."
       }
     ],
     "reviewedAt": "2026-10-08",
@@ -190,6 +218,27 @@
         "publishedAt": "2026-08-01",
         "text": "HRM reports military operations and armed violence in Puncak and Intan Jaya during April–June 2026; security operations also in Nduga. It attributes disruption of health and education services and displacement to recurring violence and fear. It records intimidation and dispersal of Pesta Babi screenings; the documentary was released online on 22 May 2026. This is an attributed monitoring record, not independent verification of every allegation.",
         "datePrecision": "month"
+      },
+      {
+        "id": "puncak-displacement-aid-appeal-source",
+        "title": "UN experts call for humanitarian access",
+        "publisher": "OHCHR · UN Special Procedures",
+        "url": "https://www.ohchr.org/en/press-releases/2022/03/indonesia-un-experts-sound-alarm-serious-papua-abuses-call-urgent-aid",
+        "text": "UN experts described prolonged displacement since late 2018, interrupted food, healthcare and education, and restrictions on relief access across highland Papua. Their appeal calls for independent investigations and durable solutions. The regional estimates cover several conflict areas, rather than this regency alone."
+      },
+      {
+        "id": "puncak-displacement-operations-2023-source",
+        "title": "Church network reports intensified operations",
+        "publisher": "World Council of Churches / Human Rights Monitor",
+        "url": "https://www.oikoumene.org/news/human-rights-groups-see-extreme-increase-in-military-deployments-and-operations-in-papua",
+        "text": "The World Council of Churches relayed Human Rights Monitor’s account of increased deployments and raids, naming Nduga, Puncak and Intan Jaya among the main affected regencies. The report links military operations with community fears, including around schools and healthcare. This is a monitoring assessment, not a new census of displaced people."
+      },
+      {
+        "id": "puncak-komnas-visit-source",
+        "title": "Komnas HAM hears from displaced residents",
+        "publisher": "Pemerintah Kabupaten Puncak",
+        "url": "https://www.puncakkab.go.id/publikasi/berita/568/komnasham-ri-tiba-di-puncak-dengar-langsung-keluhan-para-pengungsi",
+        "text": "The Puncak regency reported a Komnas HAM visit to Ilaga and Gome to hear displaced residents and discuss emergency assistance, recovery and return. The page gives an inconsistent weekday and date for the visit, so this entry retains the verified month rather than assigning a precise day."
       }
     ],
     "reviewedAt": "2026-10-08",
@@ -263,6 +312,27 @@
         "publishedAt": "2026-08-01",
         "text": "HRM reports military operations and armed violence in Puncak and Intan Jaya during April–June 2026; security operations also in Nduga. It attributes disruption of health and education services and displacement to recurring violence and fear. It records intimidation and dispersal of Pesta Babi screenings; the documentary was released online on 22 May 2026. This is an attributed monitoring record, not independent verification of every allegation.",
         "datePrecision": "month"
+      },
+      {
+        "id": "intan-gold-rush-source",
+        "title": "Gold Rush report examines mining and security",
+        "publisher": "Amnesty International",
+        "url": "https://www.amnesty.org/en/wp-content/uploads/2022/03/ASA2152572022ENGLISH.pdf",
+        "text": "Amnesty’s Gold Rush report examines proposed mining at Wabu and a security environment in which residents described violence, restrictions and displacement. The report connects questions about consent for extraction with people’s ability to remain on their land and speak freely about development plans."
+      },
+      {
+        "id": "intan-jaya-displacement-aid-appeal-source",
+        "title": "UN experts call for humanitarian access",
+        "publisher": "OHCHR · UN Special Procedures",
+        "url": "https://www.ohchr.org/en/press-releases/2022/03/indonesia-un-experts-sound-alarm-serious-papua-abuses-call-urgent-aid",
+        "text": "UN experts described prolonged displacement since late 2018, interrupted food, healthcare and education, and restrictions on relief access across highland Papua. Their appeal calls for independent investigations and durable solutions. The regional estimates cover several conflict areas, rather than this regency alone."
+      },
+      {
+        "id": "intan-jaya-displacement-operations-2023-source",
+        "title": "Church network reports intensified operations",
+        "publisher": "World Council of Churches / Human Rights Monitor",
+        "url": "https://www.oikoumene.org/news/human-rights-groups-see-extreme-increase-in-military-deployments-and-operations-in-papua",
+        "text": "The World Council of Churches relayed Human Rights Monitor’s account of increased deployments and raids, naming Nduga, Puncak and Intan Jaya among the main affected regencies. The report links military operations with community fears, including around schools and healthcare. This is a monitoring assessment, not a new census of displaced people."
       }
     ],
     "reviewedAt": "2026-10-08",
@@ -342,6 +412,13 @@
         "publishedAt": "2026-08-01",
         "text": "HRM reports military operations and armed violence in Puncak and Intan Jaya during April–June 2026; security operations also in Nduga. It attributes disruption of health and education services and displacement to recurring violence and fear. It records intimidation and dispersal of Pesta Babi screenings; the documentary was released online on 22 May 2026. This is an attributed monitoring record, not independent verification of every allegation.",
         "datePrecision": "month"
+      },
+      {
+        "id": "internet-shutdown-source",
+        "title": "Internet shutdown across Papua",
+        "publisher": "Columbia Global Freedom of Expression",
+        "url": "https://globalfreedomofexpression.columbia.edu/cases/alliance-of-independent-journalists-v-minister-of-communication/",
+        "text": "After throttling on 19 August, the government shut down internet access from 21 August to 4 September in cities and regencies across Papua and West Papua. AJI and SAFEnet challenged the restrictions. Columbia’s case analysis explains how the interruption affected access to information and freedom of expression during the protests."
       }
     ],
     "reviewedAt": "2026-10-08",
@@ -407,6 +484,20 @@
         "url": "https://www.walhi.or.id/mahkamah-agung-tolak-kasasi-suku-awyu-perjuangan-selamatkan-hutan-papua-kian-berat",
         "publishedAt": "2024-11-01",
         "text": "The coalition reports decision 458 K/TUN/LH/2024, decided 18 September 2024, rejecting Hendrikus Woro’s cassation over PT Indo Asiana Lestari’s environmental approval. One judge dissented. PT Kartika Cipta Pratama and PT Megakarya Jaya Raya cases were separate."
+      },
+      {
+        "id": "awyu-lawsuit-source",
+        "title": "Hendrikus Woro files environmental lawsuit",
+        "publisher": "Greenpeace Southeast Asia",
+        "url": "https://www.greenpeace.org/southeastasia/press/58630/west-papuan-indigenous-defender-files-lawsuit-over-palm-oil-company-forestland-grab/",
+        "text": "Awyu land defender Hendrikus (Franky) Woro filed a lawsuit against PT Indo Asiana Lestari’s environmental approval. Greenpeace’s account describes customary forest as the source of food, work and inherited social responsibilities, and records objections to a decision communities said they had not agreed to."
+      },
+      {
+        "id": "awyu-first-verdict-source",
+        "title": "Jayapura court rejects lawsuit",
+        "publisher": "Greenpeace Southeast Asia",
+        "url": "https://www.greenpeace.org/southeastasia/press/62817/verdict-a-setback-for-awyu-indigenous-people-and-papuan-forests/",
+        "text": "The Jayapura administrative court rejected Woro’s environmental lawsuit. Greenpeace described the ruling as a setback and recorded his intention to continue the legal challenge. This first-instance decision precedes the 2024 cassation outcome; the IAL case should be distinguished from other Awyu-related company cases."
       }
     ],
     "reviewedAt": "2026-10-08",
@@ -484,6 +575,20 @@
         "url": "https://pusaka.or.id/event/elegi-selatan-papua/",
         "publishedAt": "2026-08-12",
         "text": "Pusaka announced the 13 August 2026 Jayapura launch and discussion of a Human Rights Impact Assessment of South Papua food and energy projects. Pusaka describes impacts on customary land, communities and the environment; the event page is a description of its findings, not the full assessment."
+      },
+      {
+        "id": "mifee-launch-source",
+        "title": "MIFEE launched",
+        "publisher": "Ginting & Pye · ASEAS (2013)",
+        "url": "https://aseas.univie.ac.at/index.php/aseas/article/view/2571/2159",
+        "text": "The Merauke Integrated Food and Energy Estate launched a large-scale agribusiness programme on customary land. Ginting and Pye trace how concessions, government planning and corporate investment met Malind land relations and resistance. It provides the background for later projects, without making MIFEE and the 2023–24 rice and sugar programmes one continuous legal scheme."
+      },
+      {
+        "id": "mifee-rights-source",
+        "title": "Civil-society objections to MIFEE",
+        "publisher": "TAPOL",
+        "url": "https://tapol.org/press-statements/mifee-project-violates-human-rights",
+        "text": "TAPOL’s statement raised concerns about forest conversion, food security and Malind customary rights under MIFEE. These objections precede the present food estate debate: land described as available for investment was already sustaining communities’ food, work and social relations."
       }
     ],
     "reviewedAt": "2026-10-08",
@@ -553,6 +658,13 @@
         "url": "https://www.greenpeace.org/indonesia/siaran-pers/67809/greenpeace-menang-ptun-perintahkan-pemerintah-buka-sk-pencabutan-izin-4-tambang-nikel-di-raja-ampat/",
         "publishedAt": "2026-09-14",
         "text": "Greenpeace reports that PTUN Jakarta rejected BKPM’s objection on 14 September 2026, affirming the Central Information Commission’s 10 June 2026 decision that the four permit-revocation documents and implementation details were public information. This is a disclosure ruling, not proof of ecological rehabilitation or confirmation that the documents had been released."
+      },
+      {
+        "id": "gag-resumption-source",
+        "title": "Gag Nikel resumes under oversight",
+        "publisher": "The Jakarta Post / Asia News Network",
+        "url": "https://asianews.network/indonesia-government-vows-stricter-oversight-as-gag-nikel-restarts-raja-ampat-mine/",
+        "text": "A September report citing the energy ministry dates Gag Nikel’s resumption to 3 September after a temporary suspension. The government promised stricter monitoring and rehabilitation. Gag’s operation is separate from the four companies whose permits were revoked in June."
       }
     ],
     "reviewedAt": "2026-10-08",

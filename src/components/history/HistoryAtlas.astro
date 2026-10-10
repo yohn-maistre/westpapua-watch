@@ -1,0 +1,16 @@
+---
+import MapShell from '../map/MapShell.astro';
+import type {Locale} from '../../data/types';
+const {locale='en'}=Astro.props as {locale:Locale};const en=locale==='en';
+---
+<div class="history-atlas" id="history-context-map" data-history-map-shell>
+ <header><span data-history-map-date></span><span data-history-map-places></span></header>
+ <div class="history-atlas-preview" data-history-atlas-preview>
+  <img src="/images/history/prototype/geography.svg" alt={en?'Geographic atlas of New Guinea':'Atlas geografis Nugini'} width="600" height="380" decoding="async"/>
+  <div class="history-atlas-points" data-history-atlas-points></div>
+  <button type="button" class="history-atlas-expand" data-history-atlas-expand aria-label={en?'Open interactive atlas':'Buka atlas interaktif'}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg></button>
+ </div>
+ <div class="history-atlas-note" data-history-atlas-note hidden><button type="button" data-history-place-close aria-label={en?'Close place note':'Tutup catatan tempat'}>×</button><strong data-history-place-name></strong><p data-history-place-note></p><a data-history-place-source target="_blank" rel="noreferrer">{en?'Source':'Sumber'} ↗</a></div>
+ <small>Natural Earth · {en?'Regional reference':'Referensi wilayah'}</small>
+ <div data-history-live-map hidden><MapShell locale={locale} mode="context" context="history" historyFeatures={JSON.stringify({type:'FeatureCollection',features:[]})}/></div>
+</div>

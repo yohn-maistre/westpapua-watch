@@ -60,7 +60,7 @@ const lang = locale==='pmy'?'id':'en';
     const navSentinel=q('[data-nav-sentinel]');
     if(navSentinel){const io=new IntersectionObserver(([e])=>{const crossed=!e.isIntersecting&&e.boundingClientRect.top<0;document.body.classList.toggle('nav-collapsed',crossed);const nav=q('[data-compact-nav]');if(nav){nav.inert=!crossed;nav.setAttribute('aria-hidden',String(!crossed))}},{threshold:0});io.observe(navSentinel)}
     const compactNav=q('[data-compact-nav]');
-    if(compactNav){const syncCompactHeight=()=>document.documentElement.style.setProperty('--compact-nav-actual-height',`${Math.ceil(compactNav.getBoundingClientRect().height)}px`);syncCompactHeight();new ResizeObserver(syncCompactHeight).observe(compactNav);window.addEventListener('resize',syncCompactHeight,{passive:true})}
+    if(compactNav){const syncCompactHeight=()=>document.documentElement.style.setProperty('--compact-nav-actual-height',`${compactNav.getBoundingClientRect().height}px`);syncCompactHeight();new ResizeObserver(syncCompactHeight).observe(compactNav);window.addEventListener('resize',syncCompactHeight,{passive:true})}
   </script>
 </body>
 </html>

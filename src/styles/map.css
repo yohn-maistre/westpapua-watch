@@ -116,10 +116,19 @@
 .watch-map.map-expanded[data-map-language='true'] .watch-map-feature{bottom:112px;max-height:calc(100% - 210px)}
 .watch-map.map-expanded:has(.watch-map-language.is-expanded) .watch-map-viewbar{bottom:min(46dvh,440px)}
 @media(max-width:760px){
- .watch-map.map-expanded .watch-map-basebar{top:66px!important}
+ .watch-map.map-expanded .watch-map-basebar{top:auto!important}
  .watch-map.map-expanded[data-map-language='true'] .watch-map-language:not([hidden]){left:0;right:0;bottom:0;width:auto;transform:none;border-radius:22px 22px 0 0;border-inline:0;border-bottom:0}
  .watch-map.map-expanded[data-map-language='true'] .watch-map-viewbar{bottom:92px;max-width:calc(100% - 88px)}
  .watch-map-language-body{max-height:52dvh;padding:.75rem calc(.75rem + env(safe-area-inset-right)) calc(.75rem + env(safe-area-inset-bottom)) calc(.75rem + env(safe-area-inset-left))}.watch-language-mosaic{grid-template-columns:repeat(2,minmax(0,1fr))}.watch-language-mosaic button{min-height:98px!important}
  .watch-map.map-expanded[data-map-language='true'] .watch-map-feature{bottom:104px;max-height:40dvh}
  .watch-map.map-expanded:has(.watch-map-language.is-expanded) .watch-map-viewbar{bottom:54dvh}
 }
+
+/* One responsive rail aligns basemap and actions in inline and expanded maps. */
+.watch-map-toprail{position:absolute;z-index:5;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;pointer-events:none}
+.watch-map-toprail>.watch-map-basebar,.watch-map-toprail>.watch-map-controls{position:static!important;inset:auto!important;pointer-events:auto;max-width:100%;margin:0}
+.watch-map-toprail>.watch-map-basebar{flex:0 1 auto;min-width:0}
+.watch-map-toprail>.watch-map-controls{display:flex;flex-direction:row!important;flex:none;margin-left:auto}
+.watch-map.map-expanded .watch-map-toprail{top:max(12px,env(safe-area-inset-top));left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right))}
+
+.history-map-note .maplibregl-popup-content{padding:1rem 2rem 1rem 1rem;background:#f1eee5;color:#22252b;font-family:inherit;font-size:.8rem;line-height:1.5;border-radius:4px}.history-map-note strong{font-weight:650}.history-map-note p{margin:.5rem 0}.history-map-note a{color:#534375;text-decoration:underline}.history-map-note .maplibregl-popup-close-button{font-size:1.2rem;width:32px;height:32px}.history-map-note .maplibregl-popup-tip{border-top-color:#f1eee5}

@@ -116,13 +116,15 @@ async function initOne(root:HTMLElement){
   const map=new maplibregl.Map({
     container:canvas,style:WATCH_BASE_STYLE as any,center:WEST_PAPUA_CENTER,zoom:context?5.1:3.85,minZoom:2.7,maxZoom:14,maxBounds:MAP_CONTEXT_BOUNDS,
     attributionControl:false,dragRotate:false,pitchWithRotate:false,renderWorldCopies:false,fadeDuration:lowMemory?0:120,cooperativeGestures:true,
-    pixelRatio:lowMemory?1:Math.min(window.devicePixelRatio||1,1.5),maxTileCacheSize:lowMemory?36:56,maxTileCacheZoomLevels:lowMemory?2:3
+    pixelRatio:lowMemory?1:Math.min(window.devicePixelRatio||1,1.5),maxTileCacheSize:lowMemory?36:56,maxTileCacheZoomLevels:lowMemory?2:3,trackResize:context!=='history'
   });
   root.dataset.mapRenderer=rendererFor(map);console.info('[Watch map] renderer',root.dataset.mapRenderer,'lowMemory',lowMemory);
   map.addControl(new maplibregl.NavigationControl({showCompass:false,visualizePitch:false}),'bottom-right');
   let contextLossTimer=0;map.getCanvas().addEventListener('webglcontextlost',()=>{root.dataset.mapRenderer='context-lost';clearTimeout(contextLossTimer);contextLossTimer=window.setTimeout(()=>showFallback(root,'webgl-context-lost'),2400)});
   map.getCanvas().addEventListener('webglcontextrestored',()=>{clearTimeout(contextLossTimer);root.classList.remove('map-fallback');const fb=root.querySelector<HTMLElement>('[data-map-fallback]');if(fb)fb.hidden=true;root.dataset.mapRenderer=rendererFor(map)});
-  map.on('error',(event:any)=>{console.warn('[Watch map]',event?.error||event);if(context==='history'&&event.sourceId?.startsWith('watch-base-'))showFallback(root,'tile-unavailable')});
+  // An individual raster request can fail while the atlas and markers remain
+  // usable. Keep the base selector available so readers can choose another base.
+  map.on('error',(event:any)=>{console.warn('[Watch map]',event?.error||event)});
   const unavailable=new Set<string>(),interactive=new Map<string,string>(),baseLayers=new Map<MapBaseId,string>();
   let silhouetteAvailable=false;
 
@@ -134,6 +136,12 @@ async function initOne(root:HTMLElement){
   async function addAtlasPlate(){
     const contextLand=await jsonOr<FeatureCollection>('/data/context-land.geojson',emptyFC()),silhouette=await jsonOr<FeatureCollection>('/data/west-papua-silhouette.geojson',emptyFC());
     if(contextLand.features.length){map.addSource('watch-context-land-source',{type:'geojson',data:contextLand});map.addLayer({id:'watch-context-land',type:'fill',source:'watch-context-land-source',paint:{'fill-color':'#eff0f5','fill-opacity':.92}});/* Global terrain replaces the clipped plate. */}
+    else if(context==='history'){
+      // Keep the same Natural Earth reference available if the compiled atlas
+      // geography is absent. Its extent matches the lightweight reader atlas.
+      map.addSource('watch-history-reference',{type:'image',url:'/images/history/research/context-atlas.webp',coordinates:[[128,2],[143,2],[143,-11],[128,-11]]});
+      map.addLayer({id:'watch-base-reference',type:'raster',source:'watch-history-reference',paint:{'raster-fade-duration':0}});root.dataset.referencePlate='true';
+    }
     if(silhouette.features.length){silhouetteAvailable=true;map.addSource('watch-silhouette-source',{type:'geojson',data:silhouette});map.addLayer({id:'watch-west-papua-land',type:'fill',source:'watch-silhouette-source',paint:{'fill-color':WATCH_ATLAS_COLORS.land,'fill-opacity':1}})}
 
   }
@@ -143,6 +151,7 @@ async function initOne(root:HTMLElement){
   }
   function applyBase(id:MapBaseId){
     activeBase=baseById[id]?id:'atlas';
+    if(map.getLayer('watch-base-reference'))map.setLayoutProperty('watch-base-reference','visibility',activeBase==='atlas'?'visible':'none');
     for(const x of ['watch-context-land','watch-west-papua-land','watch-hillshade'])if(map.getLayer(x))map.setLayoutProperty(x,'visibility','none');
     for(const b of ['atlas','satellite','night'] as const){let layer=baseLayers.get(b);if(activeBase===b&&!layer)layer=ensureBaseRaster(b);if(layer&&map.getLayer(layer))map.setLayoutProperty(layer,'visibility',activeBase===b?'visible':'none')}
     const photographic=activeBase!=='atlas',text=photographic?'#f7f6fb':'#626570',halo=photographic?'rgba(10,11,16,.82)':'#f6f5fa';
@@ -153,7 +162,7 @@ async function initOne(root:HTMLElement){
     for(const boundary of ['province-boundaries','cultural-regions'])setLayerVisibility(boundary,enabled.has(boundary));
     updateCredit();if(!initializing)write();
   }
-  function updateCredit(){const node=root.querySelector<HTMLElement>('[data-map-credit]'),def=baseById[activeBase];if(!node)return;node.textContent=[def.attribution,'BIG · Bappenas · ESDM · NASA FIRMS',locale==='pmy'?'sumber: metadata lapisan':'source: layer metadata'].filter(Boolean).join(' · ')}
+  function updateCredit(){const node=root.querySelector<HTMLElement>('[data-map-credit]'),def=baseById[activeBase];if(!node)return;node.textContent=[def.attribution,activeBase==='atlas'&&root.dataset.referencePlate==='true'?'Natural Earth':null,'BIG · Bappenas · ESDM · NASA FIRMS',locale==='pmy'?'sumber: metadata lapisan':'source: layer metadata'].filter(Boolean).join(' · ')}
 
   const registered=new Set<string>(),registering=new Map<string,Promise<boolean>>();
   function registerLayer(def:MapLayerDefinition){
@@ -202,6 +211,18 @@ async function initOne(root:HTMLElement){
       map.addSource('watch-history-source',{type:'geojson',data:current});
       map.addLayer({id:'watch-history-points',type:'circle',source:'watch-history-source',paint:{'circle-color':'#8674b3','circle-radius':5,'circle-stroke-color':'#f6f5fa','circle-stroke-width':2}});
       map.addLayer({id:'watch-history-labels',type:'symbol',source:'watch-history-source',layout:{'text-field':['get','name'],'text-size':11,'text-offset':[0,1.2],'text-anchor':'top','text-font':['Noto Sans Regular']},paint:{'text-color':'#3d3f48','text-halo-color':'#f6f5fa','text-halo-width':1.3}});
+      let notePopup:maplibregl.Popup|null=null;
+      map.on('click','watch-history-points',event=>{
+        const feature=event.features?.[0];if(!feature||feature.geometry.type!=='Point')return;
+        const properties=feature.properties||{},body=document.createElement('div'),title=document.createElement('strong'),note=document.createElement('p');
+        title.textContent=properties.name||'';note.textContent=properties.note||'';body.append(title,note);
+        if(/^https?:\/\//.test(properties.source||'')){const link=document.createElement('a');link.href=properties.source;link.target='_blank';link.rel='noreferrer';link.textContent=locale==='pmy'?'Sumber ↗':'Source ↗';body.append(link)}
+        notePopup?.remove();notePopup=new maplibregl.Popup({maxWidth:'280px',className:'history-map-note',focusAfterOpen:false}).setLngLat(feature.geometry.coordinates as [number,number]).setDOMContent(body).addTo(map);
+      });
+      map.on('mouseenter','watch-history-points',()=>{map.getCanvas().style.cursor='pointer'});
+      map.on('mouseleave','watch-history-points',()=>{map.getCanvas().style.cursor=''});
+      root.addEventListener('watch:history-context',()=>notePopup?.remove());
+      root.addEventListener('watch:map-collapsed',()=>notePopup?.remove());
     }
     for(const def of MAP_LAYERS){
       if(!available(def)){unavailable.add(def.id);continue}
@@ -215,10 +236,12 @@ async function initOne(root:HTMLElement){
     initializing=false;
     if(new URL(location.href).searchParams.get('mapDebug')==='1'){(map as any).showTileBoundaries=true;const d=root.querySelector<HTMLElement>('[data-map-debug]');if(d){d.hidden=false;d.textContent=`${root.dataset.mapRenderer} · lowMemory ${lowMemory} · unavailable ${[...unavailable].join(', ')||'none'}`}}
   });
+  let lastHistoryFeatures=root.dataset.historyFeatures||'';
   if(context==='history')root.addEventListener('watch:history-context',async()=>{
-    current=await currentGeoJSON(root);const source=map.getSource('watch-history-source') as GeoJSONSource|undefined;
-    source?.setData(current as any);setText(root.querySelector('[data-map-state]'),root.dataset.historyPeriod||'');
-    map.resize();
+    if(!root.classList.contains('map-expanded'))return;
+    const serialized=root.dataset.historyFeatures||'';
+    if(serialized!==lastHistoryFeatures){lastHistoryFeatures=serialized;current=await currentGeoJSON(root);const source=map.getSource('watch-history-source') as GeoJSONSource|undefined;source?.setData(current as any)}
+    setText(root.querySelector('[data-map-state]'),root.dataset.historyPeriod||'');
   });
 
   function setLayerVisibility(id:string,visible:boolean){
@@ -278,7 +301,7 @@ async function initOne(root:HTMLElement){
   const languagePanel=root.querySelector<HTMLElement>('[data-map-language-panel]'),languageBody=root.querySelector<HTMLElement>('[data-map-language-body]'),languageExpand=root.querySelector<HTMLButtonElement>('[data-map-language-expand]');
   const languageSearch=root.querySelector<HTMLInputElement>('[data-map-language-search]'),languageButtons=[...root.querySelectorAll<HTMLButtonElement>('[data-map-language-focus]')];
   function updateLanguageViewport(){if(!enabled.has('languages'))return;const bounds=map.getBounds();let count=0;for(const button of languageButtons){const lat=Number(button.dataset.lat),lng=Number(button.dataset.lng);if(Number.isFinite(lat)&&Number.isFinite(lng)&&bounds.contains([lng,lat]))count++}setText(root.querySelector('[data-map-language-count]'),locale==='pmy'?`${count} terlihat · ${languageButtons.length} terkatalog`:`${count} in view · ${languageButtons.length} catalogued`)}
-  function setLanguageExpanded(on:boolean){languagePanel?.classList.toggle('is-expanded',on);if(languageBody)languageBody.hidden=!on;if(languageExpand){languageExpand.setAttribute('aria-expanded',String(on));languageExpand.lastElementChild!.textContent=on?'↓':'↑'}setTimeout(()=>map.resize(),60)}
+  function setLanguageExpanded(on:boolean){if(on===Boolean(languagePanel?.classList.contains('is-expanded')))return;languagePanel?.classList.toggle('is-expanded',on);if(languageBody)languageBody.hidden=!on;if(languageExpand){languageExpand.setAttribute('aria-expanded',String(on));languageExpand.lastElementChild!.textContent=on?'↓':'↑'}setTimeout(()=>map.resize(),60)}
   function syncLanguagePanel(){const show=root.classList.contains('map-expanded')&&enabled.has('languages');if(languagePanel)languagePanel.hidden=!show;if(show)updateLanguageViewport();else setLanguageExpanded(false)}
   languageExpand?.addEventListener('click',()=>setLanguageExpanded(!languagePanel?.classList.contains('is-expanded')));
   languageSearch?.addEventListener('input',()=>{const q=languageSearch.value.trim().toLowerCase();for(const button of languageButtons)button.hidden=!!q&&!`${button.dataset.name||''} ${button.dataset.family||''} ${button.dataset.glottocode||''}`.toLowerCase().includes(q)});
@@ -288,11 +311,41 @@ async function initOne(root:HTMLElement){
   const search=root.querySelector<HTMLInputElement>('[data-map-place-search]'),results=root.querySelector<HTMLElement>('[data-map-place-results]');let timer=0;
   search?.addEventListener('input',()=>{clearTimeout(timer);timer=window.setTimeout(async()=>{const q=search.value.trim();if(q.length<2){results?.replaceChildren();return}const data=await jsonOr<any>(`/api/places?q=${encodeURIComponent(q)}`,null),rows=data?.items||data||[];if(!results)return;results.replaceChildren();for(const p of rows.slice(0,8)){const lat=Number(p.latitude),lon=Number(p.longitude);if(p.latitude==null||p.longitude==null||!Number.isFinite(lat)||!Number.isFinite(lon))continue;const b=document.createElement('button');b.type='button';b.textContent=p.name;b.addEventListener('click',()=>{map.easeTo({center:[lon,lat],zoom:7,duration:motion});root.dataset.explore='true';selectedPlace=p.slug;setText(root.querySelector('[data-map-state]'),p.name);if(!context)writeMapState({base:activeBase,view:activeView,layers:[...enabled],place:p.slug,explore:true});results.replaceChildren();search.value=p.name;panelOpen(false)});results.append(b)}},220)});
 
-  let expandReturn:HTMLElement|null=null;const inerted:HTMLElement[]=[];
-  function expand(on:boolean){if(on){expandReturn=document.activeElement as HTMLElement;let node:HTMLElement=root;while(node.parentElement&&node!==document.body){for(const sibling of node.parentElement.children){if(sibling!==node&&sibling instanceof HTMLElement&&!sibling.inert){sibling.inert=true;inerted.push(sibling)}}node=node.parentElement}root.setAttribute('role','dialog');root.setAttribute('aria-modal','true')}else{inerted.splice(0).forEach(n=>n.inert=false);root.removeAttribute('role');root.removeAttribute('aria-modal')} root.classList.toggle('map-expanded',on);document.body.classList.toggle('no-scroll',on);panelOpen(false);syncLanguagePanel();root.querySelectorAll<HTMLButtonElement>('[data-map-expand]').forEach(b=>b.hidden=on);root.querySelectorAll<HTMLButtonElement>('[data-map-close-expanded]').forEach(b=>b.hidden=!on);const cooperative=(map as any).cooperativeGestures;if(cooperative){on?cooperative.disable():cooperative.enable()}setTimeout(()=>map.resize(),80);if(on)root.querySelector<HTMLButtonElement>('[data-map-close-expanded]')?.focus();else expandReturn?.focus()}
+  let expandReturn:HTMLElement|null=null,restoreAnchor:Comment|null=null;const inerted:HTMLElement[]=[];
+  function expand(on:boolean){
+    if(on===root.classList.contains('map-expanded'))return;
+    if(on){
+      expandReturn=document.activeElement as HTMLElement;
+      // A sticky sidebar creates its own stacking context. Place the expanded
+      // atlas at the body level, then restore the same node when it closes.
+      restoreAnchor=document.createComment('watch-map-position');root.before(restoreAnchor);document.body.append(root);
+      for(const sibling of document.body.children)if(sibling!==root&&sibling instanceof HTMLElement&&!sibling.inert){sibling.inert=true;inerted.push(sibling)}
+      root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');
+    }else{
+      restoreAnchor?.replaceWith(root);restoreAnchor=null;
+      inerted.splice(0).forEach(n=>n.inert=false);root.removeAttribute('role');root.removeAttribute('aria-modal');
+    }
+    root.classList.toggle('map-expanded',on);document.body.classList.toggle('no-scroll',on);panelOpen(false);syncLanguagePanel();
+    root.querySelectorAll<HTMLButtonElement>('[data-map-expand]').forEach(b=>b.hidden=on);root.querySelectorAll<HTMLButtonElement>('[data-map-close-expanded]').forEach(b=>b.hidden=!on);
+    const cooperative=(map as any).cooperativeGestures;if(cooperative){on?cooperative.disable():cooperative.enable()}
+    setTimeout(()=>{if(context!=='history'||root.classList.contains('map-expanded'))map.resize()},80);
+    if(on)root.querySelector<HTMLButtonElement>('[data-map-close-expanded]')?.focus();else{expandReturn?.focus();root.dispatchEvent(new CustomEvent('watch:map-collapsed'))}
+  }
   root.querySelectorAll<HTMLButtonElement>('[data-map-expand]').forEach(b=>b.addEventListener('click',()=>expand(true)));root.querySelectorAll<HTMLButtonElement>('[data-map-close-expanded]').forEach(b=>b.addEventListener('click',()=>expand(false)));
   root.querySelectorAll<HTMLButtonElement>('[data-map-overview]').forEach(b=>b.addEventListener('click',()=>map.fitBounds(WEST_PAPUA_BOUNDS,{padding:innerWidth<=520?24:42,bearing:0,pitch:0,duration:motion})));
   root.querySelectorAll<HTMLButtonElement>('[data-map-return]').forEach(b=>b.addEventListener('click',()=>{const d=defaultMapState();activeBase=d.base;selectedPlace=null;enabled=new Set(resetLayers);void applyVisibility();applyBase('atlas');root.dataset.explore='false';if(!context)writeMapState(d);if(context&&current.features.length)fitFeatures(current);else map.fitBounds(WEST_PAPUA_BOUNDS,{padding:40,duration:motion});panelOpen(false)}));
+  root.addEventListener('watch:map-expand',()=>{expand(true);root.dispatchEvent(new CustomEvent('watch:history-context'))});
+  if(context==='history'){let previous='';new ResizeObserver(()=>{if(!root.classList.contains('map-expanded'))return;const r=canvas.getBoundingClientRect(),size=r.width+'x'+r.height;if(r.width&&r.height&&size!==previous){previous=size;map.resize()}}).observe(canvas);if(root.dataset.mapStartExpanded==='true')expand(true)}
   document.addEventListener('keydown',e=>{if(e.key==='Tab'){const scope=panel&&!panel.hidden?panel:root.classList.contains('map-expanded')?root:null;if(scope){const nodes=[...scope.querySelectorAll<HTMLElement>('button:not(:disabled),a[href],input,[tabindex="0"]')].filter(n=>n.getClientRects().length&&!n.closest('[hidden]'));const first=nodes[0],last=nodes.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}}}if(e.key!=='Escape')return;if(panel&&!panel.hidden){panelOpen(false);return}const f=root.querySelector<HTMLElement>('[data-map-feature]');if(f&&!f.hidden){f.hidden=true;return}if(root.classList.contains('map-expanded'))expand(false)});
 }
-export function initWatchMaps(){document.querySelectorAll<HTMLElement>('[data-watch-map]').forEach(root=>{if(root.dataset.mapInitialized)return;const start=()=>{root.dataset.mapInitialized='true';initOne(root).catch(err=>{console.warn('Watch map unavailable',err);showFallback(root,err instanceof Error?err.name:'initialization-failed')})};if(root.dataset.context==='history'){root.dataset.mapInitialized='deferred';const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){observer.disconnect();start()}},{rootMargin:'100px'});observer.observe(root)}else start()})}
+export function initWatchMaps(){
+ document.querySelectorAll<HTMLElement>('[data-watch-map]').forEach(root=>{
+  if(root.dataset.mapRuntimeReady)return;
+  root.dataset.mapRuntimeReady='true';
+  const start=()=>{root.dataset.mapInitialized='true';initOne(root).catch(err=>{console.warn('Watch map unavailable',err);showFallback(root,err instanceof Error?err.name:'initialization-failed')})};
+  if(root.dataset.context==='history'){
+   root.dataset.mapInitialized='deferred';
+   root.addEventListener('watch:map-activate',()=>{if(root.dataset.mapInitialized==='deferred')start();else root.dispatchEvent(new CustomEvent('watch:map-expand'))});
+  }else start();
+ });
+}

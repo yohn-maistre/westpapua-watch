@@ -43,12 +43,12 @@ const objects=archiveItems.map(a=>({id:a.id,date:a.date,title:a.title[locale],ca
         video.addEventListener('loadedmetadata',()=>{clearTimeout(timer);error.hidden=true});
         media.append(video);video.src=a.playback;
         timer=window.setTimeout(()=>{if(video.readyState===0)fail()},15000);
-      }else if(a.type==='photo'&&a.image){
+      }else if((a.type==='photo'||a.type==='document')&&a.image){
         const img=document.createElement('img');img.alt=a.caption;img.addEventListener('error',()=>{img.hidden=true;fail()},{once:true});media.append(img);img.src=a.image;
       }
       if(!dialog!.open)dialog!.showModal();
     }
-    document.querySelectorAll<HTMLElement>('[data-history-record]').forEach(button=>button.addEventListener('click',()=>open(button.dataset.historyRecord!)));
+    document.addEventListener('click',event=>{const node=event.target instanceof Element?event.target.closest<HTMLElement>('[data-history-record]'):null;if(node)open(node.dataset.historyRecord!)});
     dialog.querySelector('[data-record-close]')!.addEventListener('click',()=>dialog.close());
     dialog.addEventListener('close',release);
     dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});

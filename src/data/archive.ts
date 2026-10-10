@@ -1,8 +1,8 @@
 import raw from '../../content/archive-media.json';
 import type {Locale,Localized} from './types';
 
-type AccessMode='self_host'|'external'|'official_embed'|'permission_pending';
-type RightsStatus='public_domain'|'cc0'|'cc_by'|'cc_by_sa'|'restricted'|'unknown';
+type AccessMode='self_host'|'external'|'official_embed'|'permission_pending'|'editorial';
+type RightsStatus='public_domain'|'cc0'|'cc_by'|'cc_by_sa'|'cc_by_nc_nd'|'restricted'|'unknown';
 type ArchiveMediaType='film'|'photo'|'document'|'audio';
 type Layout='hero'|'wide'|'standard'|'portrait';
 type ArchiveItemRaw={
@@ -15,7 +15,8 @@ type ArchiveItemRaw={
 };
 type ArchiveSectionRaw={id:string;label:Localized;range:string;intro:Localized};
 
-const mediaBase=(import.meta.env.PUBLIC_ARCHIVE_MEDIA_BASE||'').replace(/\/$/,'');
+// The same catalogue is read by Astro and the server-side Ask corpus.
+const mediaBase=(import.meta.env?.PUBLIC_ARCHIVE_MEDIA_BASE||'').replace(/\/$/,'');
 const mediaUrl=(source?:string,mirror?:string)=>mediaBase&&mirror?`${mediaBase}/${mirror.replace(/^\//,'')}`:source||null;
 
 export const archiveSections=(raw.sections as ArchiveSectionRaw[]).map(section=>({

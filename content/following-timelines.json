@@ -15,8 +15,53 @@
       "publisher": "Human Rights Watch"
     },
     {
+      "id": "nduga-emergency-school",
+      "date": "2019-08",
+      "title": {
+        "en": "Displaced children attend emergency school",
+        "pmy": "Anak pengungsi belajar di sekolah darurat"
+      },
+      "text": {
+        "en": "VOA visited a temporary school in the Weneroma church compound in Wamena. Volunteer teachers and families were trying to continue children’s education after displacement from Nduga. Children’s school records and funding were difficult to transfer, showing how the consequences persisted beyond the initial flight from home.",
+        "pmy": "VOA mengunjungi sekolah darurat di kompleks gereja Weneroma, Wamena. Guru sukarela dan keluarga berusaha melanjutkan pendidikan anak setelah mengungsi dari Nduga. Pemindahan data sekolah dan dukungan biaya menghadapi kendala, memperlihatkan dampak pengungsian yang berlanjut setelah warga meninggalkan rumah."
+      },
+      "source": "https://projects.voanews.com/kebebasan-pers-papua/indonesian/impact/pengungsi-konflik-nduga-bangun-sekolah-darurat.html",
+      "publisher": "VOA · Alam Burhanan",
+      "mediaIds": [
+        "nduga-weneroma-2019"
+      ]
+    },
+    {
+      "id": "nduga-displacement-aid-appeal",
+      "date": "2022-03-01",
+      "title": {
+        "en": "UN experts call for humanitarian access",
+        "pmy": "Pakar PBB meminta akses kemanusiaan"
+      },
+      "text": {
+        "en": "UN experts described prolonged displacement since late 2018, interrupted food, healthcare and education, and restrictions on relief access across highland Papua. Their appeal calls for independent investigations and durable solutions. The regional estimates cover several conflict areas, rather than this regency alone.",
+        "pmy": "Pakar PBB menggambarkan pengungsian berkepanjangan sejak akhir 2018, gangguan pangan, kesehatan, dan pendidikan, serta keterbatasan akses bantuan di pegunungan Papua. Mereka meminta penyelidikan independen dan penyelesaian berkelanjutan. Perkiraan regional mencakup sejumlah wilayah konflik, bukan kabupaten ini saja."
+      },
+      "source": "https://www.ohchr.org/en/press-releases/2022/03/indonesia-un-experts-sound-alarm-serious-papua-abuses-call-urgent-aid",
+      "publisher": "OHCHR · UN Special Procedures"
+    },
+    {
+      "id": "nduga-displacement-operations-2023",
+      "date": "2023-04-24",
+      "title": {
+        "en": "Church network reports intensified operations",
+        "pmy": "Jaringan gereja melaporkan peningkatan operasi"
+      },
+      "text": {
+        "en": "The World Council of Churches relayed Human Rights Monitor’s account of increased deployments and raids, naming Nduga, Puncak and Intan Jaya among the main affected regencies. The report links military operations with community fears, including around schools and healthcare. This is a monitoring assessment, not a new census of displaced people.",
+        "pmy": "Dewan Gereja Dunia meneruskan laporan Human Rights Monitor tentang peningkatan pengerahan pasukan dan penggerebekan, dengan Nduga, Puncak, serta Intan Jaya sebagai wilayah utama terdampak. Laporan menghubungkan operasi dengan ketakutan masyarakat, termasuk di sekitar sekolah dan layanan kesehatan. Catatan ini merupakan penilaian pemantauan, bukan pendataan baru pengungsi."
+      },
+      "source": "https://www.oikoumene.org/news/human-rights-groups-see-extreme-increase-in-military-deployments-and-operations-in-papua",
+      "publisher": "World Council of Churches / Human Rights Monitor"
+    },
+    {
       "id": "nduga-displacement-q2-2026",
-      "date": "2026",
+      "date": "2026-04",
       "title": {
         "en": "Second-quarter monitoring",
         "pmy": "Pemantauan kuartal kedua"
@@ -26,7 +71,8 @@
         "pmy": "Laporan HRM April–Juni 2026 mencatat operasi berikutnya serta kekhawatiran bagi warga pengungsi. Jumlah regional bukan jumlah kasus ini saja."
       },
       "source": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
-      "publisher": "Human Rights Monitor"
+      "publisher": "Human Rights Monitor",
+      "dateEnd": "2026-06"
     }
   ],
   "puncak-displacement": [
@@ -45,8 +91,53 @@
       "publisher": "ANTARA"
     },
     {
+      "id": "puncak-displacement-aid-appeal",
+      "date": "2022-03-01",
+      "title": {
+        "en": "UN experts call for humanitarian access",
+        "pmy": "Pakar PBB meminta akses kemanusiaan"
+      },
+      "text": {
+        "en": "UN experts described prolonged displacement since late 2018, interrupted food, healthcare and education, and restrictions on relief access across highland Papua. Their appeal calls for independent investigations and durable solutions. The regional estimates cover several conflict areas, rather than this regency alone.",
+        "pmy": "Pakar PBB menggambarkan pengungsian berkepanjangan sejak akhir 2018, gangguan pangan, kesehatan, dan pendidikan, serta keterbatasan akses bantuan di pegunungan Papua. Mereka meminta penyelidikan independen dan penyelesaian berkelanjutan. Perkiraan regional mencakup sejumlah wilayah konflik, bukan kabupaten ini saja."
+      },
+      "source": "https://www.ohchr.org/en/press-releases/2022/03/indonesia-un-experts-sound-alarm-serious-papua-abuses-call-urgent-aid",
+      "publisher": "OHCHR · UN Special Procedures"
+    },
+    {
+      "id": "puncak-displacement-operations-2023",
+      "date": "2023-04-24",
+      "title": {
+        "en": "Church network reports intensified operations",
+        "pmy": "Jaringan gereja melaporkan peningkatan operasi"
+      },
+      "text": {
+        "en": "The World Council of Churches relayed Human Rights Monitor’s account of increased deployments and raids, naming Nduga, Puncak and Intan Jaya among the main affected regencies. The report links military operations with community fears, including around schools and healthcare. This is a monitoring assessment, not a new census of displaced people.",
+        "pmy": "Dewan Gereja Dunia meneruskan laporan Human Rights Monitor tentang peningkatan pengerahan pasukan dan penggerebekan, dengan Nduga, Puncak, serta Intan Jaya sebagai wilayah utama terdampak. Laporan menghubungkan operasi dengan ketakutan masyarakat, termasuk di sekitar sekolah dan layanan kesehatan. Catatan ini merupakan penilaian pemantauan, bukan pendataan baru pengungsi."
+      },
+      "source": "https://www.oikoumene.org/news/human-rights-groups-see-extreme-increase-in-military-deployments-and-operations-in-papua",
+      "publisher": "World Council of Churches / Human Rights Monitor"
+    },
+    {
+      "id": "puncak-komnas-visit",
+      "date": "2025-10",
+      "title": {
+        "en": "Komnas HAM hears from displaced residents",
+        "pmy": "Komnas HAM mendengar warga pengungsi"
+      },
+      "text": {
+        "en": "The Puncak regency reported a Komnas HAM visit to Ilaga and Gome to hear displaced residents and discuss emergency assistance, recovery and return. The page gives an inconsistent weekday and date for the visit, so this entry retains the verified month rather than assigning a precise day.",
+        "pmy": "Pemerintah Kabupaten Puncak melaporkan kunjungan Komnas HAM ke Ilaga dan Gome untuk mendengar warga pengungsi serta membahas bantuan darurat, pemulihan, dan pemulangan. Entri menggunakan bulan kunjungan karena hari dan tanggal pada sumber tidak konsisten."
+      },
+      "source": "https://www.puncakkab.go.id/publikasi/berita/568/komnasham-ri-tiba-di-puncak-dengar-langsung-keluhan-para-pengungsi",
+      "publisher": "Pemerintah Kabupaten Puncak",
+      "mediaIds": [
+        "puncak-komnas-2025"
+      ]
+    },
+    {
       "id": "puncak-displacement-q2-2026",
-      "date": "2026",
+      "date": "2026-04",
       "title": {
         "en": "Second-quarter monitoring",
         "pmy": "Pemantauan kuartal kedua"
@@ -56,7 +147,8 @@
         "pmy": "Laporan HRM April–Juni 2026 mencatat operasi berikutnya serta kekhawatiran bagi warga pengungsi. Jumlah regional bukan jumlah kasus ini saja."
       },
       "source": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
-      "publisher": "Human Rights Monitor"
+      "publisher": "Human Rights Monitor",
+      "dateEnd": "2026-06"
     }
   ],
   "intan-jaya-displacement": [
@@ -75,8 +167,53 @@
       "publisher": "Humanitarian Team / solidarity archive"
     },
     {
+      "id": "intan-gold-rush",
+      "date": "2022-03",
+      "title": {
+        "en": "Gold Rush report examines mining and security",
+        "pmy": "Laporan Gold Rush membahas tambang dan keamanan"
+      },
+      "text": {
+        "en": "Amnesty’s Gold Rush report examines proposed mining at Wabu and a security environment in which residents described violence, restrictions and displacement. The report connects questions about consent for extraction with people’s ability to remain on their land and speak freely about development plans.",
+        "pmy": "Laporan Gold Rush Amnesty membahas rencana pertambangan Wabu dan situasi keamanan ketika warga melaporkan kekerasan, pembatasan, serta pengungsian. Kajian menghubungkan persetujuan atas pertambangan dengan kemampuan masyarakat tinggal di tanahnya dan menyampaikan pendapat tentang rencana pembangunan."
+      },
+      "source": "https://www.amnesty.org/en/wp-content/uploads/2022/03/ASA2152572022ENGLISH.pdf",
+      "publisher": "Amnesty International",
+      "mediaIds": [
+        "gold-rush-report"
+      ]
+    },
+    {
+      "id": "intan-jaya-displacement-aid-appeal",
+      "date": "2022-03-01",
+      "title": {
+        "en": "UN experts call for humanitarian access",
+        "pmy": "Pakar PBB meminta akses kemanusiaan"
+      },
+      "text": {
+        "en": "UN experts described prolonged displacement since late 2018, interrupted food, healthcare and education, and restrictions on relief access across highland Papua. Their appeal calls for independent investigations and durable solutions. The regional estimates cover several conflict areas, rather than this regency alone.",
+        "pmy": "Pakar PBB menggambarkan pengungsian berkepanjangan sejak akhir 2018, gangguan pangan, kesehatan, dan pendidikan, serta keterbatasan akses bantuan di pegunungan Papua. Mereka meminta penyelidikan independen dan penyelesaian berkelanjutan. Perkiraan regional mencakup sejumlah wilayah konflik, bukan kabupaten ini saja."
+      },
+      "source": "https://www.ohchr.org/en/press-releases/2022/03/indonesia-un-experts-sound-alarm-serious-papua-abuses-call-urgent-aid",
+      "publisher": "OHCHR · UN Special Procedures"
+    },
+    {
+      "id": "intan-jaya-displacement-operations-2023",
+      "date": "2023-04-24",
+      "title": {
+        "en": "Church network reports intensified operations",
+        "pmy": "Jaringan gereja melaporkan peningkatan operasi"
+      },
+      "text": {
+        "en": "The World Council of Churches relayed Human Rights Monitor’s account of increased deployments and raids, naming Nduga, Puncak and Intan Jaya among the main affected regencies. The report links military operations with community fears, including around schools and healthcare. This is a monitoring assessment, not a new census of displaced people.",
+        "pmy": "Dewan Gereja Dunia meneruskan laporan Human Rights Monitor tentang peningkatan pengerahan pasukan dan penggerebekan, dengan Nduga, Puncak, serta Intan Jaya sebagai wilayah utama terdampak. Laporan menghubungkan operasi dengan ketakutan masyarakat, termasuk di sekitar sekolah dan layanan kesehatan. Catatan ini merupakan penilaian pemantauan, bukan pendataan baru pengungsi."
+      },
+      "source": "https://www.oikoumene.org/news/human-rights-groups-see-extreme-increase-in-military-deployments-and-operations-in-papua",
+      "publisher": "World Council of Churches / Human Rights Monitor"
+    },
+    {
       "id": "intan-jaya-displacement-q2-2026",
-      "date": "2026",
+      "date": "2026-04",
       "title": {
         "en": "Second-quarter monitoring",
         "pmy": "Pemantauan kuartal kedua"
@@ -86,7 +223,8 @@
         "pmy": "Laporan HRM April–Juni 2026 mencatat operasi berikutnya serta kekhawatiran bagi warga pengungsi. Jumlah regional bukan jumlah kasus ini saja."
       },
       "source": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
-      "publisher": "Human Rights Monitor"
+      "publisher": "Human Rights Monitor",
+      "dateEnd": "2026-06"
     }
   ],
   "freeport-mimika": [
@@ -101,8 +239,53 @@
         "en": "PT Freeport Indonesia dates its first contract with Indonesia to 1967, before Pepera. This corporate record establishes the contractual chronology.",
         "pmy": "PT Freeport Indonesia mencatat kontrak pertamanya dengan Indonesia pada 1967, sebelum Pepera. Catatan perusahaan ini menjadi sumber kronologi kontrak."
       },
-      "source": "https://ptfi.co.id/en/about/history",
-      "publisher": "PT Freeport Indonesia"
+      "source": "https://www.fcx.com/about/history",
+      "publisher": "Freeport-McMoRan"
+    },
+    {
+      "id": "ertsberg-production",
+      "date": "1973",
+      "title": {
+        "en": "Ertsberg becomes operational",
+        "pmy": "Ertsberg mulai beroperasi"
+      },
+      "text": {
+        "en": "Freeport-McMoRan dates the original Ertsberg copper project’s operation to 1973. The development connected the highland mine with processing and transport in the lowlands, turning the contract into an extensive industrial presence in Mimika.",
+        "pmy": "Freeport-McMoRan mencatat proyek tembaga Ertsberg mulai beroperasi pada 1973. Pengembangan menghubungkan tambang pegunungan dengan pengolahan serta angkutan di dataran rendah, mengubah kontrak menjadi kehadiran industri yang luas di Mimika."
+      },
+      "source": "https://www.fcx.com/about/history",
+      "publisher": "Freeport-McMoRan"
+    },
+    {
+      "id": "grasberg-discovery",
+      "date": "1988",
+      "title": {
+        "en": "Grasberg deposit identified",
+        "pmy": "Deposit Grasberg ditemukan"
+      },
+      "text": {
+        "en": "The company’s history records discovery of the Grasberg deposit in 1988 and expansion of operations afterwards. This marks the shift from the original Ertsberg project to the much larger copper and gold operation followed today.",
+        "pmy": "Riwayat perusahaan mencatat penemuan deposit Grasberg pada 1988 dan perluasan operasi setelahnya. Peristiwa ini menandai peralihan dari proyek Ertsberg menuju operasi tembaga dan emas yang jauh lebih besar dan masih dipantau sekarang."
+      },
+      "source": "https://www.fcx.com/about/history",
+      "publisher": "Freeport-McMoRan",
+      "mediaIds": [
+        "grasberg-iss-2005"
+      ]
+    },
+    {
+      "id": "second-contract",
+      "date": "1991",
+      "title": {
+        "en": "Second contract of work",
+        "pmy": "Kontrak karya kedua"
+      },
+      "text": {
+        "en": "PTFI entered a new 30-year contract with provisions for two ten-year extensions. It established the next contractual stage of mining development; questions about customary land, livelihoods and environmental effects require sources beyond the corporate contractual record.",
+        "pmy": "PTFI memasuki kontrak baru selama 30 tahun dengan ketentuan dua perpanjangan sepuluh tahun. Kontrak menetapkan tahap berikutnya pengembangan tambang, sementara persoalan tanah adat, penghidupan, dan lingkungan perlu dibaca melalui sumber selain catatan kontrak perusahaan."
+      },
+      "source": "https://www.fcx.com/about/history",
+      "publisher": "Freeport-McMoRan"
     },
     {
       "id": "majority-ownership",
@@ -146,7 +329,24 @@
         "pmy": "ESDM mengumumkan pencabutan izin ASP, MRP, KSM, dan Nurham. Izin PT Gag Nikel tetap berlaku."
       },
       "source": "https://www.esdm.go.id/en/media-center/news-archives/pemerintah-cabut-empat-izin-perusahaan-tambang-di-raja-ampat",
-      "publisher": "Ministry of Energy and Mineral Resources · 2025"
+      "publisher": "Ministry of Energy and Mineral Resources · 2025",
+      "mediaIds": [
+        "raja-historical-sites-plate"
+      ]
+    },
+    {
+      "id": "gag-resumption",
+      "date": "2025-09-03",
+      "title": {
+        "en": "Gag Nikel resumes under oversight",
+        "pmy": "Gag Nikel kembali beroperasi dengan pengawasan"
+      },
+      "text": {
+        "en": "A September report citing the energy ministry dates Gag Nikel’s resumption to 3 September after a temporary suspension. The government promised stricter monitoring and rehabilitation. Gag’s operation is separate from the four companies whose permits were revoked in June.",
+        "pmy": "Laporan September yang mengutip Kementerian ESDM mencatat Gag Nikel kembali beroperasi pada 3 September setelah penghentian sementara. Pemerintah menjanjikan pemantauan dan rehabilitasi lebih ketat. Operasi Gag berbeda dari empat perusahaan yang izinnya dicabut pada Juni."
+      },
+      "source": "https://asianews.network/indonesia-government-vows-stricter-oversight-as-gag-nikel-restarts-raja-ampat-mine/",
+      "publisher": "The Jakarta Post / Asia News Network"
     },
     {
       "id": "public-information-ruling",
@@ -165,6 +365,52 @@
   ],
   "awyu-customary-forests": [
     {
+      "id": "ial-location-permit",
+      "date": "2017",
+      "title": {
+        "en": "IAL receives preliminary location permit",
+        "pmy": "IAL memperoleh izin lokasi awal"
+      },
+      "text": {
+        "en": "Greenpeace’s account dates PT Indo Asiana Lestari’s preliminary location permit to 2017. The proposed plantation covered Woro clan land near Yare, Fofi, in Boven Digoel. The later lawsuit challenged environmental approval and the lack of information and consultation described by customary owners.",
+        "pmy": "Greenpeace mencatat izin lokasi awal PT Indo Asiana Lestari pada 2017. Rencana perkebunan mencakup tanah marga Woro sekitar Yare, Fofi, di Boven Digoel. Gugatan berikutnya mempersoalkan persetujuan lingkungan serta kekurangan informasi dan konsultasi yang disampaikan pemilik adat."
+      },
+      "source": "https://www.greenpeace.org/southeastasia/press/58630/west-papuan-indigenous-defender-files-lawsuit-over-palm-oil-company-forestland-grab/",
+      "publisher": "Greenpeace Southeast Asia",
+      "featured": true
+    },
+    {
+      "id": "awyu-lawsuit",
+      "date": "2023-03-13",
+      "title": {
+        "en": "Hendrikus Woro files environmental lawsuit",
+        "pmy": "Hendrikus Woro mengajukan gugatan lingkungan"
+      },
+      "text": {
+        "en": "Awyu land defender Hendrikus (Franky) Woro filed a lawsuit against PT Indo Asiana Lestari’s environmental approval. Greenpeace’s account describes customary forest as the source of food, work and inherited social responsibilities, and records objections to a decision communities said they had not agreed to.",
+        "pmy": "Pembela tanah Awyu Hendrikus (Franky) Woro menggugat persetujuan lingkungan PT Indo Asiana Lestari. Greenpeace menggambarkan hutan adat sebagai sumber pangan, pekerjaan, dan tanggung jawab sosial antargenerasi serta mencatat keberatan atas keputusan yang menurut masyarakat tidak mereka setujui."
+      },
+      "source": "https://www.greenpeace.org/southeastasia/press/58630/west-papuan-indigenous-defender-files-lawsuit-over-palm-oil-company-forestland-grab/",
+      "publisher": "Greenpeace Southeast Asia",
+      "mediaIds": [
+        "awyu-hearing-2023"
+      ]
+    },
+    {
+      "id": "awyu-first-verdict",
+      "date": "2023-11-02",
+      "title": {
+        "en": "Jayapura court rejects lawsuit",
+        "pmy": "Pengadilan Jayapura menolak gugatan"
+      },
+      "text": {
+        "en": "The Jayapura administrative court rejected Woro’s environmental lawsuit. Greenpeace described the ruling as a setback and recorded his intention to continue the legal challenge. This first-instance decision precedes the 2024 cassation outcome; the IAL case should be distinguished from other Awyu-related company cases.",
+        "pmy": "Pengadilan tata usaha negara Jayapura menolak gugatan lingkungan Woro. Greenpeace menyebut putusan sebagai kemunduran dan mencatat niatnya melanjutkan upaya hukum. Putusan tingkat pertama mendahului hasil kasasi 2024; perkara IAL perlu dibedakan dari perkara perusahaan lain yang terkait masyarakat Awyu."
+      },
+      "source": "https://www.greenpeace.org/southeastasia/press/62817/verdict-a-setback-for-awyu-indigenous-people-and-papuan-forests/",
+      "publisher": "Greenpeace Southeast Asia"
+    },
+    {
       "id": "ial-cassation",
       "date": "2024-09-18",
       "title": {
@@ -182,7 +428,7 @@
   "papuan-civic-space": [
     {
       "id": "anti-racism",
-      "date": "2019",
+      "date": "2019-08",
       "title": {
         "en": "Anti-racism protests",
         "pmy": "Protes antirasisme"
@@ -192,7 +438,25 @@
         "pmy": "HRW mendokumentasikan penghinaan rasis terhadap mahasiswa Papua, protes Agustus 2019, penangkapan, serta diskriminasi berikutnya."
       },
       "source": "https://www.hrw.org/report/2024/09/18/if-its-not-racism-what-is-it/discrimination-and-other-abuses-against-papuans-in",
-      "publisher": "Human Rights Watch · 2024"
+      "publisher": "Human Rights Watch · 2024",
+      "mediaIds": [
+        "ariana-elopere-2023"
+      ]
+    },
+    {
+      "id": "internet-shutdown",
+      "date": "2019-08-21",
+      "title": {
+        "en": "Internet shutdown across Papua",
+        "pmy": "Pemutusan internet di Papua"
+      },
+      "text": {
+        "en": "After throttling on 19 August, the government shut down internet access from 21 August to 4 September in cities and regencies across Papua and West Papua. AJI and SAFEnet challenged the restrictions. Columbia’s case analysis explains how the interruption affected access to information and freedom of expression during the protests.",
+        "pmy": "Setelah pelambatan pada 19 Agustus, pemerintah memutus akses internet pada 21 Agustus–4 September di kota dan kabupaten Papua serta Papua Barat. AJI dan SAFEnet menggugat pembatasan tersebut. Analisis perkara Columbia membahas gangguan akses informasi dan kebebasan berekspresi saat protes berlangsung."
+      },
+      "source": "https://globalfreedomofexpression.columbia.edu/cases/alliance-of-independent-journalists-v-minister-of-communication/",
+      "publisher": "Columbia Global Freedom of Expression",
+      "dateEnd": "2019-09-04"
     },
     {
       "id": "internet-ruling",
@@ -210,7 +474,7 @@
     },
     {
       "id": "screening-monitoring",
-      "date": "2026",
+      "date": "2026-04",
       "title": {
         "en": "Film-screening monitoring",
         "pmy": "Pemantauan pemutaran film"
@@ -220,7 +484,8 @@
         "pmy": "Pemantauan HRM April–Juni mencatat intimidasi dan pembubaran pemutaran Pesta Babi. Film dokumenter tersebut dirilis daring pada 22 Mei 2026."
       },
       "source": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
-      "publisher": "Human Rights Monitor"
+      "publisher": "Human Rights Monitor",
+      "dateEnd": "2026-06"
     }
   ]
 }

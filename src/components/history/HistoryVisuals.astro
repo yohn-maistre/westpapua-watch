@@ -1,0 +1,17 @@
+---
+import {figuresForPanel,type HistoryPanel} from '../../data/history-reading';
+import {t} from '../../lib/i18n';
+import type {Locale} from '../../data/types';
+import HistoryArrow from './HistoryArrow.astro';
+const {panel,locale='en'}=Astro.props as {panel:HistoryPanel;locale:Locale};
+const figures=figuresForPanel(panel).slice(0,3);const en=locale==='en';
+---
+{figures.length>0&&<div class:list={['history-visuals',figures.length===1&&'is-single']} data-history-visuals>
+ {figures.map(({archiveId,item})=><figure class:list={[item.mediaType==='document'&&'is-document']}>
+  <button type="button" data-history-record={archiveId} aria-label={`${en?'Open':'Buka'}: ${t(item.title,locale)}`}>
+   <img src={item.resolved.poster||item.resolved.image} alt={t(item.editorial.caption,locale)} loading="lazy" decoding="async" width="600" height="450"/>
+   <span aria-hidden="true"><HistoryArrow direction="up-right"/></span>
+  </button>
+  <figcaption>{t(item.editorial.caption,locale)}</figcaption>
+ </figure>)}
+</div>}

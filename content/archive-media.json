@@ -71,6 +71,18 @@
         "en": "Records from the final months of Dutch administration and the transition to United Nations administration.",
         "pmy": "Catatan dari bulan-bulan terakhir pemerintahan Belanda dan peralihan ke pemerintahan Perserikatan Bangsa-Bangsa."
       }
+    },
+    {
+      "id": "research-plates",
+      "label": {
+        "en": "Research and historical records",
+        "pmy": "Kajian dan catatan sejarah"
+      },
+      "range": "1828–2025 · source dates",
+      "intro": {
+        "en": "Objects, documents and source illustrations encountered in History.",
+        "pmy": "Benda, dokumen, dan ilustrasi sumber dalam Sejarah."
+      }
     }
   ],
   "items": [
@@ -103,7 +115,10 @@
         "mode": "external",
         "rightsStatus": "unknown",
         "rightsVerifiedAt": "2026-10-08"
-      }
+      },
+      "relatedHistoryEvents": [
+        "history-1898"
+      ]
     },
     {
       "id": "merauke-hurley-1925",
@@ -138,7 +153,10 @@
         "rightsStatus": "restricted",
         "rightsHolder": "NFSA / rights holders",
         "rightsVerifiedAt": "2026-09-20"
-      }
+      },
+      "relatedHistoryEvents": [
+        "history-merauke-station"
+      ]
     },
     {
       "id": "smithsonian-mamberamo-1926",
@@ -173,7 +191,10 @@
         "rightsStatus": "unknown",
         "rightsHolder": "Smithsonian Institution / item rights vary",
         "rightsVerifiedAt": "2026-09-20"
-      }
+      },
+      "relatedHistoryEvents": [
+        "history-1898"
+      ]
     },
     {
       "id": "archbold-baliem-1938",
@@ -220,7 +241,7 @@
         }
       },
       "relatedHistoryEvents": [
-        "history-1949"
+        "history-koreri"
       ]
     },
     {
@@ -257,7 +278,10 @@
         "license": "Public domain",
         "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
         "rightsVerifiedAt": "2026-09-20"
-      }
+      },
+      "relatedHistoryEvents": [
+        "history-wwii"
+      ]
     },
     {
       "id": "awm-merauke-1944",
@@ -293,7 +317,10 @@
         "license": "Public domain",
         "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
         "rightsVerifiedAt": "2026-09-20"
-      }
+      },
+      "relatedHistoryEvents": [
+        "history-wwii"
+      ]
     },
     {
       "id": "awm-noemfoor-1944",
@@ -329,7 +356,10 @@
         "license": "Public domain",
         "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
         "rightsVerifiedAt": "2026-09-20"
-      }
+      },
+      "relatedHistoryEvents": [
+        "history-wwii"
+      ]
     },
     {
       "id": "openbeelden-conference-1950",
@@ -385,7 +415,10 @@
           "pmy": "Format dikonversi."
         },
         "mirrorSource": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Opening_van_de_Nieuw_Guinea_conferentie-513487.ogv"
-      }
+      },
+      "relatedHistoryEvents": [
+        "history-1949"
+      ]
     },
     {
       "id": "serido-biak-1950",
@@ -507,7 +540,10 @@
         "mode": "external",
         "rightsStatus": "unknown",
         "rightsVerifiedAt": "2026-10-08"
-      }
+      },
+      "relatedHistoryEvents": [
+        "history-papuanisation"
+      ]
     },
     {
       "id": "manokwari-street-1954",
@@ -654,7 +690,10 @@
           "image": "history/mokmer-biak-1955/image.webp",
           "poster": "history/mokmer-biak-1955/poster.webp"
         }
-      }
+      },
+      "relatedHistoryEvents": [
+        "history-papuanisation"
+      ]
     },
     {
       "id": "fakfak-neighbourhood-1956",
@@ -756,7 +795,10 @@
           "pmy": "Format dikonversi."
         },
         "mirrorSource": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Tewaterlating_van_polikliniekschip_voor_Nieuw-Guinea-519804.ogv"
-      }
+      },
+      "relatedHistoryEvents": [
+        "history-papuanisation"
+      ]
     },
     {
       "id": "sentani-powe-1958",
@@ -1149,6 +1191,1992 @@
         "history-1961",
         "history-1962"
       ]
+    },
+    {
+      "id": "geology-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Formation of New Guinea. Source plate, Figure 1.2.",
+        "pmy": "Pembentukan Nugini. Pelat sumber, Gambar 1.2."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch01.pdf",
+        "creator": "Dylan Gaffney · ANU Press"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Formation of New Guinea. Source plate, Figure 1.2.",
+          "pmy": "Pembentukan Nugini. Pelat sumber, Gambar 1.2."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/geology-plate.webp",
+        "localPoster": "/images/history/research/geology-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-geography"
+      ]
+    },
+    {
+      "id": "sahul-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Bathymetry and reconstructed sea levels, Figure 7.3.",
+        "pmy": "Batimetri dan rekonstruksi permukaan laut, Gambar 7.3."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch01.pdf",
+        "creator": "ANU Press"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Bathymetry and reconstructed sea levels, Figure 7.3.",
+          "pmy": "Batimetri dan rekonstruksi permukaan laut, Gambar 7.3."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/sahul-plate.webp",
+        "localPoster": "/images/history/research/sahul-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-sahul"
+      ]
+    },
+    {
+      "id": "coastlines-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Modelling the separation of Misool, Figure 7.5.",
+        "pmy": "Pemodelan terpisahnya Misool, Gambar 7.5."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch01.pdf",
+        "creator": "ANU Press"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Modelling the separation of Misool, Figure 7.5.",
+          "pmy": "Pemodelan terpisahnya Misool, Gambar 7.5."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/coastlines-plate.webp",
+        "localPoster": "/images/history/research/coastlines-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-coastlines"
+      ]
+    },
+    {
+      "id": "andarewa-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Andarewa Cave, Fakfak, Figure 9.2.",
+        "pmy": "Gua Andarewa, Fakfak, Gambar 9.2."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch09.pdf",
+        "creator": "Bau Mene · ANU Press"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Andarewa Cave, Fakfak, Figure 9.2.",
+          "pmy": "Gua Andarewa, Fakfak, Gambar 9.2."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/andarewa-plate.webp",
+        "localPoster": "/images/history/research/andarewa-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-andarewa"
+      ]
+    },
+    {
+      "id": "authority-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Regional language, authority and kinship comparisons, Figure 1.3.",
+        "pmy": "Perbandingan bahasa, kewenangan, dan kekerabatan regional, Gambar 1.3."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch01.pdf",
+        "creator": "Dylan Gaffney · after Mansoben and other studies · ANU Press"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Regional language, authority and kinship comparisons, Figure 1.3.",
+          "pmy": "Perbandingan bahasa, kewenangan, dan kekerabatan regional, Gambar 1.3."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/authority-plate.webp",
+        "localPoster": "/images/history/research/authority-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-leadership"
+      ]
+    },
+    {
+      "id": "language-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Language families of West New Guinea, Figure 3.1.",
+        "pmy": "Rumpun bahasa Papua bagian barat, Gambar 3.1."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch03.pdf",
+        "creator": "Laura Arnold · ANU Press"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Language families of West New Guinea, Figure 3.1.",
+          "pmy": "Rumpun bahasa Papua bagian barat, Gambar 3.1."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/language-plate.webp",
+        "localPoster": "/images/history/research/language-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-languages",
+        "history-austronesian"
+      ]
+    },
+    {
+      "id": "sentani-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Western Lake Sentani and archaeological sites, Figure 12.2.",
+        "pmy": "Danau Sentani bagian barat dan situs arkeologi, Gambar 12.2."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch12.pdf",
+        "creator": "Hari Suroto · ANU Press"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Western Lake Sentani and archaeological sites, Figure 12.2.",
+          "pmy": "Danau Sentani bagian barat dan situs arkeologi, Gambar 12.2."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/sentani-plate.webp",
+        "localPoster": "/images/history/research/sentani-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-sentani-settlements"
+      ]
+    },
+    {
+      "id": "kayu-batu-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Archaeological pottery from Kayu Batu cave sites, Figure 13.4.",
+        "pmy": "Tembikar arkeologi dari situs gua Kayu Batu, Gambar 13.4."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch13.pdf",
+        "creator": "Klementin Fairyo · ANU Press"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Archaeological pottery from Kayu Batu cave sites, Figure 13.4.",
+          "pmy": "Tembikar arkeologi dari situs gua Kayu Batu, Gambar 13.4."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/kayu-batu-plate.webp",
+        "localPoster": "/images/history/research/kayu-batu-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-kayu-batu-pottery"
+      ]
+    },
+    {
+      "id": "keerom-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Rock paintings at Erfe Hora, Figure 11.3.",
+        "pmy": "Lukisan cadas Erfe Hora, Gambar 11.3."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch11.pdf",
+        "creator": "Klementin Fairyo · ANU Press"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Rock paintings at Erfe Hora, Figure 11.3.",
+          "pmy": "Lukisan cadas Erfe Hora, Gambar 11.3."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/keerom-plate.webp",
+        "localPoster": "/images/history/research/keerom-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-keerom-rock-art"
+      ]
+    },
+    {
+      "id": "kamoro-1828-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Kamoro armlet collected during the 1828 Triton expedition, Figure 20.1.",
+        "pmy": "Gelang lengan Kamoro yang dikumpulkan dalam ekspedisi Triton 1828, Gambar 20.1."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch20.pdf",
+        "creator": "Wereldmuseum collection RV-16-514 · ANU Press"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Kamoro armlet collected during the 1828 Triton expedition, Figure 20.1.",
+          "pmy": "Gelang lengan Kamoro yang dikumpulkan dalam ekspedisi Triton 1828, Gambar 20.1."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/kamoro-1828-plate.webp",
+        "localPoster": "/images/history/research/kamoro-1828-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-1828",
+        "history-kamoro-collections"
+      ]
+    },
+    {
+      "id": "marind-canoes-1902-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Marind canoes meeting HMS Ceram on the Merauke River, 1902.",
+        "pmy": "Perahu Marind bertemu HMS Ceram di Sungai Merauke, 1902."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch15.pdf",
+        "creator": "ANU Press · source credits on plate"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Marind canoes meeting HMS Ceram on the Merauke River, 1902.",
+          "pmy": "Perahu Marind bertemu HMS Ceram di Sungai Merauke, 1902."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/marind-canoes-1902-plate.webp",
+        "localPoster": "/images/history/research/marind-canoes-1902-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-merauke-station"
+      ]
+    },
+    {
+      "id": "biak-war-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Battle of Biak and its aftermath, Figure 14.2.",
+        "pmy": "Pertempuran Biak dan sesudahnya, Gambar 14.2."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch14.pdf",
+        "creator": "ANU Press · source credits on plate"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Battle of Biak and its aftermath, Figure 14.2.",
+          "pmy": "Pertempuran Biak dan sesudahnya, Gambar 14.2."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/biak-war-plate.webp",
+        "localPoster": "/images/history/research/biak-war-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-wwii"
+      ]
+    },
+    {
+      "id": "exchange-shell-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Melo shell used in a Baliem necklace, Figure 17.4.",
+        "pmy": "Kerang Melo dalam kalung Baliem, Gambar 17.4."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch17.pdf",
+        "creator": "ANU Press · source credits on plate"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Melo shell used in a Baliem necklace, Figure 17.4.",
+          "pmy": "Kerang Melo dalam kalung Baliem, Gambar 17.4."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/exchange-shell-plate.webp",
+        "localPoster": "/images/history/research/exchange-shell-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-exchange"
+      ]
+    },
+    {
+      "id": "meege-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Meege and marriage relationships, Figure 18.1.",
+        "pmy": "Meege dan hubungan perkawinan, Gambar 18.1."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch18.pdf",
+        "creator": "Martinus Tekege · ANU Press"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Meege and marriage relationships, Figure 18.1.",
+          "pmy": "Meege dan hubungan perkawinan, Gambar 18.1."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/meege-plate.webp",
+        "localPoster": "/images/history/research/meege-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-meege"
+      ]
+    },
+    {
+      "id": "pottery-waigeo-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Decorated pottery from Mololo Cave, Figure 17.7.",
+        "pmy": "Tembikar berhias dari Gua Mololo, Gambar 17.7."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n12314/pdf/ch17.pdf",
+        "creator": "Dylan Gaffney & Daud Tanudirjo · ANU Press"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Decorated pottery from Mololo Cave, Figure 17.7.",
+          "pmy": "Tembikar berhias dari Gua Mololo, Gambar 17.7."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/pottery-waigeo-plate.webp",
+        "localPoster": "/images/history/research/pottery-waigeo-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-pottery"
+      ]
+    },
+    {
+      "id": "province-plate",
+      "section": "research-plates",
+      "date": "2025",
+      "title": {
+        "en": "Administrative divisions in 1955, 1998, 2015 and 2022, Figure 1.4.",
+        "pmy": "Pembagian administrasi pada 1955, 1998, 2015, dan 2022, Gambar 1.4."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch01.pdf",
+        "creator": "Dylan Gaffney · ANU Press"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Administrative divisions in 1955, 1998, 2015 and 2022, Figure 1.4.",
+          "pmy": "Pembagian administrasi pada 1955, 1998, 2015, dan 2022, Gambar 1.4."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_nc_nd",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-NC-ND 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/province-plate.webp",
+        "localPoster": "/images/history/research/province-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-new-provinces"
+      ]
+    },
+    {
+      "id": "new-york-agreement-page",
+      "section": "research-plates",
+      "date": "1962",
+      "title": {
+        "en": "New York Agreement, 15 August 1962. Treaty source page.",
+        "pmy": "Perjanjian New York, 15 Agustus 1962. Halaman sumber perjanjian."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "United Nations Treaty Series",
+        "sourceUrl": "https://treaties.un.org/doc/publication/unts/volume%20437/volume-437-i-6311-english.pdf",
+        "creator": "United Nations Treaty Series"
+      },
+      "editorial": {
+        "caption": {
+          "en": "New York Agreement, 15 August 1962. Treaty source page.",
+          "pmy": "Perjanjian New York, 15 Agustus 1962. Halaman sumber perjanjian."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/new-york-agreement-page.webp",
+        "localPoster": "/images/history/research/new-york-agreement-page-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-1962",
+        "history-1969"
+      ]
+    },
+    {
+      "id": "malind-mifee-report",
+      "section": "research-plates",
+      "date": "2013",
+      "title": {
+        "en": "Malind accounts of MIFEE, Forest Peoples Programme, 2013.",
+        "pmy": "Kesaksian Malind tentang MIFEE, Forest Peoples Programme, 2013."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "Forest Peoples Programme",
+        "sourceUrl": "https://www.forestpeoples.org/publications-resources/reports/article/a-sweetness-like-unto-death-voices-of-the-indigenous-malind-of-merauke-papua/",
+        "creator": "Forest Peoples Programme"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Malind accounts of MIFEE, Forest Peoples Programme, 2013.",
+          "pmy": "Kesaksian Malind tentang MIFEE, Forest Peoples Programme, 2013."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/malind-mifee-report.webp",
+        "localPoster": "/images/history/research/malind-mifee-report-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-sago",
+        "history-mifee"
+      ]
+    },
+    {
+      "id": "papuan-women-report",
+      "section": "research-plates",
+      "date": "2019",
+      "title": {
+        "en": "I Am Here: Voices of Papuan Women, 2019.",
+        "pmy": "I Am Here: Voices of Papuan Women, 2019."
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "AJAR · Papuan Women’s Working Group",
+        "sourceUrl": "https://asia-ajar.org/wp-content/uploads/2019/04/I-am-Here-Voices-of-Papuan-Women-2019.pdf",
+        "creator": "AJAR · Papuan Women’s Working Group"
+      },
+      "editorial": {
+        "caption": {
+          "en": "I Am Here: Voices of Papuan Women, 2019.",
+          "pmy": "I Am Here: Voices of Papuan Women, 2019."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/papuan-women-report.webp",
+        "localPoster": "/images/history/research/papuan-women-report-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-women-testimony",
+        "history-2001"
+      ]
+    },
+    {
+      "id": "untea-working-1962",
+      "section": "research-plates",
+      "date": "22 Oct 1962",
+      "title": {
+        "en": "UNTEA administration",
+        "pmy": "Administrasi UNTEA"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "UN Photo/MS",
+        "sourceUrl": "https://media.un.org/photo/en/asset/oun7/oun7693808",
+        "creator": "UN Photo/MS"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Ghulam Abbas and George Janecek at work in Hollandia, 22 October 1962.",
+          "pmy": "Ghulam Abbas dan George Janecek bekerja di Hollandia, 22 Oktober 1962."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/untea-working-1962.webp",
+        "localPoster": "/images/history/research/untea-working-1962-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-untea",
+        "history-1963"
+      ]
+    },
+    {
+      "id": "mambesak-ap-kapisa",
+      "section": "research-plates",
+      "date": "Date not established",
+      "title": {
+        "en": "Arnold Ap and Sam Kapisa",
+        "pmy": "Arnold Ap dan Sam Kapisa"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Collection Constantinopel Ruhukail · PACE",
+        "sourceUrl": "https://www.papuacollecties.nl/arnold-ap/",
+        "creator": "Collection Constantinopel Ruhukail · PACE"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Arnold Ap and Sam Kapisa with a korwar. Photograph date not recorded.",
+          "pmy": "Arnold Ap dan Sam Kapisa bersama korwar. Tanggal foto tidak tercatat."
+        },
+        "context": {
+          "en": "Source illustration used in the related History account.",
+          "pmy": "Ilustrasi sumber yang digunakan dalam catatan Sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/mambesak-ap-kapisa.webp",
+        "localPoster": "/images/history/research/mambesak-ap-kapisa-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-mambesak"
+      ]
+    },
+    {
+      "id": "merauke-source-1",
+      "section": "research-plates",
+      "date": "July 2024",
+      "title": {
+        "en": "Presidential visit to Sermayam",
+        "pmy": "Kunjungan presiden ke Sermayam"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Pusaka chronology · original photographer not listed",
+        "sourceUrl": "https://pusaka.or.id/en/lini-masa/merauke-national-strategic-project-timeline/",
+        "creator": "Pusaka chronology · original photographer not listed",
+        "imageSourceUrl": "https://pusaka.or.id/wp-content/uploads/2024/10/merauke-22-Joko-dan-Tebu-Juli-2024-768x543-2.jpg"
+      },
+      "editorial": {
+        "caption": {
+          "en": "President Joko Widodo during the July 2024 Merauke visit, reproduced in Pusaka’s chronology.",
+          "pmy": "Presiden Joko Widodo dalam kunjungan Merauke Juli 2024, ditampilkan dalam linimasa Pusaka."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/merauke-source-1.webp",
+        "localPoster": "/images/history/research/merauke-source-1-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-psn-2023"
+      ]
+    },
+    {
+      "id": "merauke-source-2",
+      "section": "research-plates",
+      "date": "2024 · photograph date unspecified",
+      "title": {
+        "en": "Cleared land near Wanam",
+        "pmy": "Lahan terbuka sekitar Wanam"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Tempo · reproduced by Pusaka",
+        "sourceUrl": "https://pusaka.or.id/en/lini-masa/merauke-national-strategic-project-timeline/",
+        "creator": "Tempo · reproduced by Pusaka",
+        "imageSourceUrl": "https://pusaka.or.id/wp-content/uploads/2024/10/merauke-Bukaan-Lahan-Wanam-TEMPO-1170x658-1.jpeg"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Wanam land clearing shown in Pusaka’s chronology. Exact photograph date not supplied.",
+          "pmy": "Pembukaan lahan Wanam dalam linimasa Pusaka. Tanggal foto tidak dicantumkan."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/merauke-source-2.webp",
+        "localPoster": "/images/history/research/merauke-source-2-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-psn-2023"
+      ]
+    },
+    {
+      "id": "merauke-source-3",
+      "section": "research-plates",
+      "date": "2024 · photograph date unspecified",
+      "title": {
+        "en": "Sermayam development site",
+        "pmy": "Lokasi pengembangan Sermayam"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Pusaka chronology · original photographer not listed",
+        "sourceUrl": "https://pusaka.or.id/en/lini-masa/merauke-national-strategic-project-timeline/",
+        "creator": "Pusaka chronology · original photographer not listed",
+        "imageSourceUrl": "https://pusaka.or.id/wp-content/uploads/2024/10/merauke-signal-2024-07-30-153542_004-1170x878-1.jpeg"
+      },
+      "editorial": {
+        "caption": {
+          "en": "PT Global Papua Abadi site pictured in Pusaka’s chronology. Exact photograph date not supplied.",
+          "pmy": "Lokasi PT Global Papua Abadi dalam linimasa Pusaka. Tanggal foto tidak dicantumkan."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/merauke-source-3.webp",
+        "localPoster": "/images/history/research/merauke-source-3-thumb.webp"
+      },
+      "relatedHistoryEvents": []
+    },
+    {
+      "id": "merauke-source-4",
+      "section": "research-plates",
+      "date": "2024 · photograph date unspecified",
+      "title": {
+        "en": "Wanam rice-field project",
+        "pmy": "Proyek sawah Wanam"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Pusaka chronology · original photographer not listed",
+        "sourceUrl": "https://pusaka.or.id/en/lini-masa/merauke-national-strategic-project-timeline/",
+        "creator": "Pusaka chronology · original photographer not listed",
+        "imageSourceUrl": "https://pusaka.or.id/wp-content/uploads/2024/10/merauke-3-Proyek-Menhan-dan-Isam-di-Wanam-768x576-1.jpeg"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Project activity in Wanam shown by Pusaka. Exact photograph date not supplied.",
+          "pmy": "Kegiatan proyek Wanam ditampilkan oleh Pusaka. Tanggal foto tidak dicantumkan."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/merauke-source-4.webp",
+        "localPoster": "/images/history/research/merauke-source-4-thumb.webp"
+      },
+      "relatedHistoryEvents": []
+    },
+    {
+      "id": "merauke-source-6",
+      "section": "research-plates",
+      "date": "2024 · source table",
+      "title": {
+        "en": "Sugarcane companies and proposed areas",
+        "pmy": "Perusahaan tebu dan rencana luas lahan"
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "Pusaka Bentala Rakyat · Table 1",
+        "sourceUrl": "https://pusaka.or.id/en/lini-masa/merauke-national-strategic-project-timeline/",
+        "creator": "Pusaka Bentala Rakyat · Table 1",
+        "imageSourceUrl": "https://pusaka.or.id/wp-content/uploads/2024/10/tabel-1.jpg"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Pusaka’s company and area table, compiled from South Papua investment-office information. Proposed areas do not establish customary consent.",
+          "pmy": "Tabel perusahaan dan luas lahan oleh Pusaka, dari informasi perizinan Papua Selatan. Rencana luas lahan tidak menunjukkan persetujuan adat."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/merauke-source-6.webp",
+        "localPoster": "/images/history/research/merauke-source-6-thumb.webp"
+      },
+      "relatedHistoryEvents": []
+    },
+    {
+      "id": "merauke-source-7",
+      "section": "research-plates",
+      "date": "2024 · source table",
+      "title": {
+        "en": "Proposed food-production clusters",
+        "pmy": "Rencana klaster produksi pangan"
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "Pusaka Bentala Rakyat · Table 2",
+        "sourceUrl": "https://pusaka.or.id/en/lini-masa/merauke-national-strategic-project-timeline/",
+        "creator": "Pusaka Bentala Rakyat · Table 2",
+        "imageSourceUrl": "https://pusaka.or.id/wp-content/uploads/2024/10/tabel2.jpg"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Pusaka’s food-production cluster table, citing the July 2024 Merauke feasibility study. These are planning areas.",
+          "pmy": "Tabel klaster produksi pangan Pusaka mengacu pada studi kelayakan Merauke Juli 2024. Angka menunjukkan kawasan perencanaan."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/merauke-source-7.webp",
+        "localPoster": "/images/history/research/merauke-source-7-thumb.webp"
+      },
+      "relatedHistoryEvents": []
+    },
+    {
+      "id": "merauke-source-8",
+      "section": "research-plates",
+      "date": "2024 · photograph date unspecified",
+      "title": {
+        "en": "Community action in Merauke",
+        "pmy": "Aksi masyarakat di Merauke"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Pusaka chronology · original photographer not listed",
+        "sourceUrl": "https://pusaka.or.id/en/lini-masa/merauke-national-strategic-project-timeline/",
+        "creator": "Pusaka chronology · original photographer not listed",
+        "imageSourceUrl": "https://pusaka.or.id/wp-content/uploads/2024/10/merauke-11-Aksi-MRP-22082024-768x432-1.jpeg"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Community action pictured in Pusaka’s chronology. The page does not supply a verified photograph date.",
+          "pmy": "Aksi masyarakat dalam linimasa Pusaka. Halaman tidak mencantumkan tanggal foto yang terverifikasi."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/merauke-source-8.webp",
+        "localPoster": "/images/history/research/merauke-source-8-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-psn-2023"
+      ]
+    },
+    {
+      "id": "merauke-source-9",
+      "section": "research-plates",
+      "date": "2024 · photograph date unspecified",
+      "title": {
+        "en": "Community representatives and demands",
+        "pmy": "Perwakilan masyarakat dan tuntutan"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Pusaka chronology · original photographer not listed",
+        "sourceUrl": "https://pusaka.or.id/en/lini-masa/merauke-national-strategic-project-timeline/",
+        "creator": "Pusaka chronology · original photographer not listed",
+        "imageSourceUrl": "https://pusaka.or.id/wp-content/uploads/2024/10/merauke-3-Aksi-MRP-22082024-1170x864-1.jpeg"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Community representatives pictured in Pusaka’s chronology. The photograph’s date is not established by the adjacent timeline heading.",
+          "pmy": "Perwakilan masyarakat dalam linimasa Pusaka. Tanggal foto tidak ditentukan melalui judul entri di sebelahnya."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/merauke-source-9.webp",
+        "localPoster": "/images/history/research/merauke-source-9-thumb.webp"
+      },
+      "relatedHistoryEvents": []
+    },
+    {
+      "id": "mololo-cave",
+      "section": "research-plates",
+      "date": "2024 · research illustration",
+      "title": {
+        "en": "Mololo Cave, Waigeo",
+        "pmy": "Gua Mololo, Waigeo"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Dylan Gaffney et al. · Antiquity 2024",
+        "sourceUrl": "https://www.labrujulaverde.com/en/2024/08/archaeologists-reveal-how-early-humans-entered-the-pacific/",
+        "creator": "Dylan Gaffney et al. · Antiquity 2024",
+        "imageSourceUrl": "https://cdn.labrujulaverde.com/en/wp-content/uploads/2024/08/Mololo-Cave-scaled-2-1200x800.jpg"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Mololo Cave on Waigeo. Photograph by Dylan Gaffney.",
+          "pmy": "Gua Mololo di Waigeo. Foto Dylan Gaffney."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/mololo-cave.webp",
+        "localPoster": "/images/history/research/mololo-cave-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-mololo"
+      ]
+    },
+    {
+      "id": "mololo-resin",
+      "section": "research-plates",
+      "date": "2024 · research illustration",
+      "title": {
+        "en": "Resin artefact from Mololo",
+        "pmy": "Artefak damar dari Mololo"
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "Dylan Gaffney et al. · Antiquity 2024",
+        "sourceUrl": "https://www.labrujulaverde.com/en/2024/08/archaeologists-reveal-how-early-humans-entered-the-pacific/",
+        "creator": "Dylan Gaffney et al. · Antiquity 2024",
+        "imageSourceUrl": "https://cdn.labrujulaverde.com/wp-content/uploads/2024/08/urn-cambridge.org-id-binary-alt-20240805235721-66745-optimisedImage-png-S0003598X24000838_fig5.jpg.jpg"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Resin artefact and proposed use, Figure 5 from Gaffney and colleagues’ 2024 study.",
+          "pmy": "Artefak damar dan perkiraan penggunaannya, Gambar 5 dari kajian Gaffney bersama rekan-rekan pada 2024."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/mololo-resin.webp",
+        "localPoster": "/images/history/research/mololo-resin-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-mololo"
+      ]
+    },
+    {
+      "id": "awyu-hearing-2023",
+      "section": "research-plates",
+      "date": "7 September 2023",
+      "title": {
+        "en": "Franky Woro and Rikarda Wome Maa",
+        "pmy": "Franky Woro dan Rikarda Wome Maa"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Gusti Tanati / Greenpeace",
+        "sourceUrl": "https://www.greenpeace.org/southeastasia/press/62817/verdict-a-setback-for-awyu-indigenous-people-and-papuan-forests/",
+        "creator": "Gusti Tanati / Greenpeace"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Franky Woro and Rikarda Wome Maa after the Jayapura hearing, 7 September 2023.",
+          "pmy": "Franky Woro dan Rikarda Wome Maa setelah sidang di Jayapura, 7 September 2023."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/awyu-hearing-2023.webp",
+        "localPoster": "/images/history/research/awyu-hearing-2023-thumb.webp"
+      },
+      "relatedHistoryEvents": []
+    },
+    {
+      "id": "puncak-komnas-2025",
+      "section": "research-plates",
+      "date": "October 2025",
+      "title": {
+        "en": "Komnas HAM visit to Puncak",
+        "pmy": "Kunjungan Komnas HAM ke Puncak"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Pemerintah Kabupaten Puncak",
+        "sourceUrl": "https://www.puncakkab.go.id/publikasi/berita/568/komnasham-ri-tiba-di-puncak-dengar-langsung-keluhan-para-pengungsi",
+        "creator": "Pemerintah Kabupaten Puncak"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Komnas HAM visit reported by Puncak regency in October 2025.",
+          "pmy": "Kunjungan Komnas HAM dilaporkan Pemerintah Kabupaten Puncak pada Oktober 2025."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/puncak-komnas-2025.webp",
+        "localPoster": "/images/history/research/puncak-komnas-2025-thumb.webp"
+      },
+      "relatedHistoryEvents": []
+    },
+    {
+      "id": "grasberg-iss-2005",
+      "section": "research-plates",
+      "date": "25 June 2005",
+      "title": {
+        "en": "Grasberg from the ISS",
+        "pmy": "Grasberg dari ISS"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "NASA / ISS Crew Earth Observations",
+        "sourceUrl": "https://science.nasa.gov/earth/earth-observatory/grasberg-mine-indonesia-5718/",
+        "creator": "NASA / ISS Crew Earth Observations"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Grasberg photographed from the ISS on 25 June 2005.",
+          "pmy": "Grasberg dipotret dari ISS pada 25 Juni 2005."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/grasberg-iss-2005.webp",
+        "localPoster": "/images/history/research/grasberg-iss-2005-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-land",
+        "history-freeport-contract"
+      ]
+    },
+    {
+      "id": "noken-documentation-2017",
+      "section": "research-plates",
+      "date": "2017",
+      "title": {
+        "en": "Noken documentation",
+        "pmy": "Dokumentasi noken"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Nurul Ichlasiah",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Noken.jpg",
+        "creator": "Nurul Ichlasiah"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Noken photographed in 2017. The photograph documents the practice; it is not dated to the 2012 UNESCO inscription.",
+          "pmy": "Noken dipotret pada 2017. Foto mendokumentasikan praktik, bukan peristiwa pengakuan UNESCO 2012."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by_sa",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026.",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/noken-documentation-2017.webp",
+        "localPoster": "/images/history/research/noken-documentation-2017-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-living"
+      ]
+    },
+    {
+      "id": "highlands-investigation-cover",
+      "section": "research-plates",
+      "date": "2013",
+      "title": {
+        "en": "Central Highlands investigation",
+        "pmy": "Penyelidikan pegunungan tengah"
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "Asian Human Rights Commission",
+        "sourceUrl": "https://tapol.org/sites/default/files/sites/default/files/pdfs/NeglectedGenocideAHRC.pdf",
+        "creator": "Asian Human Rights Commission"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Central Highlands investigation. Asian Human Rights Commission · 2013.",
+          "pmy": "Penyelidikan pegunungan tengah. Asian Human Rights Commission · 2013."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/highlands-investigation-cover.webp",
+        "localPoster": "/images/history/research/highlands-investigation-cover-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-highlands-1977"
+      ]
+    },
+    {
+      "id": "saralana-declaration",
+      "section": "research-plates",
+      "date": "2014",
+      "title": {
+        "en": "Saralana Declaration",
+        "pmy": "Deklarasi Saralana"
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ULMWP",
+        "sourceUrl": "https://www.ulmwp.org/wp-content/uploads/2014/08/Saralana-Declaration_with-Witnesses.pdf",
+        "creator": "ULMWP"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Saralana Declaration. ULMWP · 2014.",
+          "pmy": "Deklarasi Saralana. ULMWP · 2014."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/saralana-declaration.webp",
+        "localPoster": "/images/history/research/saralana-declaration-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-2014"
+      ]
+    },
+    {
+      "id": "otsus-court-document",
+      "section": "research-plates",
+      "date": "2022",
+      "title": {
+        "en": "Special-autonomy constitutional challenge",
+        "pmy": "Pengujian konstitusional otonomi khusus"
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "Mahkamah Konstitusi",
+        "sourceUrl": "https://www.mkri.id/public/content/persidangan/putusan/putusan_mkri_8639_1661992995.pdf",
+        "creator": "Mahkamah Konstitusi"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Special-autonomy constitutional challenge. Mahkamah Konstitusi · 2022.",
+          "pmy": "Pengujian konstitusional otonomi khusus. Mahkamah Konstitusi · 2022."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/otsus-court-document.webp",
+        "localPoster": "/images/history/research/otsus-court-document-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-otsus-revision"
+      ]
+    },
+    {
+      "id": "internet-amicus",
+      "section": "research-plates",
+      "date": "2020",
+      "title": {
+        "en": "Internet shutdown amicus brief",
+        "pmy": "Pendapat amicus tentang pemutusan internet"
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "Access Now",
+        "sourceUrl": "https://www.accessnow.org/wp-content/uploads/2020/05/Indonesia-Shutdowns-Amicus-ENG.pdf",
+        "creator": "Access Now"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Internet shutdown amicus brief. Access Now · 2020.",
+          "pmy": "Pendapat amicus tentang pemutusan internet. Access Now · 2020."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/internet-amicus.webp",
+        "localPoster": "/images/history/research/internet-amicus-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-internet-ruling"
+      ]
+    },
+    {
+      "id": "tidore-source",
+      "section": "research-plates",
+      "date": "1995",
+      "title": {
+        "en": "Nineteenth-century New Guinea memoranda",
+        "pmy": "Memoranda Nugini abad kesembilan belas"
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "J. A. Overweel · PACE collection",
+        "sourceUrl": "https://www.papuaerfgoed.org/sites/default/files/collectie/files/2004-10/Overweel_1995_Topics_13.pdf",
+        "creator": "J. A. Overweel · PACE collection"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Nineteenth-century New Guinea memoranda. J. A. Overweel · PACE collection · 1995.",
+          "pmy": "Memoranda Nugini abad kesembilan belas. J. A. Overweel · PACE collection · 1995."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/tidore-source.webp",
+        "localPoster": "/images/history/research/tidore-source-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-tidore"
+      ]
+    },
+    {
+      "id": "gold-rush-report",
+      "section": "research-plates",
+      "date": "2022",
+      "title": {
+        "en": "Gold Rush",
+        "pmy": "Gold Rush"
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "Amnesty International",
+        "sourceUrl": "https://www.amnesty.org/en/wp-content/uploads/2022/03/ASA2152572022ENGLISH.pdf",
+        "creator": "Amnesty International"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Gold Rush. Amnesty International · 2022.",
+          "pmy": "Gold Rush. Amnesty International · 2022."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/gold-rush-report.webp",
+        "localPoster": "/images/history/research/gold-rush-report-thumb.webp"
+      },
+      "relatedHistoryEvents": []
+    },
+    {
+      "id": "un-displacement-appeal",
+      "section": "research-plates",
+      "date": "2021",
+      "title": {
+        "en": "UN Special Procedures communication",
+        "pmy": "Komunikasi Prosedur Khusus PBB"
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "UN Special Procedures",
+        "sourceUrl": "https://spcommreports.ohchr.org/TMResultsBase/DownLoadPublicCommunicationFile?gId=26909",
+        "creator": "UN Special Procedures"
+      },
+      "editorial": {
+        "caption": {
+          "en": "UN Special Procedures communication. UN Special Procedures · 2021.",
+          "pmy": "Komunikasi Prosedur Khusus PBB. UN Special Procedures · 2021."
+        },
+        "context": {
+          "en": "Source record for the linked historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/un-displacement-appeal.webp",
+        "localPoster": "/images/history/research/un-displacement-appeal-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-today"
+      ]
+    },
+    {
+      "id": "reformasi-report",
+      "section": "research-plates",
+      "date": "July 2001",
+      "title": {
+        "en": "Violence and Political Impasse in Papua",
+        "pmy": "Violence and Political Impasse in Papua"
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "Human Rights Watch",
+        "sourceUrl": "https://www.hrw.org/reports/2001/papua/PAPUA0701.pdf",
+        "creator": "Human Rights Watch"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Human Rights Watch’s July 2001 report on political organising and violence.",
+          "pmy": "Laporan Human Rights Watch Juli 2001 tentang pengorganisasian politik dan kekerasan."
+        },
+        "context": {
+          "en": "Source record for the related historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/reformasi-report.webp",
+        "localPoster": "/images/history/research/reformasi-report-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-reformasi"
+      ]
+    },
+    {
+      "id": "ariana-elopere-2023",
+      "section": "research-plates",
+      "date": "2023",
+      "title": {
+        "en": "Ariana Elopere",
+        "pmy": "Ariana Elopere"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Andreas Harsono / Human Rights Watch",
+        "sourceUrl": "https://www.hrw.org/report/2024/09/18/if-its-not-racism-what-is-it/discrimination-and-other-abuses-against-papuans-in",
+        "creator": "Andreas Harsono / Human Rights Watch"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Ariana Elopere, photographed in 2023. HRW documents her arrest and prosecution after the August 2019 anti-racism protest in Jakarta.",
+          "pmy": "Ariana Elopere dipotret pada 2023. HRW mencatat penangkapan dan proses hukumnya setelah protes antirasisme Agustus 2019 di Jakarta."
+        },
+        "context": {
+          "en": "Source record for the related historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/ariana-elopere-2023.webp",
+        "localPoster": "/images/history/research/ariana-elopere-2023-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-racism-2019"
+      ]
+    },
+    {
+      "id": "raja-historical-sites-plate",
+      "section": "research-plates",
+      "date": "2025 · research plate",
+      "title": {
+        "en": "Historical and sacred sites in Raja Ampat",
+        "pmy": "Situs sejarah dan sakral di Raja Ampat"
+      },
+      "mediaType": "document",
+      "layout": "standard",
+      "archive": {
+        "institution": "ANU Press · original credits on source page",
+        "sourceUrl": "https://press-files.anu.edu.au/downloads/press/n13144/pdf/ch08.pdf",
+        "creator": "ANU Press · original credits on source page"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Historical and sacred sites around Waigeo and Gam. ANU Press, Figure 8.5.",
+          "pmy": "Situs sejarah dan sakral sekitar Waigeo dan Gam. ANU Press, Gambar 8.5."
+        },
+        "context": {
+          "en": "Source record for the related historical account.",
+          "pmy": "Catatan sumber untuk uraian sejarah terkait."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited editorial inclusion in History and Following, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/raja-historical-sites-plate.webp",
+        "localPoster": "/images/history/research/raja-historical-sites-plate-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-tidore",
+        "history-raja-permits"
+      ]
+    },
+    {
+      "id": "mansinam-route",
+      "section": "research-plates",
+      "date": "2026 · source diagram",
+      "title": {
+        "en": "The voyage to Mansinam",
+        "pmy": "Pelayaran ke Mansinam"
+      },
+      "mediaType": "document",
+      "layout": "wide",
+      "archive": {
+        "institution": "West Papua Watch",
+        "creator": "West Papua Watch",
+        "sourceUrl": "https://www.vemission.org/en/details/they-brought-us-the-light"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Watch diagram of the voyage described by UEM.",
+          "pmy": "Diagram Watch tentang pelayaran yang dicatat UEM."
+        },
+        "context": {
+          "en": "Original schematic based on the cited account.",
+          "pmy": "Skema asli berdasarkan uraian yang ditautkan."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested source-based History illustrations."
+      },
+      "media": {
+        "localImage": "/images/history/research/mansinam-route.webp",
+        "localPoster": "/images/history/research/mansinam-route-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-mansinam"
+      ]
+    },
+    {
+      "id": "digoel-internment",
+      "section": "research-plates",
+      "date": "2026 · source diagram",
+      "title": {
+        "en": "Detention in Boven Digoel",
+        "pmy": "Penahanan di Boven Digoel"
+      },
+      "mediaType": "document",
+      "layout": "wide",
+      "archive": {
+        "institution": "West Papua Watch",
+        "creator": "West Papua Watch",
+        "sourceUrl": "https://press.anu.edu.au/publications/series/terra-australis/west-new-guinea"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Watch diagram locating Boven Digoel within the Dutch detention system.",
+          "pmy": "Diagram Watch menempatkan Boven Digoel dalam sistem penahanan Belanda."
+        },
+        "context": {
+          "en": "Original schematic based on the cited account.",
+          "pmy": "Skema asli berdasarkan uraian yang ditautkan."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested source-based History illustrations."
+      },
+      "media": {
+        "localImage": "/images/history/research/digoel-internment.webp",
+        "localPoster": "/images/history/research/digoel-internment-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-digoel"
+      ]
+    },
+    {
+      "id": "khombouw-materials",
+      "section": "research-plates",
+      "date": "2026 · source diagram",
+      "title": {
+        "en": "Khombouw materials and work",
+        "pmy": "Bahan dan pengerjaan khombouw"
+      },
+      "mediaType": "document",
+      "layout": "wide",
+      "archive": {
+        "institution": "West Papua Watch",
+        "creator": "West Papua Watch",
+        "sourceUrl": "https://sentaniarts.wordpress.com/about/"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Watch diagram of bark-cloth preparation and painting. Named makers and contemporary works are linked in Exhibition.",
+          "pmy": "Diagram Watch tentang persiapan kulit kayu dan pelukisan. Pembuat serta karya masa kini ditautkan melalui Pameran."
+        },
+        "context": {
+          "en": "Original schematic based on the cited account.",
+          "pmy": "Skema asli berdasarkan uraian yang ditautkan."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested source-based History illustrations."
+      },
+      "media": {
+        "localImage": "/images/history/research/khombouw-materials.webp",
+        "localPoster": "/images/history/research/khombouw-materials-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-khombouw"
+      ]
+    },
+    {
+      "id": "nduga-weneroma-2019",
+      "section": "research-plates",
+      "date": "August 2019",
+      "title": {
+        "en": "Emergency school in Weneroma",
+        "pmy": "Sekolah darurat Weneroma"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Alam Burhanan / VOA",
+        "creator": "Alam Burhanan / VOA",
+        "sourceUrl": "https://projects.voanews.com/kebebasan-pers-papua/indonesian/impact/pengungsi-konflik-nduga-bangun-sekolah-darurat.html",
+        "imageSourceUrl": "https://projects.voanews.com/kebebasan-pers-papua/img/impact4__1siswasekolah__w420_h420.jpg"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Displaced Nduga pupils at Weneroma’s emergency school in Wamena, August 2019.",
+          "pmy": "Murid pengungsi Nduga di sekolah darurat Weneroma, Wamena, Agustus 2019."
+        },
+        "context": {
+          "en": "Documentary photograph from the linked reporting.",
+          "pmy": "Foto dokumenter dari laporan yang ditautkan."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited documentary media in History and Following."
+      },
+      "media": {
+        "localImage": "/images/history/research/nduga-weneroma-2019.webp",
+        "localPoster": "/images/history/research/nduga-weneroma-2019-thumb.webp"
+      },
+      "relatedHistoryEvents": [
+        "history-today"
+      ]
+    },
+    {
+      "id": "sinta-gebze-road-case",
+      "section": "research-plates",
+      "date": "2026 · exact photo date unspecified",
+      "title": {
+        "en": "Sinta Gebze submits the Malind lawsuit",
+        "pmy": "Sinta Gebze menyerahkan gugatan Malind"
+      },
+      "mediaType": "photo",
+      "layout": "standard",
+      "archive": {
+        "institution": "Alif R Nouddy Korua / Greenpeace",
+        "creator": "Alif R Nouddy Korua / Greenpeace",
+        "sourceUrl": "https://www.greenpeace.org/southeastasia/press/69267/court-rejected-indigenous-malind-peoples-lawsuit-challenging-a-135-km-roadway-destroying-customary-forest/",
+        "imageSourceUrl": "https://www.greenpeace.org/static/planet4-southeastasia-stateless/2026/09/2886151f-gp0su8e6z-1024x684.jpg"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Sinta Gebze submits lawsuit documents at PTUN Jayapura. Photograph supplied with the September 2026 court account; exact photo date not given.",
+          "pmy": "Sinta Gebze menyerahkan dokumen gugatan di PTUN Jayapura. Foto ditampilkan bersama laporan perkara September 2026; tanggal foto tidak dicantumkan."
+        },
+        "context": {
+          "en": "Documentary photograph from the linked reporting.",
+          "pmy": "Foto dokumenter dari laporan yang ditautkan."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited documentary media in History and Following."
+      },
+      "media": {
+        "localImage": "/images/history/research/sinta-gebze-road-case.webp",
+        "localPoster": "/images/history/research/sinta-gebze-road-case-thumb.webp"
+      },
+      "relatedHistoryEvents": []
     }
   ]
 }

@@ -1,5 +1,33 @@
 ---
-import {topicTimelines} from '../data/topic-timelines';
+import {topicTimelines,milestoneDate} from '../data/topic-timelines';
+import {archiveItemById} from '../data/archive';
+import HistoryRecordDialog from './history/HistoryRecordDialog.astro';
+import HistoryArrow from './history/HistoryArrow.astro';
 const {slug,locale='en'}=Astro.props;const entries=topicTimelines[slug]||[];const en=locale==='en';
+const extended=entries.some(e=>e.featured===false);
+const years=[...new Set(entries.map(e=>e.date.slice(0,4)))];
 ---
-{entries.length>0&&<section class="section topic-timeline" id="timeline"><h2 class="page-subtitle">{en?'Timeline.':'Linimasa.'}</h2><p>{en?'Selected milestones. Each entry links to its source.':'Tonggak terpilih. Setiap entri ditautkan ke sumber.'}</p><ol>{entries.map(entry=><li id={entry.id}><time datetime={entry.date.length===4?undefined:entry.date}>{entry.date.length===4?entry.date:new Date(entry.date+'T00:00:00Z').toLocaleDateString(en?'en-GB':'id-ID',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'})}</time><div><h3>{en?entry.title.en:entry.title.pmy}</h3><p>{en?entry.text.en:entry.text.pmy}</p><a href={entry.source} target="_blank" rel="noreferrer">{entry.publisher} ↗</a></div></li>)}</ol></section>}
+{entries.length>0&&<section class="section topic-timeline" id="timeline" data-topic-timeline data-show-all="false">
+ <header class="timeline-heading"><h2 class="page-subtitle">{en?'Timeline.':'Linimasa.'}</h2>{extended&&<button type="button" data-timeline-expand aria-expanded="false" data-label-all={en?`All ${entries.length} entries`:`Semua ${entries.length} entri`} data-label-selected={en?'Selected entries':'Entri terpilih'}>{en?`All ${entries.length} entries`:`Semua ${entries.length} entri`} <span aria-hidden="true">＋</span></button>}</header>
+ {slug==='south-papua-food-energy-estate'&&<p class="timeline-credit"><a href="https://pusaka.or.id/en/lini-masa/merauke-national-strategic-project-timeline/" target="_blank" rel="noreferrer">{en?'Pusaka’s Merauke chronology':'Linimasa Merauke oleh Pusaka'} <HistoryArrow direction="up-right"/></a> <span>2023–2024</span></p>}
+ {years.map(year=><div class="timeline-year"><h3 class="timeline-year-label">{year}</h3><ol>{entries.filter(entry=>entry.date.startsWith(year)).map(entry=><li id={entry.id} class:list={[entry.date.length===4&&'year-only']} data-timeline-entry data-featured={entry.featured!==false}>
+  <time datetime={entry.date} class:list={[entry.date.length===4&&'sr-only']}>{milestoneDate(entry,locale)}</time><div class="timeline-entry-copy"><h3>{en?entry.title.en:entry.title.pmy}</h3><p>{en?entry.text.en:entry.text.pmy}</p>
+   {entry.mediaIds?.length&&<div class="timeline-images">{entry.mediaIds.map(id=>archiveItemById[id]).filter(Boolean).map(item=><figure><button type="button" data-history-record={item.id} aria-label={`${en?'Open':'Buka'}: ${item.title[locale]}`}><img src={item.resolved.poster||item.resolved.image} alt={item.editorial.caption[locale]} width="600" height="420" loading="lazy" decoding="async"/><span aria-hidden="true"><HistoryArrow direction="up-right"/></span></button><figcaption>{item.editorial.caption[locale]}</figcaption></figure>)}</div>}
+   <details class="timeline-sources"><summary>{en?'Sources':'Sumber'} <span>{entry.sources?.length||1}</span></summary>{(entry.sources||[{url:entry.source,publisher:entry.publisher}]).map(source=><a href={source.url} target="_blank" rel="noreferrer">{source.publisher} <HistoryArrow direction="up-right"/></a>)}</details>
+  </div></li>)}</ol></div>)}
+ <HistoryRecordDialog locale={locale}/>
+</section>}
+<script>
+ for(const timeline of document.querySelectorAll<HTMLElement>('[data-topic-timeline]')){
+  const control=timeline.querySelector<HTMLButtonElement>('[data-timeline-expand]');
+  const set=(all:boolean)=>{timeline.dataset.showAll=String(all);if(control){control.setAttribute('aria-expanded',String(all));control.replaceChildren(document.createTextNode((all?control.dataset.labelSelected:control.dataset.labelAll)+' '));const icon=document.createElement('span');icon.setAttribute('aria-hidden','true');icon.textContent=all?'−':'＋';control.append(icon)}};
+  control?.addEventListener('click',()=>set(timeline.dataset.showAll!=='true'));
+  function followHash(){const id=location.hash.slice(1);if(!id)return;const item=[...timeline.querySelectorAll<HTMLElement>('[data-timeline-entry]')].find(entry=>entry.id===id);if(item?.dataset.featured==='false'){set(true);requestAnimationFrame(()=>item.scrollIntoView())}}
+  followHash();addEventListener('hashchange',followHash);
+ }
+</script>
+<style>
+.timeline-heading{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap}.timeline-heading h2{margin:0}.timeline-heading>button{border:1px solid var(--line);border-radius:12px;background:transparent;color:inherit;min-height:44px;padding:.7rem 1rem;cursor:pointer;font:inherit;font-size:.82rem;display:flex;gap:1rem;align-items:center}.timeline-heading>button:hover{background:#ffffff08}.timeline-credit{font-size:.82rem;margin:1rem 0 2rem;display:flex;flex-wrap:wrap;gap:.7rem 1.5rem;color:var(--muted)}.timeline-credit a{text-decoration:none}.timeline-year{margin:2.5rem 0}.timeline-year-label{font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.05em;margin:0}.topic-timeline[data-show-all=false] li[data-featured=false]{display:none}.timeline-entry-copy>p{margin:1rem 0 1.5rem}.timeline-sources{font-size:.8rem;max-width:46rem}.timeline-sources summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:.75rem;color:var(--muted)}.timeline-sources summary::before{content:'▸'}.timeline-sources[open] summary::before{content:'▾'}.timeline-sources a{display:block;padding:.8rem 0;border-top:1px solid var(--line)}.timeline-images{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1rem;max-width:46rem}.timeline-images figure{margin:0}.timeline-images button{position:relative;display:block;width:100%;padding:0;border:0;background:#e7e5dc;color:var(--ink);cursor:pointer;border-radius:3px;overflow:hidden}.timeline-images img{display:block;width:100%;height:auto;max-height:380px;object-fit:contain}.timeline-images button>span{position:absolute;right:.75rem;bottom:.75rem;background:#e7e5dc;color:#222;width:36px;height:36px;display:grid;place-items:center;border-radius:50%}.timeline-images figcaption{margin-top:.6rem;color:var(--muted);font-size:.72rem;line-height:1.5}.topic-timeline [id]{scroll-margin-top:calc(var(--compact-nav-actual-height,120px) + 20px)}
+@media(max-width:600px){.timeline-heading>button{font-size:.75rem}.timeline-year{margin-top:2rem}.timeline-images img{max-height:300px}}
+.topic-timeline li.year-only{grid-template-columns:minmax(0,1fr)}.timeline-credit a{display:inline-flex;gap:.4rem;align-items:center}.timeline-credit svg,.timeline-sources svg,.timeline-images button>span svg{width:14px;height:14px;vertical-align:middle}
+</style>

@@ -1,0 +1,1610 @@
+{
+  "eras": [
+    {
+      "id": "orientation",
+      "label": {
+        "en": "Landscape",
+        "pmy": "Bentang alam"
+      }
+    },
+    {
+      "id": "settlement",
+      "label": {
+        "en": "Early settlement",
+        "pmy": "Permukiman awal"
+      }
+    },
+    {
+      "id": "coasts",
+      "label": {
+        "en": "Coasts and contact",
+        "pmy": "Pesisir dan hubungan"
+      }
+    },
+    {
+      "id": "regional",
+      "label": {
+        "en": "Regional accounts",
+        "pmy": "Catatan regional"
+      }
+    },
+    {
+      "id": "maritime",
+      "label": {
+        "en": "Maritime relations",
+        "pmy": "Hubungan maritim"
+      }
+    },
+    {
+      "id": "colonial",
+      "label": {
+        "en": "1828–1937",
+        "pmy": "1828–1937"
+      }
+    },
+    {
+      "id": "war",
+      "label": {
+        "en": "1938–1945",
+        "pmy": "1938–1945"
+      }
+    },
+    {
+      "id": "postwar",
+      "label": {
+        "en": "1949–1960",
+        "pmy": "1949–1960"
+      }
+    },
+    {
+      "id": "transfer",
+      "label": {
+        "en": "1961–1969",
+        "pmy": "1961–1969"
+      }
+    },
+    {
+      "id": "indonesian",
+      "label": {
+        "en": "1970–1997",
+        "pmy": "1970–1997"
+      }
+    },
+    {
+      "id": "autonomy",
+      "label": {
+        "en": "1998–2009",
+        "pmy": "1998–2009"
+      }
+    },
+    {
+      "id": "public-life",
+      "label": {
+        "en": "2010–2020",
+        "pmy": "2010–2020"
+      }
+    },
+    {
+      "id": "present",
+      "label": {
+        "en": "2021 onward",
+        "pmy": "Sejak 2021"
+      }
+    },
+    {
+      "id": "current",
+      "label": {
+        "en": "Current",
+        "pmy": "Terkini"
+      }
+    }
+  ],
+  "records": [
+    {
+      "id": "history-mansinam",
+      "year": 1855,
+      "era": "colonial",
+      "paths": [
+        "political",
+        "social",
+        "culture"
+      ],
+      "yearLabel": {
+        "en": "1855",
+        "pmy": "1855"
+      },
+      "title": {
+        "en": "Mansinam and the mission",
+        "pmy": "Mansinam dan misi"
+      },
+      "body": {
+        "en": "Carl Wilhelm Ottow and Johann Gottlob Geissler arrived at Mansinam near Manokwari in 1855. Their journey through the eastern Indonesian maritime network included support from the Sultan of Tidore. The mission became an important reference point in the history of Christianity in Papua.\n\nChurch accounts preserve the arrival as a founding event. Later schools and teachers connected religious work with changes in education and public life. The southern mission-school record, beginning in the early twentieth century, shows how Indigenous and other non-European teachers helped shape schooling rather than acting only as recipients of European instruction.",
+        "pmy": "Carl Wilhelm Ottow dan Johann Gottlob Geissler tiba di Mansinam dekat Manokwari pada 1855. Perjalanan melalui jaringan maritim Indonesia timur mencakup bantuan Sultan Tidore. Misi tersebut menjadi salah satu titik penting dalam sejarah kekristenan di Papua.\n\nCatatan gereja mempertahankan kedatangan ini sebagai peristiwa awal. Sekolah serta guru kemudian menghubungkan kerja keagamaan dengan perubahan pendidikan dan kehidupan publik. Catatan sekolah misi di selatan sejak awal abad ke-20 memperlihatkan bagaimana guru setempat dan guru non-Eropa lainnya ikut membentuk pendidikan."
+      },
+      "sources": [
+        {
+          "title": "They brought us the light",
+          "publisher": "United Evangelical Mission · Martina Pauly",
+          "url": "https://www.vemission.org/en/details/they-brought-us-the-light"
+        },
+        {
+          "title": "Educating Children, Civilizing Society",
+          "publisher": "Maaike Derksen · International Review of Social History",
+          "url": "https://www.cambridge.org/core/journals/international-review-of-social-history/article/educating-children-civilizing-society-missionary-schools-and-noneuropean-teachers-in-south-dutch-new-guinea-19021942/2991790133D3B7E11667F9C5AFE1B065"
+        }
+      ],
+      "archiveIds": [],
+      "places": [
+        {
+          "label": "Mansinam",
+          "longitude": 134.096,
+          "latitude": -0.904
+        }
+      ]
+    }
+  ],
+  "overrides": {
+    "history-geography": {
+      "body": {
+        "en": "New Guinea lies at the northern edge of the Australian plate. Uplift and faulting formed mountain ranges that divide river basins, while coastal plains, islands and reefs support different ways of obtaining food and moving between places. Western Papua includes the western part of this island and its surrounding islands.\n\nDuring the Ice Age, lower sea levels joined New Guinea, Australia and the Aru Islands into Sahul. Waigeo and other islands to the northwest remained separated by deep water. Reaching them required sea crossings. These landscapes give the settlement histories below their geographical context.",
+        "pmy": "Nugini berada di tepi utara lempeng Australia. Pengangkatan dan patahan membentuk pegunungan yang membagi daerah aliran sungai, sementara dataran pesisir, pulau, dan terumbu mendukung cara memperoleh pangan serta berpindah yang berbeda. Papua bagian barat mencakup bagian barat pulau ini beserta pulau-pulau sekitarnya.\n\nPada Zaman Es, permukaan laut yang lebih rendah menyatukan Nugini, Australia, dan Kepulauan Aru menjadi Sahul. Waigeo dan pulau lain di barat laut tetap terpisah oleh perairan dalam sehingga perlu dicapai melalui penyeberangan laut. Bentang ini menjadi konteks geografis bagi riwayat permukiman berikutnya."
+      },
+      "title": {
+        "en": "Landscape and sea crossings",
+        "pmy": "Bentang alam dan penyeberangan laut"
+      },
+      "additionalArchiveIds": [
+        "geology-plate"
+      ],
+      "places": [
+        {
+          "label": "Central ranges",
+          "longitude": 136.8,
+          "latitude": -3.8,
+          "note": {
+            "en": "Uplift formed the central mountain ranges. Lowland rivers and coastal environments support other histories on either side.",
+            "pmy": "Pengangkatan membentuk pegunungan tengah. Sungai dataran rendah dan lingkungan pesisir menopang sejarah lain di kedua sisinya."
+          }
+        }
+      ]
+    },
+    "history-leadership": {
+      "body": {
+        "en": "Mansoben’s comparative study describes regional forms of authority recorded in ethnographic research. Around Sentani, the office of ondoafi is connected to descent, kin groups and village territory. Among Mee, a tonowi builds standing through wealth, generosity and the ability to organise relationships. Maybrat bobot and Muyu kayepak also gain influence through exchange and social obligations.\n\nPigs, cowrie shells and kain timur circulated through relationships that connected leadership with marriage, work and reciprocity. On the western coasts, raja in Raja Ampat, Onin and Kaimana linked local authority to maritime networks and Maluku. Some offices were inherited; others depended more on achievement and support. These documented regional systems help explain the institutions and land relationships encountered by colonial administration, without assigning them a single ancient origin.",
+        "pmy": "Kajian perbandingan Mansoben menjelaskan bentuk kewenangan regional yang dicatat dalam penelitian etnografi. Di sekitar Sentani, kedudukan ondoafi berkaitan dengan keturunan, kelompok kekerabatan, dan wilayah kampung. Di kalangan Mee, tonowi membangun kedudukan melalui kekayaan, kemurahan hati, dan kemampuan mengatur hubungan. Bobot di Maybrat serta kayepak di Muyu juga memperoleh pengaruh melalui pertukaran dan kewajiban sosial.\n\nBabi, kerang kauri, dan kain timur beredar melalui hubungan yang mengaitkan kepemimpinan dengan perkawinan, kerja, dan timbal balik. Di pesisir barat, raja di Raja Ampat, Onin, dan Kaimana menghubungkan kewenangan setempat dengan jaringan maritim serta Maluku. Sebagian jabatan diwariskan; yang lain lebih bergantung pada pencapaian dan dukungan. Catatan regional ini membantu menjelaskan lembaga serta hubungan tanah yang dihadapi pemerintahan kolonial, tanpa menetapkan satu masa asal bagi semuanya."
+      },
+      "title": {
+        "en": "Regional authority",
+        "pmy": "Kewenangan regional"
+      },
+      "additionalArchiveIds": [
+        "authority-plate"
+      ],
+      "places": [
+        {
+          "label": "Biak",
+          "longitude": 136.08,
+          "latitude": -1.18,
+          "note": {
+            "en": "Mansoben discusses leadership based on achievement alongside inherited authority in different Papuan regions.",
+            "pmy": "Mansoben membahas kepemimpinan berdasarkan capaian bersama kewenangan turun-temurun di berbagai wilayah Papua."
+          }
+        },
+        {
+          "label": "Sentani",
+          "longitude": 140.48,
+          "latitude": -2.58,
+          "note": {
+            "en": "Ondoafi authority and kinship organise social relations in communities around Lake Sentani.",
+            "pmy": "Kewenangan ondoafi dan kekerabatan mengatur hubungan sosial masyarakat sekitar Danau Sentani."
+          }
+        },
+        {
+          "label": "Paniai",
+          "longitude": 136.37,
+          "latitude": -3.93,
+          "note": {
+            "en": "Mee accounts connect leadership, exchange, marriage and recognised social obligations.",
+            "pmy": "Catatan Mee menghubungkan kepemimpinan, pertukaran, perkawinan, dan kewajiban sosial."
+          }
+        }
+      ]
+    },
+    "history-exchange": {
+      "body": {
+        "en": "Exchange connected communities across valleys, coasts and ecological zones. People moved shells, pigs, food and other valuables through kinship, marriage and trading relationships. These transactions could create obligations and establish a person’s standing, alongside meeting practical needs.\n\nMansoben describes cowrie wealth in Mee and Muyu leadership and kain timur in Maybrat social life. Access to valuables depended on wider relationships: goods arriving through coastal networks could acquire new uses and meanings inland. The systems varied by place and changed over time, but they show how authority and economic life were organised through social relationships rather than a separate administrative office.",
+        "pmy": "Pertukaran menghubungkan masyarakat antarlembah, pesisir, dan wilayah ekologis. Kerang, babi, pangan, serta benda berharga lain berpindah melalui kekerabatan, perkawinan, dan hubungan dagang. Transaksi dapat membentuk kewajiban serta kedudukan seseorang, sekaligus memenuhi kebutuhan sehari-hari.\n\nMansoben menjelaskan kekayaan kerang dalam kepemimpinan Mee dan Muyu serta kain timur dalam kehidupan sosial Maybrat. Akses pada benda berharga bergantung pada hubungan yang lebih luas: barang yang masuk melalui jaringan pesisir dapat memperoleh kegunaan serta makna baru di pedalaman. Sistem ini berbeda antardaerah dan berubah dari waktu ke waktu, tetapi memperlihatkan bagaimana kewenangan serta kehidupan ekonomi diatur melalui hubungan sosial."
+      },
+      "additionalArchiveIds": [
+        "exchange-shell-plate"
+      ]
+    },
+    "history-tidore": {
+      "body": {
+        "en": "Maritime networks connected western New Guinea with Maluku over centuries. The ANU synthesis discusses tributary relations along the coasts between the fifteenth and nineteenth centuries; Overweel’s study follows the claims and negotiations described in nineteenth-century memoranda. Tidore exercised influence through coastal leaders and intermediaries rather than a uniform administration of the interior.\n\nTrade, tribute and slave trading formed part of these encounters. Local rulers and communities negotiated relationships with competing outside powers. Dutch claims later drew on agreements with Tidore, but declaring sovereignty did not establish an administrative presence across Papua. The early Fort Du Bus settlement and the much later permanent stations illustrate that difference.",
+        "pmy": "Jaringan maritim menghubungkan Papua bagian barat dengan Maluku selama berabad-abad. Sintesis ANU membahas hubungan upeti di pesisir antara abad ke-15 dan ke-19; kajian Overweel menelusuri klaim serta perundingan dalam memorandum abad ke-19. Tidore menjalankan pengaruh melalui pemimpin pesisir dan perantara, bukan satu pemerintahan yang merata di pedalaman.\n\nPerdagangan, upeti, dan perdagangan budak menjadi bagian dari perjumpaan ini. Penguasa serta masyarakat setempat berunding dengan kekuatan luar yang bersaing. Klaim Belanda kemudian bertumpu pada perjanjian dengan Tidore, tetapi pernyataan kedaulatan belum membentuk kehadiran pemerintahan di seluruh Papua. Permukiman awal Benteng Du Bus dan pos permanen yang baru berdiri jauh kemudian memperlihatkan perbedaan itu."
+      },
+      "yearLabel": {
+        "en": "15th–19th centuries",
+        "pmy": "Abad ke-15–19"
+      },
+      "additionalArchiveIds": [
+        "raja-historical-sites-plate",
+        "tidore-source"
+      ]
+    },
+    "history-pottery": {
+      "body": {
+        "en": "Excavations at Mololo Cave on Waigeo recovered pottery dated to about 3,100–2,700 years ago, with a possible earlier occurrence around 3,800–3,500 years ago. Plain, red-slipped and incised vessels share features with ceramics elsewhere in Island Southeast Asia and the Pacific. The elaborate dentate stamping of early Lapita pottery is absent.\n\nAt Manwen Bokor Cave, later pottery from about 1,300–1,000 years ago includes more varied impressed and incised decoration. Gaffney and Tanudirjo compare these assemblages with eastern Wallacea and northern New Guinea, describing changes in the reach of regional networks. Pots and manufacturing techniques provide evidence of contact without requiring the movement of whole populations.",
+        "pmy": "Penggalian di Gua Mololo, Waigeo, menemukan tembikar berumur sekitar 3.100–2.700 tahun, dengan kemungkinan temuan lebih awal sekitar 3.800–3.500 tahun. Wadah polos, bersalut merah, dan bergores memiliki kesamaan dengan keramik di kawasan Asia Tenggara Kepulauan serta Pasifik. Cap bergerigi rumit yang menjadi ciri tembikar Lapita awal tidak ditemukan.\n\nDi Gua Manwen Bokor, tembikar lebih muda dari sekitar 1.300–1.000 tahun lalu memperlihatkan hiasan tekan dan gores yang lebih beragam. Gaffney dan Tanudirjo membandingkan temuan ini dengan Wallacea timur serta Nugini utara dan menjelaskan perubahan jangkauan jaringan regional. Wadah dan teknik pembuatannya menjadi bukti hubungan tanpa harus berarti perpindahan seluruh penduduk."
+      },
+      "yearLabel": {
+        "en": "3,100–2,700 years ago",
+        "pmy": "3.100–2.700 tahun lalu"
+      },
+      "sources": [
+        {
+          "title": "Late Holocene potting traditions in the far western Pacific: Evidence from the Raja Ampat Islands, 3500–1000 BP",
+          "publisher": "Dylan Gaffney & Daud Tanudirjo · ANU Press",
+          "url": "https://press-files.anu.edu.au/downloads/press/n12314/pdf/ch17.pdf"
+        }
+      ],
+      "additionalArchiveIds": [
+        "pottery-waigeo-plate"
+      ]
+    },
+    "history-andarewa": {
+      "body": {
+        "en": "Excavations at Andarewa Cave near Fakfak place its earliest recorded occupation around 26,327–25,900 years ago, during the Last Glacial Maximum. The site lies between the Bird’s Head and the wider Sahul landmass. Stone tools, bone points, shells, charcoal and ochre document activities across several occupation layers. Pottery and jewellery belong to later parts of that sequence.\n\nLocal sedimentary stone was worked into small flakes and scrapers. Imported igneous stone raises questions about movement and exchange beyond the immediate area. Together with the inland Toé Kria record, Andarewa shows that early settlement included different environments, from coastal limestone caves to rainforest in the Bird’s Head.",
+        "pmy": "Penggalian di Gua Andarewa dekat Fakfak menempatkan hunian paling awal yang tercatat sekitar 26.327–25.900 tahun lalu, pada puncak Zaman Es terakhir. Situs ini berada di antara Kepala Burung dan daratan Sahul yang lebih luas. Alat batu, ujung tulang, kerang, arang, serta oker mencatat kegiatan dalam beberapa lapisan hunian. Tembikar dan perhiasan berasal dari bagian yang lebih muda dalam urutan tersebut.\n\nBatuan sedimen setempat diolah menjadi serpih kecil dan alat pengerik. Batuan beku yang didatangkan dari luar menimbulkan pertanyaan tentang perpindahan serta pertukaran melampaui lingkungan terdekat. Bersama catatan pedalaman Toé Kria, Andarewa memperlihatkan bahwa permukiman awal mencakup lingkungan yang berbeda, dari gua kapur pesisir hingga hutan Kepala Burung."
+      },
+      "additionalArchiveIds": [
+        "andarewa-plate"
+      ]
+    },
+    "history-toe-kria": {
+      "body": {
+        "en": "Research at Toé Kria records occupation of inland rainforest in the Bird’s Head from around 24,000 calibrated years before present. Its stone-tool and occupation sequence adds an inland perspective to early settlement evidence from coastal and island caves.\n\nThe site helps archaeologists investigate how people used rainforest environments during the late Pleistocene. Read beside Andarewa and Mololo, it documents several local histories of settlement rather than one route that explains every part of New Guinea.",
+        "pmy": "Penelitian di Toé Kria mencatat hunian di hutan pedalaman Kepala Burung sejak sekitar 24.000 tahun terkalibrasi sebelum kini. Urutan alat batu serta huniannya menambahkan sudut pandang pedalaman pada bukti permukiman awal dari gua pesisir dan pulau.\n\nSitus ini membantu arkeolog menyelidiki pemanfaatan hutan pada akhir Pleistosen. Dibaca bersama Andarewa dan Mololo, temuan tersebut mencatat beberapa riwayat permukiman setempat, bukan satu jalur yang menjelaskan seluruh Nugini."
+      }
+    },
+    "history-mololo": {
+      "body": {
+        "en": "A worked piece of tree resin from Mololo Cave on Waigeo was radiocarbon dated to approximately 55,000–50,000 years ago. The find supplies direct evidence of plant use by people living on an island near the northwestern edge of New Guinea. Its manufacture involved collecting and processing resin rather than simply carrying an unmodified natural object into the cave.\n\nWaigeo remained separated from Sahul by deep water even when sea levels were lower. Settlement therefore involved crossings between islands as well as movement over land. The researchers combine the cave evidence with reconstructed coastlines to examine possible journeys into the wider region; the find establishes activity at Mololo, not one definitive migration route.",
+        "pmy": "Potongan resin pohon yang diolah dari Gua Mololo, Waigeo, bertanggal radiokarbon sekitar 55.000–50.000 tahun lalu. Temuan ini menjadi bukti langsung pemanfaatan tumbuhan oleh orang yang hidup di pulau dekat tepi barat laut Nugini. Pembuatannya mencakup pengumpulan serta pengolahan resin, bukan sekadar membawa benda alam tanpa perubahan ke dalam gua.\n\nWaigeo tetap terpisah dari Sahul oleh perairan dalam ketika permukaan laut lebih rendah. Permukiman dengan demikian melibatkan penyeberangan antarpulau sekaligus perpindahan darat. Peneliti memadukan bukti gua dengan rekonstruksi garis pantai untuk mengkaji kemungkinan perjalanan ke kawasan lebih luas; temuan ini menetapkan aktivitas di Mololo, bukan satu jalur migrasi yang pasti."
+      },
+      "places": [
+        {
+          "label": "Waigeo",
+          "longitude": 130.85,
+          "latitude": -0.18,
+          "note": {
+            "en": "Mololo Cave on Waigeo preserves occupation evidence dated to about 55,000–50,000 years ago. Island reference.",
+            "pmy": "Gua Mololo di Waigeo menyimpan bukti hunian sekitar 55.000–50.000 tahun lalu. Referensi pulau."
+          }
+        }
+      ],
+      "additionalArchiveIds": [
+        "mololo-cave",
+        "mololo-resin"
+      ]
+    },
+    "history-languages": {
+      "body": {
+        "en": "West New Guinea contains numerous language families and isolates alongside Austronesian languages. “Papuan” groups the non-Austronesian languages geographically; it does not name a single language family. Laura Arnold’s synthesis brings together classifications, regional distributions and evidence of contact.\n\nThe Bird’s Head includes several distinct families and isolates within a relatively small area. Elsewhere, larger proposed groupings coexist with languages whose deeper relationships remain under study. Borrowed words and grammatical features record encounters between neighbouring communities. A language map is useful for locating these relationships, but its present-day distribution cannot be read as an unchanged map of ancient peoples.",
+        "pmy": "Papua bagian barat memiliki banyak rumpun bahasa serta bahasa isolat, bersama bahasa-bahasa Austronesia. Sebutan “Papua” mengelompokkan bahasa non-Austronesia secara geografis, bukan menamai satu rumpun. Sintesis Laura Arnold menghimpun klasifikasi, persebaran regional, dan bukti hubungan antarmasyarakat.\n\nKepala Burung memuat beberapa rumpun serta bahasa isolat dalam kawasan yang relatif kecil. Di tempat lain, pengelompokan yang lebih besar berdampingan dengan bahasa yang hubungan asalnya masih diteliti. Kata pinjaman serta unsur tata bahasa mencatat perjumpaan masyarakat bertetangga. Peta bahasa membantu menemukan hubungan tersebut, tetapi persebaran sekarang tidak dapat dibaca sebagai peta masyarakat kuno yang tidak berubah."
+      },
+      "additionalArchiveIds": [
+        "language-plate"
+      ],
+      "places": [
+        {
+          "label": "Cenderawasih Bay",
+          "longitude": 135.0,
+          "latitude": -2.1,
+          "note": {
+            "en": "Coastal Austronesian languages and neighbouring Papuan families reflect long histories of contact. Regional reference.",
+            "pmy": "Bahasa Austronesia pesisir dan rumpun Papua di sekitarnya mencerminkan sejarah hubungan yang panjang. Referensi wilayah."
+          }
+        }
+      ]
+    },
+    "history-sago": {
+      "body": {
+        "en": "Malind accounts gathered in the Forest Peoples Programme’s MIFEE study describe customary land through food, work and relationships between people and places. Sago groves, gardens, hunting areas and waterways support livelihoods alongside knowledge passed through families. Decisions about land therefore affect access to existing sources of food and the ability to continue using them.\n\nThe 2013 field study records negotiations with a sugarcane company and community concerns about forest conversion. It asks whether information and consent processes enabled people to make decisions about their territories. These accounts provide an important background to later food and energy projects in Merauke: the terms of an investment agreement and the effects on everyday access to land need to be read together.",
+        "pmy": "Kesaksian Malind dalam kajian MIFEE Forest Peoples Programme menjelaskan tanah adat melalui pangan, kerja, serta hubungan manusia dengan tempat. Dusun sagu, kebun, wilayah berburu, dan perairan menopang penghidupan bersama pengetahuan yang diteruskan melalui keluarga. Keputusan tentang tanah dengan demikian memengaruhi akses pada sumber pangan yang sudah ada serta kemampuan untuk terus memanfaatkannya.\n\nKajian lapangan 2013 mencatat perundingan dengan perusahaan tebu dan kekhawatiran masyarakat tentang perubahan hutan. Kajian ini menanyakan apakah informasi serta proses persetujuan memungkinkan masyarakat mengambil keputusan atas wilayah mereka. Kesaksian tersebut menjadi latar penting bagi proyek pangan dan energi berikutnya di Merauke: ketentuan perjanjian investasi serta dampaknya pada akses tanah sehari-hari perlu dibaca bersama."
+      },
+      "additionalArchiveIds": [
+        "malind-mifee-report"
+      ]
+    },
+    "history-khombouw": {
+      "media": null,
+      "exhibition": true,
+      "additionalArchiveIds": [
+        "khombouw-materials"
+      ]
+    },
+    "history-noken-practice": {
+      "media": null,
+      "exhibition": true
+    },
+    "history-muyu-makers": {
+      "media": null,
+      "exhibition": true
+    },
+    "history-living": {
+      "media": null,
+      "yearLabel": {
+        "en": "2012",
+        "pmy": "2012"
+      },
+      "title": {
+        "en": "Noken recognition",
+        "pmy": "Pengakuan noken"
+      },
+      "body": {
+        "en": "UNESCO inscribed noken-making on the List of Intangible Cultural Heritage in Need of Urgent Safeguarding in 2012. Noken are knotted or woven bags made from local fibres and used to carry food, goods and children. Making them connects plant knowledge, skilled work and everyday exchange.\n\nThe inscription identifies threats to transmission and calls for safeguarding the practice. Regional studies also show how makers negotiate changing markets and household needs. Their work continues through identifiable people and communities; contemporary works and maker photographs can be explored in Exhibition.",
+        "pmy": "UNESCO memasukkan pembuatan noken dalam Daftar Warisan Budaya Takbenda yang Memerlukan Pelindungan Mendesak pada 2012. Noken merupakan tas simpul atau anyaman dari serat setempat untuk membawa pangan, barang, dan anak. Pembuatannya menghubungkan pengetahuan tumbuhan, keterampilan kerja, serta pertukaran sehari-hari.\n\nPengakuan tersebut mencatat ancaman pada pewarisan pengetahuan dan kebutuhan pelindungan praktik. Kajian regional juga memperlihatkan cara pembuat menghadapi perubahan pasar serta kebutuhan rumah tangga. Karya dan foto pembuat masa kini dapat dijelajahi melalui Pameran."
+      },
+      "exhibition": true,
+      "places": [
+        {
+          "label": "Wamena",
+          "longitude": 138.94,
+          "latitude": -4.1,
+          "note": {
+            "en": "Noken practices documented by UNESCO connect several Papuan communities. Wamena is a regional reference, not an invention site.",
+            "pmy": "Praktik noken yang dicatat UNESCO menghubungkan sejumlah masyarakat Papua. Wamena merupakan referensi wilayah, bukan tempat asal tunggal."
+          }
+        }
+      ],
+      "additionalArchiveIds": [
+        "noken-documentation-2017"
+      ]
+    },
+    "history-sahul": {
+      "additionalArchiveIds": [
+        "sahul-plate"
+      ]
+    },
+    "history-coastlines": {
+      "additionalArchiveIds": [
+        "coastlines-plate"
+      ]
+    },
+    "history-austronesian": {
+      "additionalArchiveIds": [
+        "language-plate"
+      ]
+    },
+    "history-sentani-settlements": {
+      "additionalArchiveIds": [
+        "sentani-plate"
+      ]
+    },
+    "history-kayu-batu-pottery": {
+      "additionalArchiveIds": [
+        "kayu-batu-plate"
+      ]
+    },
+    "history-keerom-rock-art": {
+      "additionalArchiveIds": [
+        "keerom-plate"
+      ]
+    },
+    "history-1828": {
+      "additionalArchiveIds": [
+        "kamoro-1828-plate"
+      ]
+    },
+    "history-kamoro-collections": {
+      "additionalArchiveIds": [
+        "kamoro-1828-plate"
+      ]
+    },
+    "history-merauke-station": {
+      "additionalArchiveIds": [
+        "marind-canoes-1902-plate",
+        "merauke-hurley-1925"
+      ]
+    },
+    "history-wwii": {
+      "additionalArchiveIds": [
+        "biak-war-plate",
+        "awm-hollandia-1944",
+        "awm-merauke-1944",
+        "awm-noemfoor-1944"
+      ]
+    },
+    "history-meege": {
+      "additionalArchiveIds": [
+        "meege-plate"
+      ]
+    },
+    "history-new-provinces": {
+      "additionalArchiveIds": [
+        "province-plate"
+      ],
+      "places": [
+        {
+          "label": "Merauke",
+          "longitude": 140.4,
+          "latitude": -8.48,
+          "note": {
+            "en": "Merauke became the capital of South Papua, one of the provinces created in 2022.",
+            "pmy": "Merauke menjadi ibu kota Papua Selatan, salah satu provinsi yang dibentuk pada 2022."
+          }
+        }
+      ]
+    },
+    "history-1962": {
+      "additionalArchiveIds": [
+        "new-york-agreement-page",
+        "openbeelden-plateel-1962",
+        "evacuees-1962",
+        "papua-erfgoed-atom-age-1962"
+      ],
+      "places": [
+        {
+          "label": "Jayapura",
+          "longitude": 140.7,
+          "latitude": -2.55,
+          "note": {
+            "en": "Hollandia was the administrative centre affected by the New York Agreement and the UNTEA transition.",
+            "pmy": "Hollandia merupakan pusat pemerintahan dalam peralihan berdasarkan Perjanjian New York dan UNTEA."
+          }
+        }
+      ]
+    },
+    "history-1969": {
+      "additionalArchiveIds": [
+        "new-york-agreement-page"
+      ],
+      "places": [
+        {
+          "label": "Merauke",
+          "longitude": 140.4,
+          "latitude": -8.48,
+          "note": {
+            "en": "Merauke was one of the locations of the representative assemblies used for Pepera. Regional reference.",
+            "pmy": "Merauke merupakan salah satu tempat musyawarah perwakilan dalam Pepera. Referensi wilayah."
+          }
+        }
+      ]
+    },
+    "history-mifee": {
+      "additionalArchiveIds": [
+        "malind-mifee-report"
+      ]
+    },
+    "history-women-testimony": {
+      "additionalArchiveIds": [
+        "papuan-women-report"
+      ]
+    },
+    "history-2001": {
+      "additionalArchiveIds": [
+        "papuan-women-report"
+      ],
+      "places": [
+        {
+          "label": "Jayapura",
+          "longitude": 140.7,
+          "latitude": -2.55,
+          "note": {
+            "en": "Jayapura became the seat of institutions working under the special-autonomy framework, including the Papuan People’s Assembly.",
+            "pmy": "Jayapura menjadi tempat lembaga dalam kerangka otonomi khusus, termasuk Majelis Rakyat Papua."
+          }
+        }
+      ]
+    },
+    "history-untea": {
+      "additionalArchiveIds": [
+        "untea-working-1962"
+      ],
+      "places": [
+        {
+          "label": "Jayapura",
+          "longitude": 140.7,
+          "latitude": -2.55,
+          "note": {
+            "en": "UNTEA administered the territory from October 1962 to May 1963. The archive photograph shows officials working in Hollandia.",
+            "pmy": "UNTEA memerintah wilayah ini dari Oktober 1962 hingga Mei 1963. Foto arsip menampilkan pejabat bekerja di Hollandia."
+          }
+        }
+      ]
+    },
+    "history-1963": {
+      "additionalArchiveIds": [
+        "untea-working-1962"
+      ],
+      "places": [
+        {
+          "label": "Jayapura",
+          "longitude": 140.7,
+          "latitude": -2.55,
+          "note": {
+            "en": "Administration transferred from UNTEA to Indonesia on 1 May 1963.",
+            "pmy": "Pemerintahan beralih dari UNTEA kepada Indonesia pada 1 Mei 1963."
+          }
+        }
+      ]
+    },
+    "history-mambesak": {
+      "additionalArchiveIds": [
+        "mambesak-ap-kapisa"
+      ],
+      "places": [
+        {
+          "label": "Jayapura",
+          "longitude": 140.7,
+          "latitude": -2.55,
+          "note": {
+            "en": "Mambesak formed around music and cultural research in Jayapura. Arnold Ap worked at the university museum.",
+            "pmy": "Mambesak tumbuh melalui musik dan penelitian budaya di Jayapura. Arnold Ap bekerja di museum universitas."
+          }
+        }
+      ]
+    },
+    "history-1898": {
+      "additionalArchiveIds": [
+        "schetskaart-van-nieuw-guinee-sheet-i",
+        "smithsonian-mamberamo-1926"
+      ]
+    },
+    "history-koreri": {
+      "additionalArchiveIds": [
+        "archbold-baliem-1938"
+      ]
+    },
+    "history-1949": {
+      "additionalArchiveIds": [
+        "openbeelden-conference-1950"
+      ],
+      "places": [
+        {
+          "label": "Jayapura",
+          "longitude": 140.7,
+          "latitude": -2.55,
+          "note": {
+            "en": "Hollandia remained the Dutch administrative centre after Indonesia’s 1949 sovereignty transfer.",
+            "pmy": "Hollandia tetap menjadi pusat pemerintahan Belanda setelah penyerahan kedaulatan Indonesia pada 1949."
+          }
+        }
+      ]
+    },
+    "history-papuanisation": {
+      "additionalArchiveIds": [
+        "sentani-flute-orchestra",
+        "mokmer-biak-1955",
+        "openbeelden-clinic-ship-1958"
+      ],
+      "places": [
+        {
+          "label": "Jayapura",
+          "longitude": 140.7,
+          "latitude": -2.55,
+          "note": {
+            "en": "Papuanisation expanded training and opportunities in administration during the later Dutch period.",
+            "pmy": "Papuanisasi memperluas pelatihan dan kesempatan dalam pemerintahan pada masa akhir Belanda."
+          }
+        }
+      ]
+    },
+    "history-1961": {
+      "additionalArchiveIds": [
+        "council-election-1961",
+        "council-opening-1961",
+        "openbeelden-flag-1961",
+        "papua-erfgoed-atom-age-1962"
+      ]
+    },
+    "history-land": {
+      "places": [
+        {
+          "label": "Mimika",
+          "longitude": 136.89,
+          "latitude": -4.53,
+          "note": {
+            "en": "Highland mining and lowland livelihoods are linked through land, rivers and industrial infrastructure.",
+            "pmy": "Pertambangan pegunungan dan penghidupan dataran rendah berhubungan melalui tanah, sungai, dan prasarana industri."
+          }
+        }
+      ],
+      "additionalArchiveIds": [
+        "grasberg-iss-2005"
+      ]
+    },
+    "history-highlands-1977": {
+      "places": [
+        {
+          "label": "Wamena",
+          "longitude": 138.94,
+          "latitude": -4.1,
+          "note": {
+            "en": "The investigation documents violence across the Central Highlands in 1977–78. This point indicates the region, not an individual incident.",
+            "pmy": "Penyelidikan mendokumentasikan kekerasan di pegunungan tengah pada 1977–78. Titik menunjukkan wilayah, bukan satu kejadian."
+          }
+        }
+      ],
+      "body": {
+        "en": "The Asian Human Rights Commission’s investigation reconstructs military violence in the Central Highlands during 1977–1978 through survivor interviews and named-victim records. It describes attacks, deaths and displacement across communities rather than one isolated confrontation. Survivors’ accounts connect the violence with damage to homes, food supplies and livelihoods.\n\nThe reconstruction is a later human-rights investigation, with estimates tied to its stated method and sources. Community testimony remains central to understanding how these operations shaped relations with state institutions and the difficulties of return.",
+        "pmy": "Penyelidikan Asian Human Rights Commission merekonstruksi kekerasan militer di pegunungan tengah pada 1977–1978 melalui wawancara penyintas dan catatan nama korban. Kajian membahas serangan, kematian, serta pengungsian di sejumlah masyarakat, bukan satu bentrokan. Kesaksian penyintas menghubungkan kekerasan dengan kerusakan rumah, persediaan pangan, dan penghidupan.\n\nRekonstruksi ini merupakan penyelidikan HAM yang dilakukan kemudian, dengan perkiraan berdasarkan metode dan sumber yang dijelaskan. Kesaksian masyarakat membantu memahami hubungan dengan lembaga negara dan kesulitan pemulangan."
+      },
+      "additionalArchiveIds": [
+        "highlands-investigation-cover"
+      ]
+    },
+    "history-reformasi": {
+      "places": [
+        {
+          "label": "Jayapura",
+          "longitude": 140.7,
+          "latitude": -2.55,
+          "note": {
+            "en": "The Papuan Congress met in Jayapura in 2000, bringing together delegates from Papua and the diaspora.",
+            "pmy": "Kongres Papua berlangsung di Jayapura pada 2000, mempertemukan delegasi Papua dan diaspora."
+          }
+        }
+      ],
+      "additionalArchiveIds": [
+        "reformasi-report"
+      ]
+    },
+    "history-2014": {
+      "places": [
+        {
+          "label": "Papua",
+          "longitude": 135.0,
+          "latitude": -4.0,
+          "note": {
+            "en": "The Saralana declaration joined Papuan organisations for international advocacy. The meeting itself took place in Vanuatu.",
+            "pmy": "Deklarasi Saralana menyatukan organisasi Papua untuk advokasi internasional. Pertemuannya berlangsung di Vanuatu."
+          }
+        }
+      ],
+      "additionalArchiveIds": [
+        "saralana-declaration"
+      ]
+    },
+    "history-racism-2019": {
+      "places": [
+        {
+          "label": "Jayapura",
+          "longitude": 140.7,
+          "latitude": -2.55,
+          "note": {
+            "en": "Jayapura was among the locations of the August 2019 protests following racist abuse against Papuan students in Surabaya.",
+            "pmy": "Jayapura merupakan salah satu tempat protes Agustus 2019 setelah penghinaan rasis terhadap mahasiswa Papua di Surabaya."
+          }
+        }
+      ],
+      "body": {
+        "en": "Racist abuse against Papuan students in Surabaya helped trigger protests across Papua in August 2019. Demonstrators connected discrimination with demands over rights and political treatment. Responses included arrests and restrictions on information, while events differed between locations.\n\nHuman Rights Watch’s investigation follows those experiences through interviews and case research. It documents discrimination affecting students and other Papuans beyond the demonstrations, placing the protests within a longer pattern of unequal treatment.",
+        "pmy": "Penghinaan rasis terhadap mahasiswa Papua di Surabaya turut memicu protes di berbagai wilayah Papua pada Agustus 2019. Demonstran menghubungkan diskriminasi dengan tuntutan hak dan perlakuan politik. Tanggapan mencakup penangkapan serta pembatasan informasi, dengan kejadian yang berbeda di tiap tempat.\n\nPenyelidikan Human Rights Watch menelusuri pengalaman tersebut melalui wawancara dan kajian kasus. Laporan mendokumentasikan diskriminasi yang dialami mahasiswa dan warga Papua di luar demonstrasi, menempatkan protes dalam pola perlakuan tidak setara yang lebih panjang."
+      },
+      "additionalArchiveIds": [
+        "ariana-elopere-2023"
+      ]
+    },
+    "history-internet-ruling": {
+      "places": [
+        {
+          "label": "Jayapura",
+          "longitude": 140.7,
+          "latitude": -2.55,
+          "note": {
+            "en": "Papua was affected by the 2019 internet restrictions. The court ruling was delivered in Jakarta in June 2020.",
+            "pmy": "Papua terdampak pembatasan internet 2019. Putusan pengadilan disampaikan di Jakarta pada Juni 2020."
+          }
+        }
+      ],
+      "body": {
+        "en": "On 3 June 2020, the Jakarta State Administrative Court ruled that the government’s internet throttling and shutdown in Papua and West Papua during the 2019 protests were unlawful. AJI and SAFEnet brought the case against the communications minister and president.\n\nThe interruption had affected journalism, organising and access to information. The ruling established a legal finding about those government actions, giving later debates over internet restrictions a concrete precedent.",
+        "pmy": "Pada 3 Juni 2020, Pengadilan Tata Usaha Negara Jakarta menyatakan pelambatan dan pemutusan internet oleh pemerintah di Papua serta Papua Barat saat protes 2019 melanggar hukum. AJI dan SAFEnet menggugat menteri komunikasi serta presiden.\n\nGangguan tersebut berdampak pada jurnalisme, pengorganisasian, dan akses informasi. Putusan menetapkan temuan hukum atas tindakan pemerintah itu dan menjadi rujukan nyata bagi perdebatan pembatasan internet berikutnya."
+      },
+      "additionalArchiveIds": [
+        "internet-amicus"
+      ]
+    },
+    "history-otsus-revision": {
+      "places": [
+        {
+          "label": "Jayapura",
+          "longitude": 140.7,
+          "latitude": -2.55,
+          "note": {
+            "en": "The Papuan People’s Assembly challenged provisions of the revised autonomy law before the Constitutional Court in Jakarta.",
+            "pmy": "Majelis Rakyat Papua menguji ketentuan revisi undang-undang otonomi di Mahkamah Konstitusi, Jakarta."
+          }
+        }
+      ],
+      "additionalArchiveIds": [
+        "otsus-court-document"
+      ]
+    },
+    "history-today": {
+      "places": [
+        {
+          "label": "Central Highlands",
+          "longitude": 137.5,
+          "latitude": -3.9,
+          "note": {
+            "en": "Recent UN records describe displacement and restricted humanitarian access in Papua’s conflict-affected areas. Regional reference.",
+            "pmy": "Catatan PBB terbaru membahas pengungsian dan keterbatasan akses kemanusiaan di wilayah konflik Papua. Referensi wilayah."
+          }
+        }
+      ],
+      "additionalArchiveIds": [
+        "nduga-weneroma-2019",
+        "un-displacement-appeal"
+      ]
+    },
+    "history-raja-permits": {
+      "body": {
+        "en": "On 10 June 2025, the government announced the revocation of mining permits for Anugerah Surya Pratama, Mulia Raymond Perkasa, Kawei Sejahtera Mining and Nurham in Raja Ampat. PT Gag Nikel’s permit remained in force.\n\nThe distinction matters for understanding what changed: the decision concerned four companies, while other mining activity and the condition of affected islands required continued monitoring. The followed story tracks subsequent operations and access to the revocation records.",
+        "pmy": "Pada 10 Juni 2025, pemerintah mengumumkan pencabutan izin tambang Anugerah Surya Pratama, Mulia Raymond Perkasa, Kawei Sejahtera Mining, dan Nurham di Raja Ampat. Izin PT Gag Nikel tetap berlaku.\n\nPerbedaan ini penting untuk memahami perubahan: keputusan menyangkut empat perusahaan, sementara kegiatan tambang lain dan kondisi pulau terdampak memerlukan pemantauan lanjutan. Kisah dalam pantauan menelusuri operasi berikutnya serta akses atas catatan pencabutan."
+      },
+      "additionalArchiveIds": [
+        "raja-historical-sites-plate"
+      ]
+    },
+    "history-psn-2023": {
+      "additionalArchiveIds": [
+        "merauke-source-1",
+        "merauke-source-2",
+        "merauke-source-8"
+      ]
+    },
+    "history-freeport-contract": {
+      "additionalArchiveIds": [
+        "grasberg-iss-2005"
+      ]
+    },
+    "history-mansinam": {
+      "additionalArchiveIds": [
+        "mansinam-route"
+      ]
+    },
+    "history-digoel": {
+      "additionalArchiveIds": [
+        "digoel-internment"
+      ]
+    }
+  },
+  "chapters": [
+    {
+      "id": "history-geography",
+      "era": "orientation",
+      "date": {
+        "en": "Landscape",
+        "pmy": "Bentang alam"
+      },
+      "title": {
+        "en": "Landscape and sea crossings",
+        "pmy": "Bentang alam dan penyeberangan laut"
+      },
+      "kind": "orientation",
+      "main": true,
+      "primary": [
+        "history-geography"
+      ],
+      "facets": [
+        {
+          "path": "archaeology",
+          "records": [
+            "history-sahul"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "history-mololo",
+      "era": "settlement",
+      "date": {
+        "en": "55,000–50,000 years ago",
+        "pmy": "55.000–50.000 tahun lalu"
+      },
+      "title": {
+        "en": "Mololo Cave, Waigeo",
+        "pmy": "Gua Mololo, Waigeo"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-mololo"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-andarewa",
+      "era": "settlement",
+      "date": {
+        "en": "26,300–24,000 years ago",
+        "pmy": "26.300–24.000 tahun lalu"
+      },
+      "title": {
+        "en": "Settlement inland and on Bomberai",
+        "pmy": "Permukiman pedalaman dan Bomberai"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-andarewa"
+      ],
+      "facets": [
+        {
+          "path": "archaeology",
+          "records": [
+            "history-toe-kria"
+          ],
+          "label": {
+            "en": "Kaimana",
+            "pmy": "Kaimana"
+          }
+        }
+      ],
+      "mainLabel": {
+        "en": "Fakfak",
+        "pmy": "Fakfak"
+      }
+    },
+    {
+      "id": "history-coastlines",
+      "era": "coasts",
+      "date": {
+        "en": "After the Ice Age",
+        "pmy": "Setelah Zaman Es"
+      },
+      "title": {
+        "en": "Coasts, islands and food",
+        "pmy": "Pesisir, pulau, dan pangan"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-coastlines"
+      ],
+      "facets": [
+        {
+          "path": "land",
+          "records": [
+            "history-gardens"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "history-pottery",
+      "era": "coasts",
+      "date": {
+        "en": "3,100–2,700 years ago",
+        "pmy": "3.100–2.700 tahun lalu"
+      },
+      "title": {
+        "en": "Pottery and regional contact",
+        "pmy": "Tembikar dan hubungan regional"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-pottery"
+      ],
+      "facets": [
+        {
+          "path": "peoples",
+          "records": [
+            "history-austronesian"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "history-leadership",
+      "era": "regional",
+      "date": {
+        "en": "Regional accounts",
+        "pmy": "Catatan regional"
+      },
+      "title": {
+        "en": "Authority and social relationships",
+        "pmy": "Kewenangan dan hubungan sosial"
+      },
+      "kind": "context",
+      "main": true,
+      "primary": [
+        "history-leadership"
+      ],
+      "facets": [
+        {
+          "path": "social",
+          "records": [
+            "history-exchange",
+            "history-meege"
+          ]
+        },
+        {
+          "path": "land",
+          "records": [
+            "history-sago"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "history-tidore",
+      "era": "maritime",
+      "date": {
+        "en": "15th–19th centuries",
+        "pmy": "Abad ke-15–19"
+      },
+      "title": {
+        "en": "Western coasts and Maluku",
+        "pmy": "Pesisir barat dan Maluku"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-tidore"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-1828",
+      "era": "colonial",
+      "date": {
+        "en": "1828",
+        "pmy": "1828"
+      },
+      "title": {
+        "en": "Fort Du Bus",
+        "pmy": "Benteng Du Bus"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-1828"
+      ],
+      "facets": [
+        {
+          "path": "culture",
+          "records": [
+            "history-kamoro-collections"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "history-mansinam",
+      "era": "colonial",
+      "date": {
+        "en": "1855",
+        "pmy": "1855"
+      },
+      "title": {
+        "en": "Mansinam and the mission",
+        "pmy": "Mansinam dan misi"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-mansinam"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-1898",
+      "era": "colonial",
+      "date": {
+        "en": "1898–1902",
+        "pmy": "1898–1902"
+      },
+      "title": {
+        "en": "Permanent colonial stations",
+        "pmy": "Pos kolonial permanen"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-1898",
+        "history-merauke-station"
+      ],
+      "facets": [
+        {
+          "path": "social",
+          "records": [
+            "history-mission-schooling"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "history-digoel",
+      "era": "colonial",
+      "date": {
+        "en": "1927 onward",
+        "pmy": "Sejak 1927"
+      },
+      "title": {
+        "en": "Boven Digoel",
+        "pmy": "Boven Digoel"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-digoel"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-koreri",
+      "era": "war",
+      "date": {
+        "en": "1938–1943",
+        "pmy": "1938–1943"
+      },
+      "title": {
+        "en": "Koreri movements",
+        "pmy": "Gerakan Koreri"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-koreri"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-wwii",
+      "era": "war",
+      "date": {
+        "en": "1942–1945",
+        "pmy": "1942–1945"
+      },
+      "title": {
+        "en": "War on Papuan land",
+        "pmy": "Perang di tanah Papua"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-wwii"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-1949",
+      "era": "postwar",
+      "date": {
+        "en": "1949–1960",
+        "pmy": "1949–1960"
+      },
+      "title": {
+        "en": "Postwar administration and political organising",
+        "pmy": "Pemerintahan pascaperang dan organisasi politik"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-1949",
+        "history-papuanisation"
+      ],
+      "facets": [
+        {
+          "path": "social",
+          "records": [
+            "history-serido-biak-1950",
+            "history-hollandia-housing-1953",
+            "history-manokwari-street-1954",
+            "history-fakfak-neighbourhood-1956"
+          ]
+        },
+        {
+          "path": "culture",
+          "records": [
+            "history-sentani-powe-1958"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "history-1961",
+      "era": "transfer",
+      "date": {
+        "en": "1961",
+        "pmy": "1961"
+      },
+      "title": {
+        "en": "New Guinea Council",
+        "pmy": "Dewan Nugini"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-1961"
+      ],
+      "facets": [
+        {
+          "path": "social",
+          "records": [
+            "history-merauke-street-1961"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "history-1962",
+      "era": "transfer",
+      "date": {
+        "en": "1962–1963",
+        "pmy": "1962–1963"
+      },
+      "title": {
+        "en": "Agreement and administrative transfer",
+        "pmy": "Perjanjian dan penyerahan administrasi"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-1962",
+        "history-untea",
+        "history-1963"
+      ],
+      "facets": [
+        {
+          "path": "social",
+          "records": [
+            "history-evacuees-1962"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "history-freeport-contract",
+      "era": "transfer",
+      "date": {
+        "en": "1967",
+        "pmy": "1967"
+      },
+      "title": {
+        "en": "Freeport’s first contract",
+        "pmy": "Kontrak pertama Freeport"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-freeport-contract"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-1969",
+      "era": "transfer",
+      "date": {
+        "en": "1969",
+        "pmy": "1969"
+      },
+      "title": {
+        "en": "Pepera",
+        "pmy": "Pepera"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-1969"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-land",
+      "era": "indonesian",
+      "date": {
+        "en": "1970s onward",
+        "pmy": "Sejak 1970-an"
+      },
+      "title": {
+        "en": "Land and livelihoods",
+        "pmy": "Tanah dan penghidupan"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-land"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-highlands-1977",
+      "era": "indonesian",
+      "date": {
+        "en": "1977–1978",
+        "pmy": "1977–1978"
+      },
+      "title": {
+        "en": "Violence in the Central Highlands",
+        "pmy": "Kekerasan di Pegunungan Tengah"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-highlands-1977"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-mambesak",
+      "era": "indonesian",
+      "date": {
+        "en": "1978–1984",
+        "pmy": "1978–1984"
+      },
+      "title": {
+        "en": "Mambesak",
+        "pmy": "Mambesak"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-mambesak"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-reformasi",
+      "era": "autonomy",
+      "date": {
+        "en": "1998–2000",
+        "pmy": "1998–2000"
+      },
+      "title": {
+        "en": "Reformasi and the Papuan Congress",
+        "pmy": "Reformasi dan Kongres Papua"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-reformasi"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-2001",
+      "era": "autonomy",
+      "date": {
+        "en": "2001",
+        "pmy": "2001"
+      },
+      "title": {
+        "en": "Special autonomy",
+        "pmy": "Otonomi khusus"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-2001"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-mifee",
+      "era": "public-life",
+      "date": {
+        "en": "2010 onward",
+        "pmy": "Sejak 2010"
+      },
+      "title": {
+        "en": "MIFEE in Merauke",
+        "pmy": "MIFEE di Merauke"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-mifee"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-living",
+      "era": "public-life",
+      "date": {
+        "en": "2012",
+        "pmy": "2012"
+      },
+      "title": {
+        "en": "Noken recognition",
+        "pmy": "Pengakuan noken"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-living"
+      ],
+      "facets": [
+        {
+          "path": "social",
+          "records": [
+            "history-muyu-makers"
+          ],
+          "label": {
+            "en": "Making",
+            "pmy": "Pembuatan"
+          }
+        }
+      ],
+      "mainLabel": {
+        "en": "Recognition",
+        "pmy": "Pengakuan"
+      }
+    },
+    {
+      "id": "history-2014",
+      "era": "public-life",
+      "date": {
+        "en": "2014",
+        "pmy": "2014"
+      },
+      "title": {
+        "en": "The Saralana Declaration",
+        "pmy": "Deklarasi Saralana"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-2014"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-racism-2019",
+      "era": "public-life",
+      "date": {
+        "en": "2019",
+        "pmy": "2019"
+      },
+      "title": {
+        "en": "Anti-racism protests",
+        "pmy": "Protes antirasisme"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-racism-2019"
+      ],
+      "facets": [
+        {
+          "path": "social",
+          "records": [
+            "history-women-testimony"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "history-internet-ruling",
+      "era": "public-life",
+      "date": {
+        "en": "2020",
+        "pmy": "2020"
+      },
+      "title": {
+        "en": "The internet shutdown ruling",
+        "pmy": "Putusan pemutusan internet"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-internet-ruling"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-otsus-revision",
+      "era": "present",
+      "date": {
+        "en": "2021",
+        "pmy": "2021"
+      },
+      "title": {
+        "en": "Revising special autonomy",
+        "pmy": "Revisi otonomi khusus"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-otsus-revision"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-new-provinces",
+      "era": "present",
+      "date": {
+        "en": "2022",
+        "pmy": "2022"
+      },
+      "title": {
+        "en": "Four new provinces",
+        "pmy": "Empat provinsi baru"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-new-provinces"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-psn-2023",
+      "era": "present",
+      "date": {
+        "en": "2023–2024",
+        "pmy": "2023–2024"
+      },
+      "title": {
+        "en": "Food and energy programmes",
+        "pmy": "Program pangan dan energi"
+      },
+      "kind": "period",
+      "main": true,
+      "primary": [
+        "history-psn-2023"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-raja-permits",
+      "era": "present",
+      "date": {
+        "en": "2025",
+        "pmy": "2025"
+      },
+      "title": {
+        "en": "Raja Ampat permit revocations",
+        "pmy": "Pencabutan izin Raja Ampat"
+      },
+      "kind": "event",
+      "main": true,
+      "primary": [
+        "history-raja-permits"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-today",
+      "era": "current",
+      "date": {
+        "en": "Recent accounts",
+        "pmy": "Catatan terkini"
+      },
+      "title": {
+        "en": "Displacement and humanitarian access",
+        "pmy": "Pengungsian dan akses kemanusiaan"
+      },
+      "kind": "context",
+      "main": true,
+      "primary": [
+        "history-today"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-languages",
+      "era": "regional",
+      "date": {
+        "en": "Regional accounts",
+        "pmy": "Catatan regional"
+      },
+      "title": {
+        "en": "Languages and population histories",
+        "pmy": "Bahasa dan riwayat penduduk"
+      },
+      "kind": "context",
+      "main": false,
+      "primary": [
+        "history-languages"
+      ],
+      "facets": [
+        {
+          "path": "peoples",
+          "records": [
+            "history-population",
+            "history-pacific"
+          ],
+          "label": {
+            "en": "Movement",
+            "pmy": "Perpindahan"
+          }
+        }
+      ],
+      "mainLabel": {
+        "en": "Languages",
+        "pmy": "Bahasa"
+      }
+    },
+    {
+      "id": "history-sentani-settlements",
+      "era": "regional",
+      "date": {
+        "en": "Date not established",
+        "pmy": "Tanggal belum ditetapkan"
+      },
+      "title": {
+        "en": "Archaeology around Sentani",
+        "pmy": "Arkeologi sekitar Sentani"
+      },
+      "kind": "undated",
+      "main": false,
+      "primary": [
+        "history-sentani-settlements"
+      ],
+      "facets": [
+        {
+          "path": "archaeology",
+          "records": [
+            "history-kayu-batu-pottery"
+          ],
+          "label": {
+            "en": "Pottery",
+            "pmy": "Tembikar"
+          }
+        }
+      ],
+      "mainLabel": {
+        "en": "Settlements",
+        "pmy": "Permukiman"
+      }
+    },
+    {
+      "id": "history-keerom-rock-art",
+      "era": "regional",
+      "date": {
+        "en": "Date not established",
+        "pmy": "Tanggal belum ditetapkan"
+      },
+      "title": {
+        "en": "Rock art in Keerom",
+        "pmy": "Lukisan cadas di Keerom"
+      },
+      "kind": "undated",
+      "main": false,
+      "primary": [
+        "history-keerom-rock-art"
+      ],
+      "facets": []
+    },
+    {
+      "id": "history-khombouw",
+      "era": "regional",
+      "date": {
+        "en": "Living practices",
+        "pmy": "Praktik yang hidup"
+      },
+      "title": {
+        "en": "Sentani bark cloth and noken",
+        "pmy": "Kulit kayu Sentani dan noken"
+      },
+      "kind": "living",
+      "main": false,
+      "primary": [
+        "history-khombouw"
+      ],
+      "facets": [
+        {
+          "path": "culture",
+          "records": [
+            "history-noken-practice"
+          ],
+          "label": {
+            "en": "Noken",
+            "pmy": "Noken"
+          }
+        }
+      ],
+      "mainLabel": {
+        "en": "Khombouw",
+        "pmy": "Khombouw"
+      }
+    }
+  ]
+}

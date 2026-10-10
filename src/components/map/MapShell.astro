@@ -32,9 +32,17 @@ const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
 
     <div class="watch-map-state" data-map-state></div>
 
+    <div class="watch-map-toprail">
     <div class="watch-map-basebar" aria-label={labels.base}>
       <span>{labels.base}</span>
       <div>{MAP_BASES.map(base=><button type="button" data-map-base={base.id}>{baseFor(base)}</button>)}</div>
+    </div>
+
+    <div class="watch-map-controls" aria-label="Map controls">
+      <button type="button" data-map-layers-open aria-expanded="false" aria-label={labels.layers} title={labels.layers}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 8 9-5 9 5-9 5-9-5Zm0 4 9 5 9-5M3 16l9 5 9-5"/></svg><span>{labels.layers}</span></button>
+      <button type="button" data-map-expand aria-label={labels.expand} title={labels.expand}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg><span>{labels.expand}</span></button>
+      <button type="button" data-map-close-expanded hidden aria-label={labels.close} title={labels.close}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg><span>{labels.close}</span></button>
+    </div>
     </div>
 
     <details class="watch-map-viewbar" data-map-presets>
@@ -46,11 +54,6 @@ const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
       <label><span>{locale==='pmy'?'Periode laporan':'Reporting period'}</span><output data-map-period-label></output><input type="range" min="0" max={CONFLICT_PERIODS.length-1} step="1" value="2" data-map-period aria-label={locale==='pmy'?'Periode laporan konflik':'Conflict reporting period'}/></label>
       <div class="watch-map-time-key"><span class="conflict-dot">{locale==='pmy'?'Konflik':'Conflict'}</span><span class="displacement-dot">{locale==='pmy'?'Pengungsian':'Displacement'}</span><span class="deployment-dot">{locale==='pmy'?'Militer':'Military'}</span></div>
       <details><summary>{locale==='pmy'?'Laporan dalam periode ini':'Reports in this period'} <span data-map-period-count></span></summary><div data-map-period-list></div><p>{locale==='pmy'?'Titik referensi wilayah. Cakupan terbatas; bukan peta posisi langsung.':'Regional reference points. Partial coverage; not live positions.'}</p></details>
-    </div>
-    <div class="watch-map-controls" aria-label="Map controls">
-      <button type="button" data-map-layers-open aria-expanded="false" aria-label={labels.layers} title={labels.layers}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 8 9-5 9 5-9 5-9-5Zm0 4 9 5 9-5M3 16l9 5 9-5"/></svg><span>{labels.layers}</span></button>
-      <button type="button" data-map-expand aria-label={labels.expand} title={labels.expand}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg><span>{labels.expand}</span></button>
-      <button type="button" data-map-close-expanded hidden aria-label={labels.close} title={labels.close}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg><span>{labels.close}</span></button>
     </div>
     <button class="watch-map-recenter" type="button" data-map-overview aria-label={locale==='pmy'?'Kembali ke Papua, utara di atas':'Recenter on Papua, north up'} title={locale==='pmy'?'Kembali ke Papua':'Recenter on Papua'}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 14.1 9.9 21.5 12l-7.4 2.1L12 21.5l-2.1-7.4L2.5 12l7.4-2.1L12 2.5Z"/></svg><span class="sr-only">{labels.overview}</span></button>
 
@@ -94,6 +97,11 @@ const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
   </details>
 </section>
 <script>
-  import {initWatchMaps} from '../../lib/map/runtime';
-  initWatchMaps();
+  const roots=[...document.querySelectorAll<HTMLElement>('[data-watch-map]')];
+  const load=()=>import('../../lib/map/runtime').then(({initWatchMaps})=>initWatchMaps());
+  if(roots.some(root=>root.dataset.context!=='history'))void load();
+  else for(const root of roots){
+    root.dataset.mapInitialized='deferred';
+    root.addEventListener('watch:map-activate',()=>{void load().then(()=>root.dispatchEvent(new CustomEvent('watch:map-activate')))}, {once:true});
+  }
 </script>

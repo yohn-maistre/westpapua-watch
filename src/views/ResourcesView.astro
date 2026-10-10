@@ -92,3 +92,7 @@ document.querySelector<HTMLButtonElement>('[data-resource-export]')?.addEventLis
 }
 </style>
 <script>if([...new URL(location.href).searchParams.keys()].some(k=>['q','organization','following','topic','type','place','language'].includes(k)))document.getElementById('catalogue')?.scrollIntoView();</script>
+
+<style>
+@media(max-width:760px){.resource-featured-item:last-child:nth-child(odd){grid-column:1/-1}}
+</style>

@@ -12,7 +12,32 @@ for(const record of historyRecords){assert.ok(historyEras.some(e=>e.id===record.
 const cases=await json('content/following.json');assert.equal(cases.length,8);
 const {topicTimelines}=await moduleAt('src/data/topic-timelines.ts');
 for(const c of cases){assert.ok(c.background.en.length>300);assert.ok(c.background.pmy.length>300);assert.ok(c.backgroundSources.length);assert.ok(topicTimelines[c.slug]?.length,c.slug);}
-const {libraryItems}=await moduleAt('src/data/library.ts');const featured=await json('content/library-featured.json');assert.equal(featured.length,8);for(const id of featured)assert.ok(libraryItems.some(item=>item.id===id),id);
+const {readingChapters,readingRecords,chaptersForPath,figuresForPanel,placesForPanel}=await moduleAt('src/data/history-reading.ts');
+const {archiveItemById}=await moduleAt('src/data/archive.ts');
+assert.equal(new Set(readingChapters.map(c=>c.id)).size,readingChapters.length);
+const assigned=readingChapters.flatMap(c=>c.panels.flatMap(p=>p.records.map(r=>r.id)));
+assert.equal(new Set(assigned).size,assigned.length,'A record belongs to one chapter/perspective');
+assert.deepEqual(new Set(assigned),new Set(readingRecords.map(r=>r.id)),'No account disappears during consolidation');
+for(const c of readingChapters){
+ assert.ok(c.panels.length);assert.ok(c.date.en&&c.date.pmy);
+ if(c.main)assert.ok(!['undated','living'].includes(c.kind),'Undated finds and living practices do not acquire a date in Chronology');
+ for(const p of c.panels){assert.ok(p.paths.length);for(const r of p.records){assert.ok(r.sources.length);for(const id of r.archiveIds)assert.ok(archiveItemById[id],`${r.id}: ${id}`)}for(const point of placesForPanel(p)){assert.ok(Number.isFinite(point.longitude)&&Number.isFinite(point.latitude));assert.ok(point.note.en&&point.note.pmy);assert.match(point.source,/^https?:/)}for(const figure of figuresForPanel(p))assert.ok(figure.item.resolved.image||figure.item.resolved.poster)}
+}
+for(const path of historyPaths){assert.ok(chaptersForPath(path.id).length);if(path.id!=='all')for(const c of chaptersForPath(path.id))assert.ok(c.panels.some(p=>p.paths.includes(path.id)));}
+for(const c of readingChapters)assert.ok(figuresForPanel(c.panels[0]).length,`Source visual: ${c.id}`);
+const {searchCorpus}=await moduleAt('src/data/search.ts');
+assert.equal(searchCorpus.filter(r=>r.type==='history'&&r.id==='history-mansinam').length,1);
+const sourcedTimeline=searchCorpus.find(r=>r.id==='timeline:malind-road-lawsuit');assert.ok(sourcedTimeline.text.en.includes('greenpeace.org'));assert.ok(sourcedTimeline.href.endsWith('#malind-road-lawsuit'));
+for(const id of ['history-kayu-batu-pottery','history-keerom-rock-art','history-khombouw'])assert.ok(!chaptersForPath('all').some(c=>c.panels[0].records.some(r=>r.id===id)),id);
+const merauke=topicTimelines['south-papua-food-energy-estate'];assert.equal(merauke.length,42);assert.equal(merauke.filter(e=>e.sourceDateLabel).length,36);
+for(const id of ['mifee-launch','mifee-rights','sugar-task-force','sugar-planting'])assert.ok(merauke.some(e=>e.id===id),'Legacy Merauke links survive');
+const {milestoneDate}=await moduleAt('src/data/topic-timelines.ts');
+assert.equal(milestoneDate({date:'2024-05'},'en'),'May 2024');assert.equal(milestoneDate({date:'2024-05'},'pmy'),'Mei 2024');
+for(const entries of Object.values(topicTimelines)){
+ assert.equal(new Set(entries.map(e=>e.id)).size,entries.length);
+ for(let i=0;i<entries.length;i++){const entry=entries[i];assert.match(entry.date,/^\d{4}(-\d{2})?(-\d{2})?$/);assert.ok(!milestoneDate(entry,'en').includes('Invalid'));if(i)assert.ok(entries[i-1].date<=entry.date);if(entry.dateEnd)assert.ok(entry.dateEnd>=entry.date);for(const id of entry.mediaIds||[])assert.ok(archiveItemById[id],id);for(const lang of ['en','pmy'])assert.ok(entry.text[lang].length>80,entry.id)}
+}
+const {libraryItems}=await moduleAt('src/data/library.ts');const featured=await json('content/library-featured.json');assert.equal(featured.length,9);for(const id of featured)assert.ok(libraryItems.some(item=>item.id===id),id);
 const exhibits=await json('content/exhibition.json');const crafts=exhibits.items.filter(e=>e.lane==='crafts'&&e.rights!=='source-only'&&!e.hidden);assert.ok(crafts.length>=6);for(const e of crafts)await access('public'+e.image);
 const {witWeek,validateReview,REVIEW_TOPICS}=await moduleAt('shared/analysis.ts');
 assert.equal(witWeek('2026-10-04T14:59:59Z').id,'2026-09-28');assert.equal(witWeek('2026-10-04T15:00:00Z').id,'2026-10-05');
