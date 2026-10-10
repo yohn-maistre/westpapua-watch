@@ -9,7 +9,7 @@ export type ReadingRecord=HistoryRecord & {exhibition?:boolean;additionalArchive
 export type HistoryPanel={id:string;label:Localized;paths:HistoryPath[];records:ReadingRecord[];visualIds:string[]};
 export type ReadingChapter={id:string;era:string;date:Localized;title:Localized;kind:TemporalKind;main:boolean;panels:HistoryPanel[]};
 export const readingEras=reading.eras;
-export const readingPaths=historyPaths.map(p=>p.id==='all'?{...p,label:{en:'Timeline',pmy:'Linimasa'},start:{en:'Settlement to the present',pmy:'Permukiman hingga sekarang'}}:p);
+export const readingPaths=historyPaths.map(p=>p.id==='all'?{...p,label:{en:'Timeline',pmy:'Linimasa'},start:{en:'Settlement to the present',pmy:'Permukiman hingga sekarang'}}:p.id==='political'?{...p,start:{en:'Institutions & movements',pmy:'Lembaga & gerakan'}}:p);
 const overrides=reading.overrides as Record<string,Partial<ReadingRecord>>;
 export const readingRecords:ReadingRecord[]=[...prototypeHistoryRecords,...reading.records as HistoryRecord[]].map(r=>{
  const amended={...r,...overrides[r.id]};
