@@ -975,5 +975,242 @@
       "research"
     ],
     "description": "A regional study in West New Guinea: Social, Biological, and Material Histories, edited by Dylan Gaffney and Marlin Tolla."
+  },
+  {
+    "id": "history-reference-resistance-1",
+    "title": "The Current Status of the Papuan Pro-Independence Movement",
+    "publisher": "IPAC · Report 21 · 24 August 2015",
+    "url": "https://tile.loc.gov/storage-services/service/gdc/gdcovop/2017344154/2017344154.pdf",
+    "type": "report",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "politics"
+    ],
+    "description": "Source for the related History account.",
+    "published": true,
+    "date": "2015"
+  },
+  {
+    "id": "history-reference-resistance-2",
+    "title": "Anatomy of an Occupation: The Indonesian Military in West Papua",
+    "publisher": "Jim Elmslie, Camellia Webb-Gannon & Peter King · 2011",
+    "url": "https://documents.uow.edu.au/content/groups/public/@web/@socs/@has/documents/doc/uow270886.pdf",
+    "type": "report",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "politics"
+    ],
+    "description": "Source for the related History account.",
+    "published": true,
+    "date": "2011"
+  },
+  {
+    "id": "history-reference-border-1984-1",
+    "title": "The Integration of Refugees into a Host Country",
+    "publisher": "Rosemary Preston · International Migration Review · 1992",
+    "url": "https://journals.sagepub.com/doi/10.1177/019791839202600305",
+    "type": "research",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "politics"
+    ],
+    "description": "Source for the related History account.",
+    "published": true,
+    "date": "1992"
+  },
+  {
+    "id": "history-reference-border-1984-2",
+    "title": "Dwelling in Exile",
+    "publisher": "Diana Glazebrook · 2001",
+    "url": "https://www.papuaerfgoed.org/sites/default/files/collectie/files/2007-12/glazebrook_2001_exile.pdf",
+    "type": "report",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "politics"
+    ],
+    "description": "Source for the related History account.",
+    "published": true,
+    "date": "2001"
+  },
+  {
+    "id": "history-reference-border-1984-3",
+    "title": "Constructing Papuan Nationalism: History, Ethnicity, and Adaptation",
+    "publisher": "Richard Chauvel · 2005 · p. 18",
+    "url": "https://www.files.ethz.ch/isn/26108/PS014.pdf",
+    "type": "report",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "politics"
+    ],
+    "description": "Source for the related History account.",
+    "published": true,
+    "date": "2005"
+  },
+  {
+    "id": "history-reference-fronts-dialogue-2",
+    "title": "Talks between Jakarta and Papua: An Interview with Neles Tebay",
+    "publisher": "Peace Brigades International · 7 July 2010",
+    "url": "https://peacebrigades.org/en/news/talks-between-jakarta-and-papua-interview-neles-tebay",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "politics"
+    ],
+    "description": "Source for the related History account.",
+    "published": true,
+    "date": "2010"
+  },
+  {
+    "id": "history-reference-church-institutions-1",
+    "title": "Sejarah GKI di Tanah Papua",
+    "publisher": "Sinode GKI di Tanah Papua · institutional history",
+    "url": "https://sinodegkitp.com/bp-sinode-gkitp-2022-2027/",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "politics"
+    ],
+    "description": "Source for the related History account.",
+    "published": true
+  },
+  {
+    "id": "history-reference-church-institutions-2",
+    "title": "Pergerakan Ekumene GKI di Tanah Papua, 1962–2020",
+    "publisher": "MURAI · STFT GKI I.S. Kijne · 2024",
+    "url": "https://ojs.stftkijne.ac.id/index.php/jmp/article/view/146",
+    "type": "research",
+    "format": "web",
+    "language": "id",
+    "tags": [
+      "history",
+      "politics"
+    ],
+    "description": "Source for the related History account.",
+    "published": true,
+    "date": "2024"
+  },
+  {
+    "id": "history-reference-church-institutions-3",
+    "title": "Zakheus Pakage and His Communities",
+    "publisher": "Benny Giay · 1995",
+    "url": "https://dacc.net.au/wp-content/uploads/2023/01/Giay_1995_Zakheus.pdf",
+    "type": "research",
+    "format": "pdf",
+    "language": "en",
+    "tags": [
+      "history",
+      "politics"
+    ],
+    "description": "Source for the related History account.",
+    "published": true,
+    "date": "1995"
+  },
+  {
+    "id": "history-reference-kiwirok-1",
+    "title": "TPNPB allegedly attacks health center in Kiwirok, murders a nurse",
+    "publisher": "Jubi / West Papua Daily · 20 September 2021",
+    "url": "https://en.jubi.id/tpnpb-allegedly-attacks-health-center-in-kiwirok-murders-nurse/",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "politics"
+    ],
+    "description": "Source for the related History account.",
+    "published": true,
+    "date": "2021"
+  },
+  {
+    "id": "history-reference-kiwirok-2",
+    "title": "Destroy them first… discuss human rights later: Kiwirok investigation",
+    "publisher": "Human Rights Monitor · August 2023",
+    "url": "https://humanrightsmonitor.org/reports/kiwirok-report-2023/",
+    "type": "report",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "politics"
+    ],
+    "description": "Source for the related History account.",
+    "published": true,
+    "date": "2023"
+  },
+  {
+    "id": "history-reference-amungme-courts-1",
+    "title": "Amungme tuntut Freeport lagi",
+    "publisher": "Rohmatin Bonasir · BBC Indonesia · 9 March 2010",
+    "url": "https://www.bbc.com/indonesia/berita_indonesia/2010/03/100308_freeportamungme",
+    "type": "article",
+    "format": "web",
+    "language": "id",
+    "tags": [
+      "history",
+      "politics"
+    ],
+    "description": "Source for the related History account.",
+    "published": true,
+    "date": "2010"
+  },
+  {
+    "id": "history-reference-amungme-courts-2",
+    "title": "Papuan Tribesmen Sue Freeport for Rights Violations",
+    "publisher": "Jakarta Globe · 17 July 2009 · ETAN archive",
+    "url": "https://www.etan.org/et2009/07july/19/17papuan.htm",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "politics"
+    ],
+    "description": "Source for the related History account.",
+    "published": true,
+    "date": "2009"
+  },
+  {
+    "id": "history-reference-yosepha-1",
+    "title": "Yosepha Alomang",
+    "publisher": "Goldman Environmental Prize · 2001 recipient",
+    "url": "https://www.goldmanprize.org/recipient/yosepha-alomang/",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "land"
+    ],
+    "description": "Source for the related History account.",
+    "published": true
+  },
+  {
+    "id": "history-reference-yosepha-2",
+    "title": "The Amungme, Kamoro & Freeport: How Indigenous Papuans Have Resisted",
+    "publisher": "Abigail Abrash · Cultural Survival",
+    "url": "https://www.culturalsurvival.org/publications/cultural-survival-quarterly/amungme-kamoro-freeport-how-indigenous-papuans-have",
+    "type": "article",
+    "format": "web",
+    "language": "en",
+    "tags": [
+      "history",
+      "land"
+    ],
+    "description": "Source for the related History account.",
+    "published": true
   }
 ]

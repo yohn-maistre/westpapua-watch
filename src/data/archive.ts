@@ -1,4 +1,5 @@
 import raw from '../../content/archive-media.json';
+import previews from '../../content/generated/history-previews.json';
 import type {Locale,Localized} from './types';
 
 type AccessMode='self_host'|'external'|'official_embed'|'permission_pending'|'editorial';
@@ -37,4 +38,9 @@ export const archiveSections=(raw.sections as ArchiveSectionRaw[]).map(section=>
 export const archiveItems=archiveSections.flatMap(section=>section.items);
 export const archiveItemById=Object.fromEntries(archiveItems.map(item=>[item.id,item]));
 export const archiveForHistory=(historyId:string)=>archiveItems.filter(item=>item.relatedHistoryEvents?.includes(historyId));
+export function archivePreview(id:string){
+ const p=(previews as Record<string,{width:number;height:number;variants:{src:string;width:number;height:number}[]}>)[id];
+ if(!p)return null;
+ return {src:p.variants.find(v=>v.width>=640)?.src||p.variants.at(-1)!.src,srcset:p.variants.map(v=>`${v.src} ${v.width}w`).join(', '),width:p.width,height:p.height};
+}
 export const archiveText=(value:Localized,locale:Locale)=>value[locale]||value.en;

@@ -12,7 +12,7 @@ for(const record of historyRecords){assert.ok(historyEras.some(e=>e.id===record.
 const cases=await json('content/following.json');assert.equal(cases.length,8);
 const {topicTimelines}=await moduleAt('src/data/topic-timelines.ts');
 for(const c of cases){assert.ok(c.background.en.length>300);assert.ok(c.background.pmy.length>300);assert.ok(c.backgroundSources.length);assert.ok(topicTimelines[c.slug]?.length,c.slug);}
-const {readingChapters,readingRecords,chaptersForPath,figuresForPanel,placesForPanel}=await moduleAt('src/data/history-reading.ts');
+const {readingChapters,readingRecords,chaptersForPath,figuresForPanel,placesForPanel,paragraphsForRecord,sourceAnchor}=await moduleAt('src/data/history-reading.ts');
 const {archiveItemById}=await moduleAt('src/data/archive.ts');
 assert.equal(new Set(readingChapters.map(c=>c.id)).size,readingChapters.length);
 const assigned=readingChapters.flatMap(c=>c.panels.flatMap(p=>p.records.map(r=>r.id)));
@@ -24,7 +24,20 @@ for(const c of readingChapters){
  for(const p of c.panels){assert.ok(p.paths.length);for(const r of p.records){assert.ok(r.sources.length);for(const id of r.archiveIds)assert.ok(archiveItemById[id],`${r.id}: ${id}`)}for(const point of placesForPanel(p)){assert.ok(Number.isFinite(point.longitude)&&Number.isFinite(point.latitude));assert.ok(point.note.en&&point.note.pmy);assert.match(point.source,/^https?:/)}for(const figure of figuresForPanel(p))assert.ok(figure.item.resolved.image||figure.item.resolved.poster)}
 }
 for(const path of historyPaths){assert.ok(chaptersForPath(path.id).length);if(path.id!=='all')for(const c of chaptersForPath(path.id))assert.ok(c.panels.some(p=>p.paths.includes(path.id)));}
-for(const c of readingChapters)assert.ok(figuresForPanel(c.panels[0]).length,`Source visual: ${c.id}`);
+for(const r of readingRecords){
+ assert.ok(r.paragraphs?.length,`Explicit editorial copy: ${r.id}`);
+ for(const paragraph of paragraphsForRecord(r)){
+  assert.ok(paragraph.text.en&&paragraph.text.pmy);assert.ok(paragraph.sourceUrls.length);
+  for(const url of paragraph.sourceUrls)assert.ok(r.sources.some(s=>s.url===url),`${r.id}: unsupported reference ${url}`);
+ }
+ for(const id of r.visualIds||[])assert.ok(r.archiveIds.includes(id),`Every timeline visual belongs to the archive: ${id}`);
+}
+for(const c of readingChapters)for(const p of c.panels){assert.equal(new Set(sourcesForPanelSafe(p).map(s=>sourceAnchor(p.id,s.url))).size,sourcesForPanelSafe(p).length);assert.ok(figuresForPanel(p).length<=3,`Edited mosaic, not whole catalogue: ${p.id}`)}
+function sourcesForPanelSafe(p){return [...new Map(p.records.flatMap(r=>r.sources).map(s=>[s.url,s])).values()]}
+for(const id of ['history-yosepha','history-resistance','history-border-1984','history-fronts-dialogue','history-kiwirok','history-paniai'])assert.ok(chaptersForPath('all').some(c=>c.id===id));
+for(const id of ['history-kobe-oser','history-church-institutions','history-aerial-investigations','history-amungme-courts'])assert.ok(assigned.includes(id));
+assert.ok(!Object.keys(archiveItemById).some(id=>['mansinam-route','digoel-internment','khombouw-materials'].includes(id)));
+
 const {searchCorpus}=await moduleAt('src/data/search.ts');
 assert.equal(searchCorpus.filter(r=>r.type==='history'&&r.id==='history-mansinam').length,1);
 const sourcedTimeline=searchCorpus.find(r=>r.id==='timeline:malind-road-lawsuit');assert.ok(sourcedTimeline.text.en.includes('greenpeace.org'));assert.ok(sourcedTimeline.href.endsWith('#malind-road-lawsuit'));

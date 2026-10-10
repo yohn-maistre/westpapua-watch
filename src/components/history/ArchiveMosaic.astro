@@ -1,5 +1,5 @@
 ---
-import {archiveSections,archiveText} from '../../data/archive';
+import {archiveSections,archiveText,archivePreview} from '../../data/archive';
 import ArrowIcon from '../ArrowIcon.astro';
 import type {Locale} from '../../data/types';
 const {locale='en'}=Astro.props as {locale?:Locale};
@@ -48,7 +48,7 @@ const payload=archiveSections.flatMap(section=>section.items).map(item=>({
       <div><strong>{section.range}</strong><p>{archiveText(section.intro,locale)}</p></div>
     </header>
     <div class="wrap archive-grid">
-      {section.items.map(item=><button
+      {section.items.map(item=>{const preview=archivePreview(item.id);return <button
         type="button"
         class:list={['archive-tile',`archive-${item.layout}`,!item.resolved.poster&&'archive-no-image']}
         data-archive-id={item.id}
@@ -56,7 +56,7 @@ const payload=archiveSections.flatMap(section=>section.items).map(item=>({
         aria-label={`${archiveText(item.title,locale)}, ${item.date}`}
       >
         <span class="archive-visual">
-          {item.resolved.poster?<img src={item.resolved.poster} alt="" loading="lazy" decoding="async"/>:<span class="archive-placeholder" aria-hidden="true"><b>{item.date}</b><em>{medium(item.mediaType)}</em></span>}
+          {item.resolved.poster?<img src={preview?.src||item.resolved.poster} srcset={preview?.srcset} sizes="(max-width:760px) 50vw, 30vw" width={preview?.width} height={preview?.height} alt="" loading="lazy" decoding="async"/>:<span class="archive-placeholder" aria-hidden="true"><b>{item.date}</b><em>{medium(item.mediaType)}</em></span>}
           <span class="archive-preview-slot" aria-hidden="true"></span>
           {item.mediaType==='film'&&item.access.mode==='self_host'&&item.resolved.playback?<span class="archive-play" aria-hidden="true">▶</span>:item.access.mode!=='self_host'&&<span class="archive-play" aria-hidden="true"><ArrowIcon direction="up-right" size={16}/></span>}
         </span>
@@ -64,7 +64,7 @@ const payload=archiveSections.flatMap(section=>section.items).map(item=>({
           <span><b>{item.date}</b>{item.place&&<em>{item.place}</em>}</span>
           <span><strong>{archiveText(item.title,locale)}</strong><small>{medium(item.mediaType)}{item.duration?` · ${item.duration}`:''}</small></span>
         </span>
-      </button>)}
+      </button>})}
     </div>
   </section>)}
 

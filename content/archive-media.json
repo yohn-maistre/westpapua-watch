@@ -78,10 +78,10 @@
         "en": "Research and historical records",
         "pmy": "Kajian dan catatan sejarah"
       },
-      "range": "1828–2025 · source dates",
+      "range": "1828–2025",
       "intro": {
-        "en": "Objects, documents and source illustrations encountered in History.",
-        "pmy": "Benda, dokumen, dan ilustrasi sumber dalam Sejarah."
+        "en": "Historical objects, photographs and figures from cited research.",
+        "pmy": "Objek sejarah, foto, dan gambar dari penelitian yang dirujuk."
       }
     }
   ],
@@ -2984,123 +2984,6 @@
       ]
     },
     {
-      "id": "mansinam-route",
-      "section": "research-plates",
-      "date": "2026 · source diagram",
-      "title": {
-        "en": "The voyage to Mansinam",
-        "pmy": "Pelayaran ke Mansinam"
-      },
-      "mediaType": "document",
-      "layout": "wide",
-      "archive": {
-        "institution": "West Papua Watch",
-        "creator": "West Papua Watch",
-        "sourceUrl": "https://www.vemission.org/en/details/they-brought-us-the-light"
-      },
-      "editorial": {
-        "caption": {
-          "en": "Watch diagram of the voyage described by UEM.",
-          "pmy": "Diagram Watch tentang pelayaran yang dicatat UEM."
-        },
-        "context": {
-          "en": "Original schematic based on the cited account.",
-          "pmy": "Skema asli berdasarkan uraian yang ditautkan."
-        }
-      },
-      "access": {
-        "mode": "editorial",
-        "rightsStatus": "unknown",
-        "rightsVerifiedAt": "2026-10-10",
-        "editorialAuthorization": "Project owner requested source-based History illustrations."
-      },
-      "media": {
-        "localImage": "/images/history/research/mansinam-route.webp",
-        "localPoster": "/images/history/research/mansinam-route-thumb.webp"
-      },
-      "relatedHistoryEvents": [
-        "history-mansinam"
-      ]
-    },
-    {
-      "id": "digoel-internment",
-      "section": "research-plates",
-      "date": "2026 · source diagram",
-      "title": {
-        "en": "Detention in Boven Digoel",
-        "pmy": "Penahanan di Boven Digoel"
-      },
-      "mediaType": "document",
-      "layout": "wide",
-      "archive": {
-        "institution": "West Papua Watch",
-        "creator": "West Papua Watch",
-        "sourceUrl": "https://press.anu.edu.au/publications/series/terra-australis/west-new-guinea"
-      },
-      "editorial": {
-        "caption": {
-          "en": "Watch diagram locating Boven Digoel within the Dutch detention system.",
-          "pmy": "Diagram Watch menempatkan Boven Digoel dalam sistem penahanan Belanda."
-        },
-        "context": {
-          "en": "Original schematic based on the cited account.",
-          "pmy": "Skema asli berdasarkan uraian yang ditautkan."
-        }
-      },
-      "access": {
-        "mode": "editorial",
-        "rightsStatus": "unknown",
-        "rightsVerifiedAt": "2026-10-10",
-        "editorialAuthorization": "Project owner requested source-based History illustrations."
-      },
-      "media": {
-        "localImage": "/images/history/research/digoel-internment.webp",
-        "localPoster": "/images/history/research/digoel-internment-thumb.webp"
-      },
-      "relatedHistoryEvents": [
-        "history-digoel"
-      ]
-    },
-    {
-      "id": "khombouw-materials",
-      "section": "research-plates",
-      "date": "2026 · source diagram",
-      "title": {
-        "en": "Khombouw materials and work",
-        "pmy": "Bahan dan pengerjaan khombouw"
-      },
-      "mediaType": "document",
-      "layout": "wide",
-      "archive": {
-        "institution": "West Papua Watch",
-        "creator": "West Papua Watch",
-        "sourceUrl": "https://sentaniarts.wordpress.com/about/"
-      },
-      "editorial": {
-        "caption": {
-          "en": "Watch diagram of bark-cloth preparation and painting. Named makers and contemporary works are linked in Exhibition.",
-          "pmy": "Diagram Watch tentang persiapan kulit kayu dan pelukisan. Pembuat serta karya masa kini ditautkan melalui Pameran."
-        },
-        "context": {
-          "en": "Original schematic based on the cited account.",
-          "pmy": "Skema asli berdasarkan uraian yang ditautkan."
-        }
-      },
-      "access": {
-        "mode": "editorial",
-        "rightsStatus": "unknown",
-        "rightsVerifiedAt": "2026-10-10",
-        "editorialAuthorization": "Project owner requested source-based History illustrations."
-      },
-      "media": {
-        "localImage": "/images/history/research/khombouw-materials.webp",
-        "localPoster": "/images/history/research/khombouw-materials-thumb.webp"
-      },
-      "relatedHistoryEvents": [
-        "history-khombouw"
-      ]
-    },
-    {
       "id": "nduga-weneroma-2019",
       "section": "research-plates",
       "date": "August 2019",
@@ -3177,6 +3060,237 @@
         "localPoster": "/images/history/research/sinta-gebze-road-case-thumb.webp"
       },
       "relatedHistoryEvents": []
+    },
+    {
+      "id": "digoel-camp",
+      "section": "research-plates",
+      "date": "1920s–1930s; photograph date uncertain",
+      "title": {
+        "en": "Tanahmerah detention settlement",
+        "pmy": "Permukiman penahanan Tanahmerah"
+      },
+      "mediaType": "photo",
+      "layout": "wide",
+      "archive": {
+        "institution": "Leiden University Libraries · KITLV",
+        "sourceUrl": "https://digitalcollections.universiteitleiden.nl/view/item/899426",
+        "creator": "",
+        "identifier": "KITLV 400106 · album A1243"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Barracks at the Tanahmerah detention settlement, KITLV 400106. Photograph date not established.",
+          "pmy": "Barak permukiman penahanan Tanahmerah, KITLV 400106. Tanggal foto belum ditetapkan."
+        },
+        "context": {
+          "en": "A historical photograph of the settlement, replacing the earlier Watch schematic.",
+          "pmy": "Foto sejarah permukiman, menggantikan skema Watch sebelumnya."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "cc_by",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited inclusion of historical media and source documents, 10 October 2026.",
+        "license": "CC BY 4.0 · Commons copy",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "media": {
+        "localImage": "/images/history/research/digoel-camp.webp",
+        "localPoster": "/images/history/research/digoel-camp.webp"
+      }
+    },
+    {
+      "id": "sentani-historical-cloth",
+      "section": "research-plates",
+      "date": "Late 19th–early 20th century",
+      "title": {
+        "en": "Historical Sentani bark cloth",
+        "pmy": "Kulit kayu Sentani bersejarah"
+      },
+      "mediaType": "photo",
+      "layout": "wide",
+      "archive": {
+        "institution": "National Gallery of Australia",
+        "sourceUrl": "https://digital.nga.gov.au/archive/indonesiantextiles/code/detail.cfm%3firn=104772&bioartistirn=33944&mnuid=2.html",
+        "creator": ""
+      },
+      "editorial": {
+        "caption": {
+          "en": "Sentani bark cloth, collected by Pierre Viot in the 1920s. National Gallery of Australia, accession 1985.1870.",
+          "pmy": "Kulit kayu Sentani, dikumpulkan Pierre Viot pada 1920-an. National Gallery of Australia, nomor koleksi 1985.1870."
+        },
+        "context": {
+          "en": "The museum dates the object to the late nineteenth or early twentieth century. The maker is not identified in this catalogue record.",
+          "pmy": "Museum menanggalkan objek pada akhir abad ke-19 atau awal abad ke-20. Pembuat tidak disebut dalam catatan katalog ini."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited inclusion of historical media and source documents, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/sentani-historical-cloth.webp",
+        "localPoster": "/images/history/research/sentani-historical-cloth.webp"
+      }
+    },
+    {
+      "id": "yosepha-alomang-portrait",
+      "section": "research-plates",
+      "date": "2001 recipient; photograph date not specified",
+      "title": {
+        "en": "Mama Yosepha Alomang",
+        "pmy": "Mama Yosepha Alomang"
+      },
+      "mediaType": "photo",
+      "layout": "wide",
+      "archive": {
+        "institution": "Goldman Environmental Prize",
+        "sourceUrl": "https://www.goldmanprize.org/recipient/yosepha-alomang/",
+        "creator": "Goldman Environmental Prize"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Yosepha Alomang, photographed in the Goldman Prize profile of its 2001 recipient.",
+          "pmy": "Yosepha Alomang dalam foto profil penerima Goldman Prize 2001."
+        },
+        "context": {
+          "en": "The profile documents her organising, detention and environmental work. The page does not establish when this photograph was taken.",
+          "pmy": "Profil mendokumentasikan pengorganisasian, penahanan, dan pekerjaannya di bidang lingkungan. Halaman tidak menetapkan tanggal pengambilan foto."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited inclusion of historical media and source documents, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/yosepha-alomang-portrait.webp",
+        "localPoster": "/images/history/research/yosepha-alomang-portrait.webp"
+      }
+    },
+    {
+      "id": "occupation-report-2011",
+      "section": "research-plates",
+      "date": "August 2011",
+      "title": {
+        "en": "Anatomy of an Occupation",
+        "pmy": "Anatomy of an Occupation"
+      },
+      "mediaType": "document",
+      "layout": "wide",
+      "archive": {
+        "institution": "West Papua Project · University of Sydney",
+        "sourceUrl": "https://documents.uow.edu.au/content/groups/public/@web/@socs/@has/documents/doc/uow270886.pdf",
+        "creator": "Jim Elmslie, Camellia Webb-Gannon & Peter King"
+      },
+      "editorial": {
+        "caption": {
+          "en": "The 2011 report analysing leaked military documents on armed groups and civilian political networks.",
+          "pmy": "Laporan 2011 yang menganalisis dokumen militer bocor mengenai kelompok bersenjata dan jaringan politik sipil."
+        },
+        "context": {
+          "en": "Cover of the original report. Its discussion of military classifications is not proof of every classification in the leaked documents.",
+          "pmy": "Sampul laporan asli. Pembahasan klasifikasi militer tidak membuktikan setiap klasifikasi dalam dokumen yang bocor."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited inclusion of historical media and source documents, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/occupation-report-2011.webp",
+        "localPoster": "/images/history/research/occupation-report-2011.webp"
+      }
+    },
+    {
+      "id": "kiwirok-report-2023",
+      "section": "research-plates",
+      "date": "August 2023",
+      "title": {
+        "en": "Kiwirok investigation",
+        "pmy": "Penyelidikan Kiwirok"
+      },
+      "mediaType": "document",
+      "layout": "wide",
+      "archive": {
+        "institution": "Human Rights Monitor",
+        "sourceUrl": "https://humanrightsmonitor.org/reports/kiwirok-report-2023/",
+        "creator": "Human Rights Monitor"
+      },
+      "editorial": {
+        "caption": {
+          "en": "Human Rights Monitor’s investigation of military attacks, damage and displacement in Kiwirok.",
+          "pmy": "Penyelidikan Human Rights Monitor mengenai serangan militer, kerusakan, dan pengungsian di Kiwirok."
+        },
+        "context": {
+          "en": "The original report combines witness accounts and satellite-image analysis. Its conclusions are attributed to the investigators.",
+          "pmy": "Laporan asli menggabungkan keterangan saksi dan analisis citra satelit. Kesimpulannya diatribusikan kepada penyelidik."
+        }
+      },
+      "access": {
+        "mode": "editorial",
+        "rightsStatus": "unknown",
+        "rightsVerifiedAt": "2026-10-10",
+        "editorialAuthorization": "Project owner requested credited inclusion of historical media and source documents, 10 October 2026."
+      },
+      "media": {
+        "localImage": "/images/history/research/kiwirok-report-2023.webp",
+        "localPoster": "/images/history/research/kiwirok-report-2023.webp"
+      }
+    },
+    {
+      "id": "council-amsterdam-1961",
+      "section": "political-future",
+      "date": "7 September 1961",
+      "title": {
+        "en": "Council delegation in Amsterdam",
+        "pmy": "Delegasi Dewan di Amsterdam"
+      },
+      "place": "Amsterdam",
+      "mediaType": "photo",
+      "layout": "wide",
+      "archive": {
+        "institution": "Nationaal Archief",
+        "identifier": "912-9030",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nieuw-Guinea_raad_in_Amsterdam_De_groep_op_de_binnenplaats,_Bestanddeelnr_912-9030.jpg",
+        "creator": "Jack de Nijs / Anefo"
+      },
+      "editorial": {
+        "caption": {
+          "en": "New Guinea Council visitors in Amsterdam, 7 September 1961.",
+          "pmy": "Kunjungan Dewan Nugini di Amsterdam, 7 September 1961."
+        },
+        "context": {
+          "en": "A Council delegation during the political negotiations over West New Guinea.",
+          "pmy": "Delegasi Dewan pada masa perundingan politik tentang Nugini Barat."
+        }
+      },
+      "access": {
+        "mode": "self_host",
+        "rightsStatus": "cc0",
+        "license": "CC0 1.0",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "rightsVerifiedAt": "2026-10-10"
+      },
+      "media": {
+        "localImage": "/images/history/council-1961.jpg",
+        "localPoster": "/images/history/council-1961.jpg",
+        "source": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Nieuw-Guinea_raad_in_Amsterdam_De_groep_op_de_binnenplaats%2C_Bestanddeelnr_912-9030.jpg",
+        "poster": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Nieuw-Guinea_raad_in_Amsterdam_De_groep_op_de_binnenplaats%2C_Bestanddeelnr_912-9030.jpg",
+        "mirror": {
+          "image": "history/council-amsterdam-1961/image.webp",
+          "poster": "history/council-amsterdam-1961/poster.webp"
+        }
+      },
+      "relatedHistoryEvents": [
+        "history-1961"
+      ]
     }
   ]
 }

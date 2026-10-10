@@ -108,3 +108,22 @@ html:has([data-history-prototype]),html.history-reading-page{scroll-padding-top:
 .history-opening-archive:hover{color:var(--ink)}
 .prototype-path-control>button.prototype-path-name{font-size:.875rem;font-weight:600;line-height:1.25;gap:.5rem;padding:.5rem .25rem}
 @media(max-width:760px){.prototype-opening{padding-bottom:1.2rem;gap:.75rem}.prototype-opening h1{font-size:clamp(3.5rem,15.5vw,7rem)}.history-opening-archive{font-size:.72rem}.history-opening-archive svg{width:16px;height:16px}.prototype-path-control>button.prototype-path-name{font-size:.8rem}}
+
+/* References sit with their claims; source rows remain readable without disclosure. */
+.history-inline-citation{font-size:.62em;line-height:0;vertical-align:super;margin-left:.18em}
+.history-inline-citation a{display:inline-block;line-height:1;padding:4px 3px;text-decoration:underline;text-underline-offset:2px}
+.history-sources-label{font-size:.7rem;font-weight:550;margin:1.5rem 0 .5rem;color:var(--scene-muted)}
+.history-sources-label>span{margin-left:.6rem;font-weight:400}
+.prototype-sources{border-top:0}
+.history-source-entry{scroll-margin-top:calc(var(--reader-top) + var(--reader-control-height) + 16px)}
+.history-visuals button{background:transparent}
+.history-visuals img,.history-visuals .is-document img{aspect-ratio:auto;height:auto;max-height:none;object-fit:cover;background:transparent;object-position:center}
+.history-visual-stage .is-document img{max-height:none}
+.history-visuals .history-film-mark{font-size:.65rem}
+@media(max-width:760px){.history-visuals .is-document img{max-height:none;aspect-ratio:auto}.prototype-margin{top:calc(var(--reader-top) - 1px)}}
+
+.history-visuals.is-pair>figure{grid-column:1/-1}
+/* Longer Indonesian terms must remain inside the reading column at larger text sizes. */
+.prototype-account h2,.history-source-entry{overflow-wrap:anywhere}
+.history-local-topics>button>span{min-width:0;overflow-wrap:anywhere}
+.history-local-topics svg{flex:none}

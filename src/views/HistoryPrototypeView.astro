@@ -7,8 +7,7 @@ import HistoryAtlas from '../components/history/HistoryAtlas.astro';
 import ArchiveMosaic from '../components/history/ArchiveMosaic.astro';
 import HistoryRecordDialog from '../components/history/HistoryRecordDialog.astro';
 import {libraryItems} from '../data/library';
-import {readingChapters,readingPaths,readingEras,sourcesForPanel,placesForPanel} from '../data/history-reading';
-import {archiveItemById} from '../data/archive';
+import {readingChapters,readingPaths,readingEras,sourcesForPanel,placesForPanel,paragraphsForRecord,sourceAnchor} from '../data/history-reading';
 import {t,withLocale} from '../lib/i18n';
 import type {Locale} from '../data/types';
 import '../styles/history-prototype.css';
@@ -44,13 +43,11 @@ const metadata=readingChapters.map(c=>({id:c.id,era:c.era,date:t(c.date,locale),
      <HistoryVisuals panel={panel} locale={locale}/>
      {panel.records.map(r=><div class="history-account-part" id={r.id===c.id?undefined:r.id} data-history-account={r.id}>
       {panel.records.length>1&&<h3>{t(r.yearLabel,locale)} · {t(r.title,locale)}</h3>}
-      {t(r.body,locale).split('\n\n').map(text=><p>{text}</p>)}
-      <span class="history-citations">{r.sources.map(s=>{const index=sources.findIndex(x=>x.url===s.url);return <a href={`#source-${panel.id}-${index}`} data-history-citation aria-label={`${en?'Source':'Sumber'} ${index+1}: ${s.title}`}>{index+1}</a>})}</span>
+      {paragraphsForRecord(r).map(paragraph=><p>{t(paragraph.text,locale)}{paragraph.sourceUrls.map(url=>{const index=sources.findIndex(s=>s.url===url);return index>=0&&<sup class="history-inline-citation"><a href={`#${sourceAnchor(panel.id,url)}`} data-history-citation aria-label={`${en?'Source':'Sumber'} ${index+1}: ${sources[index].title}`}>{index+1}</a></sup>})}</p>)}
       {r.exhibition&&<a class="history-related-link" href={withLocale('/exhibition/#crafts',locale)}>{en?'Makers and work':'Pembuat dan karya'} <HistoryArrow direction="up-right"/></a>}
      </div>)}
      {panel.records.some(r=>r.id==='history-mifee'||r.id==='history-psn-2023')&&<a class="history-related-link" href={withLocale('/topics/south-papua-food-energy-estate/#timeline',locale)}>{en?'Merauke timeline':'Linimasa Merauke'} <HistoryArrow direction="up-right"/></a>}
-     {panel.records.flatMap(r=>r.archiveIds).some(id=>archiveItemById[id]?.mediaType==='film')&&<div class="prototype-archive-records">{[...new Set(panel.records.flatMap(r=>r.archiveIds))].filter(id=>archiveItemById[id]?.mediaType==='film').map(id=><button type="button" data-history-record={id}><span>{archiveItemById[id].date}</span><strong>{t(archiveItemById[id].title,locale)}</strong><HistoryArrow direction="up-right"/></button>)}</div>}
-     <details class="prototype-sources"><summary>{en?'Sources':'Sumber'} <span>{sources.length}</span></summary>{sources.map((s,index)=>{const library=libraryItems.find(item=>item.url===s.url);return <div class="history-source-entry" id={`source-${panel.id}-${index}`}><a href={s.url} target="_blank" rel="noreferrer"><small>{index+1} · {s.publisher}</small><span>{s.title} <HistoryArrow direction="up-right"/></span></a>{library&&<a class="history-source-library" href={`${withLocale('/resources/',locale)}?q=${encodeURIComponent(library.title)}`}>{en?'Library':'Pustaka'} ↗</a>}</div>})}</details>
+     <section class="prototype-sources" aria-label={en?'Sources':'Sumber'}><p class="history-sources-label">{en?'Sources':'Sumber'} <span>{sources.length}</span></p>{sources.map((s,index)=>{const library=libraryItems.find(item=>item.url===s.url);return <div class="history-source-entry" id={sourceAnchor(panel.id,s.url)}><a href={s.url} target="_blank" rel="noreferrer"><small>{index+1} · {s.publisher}</small><span>{s.title} <HistoryArrow direction="up-right"/></span></a>{library&&<a class="history-source-library" href={`${withLocale('/resources/',locale)}?q=${encodeURIComponent(library.title)}`}>{en?'Library':'Pustaka'} ↗</a>}</div>})}</section>
     </section>})}
    </article>})}
    <footer class="prototype-reader-end"><a href="#paths">{en?'Back to top':'Kembali ke atas'} <HistoryArrow direction="up"/></a><a href="#archive">{en?'Archive':'Arsip'} <HistoryArrow direction="up-right"/></a></footer>
