@@ -47,7 +47,8 @@
 .history-citations>a{display:grid;place-items:center;min-width:24px;min-height:28px;text-decoration:underline;text-underline-offset:3px}
 .history-source-entry{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;align-items:center;border-top:1px solid var(--scene-line);padding:1rem 0}
 .history-source-entry>a:first-child{display:grid;gap:.35rem;line-height:1.5}.history-source-entry small{color:var(--scene-muted)}
-.history-source-library{color:var(--scene-muted);font-size:.68rem}.history-related-link{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;font-size:.76rem;margin-bottom:1rem}
+.history-source-library{display:inline-flex;align-items:center;gap:.35rem;color:var(--scene-muted);font-size:.68rem}.history-related-link{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;font-size:.76rem;margin-bottom:1rem}
+.history-related-accounts{display:grid;gap:.25rem;margin:0 0 1.5rem}.history-related-accounts>.history-related-link{justify-self:start;max-width:100%;margin-bottom:0}
 .history-visuals{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 1.8rem}
 .history-visuals>figure{margin:0;min-width:0}.history-visuals>figure:first-child{grid-column:1/-1}
 .history-visuals button{position:relative;display:block;width:100%;padding:0;border:0;background:#d9dee0;cursor:pointer;overflow:hidden;border-radius:2px}

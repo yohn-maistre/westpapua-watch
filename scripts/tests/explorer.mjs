@@ -12,7 +12,7 @@ for(const record of historyRecords){assert.ok(historyEras.some(e=>e.id===record.
 const cases=await json('content/following.json');assert.equal(cases.length,8);
 const {topicTimelines}=await moduleAt('src/data/topic-timelines.ts');
 for(const c of cases){assert.ok(c.background.en.length>300);assert.ok(c.background.pmy.length>300);assert.ok(c.backgroundSources.length);assert.ok(topicTimelines[c.slug]?.length,c.slug);}
-const {readingChapters,readingRecords,chaptersForPath,figuresForPanel,placesForPanel,paragraphsForRecord,sourceAnchor}=await moduleAt('src/data/history-reading.ts');
+const {readingChapters,readingRecords,readingPaths,defaultReadingPath,normalizeReadingPath,readingAliases,chaptersForPath,figuresForPanel,placesForPanel,paragraphsForRecord,sourceAnchor}=await moduleAt('src/data/history-reading.ts');
 const {archiveItemById}=await moduleAt('src/data/archive.ts');
 assert.equal(new Set(readingChapters.map(c=>c.id)).size,readingChapters.length);
 const assigned=readingChapters.flatMap(c=>c.panels.flatMap(p=>p.records.map(r=>r.id)));
@@ -23,7 +23,15 @@ for(const c of readingChapters){
  if(c.main)assert.ok(!['undated','living'].includes(c.kind),'Undated finds and living practices do not acquire a date in Chronology');
  for(const p of c.panels){assert.ok(p.paths.length);for(const r of p.records){assert.ok(r.sources.length);for(const id of r.archiveIds)assert.ok(archiveItemById[id],`${r.id}: ${id}`)}for(const point of placesForPanel(p)){assert.ok(Number.isFinite(point.longitude)&&Number.isFinite(point.latitude));assert.ok(point.note.en&&point.note.pmy);assert.match(point.source,/^https?:/)}for(const figure of figuresForPanel(p))assert.ok(figure.item.resolved.image||figure.item.resolved.poster)}
 }
-for(const path of historyPaths){assert.ok(chaptersForPath(path.id).length);if(path.id!=='all')for(const c of chaptersForPath(path.id))assert.ok(c.panels.some(p=>p.paths.includes(path.id)));}
+assert.equal(defaultReadingPath,'political');assert.equal(readingPaths.length,5);
+assert.equal(normalizeReadingPath('all'),'political');assert.equal(normalizeReadingPath('peoples'),'social');
+for(const path of readingPaths){assert.ok(chaptersForPath(path.id).length);for(const c of chaptersForPath(path.id))assert.ok(c.panels.some(p=>p.paths.includes(path.id)));}
+for(const r of readingRecords){assert.equal(r.paths.length,1,`Single authored ownership: ${r.id}`);assert.ok(readingPaths.some(p=>p.id===r.paths[0]));for(const id of r.relatedAccounts||[])assert.ok(readingRecords.some(account=>account.id===id),`Related account exists: ${id}`)}
+for(const c of readingChapters)for(const panel of c.panels)assert.equal(panel.paths.length,1,`An account cannot mix specialist paths: ${panel.id}`);
+for(const target of Object.values(readingAliases))assert.ok(readingRecords.some(r=>r.id===target));
+const defaultAccounts=chaptersForPath(defaultReadingPath).flatMap(c=>c.panels.filter(p=>p.paths.includes(defaultReadingPath)).flatMap(p=>p.records.map(r=>r.id)));
+for(const id of ['history-timika-1995','history-mapenduma','history-biak','history-abepura','history-theys','history-wamena','history-nduga','history-paniai'])assert.ok(defaultAccounts.includes(id),`Major political episode is readable in the default path: ${id}`);
+for(const id of ['history-sahul','history-leadership','history-mifee','history-mambesak'])assert.ok(!defaultAccounts.includes(id),`Specialist accounts stay in their own path: ${id}`);
 for(const r of readingRecords){
  assert.ok(r.paragraphs?.length,`Explicit editorial copy: ${r.id}`);
  for(const paragraph of paragraphsForRecord(r)){

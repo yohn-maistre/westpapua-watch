@@ -7,7 +7,7 @@ import HistoryAtlas from '../components/history/HistoryAtlas.astro';
 import ArchiveMosaic from '../components/history/ArchiveMosaic.astro';
 import HistoryRecordDialog from '../components/history/HistoryRecordDialog.astro';
 import {libraryItems} from '../data/library';
-import {readingChapters,readingPaths,readingEras,sourcesForPanel,placesForPanel,paragraphsForRecord,sourceAnchor} from '../data/history-reading';
+import {readingRecords,readingChapters,readingPaths,readingEras,readingAliases,defaultReadingPath,panelForPath,sourcesForPanel,placesForPanel,paragraphsForRecord,sourceAnchor} from '../data/history-reading';
 import {t,withLocale} from '../lib/i18n';
 import type {Locale} from '../data/types';
 import '../styles/history-prototype.css';
@@ -24,37 +24,38 @@ const metadata=readingChapters.map(c=>({id:c.id,era:c.era,date:t(c.date,locale),
   <aside class="prototype-margin">
    <HistoryPathControls client:load locale={locale} paths={readingPaths.map(p=>({id:p.id,label:t(p.label,locale),start:t(p.start,locale)}))}/>
    <div class="prototype-margin-body">
-    <p class="prototype-era" data-active-era>{en?'Landscape':'Bentang alam'}</p>
-    <nav class="prototype-date-index" aria-label={en?'Periods':'Periode'}>{readingChapters.map(c=><a href={`#${c.id}`} data-history-date={c.id} hidden={!c.main}>{t(c.date,locale)}</a>)}</nav>
+    <p class="prototype-era" data-active-era>{t(readingEras.find(e=>e.id===readingChapters.find(c=>c.panels.some(p=>p.paths.includes(defaultReadingPath)))!.era)!.label,locale)}</p>
+    <nav class="prototype-date-index" aria-label={en?'Periods':'Periode'}>{readingChapters.map(c=><a href={`#${c.id}`} data-history-date={c.id} hidden={!c.panels.some(p=>p.paths.includes(defaultReadingPath))}>{t(c.date,locale)}</a>)}</nav>
     <div class="history-visual-stage" data-history-visual-stage></div>
     <HistoryAtlas locale={locale}/>
    </div>
   </aside>
   <div class="prototype-scenes" data-history-scenes>
-   {readingChapters.map(c=>{const paper=['transfer','autonomy','present'].includes(c.era);return <article id={c.id} class:list={['prototype-scene',paper&&'prototype-scene-paper',['context','orientation','living','undated'].includes(c.kind)&&'prototype-context']} data-history-scene data-era={c.era} data-main={String(c.main)} hidden={!c.main}>
+   {readingChapters.map(c=>{const paper=['transfer','autonomy','present'].includes(c.era),initialPanel=panelForPath(c,defaultReadingPath),localPanels=c.panels.filter(p=>p.paths.includes(defaultReadingPath));return <article id={c.id} class:list={['prototype-scene',paper&&'prototype-scene-paper',['context','orientation','living','undated'].includes(c.kind)&&'prototype-context']} data-history-scene data-era={c.era} data-main={String(c.main)} hidden={!localPanels.length}>
     <div class="prototype-event-head"><span class="prototype-event-date">{t(c.date,locale)}</span><small>{t(readingEras.find(e=>e.id===c.era)!.label,locale)}</small></div>
-    {c.panels.length>1&&<nav class="history-local-topics" data-history-local-topics aria-label={en?'Topics in this period':'Topik dalam periode ini'}>
-     <button type="button" data-history-local-previous aria-label={en?'Previous topic in this period':'Topik sebelumnya dalam periode ini'}><span class="history-arrow-back"><HistoryArrow/></span><span data-history-previous-label>{t(c.panels.at(-1)!.label,locale)}</span></button>
-     <span class="history-local-current" data-history-local-label>{t(c.panels[0].label,locale)}</span>
-     <button type="button" data-history-local-next aria-label={en?'Next topic in this period':'Topik berikutnya dalam periode ini'}><span data-history-next-label>{t(c.panels[1].label,locale)}</span><HistoryArrow/></button>
+    {c.panels.length>1&&<nav class="history-local-topics" data-history-local-topics hidden={localPanels.length<2} aria-label={en?'Topics in this period':'Topik dalam periode ini'}>
+     <button type="button" data-history-local-previous aria-label={en?'Previous topic in this period':'Topik sebelumnya dalam periode ini'}><span class="history-arrow-back"><HistoryArrow/></span><span data-history-previous-label>{t(localPanels.at(-1)?.label||initialPanel.label,locale)}</span></button>
+     <span class="history-local-current" data-history-local-label>{t(initialPanel.label,locale)}</span>
+     <button type="button" data-history-local-next aria-label={en?'Next topic in this period':'Topik berikutnya dalam periode ini'}><span data-history-next-label>{t(localPanels[1]?.label||initialPanel.label,locale)}</span><HistoryArrow/></button>
     </nav>}
-    {c.panels.map((panel,i)=>{const sources=sourcesForPanel(panel);return <section data-history-panel={panel.id} class="prototype-account" hidden={i!==0} aria-label={t(panel.label,locale)}>
+    {c.panels.map((panel,i)=>{const sources=sourcesForPanel(panel);return <section data-history-panel={panel.id} class="prototype-account" hidden={panel.id!==initialPanel.id} aria-label={t(panel.label,locale)}>
      <h2>{i===0?t(c.title,locale):t(panel.records[0].title,locale)}</h2>
      <HistoryVisuals panel={panel} locale={locale}/>
      {panel.records.map(r=><div class="history-account-part" id={r.id===c.id?undefined:r.id} data-history-account={r.id}>
       {panel.records.length>1&&<h3>{t(r.yearLabel,locale)} · {t(r.title,locale)}</h3>}
       {paragraphsForRecord(r).map(paragraph=><p>{t(paragraph.text,locale)}{paragraph.sourceUrls.map(url=>{const index=sources.findIndex(s=>s.url===url);return index>=0&&<sup class="history-inline-citation"><a href={`#${sourceAnchor(panel.id,url)}`} data-history-citation aria-label={`${en?'Source':'Sumber'} ${index+1}: ${sources[index].title}`}>{index+1}</a></sup>})}</p>)}
       {r.exhibition&&<a class="history-related-link" href={withLocale('/exhibition/#crafts',locale)}>{en?'Makers and work':'Pembuat dan karya'} <HistoryArrow direction="up-right"/></a>}
+      {r.relatedAccounts?.length&&<nav class="history-related-accounts" aria-label={en?'Related accounts':'Kisah terkait'}>{r.relatedAccounts.map(id=>{const related=readingRecords.find(account=>account.id===id)!;return <a class="history-related-link" href={`${withLocale('/history/',locale)}?path=${related.paths[0]}#${id}`}>{t(related.title,locale)} <HistoryArrow direction="up-right"/></a>})}</nav>}
      </div>)}
      {panel.records.some(r=>r.id==='history-mifee'||r.id==='history-psn-2023')&&<a class="history-related-link" href={withLocale('/topics/south-papua-food-energy-estate/#timeline',locale)}>{en?'Merauke timeline':'Linimasa Merauke'} <HistoryArrow direction="up-right"/></a>}
-     <section class="prototype-sources" aria-label={en?'Sources':'Sumber'}><p class="history-sources-label">{en?'Sources':'Sumber'} <span>{sources.length}</span></p>{sources.map((s,index)=>{const library=libraryItems.find(item=>item.url===s.url);return <div class="history-source-entry" id={sourceAnchor(panel.id,s.url)}><a href={s.url} target="_blank" rel="noreferrer"><small>{index+1} · {s.publisher}</small><span>{s.title} <HistoryArrow direction="up-right"/></span></a>{library&&<a class="history-source-library" href={`${withLocale('/resources/',locale)}?q=${encodeURIComponent(library.title)}`}>{en?'Library':'Pustaka'} ↗</a>}</div>})}</section>
+     <section class="prototype-sources" aria-label={en?'Sources':'Sumber'}><p class="history-sources-label">{en?'Sources':'Sumber'} <span>{sources.length}</span></p>{sources.map((s,index)=>{const library=libraryItems.find(item=>item.url===s.url);return <div class="history-source-entry" id={sourceAnchor(panel.id,s.url)}><a href={s.url} target="_blank" rel="noreferrer"><small>{index+1} · {s.publisher}</small><span>{s.title} <HistoryArrow direction="up-right"/></span></a>{library&&<a class="history-source-library" href={`${withLocale('/resources/',locale)}?q=${encodeURIComponent(library.title)}`}>{en?'Library':'Pustaka'} <HistoryArrow direction="up-right"/></a>}</div>})}</section>
     </section>})}
    </article>})}
    <footer class="prototype-reader-end"><a href="#paths">{en?'Back to top':'Kembali ke atas'} <HistoryArrow direction="up"/></a><a href="#archive">{en?'Archive':'Arsip'} <HistoryArrow direction="up-right"/></a></footer>
   </div>
  </div>
  <p class="sr-only" data-history-announcement role="status" aria-live="polite"></p>
- <script type="application/json" data-history-prototype-data set:html={JSON.stringify({chapters:metadata,paths:readingPaths.map(p=>({id:p.id,label:t(p.label,locale)})),eras:readingEras.map(e=>({id:e.id,label:t(e.label,locale)}))}).replace(/</g,'\\u003c')}></script>
+ <script type="application/json" data-history-prototype-data set:html={JSON.stringify({chapters:metadata,aliases:readingAliases,paths:readingPaths.map(p=>({id:p.id,label:t(p.label,locale)})),eras:readingEras.map(e=>({id:e.id,label:t(e.label,locale)}))}).replace(/</g,'\\u003c')}></script>
 </div>
 <ArchiveMosaic locale={locale}/>
 <HistoryRecordDialog locale={locale}/>

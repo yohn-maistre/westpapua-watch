@@ -1,0 +1,76 @@
+record_id,title_en,current_paths,proposed_owner,current_english_words,editorial_action
+history-geography,Landscape and sea crossings,archaeology;peoples;land,settlement,94,Merge landscape and Sahul as the opening orientation of Early settlement.
+history-sahul,Sahul and the sea crossings,archaeology;peoples,settlement,88,Expand and edit within its single owning path; retain the existing record anchor.
+history-mololo,"Mololo Cave, Waigeo",archaeology,settlement,112,Expand and edit within its single owning path; retain the existing record anchor.
+history-andarewa,Occupation on the Bomberai Peninsula,archaeology,settlement,104,Expand and edit within its single owning path; retain the existing record anchor.
+history-toe-kria,Inland settlement in the Bird’s Head,archaeology,settlement,75,Expand and edit within its single owning path; retain the existing record anchor.
+history-coastlines,Changing shores and island connections,archaeology;land,settlement,85,Expand and edit within its single owning path; retain the existing record anchor.
+history-gardens,Gardens and wetland cultivation,archaeology;land;social,land,91,Expand and edit within its single owning path; retain the existing record anchor.
+history-sentani-settlements,Living around Lake Sentani,archaeology;social,settlement,93,Expand and edit within its single owning path; retain the existing record anchor.
+history-kayu-batu-pottery,Decorated pottery at Kayu Batu,archaeology;culture,settlement,95,Expand and edit within its single owning path; retain the existing record anchor.
+history-keerom-rock-art,Rock art and territory in Keerom,archaeology;culture,settlement,104,Expand and edit within its single owning path; retain the existing record anchor.
+history-austronesian,Austronesian languages and local contact,peoples;social,societies,89,Expand and edit within its single owning path; retain the existing record anchor.
+history-pottery,Pottery and contact in Raja Ampat,archaeology;peoples;social,settlement,104,Expand and edit within its single owning path; retain the existing record anchor.
+history-languages,Many language families,peoples;culture,societies,98,Expand and edit within its single owning path; retain the existing record anchor.
+history-population,"Movement, contact and ancestry",peoples,societies,92,"Keep scientific ancestry context modest; no inference of identity, rights or political affiliation from a haplogroup."
+history-pacific,Melanesia and Polynesia,peoples;social,societies,83,Expand and edit within its single owning path; retain the existing record anchor.
+history-leadership,Regional authority,social;political,societies,124,Keep the full regional authority account in Societies; political opening may link to it without repeating it.
+history-exchange,Routes through the highlands,social;land,societies,100,Expand and edit within its single owning path; retain the existing record anchor.
+history-tidore,Western coasts and Maluku,social;political,political,106,"Open Politics here: concrete coastal relations and different reach of authority, without a universal customary-systems preamble."
+history-sago,Sago forests and customary land,land;social;culture,land,118,Expand and edit within its single owning path; retain the existing record anchor.
+history-khombouw,Khombouw around Lake Sentani,culture;social,culture,86,Expand and edit within its single owning path; retain the existing record anchor.
+history-meege,Meege and family relationships,social;culture,societies,101,Expand and edit within its single owning path; retain the existing record anchor.
+history-noken-practice,Making and carrying noken,culture;social,culture,90,Expand and edit within its single owning path; retain the existing record anchor.
+history-1828,Fort Du Bus,political,political,87,Expand and edit within its single owning path; retain the existing record anchor.
+history-kamoro-collections,Kamoro objects and collecting relationships,culture;social,culture,102,Expand and edit within its single owning path; retain the existing record anchor.
+history-1898,Permanent colonial stations,political;social,political,81,Expand and edit within its single owning path; retain the existing record anchor.
+history-merauke-station,Merauke and the southern administration,political;social,political,86,Expand and edit within its single owning path; retain the existing record anchor.
+history-mission-schooling,"Missions, teachers and schooling",culture;social;political,societies,87,Expand and edit within its single owning path; retain the existing record anchor.
+history-digoel,Boven Digoel,political;social,political,103,Expand and edit within its single owning path; retain the existing record anchor.
+history-koreri,Koreri movements,culture;political;social,political,86,Expand and edit within its single owning path; retain the existing record anchor.
+history-wwii,War on Papuan land,political;social,political,90,Expand and edit within its single owning path; retain the existing record anchor.
+history-1949,West New Guinea after 1949,political,political,143,Expand and edit within its single owning path; retain the existing record anchor.
+history-serido-biak-1950,Coastal kampung at Serido,social,archive-caption,9,Retain image in archive and relevant mosaic; fold this caption into media rather than a separate prose account.
+history-hollandia-housing-1953,Housing in Hollandia,social,archive-caption,9,Retain image in archive and relevant mosaic; fold this caption into media rather than a separate prose account.
+history-manokwari-street-1954,Manokwari’s main street,social,archive-caption,9,Retain image in archive and relevant mosaic; fold this caption into media rather than a separate prose account.
+history-papuanisation,Papuanisation and political organisation,political;culture,political,85,Expand and edit within its single owning path; retain the existing record anchor.
+history-fakfak-neighbourhood-1956,A neighbourhood in Fakfak,social,archive-caption,13,Retain image in archive and relevant mosaic; fold this caption into media rather than a separate prose account.
+history-sentani-powe-1958,"Powë, Lake Sentani",social,archive-caption,11,Retain image in archive and relevant mosaic; fold this caption into media rather than a separate prose account.
+history-1961,New Guinea Council,political,political,163,Expand and edit within its single owning path; retain the existing record anchor.
+history-merauke-street-1961,A street in Merauke,social,archive-caption,8,Retain image in archive and relevant mosaic; fold this caption into media rather than a separate prose account.
+history-1962,The New York Agreement,political,political,72,Expand and edit within its single owning path; retain the existing record anchor.
+history-evacuees-1962,Evacuees from Biak and Fak-Fak,social,archive-caption,10,Retain image in archive and relevant mosaic; fold this caption into media rather than a separate prose account.
+history-untea,Seven months under UN administration,political;social,political,97,Expand and edit within its single owning path; retain the existing record anchor.
+history-1963,Administration transferred to Indonesia,political,political,84,Expand and edit within its single owning path; retain the existing record anchor.
+history-freeport-contract,Freeport’s first contract,land;political,land,93,Land owns the contract and concession account; Pepera/Politics briefly locates the contract in the transfer sequence and links here.
+history-1969,Pepera,political,political,151,Expand and edit within its single owning path; retain the existing record anchor.
+history-land,Land and livelihoods,land,land,67,Expand and edit within its single owning path; retain the existing record anchor.
+history-highlands-1977,Violence in the Central Highlands,political;social,political,82,Expand and edit within its single owning path; retain the existing record anchor.
+history-mambesak,Mambesak,culture,culture,54,Keep the cultural organisation and Arnold Ap account here; Politics links to this account from the 1984 period.
+history-reformasi,Reformasi and the Papuan Congress,political,political,143,Split Biak 1998 from 1999–2000 organising; reach Congress outcomes and subsequent repression.
+history-women-testimony,"Care, work and political memory",social;culture;land,societies,86,Expand and edit within its single owning path; retain the existing record anchor.
+history-2001,Special autonomy,political;social,political,175,Separate Theys murder from autonomy policy within the same period.
+history-mifee,MIFEE in Merauke,land;political,land,89,"Replace abstract caveats with named Malind communities, the consultation process, forest loss and food consequences."
+history-muyu-makers,Muyu makers and the noken economy,culture;social;land,culture,101,Expand and edit within its single owning path; retain the existing record anchor.
+history-living,Noken recognition,culture;social,culture,87,Consolidate Noken recognition with Noken practice within Culture rather than repeating a separate general explanation.
+history-2014,The Saralana Declaration,political,political,139,Expand and edit within its single owning path; retain the existing record anchor.
+history-racism-2019,Anti-racism protests,political;social,political,70,Expand and edit within its single owning path; retain the existing record anchor.
+history-internet-ruling,The internet shutdown ruling,political;social,political,69,Expand and edit within its single owning path; retain the existing record anchor.
+history-otsus-revision,Revising special autonomy,political,political,101,Expand and edit within its single owning path; retain the existing record anchor.
+history-new-provinces,Four new provinces,political;social,political,104,Expand and edit within its single owning path; retain the existing record anchor.
+history-today,Displacement and humanitarian access,political;social,political,160,Date to the most recent verified source; do not imply a 2022 account is an up-to-date displacement count.
+history-psn-2023,New food and energy programmes,land;political,land,86,Expand and edit within its single owning path; retain the existing record anchor.
+history-raja-permits,Four Raja Ampat permits revoked,land;political,land,71,Expand and edit within its single owning path; retain the existing record anchor.
+history-mansinam,Mansinam and the mission,political;social;culture,societies,95,Mission and social change belong here; church political activity is narrated in its dated political episodes.
+history-resistance,Resistance and the OPM,political,political,138,Expand and edit within its single owning path; retain the existing record anchor.
+history-border-1984,Border crossings and political networks,political;peoples,political,137,Expand and edit within its single owning path; retain the existing record anchor.
+history-yosepha,Yosepha Alomang and Amungme land,land;political;social,political,144,"Keep her organising and state repression as Political history, with links to Land for mining detail."
+history-fronts-dialogue,Political fronts and dialogue,political;social,political,162,Expand and edit within its single owning path; retain the existing record anchor.
+history-amungme-courts,Amungme claims in court,land;political,land,96,Expand and edit within its single owning path; retain the existing record anchor.
+history-kiwirok,"Kiwirok, displacement and care",political;social,political,164,"Keep both attacks on healthworkers and subsequent military attacks on civilian settlements, clearly dated and attributed."
+history-aerial-investigations,Investigating aerial attacks,political,political,164,Integrate dated evidence into the Kiwirok/recent-conflict sequence; avoid a card mainly listing film and report titles.
+history-paniai,Paniai and accountability,political,political,103,Expand and edit within its single owning path; retain the existing record anchor.
+history-church-institutions,Church institutions and Papuan leadership,social;political,societies,160,"Institutional origins here; FORERI, Team 100 and dialogue each explain the relevant political role in their own period."
+history-kobe-oser,Kobe Oser and diaspora organising,political;social,political,113,Expand and edit within its single owning path; retain the existing record anchor.
+history-wasior-wamena,"Wasior, Wamena and investigations",political,political,81,Separate 2001 Wasior and 2003 Wamena accounts; actual events precede accountability history.
+history-mimika-health,Health infrastructure in Mimika,social,societies,96,Expand and edit within its single owning path; retain the existing record anchor.

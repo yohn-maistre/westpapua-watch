@@ -1,9 +1,9 @@
-import type {HistoryPath} from '../data/history-prototype';
+import {defaultReadingPath,normalizeReadingPath,type ReadingPath as HistoryPath} from './history-paths';
 import {projectHistoryPoint} from './map/history-projection';
 type Place={label:string;longitude:number;latitude:number;note:string;source:string};
 type Panel={id:string;label:string;paths:HistoryPath[];recordIds:string[];places:Place[]};
 type Chapter={id:string;era:string;date:string;main:boolean;kind:string;panels:Panel[]};
-type ReaderData={chapters:Chapter[];paths:{id:HistoryPath;label:string}[];eras:{id:string;label:string}[]};
+type ReaderData={chapters:Chapter[];aliases:Record<string,string>;paths:{id:HistoryPath;label:string}[];eras:{id:string;label:string}[]};
 
 export function initHistoryPrototype(){
  const root=document.querySelector<HTMLElement>('[data-history-prototype]');if(!root)return;
@@ -26,11 +26,13 @@ export function initHistoryPrototype(){
   // A reference opened in a new tab must reveal its owning perspective too.
   panelsById.get(p.id)!.querySelectorAll<HTMLElement>('.history-source-entry[id]').forEach(row=>accountLocation.set(row.id,{chapter:c,panel:p}));
  }));
+ for(const [alias,id] of Object.entries(data.aliases)){const located=accountLocation.get(id);if(located)accountLocation.set(alias,located)}
  const dateLinks=[...root.querySelectorAll<HTMLElement>('[data-history-date]')];
  const selectedPanels=new Map<string,string>();
- let active:HistoryPath='all',current=data.chapters[0],currentPanel=current.panels[0];
- let visible=data.chapters.filter(c=>c.main),observer:IntersectionObserver|null=null,suppress=false,initializing=true,readingMoved=false,preserveHash=false,geometryFrame=0;
- const recordsFor=(path:HistoryPath)=>data.chapters.filter(c=>path==='all'?c.main:c.panels.some(p=>p.paths.includes(path)));
+ let active:HistoryPath=defaultReadingPath,current=data.chapters.find(c=>c.panels.some(p=>p.paths.includes(active)))!,currentPanel=current.panels.find(p=>p.paths.includes(active))!;
+ let visible=data.chapters.filter(c=>c.panels.some(p=>p.paths.includes(active))),observer:IntersectionObserver|null=null,suppress=false,initializing=true,readingMoved=false,preserveHash=false,geometryFrame=0;
+ const recordsFor=(path:HistoryPath)=>data.chapters.filter(c=>c.panels.some(p=>p.paths.includes(path)));
+ const panelsFor=(c:Chapter)=>c.panels.filter(p=>p.paths.includes(active));
  const emitState=()=>document.dispatchEvent(new CustomEvent('watch:history-state',{detail:{path:active,mapOpen:reader.dataset.mapOpen==='true'}}));
  document.addEventListener('watch:history-state-request',emitState);
  function write(push=false,hash=current.id){
@@ -40,10 +42,11 @@ export function initHistoryPrototype(){
   if(currentPanel.id===current.panels[0].id)url.searchParams.delete('view');else url.searchParams.set('view',currentPanel.id);
   url.hash=hash;history[push?'pushState':'replaceState']({path:active,chapter:current.id,panel:currentPanel.id},'',url);
  }
- function chosen(c:Chapter){const remembered=c.panels.find(p=>p.id===selectedPanels.get(c.id));return remembered||(active==='all'?c.panels[0]:c.panels.find(p=>p.paths.includes(active)))||c.panels[0]}
+ function chosen(c:Chapter){const options=panelsFor(c);return options.find(p=>p.id===selectedPanels.get(c.id))||options[0]}
  function showPanel(c:Chapter,p:Panel){
   selectedPanels.set(c.id,p.id);c.panels.forEach(other=>panelsById.get(other.id)!.hidden=other.id!==p.id);
-  const scene=sceneById.get(c.id)!,i=c.panels.indexOf(p),previous=c.panels[(i-1+c.panels.length)%c.panels.length],next=c.panels[(i+1)%c.panels.length];
+  const scene=sceneById.get(c.id)!,options=panelsFor(c),i=options.indexOf(p),previous=options[(i-1+options.length)%options.length],next=options[(i+1)%options.length];
+  const control=scene.querySelector<HTMLElement>('[data-history-local-topics]');if(control)control.hidden=options.length<2;
   const update=(selector:string,text:string)=>{const n=scene.querySelector(selector);if(n)n.textContent=text};
   update('[data-history-local-label]',p.label);update('[data-history-previous-label]',previous.label);update('[data-history-next-label]',next.label);
   scene.querySelector('[data-history-local-previous]')?.setAttribute('aria-label',`${root.dataset.locale==='pmy'?'Lihat':'View'} ${previous.label}`);
@@ -91,26 +94,28 @@ export function initHistoryPrototype(){
  function nearest(path:HistoryPath){const options=recordsFor(path),same=options.filter(c=>c.era===current.era);const candidates=same.length?same:options;return [...candidates].sort((a,b)=>Math.abs(data.chapters.indexOf(a)-data.chapters.indexOf(current))-Math.abs(data.chapters.indexOf(b)-data.chapters.indexOf(current)))[0]}
  function select(path:HistoryPath,targetId?:string,options:{push?:boolean;scroll?:boolean;panelId?:string}={}){
   clearTimeout(urlTimer);
-  const located=targetId?accountLocation.get(targetId):undefined;
+  const requestedPanel=options.panelId?data.chapters.flatMap(c=>c.panels.map(p=>({chapter:c,panel:p}))).find(x=>x.panel.id===options.panelId):undefined;
+  const located=targetId&&!chapterById.has(targetId)?accountLocation.get(targetId):requestedPanel;
   let target=targetId?chapterById.get(targetId)||located?.chapter:undefined;
-  if(target&&path==='all'&&!target.main){const paths=located?.panel.paths||target.panels[0].paths;path=paths.includes('archaeology')?'archaeology':paths[0]}
+  if(located){path=located.panel.paths[0];target=located.chapter}
+  else if(target&&!target.panels.some(p=>p.paths.includes(path)))path=target.panels[0].paths[0];
   visible=recordsFor(path);if(!target||!visible.includes(target))target=visible[0];
   active=path;suppress=true;readingMoved=false;
-  const chosenPanel=target.panels.find(p=>p.id===options.panelId)||(located?.chapter===target?located.panel:undefined)||(path==='all'?target.panels[0]:target.panels.find(p=>p.paths.includes(path)))||target.panels[0];
+  const chosenPanel=(located?.chapter===target?located.panel:undefined)||target.panels.find(p=>p.paths.includes(path))!;
   selectedPanels.clear();visible.forEach(c=>showPanel(c,c===target?chosenPanel:chosen(c)));
   const dated=visible.filter(c=>!['context','orientation','living','undated'].includes(c.kind));
   sceneById.forEach((s,id)=>{const c=chapterById.get(id)!;s.hidden=!visible.includes(c);s.dataset.first=String(c===dated[0]);s.dataset.last=String(c===dated.at(-1))});
   root.querySelectorAll<HTMLElement>('[data-history-path]').forEach(a=>a.setAttribute('aria-current',String(a.dataset.historyPath===active)));
   setCurrent(target,chosenPanel,false,true);emitState();
   if(options.push){preserveHash=false;write(true,targetId||target.id)}
-  if(options.scroll){const node=(targetId?document.getElementById(targetId):null)||sceneById.get(target.id)!;const nav=document.querySelector<HTMLElement>('[data-compact-nav]')!.getBoundingClientRect().height;scrollTo({top:scrollY+node.getBoundingClientRect().top-nav-(mobile.matches?margin.getBoundingClientRect().height:0)-16,behavior:'instant'});if(options.push){const heading=panelsById.get(chosenPanel.id)!.querySelector<HTMLElement>('h2')!;heading.tabIndex=-1;heading.focus({preventScroll:true})}}
+  if(options.scroll){const node=(targetId?document.getElementById(targetId)||document.getElementById(data.aliases[targetId]||target.id):null)||sceneById.get(target.id)!;const nav=document.querySelector<HTMLElement>('[data-compact-nav]')!.getBoundingClientRect().height;scrollTo({top:scrollY+node.getBoundingClientRect().top-nav-(mobile.matches?margin.getBoundingClientRect().height:0)-16,behavior:'instant'});if(options.push){const heading=panelsById.get(chosenPanel.id)!.querySelector<HTMLElement>('h2')!;heading.tabIndex=-1;heading.focus({preventScroll:true})}}
   root.querySelector('[data-history-announcement]')!.textContent=`${data.paths.find(p=>p.id===active)!.label} · ${target.date}`;
   requestAnimationFrame(()=>{suppress=false;geometry()});
  }
  root.addEventListener('click',event=>{
   const e=event as MouseEvent;const node=e.target instanceof Element?e.target:null;if(!node)return;
   const link=node.closest<HTMLAnchorElement>('[data-history-path]');if(link&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey){e.preventDefault();select(link.dataset.historyPath as HistoryPath,link.dataset.targetEvent,{push:true,scroll:true});return}
-  const local=node.closest<HTMLElement>('[data-history-local-previous],[data-history-local-next]');if(local){const c=chapterById.get(local.closest('[data-history-scene]')!.id)!,p=chosen(c),index=c.panels.indexOf(p);const next=c.panels[(index+(local.hasAttribute('data-history-local-previous')?-1:1)+c.panels.length)%c.panels.length];showPanel(c,next);setCurrent(c,next,false,true);const scene=sceneById.get(c.id)!,nav=document.querySelector<HTMLElement>('[data-compact-nav]')!.getBoundingClientRect().height;scrollTo({top:scrollY+scene.getBoundingClientRect().top-nav-(mobile.matches?margin.getBoundingClientRect().height:0)-16,behavior:'instant'});preserveHash=false;write(true);root.querySelector('[data-history-announcement]')!.textContent=`${c.date} · ${next.label}`;geometry();return}
+  const local=node.closest<HTMLElement>('[data-history-local-previous],[data-history-local-next]');if(local){const c=chapterById.get(local.closest('[data-history-scene]')!.id)!,p=chosen(c),options=panelsFor(c),index=options.indexOf(p);if(options.length<2)return;const next=options[(index+(local.hasAttribute('data-history-local-previous')?-1:1)+options.length)%options.length];showPanel(c,next);setCurrent(c,next,false,true);const scene=sceneById.get(c.id)!,nav=document.querySelector<HTMLElement>('[data-compact-nav]')!.getBoundingClientRect().height;scrollTo({top:scrollY+scene.getBoundingClientRect().top-nav-(mobile.matches?margin.getBoundingClientRect().height:0)-16,behavior:'instant'});preserveHash=false;write(true);root.querySelector('[data-history-announcement]')!.textContent=`${c.date} · ${next.label}`;geometry();return}
   const citation=node.closest<HTMLAnchorElement>('[data-history-citation]');if(citation&&!e.metaKey&&!e.ctrlKey&&!e.shiftKey&&!e.altKey){e.preventDefault();const target=document.getElementById(citation.hash.slice(1))!;target.tabIndex=-1;target.focus({preventScroll:true});target.scrollIntoView({block:'nearest'});return}
   const date=node.closest<HTMLElement>('[data-history-date]');if(date){e.preventDefault();select(active,date.dataset.historyDate,{push:true,scroll:true});}
  });
@@ -120,7 +125,7 @@ export function initHistoryPrototype(){
  root.querySelector('[data-history-place-close]')!.addEventListener('click',()=>{root.querySelector<HTMLElement>('[data-history-atlas-note]')!.hidden=true;root.querySelectorAll('[data-history-atlas-points] button').forEach(b=>b.setAttribute('aria-expanded','false'))});
  root.querySelector('[data-history-atlas-expand]')!.addEventListener('click',()=>{live.hidden=false;renderedPlaces=null;map.dataset.mapStartExpanded='true';map.dataset.historyFeatures=JSON.stringify({type:'FeatureCollection',features:currentPanel.places.map(p=>({type:'Feature',geometry:{type:'Point',coordinates:[p.longitude,p.latitude]},properties:{name:p.label,note:p.note,source:p.source}}))});map.dataset.historyPeriod=current.date;map.dispatchEvent(new CustomEvent('watch:map-activate'));});
  map.addEventListener('watch:map-collapsed',()=>{live.hidden=true;root.querySelector<HTMLButtonElement>('[data-history-atlas-expand]')!.focus({preventScroll:true})});
- function fromURL(){const url=new URL(location.href);const path=data.paths.some(p=>p.id===url.searchParams.get('path'))?url.searchParams.get('path') as HistoryPath:'all';let hash='';try{hash=decodeURIComponent(url.hash.slice(1))}catch{}const known=chapterById.has(hash)||accountLocation.has(hash);preserveHash=!!hash&&!known;select(path,known?hash:undefined,{scroll:known,panelId:url.searchParams.get('view')||undefined});}
+ function fromURL(){const url=new URL(location.href);const path=normalizeReadingPath(url.searchParams.get('path'));let hash='';try{hash=decodeURIComponent(url.hash.slice(1))}catch{}const known=chapterById.has(hash)||accountLocation.has(hash);preserveHash=!!hash&&!known;select(path,known?hash:undefined,{scroll:known,panelId:url.searchParams.get('view')||undefined});}
  root.dataset.enhanced='true';fromURL();
  const loaded=document.readyState==='complete'?Promise.resolve():new Promise<void>(resolve=>addEventListener('load',()=>resolve(),{once:true}));
  const island=root.querySelector('[data-history-controls]')?.closest('astro-island');
