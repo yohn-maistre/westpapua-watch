@@ -21,7 +21,11 @@ export function initHistoryPrototype(){
  const visualByPanel=new Map([...panelsById].map(([id,node])=>[id,node.querySelector<HTMLElement>('[data-history-visuals]')]));
  let stagedPanel:string|null=null,renderedPlaces:string|null=null,observedGeometry='',urlTimer:ReturnType<typeof setTimeout>|undefined;
  const accountLocation=new Map<string,{chapter:Chapter;panel:Panel}>();
- data.chapters.forEach(c=>c.panels.forEach(p=>p.recordIds.forEach(id=>accountLocation.set(id,{chapter:c,panel:p}))));
+ data.chapters.forEach(c=>c.panels.forEach(p=>{
+  p.recordIds.forEach(id=>accountLocation.set(id,{chapter:c,panel:p}));
+  // A reference opened in a new tab must reveal its owning perspective too.
+  panelsById.get(p.id)!.querySelectorAll<HTMLElement>('.history-source-entry[id]').forEach(row=>accountLocation.set(row.id,{chapter:c,panel:p}));
+ }));
  const dateLinks=[...root.querySelectorAll<HTMLElement>('[data-history-date]')];
  const selectedPanels=new Map<string,string>();
  let active:HistoryPath='all',current=data.chapters[0],currentPanel=current.panels[0];
