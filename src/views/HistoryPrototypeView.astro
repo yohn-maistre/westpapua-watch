@@ -7,24 +7,19 @@ import HistoryAtlas from '../components/history/HistoryAtlas.astro';
 import ArchiveMosaic from '../components/history/ArchiveMosaic.astro';
 import HistoryRecordDialog from '../components/history/HistoryRecordDialog.astro';
 import {libraryItems} from '../data/library';
-import {readingChapters,readingPaths,readingEras,chaptersForPath,sourcesForPanel,placesForPanel} from '../data/history-reading';
+import {readingChapters,readingPaths,readingEras,sourcesForPanel,placesForPanel} from '../data/history-reading';
 import {archiveItemById} from '../data/archive';
 import {t,withLocale} from '../lib/i18n';
 import type {Locale} from '../data/types';
 import '../styles/history-prototype.css';
 const {locale='en'}=Astro.props as {locale?:Locale};const en=locale==='en';
-const route=withLocale('/history/',locale);
-const pathHref=(path:string,id?:string)=>`${route}?path=${path}${id?`#${id}`:''}`;
 const metadata=readingChapters.map(c=>({id:c.id,era:c.era,date:t(c.date,locale),kind:c.kind,main:c.main,panels:c.panels.map(p=>({id:p.id,label:t(p.label,locale),paths:p.paths,recordIds:p.records.map(r=>r.id),places:placesForPanel(p).map(place=>({...place,note:t(place.note,locale)}))}))}));
 ---
 <BaseLayout locale={locale} active="history" title={en?'History':'Sejarah'}>
 <div class="history-prototype" data-history-prototype data-locale={locale}>
  <header class="wrap prototype-opening" id="paths">
   <h1>{en?'History.':'Sejarah.'}</h1>
-  <nav class="prototype-path-index" aria-label={en?'History paths':'Jalur sejarah'}>
-   {readingPaths.filter(p=>p.id!=='all').map(p=><a href={pathHref(p.id,p.startId||chaptersForPath(p.id)[0].id)} data-history-path={p.id} data-target-event={p.startId}><strong>{t(p.label,locale)}</strong><span>{t(p.start,locale)}</span><HistoryArrow direction="down-right"/></a>)}
-  </nav>
-  <div class="prototype-opening-footer"><a href={pathHref('all',readingChapters[0].id)} data-history-path="all">{en?'Chronology':'Kronologi'} <HistoryArrow direction="down"/></a><a href={pathHref('political','history-1949')} data-history-path="political" data-target-event="history-1949">1949 <HistoryArrow direction="down"/></a><a href="#archive">{en?'Archive':'Arsip'} <HistoryArrow direction="up-right"/></a></div>
+  <a class="history-opening-archive" href="#archive">{en?'Archive':'Arsip'} <HistoryArrow direction="up-right"/></a>
  </header>
  <div class="prototype-reader" data-history-reader>
   <aside class="prototype-margin">
@@ -58,7 +53,7 @@ const metadata=readingChapters.map(c=>({id:c.id,era:c.era,date:t(c.date,locale),
      <details class="prototype-sources"><summary>{en?'Sources':'Sumber'} <span>{sources.length}</span></summary>{sources.map((s,index)=>{const library=libraryItems.find(item=>item.url===s.url);return <div class="history-source-entry" id={`source-${panel.id}-${index}`}><a href={s.url} target="_blank" rel="noreferrer"><small>{index+1} · {s.publisher}</small><span>{s.title} <HistoryArrow direction="up-right"/></span></a>{library&&<a class="history-source-library" href={`${withLocale('/resources/',locale)}?q=${encodeURIComponent(library.title)}`}>{en?'Library':'Pustaka'} ↗</a>}</div>})}</details>
     </section>})}
    </article>})}
-   <footer class="prototype-reader-end"><a href="#paths">{en?'Choose a path':'Pilih jalur'} <HistoryArrow direction="up"/></a><a href="#archive">{en?'Explore the archive':'Jelajahi arsip'} <HistoryArrow direction="up-right"/></a></footer>
+   <footer class="prototype-reader-end"><a href="#paths">{en?'Back to top':'Kembali ke atas'} <HistoryArrow direction="up"/></a><a href="#archive">{en?'Archive':'Arsip'} <HistoryArrow direction="up-right"/></a></footer>
   </div>
  </div>
  <p class="sr-only" data-history-announcement role="status" aria-live="polite"></p>
