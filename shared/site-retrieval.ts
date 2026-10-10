@@ -1,4 +1,6 @@
-import {searchCorpus} from '../src/data/search';
+// A build-time snapshot keeps catalogue normalization and reader construction
+// out of the Pages Functions startup path.
+import searchCorpus from '../content/generated/site-search.json';
 const stop=new Set('the a an of in on and or is was were what who how about tell me does do did please apa siapa bagaimana tentang dan di ke yang ini itu saya sejarah history'.split(' '));
 const words=(value:string)=>value.toLowerCase().normalize('NFKD').replace(/[^\p{L}\p{N}\s-]/gu,' ').split(/\s+/).filter(w=>w.length>1&&!stop.has(w));
 export function retrieveSite(query:string,locale:'en'|'pmy'='en',limit=8){
