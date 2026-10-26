@@ -9,7 +9,7 @@ const cards=(compact?['awyu','communications','kiwirok','puncak']:followedCaseId
 ---
 <div class:list={['following-mosaic',compact&&'following-mosaic-compact']}>
  {cards.map((c,i)=><a class:list={['following-feature',`following-feature-${i}`,c.cover?.document&&'is-document']} href={withLocale(c.href,locale)} data-following-card={c.id}>
-  {c.cover&&<div class="following-feature-image"><img src={c.cover.src} width={c.cover.width} height={c.cover.height} loading="lazy" alt={t(c.cover.caption,locale)}/><span class="following-feature-credit">{c.cover.credit}</span></div>}
+  {c.cover&&<div class="following-feature-image"><img src={c.cover.src} width={c.cover.width} height={c.cover.height} style={`object-position:${c.cover.position}`} loading="lazy" alt={t(c.cover.caption,locale)}/><span class="following-feature-credit">{c.cover.credit}</span></div>}
   <div class="following-feature-copy"><h3>{t(c.title,locale)}</h3>{c.deck&&<p>{t(c.deck,locale)}</p>}<footer><span>{c.period}</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></footer></div>
  </a>)}
 </div>
