@@ -32,10 +32,11 @@ if(root){
   root!.querySelector<HTMLAnchorElement>('[data-overview-history]')!.href=item.historyHref;
   root!.querySelectorAll<HTMLElement>('[data-overview-case]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.overviewCase===slug)));
   root!.querySelectorAll<HTMLElement>('[data-overview-pin]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.overviewPin===slug)));
-  if(push){const url=new URL(location.href);url.searchParams.set('case',slug);history.pushState(null,'',url);root!.querySelector('[data-watch-map]')?.dispatchEvent(new CustomEvent('watch:overview-focus',{detail:{slug}}))}
+  if(push){const url=new URL(location.href);url.searchParams.set('case',slug);history.pushState(null,'',url)}
+  root!.querySelector('[data-watch-map]')?.dispatchEvent(new CustomEvent('watch:overview-focus',{detail:{slug,overview:!new URL(location.href).searchParams.has('case')}}));
  }
  root.addEventListener('click',event=>{const target=(event.target as Element).closest<HTMLElement>('[data-overview-case],[data-overview-pin]');if(target){event.preventDefault();show(target.dataset.overviewCase||target.dataset.overviewPin||'',true)}});
  root.addEventListener('watch:overview-select',event=>show((event as CustomEvent).detail.slug,true));
- const restore=()=>show(new URL(location.href).searchParams.get('case')||cases[0].slug);restore();addEventListener('popstate',restore);
+ const restore=()=>show(new URL(location.href).searchParams.get('case')||cases[0].slug);restore();addEventListener('popstate',restore);root.addEventListener('watch:overview-ready',restore);
 }
 </script>

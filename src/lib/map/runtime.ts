@@ -127,7 +127,7 @@ async function initOne(root:HTMLElement){
         button.type='button';button.className='overview-map-pin';button.dataset.overviewPin=item.slug;button.setAttribute('aria-pressed',String(item.slug===(new URL(location.href).searchParams.get('case')||cases[0].slug)));label.textContent=locale==='pmy'?item.name.pmy:item.name.en;button.append(dot,label);
         new maplibregl.Marker({element:button,anchor:'center'}).setLngLat([item.longitude,item.latitude]).addTo(map);
       }
-      root.addEventListener('watch:overview-focus',event=>{const item=cases.find((c:any)=>c.slug===(event as CustomEvent).detail.slug);if(item)map.easeTo({center:[item.longitude,item.latitude],zoom:4.4,duration:motion})});
+      root.addEventListener('watch:overview-focus',event=>{const detail=(event as CustomEvent).detail;if(detail.overview){map.fitBounds(WEST_PAPUA_BOUNDS,{padding:innerWidth<=520?24:42,duration:motion});return}const item=cases.find((c:any)=>c.slug===detail.slug);if(item)map.easeTo({center:[item.longitude,item.latitude],zoom:4.4,duration:motion})});
     }catch(error){console.warn('Overview map references unavailable',error)}
   }
   map.addControl(new maplibregl.NavigationControl({showCompass:false,visualizePitch:false}),'bottom-right');
@@ -247,6 +247,7 @@ async function initOne(root:HTMLElement){
     else if(context&&current.features.length)fitFeatures(current);else if(state.place&&!context)await focusPlace(state.place);
     else if(!context)map.fitBounds(WEST_PAPUA_BOUNDS,{padding:innerWidth<=520?24:42,duration:0});
     initializing=false;
+    if(root.dataset.overviewCases)root.dispatchEvent(new CustomEvent('watch:overview-ready',{bubbles:true}));
     if(new URL(location.href).searchParams.get('mapDebug')==='1'){(map as any).showTileBoundaries=true;const d=root.querySelector<HTMLElement>('[data-map-debug]');if(d){d.hidden=false;d.textContent=`${root.dataset.mapRenderer} · lowMemory ${lowMemory} · unavailable ${[...unavailable].join(', ')||'none'}`}}
   });
   let lastHistoryFeatures=root.dataset.historyFeatures||'';
