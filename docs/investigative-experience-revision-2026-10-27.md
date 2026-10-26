@@ -51,3 +51,15 @@ The research slate remains much larger than the published record. PM2.5 needs a 
 The production browser matrix passed all 35 grouped checks with zero page errors, across both languages and all eleven cases. The separate 320px/125% text/6× CPU check passed all eleven cases with no overflow/errors and confirmed actual touch scrolling over the inline graph (scroll position 1073 → 1448). Content, investigation, polish, system, explorer, archive and compilation checks passed. The final build generates 364 routes. The last visual adjustments balance the lower mosaic rows and use SVG link arrows; deployment verification must check the resulting preview as well.
 
 A final Indonesian network-label pass checked all eleven cases at desktop width for intersecting participant text boxes. Shorter wrapping eliminated the Merauke collision; edge captions only render when the link has room, with complete claim wording retained in the evidence reader and connection list. All eleven checks found no participant-label overlaps.
+
+## Deployed preview and operations
+
+Application commit `265a726` was deployed successfully by the Cloudflare preview workflow (run `40415341134`) to `https://1c83d9f3.westpapua-watch.pages.dev/`; its CI also passed. The branch alias points to that deployment. Main remains `4687268ecdda1c572c372ea966fdf419d4ea1784`.
+
+The deployed following endpoint reports both engine and reporting connections available and returns all nine cases. Its Merauke report update is dated 25 October, independently of the accepted case state. Live ticker type measures 17px desktop and 16px phone. The homepage renders one 1280px-wide Atlas canvas at a 1440px viewport. Both History routes return HTTP 200.
+
+Read-only operator telemetry confirms the latest completed weekly job (week beginning 19 October) was published on 25 October. Two earlier jobs were held for unsupported evidence/critic validation; those older holds are not evidence that the latest weekly job failed. No discovery cycle, inference, publication, quota or schedule change was triggered by this inspection.
+
+The final Taste inspection reports three failures and six warnings, rather than a clean automated score. Its failures are the deliberately retained shared Exhibition/ticker star, gradient wash, and mobile wordmark line count. Remaining warnings cover shared branding/borders, editorial title size, page-fold/card-height heuristics and existing phone margins. The new small-caption and secondary-card-title findings were resolved. Actual images, page errors and horizontal overflow passed the inspector's checks; screenshots were reviewed rather than treating heuristic counts as the design verdict.
+
+The remote browser harness's deprecated navigation-event waiter proved brittle when crossing between locale contexts, despite three successful direct Indonesian search checks. It now waits for the explicit destination URL and hydrated case content. This test-only follow-up does not alter the deployed interface.

@@ -29,8 +29,8 @@ async def main():
    assert await page.locator('.masthead').count()>0
    await page.mouse.move(600,700);before=await page.evaluate('scrollY');await page.mouse.wheel(0,600);await page.wait_for_timeout(200);assert await page.evaluate('scrollY')>before,'Issues must respond to real wheel input'
    search=page.locator('[data-record-search] input');await search.fill('Haji Isham')
-   async with page.expect_navigation(wait_until='domcontentloaded'):
-    await page.get_by_role('option').first.click()
+   await page.get_by_role('option').first.click(no_wait_after=True)
+   await page.wait_for_url('**/topics/south-papua-food-energy-estate/?entity=isam#explore',wait_until='domcontentloaded')
    await page.locator('[data-desk-ready=true]').wait_for(timeout=30000);assert 'entity=isam' in page.url
    checks.append(locale+': mosaic, topics, twenty threads, masthead, wheel scroll and identity search')
    for case in DATA['cases']:
