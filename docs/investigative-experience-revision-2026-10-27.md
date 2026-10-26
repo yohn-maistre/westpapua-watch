@@ -49,3 +49,5 @@ The research slate remains much larger than the published record. PM2.5 needs a 
 ## Local release checks
 
 The production browser matrix passed all 35 grouped checks with zero page errors, across both languages and all eleven cases. The separate 320px/125% text/6× CPU check passed all eleven cases with no overflow/errors and confirmed actual touch scrolling over the inline graph (scroll position 1073 → 1448). Content, investigation, polish, system, explorer, archive and compilation checks passed. The final build generates 364 routes. The last visual adjustments balance the lower mosaic rows and use SVG link arrows; deployment verification must check the resulting preview as well.
+
+A final Indonesian network-label pass checked all eleven cases at desktop width for intersecting participant text boxes. Shorter wrapping eliminated the Merauke collision; edge captions only render when the link has room, with complete claim wording retained in the evidence reader and connection list. All eleven checks found no participant-label overlaps.
