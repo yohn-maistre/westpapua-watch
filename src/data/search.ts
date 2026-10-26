@@ -9,8 +9,13 @@ import { dossiers } from './dossiers';
 import { issues } from './issues';
 import { glossary } from './glossary';
 import { resources } from './resources';
+import investigativeRecord from '../../content/investigative-record.json';
+
+const investigativeSourceById=new Map(investigativeRecord.sources.map(source=>[source.id,source]));
 
 export const searchCorpus = [
+ ...investigativeRecord.cases.map(item=>({id:'investigation:'+item.id,type:'investigation',title:item.title,text:{en:item.body.map(p=>p.text.en).join(' '),pmy:item.body.map(p=>p.text.pmy).join(' ')},href:`/topics/?case=${item.id}`,tags:['investigation','penelusuran',...item.threadIds.map(String)]})),
+ ...investigativeRecord.claims.map(item=>({id:'claim:'+item.id,type:'investigative-record',title:item.title,text:{en:item.date+': '+item.text.en+(item.response?' Response: '+item.response.en:'')+' Sources: '+item.evidence.map(e=>{const s=investigativeSourceById.get(e.source)!;return s.title+' ['+e.locator.en+'] '+s.url;}).join('; '),pmy:item.date+': '+item.text.pmy+(item.response?' Tanggapan: '+item.response.pmy:'')+' Sumber: '+item.evidence.map(e=>{const s=investigativeSourceById.get(e.source)!;return s.title+' ['+e.locator.pmy+'] '+s.url;}).join('; ')},href:`/topics/?case=${item.cases[0]}&claim=${item.id}`,tags:['investigation','penelusuran',item.subject,item.object,...item.cases]})),
  ...readingRecords.map(item=>({id:item.id,type:'history',title:item.title,text:{en:item.body.en+' Sources: '+item.sources.map(s=>s.title+' '+s.publisher+' '+s.url).join('; '),pmy:item.body.pmy+' Sumber: '+item.sources.map(s=>s.title+' '+s.publisher+' '+s.url).join('; ')},href:`/history/?path=${item.paths[0]}#${item.id}`,tags:['history','sejarah',...item.paths,item.yearLabel.en,item.yearLabel.pmy]})),
  ...followingNotes.filter(item=>item.background).map(item=>({id:'background:'+item.slug,type:'background',title:item.title,text:{en:item.background.en+' Sources: '+item.backgroundSources.map(s=>s.title+' '+s.url).join('; '),pmy:item.background.pmy+' Sumber: '+item.backgroundSources.map(s=>s.title+' '+s.url).join('; ')},href:`/topics/${item.slug}/`,tags:['following','background','latar belakang',item.slug]})),
  ...weekly.threads.map(thread=>({id:'review:'+thread.id,type:'review',title:thread.title,text:{en:thread.paragraphs.map(p=>p.text.en).join(' '),pmy:thread.paragraphs.map(p=>p.text.pmy).join(' ')},href:'/news/#weekly-review',tags:['review','tinjauan',...thread.topics]})),

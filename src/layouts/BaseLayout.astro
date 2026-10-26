@@ -56,7 +56,7 @@ const lang = locale==='pmy'?'id':'en';
   {!immersive && <AskDialog locale={locale} />}
   <script>
     const q=(s,root=document)=>root?.querySelector(s); const qa=(s,root=document)=>[...(root?.querySelectorAll(s)||[])];
-    document.querySelectorAll('a[hreflang]').forEach(link=>{const url=new URL(link.href);url.search=location.search;url.hash=location.hash;link.href=url.href});
+    document.querySelectorAll('a[hreflang]').forEach(link=>{if(link.closest('astro-island'))return;const url=new URL(link.href);url.search=location.search;url.hash=location.hash;link.href=url.href});
     const navSentinel=q('[data-nav-sentinel]');
     if(navSentinel){const io=new IntersectionObserver(([e])=>{const crossed=!e.isIntersecting&&e.boundingClientRect.top<0;document.body.classList.toggle('nav-collapsed',crossed);const nav=q('[data-compact-nav]');if(nav){nav.inert=!crossed;nav.setAttribute('aria-hidden',String(!crossed))}},{threshold:0});io.observe(navSentinel)}
     const compactNav=q('[data-compact-nav]');
