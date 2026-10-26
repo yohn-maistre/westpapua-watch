@@ -1,28 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import AskDialog from '../components/AskDialog.astro';
-import LanguageControl from '../components/navigation/LanguageControl';
-import InvestigativeDesk from '../components/investigation/InvestigativeDesk';
+import FollowingMosaic from '../components/investigation/FollowingMosaic.astro';
+import RecordSearch from '../components/investigation/RecordSearch';
 import {investigativeRecord} from '../data/investigative-record';
+import {caseIndex,caseRoute} from '../data/case-presentation';
 import {issues} from '../data/issues';
-import {NAV_ITEMS} from '../data/site';
 import {t,withLocale} from '../lib/i18n';
 import type {Locale} from '../data/types';
+import '../styles/issues-editorial.css';
 const {locale='en'}=Astro.props as {locale?:Locale};const en=locale==='en';
 ---
-<BaseLayout locale={locale} active="issues" title={en?'Issues':'Isu'} description={en?'Investigate land, money, political authority and public decisions in Papua through sourced records.':'Telusuri tanah, uang, kekuasaan politik, dan keputusan publik di Papua melalui catatan bersumber.'} immersive>
- <header class="desk-site-header">
-  <a class="desk-brand" href={withLocale('/',locale)} aria-label="West Papua Watch">West Papua <em>Watch</em></a>
-  <nav class="desk-site-nav" aria-label={en?'Site navigation':'Navigasi situs'}>{NAV_ITEMS.filter(n=>n.key!=='home').map(item=><a href={withLocale(item.href,locale)} aria-current={item.key==='issues'?'page':undefined}>{t(item.label,locale)}</a>)}</nav>
-  <div class="desk-site-actions"><LanguageControl client:load locale={locale} englishPath="/topics/" indonesianPath="/id/topics/" compact/><button type="button" class="desk-ask" data-ask-open aria-haspopup="dialog" aria-label={en?'Ask Watch':'Tanya Watch'}><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><span>{en?'Ask':'Tanya'}</span></button><details class="desk-site-menu"><summary aria-label={en?'Site menu':'Menu situs'}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary><nav aria-label={en?'Site navigation':'Navigasi situs'}>{NAV_ITEMS.map(item=><a href={withLocale(item.href,locale)} aria-current={item.key==='issues'?'page':undefined}>{t(item.label,locale)}</a>)}</nav></details></div>
- </header>
- <InvestigativeDesk client:load locale={locale} data={investigativeRecord}/>
- <noscript><section class="desk-no-script"><h2>{en?'Investigations':'Penelusuran'}</h2>{investigativeRecord.cases.map(c=><article id={`read-${c.id}`}><h3>{t(c.title,locale)}</h3>{c.body.map(p=><p>{t(p.text,locale)}</p>)}<ul>{c.claimIds.map(id=>{const claim=investigativeRecord.claims.find(x=>x.id===id)!;return <li><strong>{claim.date} · {t(claim.title,locale)}</strong><p>{t(claim.text,locale)}</p>{claim.evidence.map(e=>{const s=investigativeRecord.sources.find(x=>x.id===e.source)!;return <a href={s.url}>{s.title} · {t(e.locator,locale)}</a>})}</li>})}</ul>{c.legacy&&<a href={withLocale(c.legacy,locale)}>{en?'Full background and chronology':'Latar belakang dan linimasa lengkap'}</a>}</article>)}</section></noscript>
- <section class="desk-topic-directory" id="topics" aria-labelledby="all-topics-title"><header><h2 id="all-topics-title">{en?'All topics':'Semua topik'}</h2><a href="#main">{en?'Back to investigations':'Kembali ke penelusuran'} <span aria-hidden="true">↑</span></a></header><div>{issues.map(item=><a href={withLocale(`/topics/${item.slug}/`,locale)}><h3>{t(item.title,locale)}</h3><p>{t(item.summary,locale)}</p><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>)}</div></section>
- <AskDialog locale={locale}/>
+<BaseLayout locale={locale} active="issues" title={en?'Issues':'Isu'} description={en?'Follow the stories shaping Papua, explore their connections and read the original evidence.':'Ikuti persoalan di Papua, telusuri keterkaitannya, dan baca sumber aslinya.'}>
+ <div class="wrap issues-editorial">
+  <header class="issues-opening"><h1>{en?'Issues.':'Isu.'}</h1><RecordSearch client:load data={investigativeRecord} routes={caseRoute} locale={locale}/></header>
+  <section id="following" aria-labelledby="following-title"><div class="issues-section-head"><h2 id="following-title">{en?'Following':'Dalam pantauan'}</h2><a href="#topics">{en?'All topics':'Semua topik'} <svg class="issues-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 4v16m-7-7 7 7 7-7"/></svg></a></div><FollowingMosaic locale={locale}/></section>
+  <section aria-labelledby="threads-title"><div class="issues-section-head"><h2 id="threads-title">{en?'Across the cases':'Lintas kasus'}</h2></div><div class="issues-threads">{caseIndex.filter(c=>c.thread).map(c=><a href={withLocale(c.href,locale)}><h3>{t(c.title,locale)} <svg class="issues-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></h3><p>{t(investigativeRecord.cases.find(k=>k.id===c.id)!.deck,locale)}</p></a>)}</div></section>
+  <section class="topics-directory" id="topics" aria-labelledby="all-topics-title"><div class="issues-section-head"><h2 id="all-topics-title">{en?'All topics':'Semua topik'}</h2></div><div class="topics-directory-grid">{issues.map(item=><a href={withLocale(`/topics/${item.slug}/`,locale)}><div><h3>{t(item.title,locale)}</h3><p>{t(item.summary,locale)}</p></div><svg class="issues-link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>)}</div></section>
+  <details class="issues-research-index"><summary>{en?'Research index':'Indeks riset'} · {investigativeRecord.threads.length}</summary><ol>{investigativeRecord.threads.map(thread=><li>{t(thread.title,locale)}</li>)}</ol></details>
+ </div>
+ <script type="application/json" data-case-routes set:html={JSON.stringify(caseRoute).replace(/</g,'\\u003c')}/>
 </BaseLayout>
 <script>
- const menu=document.querySelector<HTMLDetailsElement>('.desk-site-menu');
- document.addEventListener('click',event=>{if(menu?.open&&!menu.contains(event.target as Node))menu.open=false;});
- menu?.addEventListener('keydown',event=>{if(event.key==='Escape'){menu.open=false;menu.querySelector('summary')?.focus();}});
+// Keep links shared from the earlier desk useful after moving it into cases.
+const old=new URL(location.href),id=old.searchParams.get('case'),routes=JSON.parse(document.querySelector('[data-case-routes]')?.textContent||'{}');
+if(id&&routes[id]){const next=new URL((document.documentElement.lang==='id'?'/id':'')+routes[id],location.origin);for(const k of ['entity','claim','view','evidence'])if(old.searchParams.has(k))next.searchParams.set(k,old.searchParams.get(k)!);next.hash=old.searchParams.get('view')==='timeline'?'records':old.searchParams.get('view')==='documents'?'documents':'explore';location.replace(next.href)}
 </script>

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "reviewedAt": "2026-10-26",
+  "reviewedAt": "2026-10-27",
   "sources": [
     {
       "id": "S01",
@@ -341,6 +341,186 @@
       "scope": "Dated project entries; operator activities, government decisions and community responses. Existing Watch chronology retained separately.",
       "family": "pusaka-merauke",
       "limitations": "Dates and statements attributed to the chronology; individual permits and company ownership require their own records."
+    },
+    {
+      "id": "T-nduga-displacement-origin",
+      "title": "Worksite killings and response",
+      "url": "https://www.hrw.org/news/2018/12/09/indonesia-papuan-militants-kill-17",
+      "kind": "report",
+      "period": "2018-12-02",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "Human Rights Watch",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-nduga-emergency-school",
+      "title": "Displaced children attend emergency school",
+      "url": "https://projects.voanews.com/kebebasan-pers-papua/indonesian/impact/pengungsi-konflik-nduga-bangun-sekolah-darurat.html",
+      "kind": "report",
+      "period": "2019-08",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "VOA · Alam Burhanan",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-nduga-displacement-aid-appeal",
+      "title": "UN experts call for humanitarian access",
+      "url": "https://www.ohchr.org/en/press-releases/2022/03/indonesia-un-experts-sound-alarm-serious-papua-abuses-call-urgent-aid",
+      "kind": "report",
+      "period": "2022-03-01",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "OHCHR · UN Special Procedures",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-nduga-displacement-operations-2023",
+      "title": "Church network reports intensified operations",
+      "url": "https://www.oikoumene.org/news/human-rights-groups-see-extreme-increase-in-military-deployments-and-operations-in-papua",
+      "kind": "report",
+      "period": "2023-04-24",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "World Council of Churches / Human Rights Monitor",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-nduga-displacement-q2-2026",
+      "title": "Second-quarter monitoring",
+      "url": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
+      "kind": "report",
+      "period": "2026-04",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "Human Rights Monitor",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-puncak-displacement-origin",
+      "title": "Beoga evacuation requests",
+      "url": "https://papua.antaranews.com/berita/629122/pengungsi-beoga-puncak-minta-dievakuasi-persediaan-makanan-mulai-menipis",
+      "kind": "report",
+      "period": "2021-04-11",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "ANTARA",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-puncak-komnas-visit",
+      "title": "Komnas HAM hears from displaced residents",
+      "url": "https://www.puncakkab.go.id/publikasi/berita/568/komnasham-ri-tiba-di-puncak-dengar-langsung-keluhan-para-pengungsi",
+      "kind": "report",
+      "period": "2025-10",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "Pemerintah Kabupaten Puncak",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-intan-jaya-displacement-origin",
+      "title": "Pastor Yeremia Zanambani killed",
+      "url": "https://www.asia-pacific-solidarity.net/news/2021-01-07/intan-jaya-conflict-risk-of-more-widespread-violence-future.html",
+      "kind": "report",
+      "period": "2020-09-19",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "Humanitarian Team / solidarity archive",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-intan-gold-rush",
+      "title": "Gold Rush report examines mining and security",
+      "url": "https://www.amnesty.org/en/wp-content/uploads/2022/03/ASA2152572022ENGLISH.pdf",
+      "kind": "report",
+      "period": "2022-03",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "Amnesty International",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-awyu-lawsuit",
+      "title": "Hendrikus Woro files environmental lawsuit",
+      "url": "https://www.greenpeace.org/southeastasia/press/58630/west-papuan-indigenous-defender-files-lawsuit-over-palm-oil-company-forestland-grab/",
+      "kind": "report",
+      "period": "2023-03-13",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "Greenpeace Southeast Asia",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-awyu-first-verdict",
+      "title": "Jayapura court rejects lawsuit",
+      "url": "https://www.greenpeace.org/southeastasia/press/62817/verdict-a-setback-for-awyu-indigenous-people-and-papuan-forests/",
+      "kind": "report",
+      "period": "2023-11-02",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "Greenpeace Southeast Asia",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-ial-cassation",
+      "title": "Cassation rejected in IAL case",
+      "url": "https://www.walhi.or.id/mahkamah-agung-tolak-kasasi-suku-awyu-perjuangan-selamatkan-hutan-papua-kian-berat",
+      "kind": "report",
+      "period": "2024-09-18",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "WALHI / Save Papuan Customary Forests Coalition",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-four-revocations",
+      "title": "Four permits revoked",
+      "url": "https://www.esdm.go.id/en/media-center/news-archives/pemerintah-cabut-empat-izin-perusahaan-tambang-di-raja-ampat",
+      "kind": "report",
+      "period": "2025-06-10",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "Ministry of Energy and Mineral Resources · 2025",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-gag-resumption",
+      "title": "Gag Nikel resumes under oversight",
+      "url": "https://asianews.network/indonesia-government-vows-stricter-oversight-as-gag-nikel-restarts-raja-ampat-mine/",
+      "kind": "report",
+      "period": "2025-09-03",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "The Jakarta Post / Asia News Network",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "T-public-information-ruling",
+      "title": "Court upholds access to revocation records",
+      "url": "https://www.greenpeace.org/indonesia/siaran-pers/67809/greenpeace-menang-ptun-perintahkan-pemerintah-buka-sk-pencabutan-izin-4-tambang-nikel-di-raja-ampat/",
+      "kind": "report",
+      "period": "2026-09-14",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "Greenpeace Indonesia",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "R-GP-correction",
+      "title": "Greenpeace clarifies Raja Ampat nickel report",
+      "url": "https://www.greenpeace.org/southeastasia/press/69207/greenpeace-clarifies-findings-on-the-raja-ampats-nickel-report/",
+      "kind": "statement",
+      "period": "2026-08-16",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "Greenpeace",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "R-freeport-recovery",
+      "title": "Freeport says wet ore is slowing Grasberg recovery",
+      "url": "https://www.reuters.com/world/asia-pacific/freeport-indonesia-says-wet-ore-slowing-grasberg-recovery-full-ramp-up-close-2026-05-20/",
+      "kind": "report",
+      "period": "2026-05-20",
+      "scope": "Dated original reporting, institutional statement or attributed research; see the cited section.",
+      "family": "Reuters",
+      "limitations": "Attribution and the scope of each finding remain attached to the record; later outcomes require separate evidence."
+    },
+    {
+      "id": "R-freeport-extension",
+      "title": "FCX announces MOU on Grasberg operating-rights extension",
+      "url": "https://investors.fcx.com/investors/news-releases/news-release-details/2026/FCX-Announces-Agreement-for-Life-of-Resource-Extension-of-Operating-Rights-in-Grasberg-Minerals-District/default.aspx",
+      "kind": "disclosure",
+      "period": "2026-02-18",
+      "scope": "Company announcement of an MOU; implementation is subject to an amended IUPK.",
+      "family": "Freeport-McMoRan",
+      "limitations": "The announcement records agreed prospective terms, not a completed licence amendment or a present-day transfer of the future stake."
     }
   ],
   "entities": [
@@ -923,6 +1103,276 @@
       },
       "kind": "person",
       "aliases": []
+    },
+    {
+      "id": "un-experts",
+      "name": {
+        "en": "UN independent experts",
+        "pmy": "Pakar independen PBB"
+      },
+      "kind": "institution",
+      "aliases": []
+    },
+    {
+      "id": "humanitarian-access",
+      "name": {
+        "en": "Humanitarian access",
+        "pmy": "Akses kemanusiaan"
+      },
+      "kind": "mechanism",
+      "aliases": []
+    },
+    {
+      "id": "wabu",
+      "name": {
+        "en": "Wabu mining proposal",
+        "pmy": "Rencana tambang Wabu"
+      },
+      "kind": "project",
+      "aliases": []
+    },
+    {
+      "id": "amnesty",
+      "name": {
+        "en": "Amnesty International",
+        "pmy": "Amnesty International"
+      },
+      "kind": "organisation",
+      "aliases": []
+    },
+    {
+      "id": "nduga",
+      "name": {
+        "en": "Nduga",
+        "pmy": "Nduga"
+      },
+      "kind": "place",
+      "aliases": []
+    },
+    {
+      "id": "nduga-road-killings",
+      "name": {
+        "en": "December 2018 worksite killings",
+        "pmy": "Pembunuhan di lokasi kerja Desember 2018"
+      },
+      "kind": "event",
+      "aliases": []
+    },
+    {
+      "id": "displaced-nduga-pupils",
+      "name": {
+        "en": "Displaced Nduga pupils",
+        "pmy": "Murid pengungsi Nduga"
+      },
+      "kind": "community",
+      "aliases": []
+    },
+    {
+      "id": "weneroma-school",
+      "name": {
+        "en": "Weneroma emergency school",
+        "pmy": "Sekolah darurat Weneroma"
+      },
+      "kind": "institution",
+      "aliases": []
+    },
+    {
+      "id": "puncak",
+      "name": {
+        "en": "Puncak regency",
+        "pmy": "Kabupaten Puncak"
+      },
+      "kind": "place",
+      "aliases": []
+    },
+    {
+      "id": "beoga-health-workers",
+      "name": {
+        "en": "Beoga health workers",
+        "pmy": "Tenaga kesehatan Beoga"
+      },
+      "kind": "community",
+      "aliases": []
+    },
+    {
+      "id": "evacuation",
+      "name": {
+        "en": "Evacuation and emergency aid",
+        "pmy": "Evakuasi dan bantuan darurat"
+      },
+      "kind": "mechanism",
+      "aliases": []
+    },
+    {
+      "id": "komnas-ham",
+      "name": {
+        "en": "Komnas HAM",
+        "pmy": "Komnas HAM"
+      },
+      "kind": "institution",
+      "aliases": []
+    },
+    {
+      "id": "puncak-displaced",
+      "name": {
+        "en": "Displaced Puncak residents",
+        "pmy": "Warga pengungsi Puncak"
+      },
+      "kind": "community",
+      "aliases": []
+    },
+    {
+      "id": "intan-jaya",
+      "name": {
+        "en": "Intan Jaya",
+        "pmy": "Intan Jaya"
+      },
+      "kind": "place",
+      "aliases": []
+    },
+    {
+      "id": "yeremia-killing",
+      "name": {
+        "en": "Killing of Yeremia Zanambani",
+        "pmy": "Pembunuhan Yeremia Zanambani"
+      },
+      "kind": "event",
+      "aliases": []
+    },
+    {
+      "id": "woro",
+      "name": {
+        "en": "Hendrikus Woro",
+        "pmy": "Hendrikus Woro"
+      },
+      "kind": "person",
+      "aliases": []
+    },
+    {
+      "id": "ial",
+      "name": {
+        "en": "PT Indo Asiana Lestari",
+        "pmy": "PT Indo Asiana Lestari"
+      },
+      "kind": "company",
+      "aliases": []
+    },
+    {
+      "id": "ial-approval",
+      "name": {
+        "en": "IAL environmental approval",
+        "pmy": "Persetujuan lingkungan IAL"
+      },
+      "kind": "decision",
+      "aliases": []
+    },
+    {
+      "id": "awyu",
+      "name": {
+        "en": "Awyu customary communities",
+        "pmy": "Masyarakat adat Awyu"
+      },
+      "kind": "community",
+      "aliases": []
+    },
+    {
+      "id": "esdm",
+      "name": {
+        "en": "Energy and mineral resources ministry",
+        "pmy": "Kementerian ESDM"
+      },
+      "kind": "institution",
+      "aliases": []
+    },
+    {
+      "id": "raja-permits",
+      "name": {
+        "en": "Four Raja Ampat mining permits",
+        "pmy": "Empat izin tambang Raja Ampat"
+      },
+      "kind": "decision",
+      "aliases": []
+    },
+    {
+      "id": "gag-nikel",
+      "name": {
+        "en": "PT Gag Nikel",
+        "pmy": "PT Gag Nikel"
+      },
+      "kind": "company",
+      "aliases": []
+    },
+    {
+      "id": "gag-island",
+      "name": {
+        "en": "Gag Island",
+        "pmy": "Pulau Gag"
+      },
+      "kind": "place",
+      "aliases": []
+    },
+    {
+      "id": "greenpeace",
+      "name": {
+        "en": "Greenpeace",
+        "pmy": "Greenpeace"
+      },
+      "kind": "organisation",
+      "aliases": []
+    },
+    {
+      "id": "permit-disclosure",
+      "name": {
+        "en": "Permit-revocation disclosure",
+        "pmy": "Keterbukaan pencabutan izin"
+      },
+      "kind": "decision",
+      "aliases": []
+    },
+    {
+      "id": "ekb",
+      "name": {
+        "en": "PT Eka Kurnia Baru",
+        "pmy": "PT Eka Kurnia Baru"
+      },
+      "kind": "company",
+      "aliases": []
+    },
+    {
+      "id": "ekb-coal",
+      "name": {
+        "en": "EKB coal-licence case",
+        "pmy": "Perkara izin batu bara EKB"
+      },
+      "kind": "decision",
+      "aliases": []
+    },
+    {
+      "id": "ekb-nickel",
+      "name": {
+        "en": "EKB nickel-licence case",
+        "pmy": "Perkara izin nikel EKB"
+      },
+      "kind": "decision",
+      "aliases": []
+    },
+    {
+      "id": "grasberg-recovery",
+      "name": {
+        "en": "Grasberg recovery programme",
+        "pmy": "Program pemulihan Grasberg"
+      },
+      "kind": "project",
+      "aliases": []
+    },
+    {
+      "id": "grasberg-extension",
+      "name": {
+        "en": "Grasberg operating-rights MOU",
+        "pmy": "Nota kesepahaman hak operasi Grasberg"
+      },
+      "kind": "decision",
+      "aliases": []
     }
   ],
   "claims": [
@@ -1083,6 +1533,10 @@
           "locator": {
             "en": "7 June 2024 entry",
             "pmy": "Entri 7 Juni 2024"
+          },
+          "excerpt": {
+            "language": "en",
+            "text": "The Yei Tribe indigenous community made a Statement Letter regarding the rejection of the investment plan in the Yei Tribe Indigenous Territory"
           }
         }
       ]
@@ -2311,6 +2765,843 @@
           }
         }
       ]
+    },
+    {
+      "id": "case-nduga-displacement-origin",
+      "cases": [
+        "nduga"
+      ],
+      "subject": "nduga-road-killings",
+      "predicate": {
+        "en": "Documented in",
+        "pmy": "Dicatat di"
+      },
+      "object": "nduga",
+      "date": "2018-12-02",
+      "title": {
+        "en": "Worksite killings and response",
+        "pmy": "Pembunuhan di lokasi kerja dan tanggapan"
+      },
+      "text": {
+        "en": "The December killings and subsequent operations are a starting point in the present displacement chronology. HRW described disputed accounts and called for civilian protection.",
+        "pmy": "Pembunuhan Desember dan operasi berikutnya menjadi titik awal penting kronologi pengungsian sekarang. HRW mencatat penuturan yang berbeda dan meminta pelindungan warga sipil."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-nduga-displacement-origin",
+          "locator": {
+            "en": "Worksite killings and response · 2018-12-02",
+            "pmy": "Pembunuhan di lokasi kerja dan tanggapan · 2018-12-02"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-nduga-emergency-school",
+      "cases": [
+        "nduga"
+      ],
+      "subject": "displaced-nduga-pupils",
+      "predicate": {
+        "en": "Continue learning at",
+        "pmy": "Melanjutkan belajar di"
+      },
+      "object": "weneroma-school",
+      "date": "2019-08",
+      "title": {
+        "en": "Displaced children attend emergency school",
+        "pmy": "Anak pengungsi belajar di sekolah darurat"
+      },
+      "text": {
+        "en": "VOA visited a temporary school in the Weneroma church compound in Wamena. Volunteer teachers and families were trying to continue children’s education after displacement from Nduga. Children’s school records and funding were difficult to transfer, showing how the consequences persisted beyond the initial flight from home.",
+        "pmy": "VOA mengunjungi sekolah darurat di kompleks gereja Weneroma, Wamena. Guru sukarela dan keluarga berusaha melanjutkan pendidikan anak setelah mengungsi dari Nduga. Pemindahan data sekolah dan dukungan biaya menghadapi kendala, memperlihatkan dampak pengungsian yang berlanjut setelah warga meninggalkan rumah."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-nduga-emergency-school",
+          "locator": {
+            "en": "Displaced children attend emergency school · 2019-08",
+            "pmy": "Anak pengungsi belajar di sekolah darurat · 2019-08"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-nduga-displacement-aid-appeal",
+      "cases": [
+        "nduga"
+      ],
+      "subject": "un-experts",
+      "predicate": {
+        "en": "Call for",
+        "pmy": "Meminta"
+      },
+      "object": "humanitarian-access",
+      "date": "2022-03-01",
+      "title": {
+        "en": "UN experts call for humanitarian access",
+        "pmy": "Pakar PBB meminta akses kemanusiaan"
+      },
+      "text": {
+        "en": "UN experts described prolonged displacement since late 2018, interrupted food, healthcare and education, and restrictions on relief access across highland Papua. Their appeal calls for independent investigations and durable solutions. The regional estimates cover several conflict areas, rather than this regency alone.",
+        "pmy": "Pakar PBB menggambarkan pengungsian berkepanjangan sejak akhir 2018, gangguan pangan, kesehatan, dan pendidikan, serta keterbatasan akses bantuan di pegunungan Papua. Mereka meminta penyelidikan independen dan penyelesaian berkelanjutan. Perkiraan regional mencakup sejumlah wilayah konflik, bukan kabupaten ini saja."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-nduga-displacement-aid-appeal",
+          "locator": {
+            "en": "UN experts call for humanitarian access · 2022-03-01",
+            "pmy": "Pakar PBB meminta akses kemanusiaan · 2022-03-01"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-nduga-displacement-operations-2023",
+      "cases": [
+        "nduga"
+      ],
+      "subject": "hrm",
+      "predicate": {
+        "en": "Reports operations in",
+        "pmy": "Melaporkan operasi di"
+      },
+      "object": "nduga",
+      "date": "2023-04-24",
+      "title": {
+        "en": "Church network reports intensified operations",
+        "pmy": "Jaringan gereja melaporkan peningkatan operasi"
+      },
+      "text": {
+        "en": "The World Council of Churches relayed Human Rights Monitor’s account of increased deployments and raids, naming Nduga, Puncak and Intan Jaya among the main affected regencies. The report links military operations with community fears, including around schools and healthcare. This is a monitoring assessment, not a new census of displaced people.",
+        "pmy": "Dewan Gereja Dunia meneruskan laporan Human Rights Monitor tentang peningkatan pengerahan pasukan dan penggerebekan, dengan Nduga, Puncak, serta Intan Jaya sebagai wilayah utama terdampak. Laporan menghubungkan operasi dengan ketakutan masyarakat, termasuk di sekitar sekolah dan layanan kesehatan. Catatan ini merupakan penilaian pemantauan, bukan pendataan baru pengungsi."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-nduga-displacement-operations-2023",
+          "locator": {
+            "en": "Church network reports intensified operations · 2023-04-24",
+            "pmy": "Jaringan gereja melaporkan peningkatan operasi · 2023-04-24"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-nduga-displacement-q2-2026",
+      "cases": [
+        "nduga"
+      ],
+      "subject": "hrm",
+      "predicate": {
+        "en": "Records displacement concerns in",
+        "pmy": "Mencatat persoalan pengungsian di"
+      },
+      "object": "nduga",
+      "date": "2026-04",
+      "title": {
+        "en": "Second-quarter monitoring",
+        "pmy": "Pemantauan kuartal kedua"
+      },
+      "text": {
+        "en": "HRM’s April–June 2026 report records further operations and concerns for displaced civilians. Its regional totals are not a count for this case alone.",
+        "pmy": "Laporan HRM April–Juni 2026 mencatat operasi berikutnya serta kekhawatiran bagi warga pengungsi. Jumlah regional bukan jumlah kasus ini saja."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-nduga-displacement-q2-2026",
+          "locator": {
+            "en": "Second-quarter monitoring · 2026-04",
+            "pmy": "Pemantauan kuartal kedua · 2026-04"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-puncak-displacement-origin",
+      "cases": [
+        "puncak"
+      ],
+      "subject": "beoga-health-workers",
+      "predicate": {
+        "en": "Request",
+        "pmy": "Meminta"
+      },
+      "object": "evacuation",
+      "date": "2021-04-11",
+      "title": {
+        "en": "Beoga evacuation requests",
+        "pmy": "Permintaan evakuasi Beoga"
+      },
+      "text": {
+        "en": "ANTARA interviewed a health worker seeking evacuation after two teachers were killed. Closed shops and fear were disrupting access to food and services.",
+        "pmy": "ANTARA mewawancarai tenaga kesehatan yang meminta evakuasi setelah dua guru dibunuh. Kios tutup dan ketakutan mengganggu akses pangan serta layanan."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-puncak-displacement-origin",
+          "locator": {
+            "en": "Beoga evacuation requests · 2021-04-11",
+            "pmy": "Permintaan evakuasi Beoga · 2021-04-11"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-puncak-displacement-aid-appeal",
+      "cases": [
+        "puncak"
+      ],
+      "subject": "un-experts",
+      "predicate": {
+        "en": "Call for",
+        "pmy": "Meminta"
+      },
+      "object": "humanitarian-access",
+      "date": "2022-03-01",
+      "title": {
+        "en": "UN experts call for humanitarian access",
+        "pmy": "Pakar PBB meminta akses kemanusiaan"
+      },
+      "text": {
+        "en": "UN experts described prolonged displacement since late 2018, interrupted food, healthcare and education, and restrictions on relief access across highland Papua. Their appeal calls for independent investigations and durable solutions. The regional estimates cover several conflict areas, rather than this regency alone.",
+        "pmy": "Pakar PBB menggambarkan pengungsian berkepanjangan sejak akhir 2018, gangguan pangan, kesehatan, dan pendidikan, serta keterbatasan akses bantuan di pegunungan Papua. Mereka meminta penyelidikan independen dan penyelesaian berkelanjutan. Perkiraan regional mencakup sejumlah wilayah konflik, bukan kabupaten ini saja."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-nduga-displacement-aid-appeal",
+          "locator": {
+            "en": "UN experts call for humanitarian access · 2022-03-01",
+            "pmy": "Pakar PBB meminta akses kemanusiaan · 2022-03-01"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-puncak-displacement-operations-2023",
+      "cases": [
+        "puncak"
+      ],
+      "subject": "hrm",
+      "predicate": {
+        "en": "Reports operations in",
+        "pmy": "Melaporkan operasi di"
+      },
+      "object": "puncak",
+      "date": "2023-04-24",
+      "title": {
+        "en": "Church network reports intensified operations",
+        "pmy": "Jaringan gereja melaporkan peningkatan operasi"
+      },
+      "text": {
+        "en": "The World Council of Churches relayed Human Rights Monitor’s account of increased deployments and raids, naming Nduga, Puncak and Intan Jaya among the main affected regencies. The report links military operations with community fears, including around schools and healthcare. This is a monitoring assessment, not a new census of displaced people.",
+        "pmy": "Dewan Gereja Dunia meneruskan laporan Human Rights Monitor tentang peningkatan pengerahan pasukan dan penggerebekan, dengan Nduga, Puncak, serta Intan Jaya sebagai wilayah utama terdampak. Laporan menghubungkan operasi dengan ketakutan masyarakat, termasuk di sekitar sekolah dan layanan kesehatan. Catatan ini merupakan penilaian pemantauan, bukan pendataan baru pengungsi."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-nduga-displacement-operations-2023",
+          "locator": {
+            "en": "Church network reports intensified operations · 2023-04-24",
+            "pmy": "Jaringan gereja melaporkan peningkatan operasi · 2023-04-24"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-puncak-komnas-visit",
+      "cases": [
+        "puncak"
+      ],
+      "subject": "komnas-ham",
+      "predicate": {
+        "en": "Hears from",
+        "pmy": "Mendengar penuturan"
+      },
+      "object": "puncak-displaced",
+      "date": "2025-10",
+      "title": {
+        "en": "Komnas HAM hears from displaced residents",
+        "pmy": "Komnas HAM mendengar warga pengungsi"
+      },
+      "text": {
+        "en": "The Puncak regency reported a Komnas HAM visit to Ilaga and Gome to hear displaced residents and discuss emergency assistance, recovery and return. The page gives an inconsistent weekday and date for the visit, so this entry retains the verified month rather than assigning a precise day.",
+        "pmy": "Pemerintah Kabupaten Puncak melaporkan kunjungan Komnas HAM ke Ilaga dan Gome untuk mendengar warga pengungsi serta membahas bantuan darurat, pemulihan, dan pemulangan. Entri menggunakan bulan kunjungan karena hari dan tanggal pada sumber tidak konsisten."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-puncak-komnas-visit",
+          "locator": {
+            "en": "Komnas HAM hears from displaced residents · 2025-10",
+            "pmy": "Komnas HAM mendengar warga pengungsi · 2025-10"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-puncak-displacement-q2-2026",
+      "cases": [
+        "puncak"
+      ],
+      "subject": "hrm",
+      "predicate": {
+        "en": "Records displacement concerns in",
+        "pmy": "Mencatat persoalan pengungsian di"
+      },
+      "object": "puncak",
+      "date": "2026-04",
+      "title": {
+        "en": "Second-quarter monitoring",
+        "pmy": "Pemantauan kuartal kedua"
+      },
+      "text": {
+        "en": "HRM’s April–June 2026 report records further operations and concerns for displaced civilians. Its regional totals are not a count for this case alone.",
+        "pmy": "Laporan HRM April–Juni 2026 mencatat operasi berikutnya serta kekhawatiran bagi warga pengungsi. Jumlah regional bukan jumlah kasus ini saja."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-nduga-displacement-q2-2026",
+          "locator": {
+            "en": "Second-quarter monitoring · 2026-04",
+            "pmy": "Pemantauan kuartal kedua · 2026-04"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-intan-jaya-displacement-origin",
+      "cases": [
+        "intan-jaya"
+      ],
+      "subject": "yeremia-killing",
+      "predicate": {
+        "en": "Documented in",
+        "pmy": "Dicatat di"
+      },
+      "object": "intan-jaya",
+      "date": "2020-09-19",
+      "title": {
+        "en": "Pastor Yeremia Zanambani killed",
+        "pmy": "Pendeta Yeremia Zanambani dibunuh"
+      },
+      "text": {
+        "en": "The killing became a reference point in church and humanitarian investigations of violence around Sugapa.",
+        "pmy": "Pembunuhan menjadi rujukan penyelidikan gereja serta tim kemanusiaan tentang kekerasan sekitar Sugapa."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-intan-jaya-displacement-origin",
+          "locator": {
+            "en": "Pastor Yeremia Zanambani killed · 2020-09-19",
+            "pmy": "Pendeta Yeremia Zanambani dibunuh · 2020-09-19"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-intan-gold-rush",
+      "cases": [
+        "intan-jaya"
+      ],
+      "subject": "amnesty",
+      "predicate": {
+        "en": "Examines proposed mining at",
+        "pmy": "Mengkaji rencana tambang di"
+      },
+      "object": "wabu",
+      "date": "2022-03",
+      "title": {
+        "en": "Gold Rush report examines mining and security",
+        "pmy": "Laporan Gold Rush membahas tambang dan keamanan"
+      },
+      "text": {
+        "en": "Amnesty’s Gold Rush report examines proposed mining at Wabu and a security environment in which residents described violence, restrictions and displacement. The report connects questions about consent for extraction with people’s ability to remain on their land and speak freely about development plans.",
+        "pmy": "Laporan Gold Rush Amnesty membahas rencana pertambangan Wabu dan situasi keamanan ketika warga melaporkan kekerasan, pembatasan, serta pengungsian. Kajian menghubungkan persetujuan atas pertambangan dengan kemampuan masyarakat tinggal di tanahnya dan menyampaikan pendapat tentang rencana pembangunan."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-intan-gold-rush",
+          "locator": {
+            "en": "Gold Rush report examines mining and security · 2022-03",
+            "pmy": "Laporan Gold Rush membahas tambang dan keamanan · 2022-03"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-intan-jaya-displacement-aid-appeal",
+      "cases": [
+        "intan-jaya"
+      ],
+      "subject": "un-experts",
+      "predicate": {
+        "en": "Call for",
+        "pmy": "Meminta"
+      },
+      "object": "humanitarian-access",
+      "date": "2022-03-01",
+      "title": {
+        "en": "UN experts call for humanitarian access",
+        "pmy": "Pakar PBB meminta akses kemanusiaan"
+      },
+      "text": {
+        "en": "UN experts described prolonged displacement since late 2018, interrupted food, healthcare and education, and restrictions on relief access across highland Papua. Their appeal calls for independent investigations and durable solutions. The regional estimates cover several conflict areas, rather than this regency alone.",
+        "pmy": "Pakar PBB menggambarkan pengungsian berkepanjangan sejak akhir 2018, gangguan pangan, kesehatan, dan pendidikan, serta keterbatasan akses bantuan di pegunungan Papua. Mereka meminta penyelidikan independen dan penyelesaian berkelanjutan. Perkiraan regional mencakup sejumlah wilayah konflik, bukan kabupaten ini saja."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-nduga-displacement-aid-appeal",
+          "locator": {
+            "en": "UN experts call for humanitarian access · 2022-03-01",
+            "pmy": "Pakar PBB meminta akses kemanusiaan · 2022-03-01"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-intan-jaya-displacement-operations-2023",
+      "cases": [
+        "intan-jaya"
+      ],
+      "subject": "hrm",
+      "predicate": {
+        "en": "Reports operations in",
+        "pmy": "Melaporkan operasi di"
+      },
+      "object": "intan-jaya",
+      "date": "2023-04-24",
+      "title": {
+        "en": "Church network reports intensified operations",
+        "pmy": "Jaringan gereja melaporkan peningkatan operasi"
+      },
+      "text": {
+        "en": "The World Council of Churches relayed Human Rights Monitor’s account of increased deployments and raids, naming Nduga, Puncak and Intan Jaya among the main affected regencies. The report links military operations with community fears, including around schools and healthcare. This is a monitoring assessment, not a new census of displaced people.",
+        "pmy": "Dewan Gereja Dunia meneruskan laporan Human Rights Monitor tentang peningkatan pengerahan pasukan dan penggerebekan, dengan Nduga, Puncak, serta Intan Jaya sebagai wilayah utama terdampak. Laporan menghubungkan operasi dengan ketakutan masyarakat, termasuk di sekitar sekolah dan layanan kesehatan. Catatan ini merupakan penilaian pemantauan, bukan pendataan baru pengungsi."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-nduga-displacement-operations-2023",
+          "locator": {
+            "en": "Church network reports intensified operations · 2023-04-24",
+            "pmy": "Jaringan gereja melaporkan peningkatan operasi · 2023-04-24"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-intan-jaya-displacement-q2-2026",
+      "cases": [
+        "intan-jaya"
+      ],
+      "subject": "hrm",
+      "predicate": {
+        "en": "Records displacement concerns in",
+        "pmy": "Mencatat persoalan pengungsian di"
+      },
+      "object": "intan-jaya",
+      "date": "2026-04",
+      "title": {
+        "en": "Second-quarter monitoring",
+        "pmy": "Pemantauan kuartal kedua"
+      },
+      "text": {
+        "en": "HRM’s April–June 2026 report records further operations and concerns for displaced civilians. Its regional totals are not a count for this case alone.",
+        "pmy": "Laporan HRM April–Juni 2026 mencatat operasi berikutnya serta kekhawatiran bagi warga pengungsi. Jumlah regional bukan jumlah kasus ini saja."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-nduga-displacement-q2-2026",
+          "locator": {
+            "en": "Second-quarter monitoring · 2026-04",
+            "pmy": "Pemantauan kuartal kedua · 2026-04"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-awyu-lawsuit",
+      "cases": [
+        "awyu"
+      ],
+      "subject": "woro",
+      "predicate": {
+        "en": "Challenges",
+        "pmy": "Menggugat"
+      },
+      "object": "ial-approval",
+      "date": "2023-03-13",
+      "title": {
+        "en": "Hendrikus Woro files environmental lawsuit",
+        "pmy": "Hendrikus Woro mengajukan gugatan lingkungan"
+      },
+      "text": {
+        "en": "Awyu land defender Hendrikus (Franky) Woro filed a lawsuit against PT Indo Asiana Lestari’s environmental approval. Greenpeace’s account describes customary forest as the source of food, work and inherited social responsibilities, and records objections to a decision communities said they had not agreed to.",
+        "pmy": "Pembela tanah Awyu Hendrikus (Franky) Woro menggugat persetujuan lingkungan PT Indo Asiana Lestari. Greenpeace menggambarkan hutan adat sebagai sumber pangan, pekerjaan, dan tanggung jawab sosial antargenerasi serta mencatat keberatan atas keputusan yang menurut masyarakat tidak mereka setujui."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-awyu-lawsuit",
+          "locator": {
+            "en": "Hendrikus Woro files environmental lawsuit · 2023-03-13",
+            "pmy": "Hendrikus Woro mengajukan gugatan lingkungan · 2023-03-13"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-awyu-first-verdict",
+      "cases": [
+        "awyu"
+      ],
+      "subject": "ptun-jayapura",
+      "predicate": {
+        "en": "Rejects challenge to",
+        "pmy": "Menolak gugatan atas"
+      },
+      "object": "ial-approval",
+      "date": "2023-11-02",
+      "title": {
+        "en": "Jayapura court rejects lawsuit",
+        "pmy": "Pengadilan Jayapura menolak gugatan"
+      },
+      "text": {
+        "en": "The Jayapura administrative court rejected Woro’s environmental lawsuit. Greenpeace described the ruling as a setback and recorded his intention to continue the legal challenge. This first-instance decision precedes the 2024 cassation outcome; the IAL case should be distinguished from other Awyu-related company cases.",
+        "pmy": "Pengadilan tata usaha negara Jayapura menolak gugatan lingkungan Woro. Greenpeace menyebut putusan sebagai kemunduran dan mencatat niatnya melanjutkan upaya hukum. Putusan tingkat pertama mendahului hasil kasasi 2024; perkara IAL perlu dibedakan dari perkara perusahaan lain yang terkait masyarakat Awyu."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-awyu-first-verdict",
+          "locator": {
+            "en": "Jayapura court rejects lawsuit · 2023-11-02",
+            "pmy": "Pengadilan Jayapura menolak gugatan · 2023-11-02"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-ial-cassation",
+      "cases": [
+        "awyu"
+      ],
+      "subject": "supreme-court",
+      "predicate": {
+        "en": "Rejects cassation over",
+        "pmy": "Menolak kasasi atas"
+      },
+      "object": "ial-approval",
+      "date": "2024-09-18",
+      "title": {
+        "en": "Cassation rejected in IAL case",
+        "pmy": "Kasasi perkara IAL ditolak"
+      },
+      "text": {
+        "en": "WALHI and the coalition report that decision 458 K/TUN/LH/2024 rejected Hendrikus Woro’s cassation concerning PT Indo Asiana Lestari’s environmental approval. One judge dissented.",
+        "pmy": "WALHI bersama koalisi melaporkan bahwa putusan 458 K/TUN/LH/2024 menolak kasasi Hendrikus Woro terkait persetujuan lingkungan PT Indo Asiana Lestari. Satu hakim berbeda pendapat."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-ial-cassation",
+          "locator": {
+            "en": "Cassation rejected in IAL case · 2024-09-18",
+            "pmy": "Kasasi perkara IAL ditolak · 2024-09-18"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-four-revocations",
+      "cases": [
+        "raja"
+      ],
+      "subject": "esdm",
+      "predicate": {
+        "en": "Revokes",
+        "pmy": "Mencabut"
+      },
+      "object": "raja-permits",
+      "date": "2025-06-10",
+      "title": {
+        "en": "Four permits revoked",
+        "pmy": "Empat izin dicabut"
+      },
+      "text": {
+        "en": "ESDM announced the revocation of permits for ASP, MRP, KSM and Nurham. PT Gag Nikel’s permit remained in force.",
+        "pmy": "ESDM mengumumkan pencabutan izin ASP, MRP, KSM, dan Nurham. Izin PT Gag Nikel tetap berlaku."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-four-revocations",
+          "locator": {
+            "en": "Four permits revoked · 2025-06-10",
+            "pmy": "Empat izin dicabut · 2025-06-10"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-gag-resumption",
+      "cases": [
+        "raja"
+      ],
+      "subject": "gag-nikel",
+      "predicate": {
+        "en": "Resumes mining on",
+        "pmy": "Melanjutkan tambang di"
+      },
+      "object": "gag-island",
+      "date": "2025-09-03",
+      "title": {
+        "en": "Gag Nikel resumes under oversight",
+        "pmy": "Gag Nikel kembali beroperasi dengan pengawasan"
+      },
+      "text": {
+        "en": "A September report citing the energy ministry dates Gag Nikel’s resumption to 3 September after a temporary suspension. The government promised stricter monitoring and rehabilitation. Gag’s operation is separate from the four companies whose permits were revoked in June.",
+        "pmy": "Laporan September yang mengutip Kementerian ESDM mencatat Gag Nikel kembali beroperasi pada 3 September setelah penghentian sementara. Pemerintah menjanjikan pemantauan dan rehabilitasi lebih ketat. Operasi Gag berbeda dari empat perusahaan yang izinnya dicabut pada Juni."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-gag-resumption",
+          "locator": {
+            "en": "Gag Nikel resumes under oversight · 2025-09-03",
+            "pmy": "Gag Nikel kembali beroperasi dengan pengawasan · 2025-09-03"
+          }
+        }
+      ]
+    },
+    {
+      "id": "case-public-information-ruling",
+      "cases": [
+        "raja"
+      ],
+      "subject": "ptun-jakarta",
+      "predicate": {
+        "en": "Upholds public access to",
+        "pmy": "Menguatkan akses publik atas"
+      },
+      "object": "permit-disclosure",
+      "date": "2026-09-14",
+      "title": {
+        "en": "Court upholds access to revocation records",
+        "pmy": "Pengadilan menguatkan akses catatan pencabutan"
+      },
+      "text": {
+        "en": "Greenpeace reports that PTUN Jakarta rejected BKPM’s objection to disclosing the four revocation decisions and their implementation details, affirming the Central Information Commission’s decision.",
+        "pmy": "Greenpeace melaporkan bahwa PTUN Jakarta menolak keberatan BKPM atas pembukaan empat keputusan pencabutan serta rincian pelaksanaannya, menguatkan putusan Komisi Informasi Pusat."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-public-information-ruling",
+          "locator": {
+            "en": "Court upholds access to revocation records · 2026-09-14",
+            "pmy": "Pengadilan menguatkan akses catatan pencabutan · 2026-09-14"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ekb-coal-outcome",
+      "cases": [
+        "raja"
+      ],
+      "subject": "ekb",
+      "predicate": {
+        "en": "Wins licence case",
+        "pmy": "Menang perkara izin"
+      },
+      "object": "ekb-coal",
+      "date": "2026-08-16",
+      "title": {
+        "en": "EKB: separate coal and nickel outcomes",
+        "pmy": "EKB: hasil perkara batu bara dan nikel berbeda"
+      },
+      "text": {
+        "en": "Greenpeace corrected its report on 16 August 2026: EKB won its coal-licence case; the higher court and Supreme Court backed the administrative-court outcome. The correction distinguishes this proceeding from the company’s nickel case.",
+        "pmy": "Greenpeace mengoreksi laporannya pada 16 Agustus 2026: EKB menang dalam perkara izin batu bara; pengadilan tingkat berikutnya serta Mahkamah Agung menguatkan hasil PTUN. Koreksi ini membedakannya dari perkara nikel perusahaan."
+      },
+      "basis": "position",
+      "evidence": [
+        {
+          "source": "R-GP-correction",
+          "locator": {
+            "en": "EKB: separate coal and nickel outcomes · 2026-08-16",
+            "pmy": "EKB: hasil perkara batu bara dan nikel berbeda · 2026-08-16"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ekb-nickel-outcome",
+      "cases": [
+        "raja"
+      ],
+      "subject": "ekb",
+      "predicate": {
+        "en": "Loses at cassation and review",
+        "pmy": "Kalah pada kasasi dan peninjauan kembali"
+      },
+      "object": "ekb-nickel",
+      "date": "2026-08-16",
+      "title": {
+        "en": "EKB: separate coal and nickel outcomes",
+        "pmy": "EKB: hasil perkara batu bara dan nikel berbeda"
+      },
+      "text": {
+        "en": "The same Greenpeace correction says EKB won at the first and higher courts in its nickel case but lost at cassation; its reconsideration request was rejected. Earlier favourable rulings therefore did not remain the final outcome reported by Greenpeace.",
+        "pmy": "Koreksi Greenpeace yang sama menyebut EKB menang di tingkat pertama dan banding dalam perkara nikel, tetapi kalah pada kasasi; permohonan peninjauan kembalinya ditolak. Karena itu, putusan awal yang menguntungkan perusahaan bukan hasil akhir yang dilaporkan Greenpeace."
+      },
+      "basis": "position",
+      "evidence": [
+        {
+          "source": "R-GP-correction",
+          "locator": {
+            "en": "EKB: separate coal and nickel outcomes · 2026-08-16",
+            "pmy": "EKB: hasil perkara batu bara dan nikel berbeda · 2026-08-16"
+          }
+        }
+      ]
+    },
+    {
+      "id": "grasberg-recovery-2026",
+      "cases": [
+        "freeport"
+      ],
+      "subject": "ptfi",
+      "predicate": {
+        "en": "Revises recovery timetable",
+        "pmy": "Mengubah jadwal pemulihan"
+      },
+      "object": "grasberg-recovery",
+      "date": "2026-05-20",
+      "title": {
+        "en": "Recovery target moves into 2027",
+        "pmy": "Target pemulihan bergeser ke 2027"
+      },
+      "text": {
+        "en": "In a 20 May Reuters interview, PTFI president director Tony Wenas said wetter-than-expected ore was delaying recovery after the September 2025 accident that killed seven workers. He put current operations at about half capacity and projected a near-full ramp-up in the second half of 2027, alongside chute modifications and new safety infrastructure. This supersedes the earlier April company target; the forecast is not an achieved recovery.",
+        "pmy": "Dalam wawancara Reuters 20 Mei, Presiden Direktur PTFI Tony Wenas mengatakan bijih yang lebih basah daripada perkiraan memperlambat pemulihan setelah kecelakaan September 2025 yang menewaskan tujuh pekerja. Ia menyebut operasi sekitar separuh kapasitas dan memperkirakan pemulihan mendekati penuh pada paruh kedua 2027, disertai modifikasi saluran bijih dan prasarana keselamatan baru. Perkiraan ini memperbarui target perusahaan pada April; sasaran tersebut belum menjadi hasil yang tercapai."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "R-freeport-recovery",
+          "locator": {
+            "en": "Recovery target moves into 2027 · 2026-05-20",
+            "pmy": "Target pemulihan bergeser ke 2027 · 2026-05-20"
+          }
+        }
+      ]
+    },
+    {
+      "id": "grasberg-extension-2026",
+      "cases": [
+        "freeport"
+      ],
+      "subject": "fcx",
+      "predicate": {
+        "en": "Announces conditional extension agreement",
+        "pmy": "Mengumumkan kesepakatan perpanjangan bersyarat"
+      },
+      "object": "grasberg-extension",
+      "date": "2026-02-18",
+      "title": {
+        "en": "An agreement on operating rights beyond 2041",
+        "pmy": "Kesepakatan hak operasi setelah 2041"
+      },
+      "text": {
+        "en": "FCX announced an MOU with Indonesia’s government for a life-of-resource extension at Grasberg. Its stated terms include additional community and exploration support, continued domestic downstreaming, and a 12% share transfer to government interests in 2041, subject to reimbursement of qualifying investment costs. FCX said it would retain 48.76% through 2041 and about 37% from 2042. The company explicitly made implementation conditional on an amended IUPK; the announcement does not establish that the licence amendment or future share transfer has occurred.",
+        "pmy": "FCX mengumumkan nota kesepahaman dengan pemerintah Indonesia untuk memperpanjang operasi Grasberg selama umur sumber dayanya. Ketentuan yang dinyatakan mencakup dukungan tambahan bagi masyarakat dan eksplorasi, kelanjutan hilirisasi domestik, serta pengalihan saham 12% kepada kepentingan pemerintah pada 2041, dengan penggantian biaya investasi tertentu. FCX menyatakan akan mempertahankan 48,76% hingga 2041 dan sekitar 37% mulai 2042. Perusahaan secara tegas mensyaratkan perubahan IUPK; pengumuman itu tidak membuktikan perubahan izin atau pengalihan saham mendatang sudah berlangsung."
+      },
+      "basis": "disclosure",
+      "evidence": [
+        {
+          "source": "R-freeport-extension",
+          "locator": {
+            "en": "18 February 2026 release · MOU terms and closing condition",
+            "pmy": "Rilis 18 Februari 2026 · ketentuan nota kesepahaman dan syarat pelaksanaan"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ial-approval-holder",
+      "cases": [
+        "awyu"
+      ],
+      "subject": "ial",
+      "predicate": {
+        "en": "Holds the challenged approval",
+        "pmy": "Memegang persetujuan yang digugat"
+      },
+      "object": "ial-approval",
+      "date": "2023-03-13",
+      "title": {
+        "en": "The company behind the environmental approval",
+        "pmy": "Perusahaan pemegang persetujuan lingkungan"
+      },
+      "text": {
+        "en": "The March 2023 Greenpeace account identifies the environmental approval for PT Indo Asiana Lestari’s proposed oil-palm project as the object of Woro’s lawsuit. The permit dispute concerns this company and project; the separate KCP and MJR proceedings have their own decisions.",
+        "pmy": "Penuturan Greenpeace pada Maret 2023 mengidentifikasi persetujuan lingkungan rencana perkebunan sawit PT Indo Asiana Lestari sebagai objek gugatan Woro. Sengketa izin ini menyangkut perusahaan dan proyek tersebut; perkara KCP serta MJR mempunyai putusan masing-masing."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-awyu-lawsuit",
+          "locator": {
+            "en": "Hendrikus Woro files environmental lawsuit · 2023-03-13",
+            "pmy": "Hendrikus Woro mengajukan gugatan lingkungan · 2023-03-13"
+          }
+        }
+      ]
+    },
+    {
+      "id": "woro-awyu-forest",
+      "cases": [
+        "awyu"
+      ],
+      "subject": "woro",
+      "predicate": {
+        "en": "Defends customary forests of",
+        "pmy": "Mempertahankan hutan adat"
+      },
+      "object": "awyu",
+      "date": "2023-03-13",
+      "title": {
+        "en": "Customary forest and the right to challenge a permit",
+        "pmy": "Hutan adat dan hak menggugat izin"
+      },
+      "text": {
+        "en": "Greenpeace identifies Hendrikus, also known as Franky Woro, as an Awyu land defender bringing the environmental challenge. Its account describes customary forest as sustaining food, work and inherited social responsibilities. These relationships are the substance of the dispute over the proposed plantation.",
+        "pmy": "Greenpeace mengidentifikasi Hendrikus, juga dikenal sebagai Franky Woro, sebagai pembela tanah Awyu yang mengajukan gugatan lingkungan. Penuturannya menjelaskan hutan adat sebagai penopang pangan, kerja, dan tanggung jawab sosial yang diwariskan. Hubungan tersebut menjadi pokok sengketa rencana perkebunan."
+      },
+      "basis": "reported",
+      "evidence": [
+        {
+          "source": "T-awyu-lawsuit",
+          "locator": {
+            "en": "Hendrikus Woro files environmental lawsuit · 2023-03-13",
+            "pmy": "Hendrikus Woro mengajukan gugatan lingkungan · 2023-03-13"
+          }
+        }
+      ]
     }
   ],
   "cases": [
@@ -2471,7 +3762,8 @@
           930,
           500
         ]
-      }
+      },
+      "entryClaim": "yei-refusal"
     },
     {
       "id": "political-access",
@@ -2609,7 +3901,8 @@
           570,
           250
         ]
-      }
+      },
+      "entryClaim": "isam-jhonlin"
     },
     {
       "id": "military-business",
@@ -2741,7 +4034,8 @@
           550,
           570
         ]
-      }
+      },
+      "entryClaim": "military-institutional"
     },
     {
       "id": "freeport",
@@ -2753,7 +4047,7 @@
         "en": "Mining rights, security support and Papuan organising.",
         "pmy": "Hak tambang, dukungan keamanan, dan pengorganisasian Papua."
       },
-      "period": "1999–2025",
+      "period": "1999–2026",
       "claimIds": [
         "fcx-ptfi",
         "security-2024",
@@ -2761,7 +4055,9 @@
         "military-mou",
         "police-mou",
         "yosepha-organising",
-        "beanal-litigation"
+        "beanal-litigation",
+        "grasberg-recovery-2026",
+        "grasberg-extension-2026"
       ],
       "body": [
         {
@@ -2795,6 +4091,16 @@
             "yosepha-organising",
             "beanal-litigation"
           ]
+        },
+        {
+          "text": {
+            "en": "The 2026 operating-rights negotiations extend these questions into the mine’s next decades. FCX’s MOU describes a prospective licence amendment and future share transfer alongside additional community commitments. Its May recovery interview places worker safety and investment plans beside a revised production forecast. The dated documents let readers follow which commitments become enforceable decisions and completed work.",
+            "pmy": "Perundingan hak operasi pada 2026 memperpanjang persoalan tersebut ke beberapa dasawarsa mendatang. Nota kesepahaman FCX menjelaskan rencana perubahan izin dan pengalihan saham di masa depan bersama komitmen tambahan bagi masyarakat. Wawancara pemulihan pada Mei menempatkan keselamatan pekerja serta rencana investasi bersama perubahan perkiraan produksi. Dokumen bertanggal memungkinkan pembaca mengikuti komitmen mana yang menjadi keputusan mengikat dan pekerjaan yang terlaksana."
+          },
+          "claimIds": [
+            "grasberg-extension-2026",
+            "grasberg-recovery-2026"
+          ]
         }
       ],
       "questions": [
@@ -2825,38 +4131,47 @@
       ],
       "scene": {
         "fcx": [
-          350,
-          160
+          150,
+          100
         ],
         "ptfi": [
-          350,
-          360
+          500,
+          100
         ],
         "government-security": [
-          680,
-          360
+          850,
+          100
         ],
         "polri": [
           150,
-          560
+          260
         ],
         "tni": [
-          570,
-          560
-        ],
-        "beanal": [
-          120,
-          160
+          500,
+          260
         ],
         "yosepha": [
-          820,
-          100
+          850,
+          260
         ],
         "amungme": [
-          820,
-          240
+          150,
+          420
+        ],
+        "beanal": [
+          500,
+          420
+        ],
+        "grasberg-recovery": [
+          850,
+          420
+        ],
+        "grasberg-extension": [
+          850,
+          680
         ]
-      }
+      },
+      "entryClaim": "security-2025"
     },
     {
       "id": "kiwirok",
@@ -2969,7 +4284,8 @@
           650,
           570
         ]
-      }
+      },
+      "entryClaim": "kiwirok-investigation"
     },
     {
       "id": "communications",
@@ -3077,7 +4393,539 @@
           490,
           550
         ]
-      }
+      },
+      "entryClaim": "shutdown-ruling"
+    },
+    {
+      "id": "nduga",
+      "title": {
+        "en": "Nduga: conflict and displacement",
+        "pmy": "Nduga: konflik dan pengungsian"
+      },
+      "deck": {
+        "en": "Displacement since 2018, access to schools and healthcare, and the conditions for returning home.",
+        "pmy": "Pengungsian sejak 2018, akses sekolah dan layanan kesehatan, serta kondisi untuk pulang."
+      },
+      "period": "2018–2026",
+      "claimIds": [
+        "case-nduga-displacement-origin",
+        "case-nduga-emergency-school",
+        "case-nduga-displacement-aid-appeal",
+        "case-nduga-displacement-operations-2023",
+        "case-nduga-displacement-q2-2026"
+      ],
+      "body": [
+        {
+          "text": {
+            "en": "The present displacement case has a major starting point in the December 2018 killings at a Trans-Papua road worksite and the subsequent security operations. Accounts of the victims and circumstances differed; Human Rights Watch called for investigation and protection of civilians on all sides.",
+            "pmy": "Kasus pengungsian sekarang memiliki titik awal penting pada pembunuhan di lokasi kerja jalan Trans-Papua pada Desember 2018 dan operasi keamanan berikutnya. Penuturan tentang korban serta keadaan kejadian berbeda; Human Rights Watch meminta penyelidikan dan pelindungan warga sipil dari semua pihak."
+          },
+          "claimIds": [
+            "case-nduga-displacement-origin",
+            "case-nduga-emergency-school",
+            "case-nduga-displacement-aid-appeal",
+            "case-nduga-displacement-operations-2023",
+            "case-nduga-displacement-q2-2026"
+          ]
+        },
+        {
+          "text": {
+            "en": "Later monitoring follows people living away from their villages, the interruption of schooling and healthcare, and the conditions needed for safe return. A district-wide total cannot be inferred from one incident or one destination. Nduga has its own chronology: figures and events from Puncak or Intan Jaya should not be imported into it. Access for independent reporters and humanitarian workers affects what can be verified.",
+            "pmy": "Pemantauan berikutnya mengikuti warga yang tinggal jauh dari kampung, terputusnya sekolah serta layanan kesehatan, dan kondisi untuk pulang dengan aman. Jumlah seluruh kabupaten tidak dapat disimpulkan dari satu kejadian atau satu tempat tujuan. Nduga memiliki kronologi tersendiri; angka dan peristiwa Puncak atau Intan Jaya tidak boleh dipindahkan ke sini. Akses jurnalis independen serta pekerja kemanusiaan memengaruhi verifikasi."
+          },
+          "claimIds": [
+            "case-nduga-displacement-origin",
+            "case-nduga-emergency-school",
+            "case-nduga-displacement-aid-appeal",
+            "case-nduga-displacement-operations-2023",
+            "case-nduga-displacement-q2-2026"
+          ]
+        },
+        {
+          "text": {
+            "en": "VOA visited a temporary school in the Weneroma church compound in Wamena. Volunteer teachers and families were trying to continue children’s education after displacement from Nduga. Children’s school records and funding were difficult to transfer, showing how the consequences persisted beyond the initial flight from home.",
+            "pmy": "VOA mengunjungi sekolah darurat di kompleks gereja Weneroma, Wamena. Guru sukarela dan keluarga berusaha melanjutkan pendidikan anak setelah mengungsi dari Nduga. Pemindahan data sekolah dan dukungan biaya menghadapi kendala, memperlihatkan dampak pengungsian yang berlanjut setelah warga meninggalkan rumah."
+          },
+          "claimIds": [
+            "case-nduga-emergency-school"
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "en": "Which villages and services are accessible, and can independent observers verify return conditions?",
+          "pmy": "Kampung dan layanan mana dapat diakses, dan apakah pengamat independen dapat memeriksa kondisi kepulangan?"
+        }
+      ],
+      "threadIds": [
+        9,
+        17
+      ],
+      "legacy": "/topics/nduga-displacement/",
+      "mediaId": "nduga-weneroma-2019",
+      "reading": [
+        "T-nduga-displacement-origin",
+        "T-nduga-emergency-school",
+        "T-nduga-displacement-aid-appeal",
+        "T-nduga-displacement-operations-2023",
+        "T-nduga-displacement-q2-2026"
+      ],
+      "scene": {
+        "nduga-road-killings": [
+          160,
+          120
+        ],
+        "nduga": [
+          495,
+          120
+        ],
+        "displaced-nduga-pupils": [
+          830,
+          120
+        ],
+        "weneroma-school": [
+          160,
+          290
+        ],
+        "un-experts": [
+          495,
+          290
+        ],
+        "humanitarian-access": [
+          830,
+          290
+        ],
+        "hrm": [
+          160,
+          460
+        ]
+      },
+      "entryClaim": "case-nduga-emergency-school"
+    },
+    {
+      "id": "puncak",
+      "title": {
+        "en": "Displacement in Puncak",
+        "pmy": "Pengungsian di Puncak"
+      },
+      "deck": {
+        "en": "Access to shelter, services and home amid renewed displacement.",
+        "pmy": "Akses tempat tinggal, layanan dan kampung halaman di tengah pengungsian."
+      },
+      "period": "2021–2026",
+      "claimIds": [
+        "case-puncak-displacement-origin",
+        "case-puncak-displacement-aid-appeal",
+        "case-puncak-displacement-operations-2023",
+        "case-puncak-komnas-visit",
+        "case-puncak-displacement-q2-2026"
+      ],
+      "body": [
+        {
+          "text": {
+            "en": "Puncak’s displacement history includes violence around Beoga and later operations elsewhere in the regency. After two teachers were killed in April 2021, ANTARA interviewed a health worker seeking evacuation, describing closed shops and shortages. That episode connects civilian safety directly with the ability to keep local services operating.",
+            "pmy": "Sejarah pengungsian Puncak mencakup kekerasan sekitar Beoga serta operasi berikutnya di bagian lain kabupaten. Setelah dua guru dibunuh pada April 2021, ANTARA mewawancarai tenaga kesehatan yang meminta evakuasi dan menjelaskan penutupan kios serta kekurangan bahan makanan. Peristiwa ini menghubungkan keselamatan warga dengan keberlanjutan layanan setempat."
+          },
+          "claimIds": [
+            "case-puncak-displacement-origin",
+            "case-puncak-displacement-aid-appeal",
+            "case-puncak-displacement-operations-2023",
+            "case-puncak-komnas-visit",
+            "case-puncak-displacement-q2-2026"
+          ]
+        },
+        {
+          "text": {
+            "en": "Later monitoring records renewed violence and displacement in Puncak. Returning home requires more than a decline in headlines: residents need safety, food, functioning services and access to their villages. Puncak and Puncak Jaya are different regencies, and this case also remains separate from Nduga and Intan Jaya.",
+            "pmy": "Pemantauan berikutnya mencatat kekerasan dan pengungsian baru di Puncak. Kepulangan membutuhkan lebih dari berkurangnya berita: warga memerlukan keamanan, pangan, layanan yang berfungsi, dan akses kampung. Puncak dan Puncak Jaya merupakan kabupaten berbeda. Kasus ini juga terpisah dari Nduga dan Intan Jaya."
+          },
+          "claimIds": [
+            "case-puncak-displacement-origin",
+            "case-puncak-displacement-aid-appeal",
+            "case-puncak-displacement-operations-2023",
+            "case-puncak-komnas-visit",
+            "case-puncak-displacement-q2-2026"
+          ]
+        },
+        {
+          "text": {
+            "en": "UN experts described prolonged displacement since late 2018, interrupted food, healthcare and education, and restrictions on relief access across highland Papua. Their appeal calls for independent investigations and durable solutions. The regional estimates cover several conflict areas, rather than this regency alone.",
+            "pmy": "Pakar PBB menggambarkan pengungsian berkepanjangan sejak akhir 2018, gangguan pangan, kesehatan, dan pendidikan, serta keterbatasan akses bantuan di pegunungan Papua. Mereka meminta penyelidikan independen dan penyelesaian berkelanjutan. Perkiraan regional mencakup sejumlah wilayah konflik, bukan kabupaten ini saja."
+          },
+          "claimIds": [
+            "case-puncak-displacement-aid-appeal"
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "en": "What protection, assistance and functioning services are available to displaced families?",
+          "pmy": "Pelindungan, bantuan, dan layanan apa tersedia bagi keluarga pengungsi?"
+        }
+      ],
+      "threadIds": [
+        9,
+        17
+      ],
+      "legacy": "/topics/puncak-displacement/",
+      "mediaId": "puncak-komnas-2025",
+      "reading": [
+        "T-puncak-displacement-origin",
+        "T-nduga-displacement-aid-appeal",
+        "T-nduga-displacement-operations-2023",
+        "T-puncak-komnas-visit",
+        "T-nduga-displacement-q2-2026"
+      ],
+      "scene": {
+        "beoga-health-workers": [
+          160,
+          120
+        ],
+        "evacuation": [
+          495,
+          120
+        ],
+        "un-experts": [
+          830,
+          120
+        ],
+        "humanitarian-access": [
+          160,
+          290
+        ],
+        "hrm": [
+          495,
+          290
+        ],
+        "puncak": [
+          830,
+          290
+        ],
+        "komnas-ham": [
+          160,
+          460
+        ],
+        "puncak-displaced": [
+          495,
+          460
+        ]
+      },
+      "entryClaim": "case-puncak-komnas-visit"
+    },
+    {
+      "id": "intan-jaya",
+      "title": {
+        "en": "Displacement in Intan Jaya",
+        "pmy": "Pengungsian di Intan Jaya"
+      },
+      "deck": {
+        "en": "Civilian displacement and access to assistance around Sugapa and surrounding districts.",
+        "pmy": "Pengungsian warga dan akses bantuan di Sugapa serta distrik sekitarnya."
+      },
+      "period": "2020–2026",
+      "claimIds": [
+        "case-intan-jaya-displacement-origin",
+        "case-intan-gold-rush",
+        "case-intan-jaya-displacement-aid-appeal",
+        "case-intan-jaya-displacement-operations-2023",
+        "case-intan-jaya-displacement-q2-2026"
+      ],
+      "body": [
+        {
+          "text": {
+            "en": "Violence around Sugapa and surrounding districts has displaced civilians and limited access to services. The killing of Pastor Yeremia Zanambani on 19 September 2020 became a major reference point in church and humanitarian investigations. Those records need attribution and should not be reduced to assumptions about the motives behind every later incident.",
+            "pmy": "Kekerasan sekitar Sugapa dan distrik sekitarnya menyebabkan pengungsian serta membatasi akses layanan. Pembunuhan Pendeta Yeremia Zanambani pada 19 September 2020 menjadi rujukan penting dalam penyelidikan gereja dan tim kemanusiaan. Catatan tersebut perlu atribusi dan tidak boleh diringkas menjadi dugaan motif untuk seluruh kejadian berikutnya."
+          },
+          "claimIds": [
+            "case-intan-jaya-displacement-origin",
+            "case-intan-gold-rush",
+            "case-intan-jaya-displacement-aid-appeal",
+            "case-intan-jaya-displacement-operations-2023",
+            "case-intan-jaya-displacement-q2-2026"
+          ]
+        },
+        {
+          "text": {
+            "en": "Human Rights Monitor’s second-quarter 2026 account describes further operations, civilian harm and displacement in Intan Jaya. Watch follows the specific villages, dates and sources involved, including whether assistance reaches displaced families and what would make return possible. A regional estimate of displaced people is not an Intan Jaya count.",
+            "pmy": "Human Rights Monitor pada kuartal kedua 2026 menjelaskan operasi, korban sipil, serta pengungsian lebih lanjut di Intan Jaya. Watch mengikuti kampung, tanggal, dan sumber tertentu, termasuk akses bantuan bagi keluarga pengungsi serta kondisi yang memungkinkan kepulangan. Perkiraan pengungsi seluruh wilayah bukan jumlah Intan Jaya."
+          },
+          "claimIds": [
+            "case-intan-jaya-displacement-origin",
+            "case-intan-gold-rush",
+            "case-intan-jaya-displacement-aid-appeal",
+            "case-intan-jaya-displacement-operations-2023",
+            "case-intan-jaya-displacement-q2-2026"
+          ]
+        },
+        {
+          "text": {
+            "en": "Amnesty’s Gold Rush report examines proposed mining at Wabu and a security environment in which residents described violence, restrictions and displacement. The report connects questions about consent for extraction with people’s ability to remain on their land and speak freely about development plans.",
+            "pmy": "Laporan Gold Rush Amnesty membahas rencana pertambangan Wabu dan situasi keamanan ketika warga melaporkan kekerasan, pembatasan, serta pengungsian. Kajian menghubungkan persetujuan atas pertambangan dengan kemampuan masyarakat tinggal di tanahnya dan menyampaikan pendapat tentang rencana pembangunan."
+          },
+          "claimIds": [
+            "case-intan-gold-rush"
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "en": "Can affected families obtain care and assistance, and what would make return safe?",
+          "pmy": "Apakah keluarga terdampak memperoleh perawatan dan bantuan, dan apa yang memungkinkan kepulangan aman?"
+        }
+      ],
+      "threadIds": [
+        3,
+        9,
+        17
+      ],
+      "legacy": "/topics/intan-jaya-displacement/",
+      "mediaId": "gold-rush-report",
+      "reading": [
+        "T-intan-jaya-displacement-origin",
+        "T-intan-gold-rush",
+        "T-nduga-displacement-aid-appeal",
+        "T-nduga-displacement-operations-2023",
+        "T-nduga-displacement-q2-2026"
+      ],
+      "scene": {
+        "yeremia-killing": [
+          160,
+          120
+        ],
+        "intan-jaya": [
+          495,
+          120
+        ],
+        "amnesty": [
+          830,
+          120
+        ],
+        "wabu": [
+          160,
+          290
+        ],
+        "un-experts": [
+          495,
+          290
+        ],
+        "humanitarian-access": [
+          830,
+          290
+        ],
+        "hrm": [
+          160,
+          460
+        ]
+      },
+      "entryClaim": "case-intan-gold-rush"
+    },
+    {
+      "id": "awyu",
+      "title": {
+        "en": "Awyu customary forests",
+        "pmy": "Hutan adat Awyu"
+      },
+      "deck": {
+        "en": "Forest permits, oil palm expansion and recognition of Awyu land rights in Boven Digoel.",
+        "pmy": "Izin hutan, perluasan sawit dan pengakuan hak atas tanah Awyu di Boven Digoel."
+      },
+      "period": "2023–2024",
+      "claimIds": [
+        "case-awyu-lawsuit",
+        "case-awyu-first-verdict",
+        "case-ial-cassation",
+        "ial-approval-holder",
+        "woro-awyu-forest"
+      ],
+      "body": [
+        {
+          "text": {
+            "en": "Awyu communities in Boven Digoel have challenged plantation permissions affecting customary forests. Hendrikus Woro’s case concerns PT Indo Asiana Lestari’s environmental approval. Proceedings involving PT Kartika Cipta Pratama and PT Megakarya Jaya Raya are separate and should not be merged into one court outcome.",
+            "pmy": "Masyarakat Awyu di Boven Digoel menggugat izin perkebunan yang memengaruhi hutan adat. Perkara Hendrikus Woro menyangkut persetujuan lingkungan PT Indo Asiana Lestari. Perkara PT Kartika Cipta Pratama dan PT Megakarya Jaya Raya berbeda dan tidak boleh disatukan sebagai satu hasil pengadilan."
+          },
+          "claimIds": [
+            "case-awyu-lawsuit",
+            "case-awyu-first-verdict",
+            "case-ial-cassation"
+          ]
+        },
+        {
+          "text": {
+            "en": "The Supreme Court rejected the IAL cassation in a decision made on 18 September 2024, with a dissenting judge; the coalition discussed the accessible ruling on 1 November. A judgment on that permission does not determine every customary-land claim or establish what has been cleared. The continuing questions concern consent, legal recognition, forest access and the actual effects of each company’s activities.",
+            "pmy": "Mahkamah Agung menolak kasasi IAL melalui keputusan 18 September 2024, dengan seorang hakim menyatakan pendapat berbeda. Koalisi membahas putusan yang sudah dapat diakses pada 1 November. Putusan izin tersebut tidak menentukan seluruh klaim tanah adat atau membuktikan luas pembukaan. Pertanyaan berlanjut menyangkut persetujuan, pengakuan hukum, akses hutan, dan dampak nyata aktivitas tiap perusahaan."
+          },
+          "claimIds": [
+            "case-awyu-lawsuit",
+            "case-awyu-first-verdict",
+            "case-ial-cassation"
+          ]
+        },
+        {
+          "text": {
+            "en": "The Jayapura administrative court rejected Woro’s environmental lawsuit. Greenpeace described the ruling as a setback and recorded his intention to continue the legal challenge. This first-instance decision precedes the 2024 cassation outcome; the IAL case should be distinguished from other Awyu-related company cases.",
+            "pmy": "Pengadilan tata usaha negara Jayapura menolak gugatan lingkungan Woro. Greenpeace menyebut putusan sebagai kemunduran dan mencatat niatnya melanjutkan upaya hukum. Putusan tingkat pertama mendahului hasil kasasi 2024; perkara IAL perlu dibedakan dari perkara perusahaan lain yang terkait masyarakat Awyu."
+          },
+          "claimIds": [
+            "case-awyu-first-verdict"
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "en": "What is the present status of each permission, court proceeding and affected customary territory?",
+          "pmy": "Bagaimana status tiap izin, perkara pengadilan, dan wilayah adat terdampak?"
+        }
+      ],
+      "threadIds": [
+        6,
+        15
+      ],
+      "legacy": "/topics/awyu-customary-forests/",
+      "mediaId": "awyu-hearing-2023",
+      "reading": [
+        "T-awyu-lawsuit",
+        "T-awyu-first-verdict",
+        "T-ial-cassation"
+      ],
+      "scene": {
+        "woro": [
+          140,
+          150
+        ],
+        "ial-approval": [
+          500,
+          300
+        ],
+        "ptun-jayapura": [
+          140,
+          490
+        ],
+        "supreme-court": [
+          850,
+          490
+        ],
+        "ial": [
+          850,
+          150
+        ],
+        "awyu": [
+          500,
+          80
+        ]
+      },
+      "entryClaim": "case-awyu-lawsuit"
+    },
+    {
+      "id": "raja",
+      "title": {
+        "en": "Mining in Raja Ampat",
+        "pmy": "Tambang di Raja Ampat"
+      },
+      "deck": {
+        "en": "Island-specific mining permits, customary land, forests and coastal livelihoods across Raja Ampat.",
+        "pmy": "Izin tambang di pulau-pulau tertentu, tanah adat, hutan, serta penghidupan pesisir Raja Ampat."
+      },
+      "period": "2025–2026",
+      "claimIds": [
+        "case-four-revocations",
+        "case-gag-resumption",
+        "case-public-information-ruling",
+        "ekb-coal-outcome",
+        "ekb-nickel-outcome"
+      ],
+      "body": [
+        {
+          "text": {
+            "en": "Mining in Raja Ampat involves particular islands, permits, companies and customary territories. Tourism and marine conservation make the region internationally visible, but the effects of extraction also concern forest, freshwater and local livelihoods on the islands themselves.",
+            "pmy": "Pertambangan Raja Ampat melibatkan pulau, izin, perusahaan, dan wilayah adat tertentu. Pariwisata serta konservasi laut membuat kawasan ini dikenal luas, tetapi dampak ekstraksi juga menyangkut hutan, air tawar, dan penghidupan penduduk pulau."
+          },
+          "claimIds": [
+            "case-four-revocations",
+            "case-gag-resumption",
+            "case-public-information-ruling",
+            "ekb-coal-outcome",
+            "ekb-nickel-outcome"
+          ]
+        },
+        {
+          "text": {
+            "en": "On 10 June 2025 the government announced four permit revocations, while distinguishing PT Gag Nikel, whose permit remained. This was not an announcement that all mining had ended. Following the decision requires evidence of operations, compliance and site recovery, as well as community accounts. An island-specific observation should not be presented as a measurement for the whole archipelago.",
+            "pmy": "Pada 10 Juni 2025 pemerintah mengumumkan pencabutan empat izin dan membedakannya dari PT Gag Nikel yang izinnya tetap berlaku. Pengumuman itu bukan penghentian seluruh pertambangan. Pemantauan keputusan memerlukan bukti operasi, kepatuhan, serta pemulihan lokasi bersama penuturan masyarakat. Pengamatan satu pulau tidak dapat disajikan sebagai ukuran seluruh kepulauan."
+          },
+          "claimIds": [
+            "case-four-revocations",
+            "case-gag-resumption",
+            "case-public-information-ruling",
+            "ekb-coal-outcome",
+            "ekb-nickel-outcome"
+          ]
+        },
+        {
+          "text": {
+            "en": "A September report citing the energy ministry dates Gag Nikel’s resumption to 3 September after a temporary suspension. The government promised stricter monitoring and rehabilitation. Gag’s operation is separate from the four companies whose permits were revoked in June.",
+            "pmy": "Laporan September yang mengutip Kementerian ESDM mencatat Gag Nikel kembali beroperasi pada 3 September setelah penghentian sementara. Pemerintah menjanjikan pemantauan dan rehabilitasi lebih ketat. Operasi Gag berbeda dari empat perusahaan yang izinnya dicabut pada Juni."
+          },
+          "claimIds": [
+            "case-gag-resumption"
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "en": "Have the revocation decisions and implementation records been released?",
+          "pmy": "Apakah keputusan pencabutan serta catatan pelaksanaannya sudah dibuka?"
+        }
+      ],
+      "threadIds": [
+        6,
+        17
+      ],
+      "legacy": "/topics/mining-raja-ampat/",
+      "mediaId": "raja-historical-sites-plate",
+      "reading": [
+        "T-four-revocations",
+        "T-gag-resumption",
+        "T-public-information-ruling"
+      ],
+      "scene": {
+        "esdm": [
+          150,
+          100
+        ],
+        "raja-permits": [
+          500,
+          100
+        ],
+        "gag-nikel": [
+          850,
+          100
+        ],
+        "gag-island": [
+          150,
+          260
+        ],
+        "ptun-jakarta": [
+          500,
+          260
+        ],
+        "permit-disclosure": [
+          850,
+          260
+        ],
+        "ekb": [
+          150,
+          420
+        ],
+        "ekb-coal": [
+          500,
+          420
+        ],
+        "ekb-nickel": [
+          850,
+          420
+        ]
+      },
+      "entryClaim": "case-four-revocations"
     }
   ],
   "threads": [
@@ -3113,7 +4961,8 @@
       "question": "Through what institutional, private and informal arrangements does military/police power participate in economic activity?",
       "caseIds": [
         "military-business",
-        "freeport"
+        "freeport",
+        "intan-jaya"
       ]
     },
     {
@@ -3144,7 +4993,10 @@
         "pmy": "Perkebunan & pemilik manfaat"
       },
       "question": "How do permits and corporate structures turn customary forests into plantations, and where do capital and products move?",
-      "caseIds": []
+      "caseIds": [
+        "awyu",
+        "raja"
+      ]
     },
     {
       "id": 7,
@@ -3178,7 +5030,10 @@
       "question": "What happened in a specific campaign or incident, which actors were involved, and how did people live and organise afterward?",
       "caseIds": [
         "military-business",
-        "kiwirok"
+        "kiwirok",
+        "nduga",
+        "puncak",
+        "intan-jaya"
       ]
     },
     {
@@ -3246,7 +5101,8 @@
       },
       "question": "Who is treated as able to consent to a land transaction, and whose use, care and authority are excluded?",
       "caseIds": [
-        "merauke"
+        "merauke",
+        "awyu"
       ]
     },
     {
@@ -3269,7 +5125,11 @@
       "question": "Which changes are observed, what effects are documented, and who bears them?",
       "caseIds": [
         "merauke",
-        "freeport"
+        "freeport",
+        "nduga",
+        "puncak",
+        "intan-jaya",
+        "raja"
       ]
     },
     {

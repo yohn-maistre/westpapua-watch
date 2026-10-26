@@ -9,7 +9,7 @@ const {historyRecords,historyPaths,historyEras,recordsForPath}=await moduleAt('s
 assert.ok(historyRecords.length>=60);assert.equal(new Set(historyRecords.map(r=>r.id)).size,historyRecords.length);assert.equal(historyPaths.length,7);
 for(const path of historyPaths){assert.ok(recordsForPath(path.id).length);if(path.startId)assert.ok(recordsForPath(path.id).some(r=>r.id===path.startId));}
 for(const record of historyRecords){assert.ok(historyEras.some(e=>e.id===record.era));for(const locale of ['en','pmy'])assert.ok(record.body[locale]?.length>(record.archiveIds.length?10:60),record.id);assert.ok(record.sources.length);for(const source of record.sources)assert.match(source.url,/^https?:\/\//);if(record.media)await access('public'+record.media.src);}
-const cases=await json('content/following.json');assert.equal(cases.length,8);
+const cases=await json('content/following.json');assert.ok(cases.length>=9,'Keep the original following cases and the new Kiwirok account');
 const {topicTimelines}=await moduleAt('src/data/topic-timelines.ts');
 for(const c of cases){assert.ok(c.background.en.length>300);assert.ok(c.background.pmy.length>300);assert.ok(c.backgroundSources.length);assert.ok(topicTimelines[c.slug]?.length,c.slug);}
 const {readingChapters,readingRecords,readingPaths,defaultReadingPath,normalizeReadingPath,readingAliases,chaptersForPath,figuresForPanel,placesForPanel,paragraphsForRecord,sourceAnchor}=await moduleAt('src/data/history-reading.ts');
@@ -99,4 +99,4 @@ try{
  // Old permalink editions remain readable beyond the recent-edition list.
  for(let i=1;i<=18;i++)await db.prepare('INSERT INTO weekly_editions(id,from_at,to_at,payload_json,published_at) VALUES(?,?,?,?,?)').bind('archive-'+i,'2026-10-01',new Date(Date.parse('2026-10-01')+i*86400000).toISOString(),JSON.stringify({...edition,id:'archive-'+i,to:new Date(Date.parse('2026-10-01')+i*86400000).toISOString()}),'2026-10-01').run();assert.equal((await readWeekly(env,window.id)).edition.id,window.id);
 }finally{await mf.dispose()}
-console.log('Passed: history paths/assets, eight grounded cases, craft and library references, WIT periods, bilingual/citation/scope contracts, actual writer/critic/D1 publication, immutable retries, held-review fallback and archived permalinks.');
+console.log('Passed: history paths/assets, grounded followed cases, craft and library references, WIT periods, bilingual/citation/scope contracts, actual writer/critic/D1 publication, immutable retries, held-review fallback and archived permalinks.');

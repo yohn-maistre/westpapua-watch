@@ -2,9 +2,14 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {build} from 'esbuild';
 const record=JSON.parse(await readFile('content/investigative-record.json','utf8'));
+const routes=JSON.parse(await readFile('content/investigative-routes.json','utf8'));
+for(const c of record.cases)assert.match(routes[c.id],/^\/(topics|investigations)\/[a-z0-9-]+\/$/,'Every case has a stable public route');
+assert.equal(new Set(record.sources.map(s=>s.url)).size,record.sources.length,'One source URL has one canonical identity');
+const previews=JSON.parse(await readFile('content/investigative-source-previews.json','utf8'));
+for(const [id,p] of Object.entries(previews)){assert.ok(record.sources.some(s=>s.id===id));await readFile('public'+p.src);assert.ok(p.width&&p.height)}
 const entities=new Map(record.entities.map(x=>[x.id,x])),claims=new Map(record.claims.map(x=>[x.id,x])),sources=new Map(record.sources.map(x=>[x.id,x]));
 for(const [name,items] of [['entities',record.entities],['claims',record.claims],['sources',record.sources],['cases',record.cases],['threads',record.threads]])assert.equal(new Set(items.map(x=>x.id)).size,items.length,`Duplicate ${name} identifiers`);
-assert.equal(record.threads.length,20,'Keep the complete research programme');assert.equal(record.cases.length,6);
+assert.equal(record.threads.length,20,'Keep the complete research programme');assert.ok(record.cases.length>=11,'All followed cases have an investigative record');
 for(const c of record.claims){
  assert.ok(entities.has(c.subject)&&entities.has(c.object),`Missing participant: ${c.id}`);
  assert.match(c.date,/^\d{4}(-\d{2}(-\d{2})?)?$/);
@@ -16,6 +21,7 @@ for(const c of record.claims){
 }
 for(const c of record.cases){
  assert.ok(c.body.length>=3&&c.questions.length&&c.reading.length);
+ if(c.entryClaim)assert.ok(c.claimIds.includes(c.entryClaim),'The editorial opening must be a supported case record');
  const ids=new Set(c.claimIds.flatMap(id=>{assert.ok(claims.has(id));assert.ok(claims.get(id).cases.includes(c.id));return [claims.get(id).subject,claims.get(id).object];}));
  assert.deepEqual(new Set(Object.keys(c.scene)),ids,'Preset layout must include all participants');
  for(const xy of Object.values(c.scene))assert.ok(xy.length===2&&xy.every(Number.isFinite),'Finite offline scene positions');
@@ -42,10 +48,10 @@ const state={caseId:'freeport',entity:'ptfi',claim:'security-2025',view:'timelin
 assert.deepEqual(selectionFromURL(selectionURL(new URL('https://westpapua.watch/id/topics/'),state),record),state,'A shared view restores the same evidence');
 assert.equal(selectionURL(new URL('https://westpapua.watch/id/topics/#topics'),state).hash,'','A shared investigation must not jump to the topic directory');
 const invalid=normaliseSelection({...state,caseId:'communications'},record);assert.equal(invalid.claim,'');assert.equal(invalid.entity,'');assert.equal(invalid.evidence,false,'A stale case selection cannot show foreign evidence');
-const bundle=await build({entryPoints:['src/components/investigation/InvestigativeDesk.tsx'],bundle:true,write:false,format:'esm',platform:'browser',metafile:true,loader:{'.css':'empty'}});
+const bundle=await build({entryPoints:['src/components/investigation/CaseWorkbench.tsx'],bundle:true,write:false,format:'esm',platform:'browser',metafile:true,loader:{'.css':'empty'}});
 for(const path of Object.keys(bundle.metafile.inputs))assert.ok(!/src\/data\/(archive|history-reading|library)\.ts|shared\/research\.ts|maplibre/.test(path),`Keep the complete source corpus and WebGL map out of the desk bundle: ${path}`);
 const corpus=JSON.parse(await readFile('content/generated/site-search.json','utf8'));
-assert.equal(corpus.filter(x=>x.type==='investigation').length,6);
+assert.equal(corpus.filter(x=>x.type==='investigation').length,record.cases.length);
 assert.equal(corpus.filter(x=>x.type==='investigative-record').length,claims.size);
-const support=corpus.find(x=>x.id==='claim:security-2025');assert.match(support.href,/case=freeport&claim=security-2025/);assert.ok(support.text.en.includes(sources.get('D03').url)&&support.text.pmy.includes(sources.get('D03').url),'Ask retrieval retains original evidence URLs in both languages');
-console.log(`Passed: twenty retained threads, six bilingual cases, ${claims.size} supported relationships, precise financial records, shared-view validation, identity search and bounded client imports.`);
+const support=corpus.find(x=>x.id==='claim:security-2025');assert.match(support.href,/freeport-mimika\/\?claim=security-2025/);assert.ok(support.text.en.includes(sources.get('D03').url)&&support.text.pmy.includes(sources.get('D03').url),'Ask retrieval retains original evidence URLs in both languages');
+console.log(`Passed: twenty retained threads, ${record.cases.length} bilingual cases, ${claims.size} supported relationships, precise financial records, shared-view validation, identity search and bounded client imports.`);

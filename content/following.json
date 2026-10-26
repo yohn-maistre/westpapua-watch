@@ -108,7 +108,7 @@
       "en": "Following",
       "pmy": "Dipantau"
     },
-    "updatedAt": "2026-09-10",
+    "updatedAt": "2026-05-20",
     "developmentSlugs": [],
     "sourceIds": [
       "ptfi-audit-2025",
@@ -145,19 +145,27 @@
         "publisher": "Freeport-McMoRan",
         "url": "https://www.fcx.com/about/history",
         "text": "PT Freeport Indonesia dates its first contract with Indonesia to 1967, before Pepera. This corporate record establishes the contractual chronology."
+      },
+      {
+        "id": "freeport-recovery-may-2026",
+        "title": "Freeport says wet ore is slowing Grasberg recovery",
+        "publisher": "Reuters",
+        "url": "https://www.reuters.com/world/asia-pacific/freeport-indonesia-says-wet-ore-slowing-grasberg-recovery-full-ramp-up-close-2026-05-20/",
+        "publishedAt": "2026-05-20",
+        "text": "In a 20 May interview, PTFI president director Tony Wenas revised the recovery outlook to near-full operations in the second half of 2027. He described wetter-than-expected ore, chute modifications and new safety infrastructure; the forecast is not an achieved outcome."
       }
     ],
     "reviewedAt": "2026-10-08",
     "state": {
-      "asOf": "2026-04-09",
-      "reviewedAt": "2026-10-08",
+      "asOf": "2026-05-20",
+      "reviewedAt": "2026-10-27",
       "summary": {
-        "en": "PTFI’s April 2026 account commemorates seven workers killed in the September 2025 Grasberg Block Cave incident and two killed in separate shootings in February and March 2026. The company reports mine recovery and production at 40–50%. Its year-end production target is a stated plan, alongside questions about worker safety, security and community impacts.",
-        "pmy": "Penuturan PTFI April 2026 mengenang tujuh pekerja yang meninggal dalam insiden Grasberg Block Cave September 2025 serta dua yang meninggal dalam penembakan berbeda pada Februari dan Maret 2026. Perusahaan melaporkan pemulihan tambang dengan produksi 40–50%. Sasaran produksi akhir tahun merupakan rencana yang dinyatakan, di tengah persoalan keselamatan pekerja, keamanan, serta dampak bagi masyarakat."
+        "en": "In a May Reuters interview, PTFI president director Tony Wenas put Grasberg at about half capacity and projected a near-full ramp-up in the second half of 2027. Wetter ore and new safety works had delayed recovery following the September 2025 accident that killed seven workers. The later interview revises the April company target; the forecast remains a plan.",
+        "pmy": "Dalam wawancara Reuters pada Mei, Presiden Direktur PTFI Tony Wenas menyebut operasi Grasberg sekitar separuh kapasitas dan memperkirakan pemulihan mendekati penuh pada paruh kedua 2027. Bijih yang lebih basah dan pekerjaan keselamatan memperlambat pemulihan setelah kecelakaan September 2025 yang menewaskan tujuh pekerja. Wawancara ini memperbarui target perusahaan pada April; perkiraan tersebut masih berupa rencana."
       },
       "change": {
-        "en": "Freeport reports mine recovery and commemorates workers killed in accidents and shootings.",
-        "pmy": "Freeport melaporkan pemulihan tambang dan mengenang pekerja yang meninggal dalam insiden serta penembakan."
+        "en": "Freeport revises its Grasberg recovery timetable into 2027, citing wetter ore and safety works.",
+        "pmy": "Freeport mengubah jadwal pemulihan Grasberg hingga 2027, mengacu pada bijih lebih basah dan pekerjaan keselamatan."
       },
       "questions": [
         {
@@ -166,8 +174,7 @@
         }
       ],
       "sourceIds": [
-        "freeport",
-        "freeport-recovery-2026"
+        "freeport-recovery-may-2026"
       ],
       "kind": "curated"
     }
@@ -539,7 +546,7 @@
       "en": "Following",
       "pmy": "Dipantau"
     },
-    "updatedAt": "2026-10-08",
+    "updatedAt": "2026-09-18",
     "developmentSlugs": [],
     "sourceIds": [
       "following-reference-south-papua-food-energy-estate-mifee",
@@ -595,19 +602,27 @@
         "publisher": "TAPOL",
         "url": "https://tapol.org/press-statements/mifee-project-violates-human-rights",
         "text": "TAPOL’s statement raised concerns about forest conversion, food security and Malind customary rights under MIFEE. These objections precede the present food estate debate: land described as available for investment was already sustaining communities’ food, work and social relations."
+      },
+      {
+        "id": "merauke-road-verdict-2026",
+        "title": "Court rejects Malind challenge to 135-km road permit",
+        "publisher": "Greenpeace Southeast Asia",
+        "url": "https://www.greenpeace.org/southeastasia/press/69267/court-rejected-indigenous-malind-peoples-lawsuit-challenging-a-135-km-roadway-destroying-customary-forest/",
+        "publishedAt": "2026-09-22",
+        "text": "Greenpeace reports that PTUN Jayapura rejected the five Malind plaintiffs’ environmental-permit lawsuit on 18 September 2026. The account documents an earlier 9 June halt order and continuing objections concerning customary forest, consultation and the road project."
       }
     ],
     "reviewedAt": "2026-10-08",
     "state": {
-      "asOf": "2026-08-13",
-      "reviewedAt": "2026-10-08",
+      "asOf": "2026-09-18",
+      "reviewedAt": "2026-10-27",
       "summary": {
-        "en": "Pusaka’s August assessment brings community impacts into the record alongside project targets. Rice and sugar/bioethanol remain distinct programmes.",
-        "pmy": "Kajian Pusaka pada Agustus memasukkan dampak bagi masyarakat bersama target proyek. Padi dan gula/bioetanol tetap merupakan program berbeda."
+        "en": "PTUN Jayapura rejected the five Malind plaintiffs’ challenge to the environmental permit for the Wanam–Muting road on 18 September, Greenpeace reports. An earlier construction-halt order had formed part of the proceedings. The judgment leaves the community’s objections over customary forest and consultation unresolved; it does not establish consent to every part of the food and energy projects.",
+        "pmy": "PTUN Jayapura menolak gugatan lima warga Malind atas persetujuan lingkungan jalan Wanam–Muting pada 18 September, menurut Greenpeace. Perintah penghentian pekerjaan sebelumnya menjadi bagian dari proses perkara. Putusan ini menyisakan keberatan masyarakat mengenai hutan adat dan konsultasi; putusan tersebut tidak membuktikan persetujuan atas seluruh proyek pangan dan energi."
       },
       "change": {
-        "en": "Pusaka launches a human-rights assessment of Merauke food and energy projects.",
-        "pmy": "Pusaka meluncurkan penilaian HAM atas proyek pangan dan energi Merauke."
+        "en": "Jayapura court rejects the Malind road-permit challenge; customary-forest objections continue.",
+        "pmy": "PTUN Jayapura menolak gugatan izin jalan oleh warga Malind; keberatan mengenai hutan adat berlanjut."
       },
       "questions": [
         {
@@ -616,9 +631,7 @@
         }
       ],
       "sourceIds": [
-        "mifee",
-        "psn",
-        "hria-launch"
+        "merauke-road-verdict-2026"
       ],
       "kind": "curated"
     }
@@ -700,6 +713,84 @@
         "raja-court-2026"
       ],
       "kind": "curated"
+    }
+  },
+  {
+    "slug": "kiwirok-conflict",
+    "category": "Human rights",
+    "title": {
+      "en": "Kiwirok: attacks and displacement",
+      "pmy": "Kiwirok: serangan dan pengungsian"
+    },
+    "summary": {
+      "en": "Tracing weapons and documenting what happened to civilians.",
+      "pmy": "Menelusuri senjata dan mendokumentasikan pengalaman warga."
+    },
+    "status": {
+      "en": "Following",
+      "pmy": "Dalam pantauan"
+    },
+    "updatedAt": "2023-06-23",
+    "reviewedAt": "2026-10-27",
+    "sourceIds": [
+      "hrm-home-2026"
+    ],
+    "developmentSlugs": [],
+    "concepts": [
+      "internal-displacement",
+      "humanitarian-access"
+    ],
+    "background": {
+      "en": "Kiwirok needs two connected lines of investigation: what the evidence establishes about weapons transfers and what residents experienced during and after the attacks. The Reuters/CAR account traces ammunition through a reported international supply chain. HRM examines the operations and civilian effects through testimony and satellite imagery. Each contributes a different kind of evidence.\n\nHRM’s investigation counted 206 destroyed buildings across eight villages, including homes and public buildings. Its account combines a visible record of destruction with witnesses’ descriptions of attacks and movement. The ammunition tracing raises a further question about operational responsibility: the original transfer file and several links concerning authorisation, receipt and use remain to be established.\n\nDisplacement continues the account beyond the immediate violence. HRM’s dated findings describe families unable to return, with food, healthcare and education disrupted. Public statements about force and rights are also part of the political context, while operational responsibility has to be established through its own evidence.",
+      "pmy": "Kiwirok memerlukan dua jalur penyelidikan yang berkaitan: bukti transfer senjata serta pengalaman warga saat dan setelah serangan. Laporan Reuters tentang CAR menelusuri amunisi melalui rantai pasok internasional yang dilaporkan. HRM memeriksa operasi dan dampak pada warga melalui kesaksian serta citra satelit. Masing-masing menyumbangkan jenis bukti berbeda.\n\nPenyelidikan HRM menghitung 206 bangunan hancur di delapan kampung, termasuk rumah dan bangunan umum. Uraiannya mempertemukan kerusakan yang terlihat dengan keterangan saksi tentang serangan dan perpindahan warga. Penelusuran amunisi membuka pertanyaan lanjutan tentang tanggung jawab operasi: berkas transfer asli serta sejumlah mata rantai otorisasi, penerimaan, dan penggunaan masih perlu dipastikan.\n\nPengungsian memperpanjang catatan melampaui kekerasan langsung. Temuan HRM yang bertanggal menguraikan keluarga yang belum dapat pulang serta gangguan pangan, kesehatan, dan pendidikan. Pernyataan publik tentang kekuatan dan HAM juga merupakan konteks politik, sedangkan tanggung jawab operasi harus ditetapkan dengan buktinya sendiri."
+    },
+    "backgroundSources": [
+      {
+        "id": "S05",
+        "title": "Munitions imported for Indonesian intelligence",
+        "url": "https://www.reuters.com/world/asia-pacific/mystery-surrounds-how-munitions-imported-indonesias-civilian-spies-were-used-2022-06-03/",
+        "publisher": "reuters-car-2022",
+        "publishedAt": "2023-06-23",
+        "text": "CAR's reported supply-chain findings, photographic evidence, official responses and explicit limits."
+      },
+      {
+        "id": "S06",
+        "title": "Kiwirok report 2023",
+        "url": "https://humanrightsmonitor.org/reports/kiwirok-report-2023/",
+        "publisher": "hrm-kiwirok-2023",
+        "publishedAt": "2023-10-01",
+        "text": "Report overview, satellite/witness approach and reported civilian effects."
+      },
+      {
+        "id": "S35",
+        "title": "Bamsoet statement on force in Papua",
+        "url": "https://mpr.go.id/berita/Satu-Lagi,-Kabinda-Papua-Gugur-Ditembak-KKB-Papua.-Bamsoet-Minta-TNI-Polri-Turunkan-Kekuatan-Penuh-Tumpas-KKB",
+        "publisher": "mpr-bamsoet-20210426",
+        "publishedAt": "2023-06-23",
+        "text": "MPR-hosted statement with direct quotation and context."
+      }
+    ],
+    "state": {
+      "asOf": "2023-06-23",
+      "reviewedAt": "2026-10-27",
+      "kind": "curated",
+      "summary": {
+        "en": "HRM’s dated findings document attacks on Kiwirok villages, damaged buildings and families unable to return home. Prolonged displacement disrupts food production, healthcare and education. The investigation combines witness accounts with satellite analysis; its documented damage and civilian impacts are attributed to that investigation.",
+        "pmy": "Temuan bertanggal HRM mendokumentasikan serangan terhadap kampung di Kiwirok, kerusakan bangunan, serta keluarga yang belum dapat pulang. Pengungsian berkepanjangan mengganggu produksi pangan, layanan kesehatan, dan pendidikan. Penyelidikan ini menggabungkan penuturan saksi dengan analisis satelit; kerusakan serta dampak bagi warga tersebut diatribusikan kepada penyelidikan itu."
+      },
+      "change": {
+        "en": "HRM documents attacks on Kiwirok villages, building destruction and prolonged displacement.",
+        "pmy": "HRM mendokumentasikan serangan terhadap kampung di Kiwirok, bangunan hancur, dan pengungsian berkepanjangan."
+      },
+      "questions": [
+        {
+          "en": "Obtain the original CAR tracing file and corroborate the remaining transfer/use links.",
+          "pmy": "Peroleh berkas penelusuran CAR asli dan periksa mata rantai transfer/penggunaan yang belum terkonfirmasi."
+        }
+      ],
+      "sourceIds": [
+        "S06"
+      ]
     }
   }
 ]

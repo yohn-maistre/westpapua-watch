@@ -28,3 +28,7 @@ The user has repeatedly chosen the dark editorial palette, lilac signal, Instrum
 Run the skill inspector and review its findings, separating genuine new problems from documented brand exceptions and untouched shared components. Do not claim zero failures if exceptions or unresolved findings remain. The inspector does not establish accessibility conformance or real-device performance.
 
 The first Issues audit is saved locally in `/workspace/scratch/issues-before/`. It found the oversized opening, repeated gradient tiles, metadata below 11px and poor first-screen access to actual investigations. The redesign should resolve those specific Issues problems without restyling the rest of Watch.
+
+## Revised page hierarchy — 27 October 2026
+
+The user rejected the dedicated app shell as the public Issues landing page. Keep the shared Masthead, CompactNav and ticker, use the image-led editorial mosaic for discovery, and apply the app-screen guidance to the investigative workspace inside a case. The full-width Homepage Atlas comes before the editorial case spread. Quiet surfaces must not become empty space or hide the network, documents and navigation. Narrow desktop windows retain all participants; phones get a compact complete overview and an explicit expanded exploration mode. Test real wheel/touch scrolling, including after overlays close; screenshots and programmatic scroll alone missed the inherited Exhibition body lock. See `issues-experience-reconsideration-2026-10-27.md` and `investigative-experience-revision-2026-10-27.md`.

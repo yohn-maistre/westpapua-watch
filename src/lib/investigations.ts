@@ -7,7 +7,7 @@ export function normaliseSelection(input:Partial<DeskSelection>,data:Investigati
  const claims=data.claims.filter(c=>dossier.claimIds.includes(c.id));
  const claim=claims.find(c=>c.id===input.claim)?.id||'';
  const entity=claims.some(c=>c.subject===input.entity||c.object===input.entity)?input.entity||'':'';
- return {caseId:dossier.id,entity,claim,view:['connections','timeline','documents'].includes(input.view||'')?input.view!:'connections',evidence:!!input.evidence&&!!claim};
+ return {caseId:dossier.id,entity,claim,view:['connections','timeline','documents'].includes(input.view||'')?input.view!:'connections',evidence:!!input.evidence&&!!(claim||entity)};
 }
 export function selectionFromURL(url:URL,data:InvestigativeRecord):DeskSelection{
  return normaliseSelection({caseId:url.searchParams.get('case')||'',entity:url.searchParams.get('entity')||'',claim:url.searchParams.get('claim')||'',view:url.searchParams.get('view') as DeskView,evidence:url.searchParams.get('evidence')==='open'},data);
@@ -25,6 +25,7 @@ export function searchRecord(data:InvestigativeRecord,query:string,locale:'en'|'
  const entities=data.entities.filter(e=>present.has(e.id)&&fold([e.name.en,e.name.pmy,...e.aliases,...(e.searchTerms||[])].join(' ')).includes(q)).map(e=>({id:e.id,type:'entity' as const,label:e.name[locale],detail:e.kind,caseId:data.claims.find(c=>c.subject===e.id||c.object===e.id)!.cases[0]}));
  const cases=data.cases.filter(c=>fold([c.title.en,c.title.pmy,c.deck.en,c.deck.pmy,...c.body.flatMap(p=>[p.text.en,p.text.pmy])].join(' ')).includes(q)).map(c=>({id:c.id,type:'case' as const,label:c.title[locale],detail:c.period,caseId:c.id}));
  const claims=data.claims.filter(c=>fold([c.title.en,c.title.pmy,c.text.en,c.text.pmy].join(' ')).includes(q)).slice(0,6).map(c=>({id:c.id,type:'claim' as const,label:c.title[locale],detail:c.date,caseId:c.cases[0]}));
- return [...entities,...cases,...claims].slice(0,14);
+ const sources=data.sources.filter(s=>fold([s.title,s.scope,s.family,s.url].join(' ')).includes(q)).flatMap(s=>{const c=data.cases.find(c=>c.reading.includes(s.id)||data.claims.some(k=>c.claimIds.includes(k.id)&&k.evidence.some(e=>e.source===s.id)));return c?[{id:s.id,type:'source' as const,label:s.title,detail:s.period,caseId:c.id}]:[];});
+ return [...entities,...cases,...claims,...sources].slice(0,14);
 }
 export function sourceIdsForClaims(claims:RecordClaim[]){return [...new Set(claims.flatMap(c=>c.evidence.map(e=>e.source)))];}

@@ -1,4 +1,6 @@
 ---
+import CaseView from '../../../views/CaseView.astro';
+import {caseIdBySlug} from '../../../data/case-presentation';
 import TopicView from '../../../views/TopicView.astro';
 import IssueView from '../../../views/IssueView.astro';
 import { issues } from '../../../data/issues';
@@ -6,4 +8,4 @@ import { dossiers } from '../../../data/dossiers';
 export function getStaticPaths(){return [...issues,...dossiers].map(issue=>({params:{slug:issue.slug},props:{issue}}))}
 const {issue}=Astro.props;
 ---
-{issues.some(x=>x.slug===issue.slug)?<TopicView locale="pmy" issue={issue} />:<IssueView locale="pmy" issue={issue} />}
+{caseIdBySlug[issue.slug]?<CaseView locale="pmy" caseId={caseIdBySlug[issue.slug]}/>:issues.some(x=>x.slug===issue.slug)?<TopicView locale="pmy" issue={issue} />:<IssueView locale="pmy" issue={issue} />}

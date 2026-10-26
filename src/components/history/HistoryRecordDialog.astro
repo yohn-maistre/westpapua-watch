@@ -2,9 +2,9 @@
 import {archiveItems} from '../../data/archive';
 import HistoryArrow from './HistoryArrow.astro';
 import type {Locale} from '../../data/types';
-const {locale='en'}=Astro.props as {locale?:Locale};
+const {locale='en',ids}=Astro.props as {locale?:Locale;ids?:string[]};
 const en=locale==='en';
-const objects=archiveItems.map(a=>({id:a.id,date:a.date,title:a.title[locale],caption:a.editorial.caption[locale],
+const objects=archiveItems.filter(a=>!ids||ids.includes(a.id)).map(a=>({id:a.id,date:a.date,title:a.title[locale],caption:a.editorial.caption[locale],
   type:a.mediaType,source:a.archive.mirrorUrl||a.archive.sourceUrl,credit:[a.archive.creator||a.archive.institution,a.access.rightsHolder,a.media?.conversion?.[locale]].filter(Boolean).join(' · '),
   license:a.access.license||'',licenseUrl:a.access.licenseUrl||'',
   image:a.resolved.image,poster:a.resolved.poster,

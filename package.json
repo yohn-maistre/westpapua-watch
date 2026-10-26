@@ -28,7 +28,7 @@
     "check:polish": "node scripts/tests/polish.mjs",
     "check:system": "node scripts/tests/system.mjs",
     "check:explorer": "node scripts/tests/explorer.mjs",
-    "check:investigation": "node scripts/tests/investigation.mjs && node scripts/tests/investigative-record.mjs"
+    "check:investigation": "node scripts/tests/investigation.mjs && node scripts/tests/investigative-record.mjs && node scripts/tests/following-state.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.5",

@@ -20,13 +20,18 @@ jobs:
       - name: Read operator status before cycle
         env:
           WATCH_ADMIN_TOKEN: ${{ secrets.WATCH_ADMIN_TOKEN }}
+          WATCH_RUN_CYCLE: ${{ inputs.run_cycle }}
         run: |
           test -n "$WATCH_ADMIN_TOKEN" || { echo 'WATCH_ADMIN_TOKEN production secret is required'; exit 1; }
+          status_base='https://westpapua.watch'
+          if [ "$GITHUB_REF_NAME" = 'preview/investigative-explorer' ] && [ "$WATCH_RUN_CYCLE" != 'true' ]; then
+            status_base='https://preview-investigative-explor.westpapua-watch.pages.dev'
+          fi
           curl --fail-with-body --retry 2 --retry-all-errors --connect-timeout 15 --max-time 60 \
             -H "Authorization: Bearer $WATCH_ADMIN_TOKEN" \
             -H 'Accept: application/json' \
             -H 'User-Agent: westpapua-watch-operator/1.0' \
-            https://westpapua.watch/api/admin/status
+            "$status_base/api/admin/status"
       - name: Trigger one normal Watch cycle
         if: ${{ inputs.run_cycle }}
         env:

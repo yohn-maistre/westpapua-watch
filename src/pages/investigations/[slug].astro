@@ -1,0 +1,8 @@
+---
+import CaseView from '../../views/CaseView.astro';
+import {investigativeRecord} from '../../data/investigative-record';
+import {caseRoute} from '../../data/case-presentation';
+export function getStaticPaths(){return investigativeRecord.cases.filter(c=>caseRoute[c.id]?.startsWith('/investigations/')).map(c=>({params:{slug:c.id},props:{caseId:c.id}}))}
+const {caseId}=Astro.props;
+---
+<CaseView locale="en" caseId={caseId}/>

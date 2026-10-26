@@ -1,4 +1,5 @@
 import {runJson} from './llm';
+import {preferredCaseState} from '../../../shared/following-state';
 import {witWeek,validateReview,type Evidence,type WeeklyEdition,type CaseState} from '../../../shared/analysis';
 import seeds from '../../../content/following.json';
 import references from '../../../content/analysis-evidence.json';
@@ -22,9 +23,9 @@ export async function readWeekly(env:any,id?:string){
 }
 export async function readCaseState(env:any,slug:string):Promise<CaseState|null>{
  const row:any=await env.DB.prepare('SELECT payload_json FROM following_snapshots WHERE slug=? ORDER BY as_of DESC,published_at DESC LIMIT 1').bind(slug).first();
- if(row)return JSON.parse(row.payload_json);
  const seed=seeds.find(c=>c.slug===slug)?.state;
- return seed?{...seed,slug,evidence:references.filter(e=>seed.sourceIds.includes(e.id))} as CaseState:null;
+ const curated=seed?{...seed,slug,evidence:references.filter(e=>seed.sourceIds.includes(e.id))}:null;
+ return preferredCaseState(curated,row?JSON.parse(row.payload_json):null) as CaseState|null;
 }
 /** Bounded original evidence, selected across publishers and episodes before drafting. */
 export async function weeklyEvidence(env:any,window:{from:string;to:string}):Promise<Evidence[]>{
