@@ -127,7 +127,7 @@ async function initOne(root:HTMLElement){
         button.type='button';button.className='overview-map-pin';button.dataset.overviewPin=item.slug;button.setAttribute('aria-pressed',String(item.slug===(new URL(location.href).searchParams.get('case')||cases[0].slug)));label.textContent=locale==='pmy'?item.name.pmy:item.name.en;button.append(dot,label);
         new maplibregl.Marker({element:button,anchor:'center'}).setLngLat([item.longitude,item.latitude]).addTo(map);
       }
-      root.addEventListener('watch:overview-focus',event=>{const detail=(event as CustomEvent).detail;if(detail.overview){map.fitBounds(WEST_PAPUA_BOUNDS,{padding:innerWidth<=520?24:42,duration:motion});return}const item=cases.find((c:any)=>c.slug===detail.slug);if(item)map.easeTo({center:[item.longitude,item.latitude],zoom:4.4,duration:motion})});
+      root.addEventListener('watch:overview-focus',event=>{const detail=(event as CustomEvent).detail;if(detail.overview){map.fitBounds(WEST_PAPUA_BOUNDS,{padding:innerWidth<=520?24:42,duration:motion});return}const item=cases.find((c:any)=>c.slug===detail.slug);if(item)map.easeTo({center:[item.longitude,item.latitude],zoom:5.8,duration:motion})});
     }catch(error){console.warn('Overview map references unavailable',error)}
   }
   map.addControl(new maplibregl.NavigationControl({showCompass:false,visualizePitch:false}),'bottom-right');
