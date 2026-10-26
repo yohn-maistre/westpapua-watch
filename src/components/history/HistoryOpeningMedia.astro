@@ -1,0 +1,9 @@
+---
+import FilmGallery from './FilmGallery';
+import HistoryArrow from './HistoryArrow.astro';
+import {archiveItemById,archivePreview} from '../../data/archive';
+import type {Locale} from '../../data/types';
+import '../../styles/history-opening.css';
+const {locale='en'}=Astro.props as {locale:Locale};const en=locale==='en',item=archiveItemById['council-election-1961'],preview=archivePreview(item.id);
+---
+<section class="wrap history-intro-gallery" aria-label={en?'Films and historical records':'Film dan catatan sejarah'}><FilmGallery client:visible locale={locale}/><button type="button" class="history-intro-archive" data-history-record={item.id}><div><img src={preview?.src||item.resolved.image} width="600" height="420" alt={item.editorial.caption[locale]} loading="lazy"/><span aria-hidden="true"><HistoryArrow direction="up-right"/></span></div><small>1961 · {en?'Archive':'Arsip'}</small><strong>{en?'New Guinea Council':'Dewan Nugini'}</strong><p>{en?'Hollandia / Jayapura':'Hollandia / Jayapura'}</p></button></section>

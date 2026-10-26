@@ -1,0 +1,8 @@
+---
+import InvestigationExplorer from './InvestigationExplorer';
+import {meraukeRecords,investigationNodes,investigationEdges} from '../../data/investigations';
+import type {Locale} from '../../data/types';
+const {locale='en'}=Astro.props as {locale:Locale};
+---
+<InvestigationExplorer client:load locale={locale} records={meraukeRecords} nodes={investigationNodes} edges={investigationEdges}/>
+<noscript><section class="section"><h2>{locale==='en'?'Records':'Catatan'}</h2>{meraukeRecords.map(record=><article><h3>{record.title[locale]}</h3><p>{record.text[locale]}</p><a href={record.source}>{record.publisher} ↗</a></article>)}</section></noscript>

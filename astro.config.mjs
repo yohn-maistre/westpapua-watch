@@ -15,6 +15,7 @@ export default defineConfig({
         "default-src 'self'",
         "base-uri 'self'",
         "object-src 'none'",
+        "frame-src https://www.youtube-nocookie.com",
         "frame-ancestors 'none'",
         "form-action 'self'",
         "img-src 'self' data: https:",

@@ -532,8 +532,8 @@
       "pmy": "Proyek pangan dan energi Papua Selatan"
     },
     "summary": {
-      "en": "South Papua food and energy estate",
-      "pmy": "Proyek pangan dan energi Papua Selatan"
+      "en": "Rice, sugarcane and energy projects on customary land: decisions, consent and community responses in Merauke.",
+      "pmy": "Proyek padi, tebu, dan energi di tanah adat: keputusan, persetujuan, serta tanggapan masyarakat di Merauke."
     },
     "status": {
       "en": "Following",
@@ -541,7 +541,13 @@
     },
     "updatedAt": "2026-10-08",
     "developmentSlugs": [],
-    "sourceIds": [],
+    "sourceIds": [
+      "following-reference-south-papua-food-energy-estate-mifee",
+      "following-reference-south-papua-food-energy-estate-psn",
+      "following-reference-south-papua-food-energy-estate-hria-launch",
+      "mifee-research",
+      "following-reference-south-papua-food-energy-estate-mifee-rights-source"
+    ],
     "concepts": [
       "customary-land"
     ],
@@ -625,8 +631,8 @@
       "pmy": "Tambang di Raja Ampat"
     },
     "summary": {
-      "en": "Mining in Raja Ampat",
-      "pmy": "Tambang di Raja Ampat"
+      "en": "Island-specific mining permits, customary land, forests and coastal livelihoods across Raja Ampat.",
+      "pmy": "Izin tambang di pulau-pulau tertentu, tanah adat, hutan, serta penghidupan pesisir Raja Ampat."
     },
     "status": {
       "en": "Following",
@@ -634,7 +640,11 @@
     },
     "updatedAt": "2026-10-08",
     "developmentSlugs": [],
-    "sourceIds": [],
+    "sourceIds": [
+      "following-reference-mining-raja-ampat-raja",
+      "following-reference-mining-raja-ampat-raja-court-2026",
+      "following-reference-mining-raja-ampat-gag-resumption-source"
+    ],
     "concepts": [
       "customary-land"
     ],

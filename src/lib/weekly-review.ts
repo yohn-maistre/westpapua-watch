@@ -16,7 +16,12 @@ export function initWeeklyReviews(){
    if(!edition?.title?.en||!edition?.title?.pmy||!Array.isArray(edition.threads)||!Array.isArray(edition.evidence))return;
    const threads=topic?edition.threads.filter(t=>t.topics.includes(topic)):edition.threads;
    root.hidden=!!topic&&!threads.length;active=edition.id;const status=root.querySelector('[data-weekly-status]');if(status)status.textContent='';
-   root.querySelector('[data-weekly-title]')!.textContent=topic&&threads[0]?pick(threads[0].title):pick(edition.title);
+   const rawTitle=topic&&threads[0]?pick(threads[0].title):pick(edition.title);
+   // Model-authored dates can use UTC while this edition uses Papua dates.
+   // Derive generic date-only titles from the accepted period, preserving other editorial titles.
+   const displayTitle=/^(West Papua Watch Weekly Review|Tinjauan Mingguan West Papua Watch)\s*:/i.test(rawTitle||'')
+    ? `${en?'Weekly review':'Tinjauan mingguan'}: ${fmt(edition.from)} – ${fmt(new Date(Date.parse(edition.to)-1).toISOString())}`:rawTitle;
+   root.querySelector('[data-weekly-title]')!.textContent=displayTitle;
    root.querySelector('[data-weekly-date]')!.textContent=edition.kind==='initial'?`${en?'Current picture':'Gambaran terkini'} · ${fmt(edition.to)}`:`${fmt(edition.from)} – ${fmt(new Date(Date.parse(edition.to)-1).toISOString())}`;
    const intro=root.querySelector('[data-weekly-intro]')!;intro.replaceChildren(...(topic&&threads[0]?threads[0].paragraphs.slice(0,1):edition.intro).map(p=>el('p',pick(p.text))));
    const target=root.querySelector('[data-weekly-threads]');

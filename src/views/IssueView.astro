@@ -3,6 +3,8 @@ import followingNotes from '../../content/following.json';
 import ResourceList from '../components/resources/ResourceList.astro';
 import {libraryForTopic} from '../data/library';
 import TopicTimeline from '../components/TopicTimeline.astro';
+import InvestigationCanvas from '../components/investigation/InvestigationCanvas.astro';
+import CaseAnalysis from '../components/investigation/CaseAnalysis';
 import {topicTimelines} from '../data/topic-timelines';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import MapShell from '../components/map/MapShell.astro';
@@ -35,7 +37,7 @@ const mapView:MapViewId=
   issue.slug==='human-rights-conflict-security'||issue.slug.includes('conflict')||issue.slug.includes('displacement')?'conflict':'current';
 ---
 <BaseLayout locale={locale} active="issues" title={t(issue.title,locale)} description={t(issue.summary,locale)}>
-<div class="wrap">
+<div class:list={['wrap',issue.slug==='south-papua-food-energy-estate'&&'has-investigation']}>
   <a class="story-back issue-back" href={withLocale(issue.slug==='awyu-customary-forests'?'/topics/south-papua-food-energy-estate/#related-land':'/topics/#following',locale)}>← {issue.slug==='awyu-customary-forests'?(locale==='en'?'South Papua land cases':'Kasus tanah Papua Selatan'):(locale==='en'?'Following':'Dalam pantauan')}</a>
 
   <h1 class="page-title issue-page-title">{t(issue.title,locale)}</h1>
@@ -55,8 +57,10 @@ const mapView:MapViewId=
     </aside>
   </section>
 
-  <nav class="topic-local-index" aria-label={locale==='en'?'On this page':'Di halaman ini'}>{initialState&&<a href="#overview">{locale==='en'?'Current':'Terkini'}</a>}{background&&<a href="#background">{locale==='en'?'Background':'Latar belakang'}</a>}{topicTimelines[issue.slug]&&<a href="#timeline">{locale==='en'?'Timeline':'Linimasa'}</a>}<a href="#latest">{locale==='en'?'News':'Berita'}</a><a href="#sources">{locale==='en'?'Library':'Pustaka'}</a><a href="#places">{locale==='en'?'Places':'Lokasi'}</a></nav>
-  {initialState&&<section class="following-state" id="overview" data-following-state data-slug={issue.slug}><header><h2>{locale==='en'?'Current picture':'Gambaran terkini'}</h2><time data-state-date datetime={initialState.asOf}>{new Date(initialState.asOf+'T00:00:00Z').toLocaleDateString(locale==='en'?'en-GB':'id-ID',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'})}</time></header><p data-state-summary>{t(initialState.summary,locale)}</p><div data-state-questions>{initialState.questions.map(q=><p>{t(q,locale)}</p>)}</div><details class="following-reference-list"><summary>{locale==='en'?'Sources':'Sumber'}</summary><div data-state-sources>{note?.backgroundSources?.filter(source=>initialState.sourceIds.includes(source.id)).map(source=><a href={source.url} target="_blank" rel="noreferrer"><strong>{source.title}</strong><small>{source.publisher}</small></a>)}</div></details></section>}
+  {issue.slug==='south-papua-food-energy-estate'&&<><InvestigationCanvas locale={locale}/><CaseAnalysis client:visible locale={locale} compact/></>}
+
+  <nav class="topic-local-index" aria-label={locale==='en'?'On this page':'Di halaman ini'}>{issue.slug!=='south-papua-food-energy-estate'&&initialState&&<a href="#overview">{locale==='en'?'Current':'Terkini'}</a>}{background&&<a href="#background">{locale==='en'?'Background':'Latar belakang'}</a>}{topicTimelines[issue.slug]&&<a href="#timeline">{locale==='en'?'Timeline':'Linimasa'}</a>}<a href="#latest">{locale==='en'?'News':'Berita'}</a><a href="#sources">{locale==='en'?'Library':'Pustaka'}</a><a href="#places">{locale==='en'?'Places':'Lokasi'}</a></nav>
+  {issue.slug!=='south-papua-food-energy-estate'&&initialState&&<section class="following-state" id="overview" data-following-state data-slug={issue.slug}><header><h2>{locale==='en'?'Current picture':'Gambaran terkini'}</h2><time data-state-date datetime={initialState.asOf}>{new Date(initialState.asOf+'T00:00:00Z').toLocaleDateString(locale==='en'?'en-GB':'id-ID',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'})}</time></header><p data-state-summary>{t(initialState.summary,locale)}</p><div data-state-questions>{initialState.questions.map(q=><p>{t(q,locale)}</p>)}</div><details class="following-reference-list"><summary>{locale==='en'?'Sources':'Sumber'}</summary><div data-state-sources>{note?.backgroundSources?.filter(source=>initialState.sourceIds.includes(source.id)).map(source=><a href={source.url} target="_blank" rel="noreferrer"><strong>{source.title}</strong><small>{source.publisher}</small></a>)}</div></details></section>}
   {background&&<section class="following-background" id="background"><h2>{locale==='en'?'Background':'Latar belakang'}</h2><div>{t(background,locale).split('\n\n').map(paragraph=><p>{paragraph}</p>)}<details class="following-reference-list"><summary>{locale==='en'?'Sources':'Sumber'} <span>{note?.backgroundSources?.length}</span></summary>{note?.backgroundSources?.map(source=><a href={source.url} target="_blank" rel="noreferrer"><strong>{source.title}</strong><small>{source.publisher}</small></a>)}</details></div></section>}
   {issue.slug==='south-papua-food-energy-estate'&&<aside class="following-background" id="related-land"><h2>{locale==='en'?'Related land case':'Kasus tanah terkait'}</h2><div><a href={withLocale('/topics/awyu-customary-forests/',locale)}><strong>{locale==='en'?'Awyu customary forests ↗':'Hutan adat Awyu ↗'}</strong></a><p>{locale==='en'?'The Awyu oil-palm permit dispute is a separate case in Boven Digoel. It shares questions about customary land and forest rights with the Merauke projects.':'Sengketa izin perkebunan sawit Awyu merupakan kasus tersendiri di Boven Digoel. Kasus ini berkaitan dengan proyek Merauke melalui persoalan hak atas tanah dan hutan adat.'}</p></div></aside>}
 
@@ -65,7 +69,7 @@ const mapView:MapViewId=
     <section class="box" id="latest"><h2>{locale==='en'?'Latest developments':'Perkembangan terbaru'}</h2><div data-live-issue-updates data-issue-slug={issue.slug} data-locale={locale}>{devs.map(d=><p class="issue-update"><a href={withLocale('/',locale)}><strong>{t(d.title,locale)}</strong></a><br/><small>{d.updatedAt} · {d.sourceIds.length} {locale==='en'?'sources':'sumber'}</small></p>)}</div></section>
   </div>
 
-  <TopicTimeline slug={issue.slug} locale={locale}/><div id="places"></div><MapShell locale={locale} mode="context" context="issue" contextValue={issue.slug} initialView={mapView} />
+  <TopicTimeline slug={issue.slug} locale={locale}/><div id="places"></div><MapShell locale={locale} mode="context" context="issue" contextValue={issue.slug} initialView={mapView} deferred={issue.slug==='south-papua-food-energy-estate'} />
 
   <section class="section issue-sources" id="sources"><div class="section-head section-head-simple"><h2>{locale==='en'?'Library.':'Pustaka.'}</h2><a href={withLocale('/resources/',locale)+'?topic='+issue.slug}>{locale==='en'?'Browse all ↗':'Lihat semua ↗'}</a></div><ResourceList items={relatedLibrary} locale={locale} topic={issue.slug}/></section>
 </div>

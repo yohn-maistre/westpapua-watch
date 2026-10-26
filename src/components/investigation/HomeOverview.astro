@@ -1,0 +1,41 @@
+---
+import MapShell from '../map/MapShell.astro';
+import HistoryArrow from '../history/HistoryArrow.astro';
+import {overviewCases} from '../../data/investigations';
+import {t,withLocale} from '../../lib/i18n';
+import type {Locale} from '../../data/types';
+import '../../styles/home-overview.css';
+const {locale='en'}=Astro.props as {locale:Locale};const en=locale==='en',selected=overviewCases[0];
+const cases=overviewCases.map(item=>({...item,name:t(item.name,locale),region:t(item.region,locale),title:t(item.title,locale),summary:t(item.summary,locale),href:withLocale(`/topics/${item.slug}/`,locale),historyHref:withLocale(`/history/?path=${item.path}#${item.history}`,locale)}));
+---
+<section class="home-overview wrap" aria-label={en?'West Papua overview':'Ikhtisar Papua Barat'} data-home-overview data-locale={locale}>
+ <div class="home-overview-copy">
+  <p class="home-overview-region" data-overview-region>{t(selected.region,locale)}</p>
+  <h2 data-overview-title>{t(selected.title,locale)}</h2>
+  <p class="home-overview-summary" data-overview-summary>{t(selected.summary,locale)}</p>
+  <a class="home-overview-explore" data-overview-link href={withLocale(`/topics/${selected.slug}/#explore`,locale)}>{en?'Explore the case':'Telusuri kasus'} <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+  <div class="home-overview-reference"><a data-overview-source href={selected.source} target="_blank" rel="noreferrer">{selected.publisher} <HistoryArrow direction="up-right"/></a><a data-overview-history href={withLocale(`/history/?path=${selected.path}#${selected.history}`,locale)}>{en?'History':'Sejarah'} <HistoryArrow direction="up-right"/></a></div>
+ </div>
+ <div class="home-overview-geography"><MapShell locale={locale} mode="home" overviewCases={overviewCases}/></div>
+ <nav class="home-overview-cases" aria-label={en?'Cases on the map':'Kasus pada peta'}>{cases.map((item,index)=><button type="button" data-overview-case={item.slug} aria-pressed={index===0}><small>{String(index+1).padStart(2,'0')}</small><span>{item.name}</span><i aria-hidden="true"><HistoryArrow direction="up-right"/></i></button>)}</nav>
+ <script type="application/json" data-overview-data set:html={JSON.stringify(cases).replace(/</g,'\\u003c')}/>
+</section>
+<script>
+const root=document.querySelector<HTMLElement>('[data-home-overview]');
+if(root){
+ const cases=JSON.parse(root.querySelector('[data-overview-data]')!.textContent||'[]');
+ function show(slug:string,push=false){
+  const item=cases.find((c:any)=>c.slug===slug);if(!item)return;
+  for(const [selector,value] of [['[data-overview-region]',item.region],['[data-overview-title]',item.title],['[data-overview-summary]',item.summary]]){const element=root!.querySelector(selector);if(element)element.textContent=value}
+  const link=root!.querySelector<HTMLAnchorElement>('[data-overview-link]')!;link.href=item.href+(slug==='south-papua-food-energy-estate'?'#explore':'');
+  const source=root!.querySelector<HTMLAnchorElement>('[data-overview-source]')!;source.href=item.source;source.textContent=item.publisher;
+  root!.querySelector<HTMLAnchorElement>('[data-overview-history]')!.href=item.historyHref;
+  root!.querySelectorAll<HTMLElement>('[data-overview-case]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.overviewCase===slug)));
+  root!.querySelectorAll<HTMLElement>('[data-overview-pin]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.overviewPin===slug)));
+  if(push){const url=new URL(location.href);url.searchParams.set('case',slug);history.pushState(null,'',url);root!.querySelector('[data-watch-map]')?.dispatchEvent(new CustomEvent('watch:overview-focus',{detail:{slug}}))}
+ }
+ root.addEventListener('click',event=>{const target=(event.target as Element).closest<HTMLElement>('[data-overview-case],[data-overview-pin]');if(target){event.preventDefault();show(target.dataset.overviewCase||target.dataset.overviewPin||'',true)}});
+ root.addEventListener('watch:overview-select',event=>show((event as CustomEvent).detail.slug,true));
+ const restore=()=>show(new URL(location.href).searchParams.get('case')||cases[0].slug);restore();addEventListener('popstate',restore);
+}
+</script>
