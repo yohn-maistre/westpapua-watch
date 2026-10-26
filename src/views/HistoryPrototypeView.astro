@@ -47,7 +47,7 @@ const metadata=readingChapters.map(c=>({id:c.id,era:c.era,date:t(c.date,locale),
      {panel.records.map(r=><div class="history-account-part" id={r.id===c.id?undefined:r.id} data-history-account={r.id}>
       {panel.records.length>1&&<h3>{t(r.yearLabel,locale)} · {t(r.title,locale)}</h3>}
       {paragraphsForRecord(r).map(paragraph=><p>{t(paragraph.text,locale)}{paragraph.sourceUrls.map(url=>{const index=sources.findIndex(s=>s.url===url);return index>=0&&<sup class="history-inline-citation"><a href={`#${sourceAnchor(panel.id,url)}`} data-history-citation aria-label={`${en?'Source':'Sumber'} ${index+1}: ${sources[index].title}`}>{index+1}</a></sup>})}</p>)}
-      {r.id==='history-1962'&&<HistoryComparison client:visible locale={locale}/>}
+      {r.id==='history-1962'&&<HistoryComparison client:load locale={locale}/>}
       {r.exhibition&&<a class="history-related-link" href={withLocale('/exhibition/#crafts',locale)}>{en?'Makers and work':'Pembuat dan karya'} <HistoryArrow direction="up-right"/></a>}
       {r.relatedAccounts?.length&&<nav class="history-related-accounts" aria-label={en?'Related accounts':'Kisah terkait'}>{r.relatedAccounts.map(id=>{const related=readingRecords.find(account=>account.id===id)!;return <a class="history-related-link" href={`${withLocale('/history/',locale)}?path=${related.paths[0]}#${id}`}>{t(related.title,locale)} <HistoryArrow direction="up-right"/></a>})}</nav>}
      </div>)}
