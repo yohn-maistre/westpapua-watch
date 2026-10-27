@@ -119,6 +119,17 @@ async function initOne(root:HTMLElement){
     pixelRatio:lowMemory?1:Math.min(window.devicePixelRatio||1,1.5),maxTileCacheSize:lowMemory?36:56,maxTileCacheZoomLevels:lowMemory?2:3,trackResize:context!=='history'
   });
   root.dataset.mapRenderer=rendererFor(map);console.info('[Watch map] renderer',root.dataset.mapRenderer,'lowMemory',lowMemory);
+  if(root.dataset.overviewCases){
+    try{
+      const cases=JSON.parse(root.dataset.overviewCases);
+      for(const item of cases){
+        const button=document.createElement('button'),dot=document.createElement('i'),label=document.createElement('span');
+        button.type='button';button.className='overview-map-pin';button.dataset.overviewPin=item.slug;button.setAttribute('aria-pressed',String(item.slug===(new URL(location.href).searchParams.get('case')||cases[0].slug)));label.textContent=locale==='pmy'?item.name.pmy:item.name.en;button.append(dot,label);
+        new maplibregl.Marker({element:button,anchor:'center'}).setLngLat([item.longitude,item.latitude]).addTo(map);
+      }
+      root.addEventListener('watch:overview-focus',event=>{const detail=(event as CustomEvent).detail;if(detail.overview){map.fitBounds(WEST_PAPUA_BOUNDS,{padding:innerWidth<=520?24:42,duration:motion});return}const item=cases.find((c:any)=>c.slug===detail.slug);if(item)map.easeTo({center:[item.longitude,item.latitude],zoom:5.8,duration:motion})});
+    }catch(error){console.warn('Overview map references unavailable',error)}
+  }
   map.addControl(new maplibregl.NavigationControl({showCompass:false,visualizePitch:false}),'bottom-right');
   let contextLossTimer=0;map.getCanvas().addEventListener('webglcontextlost',()=>{root.dataset.mapRenderer='context-lost';clearTimeout(contextLossTimer);contextLossTimer=window.setTimeout(()=>showFallback(root,'webgl-context-lost'),2400)});
   map.getCanvas().addEventListener('webglcontextrestored',()=>{clearTimeout(contextLossTimer);root.classList.remove('map-fallback');const fb=root.querySelector<HTMLElement>('[data-map-fallback]');if(fb)fb.hidden=true;root.dataset.mapRenderer=rendererFor(map)});
@@ -135,7 +146,7 @@ async function initOne(root:HTMLElement){
   }
   async function addAtlasPlate(){
     const contextLand=await jsonOr<FeatureCollection>('/data/context-land.geojson',emptyFC()),silhouette=await jsonOr<FeatureCollection>('/data/west-papua-silhouette.geojson',emptyFC());
-    if(contextLand.features.length){map.addSource('watch-context-land-source',{type:'geojson',data:contextLand});map.addLayer({id:'watch-context-land',type:'fill',source:'watch-context-land-source',paint:{'fill-color':'#eff0f5','fill-opacity':.92}});/* Global terrain replaces the clipped plate. */}
+    if(contextLand.features.length){root.dataset.mapGeography='true';map.addSource('watch-context-land-source',{type:'geojson',data:contextLand});map.addLayer({id:'watch-context-land',type:'fill',source:'watch-context-land-source',paint:{'fill-color':'#eff0f5','fill-opacity':.92}});/* Global terrain replaces the clipped plate. */}
     else if(context==='history'){
       // Keep the same Natural Earth reference available if the compiled atlas
       // geography is absent. Its extent matches the lightweight reader atlas.
@@ -205,6 +216,8 @@ async function initOne(root:HTMLElement){
     }catch(error){unavailable.add(def.id);console.warn(`[Watch map] failed to register ${def.id}`,error);return false}
   }
   map.on('load',async()=>{
+    map.on('idle',()=>{if(root.dataset.mapGeography==='true')root.dataset.mapLoaded='true'});
+    map.on('sourcedata',(event:any)=>{if(event.sourceDataType==='content'&&/base|terrain|night/.test(event.sourceId||'')){root.dataset.mapGeography='true';if(map.loaded())root.dataset.mapLoaded='true'}});
     await addAtlasPlate();map.addSource('watch-label-points',{type:'geojson',data:labels});
     if(context==='history'){
       current=await currentGeoJSON(root);
@@ -234,6 +247,7 @@ async function initOne(root:HTMLElement){
     else if(context&&current.features.length)fitFeatures(current);else if(state.place&&!context)await focusPlace(state.place);
     else if(!context)map.fitBounds(WEST_PAPUA_BOUNDS,{padding:innerWidth<=520?24:42,duration:0});
     initializing=false;
+    if(root.dataset.overviewCases)root.dispatchEvent(new CustomEvent('watch:overview-ready',{bubbles:true}));
     if(new URL(location.href).searchParams.get('mapDebug')==='1'){(map as any).showTileBoundaries=true;const d=root.querySelector<HTMLElement>('[data-map-debug]');if(d){d.hidden=false;d.textContent=`${root.dataset.mapRenderer} · lowMemory ${lowMemory} · unavailable ${[...unavailable].join(', ')||'none'}`}}
   });
   let lastHistoryFeatures=root.dataset.historyFeatures||'';
@@ -343,7 +357,7 @@ export function initWatchMaps(){
   if(root.dataset.mapRuntimeReady)return;
   root.dataset.mapRuntimeReady='true';
   const start=()=>{root.dataset.mapInitialized='true';initOne(root).catch(err=>{console.warn('Watch map unavailable',err);showFallback(root,err instanceof Error?err.name:'initialization-failed')})};
-  if(root.dataset.context==='history'){
+  if(root.dataset.context==='history'||root.dataset.mapDeferred==='true'){
    root.dataset.mapInitialized='deferred';
    root.addEventListener('watch:map-activate',()=>{if(root.dataset.mapInitialized==='deferred')start();else root.dispatchEvent(new CustomEvent('watch:map-expand'))});
   }else start();

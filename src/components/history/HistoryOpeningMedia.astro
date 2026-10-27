@@ -1,0 +1,8 @@
+---
+import FilmGallery from './FilmGallery';
+import {films} from '../../data/history-films';
+import type {Locale} from '../../data/types';
+import '../../styles/history-opening.css';
+const {locale='en'}=Astro.props as {locale:Locale};
+---
+<section class="wrap history-intro-gallery" aria-label={locale==='en'?'Films':'Film'}><FilmGallery client:load locale={locale}/><noscript><nav class="history-films-no-script" aria-label={locale==='en'?'Watch films':'Tonton film'}>{films.map(film=><a href={film.url} target="_blank" rel="noreferrer"><strong>{film.title}</strong><span>{film.creator} · {film.duration} · YouTube ↗</span></a>)}</nav></noscript></section>

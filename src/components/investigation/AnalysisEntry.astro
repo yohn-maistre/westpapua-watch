@@ -1,0 +1,7 @@
+---
+import WeeklyReview from '../WeeklyReview.astro';
+import type {Locale} from '../../data/types';
+const {locale='en'}=Astro.props as {locale:Locale};
+---
+<section class="wrap home-weekly"><WeeklyReview locale={locale} preview/></section>
+<style>.home-weekly{padding-block:2rem 3rem}</style>

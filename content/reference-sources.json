@@ -1212,5 +1212,151 @@
     ],
     "description": "Source for the related History account.",
     "published": true
+  },
+  {
+    "id": "following-reference-south-papua-food-energy-estate-mifee",
+    "title": "A sweetness like unto death: voices of the indigenous Malind of Merauke",
+    "publisher": "Forest Peoples Programme · 2013",
+    "url": "https://www.forestpeoples.org/publications-resources/reports/article/a-sweetness-like-unto-death-voices-of-the-indigenous-malind-of-merauke-papua/",
+    "type": "report",
+    "format": "web",
+    "language": "multi",
+    "tags": [
+      "land-indigenous-rights",
+      "extraction-industrial-development"
+    ]
+  },
+  {
+    "id": "following-reference-south-papua-food-energy-estate-psn",
+    "title": "Merauke National Strategic Project timeline",
+    "publisher": "Yayasan Pusaka Bentala Rakyat",
+    "url": "https://pusaka.or.id/en/lini-masa/merauke-national-strategic-project-timeline/",
+    "type": "collection",
+    "format": "web",
+    "language": "multi",
+    "tags": [
+      "land-indigenous-rights",
+      "extraction-industrial-development"
+    ]
+  },
+  {
+    "id": "following-reference-south-papua-food-energy-estate-hria-launch",
+    "title": "Elegi Selatan Papua",
+    "publisher": "Yayasan Pusaka Bentala Rakyat",
+    "url": "https://pusaka.or.id/event/elegi-selatan-papua/",
+    "type": "collection",
+    "format": "web",
+    "language": "multi",
+    "tags": [
+      "land-indigenous-rights",
+      "extraction-industrial-development"
+    ]
+  },
+  {
+    "id": "following-reference-south-papua-food-energy-estate-mifee-rights-source",
+    "title": "Civil-society objections to MIFEE",
+    "publisher": "TAPOL",
+    "url": "https://tapol.org/press-statements/mifee-project-violates-human-rights",
+    "type": "article",
+    "format": "web",
+    "language": "multi",
+    "tags": [
+      "land-indigenous-rights",
+      "extraction-industrial-development"
+    ]
+  },
+  {
+    "id": "following-reference-mining-raja-ampat-raja",
+    "title": "Four mining permits revoked in Raja Ampat",
+    "publisher": "Ministry of Energy and Mineral Resources · 2025",
+    "url": "https://www.esdm.go.id/en/media-center/news-archives/pemerintah-cabut-empat-izin-perusahaan-tambang-di-raja-ampat",
+    "type": "official",
+    "format": "web",
+    "language": "multi",
+    "tags": [
+      "extraction-industrial-development",
+      "environment-biodiversity"
+    ]
+  },
+  {
+    "id": "following-reference-mining-raja-ampat-raja-court-2026",
+    "title": "PTUN orders disclosure of Raja Ampat permit-revocation records",
+    "publisher": "Greenpeace Indonesia",
+    "url": "https://www.greenpeace.org/indonesia/siaran-pers/67809/greenpeace-menang-ptun-perintahkan-pemerintah-buka-sk-pencabutan-izin-4-tambang-nikel-di-raja-ampat/",
+    "type": "article",
+    "format": "web",
+    "language": "multi",
+    "tags": [
+      "extraction-industrial-development",
+      "environment-biodiversity"
+    ]
+  },
+  {
+    "id": "following-reference-mining-raja-ampat-gag-resumption-source",
+    "title": "Gag Nikel resumes under oversight",
+    "publisher": "The Jakarta Post / Asia News Network",
+    "url": "https://asianews.network/indonesia-government-vows-stricter-oversight-as-gag-nikel-restarts-raja-ampat-mine/",
+    "type": "article",
+    "format": "web",
+    "language": "multi",
+    "tags": [
+      "extraction-industrial-development",
+      "environment-biodiversity"
+    ]
+  },
+  {
+    "id": "film-cogito-2026",
+    "title": "Inside the World’s Most Hidden Conflict",
+    "publisher": "Cogito",
+    "url": "https://www.youtube.com/watch?v=ZWp5904RkJY",
+    "date": "2026",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "description": "A contemporary documentary connecting political history, extraction and displacement. Its public script links the sources used by the filmmaker.",
+    "tags": [
+      "history-decolonisation",
+      "human-rights-conflict-security",
+      "extraction-industrial-development"
+    ],
+    "evidenceRoles": [
+      "analysis"
+    ]
+  },
+  {
+    "id": "film-frontier-war-2024",
+    "title": "Frontier War | Inside The West Papua Liberation Army",
+    "publisher": "Paradise Broadcasting",
+    "url": "https://www.youtube.com/watch?v=65_DgLwjePA",
+    "date": "2024-12-21",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "description": "Reporting and interviews from the Star Mountains concerning conflict, displacement and the TPNPB. Claims and testimony should be assessed alongside the original evidence.",
+    "tags": [
+      "human-rights-conflict-security",
+      "history-decolonisation"
+    ],
+    "evidenceRoles": [
+      "reporting",
+      "testimony"
+    ]
+  },
+  {
+    "id": "film-paradise-bombed-2023",
+    "title": "Paradise Bombed",
+    "publisher": "friendlyjordies",
+    "url": "https://www.youtube.com/watch?v=nSf3268tAbg",
+    "date": "2023-08-03",
+    "type": "documentary",
+    "format": "video",
+    "language": "en",
+    "description": "A documentary examining accounts of aerial attacks in the Star Mountains, with links to supporting reporting and a PNG Trust report.",
+    "tags": [
+      "human-rights-conflict-security"
+    ],
+    "evidenceRoles": [
+      "reporting"
+    ]
   }
 ]

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "D01",
+    "key": "taskforce",
+    "title": "Keputusan Presiden 15/2024",
+    "url": "https://peraturan.bpk.go.id/Download/342147/Keppres%20Nomor%2015%20Tahun%202024.pdf",
+    "date": "2024-04-19",
+    "type": "official instrument",
+    "readScope": "Full seven-page decree; articles 1–3, 5, 9–11. OCR of article 5 checked against Cabinet Secretariat summary.",
+    "limits": "Primary legal instrument; task-force funding is not the financing of all project works.",
+    "retrievedAt": "2026-10-26",
+    "retrievedCharacters": 9135
+  },
+  {
+    "id": "D02",
+    "key": "taskforce-summary",
+    "title": "Pemerintah Bentuk Satgas Swasembada Gula dan Bioetanol di Merauke",
+    "url": "https://setkab.go.id/pemerintah-bentuk-satgas-swasembada-gula-dan-bioetanol-di-merauke/",
+    "date": "2024-04-24",
+    "type": "official explanation",
+    "readScope": "Full substantive announcement, task-force chair, responsibilities and funding.",
+    "limits": "Same institutional decision as D01; not independent evidence of project effects.",
+    "retrievedAt": "2026-10-26",
+    "retrievedCharacters": 7112
+  },
+  {
+    "id": "D03",
+    "key": "vpshr-2025",
+    "title": "Freeport-McMoRan 2025 VPSHR annual report",
+    "url": "https://www.voluntaryprinciples.org/wp-content/uploads/2026/06/Freeport-McMoRan-VPSHR-Annual-Report-2025.pdf",
+    "date": "2025",
+    "type": "company disclosure",
+    "readScope": "Targeted PTFI Grasberg government-security support, agreement renewals and in-kind breakdown; full retrieved text.",
+    "limits": "US$21m direct plus US$2m overhead; 68% in-kind. Other operations and internal security are separate.",
+    "retrievedAt": "2026-10-26",
+    "retrievedCharacters": 61129
+  },
+  {
+    "id": "D04",
+    "key": "shutdown-full",
+    "title": "Putusan 230/G/TF/2019/PTUN-JKT",
+    "url": "https://globalfreedomofexpression.columbia.edu/wp-content/uploads/2022/02/Indonesian-Case-Indonesian-Language.pdf",
+    "date": "2020-06-03",
+    "type": "judgment mirror",
+    "readScope": "280-page text retrieved; parties, concluding proportionality/restriction reasoning and operative order reviewed. Not a full review of all testimony.",
+    "limits": "Original court registry was access-denied; obtained reproduction hosted by Columbia. Distinct from later constitutional litigation.",
+    "retrievedAt": "2026-10-26",
+    "retrievedCharacters": 473479
+  },
+  {
+    "id": "D05",
+    "key": "fatia-final",
+    "title": "Menang di MA, Fatia-Haris Minta Pemerintah Serius Tindaklanjuti Temuan Studi Kasus Intan Jaya",
+    "url": "https://sasagupapua.com/menang-di-ma-fatia-haris-minta-pemerintah-serius-tindaklanjuti-temuan-studi-kasus-intan-jaya/",
+    "date": "2024-09-26",
+    "type": "published counsel statement",
+    "readScope": "Reported 11 September 2024 decisions: Haris 5712 K/Pid.Sus/2024; Fatia 5714 K/Pid.Sus/2024.",
+    "limits": "Attribution to TAUD counsel via Sasagu; original separate judgments still needed. Not blanket proof of all business claims.",
+    "retrievedAt": "2026-10-26",
+    "retrievedCharacters": 12704
+  },
+  {
+    "id": "D06",
+    "key": "tax-case",
+    "title": "KPK dalami keterangan eks tim pemeriksa pajak terkait Haji Isam",
+    "url": "https://kalteng.antaranews.com/berita/510521/kpk-dalami-keterangan-eks-tim-pemeriksa-pajak-terkait-haji-isam",
+    "date": "2021-10-05",
+    "type": "court reporting",
+    "readScope": "Named trial testimony, defendants, alleged tax arrangements and prosecutor response.",
+    "limits": "Research-only historical lead. No finding of Haji Isam's guilt; later judgments/status needed. Alleged conduct is not itself a Papua project.",
+    "retrievedAt": "2026-10-26",
+    "retrievedCharacters": 12243
+  },
+  {
+    "id": "D07",
+    "key": "tax-response",
+    "title": "Haji Isam Polisikan Saksi Dugaan Suap, KPK Bereaksi",
+    "url": "https://www.cnnindonesia.com/nasional/20211007150230-12-704717/haji-isam-polisikan-saksi-dugaan-suap-kpk-bereaksi",
+    "date": "2021-10-07",
+    "type": "reported response",
+    "readScope": "Counsel denial, police complaint and KPK's distinction between testimony and established legal facts.",
+    "limits": "Response tied to D06; no later outcome established. Research-only lead.",
+    "retrievedAt": "2026-10-26",
+    "retrievedCharacters": 6801
+  }
+]

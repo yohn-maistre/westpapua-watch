@@ -22,6 +22,8 @@ export function witWeek(at:string|number|Date){
  const to=new Date(local.getTime()-9*3600000).toISOString();const from=new Date(Date.parse(to)-7*86400000).toISOString();
  return {id:local.toISOString().slice(0,10),from,to};
 }
+/** Regional editions and subdomains of the same publisher do not add independence. */
+export function reviewSourceFamily(e:Evidence){try{const host=new URL(e.url).hostname.replace(/^www\./,'').toLowerCase(),parts=host.split('.');const count=/\.(?:co|com|org|net|or|ac|go|gov)\.(?:id|uk|au|nz|za)$/.test(host)?3:2;return parts.slice(-count).join('.')}catch{return normalized(e.originalPublisher||e.publisher)}}
 /** Inputs come from the accepted source corpus, never from model-invented URLs. */
 export function validateReview(draft:any,evidence:Evidence[],window:{from:string;to:string},allowedCases:string[]=[]):string[]{
  const errors:string[]=[],byId=new Map(evidence.map(e=>[e.id,e]));
@@ -40,11 +42,11 @@ export function validateReview(draft:any,evidence:Evidence[],window:{from:string
  for(const p of draft?.intro||[])checkParagraph(p,'introduction');
  if(!Array.isArray(draft?.threads)||draft.threads.length<1||draft.threads.length>3)errors.push('one to three threads required');
  const threadIds=new Set<string>();
- for(const thread of draft?.threads||[]){if(!/^[a-z0-9-]+$/.test(thread.id)||threadIds.has(thread.id))errors.push('invalid thread identity');threadIds.add(thread.id);checkPair(thread.title,'thread title');checkPair(thread.question,'question');if(!Array.isArray(thread.paragraphs)||!thread.paragraphs.length||thread.paragraphs.length>4)errors.push('thread paragraphs missing or excessive');const ids=(thread.paragraphs||[]).flatMap((p:any)=>{checkParagraph(p,'thread paragraph');return p.sourceIds||[]});cite([...new Set(ids)],'thread',true);if(!Array.isArray(thread.topics)||!thread.topics.length)errors.push('thread has no topic')}
+ for(const thread of draft?.threads||[]){if(!/^[a-z0-9-]+$/.test(thread.id)||threadIds.has(thread.id))errors.push('invalid thread identity');threadIds.add(thread.id);checkPair(thread.title,'thread title');checkPair(thread.question,'question');if(!Array.isArray(thread.paragraphs)||!thread.paragraphs.length||thread.paragraphs.length>4)errors.push('thread paragraphs missing or excessive');const ids=(thread.paragraphs||[]).flatMap((p:any)=>{checkParagraph(p,'thread paragraph');return p.sourceIds||[]});const support=cite([...new Set(ids)],'thread',true);if(new Set(support.map(reviewSourceFamily)).size<2)errors.push('thread: insufficient independent publishers');if(new Set(support.map(e=>e.developmentId!==undefined?'event:'+e.developmentId:'reference:'+e.url)).size<2)errors.push('thread: insufficient distinct episodes or context');for(const p of thread.paragraphs||[])if(draft.intro?.some((q:any)=>normalized(q.text?.en||'')===normalized(p.text?.en||'')))errors.push('thread paragraph repeats introduction');if(!Array.isArray(thread.topics)||!thread.topics.length)errors.push('thread has no topic')}
  const allIds=[...(draft?.intro||[]),...(draft?.threads||[]).flatMap((t:any)=>t.paragraphs||[])].flatMap((p:any)=>p.sourceIds||[]);
  for(const thread of draft?.threads||[])if(thread.topics?.some((topic:string)=>!REVIEW_TOPICS.includes(topic)))errors.push('unknown topic');
  const recent=[...new Set(allIds)].map(id=>byId.get(id)).filter((e):e is Evidence=>!!e&&e.id.startsWith('a:')&&Date.parse(e.publishedAt)>=Date.parse(window.from)&&Date.parse(e.publishedAt)<Date.parse(window.to));
- if(new Set(recent.map(e=>e.originalPublisher||e.publisher)).size<2)errors.push('insufficient original publishers for a weekly synthesis');
+ if(new Set(recent.map(reviewSourceFamily)).size<2)errors.push('insufficient original publishers for a weekly synthesis');
  const seenCases=new Set();
  for(const state of draft?.states||[]){if(!allowedCases.includes(state.slug)||seenCases.has(state.slug))errors.push('invalid case identity');seenCases.add(state.slug);checkPair(state.summary,'case state');checkPair(state.change,'case change');if(['en','pmy'].some(locale=>String(state.change?.[locale]||'').length>260))errors.push('case change too long');if(normalized(state.summary?.en||'')===normalized(state.change?.en||''))errors.push('case delta repeats summary');for(const q of state.questions||[])checkPair(q,'case question');cite(state.sourceIds,'case state',true)}
  return [...new Set(errors)];

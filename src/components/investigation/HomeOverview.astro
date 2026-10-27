@@ -1,0 +1,47 @@
+---
+import MapShell from '../map/MapShell.astro';
+import HistoryArrow from '../history/HistoryArrow.astro';
+import {overviewCases} from '../../data/investigations';
+import {investigativeRecord} from '../../data/investigative-record';
+import {caseIdBySlug} from '../../data/case-presentation';
+import {t,withLocale} from '../../lib/i18n';
+import type {Locale} from '../../data/types';
+import '../../styles/home-overview.css';
+const {locale='en'}=Astro.props as {locale:Locale};const en=locale==='en',selected=overviewCases[0];
+const previews=(slug:string)=>{const id=caseIdBySlug[slug],ids=slug==='south-papua-food-energy-estate'?['taskforce-created','yei-refusal']:slug==='freeport-mimika'?['security-2025','yosepha-organising']:slug==='nduga-displacement'?['case-nduga-emergency-school','case-nduga-displacement-aid-appeal']:['case-four-revocations','case-public-information-ruling'];return ids.map(key=>investigativeRecord.claims.find(c=>c.id===key)).filter(Boolean).map(c=>({title:t(c!.title,locale),date:c!.date,href:withLocale(`/topics/${slug}/?claim=${c!.id}#explore`,locale)}));};
+const cases=overviewCases.map(item=>({...item,previews:previews(item.slug),name:t(item.name,locale),region:t(item.region,locale),title:t(item.title,locale),summary:t(item.summary,locale),href:withLocale(`/topics/${item.slug}/`,locale),historyHref:withLocale(`/history/?path=${item.path}#${item.history}`,locale)}));
+---
+<section class="home-overview wrap" aria-label={en?'West Papua overview':'Ikhtisar Papua Barat'} data-home-overview data-locale={locale}>
+ <div class="home-overview-copy">
+  <p class="home-overview-region" data-overview-region>{t(selected.region,locale)}</p>
+  <h2 data-overview-title>{t(selected.title,locale)}</h2>
+  <p class="home-overview-summary" data-overview-summary>{t(selected.summary,locale)}</p>
+  <div class="home-overview-records" data-overview-records>{previews(selected.slug).map(r=><a href={r.href}><span>{r.title}</span><small>{r.date}</small><HistoryArrow direction="up-right"/></a>)}</div>
+  <a class="home-overview-explore" data-overview-link href={withLocale(`/topics/${selected.slug}/#explore`,locale)}>{en?'Explore the case':'Telusuri kasus'} <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+  <div class="home-overview-reference"><a data-overview-source href={selected.source} target="_blank" rel="noreferrer">{selected.publisher} <HistoryArrow direction="up-right"/></a><a data-overview-history href={withLocale(`/history/?path=${selected.path}#${selected.history}`,locale)}>{en?'History':'Sejarah'} <HistoryArrow direction="up-right"/></a></div>
+ </div>
+ <div class="home-overview-geography"><MapShell locale={locale} mode="home" overviewCases={overviewCases}/></div>
+ <nav class="home-overview-cases" aria-label={en?'Cases on the map':'Kasus pada peta'}>{cases.map((item,index)=><button type="button" data-overview-case={item.slug} aria-pressed={index===0}><small>{String(index+1).padStart(2,'0')}</small><span>{item.name}</span><i aria-hidden="true"><HistoryArrow direction="up-right"/></i></button>)}</nav>
+ <script type="application/json" data-overview-data set:html={JSON.stringify(cases).replace(/</g,'\\u003c')}/>
+</section>
+<script>
+const root=document.querySelector<HTMLElement>('[data-home-overview]');
+if(root){
+ const cases=JSON.parse(root.querySelector('[data-overview-data]')!.textContent||'[]');
+ function show(slug:string,push=false){
+  const item=cases.find((c:any)=>c.slug===slug);if(!item)return;
+  for(const [selector,value] of [['[data-overview-region]',item.region],['[data-overview-title]',item.title],['[data-overview-summary]',item.summary]]){const element=root!.querySelector(selector);if(element)element.textContent=value}
+  const link=root!.querySelector<HTMLAnchorElement>('[data-overview-link]')!;link.href=item.href+'#explore';
+  const records=root!.querySelector('[data-overview-records]');if(records)records.replaceChildren(...item.previews.map((record:any)=>{const a=document.createElement('a'),title=document.createElement('span'),date=document.createElement('small'),arrow=document.createElementNS('http://www.w3.org/2000/svg','svg'),path=document.createElementNS('http://www.w3.org/2000/svg','path');a.href=record.href;title.textContent=record.title;date.textContent=record.date;arrow.setAttribute('viewBox','0 0 24 24');arrow.setAttribute('fill','none');arrow.setAttribute('stroke','currentColor');arrow.setAttribute('stroke-width','1.5');arrow.setAttribute('aria-hidden','true');path.setAttribute('d','M6 18 18 6M6 6h12v12');arrow.append(path);a.append(title,date,arrow);return a}));
+  const source=root!.querySelector<HTMLAnchorElement>('[data-overview-source]')!;source.href=item.source;source.textContent=item.publisher;
+  root!.querySelector<HTMLAnchorElement>('[data-overview-history]')!.href=item.historyHref;
+  root!.querySelectorAll<HTMLElement>('[data-overview-case]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.overviewCase===slug)));
+  root!.querySelectorAll<HTMLElement>('[data-overview-pin]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.overviewPin===slug)));
+  if(push){const url=new URL(location.href);url.searchParams.set('case',slug);history.pushState(null,'',url)}
+  root!.querySelector('[data-watch-map]')?.dispatchEvent(new CustomEvent('watch:overview-focus',{detail:{slug,overview:!new URL(location.href).searchParams.has('case')}}));
+ }
+ root.addEventListener('click',event=>{const target=(event.target as Element).closest<HTMLElement>('[data-overview-case],[data-overview-pin]');if(target){event.preventDefault();show(target.dataset.overviewCase||target.dataset.overviewPin||'',true)}});
+ root.addEventListener('watch:overview-select',event=>show((event as CustomEvent).detail.slug,true));
+ const restore=()=>show(new URL(location.href).searchParams.get('case')||cases[0].slug);restore();addEventListener('popstate',restore);root.addEventListener('watch:overview-ready',restore);
+}
+</script>

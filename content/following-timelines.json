@@ -302,6 +302,20 @@
       "publisher": "PT Freeport Indonesia"
     },
     {
+      "id": "grasberg-extension-2026",
+      "date": "2026-02-18",
+      "title": {
+        "en": "An agreement on operating rights beyond 2041",
+        "pmy": "Kesepakatan hak operasi setelah 2041"
+      },
+      "text": {
+        "en": "FCX announced an MOU with Indonesia’s government for a life-of-resource extension at Grasberg. Its stated terms include additional community and exploration support, continued domestic downstreaming, and a 12% share transfer to government interests in 2041, subject to reimbursement of qualifying investment costs. FCX said it would retain 48.76% through 2041 and about 37% from 2042. The company explicitly made implementation conditional on an amended IUPK; the announcement does not establish that the licence amendment or future share transfer has occurred.",
+        "pmy": "FCX mengumumkan nota kesepahaman dengan pemerintah Indonesia untuk memperpanjang operasi Grasberg selama umur sumber dayanya. Ketentuan yang dinyatakan mencakup dukungan tambahan bagi masyarakat dan eksplorasi, kelanjutan hilirisasi domestik, serta pengalihan saham 12% kepada kepentingan pemerintah pada 2041, dengan penggantian biaya investasi tertentu. FCX menyatakan akan mempertahankan 48,76% hingga 2041 dan sekitar 37% mulai 2042. Perusahaan secara tegas mensyaratkan perubahan IUPK; pengumuman itu tidak membuktikan perubahan izin atau pengalihan saham mendatang sudah berlangsung."
+      },
+      "source": "https://investors.fcx.com/investors/news-releases/news-release-details/2026/FCX-Announces-Agreement-for-Life-of-Resource-Extension-of-Operating-Rights-in-Grasberg-Minerals-District/default.aspx",
+      "publisher": "Freeport-McMoRan"
+    },
+    {
       "id": "mine-recovery-2026",
       "date": "2026-04-09",
       "title": {
@@ -314,6 +328,20 @@
       },
       "source": "https://ebk.ptfi.co.id/id/video/hut-ke-59-freeport-bangkit-bersama-menuju-operasi-berkelanjutan",
       "publisher": "PT Freeport Indonesia"
+    },
+    {
+      "id": "grasberg-recovery-2026",
+      "date": "2026-05-20",
+      "title": {
+        "en": "Recovery target moves into 2027",
+        "pmy": "Target pemulihan bergeser ke 2027"
+      },
+      "text": {
+        "en": "In a 20 May Reuters interview, PTFI president director Tony Wenas said wetter-than-expected ore was delaying recovery after the September 2025 accident that killed seven workers. He put current operations at about half capacity and projected a near-full ramp-up in the second half of 2027, alongside chute modifications and new safety infrastructure. This supersedes the earlier April company target; the forecast is not an achieved recovery.",
+        "pmy": "Dalam wawancara Reuters 20 Mei, Presiden Direktur PTFI Tony Wenas mengatakan bijih yang lebih basah daripada perkiraan memperlambat pemulihan setelah kecelakaan September 2025 yang menewaskan tujuh pekerja. Ia menyebut operasi sekitar separuh kapasitas dan memperkirakan pemulihan mendekati penuh pada paruh kedua 2027, disertai modifikasi saluran bijih dan prasarana keselamatan baru. Perkiraan ini memperbarui target perusahaan pada April; sasaran tersebut belum menjadi hasil yang tercapai."
+      },
+      "source": "https://www.reuters.com/world/asia-pacific/freeport-indonesia-says-wet-ore-slowing-grasberg-recovery-full-ramp-up-close-2026-05-20/",
+      "publisher": "Reuters"
     }
   ],
   "mining-raja-ampat": [
@@ -486,6 +514,92 @@
       "source": "https://humanrightsmonitor.org/id/laporan/papua-monitor-kuartal-ii-2026-konflik-yang-semakin-memanas-serangan-drone-dan-pengungsian-massal/",
       "publisher": "Human Rights Monitor",
       "dateEnd": "2026-06"
+    }
+  ],
+  "kiwirok-conflict": [
+    {
+      "id": "krusik-zenitprom",
+      "date": "2021",
+      "title": {
+        "en": "The reported ammunition chain",
+        "pmy": "Rantai amunisi yang dilaporkan"
+      },
+      "text": {
+        "en": "Reuters reports CAR’s identification of Krušik as manufacturer and Zenitprom as the Serbian supplier in the documented transfer account.",
+        "pmy": "Reuters melaporkan identifikasi CAR atas Krušik sebagai produsen dan Zenitprom sebagai pemasok Serbia dalam uraian transfer yang ditelusuri."
+      },
+      "source": "https://www.reuters.com/world/asia-pacific/mystery-surrounds-how-munitions-imported-indonesias-civilian-spies-were-used-2022-06-03/",
+      "publisher": "reuters-car-2022"
+    },
+    {
+      "id": "zenitprom-pindad",
+      "date": "2021",
+      "title": {
+        "en": "The reported ammunition chain",
+        "pmy": "Rantai amunisi yang dilaporkan"
+      },
+      "text": {
+        "en": "Reuters reports CAR’s account of the transfer through Zenitprom to Pindad. This link comes from the same tracing investigation, not separate independent confirmation.",
+        "pmy": "Reuters melaporkan uraian CAR tentang transfer melalui Zenitprom ke Pindad. Hubungan ini berasal dari penyelidikan penelusuran yang sama, bukan konfirmasi independen terpisah."
+      },
+      "source": "https://www.reuters.com/world/asia-pacific/mystery-surrounds-how-munitions-imported-indonesias-civilian-spies-were-used-2022-06-03/",
+      "publisher": "reuters-car-2022"
+    },
+    {
+      "id": "pindad-bin",
+      "date": "2021",
+      "title": {
+        "en": "The reported ammunition chain",
+        "pmy": "Rantai amunisi yang dilaporkan"
+      },
+      "text": {
+        "en": "BIN appears as the intended end-user in the reported documentation. Reuters could not establish every authorisation, receipt or operational-use detail; the original tracing file remains to be obtained.",
+        "pmy": "BIN disebut sebagai pengguna akhir yang dituju dalam dokumen yang dilaporkan. Reuters belum memastikan seluruh rincian otorisasi, penerimaan, atau penggunaan operasi; berkas penelusuran asli masih perlu diperoleh."
+      },
+      "source": "https://www.reuters.com/world/asia-pacific/mystery-surrounds-how-munitions-imported-indonesias-civilian-spies-were-used-2022-06-03/",
+      "publisher": "reuters-car-2022"
+    },
+    {
+      "id": "bamsoet-statement",
+      "date": "2021-04-26",
+      "title": {
+        "en": "A public statement on force and rights",
+        "pmy": "Pernyataan publik tentang kekuatan dan HAM"
+      },
+      "text": {
+        "en": "The MPR published Bambang Soesatyo’s call for a forceful response following the intelligence chief’s killing in Puncak. It records his statement; it is not an operational order establishing responsibility for the later Kiwirok attacks.",
+        "pmy": "MPR menerbitkan seruan Bambang Soesatyo untuk respons dengan kekuatan setelah pembunuhan kepala intelijen di Puncak. Catatan ini membuktikan pernyataannya, bukan perintah operasi yang menetapkan tanggung jawab atas serangan Kiwirok kemudian."
+      },
+      "source": "https://mpr.go.id/berita/Satu-Lagi,-Kabinda-Papua-Gugur-Ditembak-KKB-Papua.-Bamsoet-Minta-TNI-Polri-Turunkan-Kekuatan-Penuh-Tumpas-KKB",
+      "publisher": "mpr-bamsoet-20210426"
+    },
+    {
+      "id": "kiwirok-investigation",
+      "date": "2023",
+      "title": {
+        "en": "Investigating the attacks",
+        "pmy": "Menyelidiki serangan di kampung"
+      },
+      "text": {
+        "en": "HRM’s 2023 report investigates security-force operations in Kiwirok between September and late October 2021 using witness accounts and satellite imagery. The report identifies destruction and displacement and sets out its legal assessment. It reports 206 destroyed buildings across eight villages.",
+        "pmy": "Laporan HRM 2023 menyelidiki operasi aparat keamanan di Kiwirok antara September dan akhir Oktober 2021 melalui keterangan saksi dan citra satelit. Laporan mengidentifikasi kerusakan serta pengungsian dan menguraikan penilaian hukumnya. Laporan menyebut 206 bangunan hancur di delapan kampung."
+      },
+      "source": "https://humanrightsmonitor.org/reports/kiwirok-report-2023/",
+      "publisher": "hrm-kiwirok-2023"
+    },
+    {
+      "id": "ngalum-displacement",
+      "date": "2023-06",
+      "title": {
+        "en": "Displacement beyond the attack",
+        "pmy": "Pengungsian setelah serangan"
+      },
+      "text": {
+        "en": "HRM reports at least 2,252 Ngalum residents displaced and not returned as of June 2023, with disrupted access to food, healthcare and education. The figure is a dated report finding, not a current population count.",
+        "pmy": "HRM melaporkan sedikitnya 2.252 warga Ngalum mengungsi dan belum pulang hingga Juni 2023, dengan akses pangan, kesehatan, dan pendidikan terganggu. Angka tersebut merupakan temuan laporan pada waktu tertentu, bukan jumlah penduduk terkini."
+      },
+      "source": "https://humanrightsmonitor.org/reports/kiwirok-report-2023/",
+      "publisher": "hrm-kiwirok-2023"
     }
   ]
 }

@@ -6,11 +6,14 @@ import {MAP_BASES,MAP_FAMILIES,MAP_LAYERS,MAP_VIEWS} from '../../lib/map/registr
 import type {MapViewId} from '../../lib/map/registry';
 import type {Locale} from '../../data/types';
 import languages from '../../../content/data/languages-curated.json';
+import {projectHistoryPoint} from '../../lib/map/history-projection';
 const {
-  locale='en',mode='home',title='',eyebrow='',context='',contextValue='',initialView='current',historyFeatures=''
+  locale='en',mode='home',title='',eyebrow='',context='',contextValue='',initialView='current',historyFeatures='',overviewCases=[],deferred=false
 }=Astro.props as {
   locale?:Locale;mode?:'home'|'context';title?:string;eyebrow?:string;
   context?:'issue'|'development'|'history'|'';contextValue?:string;initialView?:MapViewId;historyFeatures?:string;
+  overviewCases?:{slug:string;name:{en:string;pmy:string};longitude:number;latitude:number}[];
+  deferred?:boolean;
 };
 const labels=locale==='pmy'
   ?{base:'Dasar',layers:'Lapisan',overview:'Ikhtisar',north:'Utara',expand:'Perlebar',close:'Tutup',return:'Kembali ke tampilan halaman',search:'Cari tempat',source:'Sumber',view:'Tampilan',all:'Semua'}
@@ -21,8 +24,9 @@ const familyFor=(family:any)=>locale==='pmy'?family.titleId:family.title;
 const viewFor=(view:any)=>locale==='pmy'?view.titleId:view.title;
 const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
 ---
-<section class:list={['watch-map',mode==='context'&&'watch-map-context']} data-watch-map data-map-mode={mode} data-locale={locale} data-context={context} data-context-value={contextValue} data-history-features={historyFeatures||undefined} data-initial-view={initialView} data-explore="false" aria-label={locale==='pmy'?'Peta Papua Barat':'West Papua map'}>
+<section class:list={['watch-map',mode==='context'&&'watch-map-context']} data-watch-map data-map-mode={mode} data-map-deferred={deferred||undefined} data-locale={locale} data-context={context} data-context-value={contextValue} data-history-features={historyFeatures||undefined} data-overview-cases={overviewCases.length?JSON.stringify(overviewCases):undefined} data-initial-view={initialView} data-explore="false" aria-label={locale==='pmy'?'Peta Papua Barat':'West Papua map'}>
   <div class="watch-map-frame">
+    {overviewCases.length>0&&<div class="watch-map-static" data-map-static><img src="/images/history/prototype/geography.svg" width="600" height="380" alt={locale==='pmy'?'Atlas geografis Papua':'Geographic atlas of Papua'} fetchpriority="high"/><div class="watch-map-static-pins">{overviewCases.map((item,index)=>{const point=projectHistoryPoint(item.longitude,item.latitude);return <button class="overview-static-pin" type="button" data-overview-pin={item.slug} aria-pressed={index===0} style={`left:${point.x}%;top:${point.y}%`}><i/><span>{item.name[locale]}</span></button>})}</div><small class="overview-static-credit">Natural Earth · {locale==='pmy'?'Referensi wilayah':'Regional reference'}</small></div>}
     <div class="watch-map-canvas" data-map-canvas></div>
     <div class="watch-map-fallback" data-map-fallback hidden>
       <div>
@@ -99,9 +103,20 @@ const baseFor=(base:any)=>locale==='pmy'?base.titleId:base.title;
 <script>
   const roots=[...document.querySelectorAll<HTMLElement>('[data-watch-map]')];
   const load=()=>import('../../lib/map/runtime').then(({initWatchMaps})=>initWatchMaps());
-  if(roots.some(root=>root.dataset.context!=='history'))void load();
+  if(roots.some(root=>root.dataset.context!=='history'&&root.dataset.mapDeferred!=='true'))void load();
   else for(const root of roots){
     root.dataset.mapInitialized='deferred';
-    root.addEventListener('watch:map-activate',()=>{void load().then(()=>root.dispatchEvent(new CustomEvent('watch:map-activate')))}, {once:true});
+    let requested=false;
+    root.addEventListener('watch:map-activate',()=>{requested=true;void load().then(()=>root.dispatchEvent(new CustomEvent('watch:map-activate')))}, {once:true});
+    // The original Places section remains usable without first opening the
+    // canvas Map tab. Warm its one Atlas instance only as it approaches view.
+    if(root.dataset.mapDeferred==='true'&&root.dataset.context!=='history'){
+      const observer=new IntersectionObserver(entries=>{
+        if(!entries.some(entry=>entry.isIntersecting))return;
+        observer.disconnect();
+        if(!requested&&root.dataset.mapInitialized==='deferred')root.dispatchEvent(new CustomEvent('watch:map-activate'));
+      },{rootMargin:'250px'});
+      observer.observe(root);
+    }
   }
 </script>

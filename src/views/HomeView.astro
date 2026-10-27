@@ -1,8 +1,10 @@
 ---
-import WeeklyReview from '../components/WeeklyReview.astro';
+import AnalysisEntry from '../components/investigation/AnalysisEntry.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/home.css';
-import MapShell from '../components/map/MapShell.astro';
+import HomeOverview from '../components/investigation/HomeOverview.astro';
+import FollowingMosaic from '../components/investigation/FollowingMosaic.astro';
+import '../styles/issues-editorial.css';
 import {followingCaseBySlug} from '../data/following-cases';
 import {featuredTopicSlugs,followingStyle} from '../data/topic-collections';
 const issues=featuredTopicSlugs.map(slug=>followingCaseBySlug[slug]);
@@ -17,7 +19,7 @@ const fallbackCurrent=Array.from({length:3},()=>({image:'',imageAlt:'',category:
 ---
 <BaseLayout locale={locale} active="home" description={locale==='en'?'A living reference system for West Papua: geography, ongoing issues, current developments, history and sources.':'Sistem referensi hidup untuk Papua Barat: geografi, isu, perkembangan, sejarah, dan sumber.'}>
   <h1 class="sr-only">West Papua Watch</h1>
-  <MapShell locale={locale} mode="home" />
+  <HomeOverview locale={locale}/>
 
   <section class="section home-section"><div class="wrap">
     <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'News.':'Berita.'}</h2><a href={withLocale('/news/',locale)}>{locale==='en'?'All news →':'Semua perkembangan →'}</a></div>
@@ -35,16 +37,11 @@ const fallbackCurrent=Array.from({length:3},()=>({image:'',imageAlt:'',category:
     </div>
   </div></section>
 
-  <section class="wrap"><WeeklyReview locale={locale} compact/></section>
+  <AnalysisEntry locale={locale}/>
 
   <section class="section home-section"><div class="wrap">
-    <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'Following.':'Dalam pantauan.'}</h2><a href={withLocale('/topics/',locale)}>{locale==='en'?'All issues →':'Semua isu →'}</a></div>
-    <div class="home-issue-grid" data-home-issues>
-      {issues.slice(0,4).map((issue,index)=><a class="home-issue home-issue-following" href={withLocale(`/topics/${issue.slug}/`,locale)} data-home-issue={issue.slug} style={followingStyle(issue.slug)}>
-        <small>{String(index+1).padStart(2,'0')}</small><h3>{t(issue.title,locale)}</h3><p>{t(issue.summary,locale)}</p>
-        <footer><span data-home-issue-count>{issue.sourceIds.length} {locale==='en'?'sources':'sumber'}</span><span data-home-issue-updated>{issue.updatedAt}</span></footer>
-      </a>)}
-    </div>
+    <div class="section-head section-head-simple home-head"><h2>{locale==='en'?'More to follow.':'Pantauan lainnya.'}</h2><a href={withLocale('/topics/',locale)}>{locale==='en'?'All issues →':'Semua isu →'}</a></div>
+    <FollowingMosaic locale={locale} compact/>
   </div></section>
 
   <section class="section home-section"><div class="wrap">

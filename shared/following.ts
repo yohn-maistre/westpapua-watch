@@ -1,5 +1,5 @@
 export const featuredFollowingSlugs=['south-papua-food-energy-estate','nduga-displacement','mining-raja-ampat','freeport-mimika'] as const;
-export const secondaryFollowingSlugs=['papuan-civic-space','puncak-displacement','intan-jaya-displacement','awyu-customary-forests'] as const;
+export const secondaryFollowingSlugs=['papuan-civic-space','puncak-displacement','intan-jaya-displacement','awyu-customary-forests','kiwirok-conflict'] as const;
 export const curatedFollowingSlugs=[...featuredFollowingSlugs,...secondaryFollowingSlugs] as const;
 export const followingTickerSlugs=[...featuredFollowingSlugs,...secondaryFollowingSlugs] as const;
 
@@ -9,6 +9,7 @@ export function matchesFollowing(slug:string,text:string):boolean{
  const place=(r:RegExp)=>r.test(haystack),subject=(r:RegExp)=>r.test(haystack);
  const psn=/\bpsn\b|proyek strategis nasional|national strategic project/i;
  switch(slug){
+ case 'kiwirok-conflict':return place(/\bkiwirok\b|ngalum/i)&&subject(/attack|serang|displac|pengungs|konflik|conflict|militer|military|drone|bom|bomb|kesehatan|health/i);
  case 'papuan-civic-space':return subject(/papua|papuan|orang asli papua|merauke|jayapura|mimika|nabire|manokwari|sorong/i)&&subject(/kebebasan (?:berekspresi|berpendapat|pers|berkumpul)|freedom of (?:expression|assembly|press)|press freedom|pembela ham|human rights defender|tahanan politik|political prisoner|pembubaran (?:diskusi|pemutaran|aksi)|screening ban|internet (?:shutdown|blackout)|pemblokiran internet|intimidasi (?:aktivis|jurnalis)|intimidation of (?:activists|journalists)/i);
  case 'awyu-customary-forests':
   return place(/\bawyu\b|\bauyu\b|suku awyu/i)&&subject(/forest|hutan|sawit|palm|permit|izin|adat|customary|ulayat|land right|hak tanah|tanah adat|reject|tolak|penolak/i)
@@ -27,7 +28,7 @@ export function matchesFollowing(slug:string,text:string):boolean{
  default:return true;
  }
 }
-export const scopedFollowingSlugs=['papuan-civic-space','awyu-customary-forests','nduga-displacement','puncak-displacement','intan-jaya-displacement','freeport-mimika','mining-raja-ampat','south-papua-food-energy-estate'];
+export const scopedFollowingSlugs=['papuan-civic-space','awyu-customary-forests','nduga-displacement','puncak-displacement','intan-jaya-displacement','freeport-mimika','mining-raja-ampat','south-papua-food-energy-estate','kiwirok-conflict'];
 
 /** A Following case must be supported within at least one individual report. */
 export function matchesFollowingEvidence(slug:string,reports:string[]):boolean{

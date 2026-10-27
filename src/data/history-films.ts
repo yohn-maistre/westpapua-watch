@@ -1,0 +1,2 @@
+export type Film={id:string;short:string;title:string;creator:string;year:string;duration:string;url:string};
+export const films:Film[]=[{id:'ZWp5904RkJY',short:'Cogito',title:'Inside the World’s Most Hidden Conflict',creator:'Cogito',year:'2026',duration:'51 min',url:'https://www.youtube.com/watch?v=ZWp5904RkJY'},{id:'65_DgLwjePA',short:'Frontier War',title:'Frontier War | Inside The West Papua Liberation Army',creator:'Paradise Broadcasting',year:'2024',duration:'62 min',url:'https://www.youtube.com/watch?v=65_DgLwjePA'}];

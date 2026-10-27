@@ -1,0 +1,2071 @@
+{
+  "status": "research-only",
+  "published": false,
+  "source": {
+    "creator": "Cogito",
+    "film": "https://www.youtube.com/watch?v=ZWp5904RkJY",
+    "bibliography": "https://docs.google.com/document/d/189TcHfndlFiwq89aaffvU8GKHZOD42XqRpLYaDzLzgA/edit",
+    "retrievedAt": "2026-10-25",
+    "sha256": "bfddd8da020a27f0c758635c002ff37eb40e3ca8aa2931df5335a6cb118c5242"
+  },
+  "method": "334 footnotes; exact URL normalization only. Book editions, independence and claim support are not resolved. This manifest is excluded from the public Library import.",
+  "webLeads": [
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_islands_by_area",
+      "footnotes": [
+        1
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.theguardian.com/environment/2026/may/27/witnessing-the-disappearance-of-indonesia-eternity-glaciers",
+      "footnotes": [
+        2
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "http://celd.uni-koeln.de/langsit",
+      "footnotes": [
+        3
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.ethnologue.com/country/PG",
+      "footnotes": [
+        3
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.survivalinternational.org/peoples/papuan",
+      "footnotes": [
+        4
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.culturalsurvival.org/publications/cultural-survival-quarterly/amungme-kamoro-freeport-how-indigenous-papuans-have",
+      "footnotes": [
+        5
+      ],
+      "existingMatches": [
+        "content/reference-sources.json:history-reference-yosepha-2",
+        "history:history-yosepha",
+        "history:override"
+      ],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.bullionbypost.eu/index/gold/biggest-gold-mine-in-the-world",
+      "footnotes": [
+        6
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.guinnessworldrecords.com/world-records/383093-largest-gold-mine",
+      "footnotes": [
+        6
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.theguardian.com/global-development/2016/nov/02/100-bn-dollar-gold-mine-west-papuans-say-they-are-counting-the-cost-indonesia",
+      "footnotes": [
+        6,
+        8,
+        141
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.fcx.com/operations/indonesia",
+      "footnotes": [
+        7,
+        9,
+        142
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.nytimes.com/2005/12/27/world/asia/below-a-mountain-of-wealth-a-river-of-waste.html",
+      "footnotes": [
+        10,
+        133,
+        135,
+        216
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://newint.org/forests/2026/whos-profiting-plunder-west-papua",
+      "footnotes": [
+        11,
+        268
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.greenpeace.org/static/planet4-southeastasia-stateless/2025/12/9283d090-inside-the-merauke-sugarcane-project.pdf",
+      "footnotes": [
+        12,
+        299
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.greenpeace.org/southeastasia/publication/68196/inside-merauke-sugarcane-project",
+      "footnotes": [
+        13
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://farmlandgrab.org/post/32579",
+      "footnotes": [
+        14
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.lrb.co.uk/blog/2025/august/the-world-s-largest-deforestation-project",
+      "footnotes": [
+        14
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://nusantara-atlas.org/wp-content/uploads/2026/06/merauke7.jpg",
+      "footnotes": [
+        15
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://nusantara-atlas.org/inside-indonesias-largest-agricultural-expansion-project-the-2-3-million-hectare-plan-transforming-south-papua",
+      "footnotes": [
+        16,
+        298,
+        322
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.dropsitenews.com/p/west-papua-liberation-army-indonesia-counterinsurgency-star-mountains-china-france-weapons-lamek-taplo",
+      "footnotes": [
+        17,
+        274,
+        277,
+        279,
+        284
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.counterpunch.org/2024/11/22/west-papua-where-transmigration-means-genocide-ecocide-and-in-the-end-suicide",
+      "footnotes": [
+        18,
+        111,
+        327
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.aspistrategist.org.au/in-contested-region-indonesia-diversifies-arms-imports",
+      "footnotes": [
+        19
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://caat.org.uk/data/countries/indonesia",
+      "footnotes": [
+        21
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://rsf.org/en/rsf-asks-indonesia-s-president-let-journalists-work-west-papua",
+      "footnotes": [
+        22
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.hrw.org/news/2015/11/10/indonesia-end-access-restrictions-papua",
+      "footnotes": [
+        22
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.hrw.org/news/2018/06/19/indonesia-shuts-out-un-rights-chief-papua",
+      "footnotes": [
+        22,
+        273
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7449881",
+      "footnotes": [
+        23
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9021735",
+      "footnotes": [
+        23
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://press-files.anu.edu.au/downloads/press/p53311/pdf/history.pdf",
+      "footnotes": [
+        24,
+        26
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://whc.unesco.org/en/list/887",
+      "footnotes": [
+        25
+      ],
+      "existingMatches": [
+        "history:override"
+      ],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.newscientist.com/article/1869766-farming-pioneered-in-ancient-new-guinea",
+      "footnotes": [
+        27
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.scidev.net/global/news/new-guinea-was-agricultural-pioneer",
+      "footnotes": [
+        27
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://mongabay.co.id/2023/03/28/hipere-tanaman-yang-selalu-di-hati-masyarakat-pegunungan-tengah-papua",
+      "footnotes": [
+        28
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://phys.org/news/2021-12-labor-19th-century-java.html",
+      "footnotes": [
+        35
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://en.wikisource.org/wiki/Sukarno%27s_Proclamation_of_Indonesian_Independence",
+      "footnotes": [
+        45
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://history.state.gov/historicaldocuments/frus1961-63v23/d205",
+      "footnotes": [
+        54
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.freewestpapua.org/documents/the-new-york-agreement",
+      "footnotes": [
+        63
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://history.state.gov/historicaldocuments/frus1958-60v17/d175",
+      "footnotes": [
+        66
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://history.state.gov/historicaldocuments/frus1955-57v22/d95",
+      "footnotes": [
+        67
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://history.state.gov/historicaldocuments/frus1955-57v22/d95`",
+      "footnotes": [
+        68
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://nsarchive.gwu.edu/briefing-book/indonesia/2017-10-17/indonesia-mass-murder-1965-us-embassy-files",
+      "footnotes": [
+        72,
+        73
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://time.com/archive/6629845/indonesia-vengeance-with-a-smile",
+      "footnotes": [
+        76
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.greenleft.org.au/2009/819/world/john-pilger-west-papua-free-forgotten-bird-paradise",
+      "footnotes": [
+        78,
+        79,
+        85,
+        86
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://etan.org/news/2014/images/timelife_card1.jpg",
+      "footnotes": [
+        81
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://time.com/archive/6631902/indonesia-after-the-hangover",
+      "footnotes": [
+        82
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://archive.ph/H61bv",
+      "footnotes": [
+        83
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://la.utexas.edu/users/hcleaver/357L/357LRansomBerkeleyMafia.htm",
+      "footnotes": [
+        84
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB128/index.htm",
+      "footnotes": [
+        87,
+        102
+      ],
+      "existingMatches": [
+        "content/research/library-candidates.json:Indonesia’s 1969 Takeover of West Papua: Not by “Free Choice”"
+      ],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.insideindonesia.org/archive/articles/freeport-s-troubled-future-2397",
+      "footnotes": [
+        91
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "http://file.understandingconflict.org/file/2015/08/IPAC_21_Papuan_Pro-Independence_Movement.pdf",
+      "footnotes": [
+        93
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.futureleaders.com.au/book_chapters/pdf/Future_Justice/Jennifer_Robinson.pdf",
+      "footnotes": [
+        95,
+        97,
+        98
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB128/29.%20Airgram%20A-278%20from%20Jakarta%20to%20State%20Department,%20July%209,%201969.pdf",
+      "footnotes": [
+        99
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.counterpunch.org/2025/10/24/how-un-betrayal-of-west-papua-led-to-genocide-step-by-step",
+      "footnotes": [
+        100
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://resources.huygens.knaw.nl/papoeawestnieuwguinea/papers_pdf/saltford",
+      "footnotes": [
+        101
+      ],
+      "existingMatches": [
+        "history:override"
+      ],
+      "status": "unreviewed"
+    },
+    {
+      "url": "http://www.secinfo.com/dsVQx.b1sw.htm",
+      "footnotes": [
+        103
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.academia.edu/1196557/Transmigration_in_Indonesia_Lessons_from_its_environmental_and_social_impacts",
+      "footnotes": [
+        110,
+        114
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.researchgate.net/publication/334347881_Colonialism_and_cold_genocide",
+      "footnotes": [
+        117
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.iwgia.org/en/articles/iw-2022-west-papua",
+      "footnotes": [
+        118
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://papuansbehindbars.org/about-west-papua",
+      "footnotes": [
+        119
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.theguardian.com/world/1999/sep/09/indonesia.georgemonbiot",
+      "footnotes": [
+        121
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://eastasiaforum.org/2026/03/10/new-energy-transition-narratives-old-extractive-costs",
+      "footnotes": [
+        136
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.mining.com/freeports-grasberg-go-go-days-back-as-gold-copper-prices-rally",
+      "footnotes": [
+        140
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.aspistrategist.org.au/despite-resource-boom-png-poverty-still-sky-high-despite-resources-boom",
+      "footnotes": [
+        143
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://papua.bps.go.id/en/pressrelease/2026/02/06/1395/poverty-profiles-of-papua-tengah-province--september-2025.html",
+      "footnotes": [
+        144
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://skala.or.id/en/activity-information/bangkit-program-supports-the-health-and-nutrition-of-indigenous-papuan-children",
+      "footnotes": [
+        145
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.bps.go.id/en/pressrelease/2025/01/15/2401/in-september-2024--the-percentage-of-the-poor-population-decreased-into-8-57-percent-.html",
+      "footnotes": [
+        146
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.bps.go.id/en/statistics-table/2/MTkyIzI=/percentage-of-poor--march-2025.html",
+      "footnotes": [
+        147
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://papua.bps.go.id/en/pressrelease/2017/05/02/238/indeks-pembangunan-manusia-provinsi-papua-2016.html",
+      "footnotes": [
+        148
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://databoks.katadata.co.id/en/demographics/statistics/6a7460db9ecae/central-papua-indonesian-province-with-the-highest-poverty-rate-in-march-2026",
+      "footnotes": [
+        149
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.rrh.org.au/journal/article/9349",
+      "footnotes": [
+        150
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.bps.go.id/en/statistics-table/2/MTQ2MiMy/literacy-rate-of-population-aged-15-24-years-by-province.html",
+      "footnotes": [
+        152
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.counterpunch.org/2023/08/08/kiwirok-when-the-sky-rained-metallic-death",
+      "footnotes": [
+        158
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.abc.net.au/news/2013-10-24/an-adfrejects-claims-that-australian-helicopters-were-used-in-p/5043966",
+      "footnotes": [
+        167
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.theguardian.com/world/2013/oct/24/indonesia-accused-australian-helicopters-west-papua-genocide",
+      "footnotes": [
+        168
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://history.state.gov/historicaldocuments/frus1969-76ve12/d141",
+      "footnotes": [
+        188
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://nsarchive2.gwu.edu/NSAEBB/NSAEBB62",
+      "footnotes": [
+        189,
+        227
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.theguardian.com/world/2000/sep/13/indonesia.easttimor",
+      "footnotes": [
+        190
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.aljazeera.com/news/2005/12/3/us-backed-east-timor-invasion",
+      "footnotes": [
+        191
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.washingtonpost.com/archive/politics/2001/12/07/1975-east-timor-invasion-got-us-go-ahead/b59c47dc-3e54-4a3c-bca8-9f9f5120686a",
+      "footnotes": [
+        193
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.counterpunch.org/2024/11/22/west-papua-where-transmigration-means-genocide-ecocide-and-in-the-end-suicide/`",
+      "footnotes": [
+        194
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.downtoearth-indonesia.org/old-site/ctrans.htm",
+      "footnotes": [
+        195
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.culturalsurvival.org/fr/publications/cultural-survival-quarterly/west-papua-forgotten-war-unwanted-people",
+      "footnotes": [
+        198
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.culturalsurvival.org/es/publications/cultural-survival-quarterly/west-papua-forgotten-war-unwanted-people",
+      "footnotes": [
+        204
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.culturalsurvival.org/es/publications/cultural-survival-quarterly/more-matter-distance-refugees-papua-new-guinea",
+      "footnotes": [
+        205
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://monthlyreview.org/articles/mining-capital-and-the-indonesian-state",
+      "footnotes": [
+        213
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.sciencedirect.com/science/article/pii/S2590291125011635",
+      "footnotes": [
+        214
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://archive.ph/ETK7V",
+      "footnotes": [
+        225
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://cja.org/where-we-work/archives/timor-leste-east-timor",
+      "footnotes": [
+        228
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.amnesty.org/en/wp-content/uploads/2021/06/asa210031993en.pdf",
+      "footnotes": [
+        229
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.theguardian.com/world/2013/dec/13/west-papuans-tortured-killed-and-dumped-at-sea-tribunal-hears",
+      "footnotes": [
+        231
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.theguardian.com/world/2021/sep/20/inquiry-needed-into-australias-silence-on-west-papuan-massacre-human-rights-groups-say",
+      "footnotes": [
+        232
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.theguardian.com/australia-news/2021/sep/19/killed-like-animals-documents-reveal-how-australia-turned-a-blind-eye-to-a-west-papuan-massacre",
+      "footnotes": [
+        233,
+        234
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.hrw.org/news/2001/11/11/indonesia-investigate-death-papuan-leader",
+      "footnotes": [
+        238
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://newint.org/indigenous-peoples/2025/britains-complicity-tragedy-west-papua",
+      "footnotes": [
+        239,
+        240,
+        246
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.downtoearth-indonesia.org/story/tangguh-bp-and-international-standards",
+      "footnotes": [
+        242
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://theconversation.com/the-alleged-british-links-to-mass-deforestation-and-displacement-in-a-conflict-few-have-even-heard-of-265212",
+      "footnotes": [
+        243
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.insideindonesia.org/editions/edition-9413/tangguh-goes-onstream",
+      "footnotes": [
+        244
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.adb.org/sites/default/files/project-documents/49222/49222-001-xarr-en.pdf",
+      "footnotes": [
+        245
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://newmatilda.com/2018/11/05/special-investigation-bp-west-papua-slow-motion-genocide-high-speed-profit",
+      "footnotes": [
+        247
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://newint.org/arms/2025/britain-complicit-west-papua-violence",
+      "footnotes": [
+        249,
+        251
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.theguardian.com/world/2023/sep/26/indonesian-military-accused-of-targeting-children-west-papua",
+      "footnotes": [
+        252,
+        330
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.amnesty.org/en/latest/press-release/2015/11/papuan-pro-independence-activist-jailed-for-raising-a-flag-finally-freed",
+      "footnotes": [
+        253
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.theguardian.com/world/2014/jan/23/west-papuans-face-jail-banned-flag",
+      "footnotes": [
+        253
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://asiapacificreport.nz/2025/08/22/west-papuan-media-plea-for-melanesian-support-against-indonesian-media-blackout",
+      "footnotes": [
+        254
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://humanrightsmonitor.org/case/papuan-human-rights-defender-faces-intimidation-after-delivering-statement-at-the-un",
+      "footnotes": [
+        255
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.aljazeera.com/news/2024/5/3/israeli-firms-sold-invasive-surveillance-tech-to-indonesia-report",
+      "footnotes": [
+        256
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://humanrightsmonitor.org/case/police-officers-arbitrarily-detain-two-knpb-activists-in-jayapura",
+      "footnotes": [
+        257
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://humanrightsmonitor.org/news/attack-on-jubi-office-raises-alarms-over-press-freedom-in-papua",
+      "footnotes": [
+        258
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://humanrightsmonitor.org/case/unknown-perpetrator-fires-air-rifle-at-papuan-human-rights-defender-in-manokwari",
+      "footnotes": [
+        259
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://humanrightsmonitor.org/case/another-papuan-hrd-intimidated-after-speaking-at-international-human-rights-tribunal",
+      "footnotes": [
+        260
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://humanrightsmonitor.org/news/videos-of-indonesian-soldiers-torturing-papuan-go-viral-human-rights-defenders-demand-judicial-process-against-perpetrators",
+      "footnotes": [
+        261,
+        266
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.amnesty.org/en/latest/press-release/2010/10/19209",
+      "footnotes": [
+        262
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.survivalinternational.org/news/6598",
+      "footnotes": [
+        263
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://humanrightsmonitor.org/reports/annual-report-2024-human-rights-and-conflict-in-west-papua",
+      "footnotes": [
+        264
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://humanrightsmonitor.org/news/impunity-and-lenient-sentences-for-perpetrators-responsible-for-killing-eden-bebari-and-ronny-wandik-in-mimka",
+      "footnotes": [
+        265
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.theguardian.com/world/2017/sep/30/west-papua-independence-petition-is-rebuffed-at-un",
+      "footnotes": [
+        267
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.ohchr.org/en/press-releases/2022/03/indonesia-un-experts-sound-alarm-serious-papua-abuses-call-urgent-aid",
+      "footnotes": [
+        272,
+        281
+      ],
+      "existingMatches": [
+        "content/reference-sources.json:ohchr-papua-2022",
+        "history:history-kiwirok",
+        "history:override"
+      ],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://humanrightsmonitor.org/wp-content/uploads/2023/08/HRM_Destroy_Them_First_Special_Report_2023.pdf",
+      "footnotes": [
+        275,
+        276
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.ulmwp.org/the-humanitarian-cost-of-indonesias-refusal-to-allow-a-un-human-rights-visit-to-west-papua",
+      "footnotes": [
+        282
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://humanrightsmonitor.org/reports/idp-update-june26-government-neglect-drives-west-papuas-spiraling-displacement-emergency",
+      "footnotes": [
+        283
+      ],
+      "existingMatches": [
+        "content/reference-sources.json:conflict-source-21"
+      ],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://projectmultatuli.org/en/a-lopsided-war-papua-militarization-83000-soldiers-and-police",
+      "footnotes": [
+        285,
+        286
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://projectmultatuli.org/di-balik-bisnis-perdagangan-senjata-api-di-papua",
+      "footnotes": [
+        287
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://en.tempo.co/read/1984315/tpnpb-opm-admits-to-have-often-bought-weapons-from-indonesian-military-on-the-black-market",
+      "footnotes": [
+        288
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://acleddata.com/expert-comment/why-indonesias-papua-region-becoming-deadlier",
+      "footnotes": [
+        289
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://humanrightsmonitor.org/case/drone-attacks-on-catholic-church-and-customary-gathering-in-intan-jaya-regency-injures-five-civilians-and-triggers-mass-displacement",
+      "footnotes": [
+        290
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://edition.cnn.com/2026/07/03/asia/indonesia-papua-rebels-american-pilot-intl-hnk",
+      "footnotes": [
+        291
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://eia-international.org/wp-content/uploads/2025-EIA-UK-A-Family-Affair-SPREADS.pdf",
+      "footnotes": [
+        293
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.fas.usda.gov/data/gain/2026/06/indonesia-indonesia-centralizes-palm-oil-exports",
+      "footnotes": [
+        294
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://ukragroconsult.com/en/news/indonesia-should-not-fear-losing-eus-palm-oil-market-gapki",
+      "footnotes": [
+        295
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.pnas.org/doi/10.1073/pnas.2318029121",
+      "footnotes": [
+        296
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://news.mongabay.com/2025/06/un-calls-out-indonesias-merauke-food-estate-for-displacing-indigenous-communities",
+      "footnotes": [
+        300,
+        312
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://news.mongabay.com/2024/06/sugarcane-megaproject-poses-latest-threat-to-papuas-forests-communities",
+      "footnotes": [
+        301
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://news.mongabay.com/2024/09/worlds-biggest-deforestation-project-gets-underway-in-papua-for-sugarcane",
+      "footnotes": [
+        302
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://thegeckoproject.org/articles/presidents-new-clothes",
+      "footnotes": [
+        303
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://archive.ph/TX8qv",
+      "footnotes": [
+        306
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.amnestyusa.org/blog/in-indonesia-prabowos-dark-past-casts-a-pall-over-his-presidency",
+      "footnotes": [
+        307
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://foreignpolicy.com/2024/10/18/indonesias-new-president-has-a-bloody-history-with-its-neighbor",
+      "footnotes": [
+        308
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.ethicalconsumer.org/palm-oil/brands-companies-use-palm-oil",
+      "footnotes": [
+        309
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://pusaka.or.id/en/news/oil-palm-companies-are-clearing-forests-in-sorong-regency",
+      "footnotes": [
+        310
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.theguardian.com/world/2025/mar/20/west-papua-indonesia-palm-oil-deforestation-rainforest",
+      "footnotes": [
+        311
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://humanrightsmonitor.org/reports/papua-monitor-q1-2026-no-de-escalation-as-military-operations-drive-new-displacement",
+      "footnotes": [
+        313
+      ],
+      "existingMatches": [
+        "content/reference-sources.json:conflict-source-19"
+      ],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.hrw.org/news/2026/02/14/indonesia-police-disperse-papuans-protesting-food-estate-project",
+      "footnotes": [
+        314
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://humanrightsmonitor.org/case/indigenous-community-faces-criminalization-and-land-seizures-as-merauke-food-estate-project-advances",
+      "footnotes": [
+        315
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://anthrosource.onlinelibrary.wiley.com/doi/10.1111/aman.28001",
+      "footnotes": [
+        316
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://asaa.asn.au/2026/08/24/the-culture-and-politics-of-hunger-in-west-papua",
+      "footnotes": [
+        317
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://en.antaranews.com/news/418924/govt-supports-accelerated-national-food-energy-hub-in-south-papua",
+      "footnotes": [
+        318
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://advancedbiofuelsusa.info/south-papua-biodiesel-project-indonesia-s-defense-minister-signals-strategic-energy-shift",
+      "footnotes": [
+        319
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.reuters.com/world/asia-pacific/indonesias-50-biodiesel-blending-rate-takes-effect-2026-07-01",
+      "footnotes": [
+        320
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.chinimandi.com/indonesia-targets-e10-ethanol-blended-gasoline-rollout-in-2027-eyes-gradual-move-to-e20",
+      "footnotes": [
+        321
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://gankapital.com/article/indonesias-oil-situation-in-2026-strained-production-and-a-deepening-import-dependence",
+      "footnotes": [
+        323
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://thegeckoproject.org/articles/fear-and-raiders-in-west-papua",
+      "footnotes": [
+        324
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://kontras.org/media/siaranpers/Pers-Release-Merespon-Digelarnya-Sidang-Perdana-Kasus-Penyiksaan-hingga-Tewas-Isak-Dewayekua:-Meminta-Independensi-Peradilan-Militer-untuk-Mengadili-Para-Pelaku",
+      "footnotes": [
+        325
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://news.mongabay.com/2025/04/military-backed-plantation-project-in-indonesian-papua-triggers-rights-concerns",
+      "footnotes": [
+        326
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.nationaltribune.com.au/australia-and-indonesia-sign-historic-security-treaty",
+      "footnotes": [
+        328
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.foreignminister.gov.au/minister/penny-wong/media-release/australia-and-indonesia-sign-historic-security-treaty",
+      "footnotes": [
+        329
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://thediplomat.com/2026/04/jakartas-washington-pivot",
+      "footnotes": [
+        331
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://jakartaglobe.id/news/indonesia-and-france-to-upgrade-ties-to-comprehensive-strategic-partnership",
+      "footnotes": [
+        332
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://www.bloomberg.com/news/articles/2026-08-21/china-indonesia-agree-on-closer-defense-ties-in-high-level-talks-in-jakarta",
+      "footnotes": [
+        333
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    },
+    {
+      "url": "https://setkab.go.id/en/indonesia-russia-deepen-cooperation-in-energy-space-education",
+      "footnotes": [
+        334
+      ],
+      "existingMatches": [],
+      "status": "unreviewed"
+    }
+  ],
+  "bibliographicLeads": [
+    {
+      "footnote": 20,
+      "referenceText": "Indonesian Defence Policy Under Jokowi Administration: Continuity or New Direction? published in Geopolitics Quarterly, Volume 20, Issue 4 (Autumn 2024), pages 237–260",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 29,
+      "referenceText": "Osborne, Indonesias̉ Secret War",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 30,
+      "referenceText": "Osborne, Indonesias̉ Secret War 6",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 31,
+      "referenceText": "A history of modern Indonesia since c. 1300 p27",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 32,
+      "referenceText": "McNamee, Settling for Less 61",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 33,
+      "referenceText": "The Demographic Effects of Colonialism: Forced Labor and Mortality in Java, 1834–1879",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 34,
+      "referenceText": "A history of modern Indonesia since c. 1300 p123",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 36,
+      "referenceText": "McNamee, Settling for Less 61",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 37,
+      "referenceText": "McNamee, Settling for Less 61",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 38,
+      "referenceText": "Osborne, Indonesia's Secret War. p25",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 39,
+      "referenceText": "Poulgrain, “Delaying the ‘Discovery’ of Oil in West New Guinea.” 14",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 40,
+      "referenceText": "McNamee, Settling for Less. 61",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 41,
+      "referenceText": "Webb-Gannon, Morning Star Rising p86",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 42,
+      "referenceText": "Martinkus, Quarterly Essay 7 Paradise Betrayed. p66",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 43,
+      "referenceText": "Budiardjo et al., West Papua. 5",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 44,
+      "referenceText": "Budiardjo et al., West Papua. 6",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 46,
+      "referenceText": "ISW",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 47,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” 98-99",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 48,
+      "referenceText": "Poulgrain, “Delaying the ‘Discovery’ of Oil in West New Guinea.”",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 49,
+      "referenceText": "Saltford, The United Nations and the Indonesian Takeover of West Papua, 1962-1969. 10 McNamee, “Indonesian Settler Colonialism in West Papua.” p 99",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 50,
+      "referenceText": "Indonesian Human Rights Abuses in West Papua: Application of the Law of Genocide to the History of Indonesian Control",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 51,
+      "referenceText": "Saltford, The United Nations and the Indonesian Takeover of West Papua, 1962-1969. 10 McNamee, “Indonesian Settler Colonialism in West Papua.” p 99",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 52,
+      "referenceText": "Indonesian Human Rights Abuses in West Papua: Application of the Law of Genocide to the History of Indonesian Control",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 53,
+      "referenceText": "Martinkus, The Road. 15",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 55,
+      "referenceText": "Martinkus, Quarterly Essay 7 Paradise Betrayed. 20",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 56,
+      "referenceText": "Indonesian Human Rights Abuses in West Papua: Application of the Law of Genocide to the History of Indonesian Control 13",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 57,
+      "referenceText": "Budiardjo et al., West Papua. 9",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 58,
+      "referenceText": "Poulgrain, “Delaying the ‘Discovery’ of Oil in West New Guinea.”",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 59,
+      "referenceText": "The Undeclared, Declassified: West New Guinea and the 1969 Act of Free Choice",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 60,
+      "referenceText": "Oil and politics prove fatal mix for the people of West Papua, Greg Poulgrain",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 61,
+      "referenceText": "Martinkus, The Road. 16",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 62,
+      "referenceText": "WEST PAPUA EXPOSED: AN ABANDONED NON-SELF-GOVERNING OR TRUST TERRITORY*",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 64,
+      "referenceText": "The United Nations and the Indonesian Takeover of West Papua, 1962-1969 13",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 65,
+      "referenceText": "The United Nations and the Indonesian Takeover of West Papua, 1962-1969 14",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 69,
+      "referenceText": "Martinkus, The Road. 18",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 70,
+      "referenceText": "The Jakarta Method p131",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 71,
+      "referenceText": "The Jakarta Method p129-130",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 74,
+      "referenceText": "The Jakarta Method p142",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 75,
+      "referenceText": "The Jakarta Method p155",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 77,
+      "referenceText": "The Jakarta Method 168",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 80,
+      "referenceText": "The Jakarta Method p182",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 88,
+      "referenceText": "McNamee, Settling for Less 66",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 89,
+      "referenceText": "Martinkus, Quarterly Essay 7 Paradise Betrayed. 44",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 90,
+      "referenceText": "Martinkus, Quarterly Essay 7 Paradise Betrayed. 44",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 92,
+      "referenceText": "The Neglected Genocide – Human rights abuses against Papuans in the Central Highlands, 1977 – 1978 p5",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 94,
+      "referenceText": "ISW",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 96,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” states 800,000",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 104,
+      "referenceText": "Indonesian Human Rights Abuses in West Papua: Application of the Law of Genocide to the History of Indonesian Control 19",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 105,
+      "referenceText": "Indonesian Human Rights Abuses in West Papua: Application of the Law of Genocide to the History of Indonesian Control 19",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 106,
+      "referenceText": "Indonesian Human Rights Abuses in West Papua: Application of the Law of Genocide to the History of Indonesian Control 20",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 107,
+      "referenceText": "Indonesian Human Rights Abuses in West Papua: Application of the Law of Genocide to the History of Indonesian Control 20",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 108,
+      "referenceText": "Settling for less: why states colonize and why they stop 59",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 109,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” 103",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 112,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” 102",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 113,
+      "referenceText": "Lachlan McNamee - Settling for Less 59",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 115,
+      "referenceText": "Settling for less: why states colonize and why they stop 65",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 116,
+      "referenceText": "Transmigration in Indonesia by Hardjono, J. M p30",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 120,
+      "referenceText": "Conflict, Violence, and Displacement in Indonesia",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 122,
+      "referenceText": "Conflict, Violence, and Displacement in Indonesia",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 123,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.”",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 124,
+      "referenceText": "McNamee, Settling for Less. 61",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 125,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” 118",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 126,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” 119",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 127,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” 105-6",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 128,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” 105-6",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 129,
+      "referenceText": "Budiardjo et al., West Papua.",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 130,
+      "referenceText": "Martinkus, Quarterly Essay 7 Paradise Betrayed. 43",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 131,
+      "referenceText": "Quarterly Essay 7 Paradise Betrayed: West Papua's Struggle for Independence p43-5",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 132,
+      "referenceText": "West Papua: the obliteration of a people 216",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 134,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” 120",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 137,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” 105",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 138,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” 106",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 139,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” 106",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 151,
+      "referenceText": "The influence of maternal factors and residential building characteristics on infant mortality in Papua Province, Indonesia, based on secondary data analysis of the IDHS 2017",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 153,
+      "referenceText": "The Neglected Genocide – Human rights abuses against Papuans in the Central Highlands, 1977 – 1978 8",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 154,
+      "referenceText": "The road: uprising in West Papua p28",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 155,
+      "referenceText": "West Papua: the obliteration of a people p35",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 156,
+      "referenceText": "Budiardjo et al., West Papua. 86",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 157,
+      "referenceText": "The Neglected Genocide – Human rights abuses against Papuans in the Central Highlands, 1977 – 1978 10-12",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 159,
+      "referenceText": "Martinkus, Quarterly Essay 7 Paradise Betrayed. 14",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 160,
+      "referenceText": "West Papua: the obliteration of a people 67",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 161,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” 120",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 162,
+      "referenceText": "West Papua: the obliteration of a people p34",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 163,
+      "referenceText": "The road: uprising in West Papua p28",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 164,
+      "referenceText": "Indonesian Human Rights Abuses in West Papua: Application of the Law of Genocide to the History of Indonesian Control 23",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 165,
+      "referenceText": "OSBORNE, INDONESIA’S SECRET WAR 68-71",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 166,
+      "referenceText": "The Neglected Genocide – Human rights abuses against Papuans in the Central Highlands, 1977 – 1978 11",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 169,
+      "referenceText": "Budiardjo et al., West Papua. 116",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 170,
+      "referenceText": "Martinkus, The Road. 20",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 171,
+      "referenceText": "Quarterly Essay 7 Paradise Betrayed: West Papua's Struggle for Independence p26",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 172,
+      "referenceText": "Quarterly Essay 7 Paradise Betrayed: West Papua's Struggle for Independence p26",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 173,
+      "referenceText": "Indonesian Human Rights Abuses in West Papua: Application of the Law of Genocide to the History of Indonesian Control 23",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 174,
+      "referenceText": "Martinkus, The Road. 19",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 175,
+      "referenceText": "Martinkus, The Road. 19-21",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 176,
+      "referenceText": "Martinkus, The Road. 19-21",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 177,
+      "referenceText": "Quarterly Essay 7 Paradise Betrayed: West Papua's Struggle for Independence 45",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 178,
+      "referenceText": "Indonesian Human Rights Abuses in West Papua: Application of the Law of Genocide to the History of Indonesian Control 39",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 179,
+      "referenceText": "David, Inscribed Landscapes. 16",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 180,
+      "referenceText": "West Papua: the obliteration of a people p34",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 181,
+      "referenceText": "The Neglected Genocide – Human rights abuses against Papuans in the Central Highlands, 1977 – 1978 p13",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 182,
+      "referenceText": "Martinkus, Quarterly Essay 7 Paradise Betrayed. 17",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 183,
+      "referenceText": "McNamee, “Indonesian Settler Colonialism in West Papua.” 101",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 184,
+      "referenceText": "Martinkus, Quarterly Essay 7 Paradise Betrayed. 17",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 185,
+      "referenceText": "Indonesian Settler Colonialism in West Papua 101",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 186,
+      "referenceText": "Conflict, Violence, and Displacement in Indonesia",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 187,
+      "referenceText": "West Papua: the obliteration of a people 45",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 192,
+      "referenceText": "WEST PAPUA EXPOSED: AN ABANDONED NON-SELF-GOVERNING OR TRUST TERRITORY* 97",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 196,
+      "referenceText": "Indonesian Settler Colonialism in West Papua 114-120",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 197,
+      "referenceText": "Indonesian Human Rights Abuses in West Papua: Application of the Law of Genocide to the History of Indonesian Control 37",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 199,
+      "referenceText": "International Commission of Jurists. 1985. The Status of Border Crossers from Irian Jaya to Papua New Guinea. says 10,000 fled into PNG",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 200,
+      "referenceText": "Permissive_Residents_West_Papuan_refugee.pdf says 11,000",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 201,
+      "referenceText": "McNamee 115",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 202,
+      "referenceText": "McNamee 116",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 203,
+      "referenceText": "McNamee 114",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 206,
+      "referenceText": "David, Inscribed Landscapes 16",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 207,
+      "referenceText": "Inscribed Landscapes: Marking and Making Place 16",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 208,
+      "referenceText": "David, Inscribed Landscapes 16",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 209,
+      "referenceText": "Quarterly Essay 7 Paradise Betrayed: West Papua's Struggle for Independence p43-5",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 210,
+      "referenceText": "David, Inscribed Landscapes. 16",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 211,
+      "referenceText": "McNamee 120",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 212,
+      "referenceText": "Quarterly Essay 7 Paradise Betrayed: West Papua's Struggle for Independence p43-5",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 215,
+      "referenceText": "The Signature of Terror: Violence, Memory, and Landscape at Freeport",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 217,
+      "referenceText": "Quarterly Essay 7 Paradise Betrayed: West Papua's Struggle for Independence p43-5",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 218,
+      "referenceText": "West Papua: the obliteration of a people p115-116",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 219,
+      "referenceText": "Budiardjo et al., West Papua. 115",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 220,
+      "referenceText": "West Papua: the obliteration of a people p115-116",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 221,
+      "referenceText": "Budiardjo et al., West Papua. 116",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 222,
+      "referenceText": "West Papua: the obliteration of a people p118",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 223,
+      "referenceText": "West Papua: the obliteration of a people p118",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 224,
+      "referenceText": "Budiardjo et al., West Papua. 117-8",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 226,
+      "referenceText": "War, Genocide, and Resistance in East Timor, 1975–99: Comparative Reflections on Cambodia Ben Kiernan",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 230,
+      "referenceText": "Indonesian Settler Colonialism in West Papua 103-104",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 235,
+      "referenceText": "Quarterly Essay 7 Paradise Betrayed: West Papua's Struggle for Independence p2",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 236,
+      "referenceText": "The road: uprising in West Papua 9",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 237,
+      "referenceText": "Quarterly Essay 7 Paradise Betrayed: West Papua's Struggle for Independence p2",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 241,
+      "referenceText": "How British companies profit from West Papuan repression | East Asia Forum",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 248,
+      "referenceText": "How British companies profit from West Papuan repression | East Asia Forum",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 250,
+      "referenceText": "Bringing it All Back Home: the role of British companies in the destruction of West Papua 36",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 269,
+      "referenceText": "Asia in the Pacific Islands: Replacing the West 287",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 270,
+      "referenceText": "The road: uprising in West Papua 20",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 271,
+      "referenceText": "WEST PAPUA EXPOSED: AN ABANDONED NON-SELF-GOVERNING OR TRUST TERRITORY* 97",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 278,
+      "referenceText": "Report on the continuing aggravated attack and serious human rights violations of Ngalum Kupel people",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 280,
+      "referenceText": "Armed violence escalated on 17 May 2026, when an explosive device reportedly dropped from an unmanned aerial vehicle exploded near St Paul’s Catholic Church in Mbamogo Village, Agisiga District, injuring four community members after Sunday mass. One of them, Mr Luter Nabelau, later succumbed to his injuries. Two Papuan women, Mrs Otovina Hogajau, and Mrs Aliana Pogau were seriously injured during an alleged Indonesian military drone strike in Danggoa Village, Agisiga District, Intan Jaya Regency, on 18 June 2026. A 19-year-old civlian, Mr Makelon Majau, was again injured during alleged Indonesian military drone strikes targeting Balamai Village in Hitadipa District, Intan Jaya Regency, on 22 June 2026.",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 292,
+      "referenceText": "The total area of Indonesian palm oil cultivation is about 25 million hectares.",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 297,
+      "referenceText": "Bringing it All Back Home: the role of British companies in the destruction of West Papua 14",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 304,
+      "referenceText": "Guerilla Fighters in West Papua Are Facing Extermination by Indonesia's High-Tech Forces",
+      "status": "unresolved-work-or-edition"
+    },
+    {
+      "footnote": 305,
+      "referenceText": "Indonesian Human Rights Abuses in West Papua: Application of the Law of Genocide to the History of Indonesian Control 43",
+      "status": "unresolved-work-or-edition"
+    }
+  ]
+}

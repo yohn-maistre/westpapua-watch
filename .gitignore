@@ -14,3 +14,6 @@ geo/out/
 
 # Local agent instructions and working material
 .internal/
+
+# Local Taste Skill direction sheets and browser captures
+.taste-skill/
