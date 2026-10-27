@@ -49,6 +49,8 @@ const objects=archiveItems.filter(a=>!ids||ids.includes(a.id)).map(a=>({id:a.id,
       if(!dialog!.open)dialog!.showModal();
     }
     document.addEventListener('click',event=>{const node=event.target instanceof Element?event.target.closest<HTMLElement>('[data-history-record]'):null;if(node)open(node.dataset.historyRecord!)});
+    const linked=new URL(location.href).searchParams.get('record');if(linked)open(linked);
+    dialog.addEventListener('close',()=>{const url=new URL(location.href);if(url.searchParams.has('record')){url.searchParams.delete('record');history.replaceState(null,'',url)}});
     dialog.querySelector('[data-record-close]')!.addEventListener('click',()=>dialog.close());
     dialog.addEventListener('close',release);
     dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});

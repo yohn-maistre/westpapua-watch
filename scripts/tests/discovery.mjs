@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import{build}from'esbuild';import{mkdtemp,writeFile}from'node:fs/promises';
+const dir=await mkdtemp('/tmp/watch-discovery-');const r=await build({entryPoints:['shared/discovery.ts'],bundle:true,write:false,format:'esm',platform:'node'});await writeFile(dir+'/module.mjs',r.outputFiles[0].text);const{selectDiscovery,editionIsFresh,DISCOVERY_INTERVAL,discoveryNews}=await import(dir+'/module.mjs');
+const now=Date.parse('2026-10-27T10:00:00Z'),pair={en:'A sourced discovery',pmy:'Pilihan bersumber'};
+const pool=['case','review','library','archive','art'].flatMap(kind=>Array.from({length:10},(_,i)=>({id:kind+i,kind,title:pair,href:'/topics/'+kind+i+'/'})));
+pool.push({id:'expired',kind:'event',title:pair,href:'/events/#past',expires:'2026-10-26'});pool.push({id:'unsafe',kind:'library',title:pair,href:'//bad.example'});
+const first=selectDiscovery(pool,37,now,'/topics/case1/');assert.deepEqual(selectDiscovery(pool,37,now,'/topics/case1/'),first);assert.equal(first.length,5);assert.ok(first.some(x=>x.kind==='case'));assert.ok(first.some(x=>x.kind==='review'));assert.ok(!first.some(x=>['case1','expired','unsafe'].includes(x.id)));
+const next=selectDiscovery(pool,98,now,'/',first.map(x=>x.id));assert.equal(next.filter(x=>first.some(y=>y.id===x.id)).length,0);
+const queryPool=[...pool,{id:'current-book',kind:'library',title:pair,href:'/resources/?q=Papua'}];assert.ok(!selectDiscovery(queryPool,37,now,'/id/resources/?q=Papua').some(x=>x.id==='current-book'));
+const edition={seed:37,createdAt:now,ids:first.map(x=>x.id)};assert.ok(editionIsFresh(edition,now+3*3600000));assert.ok(!editionIsFresh(edition,now+DISCOVERY_INTERVAL));assert.ok(!editionIsFresh(edition,now-1));
+const news={id:1,publication_kind:'reviewed',story_url:'/story/?id=1',latest_report_at:'2026-10-27T05:00:00Z',title:{en:'A court orders disclosure of permit records',id:'Pengadilan memerintahkan pembukaan catatan izin'}};assert.equal(discoveryNews([news],now).kind,'news');assert.equal(discoveryNews([{...news,title:{en:'Freeport hosting IFRC 2026',id:'Freeport tuan rumah IFRC 2026'}}],now),null);assert.equal(discoveryNews([{...news,story_url:'javascript:alert(1)'}],now),null);assert.equal(discoveryNews([{...news,publication_kind:'excerpt'}],now),null);assert.equal(discoveryNews([{...news,latest_report_at:'2027-01-01'}],now),null);
+console.log('Passed: seeded discovery, four-hour expiry, diversity, non-repetition, current-case exclusion, expired events, safe URLs and reviewed substantive news.');

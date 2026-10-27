@@ -6,6 +6,7 @@ Read the current code before changing behaviour; older planning documents descri
 
 - Read `.agents/skills/design-taste-frontend/SKILL.md` for substantial public UI work. For the investigative Issues workspace, also read its `references/app-screens.md`.
 - Read `docs/investigative-experience-revision-2026-10-27.md` for the current public Issues/case hierarchy and its verification notes.
+- Read `docs/final-polish-release-2026-10-27.md` for the accepted discovery ticker, two-film History entrance, graph document wrapping and weekly synthesis constraints. Older static-ticker/preamble proposals were superseded by the user.
 - Follow `docs/TASTE_INTEGRATION.md` for project-specific choices. The user's established Instrument typography, restrained lilac palette, wordmark and editorial voice take precedence over generic skill palette/style bans. Keep the existing stack and accessible Base UI primitives.
 - Check actual screenshots at desktop, tablet and phone widths, then revise. Preserve working routes, sources, bilingual content, keyboard operation and reduced-motion behaviour.
 - Read `docs/research/investigations-2026-10-26/README.md` and `RESEARCH-BRIEF.md` when extending investigations. All twenty threads remain in scope; the first six are the current development slate.

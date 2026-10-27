@@ -1,7 +1,7 @@
 ---
-import CaseAnalysis from './CaseAnalysis';
 import WeeklyReview from '../WeeklyReview.astro';
 import type {Locale} from '../../data/types';
 const {locale='en'}=Astro.props as {locale:Locale};
 ---
-<section class="wrap home-analysis" aria-labelledby="home-analysis-title"><header><h2 id="home-analysis-title">{locale==='en'?'Analysis.':'Analisis.'}</h2><WeeklyReview locale={locale}/></header><CaseAnalysis client:load locale={locale}/></section>
+<section class="wrap home-weekly"><WeeklyReview locale={locale} preview/></section>
+<style>.home-weekly{padding-block:2rem 3rem}</style>

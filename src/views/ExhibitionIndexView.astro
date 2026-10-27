@@ -23,7 +23,7 @@ const groups = [
         <div class="index-list">{items.map(item => {
           const sourceUrl = item.sourceUrl || sourceById[item.sourceId]?.url;
           const visual = item.rights !== 'source-only';
-          return <article class="index-item" data-exhibit-text={[item.title, item.type, item.creator, item.summary, item.publisher].join(' ').toLowerCase()}>
+          return <article class="index-item" id={'work-'+item.slug} data-exhibit-text={[item.title, item.type, item.creator, item.summary, item.publisher].join(' ').toLowerCase()}>
             <div class="index-media">{visual ? <img src={item.image} alt="" loading="lazy" decoding="async" /> : <span aria-hidden="true">✳</span>}</div>
             <div class="index-copy"><span class="eyebrow">{item.type}{item.year && ` · ${item.year}`}</span><h3>{item.title}</h3><p class="index-creator">{item.creator || item.publisher}</p><p class="index-summary">{locale==='pmy'?(item.summaryId||item.summary):item.summary}</p><small>{item.credit}</small></div>
             {sourceUrl && <a class="index-source" href={sourceUrl} target="_blank" rel="noreferrer" aria-label={`${item.title}: ${locale === 'en' ? 'open original source' : 'buka sumber asli'}`}><span>{locale === 'en' ? 'Source' : 'Sumber'}</span><ArrowIcon direction="up-right" size={16}/></a>}
@@ -53,6 +53,7 @@ const groups = [
   });
 </script>
 <style>
+  .index-item{scroll-margin-top:calc(var(--compact-nav-actual-height,100px) + 24px)}
   .exhibition-index{padding-top:clamp(4rem,8vw,8rem)}
   .index-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(170px,270px);align-items:end;gap:3rem;padding-bottom:clamp(4rem,8vw,8rem)}
   .index-intro h1{font-size:clamp(3.8rem,10vw,10rem);line-height:.86;letter-spacing:-.08em;max-width:10ch;margin:.6rem 0 1.5rem}

@@ -2,15 +2,16 @@
 import initial from '../../content/weekly-review.json';
 import {t,withLocale} from '../lib/i18n';
 import '../styles/weekly-review.css';
-const {locale='en',compact=false,topic=''}=Astro.props;
+const {locale='en',compact=false,topic='',preview=false}=Astro.props;
 const en=locale==='en',edition=initial,threads=topic?edition.threads.filter(thread=>thread.topics.includes(topic)):edition.threads;
 const sourcesFor=(ids:string[])=>edition.evidence.filter(source=>ids.includes(source.id));
 const title=topic&&threads[0]?threads[0].title:edition.title;
 const ReviewTag=compact?'div':'dialog';
 const intro=topic&&threads[0]?threads[0].paragraphs.slice(0,1):edition.intro;
 ---
-<section class:list={['weekly-review',compact?'weekly-review-compact':'weekly-review-overlay']} id="weekly-review" data-weekly-review data-locale={locale} data-compact={String(compact)} data-topic={topic} hidden={!!topic&&!threads.length}>
- {!compact&&<button class="weekly-review-trigger" type="button" data-weekly-open aria-haspopup="dialog" aria-controls="weekly-review-panel">{en?'Weekly review':'Tinjauan mingguan'}<svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></button>}
+<section class:list={['weekly-review',compact?'weekly-review-compact':'weekly-review-overlay']} id="weekly-review" data-weekly-review data-locale={locale} data-compact={String(compact)} data-topic={topic} data-preview={String(preview)} hidden={!!topic&&!threads.length}>
+ {!compact&&!preview&&<button class="weekly-review-trigger" type="button" data-weekly-open aria-haspopup="dialog" aria-controls="weekly-review-panel">{en?'Weekly review':'Tinjauan mingguan'}<svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M5 15 15 5M5 5h10v10"/></svg></button>}
+ {preview&&<a class="weekly-preview" href={withLocale('/news/',locale)+'#weekly-review'}><div><span>{en?'Weekly review':'Tinjauan mingguan'}</span><h3 data-weekly-preview-title>{t(title,locale)}</h3></div><p data-weekly-preview-intro>{t(edition.intro[0].text,locale)}</p><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>}
  <ReviewTag class:list={[!compact&&'weekly-review-dialog']} id={!compact?'weekly-review-panel':undefined} aria-labelledby={!compact?'weekly-review-heading':undefined} data-weekly-dialog={!compact?true:undefined}>
  <header class="weekly-review-head"><div><h2 id={!compact?'weekly-review-heading':undefined}>{en?'Weekly review':'Tinjauan mingguan'}</h2><span data-weekly-date>{en?'Current picture':'Gambaran terkini'} · <time datetime="2026-10-08">8 {en?'Oct':'Okt'} 2026</time></span></div>{!compact&&<button class="weekly-review-close" type="button" data-weekly-close aria-label={en?'Close review':'Tutup tinjauan'} autofocus>×</button>}</header>
  <div class="weekly-review-spread"><div class="weekly-review-opening"><h3 data-weekly-title>{t(title,locale)}</h3><div data-weekly-intro>{intro.map(p=><p>{t(p.text,locale)}</p>)}</div>{compact&&<a class="weekly-read" href={`${withLocale('/news/',locale)}#weekly-review`}>{en?'Read review':'Baca tinjauan'} <span aria-hidden="true">↗</span></a>}</div>

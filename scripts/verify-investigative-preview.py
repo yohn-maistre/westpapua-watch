@@ -17,6 +17,17 @@ async def unlocked(page):
   if await page.evaluate("getComputedStyle(document.body).overflowY!=='hidden'"):return
   await page.wait_for_timeout(50)
  raise AssertionError('Closing an overlay must release the page scroll lock')
+async def wheel_scroll(page,amount):
+ # Hash restoration and font layout can race a wheel assertion after navigation.
+ await page.evaluate('document.fonts.ready')
+ for _ in range(10):
+  before=await page.evaluate('scrollY');await page.wait_for_timeout(100)
+  if abs(await page.evaluate('scrollY')-before)<1:break
+ before=await page.evaluate('scrollY');await page.mouse.wheel(0,amount)
+ try:await page.wait_for_function('(y)=>scrollY>y+1',arg=before,timeout=3000)
+ except Exception:
+  state=await page.evaluate('({y:scrollY,max:document.documentElement.scrollHeight-innerHeight,overflow:getComputedStyle(document.body).overflowY,dialogs:document.querySelectorAll("dialog[open]").length})')
+  raise AssertionError(f'Real wheel scroll failed from {before}: {state}')
 async def main():
  async with async_playwright() as p:
   browser=await p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),args=['--no-sandbox']);errors=[];checks=[]
@@ -27,7 +38,7 @@ async def main():
    assert await page.locator('.topics-directory-grid>a').count()>=10
    assert await page.locator('.issues-research-index li').count()==20
    assert await page.locator('.masthead').count()>0
-   await page.mouse.move(600,700);before=await page.evaluate('scrollY');await page.mouse.wheel(0,600);await page.wait_for_timeout(200);assert await page.evaluate('scrollY')>before,'Issues must respond to real wheel input'
+   await page.mouse.move(600,700);await wheel_scroll(page,600)
    search=page.locator('[data-record-search] input');await search.fill('Haji Isham')
    await page.get_by_role('option').first.click(no_wait_after=True)
    await page.wait_for_url('**/topics/south-papua-food-energy-estate/?entity=isam#explore',wait_until='domcontentloaded')
@@ -56,7 +67,7 @@ async def main():
     assert await page.locator('[data-network-node]').count()==17,'Narrow windows must retain the whole case'
     assert await page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
     box=await page.locator('.case-network-svg').bounding_box();await page.mouse.move(min(width-20,box['x']+box['width']/2),max(170,min(700,box['y']+100)))
-    before=await page.evaluate('scrollY');await page.mouse.wheel(0,400);await page.wait_for_timeout(200);assert await page.evaluate('scrollY')>before
+    await wheel_scroll(page,400)
     await page.locator('[data-network-node=jokowi]').scroll_into_view_if_needed();await page.locator('[data-network-node=jokowi]').click()
     if width<=800:
      await page.locator('.case-source-dialog').wait_for(state='visible');assert 'Joko Widodo' in await page.locator('.case-source-dialog').inner_text();await page.keyboard.press('Escape')

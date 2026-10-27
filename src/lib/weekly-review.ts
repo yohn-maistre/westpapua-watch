@@ -22,6 +22,7 @@ export function initWeeklyReviews(){
    const displayTitle=/^(West Papua Watch Weekly Review|Tinjauan Mingguan West Papua Watch)\s*:/i.test(rawTitle||'')
     ? `${en?'Weekly review':'Tinjauan mingguan'}: ${fmt(edition.from)} – ${fmt(new Date(Date.parse(edition.to)-1).toISOString())}`:rawTitle;
    root.querySelector('[data-weekly-title]')!.textContent=displayTitle;
+   const previewTitle=root.querySelector('[data-weekly-preview-title]'),previewIntro=root.querySelector('[data-weekly-preview-intro]');if(previewTitle)previewTitle.textContent=displayTitle;if(previewIntro)previewIntro.textContent=pick(edition.intro[0]?.text)||'';
    root.querySelector('[data-weekly-date]')!.textContent=edition.kind==='initial'?`${en?'Current picture':'Gambaran terkini'} · ${fmt(edition.to)}`:`${fmt(edition.from)} – ${fmt(new Date(Date.parse(edition.to)-1).toISOString())}`;
    const intro=root.querySelector('[data-weekly-intro]')!;intro.replaceChildren(...(topic&&threads[0]?threads[0].paragraphs.slice(0,1):edition.intro).map(p=>el('p',pick(p.text))));
    const target=root.querySelector('[data-weekly-threads]');
