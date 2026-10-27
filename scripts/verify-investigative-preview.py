@@ -46,6 +46,7 @@ async def main():
    checks.append(locale+': mosaic, topics, twenty threads, masthead, wheel scroll and identity search')
    for case in DATA['cases']:
     print(locale,case['id'],flush=True)
+    await page.close();page=await ctx.new_page();page.on('pageerror',lambda e:errors.append({'url':page.url,'error':str(e)}))
     await ready(page,prefix+ROUTES[case['id']]+'#explore')
     assert await page.locator('[data-network-node]').count()==len(case['scene']),case['id']
     assert await page.locator('[data-network-document]').count()>0
@@ -57,7 +58,14 @@ async def main():
     await page.locator('[data-case-evidence]').click();await page.locator('.case-source-dialog').wait_for(state='visible')
     expected=next(c for c in DATA['claims'] if c['id']==first)['evidence'][0]['source'];source=next(s for s in DATA['sources'] if s['id']==expected)
     assert await page.locator('.case-source-dialog .case-source-link').first.get_attribute('href')==source['url']
-    share=page.url;await page.reload(wait_until='domcontentloaded');await page.locator('.case-source-dialog').wait_for(state='visible');await page.keyboard.press('Escape');await page.go_back();await page.locator('.case-source-dialog').wait_for(state='visible');await page.keyboard.press('Escape')
+    share=page.url
+    assert 'evidence=open' in share
+    await page.reload(wait_until='domcontentloaded')
+    await page.locator('[data-desk-ready=true]').wait_for(timeout=30000)
+    await page.locator('.case-source-dialog').wait_for(state='visible')
+    await page.keyboard.press('Escape');await page.locator('.case-source-dialog').wait_for(state='hidden')
+    await page.go_back(wait_until='domcontentloaded');await page.locator('.case-source-dialog').wait_for(state='visible')
+    await page.keyboard.press('Escape');await page.locator('.case-source-dialog').wait_for(state='hidden')
     await unlocked(page)
     checks.append(locale+': '+case['id']+' complete network, source links, keyboard, reload/Back and released scroll lock')
    await ready(page,prefix+ROUTES['merauke']+'#explore')
