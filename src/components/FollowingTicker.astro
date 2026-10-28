@@ -10,9 +10,9 @@ const labels={case:en?'Explore':'Telusuri',review:en?'Review':'Tinjauan',library
 <aside class="following-ticker" data-following-ticker data-locale={locale} aria-label={en?'Discover West Papua Watch':'Jelajahi West Papua Watch'}>
  <div class="following-wash" aria-hidden="true"><i></i><i></i></div>
  <div class="following-ticker-inner" data-following-viewport tabindex="0" aria-label={en?'Discoveries. Focus to pause, or swipe to explore.':'Pilihan bacaan. Fokus untuk menjeda, atau geser untuk menjelajah.'}>
-  <div class="following-track" data-following-track><div class="following-segment">{initial.map(x=><a class="following-update" href={withLocale(x.href,locale)} data-discovery-id={x.id}><span>{labels[x.kind]}</span><strong>{x.title[en?'en':'pmy']}</strong>{x.detail&&<small>{x.detail}</small>}<b aria-hidden="true">✦</b></a>)}</div></div>
+  <div class="following-track" data-following-track><div class="following-segment">{initial.map(x=><a class="following-update" href={withLocale(x.href,locale)} data-discovery-id={x.id} data-discovery-kind={x.kind}><span>{labels[x.kind]}</span><strong>{x.title[en?'en':'pmy']}</strong>{x.detail&&<small>{x.detail}</small>}<b aria-hidden="true">✦</b></a>)}</div></div>
  </div>
- <button class="following-pause" type="button" data-discovery-pause aria-label={en?'Pause ticker':'Jeda ticker'} aria-pressed="false"><svg viewBox="0 0 20 20" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M5 4h3v12H5zm7 0h3v12h-3z"/></svg></button>
+ <button class="following-motion-control" type="button" data-discovery-pause aria-label={en?'Pause discoveries':'Jeda pilihan bacaan'} aria-pressed="false"><svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="m7 4 9 6-9 6Z"/></svg><span class="sr-only">{en?'Pause or resume discoveries':'Jeda atau lanjutkan pilihan bacaan'}</span></button>
  <script type="application/json" data-discovery-pool set:html={JSON.stringify(discoveryPool).replace(/</g,'\\u003c')}/>
 </aside>
 <script>

@@ -162,7 +162,10 @@
     "enabled": true,
     "priority": 3,
     "notes": "Useful local supplement; keep ownership visible.",
-    "libraryPolicy": "selective"
+    "libraryPolicy": "selective",
+    "discoveryPages": [
+      "https://rri.co.id/papua"
+    ]
   },
   {
     "id": "antara",
@@ -177,7 +180,10 @@
     "scope": "mixed",
     "enabled": true,
     "priority": 3,
-    "libraryPolicy": "selective"
+    "libraryPolicy": "selective",
+    "discoveryPages": [
+      "https://www.antaranews.com/tag/papua"
+    ]
   },
   {
     "id": "antara-papua",
@@ -224,7 +230,12 @@
     "scope": "papua",
     "enabled": true,
     "priority": 1,
-    "libraryPolicy": "selective"
+    "libraryPolicy": "selective",
+    "discoveryPages": [
+      "https://pusaka.or.id/news/",
+      "https://pusaka.or.id/"
+    ],
+    "articlePathPrefix": "/news/"
   },
   {
     "id": "human-rights-monitor",

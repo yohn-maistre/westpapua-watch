@@ -36,6 +36,10 @@ jobs:
         run: npm run build
       - name: Check public response regressions
         run: npm run check:polish && npm run check:system && npm run check:explorer && npm run check:investigation
+      - name: Configure preview news reader
+        env:
+          WATCH_DB_ID: ${{ vars.WATCH_DB_ID }}
+        run: node scripts/configure-preview-news.mjs
       - name: Deploy branch preview
         id: deploy
         env:

@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from './ArrowIcon.astro';
 import type {Locale} from '../data/types';
 import '../styles/ask.css';
 const {locale='en'}=Astro.props as {locale?:Locale};
@@ -6,16 +7,16 @@ const en=locale==='en';
 const prompts=en?['What is happening in Raja Ampat?','Find resources on customary land','Explain the background to this page']:['Apa kabar terbaru dari Raja Ampat?','Cari sumber tentang tanah adat','Jelaskan latar belakang halaman ini'];
 ---
 <dialog class="ask-dialog" data-ask-dialog data-locale={locale} aria-labelledby="ask-title" aria-describedby="ask-note">
- <header class="ask-head"><div><h2 id="ask-title">{en?'Ask Watch':'Tanya Watch'}</h2><p id="ask-note">{en?'Answers from Watch sources. Follow up in this conversation.':'Jawaban dari sumber Watch. Lanjutkan dengan pertanyaan berikutnya.'}</p></div><button type="button" data-ask-close aria-label={en?'Close':'Tutup'}>×</button></header>
+ <header class="ask-head"><div><h2 id="ask-title">{en?'Ask Watch':'Tanya Watch'}</h2><p id="ask-note">{en?'Explore Papua through Watch’s sources.':'Telusuri Papua lewat sumber-sumber Watch.'}</p></div><button type="button" data-ask-close aria-label={en?'Close':'Tutup'}>×</button></header>
  <div class="ask-scroll" data-ask-scroll>
-  <div class="ask-prompts" data-ask-prompts>{prompts.map(prompt=><button class="chip" type="button" data-prompt={prompt}>{prompt}</button>)}</div>
+  <div class="ask-welcome" data-ask-welcome><p class="ask-welcome-title">{en?'Where would you like to begin?':'Mau mulai dari mana?'}</p><p>{en?'Explore a place, follow a story, or find the sources behind it.':'Telusuri suatu tempat, ikuti sebuah kisah, atau cari sumbernya.'}</p></div><div class="ask-prompts" data-ask-prompts>{prompts.map(prompt=><button class="chip" type="button" data-prompt={prompt}><span>{prompt}</span><ArrowIcon direction="up-right" size={16}/></button>)}</div>
   <div class="ask-thread" data-ask-thread role="log" aria-label={en?'Conversation':'Percakapan'} aria-live="polite" aria-relevant="additions"></div>
   <details class="ask-search" data-ask-search hidden><summary>{en?'Related pages & sources':'Halaman & sumber terkait'}</summary><p data-search-status></p><div data-ask-results></div></details>
  </div>
- <form class="ask-compose" data-ask-form>
-  <label class="sr-only" for="ask-input">{en?'Your question':'Pertanyaan Anda'}</label><textarea id="ask-input" data-ask-input rows="2" maxlength="500" placeholder={en?'Ask a question or follow up…':'Tanya atau lanjutkan percakapan…'}></textarea>
-  <div class="ask-compose-actions"><button type="button" data-ask-reset>{en?'New chat':'Percakapan baru'}</button><span data-ask-status role="status"></span><button type="button" data-ask-stop hidden>{en?'Stop':'Hentikan'}</button><button type="submit" class="ask-send" data-ask-submit>{en?'Send':'Kirim'} ↗</button></div>
-  <small data-ask-memory>{en?'Kept in this tab for this session. The latest 6 exchanges inform follow-ups.':'Tersimpan di tab ini selama sesi. 6 percakapan terakhir menjadi konteks.'}</small>
+ <form class="ask-compose" data-ask-form><div class="ask-input-shell">
+  <label class="sr-only" for="ask-input">{en?'Your question':'Pertanyaan Anda'}</label><textarea id="ask-input" data-ask-input rows="1" maxlength="500" placeholder={en?'Ask a question or follow up…':'Tanya atau lanjutkan percakapan…'}></textarea>
+  <div class="ask-compose-actions"><button type="button" data-ask-reset>{en?'New chat':'Percakapan baru'}</button><span data-ask-status role="status"></span><button type="button" data-ask-stop hidden>{en?'Stop':'Hentikan'}</button><button type="submit" class="ask-send" data-ask-submit><span class="sr-only">{en?'Send':'Kirim'}</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></button></div>
+  </div><small data-ask-memory>{en?'Kept in this tab for this session. The latest 6 exchanges inform follow-ups.':'Tersimpan di tab ini selama sesi. 6 percakapan terakhir menjadi konteks.'}</small>
  </form>
 </dialog>
 <script>import {initAsk} from '../lib/ask/client';initAsk();</script>
