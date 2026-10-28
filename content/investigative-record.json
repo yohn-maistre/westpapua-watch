@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "reviewedAt": "2026-10-27",
+  "reviewedAt": "2026-10-28",
   "sources": [
     {
       "id": "S01",
@@ -337,7 +337,7 @@
       "title": "Merauke National Strategic Project Timeline",
       "url": "https://pusaka.or.id/en/lini-masa/merauke-national-strategic-project-timeline/",
       "kind": "community-rights chronology",
-      "period": "2023–2026",
+      "period": "2023–2024",
       "scope": "Dated project entries; operator activities, government decisions and community responses. Existing Watch chronology retained separately.",
       "family": "pusaka-merauke",
       "limitations": "Dates and statements attributed to the chronology; individual permits and company ownership require their own records."
@@ -576,7 +576,18 @@
       "aliases": [
         "PT Global Papua Abadi",
         "GPA"
-      ]
+      ],
+      "profile": {
+        "text": {
+          "en": "PT Global Papua Abadi is the named operator at Sermayam where Pusaka records forest clearing and the president’s July sugarcane planting. The same chronology records Yei leaders bringing their written rejection to a meeting at the GPA site. Read the company’s specific operations and these encounters separately from unresolved claims about the wider group’s ultimate ownership.",
+          "pmy": "PT Global Papua Abadi merupakan operator yang disebut di Sermayam, tempat Pusaka mencatat pembukaan hutan dan penanaman tebu presiden pada Juli. Linimasa yang sama mencatat pemimpin Yei membawa penolakan tertulis ke pertemuan di lokasi GPA. Operasi serta pertemuan perusahaan ini dibaca tersendiri dari persoalan kepemilikan akhir grup yang belum terjawab."
+        },
+        "claimIds": [
+          "sermayam-clearing",
+          "sugar-planting-gpa",
+          "yei-gpa-meeting"
+        ]
+      }
     },
     {
       "id": "sermayam",
@@ -594,7 +605,18 @@
         "pmy": "Pemimpin adat Yei"
       },
       "kind": "community",
-      "aliases": []
+      "aliases": [],
+      "profile": {
+        "text": {
+          "en": "Yei leaders made a written refusal of the investment proposal, signed by Godefridus Galep Inagijai and Absalom Can Kapaiter, and brought it to the company meeting in June 2024. In September, the regent separately signed recognition and protection of Yei customary territory. Their documented refusal and the later recognition are both part of the record of authority over this land.",
+          "pmy": "Pemimpin Yei membuat penolakan tertulis atas usulan investasi, ditandatangani Godefridus Galep Inagijai dan Absalom Can Kapaiter, lalu membawanya ke pertemuan perusahaan pada Juni 2024. Pada September, bupati secara terpisah menandatangani pengakuan serta pelindungan wilayah adat Yei. Penolakan terdokumentasi dan pengakuan berikutnya sama-sama merupakan catatan kewenangan atas tanah."
+        },
+        "claimIds": [
+          "yei-refusal",
+          "yei-gpa-meeting",
+          "yei-recognition"
+        ]
+      }
     },
     {
       "id": "yei-land",
@@ -616,7 +638,18 @@
         "Andi Syamsuddin Arsyad",
         "Samsudin Andi Arsyad",
         "Haji Isham"
-      ]
+      ],
+      "profile": {
+        "text": {
+          "en": "Andi Syamsuddin Arsyad, widely known as Haji Isam, is identified by SANY as Jhonlin Group’s owner at the June 2024 excavator signing. Pusaka’s later field chronology places Jhonlin equipment and Isam in the Wanam development. The commercial order, political presence and reported land-clearing activity are separate records; their dates and sources let you follow how they meet in Merauke.",
+          "pmy": "Andi Syamsuddin Arsyad, dikenal sebagai Haji Isam, disebut SANY sebagai pemilik Jhonlin Group pada penandatanganan pesanan ekskavator Juni 2024. Linimasa lapangan Pusaka kemudian menempatkan alat Jhonlin serta Isam dalam pengembangan Wanam. Pesanan komersial, kehadiran politik, dan pembukaan lahan yang dilaporkan merupakan catatan berbeda; tanggal serta sumbernya memperlihatkan pertemuan mereka di Merauke."
+        },
+        "claimIds": [
+          "isam-jhonlin",
+          "excavator-order",
+          "jhonlin-wanam-clearing"
+        ]
+      }
     },
     {
       "id": "jhonlin",
@@ -627,7 +660,19 @@
       "kind": "business-group",
       "aliases": [
         "Jhonlin"
-      ]
+      ],
+      "profile": {
+        "text": {
+          "en": "Jhonlin appears here as a business group, with a supplier-announced order for 2,000 excavators and Pusaka’s accounts of machinery and clearing in Wanam. Wobikel residents later explicitly rejected its rice-field project. These records connect the supply chain to landholders’ objections without assuming the legal ownership of every subsidiary or the financing and destination of every machine.",
+          "pmy": "Jhonlin ditampilkan sebagai grup usaha, dengan pengumuman pemasok tentang pesanan 2.000 ekskavator serta laporan Pusaka mengenai alat dan pembukaan Wanam. Warga Wobikel kemudian menolak secara tegas proyek sawahnya. Catatan menghubungkan rantai pasok dengan keberatan pemegang hak tanah tanpa menganggap kepemilikan setiap anak usaha atau pembiayaan serta tujuan setiap mesin sudah terungkap."
+        },
+        "claimIds": [
+          "isam-jhonlin",
+          "excavator-order",
+          "jhonlin-wanam-clearing",
+          "wobikel-objection"
+        ]
+      }
     },
     {
       "id": "sany",
@@ -758,7 +803,18 @@
         "pmy": "Haris Azhar"
       },
       "kind": "person",
-      "aliases": []
+      "aliases": [],
+      "profile": {
+        "text": {
+          "en": "Haris Azhar publicly discussed the Intan Jaya military-business study with Fatia Maulidiyanti. Their discussion was followed by Luhut Binsar Pandjaitan’s complaint and criminal proceedings. The case records separate the study’s findings from the researchers’ prosecution and acquittals, so the legal outcome remains clear without replacing the underlying investigation.",
+          "pmy": "Haris Azhar membahas kajian militer-bisnis Intan Jaya bersama Fatia Maulidiyanti. Pembahasan diikuti pengaduan Luhut Binsar Pandjaitan dan proses pidana. Catatan membedakan temuan kajian dari penuntutan serta pembebasan peneliti agar hasil hukum tetap jelas tanpa menggantikan penyelidikan yang mendasarinya."
+        },
+        "claimIds": [
+          "haris-discussion",
+          "luhut-complaint",
+          "haris-acquittal"
+        ]
+      }
     },
     {
       "id": "fatia",
@@ -767,7 +823,17 @@
         "pmy": "Fatia Maulidiyanti"
       },
       "kind": "person",
-      "aliases": []
+      "aliases": [],
+      "profile": {
+        "text": {
+          "en": "Fatia Maulidiyanti participated in the public discussion of military business in Intan Jaya and was prosecuted alongside Haris Azhar. Her later court record has its own docket and reported cassation outcome. The discussion, prosecution and appeal stages remain separately inspectable.",
+          "pmy": "Fatia Maulidiyanti terlibat dalam pembahasan publik bisnis militer di Intan Jaya dan dituntut bersama Haris Azhar. Catatan pengadilannya memiliki nomor perkara serta hasil kasasi yang dilaporkan tersendiri. Pembahasan, penuntutan, dan tahap upaya hukum tetap dapat diperiksa secara terpisah."
+        },
+        "claimIds": [
+          "fatia-discussion",
+          "fatia-appeal"
+        ]
+      }
     },
     {
       "id": "luhut",
@@ -822,7 +888,20 @@
         "PTFI",
         "Freeport",
         "Grasberg"
-      ]
+      ],
+      "profile": {
+        "text": {
+          "en": "PT Freeport Indonesia is the operating company in the Grasberg records. The file distinguishes its ownership arrangements, reported support for government security forces, and separate police and military agreements. The 2024 and 2025 support disclosures cover different years; internal civilian security is another budget category. The dated records can be read alongside Papuan organising and litigation.",
+          "pmy": "PT Freeport Indonesia adalah perusahaan operasi dalam catatan Grasberg. Berkas membedakan pengaturan kepemilikan, dukungan yang dilaporkan bagi aparat keamanan negara, serta perjanjian polisi dan militer yang terpisah. Pengungkapan dukungan 2024 dan 2025 mencakup tahun berbeda; keamanan sipil internal merupakan pos lain. Catatan bertanggal dapat dibaca bersama pengorganisasian dan gugatan orang Papua."
+        },
+        "claimIds": [
+          "fcx-ptfi",
+          "security-2024",
+          "security-2025",
+          "military-mou",
+          "police-mou"
+        ]
+      }
     },
     {
       "id": "government-security",
@@ -864,7 +943,18 @@
       "kind": "person",
       "aliases": [
         "Mama Yosepha"
-      ]
+      ],
+      "profile": {
+        "text": {
+          "en": "Mama Yosepha Alomang is an Amungme organiser whose public record joins resistance to mining destruction, human-rights advocacy and women’s collective action. Her 2001 Goldman Prize profile describes years of organising, detention and torture, and her creation of HAMAK. Her story belongs alongside the contracts and security disclosures as an account of how Papuans organised against the harms they faced.",
+          "pmy": "Mama Yosepha Alomang adalah penggerak Amungme yang menghubungkan perlawanan terhadap perusakan tambang, perjuangan HAM, serta tindakan bersama perempuan. Profil Goldman Prize 2001 mencatat pengorganisasian bertahun-tahun, penahanan dan penyiksaan, serta pembentukan HAMAK. Kisahnya hadir bersama kontrak dan pengungkapan dukungan keamanan sebagai catatan cara orang Papua melawan kerugian yang mereka hadapi."
+        },
+        "claimIds": [
+          "yosepha-organising",
+          "yosepha-freeport",
+          "yosepha-hamak"
+        ]
+      }
     },
     {
       "id": "amungme",
@@ -973,7 +1063,16 @@
       "kind": "institution",
       "aliases": [
         "BIN"
-      ]
+      ],
+      "profile": {
+        "text": {
+          "en": "Indonesia’s State Intelligence Agency appears as the intended end-user in the ammunition documentation described by Reuters and Conflict Armament Research. The reported transfer chain is an evidence trail, with authorisation, receipt and incident-specific use still incompletely established in that account. The Kiwirok civilian-impact investigation is a separate body of evidence.",
+          "pmy": "Badan Intelijen Negara disebut sebagai pengguna akhir yang dituju dalam dokumen amunisi yang dijelaskan Reuters dan Conflict Armament Research. Rantai perpindahan yang dilaporkan merupakan jejak bukti; otorisasi, penerimaan, serta penggunaan dalam kejadian tertentu belum seluruhnya terjawab dalam laporan itu. Penyelidikan dampak terhadap warga Kiwirok merupakan bukti tersendiri."
+        },
+        "claimIds": [
+          "pindad-bin"
+        ]
+      }
     },
     {
       "id": "hrm",
@@ -1013,7 +1112,18 @@
       "kind": "person",
       "aliases": [
         "Bamsoet"
-      ]
+      ],
+      "profile": {
+        "text": {
+          "en": "Bambang Soesatyo was MPR speaker when he called for full military, police and intelligence deployment after the killing of the Papua intelligence chief in Beoga. The MPR’s publication records his statement postponing human-rights discussion. The file preserves the political demand as a dated statement, alongside separate evidence about arms transfers and civilian consequences.",
+          "pmy": "Bambang Soesatyo menjabat Ketua MPR ketika menyerukan pengerahan penuh militer, polisi, dan intelijen setelah Kepala BIN Papua tewas di Beoga. Publikasi MPR mencatat pernyataannya yang menunda pembicaraan HAM. Berkas menyimpan seruan politik sebagai pernyataan bertanggal, bersama bukti terpisah mengenai perpindahan senjata serta dampak terhadap warga."
+        },
+        "claimIds": [
+          "bamsoet-statement",
+          "bamsoet-tni-call",
+          "bamsoet-bin-call"
+        ]
+      }
     },
     {
       "id": "mpr-statement",
@@ -1055,7 +1165,17 @@
       "kind": "organisation",
       "aliases": [
         "AJI"
-      ]
+      ],
+      "profile": {
+        "text": {
+          "en": "The Alliance of Independent Journalists joined the challenge to the 2019 internet restrictions. The administrative court later declared the specified throttling, shutdown and extensions unlawful. This record follows journalists’ action to contest state control of information, alongside the decisions and institutions responsible for the restrictions.",
+          "pmy": "Aliansi Jurnalis Independen ikut menggugat pembatasan internet 2019. Pengadilan administrasi kemudian menyatakan pelambatan, pemutusan, serta perpanjangan yang disebut dalam putusan sebagai perbuatan melanggar hukum. Catatan mengikuti tindakan jurnalis menentang kendali negara atas informasi bersama keputusan dan lembaga yang bertanggung jawab atas pembatasan."
+        },
+        "claimIds": [
+          "aji-challenge",
+          "shutdown-ruling"
+        ]
+      }
     },
     {
       "id": "safenet",
@@ -1138,7 +1258,17 @@
         "pmy": "Amnesty International"
       },
       "kind": "organisation",
-      "aliases": []
+      "aliases": [],
+      "profile": {
+        "text": {
+          "en": "Amnesty International appears in separate investigations of mining, security and surveillance. Its national spyware research concerns documented sales and deployments and expressly leaves individual targeting unresolved. Its Intan Jaya work concerns a different local record of mining and human-rights risk. Each finding retains its own scope and supporting source.",
+          "pmy": "Amnesty International hadir dalam penyelidikan terpisah mengenai tambang, keamanan, serta pengawasan. Riset perangkat mata-mata nasional menyangkut penjualan serta penempatan yang terdokumentasi dan secara tegas belum mengungkap sasaran individu. Kajian Intan Jaya membahas catatan lokal risiko pertambangan dan HAM yang berbeda. Tiap temuan mempertahankan cakupan serta sumbernya sendiri."
+        },
+        "claimIds": [
+          "amnesty-spyware-study",
+          "case-intan-gold-rush"
+        ]
+      }
     },
     {
       "id": "nduga",
@@ -1373,6 +1503,233 @@
       },
       "kind": "decision",
       "aliases": []
+    },
+    {
+      "id": "economy",
+      "name": {
+        "en": "Economic affairs ministry",
+        "pmy": "Kementerian Perekonomian"
+      },
+      "kind": "office",
+      "aliases": []
+    },
+    {
+      "id": "psn-merauke",
+      "name": {
+        "en": "Merauke strategic area",
+        "pmy": "Kawasan strategis Merauke"
+      },
+      "kind": "decision",
+      "aliases": []
+    },
+    {
+      "id": "agriculture",
+      "name": {
+        "en": "Agriculture ministry",
+        "pmy": "Kementerian Pertanian"
+      },
+      "kind": "office",
+      "aliases": []
+    },
+    {
+      "id": "cenderawasih",
+      "name": {
+        "en": "XVII/Cenderawasih command",
+        "pmy": "Kodam XVII/Cenderawasih"
+      },
+      "kind": "institution",
+      "aliases": [],
+      "profile": {
+        "text": {
+          "en": "The XVII/Cenderawasih military command is named in the agriculture minister’s May 2024 statement assigning control of land opening. This is a specific institutional role in the rice-field programme. It connects the military-business research to a dated civilian-development assignment, with the affected customary territories and objections retained alongside it.",
+          "pmy": "Kodam XVII/Cenderawasih disebut dalam pernyataan menteri pertanian Mei 2024 yang menempatkan kendali pembukaan lahan pada pangdam. Ini peran lembaga tertentu dalam program sawah. Catatan menghubungkan riset militer-bisnis dengan penugasan pembangunan sipil bertanggal, bersama wilayah adat terdampak dan keberatan masyarakat."
+        },
+        "claimIds": [
+          "rice-command-assignment",
+          "rice-field-command"
+        ]
+      }
+    },
+    {
+      "id": "rice-project",
+      "name": {
+        "en": "Wanam rice-field project",
+        "pmy": "Proyek sawah Wanam"
+      },
+      "kind": "project",
+      "aliases": []
+    },
+    {
+      "id": "defence",
+      "name": {
+        "en": "Defence ministry",
+        "pmy": "Kementerian Pertahanan"
+      },
+      "kind": "office",
+      "aliases": []
+    },
+    {
+      "id": "environment",
+      "name": {
+        "en": "Environment & forestry ministry",
+        "pmy": "Kementerian LHK"
+      },
+      "kind": "office",
+      "aliases": []
+    },
+    {
+      "id": "forest-use-835",
+      "name": {
+        "en": "Forest-use approval 835/2024",
+        "pmy": "Persetujuan hutan 835/2024"
+      },
+      "kind": "decision",
+      "aliases": []
+    },
+    {
+      "id": "wobikel",
+      "name": {
+        "en": "Wobikel communities",
+        "pmy": "Masyarakat Wobikel"
+      },
+      "kind": "community",
+      "aliases": []
+    },
+    {
+      "id": "kimaima-maklew",
+      "name": {
+        "en": "Khimaima & Malind Maklew representatives",
+        "pmy": "Perwakilan Khimaima & Malind Maklew"
+      },
+      "kind": "community",
+      "aliases": []
+    },
+    {
+      "id": "mrp-south",
+      "name": {
+        "en": "South Papua People’s Assembly",
+        "pmy": "MRP Papua Selatan"
+      },
+      "kind": "institution",
+      "aliases": []
+    },
+    {
+      "id": "kondo-digul",
+      "name": {
+        "en": "Kondo Digul forum",
+        "pmy": "Forum Kondo Digul"
+      },
+      "kind": "organisation",
+      "aliases": []
+    },
+    {
+      "id": "simon",
+      "name": {
+        "en": "Simon Petrus Balagaize",
+        "pmy": "Simon Petrus Balagaize"
+      },
+      "kind": "person",
+      "aliases": [],
+      "profile": {
+        "text": {
+          "en": "Simon Petrus Balagaize appears as the coordinator named when the Kondo Digul forum was formed and as one of five Malind plaintiffs challenging the road permit. His public statement after the court dismissal places the lawsuit within a continuing defence of customary land, alongside organising, hearings and protests.",
+          "pmy": "Simon Petrus Balagaize disebut sebagai koordinator saat Forum Kondo Digul dibentuk serta salah satu dari lima penggugat Malind terhadap izin jalan. Pernyataannya setelah penolakan pengadilan menempatkan gugatan dalam perjuangan mempertahankan tanah adat yang berlanjut, bersama pengorganisasian, dengar pendapat, serta protes."
+        },
+        "claimIds": [
+          "kondo-digul-formation",
+          "simon-plaintiff"
+        ]
+      }
+    },
+    {
+      "id": "merauke-regent",
+      "name": {
+        "en": "Merauke regent",
+        "pmy": "Bupati Merauke"
+      },
+      "kind": "office",
+      "aliases": []
+    },
+    {
+      "id": "navy",
+      "name": {
+        "en": "Indonesian navy",
+        "pmy": "TNI Angkatan Laut"
+      },
+      "kind": "institution",
+      "aliases": []
+    },
+    {
+      "id": "hamak",
+      "name": {
+        "en": "HAMAK women’s organising",
+        "pmy": "Pengorganisasian perempuan HAMAK"
+      },
+      "kind": "organisation",
+      "aliases": []
+    },
+    {
+      "id": "strick",
+      "name": {
+        "en": "Benjamin Strick",
+        "pmy": "Benjamin Strick"
+      },
+      "kind": "person",
+      "aliases": []
+    },
+    {
+      "id": "thomas",
+      "name": {
+        "en": "Elise Thomas",
+        "pmy": "Elise Thomas"
+      },
+      "kind": "person",
+      "aliases": []
+    },
+    {
+      "id": "influence-study",
+      "name": {
+        "en": "2019 information-operation study",
+        "pmy": "Kajian operasi informasi 2019"
+      },
+      "kind": "document",
+      "aliases": []
+    },
+    {
+      "id": "insightid",
+      "name": {
+        "en": "InsightID",
+        "pmy": "InsightID"
+      },
+      "kind": "company",
+      "aliases": [],
+      "profile": {
+        "text": {
+          "en": "The Jakarta-based marketing company is identified as the operator of the larger influence campaign in Strick and Thomas’s 2019 investigation. Their published account links websites, branding, social accounts and automated promotion, and cites Facebook’s confirmation. Attribution of the operation does not by itself identify the ultimate sponsor or combine it with the separate smaller network.",
+          "pmy": "Perusahaan pemasaran di Jakarta ini disebut sebagai pelaksana kampanye pengaruh yang lebih besar dalam penyelidikan Strick dan Thomas 2019. Laporan menghubungkan situs, merek, akun sosial, serta promosi otomatis dan mengutip konfirmasi Facebook. Atribusi pelaksanaan belum mengidentifikasi sponsor akhir atau menggabungkannya dengan jaringan kedua yang terpisah."
+        },
+        "claimIds": [
+          "insightid-campaign"
+        ]
+      }
+    },
+    {
+      "id": "influence-network",
+      "name": {
+        "en": "InsightID-linked campaign",
+        "pmy": "Kampanye yang dikaitkan dengan InsightID"
+      },
+      "kind": "mechanism",
+      "aliases": []
+    },
+    {
+      "id": "spyware-study",
+      "name": {
+        "en": "Indonesia spyware research",
+        "pmy": "Riset perangkat mata-mata Indonesia"
+      },
+      "kind": "document",
+      "aliases": []
     }
   ],
   "claims": [
@@ -1410,7 +1767,8 @@
             "text": "Satuan Tugas sebagaimana dimaksud dalam Pasal 1 berada di bawah dan bertanggungjawab kepada Presiden."
           }
         }
-      ]
+      ],
+      "category": "authority"
     },
     {
       "id": "taskforce-chair",
@@ -1442,7 +1800,8 @@
             "pmy": "Susunan satgas"
           }
         }
-      ]
+      ],
+      "category": "authority"
     },
     {
       "id": "taskforce-land",
@@ -1473,7 +1832,8 @@
             "pmy": "Pasal 3 dan 11"
           }
         }
-      ]
+      ],
+      "category": "authority"
     },
     {
       "id": "sermayam-clearing",
@@ -1504,7 +1864,8 @@
             "pmy": "Entri Mei 2024"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "yei-refusal",
@@ -1539,7 +1900,8 @@
             "text": "The Yei Tribe indigenous community made a Statement Letter regarding the rejection of the investment plan in the Yei Tribe Indigenous Territory"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "isam-jhonlin",
@@ -1571,7 +1933,8 @@
             "pmy": "Pengumuman penandatanganan pesanan, 28 Juni 2024"
           }
         }
-      ]
+      ],
+      "category": "business"
     },
     {
       "id": "excavator-order",
@@ -1614,7 +1977,8 @@
           "en": "Machines ordered",
           "pmy": "Mesin dipesan"
         }
-      }
+      },
+      "category": "business"
     },
     {
       "id": "wanam-visit",
@@ -1646,7 +2010,8 @@
             "pmy": "Kunjungan presiden, 3 November 2024"
           }
         }
-      ]
+      ],
+      "category": "authority"
     },
     {
       "id": "malind-challenge",
@@ -1681,7 +2046,8 @@
       "response": {
         "en": "Advocates dispute the adequacy of consultation. The original judgment and any appeal remain to be obtained.",
         "pmy": "Pendamping menggugat kecukupan konsultasi. Naskah putusan dan perkembangan banding masih perlu diperoleh."
-      }
+      },
+      "category": "accountability"
     },
     {
       "id": "merauke-road-ruling",
@@ -1712,7 +2078,8 @@
             "pmy": "Hasil perkara dan tanggapan pendamping"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "intan-study",
@@ -1743,7 +2110,8 @@
             "pmy": "Metode riset dan analisis Intan Jaya"
           }
         }
-      ]
+      ],
+      "category": "authority"
     },
     {
       "id": "military-institutional",
@@ -1778,7 +2146,8 @@
             "text": "Kaki Pertama, bisnis institusional militer, dalam bentuk perusahaan di bawah payung aneka yayasan dan koperasi yang didirikan institusi militer atau polisi."
           }
         }
-      ]
+      ],
+      "category": "business"
     },
     {
       "id": "military-private",
@@ -1809,7 +2178,8 @@
             "pmy": "Kerangka tiga kaki; mengutip Aditjondro, Wacana XVII/2004, hlm. 84–87"
           }
         }
-      ]
+      ],
+      "category": "business"
     },
     {
       "id": "military-informal",
@@ -1840,7 +2210,8 @@
             "pmy": "Kerangka tiga kaki; mengutip Aditjondro, Wacana XVII/2004, hlm. 84–87"
           }
         }
-      ]
+      ],
+      "category": "business"
     },
     {
       "id": "haris-discussion",
@@ -1871,7 +2242,8 @@
             "pmy": "Kronologi perkara: Agustus–September 2021"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "fatia-discussion",
@@ -1902,7 +2274,8 @@
             "pmy": "Kronologi perkara dan pembebasan"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "luhut-complaint",
@@ -1933,7 +2306,8 @@
             "pmy": "Laporan September 2021 dan proses selanjutnya"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "haris-acquittal",
@@ -1964,7 +2338,8 @@
             "pmy": "Uraian perkara di situs pengadilan, 11 Februari 2025"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "fatia-appeal",
@@ -1995,7 +2370,8 @@
             "pmy": "Pernyataan kuasa hukum; nomor perkara Fatia dan Haris terpisah"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "fcx-ptfi",
@@ -2026,7 +2402,8 @@
             "pmy": "Bagian kepemilikan PTFI, Form 10-K 2025"
           }
         }
-      ]
+      ],
+      "category": "business"
     },
     {
       "id": "security-2024",
@@ -2069,7 +2446,8 @@
           "en": "Government-security support",
           "pmy": "Dukungan keamanan aparat negara"
         }
-      }
+      },
+      "category": "business"
     },
     {
       "id": "security-2025",
@@ -2116,7 +2494,8 @@
           "en": "Government-security support",
           "pmy": "Dukungan keamanan aparat negara"
         }
-      }
+      },
+      "category": "business"
     },
     {
       "id": "police-mou",
@@ -2147,7 +2526,8 @@
             "pmy": "MOU keamanan negara; keterangan perusahaan"
           }
         }
-      ]
+      ],
+      "category": "business"
     },
     {
       "id": "military-mou",
@@ -2178,7 +2558,8 @@
             "pmy": "MOU keamanan negara; keterangan perusahaan"
           }
         }
-      ]
+      ],
+      "category": "business"
     },
     {
       "id": "yosepha-organising",
@@ -2209,7 +2590,8 @@
             "pmy": "Biografi penerima penghargaan 2001; uraian sejarah"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "beanal-litigation",
@@ -2240,7 +2622,8 @@
             "pmy": "Beanal v Freeport-McMoRan, 197 F.3d 161; para tergugat tercantum dalam putusan"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "campaign-disclosure",
@@ -2282,7 +2665,8 @@
           "en": "Declared campaign receipts",
           "pmy": "Penerimaan kampanye yang dilaporkan"
         }
-      }
+      },
+      "category": "business"
     },
     {
       "id": "freeport-hearing",
@@ -2317,7 +2701,8 @@
       "response": {
         "en": "Setya Novanto denied the extortion allegation. This record does not establish a conviction in that matter.",
         "pmy": "Setya Novanto membantah tuduhan pemerasan. Catatan ini tidak menetapkan adanya putusan bersalah dalam perkara tersebut."
-      }
+      },
+      "category": "accountability"
     },
     {
       "id": "novanto-response",
@@ -2348,7 +2733,8 @@
             "pmy": "Laporan Reuters tentang bantahan dan sidang etik"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "krusik-zenitprom",
@@ -2379,7 +2765,8 @@
             "pmy": "Reuters, 3 Juni 2022; temuan CAR dan batas konfirmasi"
           }
         }
-      ]
+      ],
+      "category": "business"
     },
     {
       "id": "zenitprom-pindad",
@@ -2410,7 +2797,8 @@
             "pmy": "Reuters, 3 Juni 2022; temuan CAR dan batas konfirmasi"
           }
         }
-      ]
+      ],
+      "category": "business"
     },
     {
       "id": "pindad-bin",
@@ -2441,7 +2829,8 @@
             "pmy": "Reuters, 3 Juni 2022; temuan CAR dan batas konfirmasi"
           }
         }
-      ]
+      ],
+      "category": "business"
     },
     {
       "id": "kiwirok-investigation",
@@ -2476,7 +2865,8 @@
             "text": "Analysis of satellite imagery indicates that 206 buildings in the eight villages were destroyed during the security force operation in Kiwirok, including homes and public buildings such as churches and schools."
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "ngalum-displacement",
@@ -2507,7 +2897,8 @@
             "pmy": "Ringkasan eksekutif; keadaan hingga Juni 2023"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "bamsoet-statement",
@@ -2542,7 +2933,8 @@
       "quote": {
         "original": "Tumpas habis dulu. Urusan HAM kita bicarakan kemudian.",
         "language": "id"
-      }
+      },
+      "category": "authority"
     },
     {
       "id": "shutdown-action",
@@ -2573,7 +2965,8 @@
             "pmy": "Amar putusan, angka 2, butir 1–3"
           }
         }
-      ]
+      ],
+      "category": "authority"
     },
     {
       "id": "shutdown-president",
@@ -2604,7 +2997,8 @@
             "pmy": "Pertimbangan akhir tentang Tergugat II dan amar putusan"
           }
         }
-      ]
+      ],
+      "category": "authority"
     },
     {
       "id": "aji-challenge",
@@ -2635,7 +3029,8 @@
             "pmy": "Para pihak dan hak gugat organisasi"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "safenet-challenge",
@@ -2666,7 +3061,8 @@
             "pmy": "Para pihak; pertimbangan proporsionalitas"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "shutdown-ruling",
@@ -2701,7 +3097,8 @@
             "text": "Adalah perbuatan melanggar hukum oleh Badan dan/atau Pejabat Pemerintahan;"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "blocking-constitutional",
@@ -2732,7 +3129,8 @@
             "pmy": "Laporan putusan MK, 27 Oktober 2021"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "bahlil-office",
@@ -2764,7 +3162,8 @@
             "pmy": "Entri 19 April 2024"
           }
         }
-      ]
+      ],
+      "category": "authority"
     },
     {
       "id": "case-nduga-displacement-origin",
@@ -2795,7 +3194,8 @@
             "pmy": "Pembunuhan di lokasi kerja dan tanggapan · 2018-12-02"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-nduga-emergency-school",
@@ -2826,7 +3226,8 @@
             "pmy": "Anak pengungsi belajar di sekolah darurat · 2019-08"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-nduga-displacement-aid-appeal",
@@ -2857,7 +3258,8 @@
             "pmy": "Pakar PBB meminta akses kemanusiaan · 2022-03-01"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-nduga-displacement-operations-2023",
@@ -2888,7 +3290,8 @@
             "pmy": "Jaringan gereja melaporkan peningkatan operasi · 2023-04-24"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-nduga-displacement-q2-2026",
@@ -2919,7 +3322,8 @@
             "pmy": "Pemantauan kuartal kedua · 2026-04"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-puncak-displacement-origin",
@@ -2950,7 +3354,8 @@
             "pmy": "Permintaan evakuasi Beoga · 2021-04-11"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-puncak-displacement-aid-appeal",
@@ -2981,7 +3386,8 @@
             "pmy": "Pakar PBB meminta akses kemanusiaan · 2022-03-01"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-puncak-displacement-operations-2023",
@@ -3012,7 +3418,8 @@
             "pmy": "Jaringan gereja melaporkan peningkatan operasi · 2023-04-24"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-puncak-komnas-visit",
@@ -3043,7 +3450,8 @@
             "pmy": "Komnas HAM mendengar warga pengungsi · 2025-10"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-puncak-displacement-q2-2026",
@@ -3074,7 +3482,8 @@
             "pmy": "Pemantauan kuartal kedua · 2026-04"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-intan-jaya-displacement-origin",
@@ -3105,7 +3514,8 @@
             "pmy": "Pendeta Yeremia Zanambani dibunuh · 2020-09-19"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-intan-gold-rush",
@@ -3136,7 +3546,8 @@
             "pmy": "Laporan Gold Rush membahas tambang dan keamanan · 2022-03"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-intan-jaya-displacement-aid-appeal",
@@ -3167,7 +3578,8 @@
             "pmy": "Pakar PBB meminta akses kemanusiaan · 2022-03-01"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-intan-jaya-displacement-operations-2023",
@@ -3198,7 +3610,8 @@
             "pmy": "Jaringan gereja melaporkan peningkatan operasi · 2023-04-24"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-intan-jaya-displacement-q2-2026",
@@ -3229,7 +3642,8 @@
             "pmy": "Pemantauan kuartal kedua · 2026-04"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-awyu-lawsuit",
@@ -3260,7 +3674,8 @@
             "pmy": "Hendrikus Woro mengajukan gugatan lingkungan · 2023-03-13"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "case-awyu-first-verdict",
@@ -3291,7 +3706,8 @@
             "pmy": "Pengadilan Jayapura menolak gugatan · 2023-11-02"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "case-ial-cassation",
@@ -3322,7 +3738,8 @@
             "pmy": "Kasasi perkara IAL ditolak · 2024-09-18"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "case-four-revocations",
@@ -3353,7 +3770,8 @@
             "pmy": "Empat izin dicabut · 2025-06-10"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-gag-resumption",
@@ -3384,7 +3802,8 @@
             "pmy": "Gag Nikel kembali beroperasi dengan pengawasan · 2025-09-03"
           }
         }
-      ]
+      ],
+      "category": "land"
     },
     {
       "id": "case-public-information-ruling",
@@ -3415,7 +3834,8 @@
             "pmy": "Pengadilan menguatkan akses catatan pencabutan · 2026-09-14"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "ekb-coal-outcome",
@@ -3446,7 +3866,8 @@
             "pmy": "EKB: hasil perkara batu bara dan nikel berbeda · 2026-08-16"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "ekb-nickel-outcome",
@@ -3477,7 +3898,8 @@
             "pmy": "EKB: hasil perkara batu bara dan nikel berbeda · 2026-08-16"
           }
         }
-      ]
+      ],
+      "category": "accountability"
     },
     {
       "id": "grasberg-recovery-2026",
@@ -3508,7 +3930,8 @@
             "pmy": "Target pemulihan bergeser ke 2027 · 2026-05-20"
           }
         }
-      ]
+      ],
+      "category": "business"
     },
     {
       "id": "grasberg-extension-2026",
@@ -3539,7 +3962,8 @@
             "pmy": "Rilis 18 Februari 2026 · ketentuan nota kesepahaman dan syarat pelaksanaan"
           }
         }
-      ]
+      ],
+      "category": "business"
     },
     {
       "id": "ial-approval-holder",
@@ -3570,7 +3994,8 @@
             "pmy": "Hendrikus Woro mengajukan gugatan lingkungan · 2023-03-13"
           }
         }
-      ]
+      ],
+      "category": "authority"
     },
     {
       "id": "woro-awyu-forest",
@@ -3601,6 +4026,996 @@
             "pmy": "Hendrikus Woro mengajukan gugatan lingkungan · 2023-03-13"
           }
         }
+      ],
+      "category": "land"
+    },
+    {
+      "id": "merauke-designation",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "economy",
+      "predicate": {
+        "en": "Designated",
+        "pmy": "Menetapkan"
+      },
+      "object": "psn-merauke",
+      "date": "2023-11-10",
+      "title": {
+        "en": "A national strategic designation",
+        "pmy": "Penetapan strategis nasional"
+      },
+      "text": {
+        "en": "Pusaka records Regulation 8/2023 adding the Merauke Food and Energy Development Area to the national strategic project list. That designation created a framework for accelerating development. Pusaka states that the policy was established without meaningful deliberation and agreement with affected Indigenous communities.",
+        "pmy": "Pusaka mencatat Peraturan 8/2023 memasukkan Kawasan Pengembangan Pangan dan Energi Merauke ke daftar proyek strategis nasional. Penetapan itu memberi kerangka untuk mempercepat pembangunan. Menurut Pusaka, kebijakan dibentuk tanpa musyawarah dan kesepakatan bermakna dengan masyarakat adat terdampak."
+      },
+      "basis": "reported",
+      "category": "authority",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2023-11-10 entry",
+            "pmy": "Entri 2023-11-10"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sugar-planting-gpa",
+      "cases": [
+        "merauke",
+        "political-access"
+      ],
+      "subject": "jokowi",
+      "predicate": {
+        "en": "Attended planting at",
+        "pmy": "Menghadiri penanaman di"
+      },
+      "object": "gpa",
+      "date": "2024-07-23",
+      "title": {
+        "en": "Presidential planting at Global Papua Abadi",
+        "pmy": "Penanaman presiden di Global Papua Abadi"
+      },
+      "text": {
+        "en": "Joko Widodo attended the first sugarcane planting at PT Global Papua Abadi’s Sermayam site. Pusaka identifies ministers, military officials and business figures at the event. The president presented sugar production as a response to food insecurity and climate pressures. This public endorsement connects national policy to a named operator and place.",
+        "pmy": "Joko Widodo menghadiri penanaman tebu perdana di lokasi PT Global Papua Abadi, Sermayam. Pusaka mencatat kehadiran menteri, pejabat militer, dan tokoh bisnis. Presiden menyampaikan produksi gula sebagai jawaban atas kerawanan pangan serta tekanan iklim. Dukungan terbuka ini menghubungkan kebijakan nasional dengan operator dan tempat tertentu."
+      },
+      "basis": "reported",
+      "category": "authority",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-07-23 entry",
+            "pmy": "Entri 2024-07-23"
+          }
+        }
+      ]
+    },
+    {
+      "id": "yei-gpa-meeting",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "yei",
+      "predicate": {
+        "en": "Submitted rejection at meeting with",
+        "pmy": "Menyampaikan penolakan dalam pertemuan dengan"
+      },
+      "object": "gpa",
+      "date": "2024-06-07",
+      "title": {
+        "en": "Yei’s written objection reaches the company",
+        "pmy": "Keberatan tertulis Yei disampaikan kepada perusahaan"
+      },
+      "text": {
+        "en": "The Yei statement was signed by Godefridus Galep Inagijai and Absalom Can Kapaiter. Pusaka records its submission at a meeting with the company and environmental-assessment consultant at the GPA site in Sermayam. The statement documents an explicit refusal; the presence of a consultation process does not erase that refusal.",
+        "pmy": "Pernyataan Yei ditandatangani Godefridus Galep Inagijai dan Absalom Can Kapaiter. Pusaka mencatat penyerahannya dalam pertemuan dengan perusahaan dan konsultan kajian lingkungan di lokasi GPA, Sermayam. Pernyataan itu mendokumentasikan penolakan tegas; adanya proses konsultasi tidak menghapus penolakan tersebut."
+      },
+      "basis": "reported",
+      "category": "land",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-06-07 entry",
+            "pmy": "Entri 2024-06-07"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rice-command-assignment",
+      "cases": [
+        "merauke",
+        "military-business"
+      ],
+      "subject": "agriculture",
+      "predicate": {
+        "en": "Assigned land-opening command to",
+        "pmy": "Menempatkan komando pembukaan lahan pada"
+      },
+      "object": "cenderawasih",
+      "date": "2024-05-30",
+      "title": {
+        "en": "Agriculture policy assigns a military command",
+        "pmy": "Kebijakan pertanian menugaskan komando militer"
+      },
+      "text": {
+        "en": "Pusaka reproduces Agriculture Minister Amran Sulaiman’s statement that control of opening one million hectares was placed under the XVII/Cenderawasih commander to avoid a dual chain of command. The entry attributes the statement to RRI. It describes a military role in implementing a civilian land-development programme, not a disclosure of its contracts or payments.",
+        "pmy": "Pusaka memuat pernyataan Menteri Pertanian Amran Sulaiman bahwa kendali pembukaan satu juta hektare ditempatkan di bawah Pangdam XVII/Cenderawasih untuk menghindari dualisme komando. Entri tersebut mengutip RRI. Pernyataan ini menjelaskan peran militer dalam pelaksanaan program pengembangan lahan sipil, bukan rincian kontrak atau pembayarannya."
+      },
+      "basis": "reported",
+      "category": "authority",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-05-30 entry",
+            "pmy": "Entri 2024-05-30"
+          },
+          "excerpt": {
+            "language": "en",
+            "text": "Control of the opening of one million hectares of land is under the control of the Commander of the XVII/Cenderawasih Military Command."
+          }
+        }
+      ]
+    },
+    {
+      "id": "rice-field-command",
+      "cases": [
+        "merauke",
+        "military-business"
+      ],
+      "subject": "cenderawasih",
+      "predicate": {
+        "en": "Assigned rice-field opening role",
+        "pmy": "Ditugaskan dalam pembukaan sawah"
+      },
+      "object": "rice-project",
+      "date": "2024-05-30",
+      "title": {
+        "en": "The military role in rice-field opening",
+        "pmy": "Peran militer dalam pembukaan sawah"
+      },
+      "text": {
+        "en": "The land-opening assignment belongs to the new rice-field programme. Pusaka places proposed rice-field sites within Malind, Maklew, Khimaima and Yei customary areas. The announced target is a plan, not a measurement of land already cleared, cultivated or freely surrendered.",
+        "pmy": "Penugasan pembukaan lahan merupakan bagian program sawah baru. Pusaka menempatkan rencana lokasi sawah dalam wilayah adat Malind, Maklew, Khimaima, dan Yei. Target yang diumumkan merupakan rencana, bukan ukuran lahan yang sudah dibuka, ditanami, atau diserahkan secara bebas."
+      },
+      "basis": "reported",
+      "category": "authority",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-05-30 entry",
+            "pmy": "Entri 2024-05-30"
+          }
+        }
+      ]
+    },
+    {
+      "id": "navy-machinery",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "navy",
+      "predicate": {
+        "en": "Transported agricultural machinery for",
+        "pmy": "Mengangkut alat pertanian untuk"
+      },
+      "object": "agriculture",
+      "date": "2024-05-26",
+      "title": {
+        "en": "Agricultural machinery arrives on a navy ship",
+        "pmy": "Alat pertanian tiba dengan kapal TNI AL"
+      },
+      "text": {
+        "en": "Pusaka records KRI dr. Soeharso 990 unloading Agriculture Ministry assistance at Yos Sudarso port in Merauke: 75 agricultural machines, including tractors, rice transplanters and combine harvesters. This shipment is separate from Jhonlin’s later excavator order and must not be counted as delivery against that order.",
+        "pmy": "Pusaka mencatat KRI dr. Soeharso 990 membongkar bantuan Kementerian Pertanian di Pelabuhan Yos Sudarso, Merauke: 75 alat pertanian, termasuk traktor, penanam padi, dan pemanen kombinasi. Pengiriman ini berbeda dari pesanan ekskavator Jhonlin berikutnya dan tidak dihitung sebagai realisasi pesanan tersebut."
+      },
+      "basis": "reported",
+      "category": "business",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-05-26 entry",
+            "pmy": "Entri 2024-05-26"
+          }
+        }
+      ]
+    },
+    {
+      "id": "forest-use-issued",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "environment",
+      "predicate": {
+        "en": "Issued forest-use approval",
+        "pmy": "Menerbitkan persetujuan penggunaan hutan"
+      },
+      "object": "forest-use-835",
+      "date": "2024-07-12",
+      "title": {
+        "en": "Forest-use approval in the defence ministry’s name",
+        "pmy": "Persetujuan penggunaan hutan atas nama Kementerian Pertahanan"
+      },
+      "text": {
+        "en": "Pusaka describes Decree 835/2024 approving use of 13,540 hectares of forest for food-security facilities and infrastructure in a defence-and-security framework. Its account identifies protected, permanent-production and convertible-production forest. The entry reports the decree; it does not establish that each customary landholder consented.",
+        "pmy": "Pusaka menjelaskan SK 835/2024 yang menyetujui penggunaan 13.540 hektare kawasan hutan untuk sarana dan prasarana ketahanan pangan dalam kerangka pertahanan dan keamanan. Catatan itu menyebut hutan lindung, produksi tetap, serta produksi yang dapat dikonversi. Entri ini melaporkan keputusan, bukan memastikan persetujuan setiap pemegang hak adat."
+      },
+      "basis": "reported",
+      "category": "authority",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-07-12 entry",
+            "pmy": "Entri 2024-07-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "forest-use-defence",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "forest-use-835",
+      "predicate": {
+        "en": "Names as approval holder",
+        "pmy": "Menyebut sebagai pemegang persetujuan"
+      },
+      "object": "defence",
+      "date": "2024-07-12",
+      "title": {
+        "en": "The institution named in the forest decision",
+        "pmy": "Lembaga yang disebut dalam keputusan kawasan hutan"
+      },
+      "text": {
+        "en": "The chronology identifies the Ministry of Defence as the party named in the forest-use approval. Reading this administrative role alongside the agriculture programme and military command helps distinguish the institutions involved. It does not turn separate rice, sugar and road authorisations into one interchangeable permit.",
+        "pmy": "Linimasa menyebut Kementerian Pertahanan sebagai pihak yang tercantum dalam persetujuan penggunaan hutan. Peran administrasi ini perlu dibaca bersama program pertanian dan komando militer agar lembaga-lembaganya jelas. Perizinan padi, tebu, dan jalan tetap merupakan keputusan yang berbeda."
+      },
+      "basis": "reported",
+      "category": "authority",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-07-12 entry",
+            "pmy": "Entri 2024-07-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "defence-rice-coordination",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "defence",
+      "predicate": {
+        "en": "Joined rice-programme coordination",
+        "pmy": "Mengikuti koordinasi program sawah"
+      },
+      "object": "agriculture",
+      "date": "2024-04-17",
+      "title": {
+        "en": "Agriculture and defence coordinate the programme",
+        "pmy": "Pertanian dan pertahanan mengoordinasikan program"
+      },
+      "text": {
+        "en": "The Merauke coordination meeting brought together Agriculture Minister Amran Sulaiman, Deputy Defence Minister M. Herindra, military leaders and local government. Pusaka records land optimisation and the new rice-field programme as the meeting’s agenda. This is a dated coordination record, distinct from company ownership or a procurement award.",
+        "pmy": "Rapat koordinasi Merauke mempertemukan Menteri Pertanian Amran Sulaiman, Wakil Menteri Pertahanan M. Herindra, pimpinan militer, dan pemerintah daerah. Pusaka mencatat optimasi lahan serta program sawah baru sebagai agenda rapat. Ini catatan koordinasi bertanggal, berbeda dari kepemilikan perusahaan atau penetapan pemenang pengadaan."
+      },
+      "basis": "reported",
+      "category": "authority",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-04-17 entry",
+            "pmy": "Entri 2024-04-17"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wanam-rice-location",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "rice-project",
+      "predicate": {
+        "en": "Developed at",
+        "pmy": "Dikembangkan di"
+      },
+      "object": "wanam",
+      "date": "2024-08-12",
+      "title": {
+        "en": "Rice-field development in Wanam",
+        "pmy": "Pengembangan sawah di Wanam"
+      },
+      "text": {
+        "en": "Pusaka’s August account describes excavators working through forests, hamlets and swamps in the Wanam area. It records landholders protesting the work and the lack of prior deliberation and agreement. The location anchors the rice-field programme to lived landscapes and community objections.",
+        "pmy": "Catatan Pusaka pada Agustus menggambarkan ekskavator bekerja di hutan, dusun, dan rawa kawasan Wanam. Pemegang hak tanah memprotes pekerjaan serta ketiadaan musyawarah dan kesepakatan sebelumnya. Lokasi ini menghubungkan program sawah dengan ruang hidup serta keberatan masyarakat."
+      },
+      "basis": "reported",
+      "category": "land",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-08-12 entry",
+            "pmy": "Entri 2024-08-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "jhonlin-wanam-clearing",
+      "cases": [
+        "merauke",
+        "political-access"
+      ],
+      "subject": "jhonlin",
+      "predicate": {
+        "en": "Excavators reported clearing at",
+        "pmy": "Ekskavator dilaporkan membuka lahan di"
+      },
+      "object": "wanam",
+      "date": "2024-08-12",
+      "title": {
+        "en": "Jhonlin excavators and continuing clearing",
+        "pmy": "Ekskavator Jhonlin dan pembukaan yang berlanjut"
+      },
+      "text": {
+        "en": "Pusaka identifies Jhonlin Group excavators in the Wanam clearing and describes negotiations involving John Gluba Gebze, Haji Isam and the operator while work continued. Communities objected to destruction of forests, hamlets and swamps without landholders’ agreement. The supplier’s 2,000-machine order does not establish that every ordered machine was used here.",
+        "pmy": "Pusaka mengidentifikasi ekskavator Jhonlin Group dalam pembukaan Wanam dan mencatat perundingan yang melibatkan John Gluba Gebze, Haji Isam, serta operator ketika pekerjaan berlanjut. Masyarakat menolak perusakan hutan, dusun, dan rawa tanpa kesepakatan pemegang hak. Pesanan 2.000 mesin kepada pemasok tidak memastikan seluruh mesin digunakan di sini."
+      },
+      "basis": "reported",
+      "category": "land",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-08-12 entry",
+            "pmy": "Entri 2024-08-12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wobikel-objection",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "wobikel",
+      "predicate": {
+        "en": "Rejected rice project carried out by",
+        "pmy": "Menolak proyek sawah yang dijalankan"
+      },
+      "object": "jhonlin",
+      "date": "2024-09-24",
+      "title": {
+        "en": "Wobikel residents address the governor",
+        "pmy": "Warga Wobikel menyampaikan penolakan kepada gubernur"
+      },
+      "text": {
+        "en": "At a meeting with acting Governor Rudy Sufahriadi, residents carried posters and directly rejected the new rice-field project carried out by Jhonlin Group, according to Pusaka. This public objection followed the machinery arrivals and August clearing. It places residents’ stated choices within the same record as the project’s official sponsorship.",
+        "pmy": "Dalam pertemuan dengan Penjabat Gubernur Rudy Sufahriadi, warga membawa poster dan menyampaikan langsung penolakan proyek sawah baru yang dijalankan Jhonlin Group, menurut Pusaka. Penolakan terbuka ini mengikuti kedatangan alat dan pembukaan Agustus. Pilihan yang dinyatakan warga tercatat bersama dukungan resmi terhadap proyek."
+      },
+      "basis": "reported",
+      "category": "land",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-09-24 entry",
+            "pmy": "Entri 2024-09-24"
+          }
+        }
+      ]
+    },
+    {
+      "id": "community-mrp-hearing",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "kimaima-maklew",
+      "predicate": {
+        "en": "Presented objections to",
+        "pmy": "Menyampaikan keberatan kepada"
+      },
+      "object": "mrp-south",
+      "date": "2024-07-24",
+      "title": {
+        "en": "A hearing takes objections to the MRP",
+        "pmy": "Dengar pendapat membawa keberatan kepada MRP"
+      },
+      "text": {
+        "en": "Khimaima and Malind Maklew representatives met South Papua’s People’s Assembly. Pusaka records demands to reject investment in their customary territories, halt ship and helicopter activity, and revoke business permits. The hearing documents communities using the province’s Indigenous representative institution to press for control over their land.",
+        "pmy": "Perwakilan Khimaima dan Malind Maklew bertemu Majelis Rakyat Papua Selatan. Pusaka mencatat tuntutan menolak investasi di wilayah adat, menghentikan kegiatan kapal dan helikopter, serta mencabut izin usaha. Dengar pendapat menunjukkan masyarakat memakai lembaga perwakilan adat provinsi untuk memperjuangkan kewenangan atas tanah."
+      },
+      "basis": "reported",
+      "category": "accountability",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-07-24 entry",
+            "pmy": "Entri 2024-07-24"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kondo-digul-formation",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "simon",
+      "predicate": {
+        "en": "Named coordinator of",
+        "pmy": "Disebut sebagai koordinator"
+      },
+      "object": "kondo-digul",
+      "date": "2024-08-20",
+      "title": {
+        "en": "Kondo Digul becomes an organising forum",
+        "pmy": "Kondo Digul menjadi wadah pengorganisasian"
+      },
+      "text": {
+        "en": "A Payum meeting of community representatives, students, young people and South Papua MRP members formed the Kondo Digul Indigenous Peoples Forum, with Simon Balagaize as coordinator. Pusaka records their rejection of sugarcane, oil-palm and food-estate projects. The forum gave collective objections an ongoing organisational form.",
+        "pmy": "Pertemuan Payum yang diikuti perwakilan masyarakat, mahasiswa, pemuda, serta anggota MRP Papua Selatan membentuk Forum Masyarakat Adat Kondo Digul, dengan Simon Balagaize sebagai koordinator. Pusaka mencatat penolakan proyek tebu, sawit, dan food estate. Forum memberi bentuk organisasi yang berkelanjutan bagi keberatan bersama."
+      },
+      "basis": "reported",
+      "category": "accountability",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-08-20 entry",
+            "pmy": "Entri 2024-08-20"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kondo-digul-position",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "kondo-digul",
+      "predicate": {
+        "en": "Publicly rejected",
+        "pmy": "Menyatakan penolakan terhadap"
+      },
+      "object": "psn-merauke",
+      "date": "2024-10-06",
+      "title": {
+        "en": "A collective public refusal",
+        "pmy": "Penolakan bersama secara terbuka"
+      },
+      "text": {
+        "en": "Pusaka records a Kondo Digul meeting and press conference in Payum restating rejection of the Merauke national strategic project. This was part of sustained community organising after statements, hearings and customary restrictions. It records the forum’s position, not an administrative cancellation of the project.",
+        "pmy": "Pusaka mencatat pertemuan dan konferensi pers Kondo Digul di Payum yang menegaskan penolakan proyek strategis nasional Merauke. Kegiatan itu bagian pengorganisasian berkelanjutan setelah pernyataan, dengar pendapat, serta pembatasan adat. Ini posisi forum, bukan pembatalan administratif proyek."
+      },
+      "basis": "reported",
+      "category": "accountability",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-10-06 entry",
+            "pmy": "Entri 2024-10-06"
+          }
+        }
+      ]
+    },
+    {
+      "id": "yei-recognition",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "merauke-regent",
+      "predicate": {
+        "en": "Signed customary-rights recognition for",
+        "pmy": "Menandatangani pengakuan hak adat atas"
+      },
+      "object": "yei-land",
+      "date": "2024-09-24",
+      "title": {
+        "en": "Recognition of Yei customary territory",
+        "pmy": "Pengakuan wilayah adat Yei"
+      },
+      "text": {
+        "en": "At Kweel in Eligobel, the regent signed a decree recognising, respecting and protecting Yei customary rights and territory, according to Pusaka. This separate event occurred on the same date as the Wobikel protests. Recognition and project consent are different questions; the earlier written refusal remains part of the record.",
+        "pmy": "Di Kweel, Eligobel, bupati menandatangani keputusan pengakuan, penghormatan, dan pelindungan hak serta wilayah adat Yei, menurut Pusaka. Peristiwa terpisah ini berlangsung pada tanggal yang sama dengan protes Wobikel. Pengakuan wilayah dan persetujuan proyek merupakan persoalan berbeda; penolakan tertulis sebelumnya tetap tercatat."
+      },
+      "basis": "reported",
+      "category": "land",
+      "evidence": [
+        {
+          "source": "P01",
+          "locator": {
+            "en": "2024-09-24 entry",
+            "pmy": "Entri 2024-09-24"
+          }
+        }
+      ]
+    },
+    {
+      "id": "road-permit-issued",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "merauke-regent",
+      "predicate": {
+        "en": "Issued environmental permit",
+        "pmy": "Menerbitkan izin lingkungan"
+      },
+      "object": "road",
+      "date": "2025-09",
+      "title": {
+        "en": "The road’s permit follows reported construction",
+        "pmy": "Izin jalan menyusul pembangunan yang dilaporkan"
+      },
+      "text": {
+        "en": "Greenpeace’s account identifies the Merauke regent as issuer of the September 2025 environmental permit for the 135-kilometre road, while dating clearing and construction to August 2024. That sequence became part of the Malind challenge. The source is the plaintiffs’ advocacy team’s court account, not the original permit or judgment.",
+        "pmy": "Laporan Greenpeace menyebut Bupati Merauke sebagai penerbit izin lingkungan September 2025 untuk jalan 135 kilometer, sementara pembukaan dan pembangunan disebut dimulai Agustus 2024. Urutan itu menjadi bagian gugatan Malind. Sumbernya laporan perkara dari tim advokasi penggugat, bukan dokumen izin atau putusan asli."
+      },
+      "basis": "reported",
+      "category": "authority",
+      "evidence": [
+        {
+          "source": "S39",
+          "locator": {
+            "en": "Permit and construction chronology",
+            "pmy": "Permit and construction chronology"
+          }
+        }
+      ]
+    },
+    {
+      "id": "malind-filing",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "malind-plaintiffs",
+      "predicate": {
+        "en": "Filed environmental challenge in",
+        "pmy": "Mengajukan gugatan lingkungan di"
+      },
+      "object": "ptun-jayapura",
+      "date": "2026-03",
+      "title": {
+        "en": "Five landholders take the road to court",
+        "pmy": "Lima pemegang hak membawa perkara jalan ke pengadilan"
+      },
+      "text": {
+        "en": "Simon Petrus Balagaize, Sinta Gebze, Liborius Kodai Moiwend, Kanisius Dagil and Andreas Mahuze challenged the road’s environmental permit. The advocacy team states that no free, prior and informed consent process had been conducted. Their case put landholders’ evidence and the legality of authorisation before the administrative court.",
+        "pmy": "Simon Petrus Balagaize, Sinta Gebze, Liborius Kodai Moiwend, Kanisius Dagil, dan Andreas Mahuze menggugat izin lingkungan jalan. Tim advokasi menyatakan tidak ada proses persetujuan atas dasar informasi di awal tanpa paksaan. Perkara membawa bukti pemegang hak serta keabsahan perizinan ke pengadilan administrasi."
+      },
+      "basis": "reported",
+      "category": "accountability",
+      "evidence": [
+        {
+          "source": "S39",
+          "locator": {
+            "en": "Opening account and March 2026 filing",
+            "pmy": "Opening account and March 2026 filing"
+          }
+        }
+      ]
+    },
+    {
+      "id": "simon-plaintiff",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "simon",
+      "predicate": {
+        "en": "One of five landholder plaintiffs",
+        "pmy": "Salah satu dari lima penggugat"
+      },
+      "object": "malind-plaintiffs",
+      "date": "2026-03",
+      "title": {
+        "en": "From organising to the road lawsuit",
+        "pmy": "Dari pengorganisasian ke gugatan jalan"
+      },
+      "text": {
+        "en": "Greenpeace names Simon Petrus Balagaize among the five Malind plaintiffs. After the September dismissal he said the community would continue defending its customary land. Litigation was one route within a wider struggle that also included assemblies, protests and collective statements.",
+        "pmy": "Greenpeace menyebut Simon Petrus Balagaize sebagai salah satu dari lima penggugat Malind. Setelah penolakan September, ia menyatakan masyarakat akan terus mempertahankan tanah adat. Gugatan menjadi salah satu jalan dalam perjuangan yang juga melibatkan pertemuan, protes, dan pernyataan bersama."
+      },
+      "basis": "reported",
+      "category": "accountability",
+      "evidence": [
+        {
+          "source": "S39",
+          "locator": {
+            "en": "Named plaintiffs and concluding statement",
+            "pmy": "Named plaintiffs and concluding statement"
+          }
+        }
+      ],
+      "quote": {
+        "language": "en",
+        "original": "This lawsuit is not the only way; there are thousands of other ways."
+      }
+    },
+    {
+      "id": "road-halt-2026",
+      "cases": [
+        "merauke"
+      ],
+      "subject": "ptun-jayapura",
+      "predicate": {
+        "en": "Ordered construction halted, as reported",
+        "pmy": "Memerintahkan penghentian, menurut laporan"
+      },
+      "object": "road",
+      "date": "2026-06-09",
+      "title": {
+        "en": "A halt order before the final judgment",
+        "pmy": "Perintah penghentian sebelum putusan akhir"
+      },
+      "text": {
+        "en": "Greenpeace reports that presiding judge Merna Chintia ordered the defendant to halt construction on 9 June, but describes continued work and a 135-kilometre network in its September account. The interim instruction and later dismissal are distinct procedural stages; neither should overwrite the other in the timeline.",
+        "pmy": "Greenpeace melaporkan hakim ketua Merna Chintia memerintahkan tergugat menghentikan pembangunan pada 9 Juni, tetapi laporan September mencatat pekerjaan berlanjut dan jaringan jalan 135 kilometer. Perintah sementara serta penolakan berikutnya merupakan tahap perkara berbeda; keduanya perlu tetap terlihat dalam linimasa."
+      },
+      "basis": "reported",
+      "category": "accountability",
+      "evidence": [
+        {
+          "source": "S39",
+          "locator": {
+            "en": "9 June order and implementation account",
+            "pmy": "9 June order and implementation account"
+          }
+        }
+      ]
+    },
+    {
+      "id": "yosepha-freeport",
+      "cases": [
+        "freeport"
+      ],
+      "subject": "yosepha",
+      "predicate": {
+        "en": "Organised opposition to",
+        "pmy": "Mengorganisasi perlawanan terhadap"
+      },
+      "object": "fcx",
+      "date": "2001",
+      "title": {
+        "en": "Mama Yosepha’s organising against mining destruction",
+        "pmy": "Pengorganisasian Mama Yosepha melawan perusakan tambang"
+      },
+      "text": {
+        "en": "The Goldman Prize’s 2001 recipient profile describes more than twenty years of Yosepha Alomang’s community organising against Freeport’s destruction of Amungme land and government inaction. It recounts her detention and torture in 1994 and her continued advocacy. The date here identifies the public profile, not the beginning of her activism.",
+        "pmy": "Profil penerima Goldman Prize 2001 menggambarkan lebih dari dua puluh tahun pengorganisasian masyarakat oleh Yosepha Alomang melawan perusakan tanah Amungme oleh Freeport serta pembiaran pemerintah. Sumber mencatat penahanan dan penyiksaan pada 1994 serta advokasinya yang berlanjut. Tanggal ini merujuk profil publik, bukan awal perjuangannya."
+      },
+      "basis": "reported",
+      "category": "land",
+      "evidence": [
+        {
+          "source": "S30",
+          "locator": {
+            "en": "2001 recipient biography",
+            "pmy": "2001 recipient biography"
+          }
+        }
+      ]
+    },
+    {
+      "id": "yosepha-hamak",
+      "cases": [
+        "freeport"
+      ],
+      "subject": "yosepha",
+      "predicate": {
+        "en": "Established women’s organising through",
+        "pmy": "Membangun pengorganisasian perempuan melalui"
+      },
+      "object": "hamak",
+      "date": "2001",
+      "title": {
+        "en": "Women’s organising in the public record by 2001",
+        "pmy": "Pengorganisasian perempuan tercatat pada 2001"
+      },
+      "text": {
+        "en": "The recipient biography describes HAMAK as a women’s group created by Mama Yosepha for human rights, environmental work and traditional culture. Its account shows organising beyond a single complaint or court case: collective action and the continuity of community life were part of the same struggle. The profile does not supply an exact foundation date.",
+        "pmy": "Biografi penerima penghargaan menyebut HAMAK sebagai kelompok perempuan yang dibentuk Mama Yosepha untuk HAM, lingkungan, serta budaya tradisional. Pengorganisasian melampaui satu pengaduan atau perkara: tindakan bersama dan keberlanjutan kehidupan masyarakat menjadi bagian perjuangan yang sama. Profil tidak memberi tanggal pendirian yang pasti."
+      },
+      "basis": "reported",
+      "category": "land",
+      "evidence": [
+        {
+          "source": "S30",
+          "locator": {
+            "en": "Concluding paragraph of recipient biography",
+            "pmy": "Concluding paragraph of recipient biography"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bamsoet-tni-call",
+      "cases": [
+        "kiwirok",
+        "puncak"
+      ],
+      "subject": "bamsoet",
+      "predicate": {
+        "en": "Called for full military deployment",
+        "pmy": "Meminta pengerahan penuh militer"
+      },
+      "object": "tni",
+      "date": "2021-04-26",
+      "title": {
+        "en": "A public demand to put force before human rights",
+        "pmy": "Seruan terbuka mendahulukan kekuatan atas HAM"
+      },
+      "text": {
+        "en": "After the killing of the Papua regional intelligence chief in Beoga, MPR Speaker Bambang Soesatyo publicly called on the military, police and intelligence agency to deploy their full strength in Papua. The MPR’s own publication records his words placing human-rights discussion afterward. This is a public political demand in April 2021; it is not an operational order or proof that he directed the later Kiwirok attacks.",
+        "pmy": "Setelah Kepala BIN Daerah Papua tewas di Beoga, Ketua MPR Bambang Soesatyo menyerukan pengerahan kekuatan penuh militer, polisi, serta intelijen di Papua. Publikasi MPR sendiri memuat ucapannya yang menempatkan pembicaraan HAM belakangan. Ini seruan politik terbuka pada April 2021; bukan perintah operasi atau bukti bahwa ia mengarahkan serangan Kiwirok berikutnya."
+      },
+      "basis": "reported",
+      "category": "authority",
+      "evidence": [
+        {
+          "source": "S35",
+          "locator": {
+            "en": "26 April 2021 publication, opening statement and first quotation",
+            "pmy": "Publikasi 26 April 2021, pernyataan pembuka dan kutipan pertama"
+          }
+        }
+      ],
+      "quote": {
+        "language": "id",
+        "original": "Tumpas habis dulu. Urusan HAM kita bicarakan kemudian."
+      }
+    },
+    {
+      "id": "bamsoet-bin-call",
+      "cases": [
+        "kiwirok"
+      ],
+      "subject": "bamsoet",
+      "predicate": {
+        "en": "Included intelligence agency in call",
+        "pmy": "Menyertakan intelijen dalam seruan"
+      },
+      "object": "bin",
+      "date": "2021-04-26",
+      "title": {
+        "en": "The agencies addressed by the political demand",
+        "pmy": "Lembaga yang dituju oleh seruan politik"
+      },
+      "text": {
+        "en": "The MPR publication explicitly includes BIN alongside TNI and Polri in the call for full deployment. This gives the political statement a named institutional audience. It remains separate from Reuters’ tracing of ammunition documents and from the evidence of specific attacks; a shared agency name does not establish an order, authorisation or use of a particular munition.",
+        "pmy": "Publikasi MPR secara tegas menyebut BIN bersama TNI dan Polri dalam seruan pengerahan penuh. Pernyataan politik itu memiliki lembaga tujuan yang disebut jelas. Catatan ini berbeda dari penelusuran dokumen amunisi Reuters serta bukti serangan tertentu; nama lembaga yang sama belum memastikan perintah, otorisasi, atau penggunaan amunisi tertentu."
+      },
+      "basis": "reported",
+      "category": "authority",
+      "evidence": [
+        {
+          "source": "S35",
+          "locator": {
+            "en": "Opening and concluding paragraphs naming TNI, Polri and BIN",
+            "pmy": "Paragraf pembuka dan penutup yang menyebut TNI, Polri, dan BIN"
+          }
+        }
+      ]
+    },
+    {
+      "id": "strick-study",
+      "cases": [
+        "communications"
+      ],
+      "subject": "strick",
+      "predicate": {
+        "en": "Co-authored investigation",
+        "pmy": "Menyusun penyelidikan bersama"
+      },
+      "object": "influence-study",
+      "date": "2019-10-11",
+      "title": {
+        "en": "Investigators trace the information campaign",
+        "pmy": "Peneliti menelusuri kampanye informasi"
+      },
+      "text": {
+        "en": "The case study credits BBC open-source investigator Benjamin Strick and ASPI researcher Elise Thomas. It reconstructs websites, branded accounts, advertising and automated amplification across platforms. The published method and archived examples make the network inspectable beyond the researchers’ conclusion.",
+        "pmy": "Kajian mencantumkan peneliti sumber terbuka BBC Benjamin Strick dan peneliti ASPI Elise Thomas. Mereka merekonstruksi situs, akun bermerek, iklan, serta amplifikasi otomatis lintas platform. Metode yang dipublikasikan dan contoh arsip memungkinkan jaringan diperiksa melampaui kesimpulan peneliti."
+      },
+      "basis": "reported",
+      "category": "accountability",
+      "evidence": [
+        {
+          "source": "S23",
+          "locator": {
+            "en": "Byline, findings and methods, 11 October 2019",
+            "pmy": "Penulis, temuan, dan metode, 11 Oktober 2019"
+          }
+        }
+      ]
+    },
+    {
+      "id": "thomas-study",
+      "cases": [
+        "communications"
+      ],
+      "subject": "thomas",
+      "predicate": {
+        "en": "Co-authored investigation",
+        "pmy": "Menyusun penyelidikan bersama"
+      },
+      "object": "influence-study",
+      "date": "2019-10-11",
+      "title": {
+        "en": "Investigators trace the information campaign",
+        "pmy": "Peneliti menelusuri kampanye informasi"
+      },
+      "text": {
+        "en": "The case study credits BBC open-source investigator Benjamin Strick and ASPI researcher Elise Thomas. It reconstructs websites, branded accounts, advertising and automated amplification across platforms. The published method and archived examples make the network inspectable beyond the researchers’ conclusion.",
+        "pmy": "Kajian mencantumkan peneliti sumber terbuka BBC Benjamin Strick dan peneliti ASPI Elise Thomas. Mereka merekonstruksi situs, akun bermerek, iklan, serta amplifikasi otomatis lintas platform. Metode yang dipublikasikan dan contoh arsip memungkinkan jaringan diperiksa melampaui kesimpulan peneliti."
+      },
+      "basis": "reported",
+      "category": "accountability",
+      "evidence": [
+        {
+          "source": "S23",
+          "locator": {
+            "en": "Byline, findings and methods, 11 October 2019",
+            "pmy": "Penulis, temuan, dan metode, 11 Oktober 2019"
+          }
+        }
+      ]
+    },
+    {
+      "id": "insightid-campaign",
+      "cases": [
+        "communications"
+      ],
+      "subject": "insightid",
+      "predicate": {
+        "en": "Attributed campaign operator",
+        "pmy": "Dikaitkan sebagai pelaksana kampanye"
+      },
+      "object": "influence-network",
+      "date": "2019-10-11",
+      "title": {
+        "en": "A marketing firm behind an influence network",
+        "pmy": "Perusahaan pemasaran di balik jaringan pengaruh"
+      },
+      "text": {
+        "en": "Strick and Thomas attribute the larger of two investigated campaigns to Jakarta-based InsightID, citing open-source traces and Facebook’s October 2019 confirmation. They describe coordinated websites, fake or automated accounts, English-language messaging for international audiences, and harassment of journalists and independence advocates. The finding concerns the campaign’s operation, not proof of its ultimate client.",
+        "pmy": "Strick dan Thomas mengaitkan kampanye yang lebih besar dari dua jaringan yang diteliti dengan InsightID di Jakarta, berdasarkan jejak sumber terbuka serta konfirmasi Facebook Oktober 2019 yang mereka kutip. Kajian menjelaskan situs terkoordinasi, akun palsu atau otomatis, pesan berbahasa Inggris untuk khalayak internasional, serta pelecehan terhadap jurnalis dan pendukung kemerdekaan. Temuan menyangkut pelaksanaan kampanye, bukan kepastian klien akhirnya."
+      },
+      "basis": "reported",
+      "category": "business",
+      "evidence": [
+        {
+          "source": "S23",
+          "locator": {
+            "en": "What Did We Find? Attribution of the first campaign",
+            "pmy": "Bagian What Did We Find? Atribusi kampanye pertama"
+          }
+        }
+      ],
+      "response": {
+        "en": "The authors did not find conclusive evidence joining the second, smaller campaign to InsightID’s operation. Its reported operator described his activities as a personal project. The two campaigns remain distinct.",
+        "pmy": "Penulis tidak menemukan bukti konklusif yang menghubungkan kampanye kedua yang lebih kecil dengan operasi InsightID. Pelaksana yang dilaporkan menyebut kegiatannya sebagai proyek pribadi. Kedua kampanye tetap dibedakan."
+      }
+    },
+    {
+      "id": "influence-network-study",
+      "cases": [
+        "communications"
+      ],
+      "subject": "influence-study",
+      "predicate": {
+        "en": "Documented and analysed",
+        "pmy": "Mendokumentasikan dan menganalisis"
+      },
+      "object": "influence-network",
+      "date": "2019-10-11",
+      "title": {
+        "en": "How information was amplified across platforms",
+        "pmy": "Cara informasi diperbesar lintas platform"
+      },
+      "text": {
+        "en": "The investigation follows material from brand websites to core social-media accounts and then to inauthentic amplification. In a period of restrictions on independent reporting from Papua, this helped outside audiences encounter a curated pro-government narrative. The case study distinguishes misleading framing from outright false content and makes its supporting traces available.",
+        "pmy": "Penyelidikan mengikuti materi dari situs bermerek ke akun utama media sosial lalu ke amplifikasi tidak autentik. Ketika peliputan independen dari Papua dibatasi, rangkaian itu membantu menghadirkan narasi pro-pemerintah yang dikurasi kepada khalayak luar. Kajian membedakan pembingkaian menyesatkan dari isi yang benar-benar palsu dan menyediakan jejak pendukungnya."
+      },
+      "basis": "reported",
+      "category": "accountability",
+      "evidence": [
+        {
+          "source": "S23",
+          "locator": {
+            "en": "Network operation and supporting examples",
+            "pmy": "Cara kerja jaringan dan contoh pendukung"
+          },
+          "excerpt": {
+            "language": "en",
+            "text": "The content was then promoted by core branded accounts on Twitter, and amplified by a network of inauthentic and/or automated accounts"
+          }
+        }
+      ]
+    },
+    {
+      "id": "amnesty-spyware-study",
+      "cases": [
+        "communications"
+      ],
+      "subject": "amnesty",
+      "predicate": {
+        "en": "Published national surveillance research",
+        "pmy": "Menerbitkan riset pengawasan nasional"
+      },
+      "object": "spyware-study",
+      "date": "2024-05",
+      "title": {
+        "en": "A national surveillance market, with targeting still unresolved",
+        "pmy": "Pasar pengawasan nasional, sasaran belum terungkap"
+      },
+      "text": {
+        "en": "Amnesty’s Security Lab and media partners traced spyware sales and deployments in Indonesia between 2017 and 2023 through trade records and infrastructure mapping. The research describes opaque vendor, broker and reseller chains. It adds national context to civic-space research; it did not investigate individual devices or identify particular Papuan targets.",
+        "pmy": "Security Lab Amnesty dan mitra media menelusuri penjualan serta penempatan perangkat mata-mata di Indonesia pada 2017–2023 melalui catatan perdagangan dan pemetaan infrastruktur. Riset menjelaskan rantai vendor, perantara, serta penjual ulang yang tidak transparan. Temuan memberi konteks nasional bagi riset ruang sipil; bukan pemeriksaan perangkat individu atau identifikasi sasaran orang Papua tertentu."
+      },
+      "basis": "reported",
+      "category": "accountability",
+      "evidence": [
+        {
+          "source": "S22",
+          "locator": {
+            "en": "May 2024 briefing announcement and explicit research scope",
+            "pmy": "Pengumuman kajian Mei 2024 dan batas cakupan riset"
+          }
+        }
+      ],
+      "response": {
+        "en": "Amnesty sought comment from 21 entities and reported replies from Candiru, NSO Group and Swiss and Israeli export authorities. Those replies are reflected in the underlying briefing; national supply findings do not establish a specific Papua deployment.",
+        "pmy": "Amnesty meminta tanggapan 21 entitas dan mencatat jawaban Candiru, NSO Group, serta otoritas ekspor Swiss dan Israel dalam kajian lengkap. Temuan pasokan nasional belum memastikan penempatan tertentu di Papua."
+      }
+    },
+    {
+      "id": "spyware-polri-context",
+      "cases": [
+        "communications"
+      ],
+      "subject": "spyware-study",
+      "predicate": {
+        "en": "Names among Indonesian agencies",
+        "pmy": "Menyebut di antara lembaga Indonesia"
+      },
+      "object": "polri",
+      "date": "2024-05",
+      "title": {
+        "en": "Police appear in the national supply research",
+        "pmy": "Polisi disebut dalam riset pasokan nasional"
+      },
+      "text": {
+        "en": "The announcement names Indonesia’s National Police and the National Cyber and Crypto Agency among the entities in its sales-and-deployment research. Product, recipient and targeting details require the underlying transaction and technical evidence. This is an attributed national finding, separate from the documented 2019 shutdown and from a particular operation in Papua.",
+        "pmy": "Pengumuman menyebut Polri dan Badan Siber dan Sandi Negara di antara entitas dalam riset penjualan serta penempatan teknologi. Rincian produk, penerima, dan sasaran memerlukan bukti transaksi serta teknis yang mendasarinya. Ini temuan nasional yang diatribusikan, berbeda dari pemutusan internet 2019 yang terdokumentasi maupun operasi tertentu di Papua."
+      },
+      "basis": "reported",
+      "category": "business",
+      "evidence": [
+        {
+          "source": "S22",
+          "locator": {
+            "en": "Opening research findings and named state agencies",
+            "pmy": "Temuan pembuka riset dan lembaga negara yang disebut"
+          }
+        }
       ]
     }
   ],
@@ -3627,7 +5042,27 @@
         "wanam-visit",
         "malind-challenge",
         "merauke-road-ruling",
-        "bahlil-office"
+        "bahlil-office",
+        "merauke-designation",
+        "sugar-planting-gpa",
+        "yei-gpa-meeting",
+        "rice-command-assignment",
+        "rice-field-command",
+        "navy-machinery",
+        "forest-use-issued",
+        "forest-use-defence",
+        "defence-rice-coordination",
+        "wanam-rice-location",
+        "jhonlin-wanam-clearing",
+        "wobikel-objection",
+        "community-mrp-hearing",
+        "kondo-digul-formation",
+        "kondo-digul-position",
+        "yei-recognition",
+        "road-permit-issued",
+        "malind-filing",
+        "simon-plaintiff",
+        "road-halt-2026"
       ],
       "body": [
         {
@@ -3761,9 +5196,139 @@
         "ptun-jayapura": [
           930,
           500
+        ],
+        "economy": [
+          850,
+          320
+        ],
+        "psn-merauke": [
+          100,
+          430
+        ],
+        "agriculture": [
+          250,
+          430
+        ],
+        "cenderawasih": [
+          400,
+          430
+        ],
+        "rice-project": [
+          550,
+          430
+        ],
+        "navy": [
+          700,
+          430
+        ],
+        "environment": [
+          850,
+          430
+        ],
+        "forest-use-835": [
+          100,
+          540
+        ],
+        "defence": [
+          250,
+          540
+        ],
+        "wobikel": [
+          400,
+          540
+        ],
+        "kimaima-maklew": [
+          550,
+          540
+        ],
+        "mrp-south": [
+          700,
+          540
+        ],
+        "simon": [
+          850,
+          540
+        ],
+        "kondo-digul": [
+          100,
+          650
+        ],
+        "merauke-regent": [
+          250,
+          650
         ]
       },
-      "entryClaim": "yei-refusal"
+      "entryClaim": "yei-refusal",
+      "groups": [
+        {
+          "id": "authority",
+          "title": {
+            "en": "Public authority",
+            "pmy": "Kewenangan negara"
+          },
+          "entityIds": [
+            "economy",
+            "psn-merauke",
+            "jokowi",
+            "investment",
+            "bahlil",
+            "sugar-taskforce",
+            "sugar-project"
+          ]
+        },
+        {
+          "id": "business",
+          "title": {
+            "en": "Operators & machinery",
+            "pmy": "Operator & alat berat"
+          },
+          "entityIds": [
+            "gpa",
+            "sermayam",
+            "isam",
+            "jhonlin",
+            "sany",
+            "rice-project",
+            "wanam"
+          ]
+        },
+        {
+          "id": "implementation",
+          "title": {
+            "en": "Land & implementation",
+            "pmy": "Tanah & pelaksanaan"
+          },
+          "entityIds": [
+            "agriculture",
+            "navy",
+            "cenderawasih",
+            "defence",
+            "environment",
+            "forest-use-835",
+            "prabowo"
+          ]
+        },
+        {
+          "id": "communities",
+          "title": {
+            "en": "Community action & law",
+            "pmy": "Perjuangan masyarakat & hukum"
+          },
+          "entityIds": [
+            "yei",
+            "yei-land",
+            "wobikel",
+            "kimaima-maklew",
+            "mrp-south",
+            "kondo-digul",
+            "simon",
+            "malind-plaintiffs",
+            "road",
+            "ptun-jayapura",
+            "merauke-regent"
+          ]
+        }
+      ]
     },
     {
       "id": "political-access",
@@ -3785,7 +5350,9 @@
         "campaign-disclosure",
         "freeport-hearing",
         "novanto-response",
-        "bahlil-office"
+        "bahlil-office",
+        "sugar-planting-gpa",
+        "jhonlin-wanam-clearing"
       ],
       "body": [
         {
@@ -3842,7 +5409,8 @@
       "reading": [
         "S11",
         "S43",
-        "S44"
+        "S44",
+        "P01"
       ],
       "scene": {
         "isam": [
@@ -3900,6 +5468,10 @@
         "novanto": [
           570,
           250
+        ],
+        "gpa": [
+          400,
+          320
         ]
       },
       "entryClaim": "isam-jhonlin"
@@ -3926,7 +5498,9 @@
         "haris-acquittal",
         "fatia-appeal",
         "security-2024",
-        "security-2025"
+        "security-2025",
+        "rice-command-assignment",
+        "rice-field-command"
       ],
       "body": [
         {
@@ -3983,7 +5557,8 @@
         "S01",
         "S02",
         "S25",
-        "D05"
+        "D05",
+        "P01"
       ],
       "scene": {
         "coalition": [
@@ -4033,6 +5608,18 @@
         "government-security": [
           550,
           570
+        ],
+        "agriculture": [
+          100,
+          320
+        ],
+        "cenderawasih": [
+          250,
+          320
+        ],
+        "rice-project": [
+          400,
+          320
         ]
       },
       "entryClaim": "military-institutional"
@@ -4057,7 +5644,9 @@
         "yosepha-organising",
         "beanal-litigation",
         "grasberg-recovery-2026",
-        "grasberg-extension-2026"
+        "grasberg-extension-2026",
+        "yosepha-freeport",
+        "yosepha-hamak"
       ],
       "body": [
         {
@@ -4169,6 +5758,10 @@
         "grasberg-extension": [
           850,
           680
+        ],
+        "hamak": [
+          700,
+          210
         ]
       },
       "entryClaim": "security-2025"
@@ -4190,7 +5783,9 @@
         "pindad-bin",
         "kiwirok-investigation",
         "ngalum-displacement",
-        "bamsoet-statement"
+        "bamsoet-statement",
+        "bamsoet-tni-call",
+        "bamsoet-bin-call"
       ],
       "body": [
         {
@@ -4283,6 +5878,10 @@
         "mpr-statement": [
           650,
           570
+        ],
+        "tni": [
+          550,
+          210
         ]
       },
       "entryClaim": "kiwirok-investigation"
@@ -4304,7 +5903,13 @@
         "aji-challenge",
         "safenet-challenge",
         "shutdown-ruling",
-        "blocking-constitutional"
+        "blocking-constitutional",
+        "strick-study",
+        "thomas-study",
+        "insightid-campaign",
+        "influence-network-study",
+        "amnesty-spyware-study",
+        "spyware-polri-context"
       ],
       "body": [
         {
@@ -4334,6 +5939,17 @@
             "pmy": "Penyelidikan lain memeriksa narasi daring terkoordinasi dan perdagangan perangkat pengintai ke Indonesia. Pertanyaannya meluas dari akses menuju pembentukan informasi dan pengawasan. Cakupan bukti tetap perlu dipertahankan: identifikasi jejaring akun atau produk ekspor tidak otomatis mengidentifikasi penyandang dana akhirnya atau orang Papua tertentu sebagai sasaran."
           },
           "claimIds": []
+        },
+        {
+          "text": {
+            "en": "Information control also involved the production and amplification of narratives. The 2019 Strick–Thomas investigation reconstructs the InsightID-linked campaign and a separate smaller operation. Amnesty’s later national research traces surveillance imports without identifying particular Papuan targets. These are different mechanisms and evidence trails, alongside the documented shutdown and its legal challenge.",
+            "pmy": "Kendali informasi juga melibatkan produksi serta amplifikasi narasi. Penyelidikan Strick–Thomas 2019 merekonstruksi kampanye yang dikaitkan dengan InsightID dan operasi kedua yang lebih kecil. Riset nasional Amnesty berikutnya menelusuri impor pengawasan tanpa mengidentifikasi sasaran orang Papua tertentu. Mekanisme serta jejak buktinya berbeda, berdampingan dengan pemutusan internet dan gugatan hukumnya."
+          },
+          "claimIds": [
+            "insightid-campaign",
+            "influence-network-study",
+            "amnesty-spyware-study"
+          ]
         }
       ],
       "questions": [
@@ -4392,6 +6008,38 @@
         "blocking-law": [
           490,
           550
+        ],
+        "strick": [
+          400,
+          210
+        ],
+        "influence-study": [
+          550,
+          210
+        ],
+        "thomas": [
+          700,
+          210
+        ],
+        "insightid": [
+          850,
+          210
+        ],
+        "influence-network": [
+          100,
+          320
+        ],
+        "amnesty": [
+          250,
+          320
+        ],
+        "spyware-study": [
+          400,
+          320
+        ],
+        "polri": [
+          550,
+          320
         ]
       },
       "entryClaim": "shutdown-ruling"
@@ -4518,7 +6166,8 @@
         "case-puncak-displacement-aid-appeal",
         "case-puncak-displacement-operations-2023",
         "case-puncak-komnas-visit",
-        "case-puncak-displacement-q2-2026"
+        "case-puncak-displacement-q2-2026",
+        "bamsoet-tni-call"
       ],
       "body": [
         {
@@ -4574,7 +6223,8 @@
         "T-nduga-displacement-aid-appeal",
         "T-nduga-displacement-operations-2023",
         "T-puncak-komnas-visit",
-        "T-nduga-displacement-q2-2026"
+        "T-nduga-displacement-q2-2026",
+        "S35"
       ],
       "scene": {
         "beoga-health-workers": [
@@ -4608,6 +6258,14 @@
         "puncak-displaced": [
           495,
           460
+        ],
+        "bamsoet": [
+          400,
+          210
+        ],
+        "tni": [
+          550,
+          210
         ]
       },
       "entryClaim": "case-puncak-komnas-visit"

@@ -4,7 +4,6 @@ import ResourceList from '../components/resources/ResourceList.astro';
 import {libraryForTopic} from '../data/library';
 import TopicTimeline from '../components/TopicTimeline.astro';
 import InvestigationCanvas from '../components/investigation/InvestigationCanvas.astro';
-import CaseAnalysis from '../components/investigation/CaseAnalysis';
 import {topicTimelines} from '../data/topic-timelines';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import MapShell from '../components/map/MapShell.astro';
@@ -57,7 +56,7 @@ const mapView:MapViewId=
     </aside>
   </section>
 
-  {issue.slug==='south-papua-food-energy-estate'&&<><InvestigationCanvas locale={locale}/><CaseAnalysis client:load locale={locale} compact/></>}
+  {issue.slug==='south-papua-food-energy-estate'&&<InvestigationCanvas locale={locale}/>}
 
   <nav class="topic-local-index" aria-label={locale==='en'?'On this page':'Di halaman ini'}>{issue.slug!=='south-papua-food-energy-estate'&&initialState&&<a href="#overview">{locale==='en'?'Current':'Terkini'}</a>}{background&&<a href="#background">{locale==='en'?'Background':'Latar belakang'}</a>}{topicTimelines[issue.slug]&&<a href="#timeline">{locale==='en'?'Timeline':'Linimasa'}</a>}<a href="#latest">{locale==='en'?'News':'Berita'}</a><a href="#sources">{locale==='en'?'Library':'Pustaka'}</a><a href="#places">{locale==='en'?'Places':'Lokasi'}</a></nav>
   {issue.slug!=='south-papua-food-energy-estate'&&initialState&&<section class="following-state" id="overview" data-following-state data-slug={issue.slug}><header><h2>{locale==='en'?'Current picture':'Gambaran terkini'}</h2><time data-state-date datetime={initialState.asOf}>{new Date(initialState.asOf+'T00:00:00Z').toLocaleDateString(locale==='en'?'en-GB':'id-ID',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'})}</time></header><p data-state-summary>{t(initialState.summary,locale)}</p><div data-state-questions>{initialState.questions.map(q=><p>{t(q,locale)}</p>)}</div><details class="following-reference-list"><summary>{locale==='en'?'Sources':'Sumber'}</summary><div data-state-sources>{note?.backgroundSources?.filter(source=>initialState.sourceIds.includes(source.id)).map(source=><a href={source.url} target="_blank" rel="noreferrer"><strong>{source.title}</strong><small>{source.publisher}</small></a>)}</div></details></section>}

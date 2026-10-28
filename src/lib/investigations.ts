@@ -1,20 +1,29 @@
-import type {InvestigativeRecord,RecordClaim} from '../data/investigative-record';
+import type {InvestigativeRecord,RecordClaim,RelationCategory} from '../data/investigative-record';
 export type DeskView='connections'|'timeline'|'documents';
-export type DeskSelection={caseId:string;entity:string;claim:string;view:DeskView;evidence:boolean};
+export type DeskSelection={caseId:string;entity:string;claim:string;view:DeskView;evidence:boolean;source?:string;scope?:'related'|'all';lens?:RelationCategory};
+export function deskClaims(data:InvestigativeRecord,caseId:string,scope?:string){
+ const base=caseClaims(data,caseId);if(scope==='all')return data.claims;if(scope!=='related')return base;
+ const ids=new Set(base.flatMap(c=>[c.subject,c.object]));
+ const files=new Set(data.cases.filter(c=>data.claims.some(k=>c.claimIds.includes(k.id)&&(ids.has(k.subject)||ids.has(k.object)))).map(c=>c.id));
+ return data.claims.filter(c=>c.cases.some(id=>files.has(id)));
+}
 export const initialDeskSelection:DeskSelection={caseId:'merauke',entity:'',claim:'',view:'connections',evidence:false};
 export function normaliseSelection(input:Partial<DeskSelection>,data:InvestigativeRecord):DeskSelection{
  const dossier=data.cases.find(c=>c.id===input.caseId)||data.cases[0];
- const claims=data.claims.filter(c=>dossier.claimIds.includes(c.id));
+ const scope=['related','all'].includes(input.scope||'')?input.scope:undefined;
+ const claims=deskClaims(data,dossier.id,scope);
  const claim=claims.find(c=>c.id===input.claim)?.id||'';
  const entity=claims.some(c=>c.subject===input.entity||c.object===input.entity)?input.entity||'':'';
- return {caseId:dossier.id,entity,claim,view:['connections','timeline','documents'].includes(input.view||'')?input.view!:'connections',evidence:!!input.evidence&&!!(claim||entity)};
+ const source=data.sources.some(s=>s.id===input.source&&(dossier.reading.includes(s.id)||claims.some(c=>c.evidence.some(e=>e.source===s.id))))?input.source:undefined;
+ const lens=['authority','business','land','accountability'].includes(input.lens||'')?input.lens:undefined;
+ return {caseId:dossier.id,entity,claim,view:['connections','timeline','documents'].includes(input.view||'')?input.view!:'connections',evidence:!!input.evidence&&!!(claim||entity||source),...(scope?{scope}:{}),...(lens?{lens}:{}),...(source?{source}:{})};
 }
 export function selectionFromURL(url:URL,data:InvestigativeRecord):DeskSelection{
- return normaliseSelection({caseId:url.searchParams.get('case')||'',entity:url.searchParams.get('entity')||'',claim:url.searchParams.get('claim')||'',view:url.searchParams.get('view') as DeskView,evidence:url.searchParams.get('evidence')==='open'},data);
+ return normaliseSelection({caseId:url.searchParams.get('case')||'',entity:url.searchParams.get('entity')||'',claim:url.searchParams.get('claim')||'',source:url.searchParams.get('source')||undefined,scope:url.searchParams.get('scope') as DeskSelection['scope'],lens:url.searchParams.get('lens') as RelationCategory,view:url.searchParams.get('view') as DeskView,evidence:url.searchParams.get('evidence')==='open'},data);
 }
 export function selectionURL(url:URL,state:DeskSelection){
  const next=new URL(url);next.hash='';next.searchParams.set('case',state.caseId);
- for(const [key,value] of [['entity',state.entity],['claim',state.claim],['view',state.view==='connections'?'':state.view],['evidence',state.evidence?'open':'']]){if(value)next.searchParams.set(key,value);else next.searchParams.delete(key);}
+ for(const [key,value] of [['entity',state.entity],['claim',state.claim],['source',state.source],['scope',state.scope],['lens',state.lens],['view',state.view==='connections'?'':state.view],['evidence',state.evidence?'open':'']]){if(value)next.searchParams.set(key,value);else next.searchParams.delete(key);}
  return next;
 }
 export function caseClaims(data:InvestigativeRecord,id:string){return data.claims.filter(c=>data.cases.find(k=>k.id===id)?.claimIds.includes(c.id));}
