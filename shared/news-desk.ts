@@ -38,3 +38,8 @@ export function provenanceSummary(item:any,locale:'en'|'pmy'){
  return {kind:groups.length===1?groups[0].kind:'mixed',label:groups.length===1?groups[0][locale]:groups.length?(locale==='en'?'Mixed sources':'Beragam sumber'):'',names:sources.map(s=>s.publisher||s.name).filter(Boolean).join(' · ')};
 }
 export function newsCount(value:number,kind:'report'|'source',locale:'en'|'pmy'){const n=Number.isFinite(Number(value))?Number(value):0;return `${n} ${locale==='pmy'?(kind==='report'?'laporan':'sumber'):kind+(n===1?'':'s')}`}
+export function newsCategory(value:unknown,locale:'en'|'pmy'){
+ const key=String(value||'current').toLowerCase().replaceAll('_',' ');
+ const labels:Record<string,{en:string;pmy:string}>={'human rights':{en:'Human rights',pmy:'HAM'},environment:{en:'Environment',pmy:'Lingkungan'},land:{en:'Land',pmy:'Tanah'},politics:{en:'Politics',pmy:'Politik'},culture:{en:'Culture',pmy:'Budaya'},regional:{en:'Across Papua',pmy:'Kabar Papua'},current:{en:'News',pmy:'Berita'},other:{en:'News',pmy:'Berita'}};
+ return labels[key]?.[locale]||(locale==='pmy'?'Berita':String(value||'News'));
+}
