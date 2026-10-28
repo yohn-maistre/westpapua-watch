@@ -71,4 +71,3 @@ export async function readCurrent(env:any,url:URL){
   const meta:any=await env.DB.prepare(`SELECT MAX(fetched_at) last_checked,COUNT(*) articles_total FROM articles`).first();const publication:any=await env.DB.prepare(`SELECT MAX(last_published_at) latest FROM developments WHERE status='published'`).first();
   return {items,lead_reports,selection:{version:1,desk,place,scope:'published',total:selected.length},place_options:[...new Map((placeIndex.results||[]).map((r:any)=>[r.place_slug,{slug:r.place_slug,name:r.name}])).values()],pagination:{page,page_size:pageSize,has_more:hasMore,next_page:hasMore?page+1:null},meta:{engine_activity:await engineActivity(env),last_published_at:publication?.latest||null,last_checked:meta?.last_checked||null,articles_total:Number(meta?.articles_total||0)}};
 }
-
