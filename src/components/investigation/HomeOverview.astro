@@ -21,6 +21,7 @@ const cases=overviewCases.map(item=>({...item,previews:previews(item.slug),name:
   <div class="home-overview-reference"><a data-overview-source href={selected.source} target="_blank" rel="noreferrer">{selected.publisher} <HistoryArrow direction="up-right"/></a><a data-overview-history href={withLocale(`/history/?path=${selected.path}#${selected.history}`,locale)}>{en?'History':'Sejarah'} <HistoryArrow direction="up-right"/></a></div>
  </div>
  <div class="home-overview-geography"><MapShell locale={locale} mode="home" overviewCases={overviewCases}/></div>
+ <p class="home-overview-hint">{en?'Choose a place to see it on the map.':'Pilih lokasi untuk melihatnya di peta.'}</p>
  <nav class="home-overview-cases" aria-label={en?'Cases on the map':'Kasus pada peta'}>{cases.map((item,index)=><button type="button" data-overview-case={item.slug} aria-pressed={index===0}><small>{String(index+1).padStart(2,'0')}</small><span>{item.name}</span><i aria-hidden="true"><HistoryArrow direction="up-right"/></i></button>)}</nav>
  <script type="application/json" data-overview-data set:html={JSON.stringify(cases).replace(/</g,'\\u003c')}/>
 </section>

@@ -15,11 +15,13 @@ function parseSyndication(xml:string,source:SourceConfig,limit=24):DiscoveredIte
   }catch{return[]}
 }
 
-function parseHomepage(html:string,source:SourceConfig):DiscoveredItem[]{
+export function parseHomepage(html:string,source:SourceConfig):DiscoveredItem[]{
   const seen=new Set<string>();const result:DiscoveredItem[]=[];
   for(const m of html.matchAll(/<a\b[^>]*href=["']([^"'#]+)["'][^>]*>([\s\S]*?)<\/a>/gi)){
     const url=absolute(m[1],source.homepage),title=strip(m[2]);if(!url||!title||title.length<18||seen.has(url))continue;
     if(!publisherHost(source,url)||/\/(tag|category|author|page)\//i.test(url))continue;
+    if(source.articlePathPrefix&&!new URL(url).pathname.startsWith(source.articlePathPrefix))continue;
+    if(new URL(url).pathname.replace(/\/$/,'')===(source.articlePathPrefix||'').replace(/\/$/,''))continue;
     seen.add(url);result.push({sourceId:source.id,url,title});if(result.length>=24)break;
   }
   return result;
@@ -35,6 +37,7 @@ function sitemapUrls(xml:string,source:SourceConfig,cutoff:number){
 async function fetchText(url:string,timeout=12000){try{const res=await fetch(url,{headers,signal:AbortSignal.timeout(timeout)});return res.ok?await res.text():''}catch{return''}}
 
 export async function discoverSource(source:SourceConfig):Promise<DiscoveredItem[]>{
+  if(source.discoveryPages?.length){const batches=await Promise.all(source.discoveryPages.slice(0,3).map(async url=>publisherHost(source,url)?parseHomepage(await fetchText(url),source):[]));const seen=new Set<string>();const items=interleave(batches).filter(x=>!seen.has(x.url)&&seen.add(x.url)).slice(0,24);if(items.length)return items}
   if(source.feed){const xml=await fetchText(source.feed);if(xml){const items=parseSyndication(xml,source,24);if(items.length)return items}}
   const html=await fetchText(source.homepage);return html?parseHomepage(html,source):[];
 }

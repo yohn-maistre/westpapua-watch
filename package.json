@@ -26,7 +26,7 @@
     "geo:compile": "bash geo/compile.sh",
     "geo:build": "npm run geo:source && npm run geo:compile",
     "check:polish": "node scripts/tests/polish.mjs",
-    "check:system": "node scripts/tests/system.mjs",
+    "check:system": "node scripts/tests/system.mjs && node scripts/tests/news-desk.mjs && node scripts/tests/news-engine.mjs",
     "check:explorer": "node scripts/tests/explorer.mjs",
     "check:investigation": "node scripts/tests/investigation.mjs && node scripts/tests/investigative-record.mjs && node scripts/tests/following-state.mjs && node scripts/tests/discovery.mjs"
   },

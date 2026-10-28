@@ -1,3 +1,4 @@
+import {newsDesk,matchesNewsDesk,matchesNewsPlace,orderNews} from '../../../shared/news-desk';
 import {engineActivity} from './activity';
 import {matchesFollowing,matchesFollowingEvidence} from '../../../shared/following';
 import {resources} from './library-api';
@@ -52,15 +53,25 @@ async function current(env:any,url:URL){
   const page=Math.max(1,Math.floor(Number(url.searchParams.get('page')||1)||1));
   const pageSize=Math.min(24,Math.max(6,Math.floor(Number(url.searchParams.get('limit')||12)||12)));
   const offset=(page-1)*pageSize;
+  const desk=newsDesk(url.searchParams.get('desk')||'all'),place=url.searchParams.get('place')||'';
+  // Retrieve compact episode metadata first; page only AFTER filtering/ranking.
+  // This never limits the reader to whatever happened to be on the first page.
   const rows:any=await env.DB.prepare(`SELECT d.id,d.publication_kind,d.excerpt_article_id,d.issue_slug,d.title_en,d.title_id,d.summary_en,d.summary_id,d.updated_at,d.first_seen_at,d.last_growth_at,d.ranking_score,
-    COUNT(DISTINCT CASE WHEN a.content_hash IS NOT NULL THEN a.content_hash ELSE 'id:' || a.id END) article_count,
-    COUNT(DISTINCT CASE WHEN a.syndicated_from_article_id IS NULL THEN a.publisher_id END) source_count,
+    COUNT(DISTINCT COALESCE(a.content_hash,'id:' || a.id)) article_count,
+    COUNT(DISTINCT CASE WHEN a.syndicated_from_article_id IS NULL THEN CASE WHEN a.publisher_id IN ('antara','antara-papua') THEN 'antara' ELSE a.publisher_id END END) source_count,
     strftime('%Y-%m-%dT%H:%M:%SZ',MIN(julianday(a.published_at))) first_report_at,
-    strftime('%Y-%m-%dT%H:%M:%SZ',MAX(julianday(a.published_at))) latest_report_at
+    strftime('%Y-%m-%dT%H:%M:%SZ',MAX(julianday(a.published_at))) latest_report_at,
+    GROUP_CONCAT(DISTINCT COALESCE(sp.watch_desk,'') || ' ' || COALESCE(sp.topics_json,'')) search_text,
+    json_group_array(DISTINCT json_object('publisher_id',p.id,'publisher',p.name,'role',p.role)) sources_json,
+    json_group_array(DISTINCT COALESCE(sp.item_type,'')) item_types_json
     FROM developments d JOIN development_articles da ON da.development_id=d.id JOIN articles a ON a.id=da.article_id
-    WHERE d.status='published' GROUP BY d.id
-    ORDER BY MAX(julianday(COALESCE(a.published_at,a.fetched_at))) DESC,d.ranking_score DESC,d.id DESC LIMIT ? OFFSET ?`).bind(pageSize+1,offset).all();
-  const raw=(rows.results||[]),hasMore=raw.length>pageSize,items=[];
+    JOIN publishers p ON p.id=a.publisher_id LEFT JOIN story_packets sp ON sp.article_id=a.id
+    WHERE d.status='published' GROUP BY d.id`).all();
+  const placeIndex:any=await env.DB.prepare(`SELECT dp.development_id,dp.place_slug,p.name FROM development_places dp JOIN places p ON p.slug=dp.place_slug`).all();
+  const placeById=new Map<number,string[]>();for(const r of placeIndex.results||[]){const list=placeById.get(Number(r.development_id))||[];list.push(r.place_slug);placeById.set(Number(r.development_id),list)}
+  const candidates=(rows.results||[]).map((r:any)=>({...r,sources:JSON.parse(r.sources_json||'[]'),item_types:parseArray(r.item_types_json),place_slugs:placeById.get(Number(r.id))||[]}));
+  const selected=orderNews(candidates.filter((x:any)=>matchesNewsDesk(x,desk)&&matchesNewsPlace(x,place)),desk);
+  const raw=selected.slice(offset,offset+pageSize+1),hasMore=raw.length>pageSize,items=[];
   for(const d of raw.slice(0,pageSize)){
     const [image,article,issueRows,placeRows]:any[]=await Promise.all([
       imageForDevelopment(env,d.id),
@@ -69,12 +80,12 @@ async function current(env:any,url:URL){
     ]);
     const packetPlaces=parseArray(article?.places_json),topics=parseArray(article?.topics_json),issueSlugs=issueRows.map((x:any)=>String(x.slug));
     const primaryIssue=issueRows.find((x:any)=>x.relation==='primary')?.slug||issueSlugs[0]||d.issue_slug||null;
-    items.push({id:d.id,publication_kind:d.publication_kind,excerpt_article_id:d.excerpt_article_id,story_url:`/story/?id=${d.id}`,issue_slug:primaryIssue,issues:issueRows,places:placeRows,title:{en:d.title_en,id:d.title_id||d.title_en},summary:{en:d.summary_en,id:d.summary_id||d.summary_en},category:String(article?.watch_desk||'current').replaceAll('_',' '),place:placeRows[0]?.name||packetPlaces[0]||null,topics:topics.slice(0,8),tags:topicTagsFor(article?.watch_desk,issueSlugs.length?issueSlugs:[String(d.issue_slug||'')],topics),updated_at:d.updated_at,first_seen_at:d.first_seen_at,last_growth_at:d.last_growth_at,first_report_at:d.first_report_at,latest_report_at:d.latest_report_at,ranking_score:d.ranking_score,article_count:d.article_count,source_count:d.source_count,is_developing:Number(d.article_count)>1,latest_source:article?{publisher_id:article.publisher_id,publisher:article.publisher,role:article.role}:null,image:image?{url:image.url,source_url:image.source_url,credit:image.credit||image.publisher,caption:image.caption,rights_status:image.rights_status}:null});
+    items.push({id:d.id,publication_kind:d.publication_kind,excerpt_article_id:d.excerpt_article_id,story_url:`/story/?id=${d.id}`,issue_slug:primaryIssue,issues:issueRows,places:placeRows,title:{en:d.title_en,id:d.title_id||d.title_en},summary:{en:d.summary_en,id:d.summary_id||d.summary_en},category:String(article?.watch_desk||'current').replaceAll('_',' '),place:placeRows[0]?.name||packetPlaces[0]||null,topics:topics.slice(0,8),tags:topicTagsFor(article?.watch_desk,issueSlugs.length?issueSlugs:[String(d.issue_slug||'')],topics),updated_at:d.updated_at,first_seen_at:d.first_seen_at,last_growth_at:d.last_growth_at,first_report_at:d.first_report_at,latest_report_at:d.latest_report_at,ranking_score:d.ranking_score,article_count:d.article_count,source_count:d.source_count,is_developing:Number(d.article_count)>1,sources:d.sources,item_types:d.item_types,latest_source:article?{publisher_id:article.publisher_id,publisher:article.publisher,role:article.role}:null,image:image?{url:image.url,source_url:image.source_url,credit:image.credit||image.publisher,caption:image.caption,rights_status:image.rights_status}:null});
   }
   let lead_reports:any[]=[];
   if(page===1&&items[0]?.id){const rr:any=await env.DB.prepare(`SELECT a.id,a.title,a.canonical_url,a.published_at,a.fetched_at,p.name publisher,p.role,sp.summary packet_summary,sp.what_changed FROM development_articles da JOIN articles a ON a.id=da.article_id JOIN publishers p ON p.id=a.publisher_id LEFT JOIN story_packets sp ON sp.article_id=a.id WHERE da.development_id=? ORDER BY julianday(COALESCE(a.published_at,a.fetched_at)) DESC LIMIT 8`).bind(items[0].id).all();lead_reports=rr.results||[]}
   const meta:any=await env.DB.prepare(`SELECT MAX(fetched_at) last_checked,COUNT(*) articles_total FROM articles`).first();const publication:any=await env.DB.prepare(`SELECT MAX(last_published_at) latest FROM developments WHERE status='published'`).first();
-  return {items,lead_reports,pagination:{page,page_size:pageSize,has_more:hasMore,next_page:hasMore?page+1:null},meta:{engine_activity:await engineActivity(env),last_published_at:publication?.latest||null,last_checked:meta?.last_checked||null,articles_total:Number(meta?.articles_total||0)}};
+  return {items,lead_reports,selection:{version:1,desk,place,scope:'published',total:selected.length},place_options:[...new Map((placeIndex.results||[]).map((r:any)=>[r.place_slug,{slug:r.place_slug,name:r.name}])).values()],pagination:{page,page_size:pageSize,has_more:hasMore,next_page:hasMore?page+1:null},meta:{engine_activity:await engineActivity(env),last_published_at:publication?.latest||null,last_checked:meta?.last_checked||null,articles_total:Number(meta?.articles_total||0)}};
 }
 
 async function development(env:any,id:number){

@@ -1,3 +1,4 @@
+import {publicationDate,validPublicationDate} from './publication-date';
 import { Readability } from '@mozilla/readability';
 import { Defuddle } from 'defuddle/node';
 import { parseHTML } from 'linkedom';
@@ -16,7 +17,7 @@ function fastFromHtml(html:string,url:string,source:SourceConfig):ExtractedArtic
   const body=cleanText(articleHtml).slice(0,65000);const title=(attr(html,'og:title')||decode(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.replace(/\s+/g,' ').trim()||'')).slice(0,500);if(!title||body.length<250)return null;
   const canonical=safeUrl(html.match(/<link[^>]+rel=["'][^"']*canonical[^"']*["'][^>]+href=["']([^"']+)["']/i)?.[1],url)||url;
   const image=safeUrl(attr(html,'og:image')||attr(html,'twitter:image')||undefined,url);
-  return {canonicalUrl:canonical,title,body,description:(attr(html,'description')||attr(html,'og:description')||body.slice(0,420)).slice(0,1000),publishedAt:attr(html,'article:published_time')||attr(html,'date')||undefined,author:attr(html,'author')||undefined,language:html.match(/<html[^>]+lang=["']([^"']+)/i)?.[1]||source.language[0],extractionMethod:'fetch+fallback',image:image?{url:image,credit:attr(html,'twitter:creator')||attr(html,'author')||undefined,caption:attr(html,'og:image:alt')||undefined,sourceUrl:url}:undefined};
+  return {canonicalUrl:canonical,title,body,description:(attr(html,'description')||attr(html,'og:description')||body.slice(0,420)).slice(0,1000),publishedAt:publicationDate(html,Date.now(),url),author:attr(html,'author')||undefined,language:html.match(/<html[^>]+lang=["']([^"']+)/i)?.[1]||source.language[0],extractionMethod:'fetch+fallback',image:image?{url:image,credit:attr(html,'twitter:creator')||attr(html,'author')||undefined,caption:attr(html,'og:image:alt')||undefined,sourceUrl:url}:undefined};
 }
 
 function metadata(html:string,url:string){
@@ -26,7 +27,7 @@ function metadata(html:string,url:string){
     canonical,
     title:(meta('og:title')||document.querySelector('title')?.textContent||'').trim(),
     description:(meta('description')||meta('og:description')||'').trim(),
-    publishedAt:(meta('article:published_time')||meta('date')||'').trim()||undefined,
+    publishedAt:publicationDate(html,Date.now(),url),
     author:(meta('author')||'').trim()||undefined,
     language:document.documentElement.getAttribute('lang')||undefined,
     image:safeUrl(meta('og:image')||meta('twitter:image')||undefined,url),
@@ -60,7 +61,7 @@ async function firecrawl(url:string,source:SourceConfig,env:any):Promise<Extract
   try{
     const response=await fetch('https://api.firecrawl.dev/v2/scrape',{method:'POST',headers:{authorization:`Bearer ${env.FIRECRAWL_API_KEY}`,'content-type':'application/json'},body:JSON.stringify({url,formats:['markdown','html'],onlyMainContent:true,onlyCleanContent:false,maxAge:0,storeInCache:false,zeroDataRetention:true,timeout:30000}),signal:AbortSignal.timeout(35000)});if(!response.ok)return null;
     const payload:any=await response.json();const data=payload?.data||{};if(data.html){const parsed=await fromHtml(String(data.html),url,source,'browser-run');if(parsed)return {...parsed,extractionMethod:'firecrawl'}}
-    const body=String(data.markdown||'').replace(/\s+/g,' ').trim();if(body.length<250)return null;const meta=data.metadata||{};return {canonicalUrl:String(meta.sourceURL||meta.url||url),title:String(meta.title||url).slice(0,500),description:String(meta.description||body.slice(0,420)).slice(0,1000),body:body.slice(0,65000),language:String(meta.language||source.language[0]),extractionMethod:'firecrawl'};
+    const body=String(data.markdown||'').replace(/\s+/g,' ').trim();if(body.length<250)return null;const meta=data.metadata||{};return {canonicalUrl:String(meta.sourceURL||meta.url||url),title:String(meta.title||url).slice(0,500),description:String(meta.description||body.slice(0,420)).slice(0,1000),body:body.slice(0,65000),publishedAt:validPublicationDate(meta.publishedTime||meta.datePublished),language:String(meta.language||source.language[0]),extractionMethod:'firecrawl'};
   }catch{return null}
 }
 
