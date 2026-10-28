@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/build-search-corpus.mjs && astro build",
+    "build": "node scripts/build-investigative-layouts.mjs && node scripts/build-search-corpus.mjs && astro build",
     "preview": "astro preview",
     "cf:dev": "npm run build && wrangler pages dev dist",
     "cf:deploy": "npm run build && wrangler pages deploy dist --project-name=westpapua-watch",
@@ -28,7 +28,7 @@
     "check:polish": "node scripts/tests/polish.mjs",
     "check:system": "node scripts/tests/system.mjs && node scripts/tests/news-desk.mjs && node scripts/tests/news-engine.mjs",
     "check:explorer": "node scripts/tests/explorer.mjs",
-    "check:investigation": "node scripts/tests/investigation.mjs && node scripts/tests/investigative-record.mjs && node scripts/tests/following-state.mjs && node scripts/tests/discovery.mjs"
+    "check:investigation": "node scripts/tests/investigation.mjs && node scripts/tests/investigative-record.mjs && node scripts/tests/following-state.mjs && node scripts/tests/discovery.mjs && node scripts/tests/network-experience.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.5",
@@ -39,6 +39,7 @@
     "@mozilla/readability": "0.6.0",
     "@rowanmanning/feed-parser": "2.1.4",
     "astro": "7.2.9",
+    "d3-force": "3.0.0",
     "defuddle": "0.19.3",
     "linkedom": "0.18.13",
     "maplibre-gl": "5.24.0",
@@ -47,6 +48,7 @@
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
+    "@types/d3-force": "3.0.10",
     "esbuild": "0.28.2",
     "miniflare": "5.20260828.0-alpha",
     "wrangler": "4.127.1"

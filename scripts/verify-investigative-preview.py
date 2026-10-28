@@ -54,7 +54,7 @@ async def main():
     assert await page.locator('.case-records-grid').inner_text()
     first=case['claimIds'][0]
     await page.locator('[data-network-claim="'+first+'"]').focus();await page.keyboard.press('Enter');assert 'claim='+first in page.url
-    assert await page.locator('[data-case-reading-title]').inner_text()==next(c for c in DATA['claims'] if c['id']==first)['title'][locale]
+    assert await page.locator('.case-evidence [data-case-reading-title]').first.inner_text()==next(c for c in DATA['claims'] if c['id']==first)['title'][locale]
     await page.locator('[data-case-evidence]').click();await page.locator('.case-source-dialog').wait_for(state='visible')
     expected=next(c for c in DATA['claims'] if c['id']==first)['evidence'][0]['source'];source=next(s for s in DATA['sources'] if s['id']==expected)
     assert await page.locator('.case-source-dialog .case-source-link').first.get_attribute('href')==source['url']
@@ -72,14 +72,14 @@ async def main():
    toggle=page.locator('[data-timeline-expand]');await toggle.click();assert await page.locator('[data-topic-timeline]').get_attribute('data-show-all')=='true';assert await page.locator('[data-timeline-entry]').count()==42;await toggle.click()
    for width in [1150,768,390,320]:
     await page.set_viewport_size({'width':width,'height':900});await ready(page,prefix+ROUTES['merauke']+'#explore')
-    assert await page.locator('[data-network-node]').count()==17,'Narrow windows must retain the whole case'
+    assert await page.locator('[data-network-node]').count()==len(next(c for c in DATA['cases'] if c['id']=='merauke')['scene']),'Narrow windows must retain the whole case'
     assert await page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
     box=await page.locator('.case-network-svg').bounding_box();await page.mouse.move(min(width-20,box['x']+box['width']/2),max(170,min(700,box['y']+100)))
     await wheel_scroll(page,400)
     await page.locator('[data-network-node=jokowi]').scroll_into_view_if_needed();await page.locator('[data-network-node=jokowi]').click()
     if width<=800:
      await page.locator('.case-source-dialog').wait_for(state='visible');assert 'Joko Widodo' in await page.locator('.case-source-dialog').inner_text();await page.keyboard.press('Escape')
-    assert await page.locator('[data-case-reading-title]').inner_text()=='Joko Widodo'
+    assert await page.locator('.case-evidence [data-case-reading-title]').first.inner_text()=='Joko Widodo'
     await page.locator('[data-network-expand]').click();await page.locator('.case-network-dialog').wait_for(state='visible');await page.keyboard.press('Escape');await unlocked(page)
     await page.locator('[data-case-workbench]').scroll_into_view_if_needed();await page.screenshot(path=str(OUT/f'{locale}-merauke-{width}.png'))
     checks.append(locale+': '+str(width)+' full network, real scrolling, entity reader, expansion and reflow')
