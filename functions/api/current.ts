@@ -1,14 +1,21 @@
+import {readCurrent} from '../../services/watch-engine/src/news-read';
 import {newsDesk,matchesNewsDesk,matchesNewsPlace,orderNews,publisherFamily} from '../../shared/news-desk';
-type Env={WATCH_ENGINE?:Fetcher};
+type Env={WATCH_ENGINE?:Fetcher;NEWS_DB?:D1Database};
 const headers={'content-type':'application/json; charset=utf-8','cache-control':'public, max-age=60, stale-while-revalidate=180','x-content-type-options':'nosniff'};
 export const onRequestGet:PagesFunction<Env>=async({env,request,waitUntil})=>{
- if(!env.WATCH_ENGINE)return Response.json({items:[],engine:false},{status:503,headers:{...headers,'cache-control':'no-store'}});
+ if(!env.WATCH_ENGINE&&!env.NEWS_DB)return Response.json({items:[],engine:false},{status:503,headers:{...headers,'cache-control':'no-store'}});
  try{
   const incoming=new URL(request.url),url=new URL('https://watch.internal/current');
   for(const key of ['page','limit']){const value=incoming.searchParams.get(key);if(value&&/^\d{1,6}$/.test(value))url.searchParams.set(key,value)}
   const explicit=incoming.searchParams.has('desk')||incoming.searchParams.has('place'),desk=newsDesk(incoming.searchParams.get('desk')||'all'),place=(incoming.searchParams.get('place')||'').replace(/[^a-z0-9-]/g,'').slice(0,100);
   if(explicit){url.searchParams.set('desk',desk);if(place)url.searchParams.set('place',place)}
-  const upstream=await env.WATCH_ENGINE.fetch(new Request(url,{headers:{accept:'application/json'}}));
+  if(env.NEWS_DB){
+   const nativeCache=typeof caches!=='undefined'?(caches as any).default:null,nativeKey=new Request(`${incoming.origin}/api/news-read-v2?${url.searchParams}`);
+   const cached=nativeCache?await nativeCache.match(nativeKey):null;if(cached)return cached;
+   const response=Response.json(await readCurrent({DB:env.NEWS_DB,ALLOW_EXTERNAL_IMAGES:'true'},url),{headers});
+   if(nativeCache)waitUntil(nativeCache.put(nativeKey,response.clone()));return response;
+  }
+  const upstream=await env.WATCH_ENGINE!.fetch(new Request(url,{headers:{accept:'application/json'}}));
   if(!upstream.ok)return new Response(upstream.body,{status:upstream.status,headers:{...headers,'cache-control':'no-store'}});
   if(!explicit)return new Response(upstream.body,{status:upstream.status,headers});
   const native:any=await upstream.json();if(native.selection?.version===1)return Response.json(native,{headers});

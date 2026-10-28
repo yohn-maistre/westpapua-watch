@@ -15,18 +15,22 @@ export function sourceProvenance(id:string,role?:string){const s=registry.find(x
 }
 const array=(v:any):any[]=>Array.isArray(v)?v:typeof v==='string'?(()=>{try{return JSON.parse(v)}catch{return[]}})():[];
 export function newsSignals(item:any){
- const text=[item.search_text,item.issue_slug,item.title_en,item.title_id,item.title?.en,item.title?.id,item.summary_en,item.summary_id,item.summary?.en,item.summary?.id,item.category,...array(item.topics),...array(item.tags),...array(item.issues).map(x=>typeof x==='string'?x:x.slug)].filter(Boolean).join(' ').toLowerCase();
- const rights=/human.rights|hak asasi|\bham\b|human-rights-security|conflict|konflik|military|militer|police|polisi|displac|pengungsi|kekerasan|penembakan|shooting|killings?|killed|tewas|torture|penyiksaan|detention|penahanan|civic.space|internet.shutdown|pemadaman internet|freedom.of.expression|kebebasan berekspresi/.test(text);
- const land=/land-indigenous-rights|\bland\b|environment|lingkungan|forest|hutan|customary|ulayat|tanah adat|masyarakat adat|mining|tambang|nikel|nickel|food.estate|mifee|deforest|conserv|konserv|pencemaran|pollution|climate|iklim|banjir|flood|kebakaran|wildfire/.test(text);
- const politics=/politics-governance|politic|politik|otonomi|autonomy|corrupt|korupsi|accountability|akuntabil|pemekaran|election|pemilu|pilkada|representation|perwakilan|diploma|united nations|perserikatan bangsa|\bpbb\b|self.determination|penentuan nasib/.test(text);
+ const text=[item.search_text,item.issue_slug,item.title_en,item.title_id,item.title?.en,item.title?.id,item.summary_en,item.summary_id,item.summary?.en,item.summary?.id,item.category,...array(item.topics),...array(item.issues).map(x=>typeof x==='string'?x:x.slug)].filter(Boolean).join(' ').toLowerCase();
+ const headline=[item.title_en,item.title_id,item.title?.en,item.title?.id].filter(Boolean).join(' ').toLowerCase();
+ const culturalOrSport=/poem|poetry|puisi|book launch|peluncuran buku|film screening|pemutaran film|football|sepak bola|tournament|turnamen|\bsport|olahraga/.test(headline);
+ const concreteNewsHook=/\bshoot|penembakan|\bkill|tewas|arrest|ditangkap|detain|ditahan|torture|penyiksaan|censor|sensor|\bban(?:ned)?\b|dilarang|intimid|threat|ancam|attack|serang|displac|pengungsi|evict|penggusuran|criminalis|kriminalis|court|pengadilan|ruling|putusan/.test(headline);
+ const thematic=culturalOrSport&&!concreteNewsHook;
+ const rights=!thematic&&/human.rights|hak asasi|\bham\b|human-rights-security|conflict|konflik|military|militer|police|polisi|displac|pengungsi|kekerasan|penembakan|shooting|killings?|killed|tewas|torture|penyiksaan|detention|penahanan|civic.space|internet.shutdown|pemadaman internet|freedom.of.expression|kebebasan berekspresi/.test(text);
+ const land=!thematic&&/land-indigenous-rights|\bland\b|environment|lingkungan|forest|hutan|customary|ulayat|tanah adat|masyarakat adat|mining|tambang|nikel|nickel|food.estate|mifee|deforest|conserv|konserv|pencemaran|pollution|climate|iklim|banjir|flood|kebakaran|wildfire/.test(text);
+ const politics=!thematic&&/politics-governance|politic|politik|otonomi|autonomy|corrupt|korupsi|accountability|akuntabil|pemekaran|election|pemilu|pilkada|representation|perwakilan|diploma|united nations|perserikatan bangsa|\bpbb\b|self.determination|penentuan nasib/.test(text);
  const report=array(item.item_types).some(x=>/^(investigation|investigative_report|research|report|analysis|kajian|penelitian)$/.test(x))||array(item.sources).some(x=>['monitoring_org','investigative_newsroom','environmental_newsroom'].includes(x.role));
- const regional=/regional|health|kesehatan|education|pendidikan|school|sekolah|hospital|rumah sakit|livelihood|penghidupan|culture|budaya|sport|olahraga|market|pasar|transport|infrastruktur|infrastructure|public.service|pelayanan publik/.test(text);
+ const regional=thematic||/regional|health|kesehatan|education|pendidikan|school|sekolah|hospital|rumah sakit|livelihood|penghidupan|culture|budaya|sport|olahraga|market|pasar|transport|infrastruktur|infrastructure|public.service|pelayanan publik/.test(text);
  return {rights,land,politics,report,regional,focus:rights||land||politics};
 }
 export function matchesNewsDesk(item:any,desk:NewsDesk){const s=newsSignals(item);return desk==='all'||s[desk]===true}
 export function matchesNewsPlace(item:any,place:string){if(!place)return true;return array(item.places).some(x=>x.slug===place)||array(item.place_slugs).includes(place)}
 export function orderNews(items:any[],desk:NewsDesk,now=Date.now()){
- const date=(x:any)=>Date.parse(x.latest_report_at||x.updated_at||'')||0;
+ const date=(x:any)=>Date.parse(x.latest_report_at||'')||0;
  // A dated weekly shelf stops old high-scoring stories becoming permanent leads.
  const shelf=(x:any)=>Math.floor((Math.floor(now/144e5)*144e5-date(x))/(7*864e5));
  const weight=(x:any)=>{const s=newsSignals(x);return +s.rights*3 + +s.land*2 + +s.politics + +s.report + Math.min(2,Math.log2(Number(x.source_count)||1))};
