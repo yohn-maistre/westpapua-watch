@@ -26,9 +26,10 @@
     "geo:compile": "bash geo/compile.sh",
     "geo:build": "npm run geo:source && npm run geo:compile",
     "check:polish": "node scripts/tests/polish.mjs",
-    "check:system": "node scripts/tests/system.mjs && node scripts/tests/news-desk.mjs && node scripts/tests/news-engine.mjs",
+    "check:system": "node scripts/tests/system.mjs && node scripts/tests/news-desk.mjs && node scripts/tests/news-engine.mjs && npm run check:sharing",
     "check:explorer": "node scripts/tests/explorer.mjs",
-    "check:investigation": "node scripts/tests/investigation.mjs && node scripts/tests/investigative-record.mjs && node scripts/tests/following-state.mjs && node scripts/tests/discovery.mjs && node scripts/tests/network-experience.mjs"
+    "check:investigation": "node scripts/tests/investigation.mjs && node scripts/tests/investigative-record.mjs && node scripts/tests/following-state.mjs && node scripts/tests/discovery.mjs && node scripts/tests/network-experience.mjs",
+    "check:sharing": "node scripts/tests/sharing.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.5",

@@ -40,7 +40,14 @@ const lang = locale==='pmy'?'id':'en';
   <meta name="color-scheme" content="dark" />
   <meta property="og:title" content={pageTitle} /><meta property="og:description" content={desc} /><meta property="og:type" content="website" />
   <meta property="og:url" content={canonical.toString()} /><meta property="og:site_name" content={SITE.name} />
+  <meta property="og:locale" content={locale==='en'?'en_GB':'id_ID'} />
+  <meta property="og:image" content={new URL('/images/share/default.png',SITE.url).href} />
+  <meta property="og:image:alt" content={SITE.name} />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={desc} />
+  <meta name="twitter:image" content={new URL('/images/share/default.png',SITE.url).href} />
+  <meta name="twitter:image:alt" content={SITE.name} />
   <link rel="canonical" href={canonical.toString()} />
   <link rel="alternate" hreflang={locale==='en'?'id':'en'} href={alternate.toString()} />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
