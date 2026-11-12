@@ -1,3 +1,4 @@
+export {CommonsIntelligence} from './commons-entrypoint';
 import {readCurrent as current,imageForDevelopment,issuesForDevelopment,placesForDevelopment} from './news-read';
 import {engineActivity} from './activity';
 import {matchesFollowing,matchesFollowingEvidence} from '../../../shared/following';
