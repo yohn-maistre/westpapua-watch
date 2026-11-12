@@ -24,7 +24,7 @@ export async function commonsCompletion(request:Request,env:CommonsModelEnv,upst
  const purpose=request.headers.get('x-strata-purpose')==='synthesis'?'synthesis':'fast',route=purpose==='synthesis'?(env.AI_GATEWAY_SYNTH_MODEL||'dynamic/watch-synth'):(env.AI_GATEWAY_FAST_MODEL||'dynamic/watch-fast')
  let phase:'request'|'response'='request'
  try{
-  const response=await upstream(base.href.replace(/\/$/,'')+'/chat/completions',{method:'POST',headers:{'content-type':'application/json','cf-aig-authorization':'Bearer '+env.AI_GATEWAY_TOKEN,'cf-aig-collect-log-payload':'false'},body:JSON.stringify({model:route,messages:b.messages,...(b.tools?{tools:b.tools}:{}),max_tokens:Math.min(600,Math.max(1,Number.isInteger(b.max_tokens)?Number(b.max_tokens):500)),temperature:.15,stream:false}),signal:AbortSignal.timeout(18000),redirect:'error'})
+  const response=await upstream(base.href.replace(/\/$/,'')+'/chat/completions',{method:'POST',headers:{'content-type':'application/json','cf-aig-authorization':'Bearer '+env.AI_GATEWAY_TOKEN,'cf-aig-collect-log-payload':'false'},body:JSON.stringify({model:route,messages:b.messages,...(b.tools?{tools:b.tools}:{}),max_tokens:Math.min(600,Math.max(1,Number.isInteger(b.max_tokens)?Number(b.max_tokens):500)),temperature:.15,stream:false}),signal:AbortSignal.timeout(28000),redirect:'error'})
   if(!response.ok){await response.body?.cancel();return json({error:response.status===429?'Model quota reached':'Model provider unavailable'},response.status===429?429:502)}
   phase='response'
   const data=await bounded(response,65536),message=data?.choices?.[0]?.message,content=typeof message?.content==='string'?message.content:'',toolCalls=message?.tool_calls
