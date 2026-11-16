@@ -29,11 +29,21 @@ const ISSUE_TAGS:Record<string,string[]>={
 const DESK_TAGS:Record<string,string[]>={environment:['environment-biodiversity'],land:['land-indigenous-rights'],human_rights:['human-rights-security'],politics:['politics-governance'],culture:['culture-language']};
 function topicTagsFor(desk:string,issueSlugs:string[],topics:string[]){const tags:string[]=[];const add=(tag:string)=>{if(tag&&!tags.includes(tag))tags.push(tag)};for(const slug of issueSlugs)for(const tag of ISSUE_TAGS[slug]||[])add(tag);for(const tag of DESK_TAGS[String(desk||'').toLowerCase()]||[])add(tag);const haystack=topics.join(' ');for(const [tag,rule] of TAG_RULES)if(rule.test(haystack))add(tag);return tags.slice(0,4)}
 
-export async function imageForDevelopment(env:any,id:number){return env.DB.prepare(`SELECT ic.url,ic.source_url,ic.credit,ic.caption,ic.rights_status,p.name publisher FROM image_candidates ic JOIN articles a ON a.id=ic.article_id JOIN publishers p ON p.id=a.publisher_id JOIN development_articles da ON da.article_id=ic.article_id WHERE da.development_id=? AND (ic.rights_status IN ('approved','attributed_external') OR ?='true') ORDER BY CASE ic.rights_status WHEN 'approved' THEN 0 ELSE 1 END,CASE WHEN ic.credit IS NOT NULL AND length(ic.credit)>1 THEN 0 ELSE 1 END,ic.id DESC LIMIT 1`).bind(id,env.ALLOW_EXTERNAL_IMAGES||'false').first()}
+export async function imageForDevelopment(env:any,id:number){return env.DB.prepare(`SELECT ic.url,ic.source_url,ic.credit,ic.caption,ic.rights_status,p.name publisher FROM development_articles da CROSS JOIN image_candidates ic ON ic.article_id=da.article_id JOIN articles a ON a.id=ic.article_id JOIN publishers p ON p.id=a.publisher_id WHERE da.development_id=? AND (ic.rights_status IN ('approved','attributed_external') OR ?='true') ORDER BY CASE ic.rights_status WHEN 'approved' THEN 0 ELSE 1 END,CASE WHEN ic.credit IS NOT NULL AND length(ic.credit)>1 THEN 0 ELSE 1 END,ic.id DESC LIMIT 1`).bind(id,env.ALLOW_EXTERNAL_IMAGES||'false').first()}
 export async function issuesForDevelopment(env:any,id:number){const r:any=await env.DB.prepare(`SELECT i.slug,i.title_en,i.title_id,i.category,di.relation,di.score FROM development_issues di JOIN issues i ON i.slug=di.issue_slug WHERE di.development_id=? AND i.active=1 ORDER BY CASE di.relation WHEN 'primary' THEN 0 ELSE 1 END,di.score DESC,i.title_en`).bind(id).all();return r.results||[]}
 export async function placesForDevelopment(env:any,id:number){const r:any=await env.DB.prepare(`SELECT p.slug,p.name,p.kind,p.latitude,p.longitude,dp.relation,dp.score FROM development_places dp JOIN places p ON p.slug=dp.place_slug WHERE dp.development_id=? ORDER BY dp.score DESC,p.name LIMIT 12`).bind(id).all();return r.results||[]}
 
+// Cache the whole /current body for 10 minutes (data only changes on the hourly cycle); falls back to uncached if the Cache API is unavailable.
 export async function readCurrent(env:any,url:URL){
+  const page=Math.max(1,Math.floor(Number(url.searchParams.get('page')||1)||1)),limit=Math.min(24,Math.max(6,Math.floor(Number(url.searchParams.get('limit')||12)||12)));
+  const key=new Request(`https://watch-engine.cache.invalid/current?desk=${encodeURIComponent(newsDesk(url.searchParams.get('desk')||'all'))}&place=${encodeURIComponent(url.searchParams.get('place')||'')}&page=${page}&limit=${limit}`);
+  const cache:any=typeof caches!=='undefined'?(caches as any).default:null;
+  try{const hit=cache&&await cache.match(key);if(hit)return await hit.json()}catch{}
+  const body=await readCurrentUncached(env,url);
+  try{if(cache)await cache.put(key,new Response(JSON.stringify(body),{headers:{'content-type':'application/json','cache-control':'public, max-age=600'}}))}catch{}
+  return body;
+}
+async function readCurrentUncached(env:any,url:URL){
   const page=Math.max(1,Math.floor(Number(url.searchParams.get('page')||1)||1));
   const pageSize=Math.min(24,Math.max(6,Math.floor(Number(url.searchParams.get('limit')||12)||12)));
   const offset=(page-1)*pageSize;
